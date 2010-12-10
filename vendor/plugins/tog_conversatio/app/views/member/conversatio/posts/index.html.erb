@@ -1,0 +1,38 @@
+<div class="titleB"><%= I18n.t('tog_conversatio.views.member.posts.index.posts_in_blog', :blog_title => @blog.title)%></div>
+<p><%= link_to I18n.t('tog_conversatio.views.member.posts.index.create_post'),  new_member_conversatio_blog_post_url(@blog), {:class => "button add", :title => I18n.t('tog_conversatio.views.member.posts.index.create_post_title')} %></p>
+<table class="tableB">
+  <thead>
+    <tr>
+      <th scope="col"><%= I18n.t('tog_conversatio.views.member.posts.index.title') %></th>
+      <th scope="col"><%= I18n.t('tog_conversatio.views.member.posts.index.status') %></th>
+      <th scope="col"><%= I18n.t('tog_conversatio.views.member.posts.index.comments') %></th>
+      <th scope="col"><%= I18n.t('tog_conversatio.views.member.posts.index.created_at') %></th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td colspan="4" class="info_results">
+        <span class="info_items"><%= page_entries_info @posts, :entry_name => I18n.t('tog_conversatio.views.member.posts.index.post') %></span>
+        <span class="pages_navigation right">
+          <%= will_paginate @posts, :container => false %>
+        </span>
+      </td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <% for post in @posts %>
+    <tr<%= cycle(' class="pair"', '') -%>>
+      <td><%= link_to post.title, edit_member_conversatio_blog_post_path(@blog, post) %></td>
+      <td><%= post.state %></td>
+      <td><%= link_to "##{post.comments.size}", member_conversatio_blog_post_path(@blog, post) %></td>
+      <td><%= post.creation_date %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'member/conversatio/blogs/manage', :locals => {:blog => @blog} %>
+  <br/>  
+  <%= render :partial => 'conversatio/blogs/tag_cloud_single_blog', :locals => { :blog => @blog } %>
+<% end %>

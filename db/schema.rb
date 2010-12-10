@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101210072523) do
+ActiveRecord::Schema.define(:version => 20101210085251) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -40,6 +40,22 @@ ActiveRecord::Schema.define(:version => 20101210072523) do
     t.datetime "updated_at"
     t.string   "status",     :default => "accepted"
     t.boolean  "invitation", :default => false
+  end
+
+  create_table "bloggerships", :force => true do |t|
+    t.integer  "blog_id"
+    t.integer  "user_id"
+    t.string   "rol",        :default => "admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blogs", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "client_applications", :force => true do |t|
@@ -197,6 +213,17 @@ ActiveRecord::Schema.define(:version => 20101210072523) do
   create_table "plugin_schema_migrations", :id => false, :force => true do |t|
     t.string "plugin_name"
     t.string "version"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "blog_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state"
+    t.datetime "published_at"
   end
 
   create_table "profiles", :force => true do |t|

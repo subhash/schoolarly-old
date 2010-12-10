@@ -1,0 +1,34 @@
+<div class="titleB"><%= I18n.t('tog_conversatio.views.member.posts.show.comments_post', :post_title => @post.title)%></div>
+<table class="tableB">
+  <thead>
+    <tr>
+      <th><%= I18n.t('tog_conversatio.views.member.posts.show.author') %></th>
+      <th><%= I18n.t('tog_conversatio.views.member.posts.show.comment') %></th>
+      <th nowrap="nowrap"><%= I18n.t('tog_conversatio.views.member.posts.show.created_at') %></th>
+      <th><%= I18n.t('tog_conversatio.views.member.posts.show.spam') %></th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for comment in @comments %>
+    <tr<%= cycle('',' class="pair"') -%>>
+      <td><%= comment_user_name(comment) %></td>
+      <td><%= comment.comment %></td>
+      <td nowrap="nowrap"><%= comment.created_at %></td>
+      <td><%= comment.spam? %></td>
+      <td><%= link_to I18n.t('tog_conversatio.views.member.posts.show.remove'), member_comment_remove_path(comment), {:confirm => I18n.t('tog_conversatio.views.member.posts.show.remove_confirm')} -%></td>
+    </tr>
+    <% end %>
+    <% if @comments.blank? %>
+      <tr>
+         <td colspan="5"><%= I18n.t('tog_conversatio.views.member.posts.show.not_found') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'member/conversatio/blogs/manage', :locals => {:blog => @blog} %>
+  <br/>  
+  <%= render :partial => 'conversatio/blogs/tag_cloud_single_blog', :locals => { :blog => @blog } %>
+<% end %>
