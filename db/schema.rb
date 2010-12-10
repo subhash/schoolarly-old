@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101209093458) do
+ActiveRecord::Schema.define(:version => 20101210072523) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20101209093458) do
   end
 
   add_index "activities", ["item_type", "item_id"], :name => "index_activities_on_item_type_and_item_id"
+
+  create_table "attendances", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status",     :default => "accepted"
+    t.boolean  "invitation", :default => false
+  end
 
   create_table "client_applications", :force => true do |t|
     t.string   "name"
@@ -73,6 +82,29 @@ ActiveRecord::Schema.define(:version => 20101209093458) do
   end
 
   add_index "config", ["key"], :name => "key", :unique => true
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.string   "url"
+    t.string   "venue"
+    t.string   "venue_link"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "capacity",          :default => -1
+    t.string   "venue_address"
+    t.boolean  "site_wide",         :default => false
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.boolean  "moderated",         :default => false
+  end
 
   create_table "folders", :force => true do |t|
     t.string   "name"

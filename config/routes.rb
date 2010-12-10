@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.routes_from_plugin 'tog_conclave'
+
+  map.routes_from_plugin 'tog_conclave'
+
+  map.routes_from_plugin 'tog_conclave'
+
+  map.routes_from_plugin 'tog_conclave'
+
+  map.routes_from_plugin 'tog_conclave'
+
   map.routes_from_plugin 'tog_mail'
 
   map.routes_from_plugin 'tog_social'

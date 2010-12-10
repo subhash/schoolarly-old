@@ -9,6 +9,11 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 require 'desert'
 Rails::Initializer.run do |config|
+  config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
+  config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
+  config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
+  config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
+  config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
   config.reload_plugins = true if RAILS_ENV == 'development'
   config.gem 'oauth', :version => '>= 0.3.5'
   config.gem 'rubyist-aasm', :lib => 'aasm', :version => '~> 2.1.1'

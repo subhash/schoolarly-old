@@ -26,7 +26,7 @@ ActionMailer::Base.smtp_settings = {
   :password => "testuser"
 }
 
-config.action_mailer.perform_deliveries = true
+config.action_mailer.perform_deliveries = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = true
 
