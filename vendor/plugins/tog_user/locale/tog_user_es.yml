@@ -1,0 +1,125 @@
+es:
+  interface:
+    admin:
+      users: Usuarios
+    member:
+      my_account: Mi cuenta
+  tog_user:
+    plugin_name: User    
+    plugin_title: Gestión de usuarios
+    send: Enviar
+    model: 
+      login_required: . El campo ''login'' es obligatorio
+      email_required: . El campo ''email'' es obligatorio
+      password_required: . El campo ''password'' es obligatorio
+      password_mismatch: . Contraseña y su copia deben ser idénticas
+      login_to_short: . Usuario demasiado corto, debería tener al menos 3 caracteres
+      login_in_use: . Usuario ya existe
+      email_in_use: . Correo electrónico en uso
+      name: Nombre
+      login: Login
+      email: Correo electrónico
+      your_email: Tu correo electrónico
+      state: Estado
+      created_at: Creado el
+      password: Contraseña
+      password_confirmation: Confirmar contraseña
+      change_password_explanation: Si quiere cambiar la contraseña de este usuario escriba aquí la nueva<br/>En caso contrario, déjelo en blanco.
+      admin_user: Este usuario es un administrador
+      states:
+        passive: Nuevo
+        pending: Pendiente de activación
+        active: Activo
+        suspended: Suspendido
+        deleted: Eliminado
+        actions:
+          register: Registrar
+          activate: Activar
+          suspend: Suspender
+          delete: Eliminar
+          unsuspend: Reactivar    
+    user:
+      sign_up: Gracias por darte de alta!. En breve recibirás un email con instrucciones para confirmar tu cuenta.
+      sign_up_completed: Alta completa
+      activation_resent: Hemos reenviado el mensaje de activación. Por favor, sigue las instrucciones detalladas en él.
+      activation_code_bogus: No hemos encontrado un usuario con este código de activación -- ¿Comprueba tu email? o Quizás ya estás registrado -- intenta entrar en la aplicación.      
+      activation_code_missing: No se ha indicado el código de activación. Por favor, sigue la URL de tu e-mail.
+      password_updated: Contraseña actualizada con éxitio para {{email}}
+      password_reset_sent: Hemos enviado un correo a {{email}} con instrucciones para cambiar tu contraseña.
+      password_reset_not_found: El {{email}} no tiene cuenta en este sistema
+      forgot_password: ¿Has olvidado tu contraseña?
+      forgot_password_help: Tras rellenar este formulario, recibirás un correo electrónico con instrucciones para cambiar tu contraseña.
+      already_registered: ¿Ya estás registrado?
+      signup_title: Regístrate
+      click_to_login: Pulsa aquí para entrar
+      type_two_words: Escribe las 2 palabras
+    search:
+      send_private_message: Enviar un mensaje privado
+    sessions:
+      new: Entra en tu cuenta
+      email: Correo electrónico
+      login: Usuario
+      password: Contraseña
+      remember_me: Recuérdame
+      password_forgotten: Si has olvidado tu contraseña, podemos
+      email_you: enviártela por email
+      login_failure: Usuario o contraseña incorrectos.
+      login_success: Autenticado correctamente.
+      sign_out: Has abandonado la sesión.
+      create_account: Regístrate
+      click_to_sign_up: Pulsa aquí para registrarte
+      sign_in: Registrarse
+    admin:
+      error_saving: Ha sucedido algo que no permite grabar este usuario
+      user_created: Usuario {{login}} creado correctamente!
+      user_updated: Usuario {{login}} actualizado correctamente!
+      create_user: Crear usuario  
+      edit_user: Editar usuario
+      email_user: Enviar un email a este usuario
+      update: Actualizar
+      create: Crear
+      create_account: Crear cuenta
+      login_details: Datos de acceso  
+      personal_details: Información personal
+      change: Cambiar   
+      search_user: Buscar usuario
+      search_user_info: Busca en nombre y correo electrónico
+      search: Buscar
+      filter_users: Filtrar usuario
+      filter_all: Eliminar filtros
+      age_filter: Fecha de creación
+      age_filter_fields:
+        today: Hoy
+        week: Última semana
+        month: Último mes
+      user_state_filter: Estado 
+      user_state_filter_fields:
+        active: Activos
+        pending: Pendientes de activación
+        suspended: Suspendidos
+        deleted: Eliminados
+        passive: Nuevos        
+    member:
+      password:
+        changed: Contraseña cambiada
+        not_changed: Contraseña no cambiada
+        change: Cambiar contraseña
+        reset: Resetear la contraseña
+        reset_help: Introduce tu nueva contraseña
+        current: Contraseña actual
+        new: Nueva contraseña
+        confirm_new: Confirma la nueva contraseña
+        mismatch: "Las contraseñas no coinciden. Por favor, confirme que intrdujo lo mismo en 'contraseña' y 'confirmación de contraseña'"
+        invalid: Contraseña incorrecta. La contraseña actual que introdujo no es correcta.
+      account:
+        my_info: Mi cuenta
+        my_login: Mi Login
+        my_email: Mi Email
+        remove: Borrar cuenta
+        destroy_all: borrar mi cuenta y todos mis datos
+        destroy_all_confirm: Vamos a borrar tu cueenta y borrar todos tus datos. ¿Estás seguro?
+        removed: Su cuenta ha sido eliminada, gracias por usar nuestro sitio.
+    mailer: 
+      account_activated: Tu cuenta ha sido activada!
+      activate_account: Por favor activa tu cuenta
+      reset_password: Restablece tu contraseña
