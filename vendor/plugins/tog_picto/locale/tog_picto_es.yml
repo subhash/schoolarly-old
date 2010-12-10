@@ -1,0 +1,69 @@
+# {{xxx}}
+es:
+  interface:
+      member:
+          photos: Fotos
+      site:
+          photos: Fotos
+  tog_picto:
+    plugin_name: Picto
+    plugin_description: Plugin para gestión de fotos
+    photoset_photos:
+      no_photos_yet: Aún no hay fotos
+    site:
+      no_photosets_yet: Aún no hay álbumes
+    member:
+      photoset_created: Álbum creado con éxito
+      photoset_updated: Álbum actualizado con éxito
+      photoset_update_error: Error al actualizar el álbum
+      photoset_deleted: Álbum eliminado
+      photos_uploaded: Se han subido las fotos con éxito
+      photo_updated: Foto actualizada.
+      photo_updated_error: Error al actualizar la foto
+      photo_deleted: Foto eliminada
+      sidebar:
+        upload_more_photos: Sube más fotos ahora!
+        upload_new_images: Subir nuevas fotos
+        your_photosets: Tus álbumes
+      photosets:
+        new:
+          new_photoset: Nuevo álbum
+          title: Título
+          description: Descripción
+          tags_separated_by: Etiquetas (separadas por ,)
+          privacy: Privado
+          photoset_is_private: Este álbum es privado
+          create_photoset: Crear álbum
+          upload_more_photos: Sube más fotos ahora!
+          upload_new_images: Subir nuevas imágenes
+          your_photosets: Tus álbumes
+        edit:
+          editing_photoset: Editando álbum
+          title: Título
+          description: Descripción
+          tags_separated_by: Etiquetas (separadas por ,)
+          privacy: Privacidad
+          this_photoset_is_public: Esta álbum es público
+          photos: Fotos
+          main_photo: Portada
+          currently_in_the_set: Actualmente en el álbum
+          drag_here_to_extract: Arrastre aquí para eliminar una foto del álbum
+          available_photos: Fotos en tu cuenta
+          no_more_photos: No hay mas fotos
+          save_photoset: Guardar álbum
+      photos:
+        new:
+          upload_photos: Subir fotos
+          common_to_all_photos: Común a todas las fotos
+          tags: Etiquetas
+          select_photoset: Seleccionar álbum
+          create_new: Crear nuevo
+          photoset_title: Título
+          photoset_description: Descripción
+          photo_with_index: Foto
+          title: Título
+          tags: Etiquetas
+          description: Descripción
+          photo_file_field: Foto
+          upload_one_more: Subir una foto más
+          upload: Subir!

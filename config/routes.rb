@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.routes_from_plugin 'tog_picto'
+
+  map.routes_from_plugin 'tog_picto'
+
   map.routes_from_plugin 'tog_conversatio'
 
   map.routes_from_plugin 'tog_conversatio'

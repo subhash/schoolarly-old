@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101210085251) do
+ActiveRecord::Schema.define(:version => 20101210090650) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -209,6 +209,37 @@ ActiveRecord::Schema.define(:version => 20101210085251) do
   end
 
   add_index "oauth_tokens", ["token"], :name => "index_oauth_tokens_on_token", :unique => true
+
+  create_table "photos", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "photoset_id"
+    t.integer  "position",           :default => 1
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "photoset_memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "photoset_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photosets", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "main_photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "privacy",       :default => 0
+  end
 
   create_table "plugin_schema_migrations", :id => false, :force => true do |t|
     t.string "plugin_name"

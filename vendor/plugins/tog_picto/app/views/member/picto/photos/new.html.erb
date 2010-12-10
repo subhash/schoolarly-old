@@ -1,0 +1,75 @@
+<% content_for :sidebar do %>
+  <%= link_to I18n.t("tog_picto.member.sidebar.upload_more_photos"),  new_member_picto_photo_url, { :class => "add", :title => I18n.t("tog_picto.member.sidebar.upload_new_images") } %>
+<br/>
+  <%= link_to I18n.t("tog_picto.member.sidebar.your_photosets"), member_picto_photosets_url %>
+<% end %>
+
+<div class="titleB"><%= I18n.t("tog_picto.member.photos.new.upload_photos") %></div>
+
+<br />
+
+<%= error_messages_for :photo %>
+
+<script type="text/javascript">
+  function toggle_photoset(obj) {
+    if (obj.value=="0"){
+      $('new-set').appear();;
+    }else{
+      $('new-set').hide();
+    } 
+  }
+</script>
+
+
+<% form_for @photo, :url => member_picto_photos_path, :html => {:id => "entry", :multipart => true, :method => "post"} do |f| -%>
+  <fieldset>
+    <div class="fields">
+
+      <fieldset>
+        <legend><%= I18n.t("tog_picto.member.photos.new.common_to_all_photos") %></legend>
+
+        <p><label><%= I18n.t("tog_picto.member.photos.new.tags") %></label> <%= text_field :common, :tag_list, {:class => "fieldbox", :size => "40"}  %></p>
+
+        <p><label><%= I18n.t("tog_picto.member.photos.new.select_photoset") %></label> <%= select(:common, :photoset, @owned_photosets.collect {|p| [ p.title, p.id ] } << [%(#{I18n.t("tog_picto.member.photos.new.create_new")}...), 0], { :include_blank => true}, :onchange => "toggle_photoset(this)") %></p>
+
+        
+          <div id="new-set" style="display:none">
+            <% fields_for :photoset do |p|-%>
+            <fieldset>
+              <p><label><%= I18n.t("tog_picto.member.photos.new.photoset_title") %></label> <%= p.text_field :title, {:size => nil} %></p>
+              <p><label><%= I18n.t("tog_picto.member.photos.new.photoset_description") %></label> <%= p.text_area :description, :rows => 4 %></p>
+            </fieldset>
+            <% end -%> 
+          </div>
+
+      </fieldset>
+      
+			<script type="text/javascript">
+			  function new_photo(i, n) {
+			    $('fs_photo_' + n).toggle();
+			    $('link_fs_photo_' + i).toggle();
+			    $('link_fs_photo_' + n).toggle();
+			  }
+			</script>
+   
+
+      <% 5.times do |i| -%>
+        <fieldset id="fs_photo_<%=i%>" <%if i>0%>style="display:none"<%end%> >
+          <legend><%= I18n.t("tog_picto.member.photos.new.photo_with_index") %> <%=i+1%></legend>
+          <p><label><%= I18n.t("tog_picto.member.photos.new.title") %></label> <%= text_field "photo[#{i}]", :title, {:class => "fieldbox", :size => "40"}  %></p>
+          <p><label><%= I18n.t("tog_picto.member.photos.new.tags") %></label> <%= text_field "photo[#{i}]", :tag_list, {:class => "fieldbox", :size => "40"}  %></p>
+          <p><label><%= I18n.t("tog_picto.member.photos.new.description") %></label> <%= text_area "photo[#{i}]", :description, :size => '40x3' %></p>
+          <p><label><%= I18n.t("tog_picto.member.photos.new.photo_file_field") %></label> <%= file_field "photo[#{i}]", 'image', {:size => nil} %></p>
+        </fieldset>
+	      <%if i < 4 %><div id="link_fs_photo_<%=i%>" <%if i>0%>style="display:none"<%end%>><a href="javascript:new_photo(<%=i%>, <%=i+1%>)" class="add"><%= I18n.t("tog_picto.member.photos.new.upload_one_more") %></a></div><%end%>
+      <% end -%>
+      
+    </div>
+  </fieldset>
+
+  <br />
+  <div class="actions">
+    <%= submit_tag I18n.t("tog_picto.member.photos.new.upload"), :class => "button mainaction" %>
+  </div>
+     
+<% end -%>
