@@ -10,11 +10,6 @@ require File.join(File.dirname(__FILE__), 'boot')
 require 'desert'
 Rails::Initializer.run do |config|
   config.gem 'RedCloth', :lib => 'redcloth', :source => 'http://code.whytheluckystiff.net'
-  config.gem 'RedCloth', :lib => 'redcloth', :source => 'http://code.whytheluckystiff.net'
-  config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
-  config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
-  config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
-  config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
   config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
   config.reload_plugins = true if RAILS_ENV == 'development'
   config.gem 'oauth', :version => '>= 0.3.5'
