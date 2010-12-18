@@ -1,3 +1,6 @@
+<% if @group.parent %>
+  <div class="breadcrumbs"><%= ancestor_path_for(@group) %></div>
+<% end %>
 <div class="detail detail1">
   <div class="image"><%= link_to image_for_group(@group, 'medium', :class=>"img"), group_path(@group) %></div>
   <div class="title"><%= link_to @group.name, group_path(@group) %></div>
