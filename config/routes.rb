@@ -67,9 +67,13 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :member do |member|
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
+      group.group_invite     '/group/:id/invite/:user_id',                :action => 'invite'
     end
   end
   
+  map.with_options :controller => 'profiles' do |profile|
+    profile.invite_to_group 'profiles/invite/:id', :action => 'invite_to_group'
+  end
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

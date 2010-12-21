@@ -10,3 +10,10 @@ en:
       sub_groups:
          create_group: "Create member group"
          title: "Member Groups"
+      members:
+        invite: "Invite members"
+
+        
+  profiles:
+   site:
+     invite: "Invite"

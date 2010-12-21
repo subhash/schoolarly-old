@@ -1,6 +1,6 @@
 <div class="titleB">
 	<% if @group.parent %>
-	<%= link_to @group.parent.name, group_path(@group.parent) %> >> 
+	<%= link_to @group.parent.name, group_path(@group.parent) %> > 
 	<%= I18n.t('groups.site.sub_groups.create_group') %>
 	<% else %>
 	<%= I18n.t('tog_social.groups.site.create_group') %>
