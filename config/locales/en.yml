@@ -15,14 +15,23 @@ en:
          title: "Member Groups"
       members:
         invite: "Invite members"
+  schools:
+    site:
+      title: "Schools"
+      create_school: "Create new school"
+      details: "School details"
+    member:
+      mail:
+          activation_request:
+            subject: Request for new school '{{school_name}}'
+            content: "<p>User '{{user_name}}' has requested the creation of a new school called '{{school_name}}'.</p><p><a href=\"{{activation_url}}\">{{activation_url}}</a></p>"
+          invitation:
+            subject: Invitation to the school {{school}}
+            accept: Accept
+            reject: Reject
         
   profiles:
    site:
      invite: "Invite"    
   
-  tog_social:
-    groups:
-      site:
-        titleSchool: 'Schools'
-        create_groupSchool: Create new school
        

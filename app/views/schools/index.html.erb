@@ -1,6 +1,6 @@
 <div class="portlet portletH" id="portlet_groups">
-    <h2><span><%= I18n.t('tog_social.groups.site.title' + @network_type.to_s) %></span></h2>
-    <p><%= link_to I18n.t('tog_social.groups.site.create_group' + @network_type.to_s), new_member_group_path, :class => 'button add' %></p>
+    <h2><span><%= I18n.t('schools.site.title') %></span></h2>
+    <p><%= link_to I18n.t('schools.site.create_school'), new_member_school_path, :class => 'button add' %></p>
     <div class="portlet_content">
         <ul>
           <% @groups.each do |group|%>
@@ -23,5 +23,5 @@
 
 <% content_for :sidebar do %>
   <% 'render :partial => "search_box" ' %>
-  <%= render :partial => "last_groups" %>
+  <%= render :partial => "groups/last_groups" %>
 <% end %>

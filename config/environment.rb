@@ -59,4 +59,4 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
-Tog::Interface.sections(:site).add :schools, "/groups?network_type='School'"
+Tog::Interface.sections(:site).add :schools, "/schools"
