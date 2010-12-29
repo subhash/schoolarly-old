@@ -18,4 +18,11 @@ en:
         
   profiles:
    site:
-     invite: "Invite"
+     invite: "Invite"    
+  
+  tog_social:
+    groups:
+      site:
+        titleSchool: 'Schools'
+        create_groupSchool: Create new school
+       
