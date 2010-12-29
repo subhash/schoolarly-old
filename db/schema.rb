@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101214095716) do
+ActiveRecord::Schema.define(:version => 20101229053947) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -155,7 +155,14 @@ ActiveRecord::Schema.define(:version => 20101214095716) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "network_type"
+    t.integer  "network_id"
     t.integer  "parent_id"
+  end
+
+  create_table "klasses", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "memberships", :force => true do |t|
@@ -282,6 +289,11 @@ ActiveRecord::Schema.define(:version => 20101214095716) do
   end
 
   add_index "ratings", ["rateable_id", "rateable_type"], :name => "index_ratings_on_rateable_id_and_rateable_type"
+
+  create_table "schools", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "shares", :force => true do |t|
     t.integer  "user_id"

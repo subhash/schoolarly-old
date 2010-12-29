@@ -67,7 +67,7 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :member do |member|
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
-      group.group_invite     '/group/:id/invite/:user_id',                :action => 'invite'
+      group.group_invite     '/group/:id/invite/:user_id', :action => 'invite'
     end
   end
   

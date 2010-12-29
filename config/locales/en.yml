@@ -2,6 +2,9 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  interface:
+    site:
+      schools: "Schools"
   groups:
     model:
       groups_not_found: "%{parent} has 0 groups."
@@ -12,7 +15,6 @@ en:
          title: "Member Groups"
       members:
         invite: "Invite members"
-
         
   profiles:
    site:
