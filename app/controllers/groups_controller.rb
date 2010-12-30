@@ -4,8 +4,7 @@ class GroupsController < ApplicationController
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'
-    @network_type = params[:network_type]
-    @groups = Group.of_network_type(@network_type).base.active.public.paginate  :per_page => 10,
+    @groups = Group.default.base.active.public.paginate  :per_page => 10,
                                             :page => @page,
                                             :order => @order + " " + @asc
     respond_to do |format|
