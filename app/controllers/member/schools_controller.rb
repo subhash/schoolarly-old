@@ -16,8 +16,8 @@ class Member::SchoolsController < Member::GroupsController
       
       if current_user.admin == true || Tog::Config['plugins.tog_social.group.moderation.creation'] != true
         @group.activate!
-        flash[:ok] = I18n.t("tog_social.groups.member.created")
-        redirect_to group_path(@group)
+        flash[:ok] = I18n.t("schools.member.group_created", :school_name => @group.name)
+        redirect_to school_path(@group.network)
       else
         
         admins = User.find_all_by_admin(true)        
@@ -33,7 +33,7 @@ class Member::SchoolsController < Member::GroupsController
           ).dispatch!     
         end
         
-        flash[:warning] = I18n.t("tog_social.groups.member.pending")
+        flash[:warning] = I18n.t("schools.member.group_pending")
         redirect_to schools_path
       end
     else

@@ -16,7 +16,7 @@ class Member::KlassesController < Member::GroupsController
     if @group.errors.empty?     
       @group.join(current_user, true)
       @group.activate!
-      flash[:ok] = I18n.t("tog_social.groups.member.created")
+      flash[:ok] = I18n.t("klasses.member.created", :klass_name => @group.name, :school_name => @group.parent.name)
       redirect_to group_path(@group)
     else
       render :action => 'new'

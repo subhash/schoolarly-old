@@ -21,6 +21,8 @@ en:
       create_school: "Create new school"
       details: "School details"
     member:
+      group_created: "{{school_name}} network created"
+      group_pending: "{{school_name}} network has been created but is pending for administrator's approval"
       mail:
           activation_request:
             subject: Request for new school '{{school_name}}'
@@ -33,6 +35,8 @@ en:
     site:
       create_klass: "Create class network"
       details: "Class details"
+    member:
+      created: "{{klass_name}} network created under {{school_name}}"  
   profiles:
    site:
      invite: "Invite"    
