@@ -77,6 +77,8 @@ ActionController::Routing::Routes.draw do |map|
     profile.invite_to_group 'profiles/invite/:id', :action => 'invite_to_group'
   end
   
+  map.resources :schools
+  
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
