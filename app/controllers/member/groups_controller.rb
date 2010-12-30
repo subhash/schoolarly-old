@@ -1,4 +1,4 @@
-class Member::SchoolsController < Member::GroupsController
+class Member::GroupsController
   def new
     @parent = Group.find(params[:id]) if params[:id]
     @group = Group.new(:parent => @parent)

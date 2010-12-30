@@ -1,3 +1,4 @@
+<div class="breadcrumbs"><%= ancestor_path_for(@group) %></div>
 <div class="detail detail1">
   <div class="image"><%= link_to image_for_group(@group, 'medium', :class=>"img"), group_path(@group) %></div>
   <div class="title"><%= link_to @group.name, group_path(@group) %></div>
@@ -23,11 +24,11 @@
     <h2><span><%= I18n.t('tog_social.more_links') %></span></h2>
     <div class="portlet_content">
         <ul>
-          <% if i_am_member_of @group -%>
-            <li><%= I18n.t('tog_social.groups.site.member') %><%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %></li>
-          <% else -%>
-            <li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
-          <% end -%>  
+		  <% if i_am_moderator_of @group -%> 
+		  <li><%= link_to I18n.t('groups.site.sub_groups.create_group'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
+		  <li><%= link_to I18n.t('klasses.site.create_klass'), new_member_school_klass_path(@group.network), :class => 'add' %></li>
+		  <li><%= link_to I18n.t('groups.site.members.invite'), invite_to_group_path(@group.id), :class => 'add' %></li>
+		  <% end %>
         </ul>
     </div> 
 </div>    
@@ -37,4 +38,11 @@
   :style => :portletG, 
   :title => I18n.t('tog_social.groups.model.members', :count => @group.members.size),  
   :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
+
+<%= render :partial => "groups/groups_portlet", :locals => { 
+  :items => @group.children, 
+  :style => :portletG, 
+  :title => I18n.t('groups.site.sub_groups.title'),  
+  :no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name) } %>
 <% end %>
+

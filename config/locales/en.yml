@@ -29,7 +29,10 @@ en:
             subject: Invitation to the school {{school}}
             accept: Accept
             reject: Reject
-        
+  klasses:
+    site:
+      create_klass: "Create class network"
+      details: "Class details"
   profiles:
    site:
      invite: "Invite"    
