@@ -1,5 +1,9 @@
 class Member::SchoolsController < Member::GroupsController
   
+  def find_group
+    @group = School.find(params[:id]).group if params[:id]
+  end
+  
   def create
     @group = Group.new(params[:group])
     @group.author = current_user

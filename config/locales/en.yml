@@ -9,13 +9,17 @@ en:
     model:
       groups_not_found: "%{parent} has 0 groups."
       parent: "Parent group"
+      sub_groups:
+        title: "Member Groups"
     site:
       sub_groups:
          create_group: "Create member group"
-         title: "Member Groups"
       members:
         invite: "Invite members"
   schools:
+    model:
+      klasses:
+        title: "Class Networks"
     site:
       title: "Schools"
       create_school: "Create new school"
@@ -35,6 +39,7 @@ en:
     site:
       create_klass: "Create class network"
       details: "Class details"
+      title: "Classes"
     member:
       created: "{{klass_name}} network created under {{school_name}}"  
   profiles:

@@ -38,11 +38,17 @@
   :style => :portletG, 
   :title => I18n.t('tog_social.groups.model.members', :count => @group.members.size),  
   :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
+  
+<%= render :partial => "groups/groups_portlet", :locals => { 
+  :items => @group.children.klass, 
+  :style => :portletG, 
+  :title => I18n.t('schools.model.klasses.title'),  
+  :no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name) } %>
 
 <%= render :partial => "groups/groups_portlet", :locals => { 
   :items => @group.children.default, 
   :style => :portletG, 
-  :title => I18n.t('groups.site.sub_groups.title'),  
+  :title => I18n.t('groups.model.sub_groups.title'),  
   :no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name) } %>
 <% end %>
 
