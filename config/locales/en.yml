@@ -24,6 +24,12 @@ en:
       title: "Schools"
       create_school: "Create new school"
       details: "School details"
+      students:
+        invite: "Invite Students"
+      teachers:
+        invite: "Invite Teachers"
+      admin:
+        invite: "Invite School Administrator"
     member:
       group_created: "{{school_name}} network created"
       group_pending: "{{school_name}} network has been created but is pending for administrator's approval"
