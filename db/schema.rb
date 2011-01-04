@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101229053947) do
+ActiveRecord::Schema.define(:version => 20110104041306) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -218,6 +218,11 @@ ActiveRecord::Schema.define(:version => 20101229053947) do
 
   add_index "oauth_tokens", ["token"], :name => "index_oauth_tokens_on_token", :unique => true
 
+  create_table "parents", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "photos", :force => true do |t|
     t.string   "title"
     t.string   "description"
@@ -306,6 +311,11 @@ ActiveRecord::Schema.define(:version => 20101229053947) do
     t.integer  "status",                       :default => 1
   end
 
+  create_table "students", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -321,6 +331,11 @@ ActiveRecord::Schema.define(:version => 20101229053947) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "teachers", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_ratings", :force => true do |t|
@@ -348,6 +363,8 @@ ActiveRecord::Schema.define(:version => 20101229053947) do
     t.boolean  "admin",                                   :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "person_type"
+    t.integer  "person_id"
   end
 
 end

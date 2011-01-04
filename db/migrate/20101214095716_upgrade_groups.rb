@@ -6,6 +6,8 @@ class UpgradeGroups < ActiveRecord::Migration
   end
   
   def self.down
+    remove_column :groups, :network_type
+    remove_column :groups, :network_id
     remove_column :groups, :parent_id
   end
 end

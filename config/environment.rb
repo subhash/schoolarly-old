@@ -60,3 +60,5 @@ Rails::Initializer.run do |config|
 end
 
 Tog::Interface.sections(:site).add :schools, "/schools"
+
+Tog::Config['plugins.tog_user.email_as_login'] = true
