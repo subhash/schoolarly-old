@@ -1,5 +1,5 @@
 <div class="titleB">
-	<%= link_to @group.parent.name, group_path(@group.parent) %> > 
+	<%= link_to @group.parent.name, path_for_group(@group.parent) %> > 
 	<%= I18n.t('klasses.site.create_klass') %>
 	</div>
 <br />

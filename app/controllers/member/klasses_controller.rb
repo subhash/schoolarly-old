@@ -1,4 +1,7 @@
 class Member::KlassesController < Member::GroupsController
+  def find_group
+    @group = Klass.find(params[:id]).group if params[:id]
+  end
   
   def new
     @parent = School.find(params[:school_id]).group
@@ -17,7 +20,7 @@ class Member::KlassesController < Member::GroupsController
       @group.join(current_user, true)
       @group.activate!
       flash[:ok] = I18n.t("klasses.member.created", :klass_name => @group.name, :school_name => @group.parent.name)
-      redirect_to group_path(@group)
+      redirect_to path_for_group(@group)
     else
       render :action => 'new'
     end    

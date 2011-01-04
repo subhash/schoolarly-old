@@ -1,7 +1,7 @@
 <div class="breadcrumbs"><%= ancestor_path_for(@group) %></div>
 <div class="detail detail1">
-  <div class="image"><%= link_to image_for_group(@group, 'medium', :class=>"img"), group_path(@group) %></div>
-  <div class="title"><%= link_to @group.name, group_path(@group) %></div>
+  <div class="image"><%= link_to image_for_group(@group, 'medium', :class=>"img"), path_for_group(@group) %></div>
+  <div class="title"><%= link_to @group.name, path_for_group(@group) %></div>
   <div class="subtitle"><%= I18n.t('tog_social.groups.model.created_at') %> <%= @group.created_at.strftime("%d/%m/%Y") %>, <%= I18n.t('tog_social.groups.model.members', :count => @group.members.size) %></div>
   <div class="summary"><%= I18n.t('tog_social.groups.model.moderated_by') %>:
     <% for moderator in @group.moderators -%>
@@ -46,7 +46,7 @@
 <%= render :partial => "groups_portlet", :locals => { 
   :items => @group.children, 
   :style => :portletG, 
-  :title => I18n.t('groups.site.sub_groups.title'),  
+  :title => I18n.t('groups.model.sub_groups.title'),  
   :no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name) } %>
 <% end %>
 

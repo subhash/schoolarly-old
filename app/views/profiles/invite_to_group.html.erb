@@ -1,5 +1,5 @@
 <div class="portlet portletF" id="portlet_featuredUsers">
-    <h2><span><%= link_to @group.name, group_path(@group) %> > <%= I18n.t('groups.site.members.invite') %></span></h2>
+    <h2><span><%= link_to @group.name, path_for_group(@group) %> > <%= I18n.t('groups.site.members.invite') %></span></h2>
     <div class="portlet_content">
         <ul>
             <% @profiles.each do |profile| %>
