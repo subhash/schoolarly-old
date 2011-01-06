@@ -50,6 +50,15 @@ en:
       created: "{{klass_name}} network created under {{school_name}}"  
   profiles:
    site:
-     invite: "Invite"    
+     invite: "Invite"
+  students:
+    model:
+      name: "Name"
+      email: "Email"
+    member:
+      invite: 
+        title: "Invite Students"
+        description: "An invitation email will be sent to each student"
+      
   
        

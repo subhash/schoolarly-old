@@ -1,0 +1,34 @@
+<div class="titleB"><%= I18n.t('students.member.invite.title') %></div>
+<p>
+    <span class="fontsmaller"><%= I18n.t('students.member.invite.description') %> </span>  
+</p>
+
+<br />
+<%= error_messages_for :student %>
+<% form_tag member_school_students_path(params[:school_id]) , :html => {:id => "f_signup", :name => "f_signup" } do |f| -%>
+  <fieldset>
+    <div class="fields">
+      <p>
+        <%= label_tag :name, I18n.t('students.model.name') %>
+        <%= text_field_tag :name, nil, :class => "fieldbox", :size => "40" %>
+      </p>
+      <p>
+        <%= label_tag :email, I18n.t('students.model.email') %>
+        <%= text_field_tag :email, nil, :class => "fieldbox", :size => "40" %>
+      </p>
+
+       <% if config["plugins.tog_user.captcha_enabled"] %>
+          <p>
+            <label for="code"><%= I18n.t('tog_user.user.type_two_words') %></label>
+            <%= recaptcha_tags(:display =>{:lang => config["plugins.tog_core.language.default"]}) %>
+          </p>
+       <% end %>
+    </div>
+  </fieldset>
+
+  <br />
+  <div class="actions">
+    <%= submit_tag I18n.t('students.member.invite.title'), :class => "button mainaction" %>
+  </div>
+     
+<% end -%>

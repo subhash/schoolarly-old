@@ -8,4 +8,10 @@ class Group < ActiveRecord::Base
   named_scope :school, :conditions => {:network_type => 'School'}
   named_scope :klass, :conditions => {:network_type => 'Klass'}
   named_scope :default, :conditions => {:network_type => nil }
+  
+  def invite_and_accept(user)
+    invite(user)
+    accept_invitation(user)
+  end
+  
 end
