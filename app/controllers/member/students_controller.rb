@@ -8,19 +8,27 @@ class Member::StudentsController < ApplicationController
   
   def create
     @school = School.find(params[:school_id])
+    @users = []
+    @failed_students = []
     CSV.parse(params[:students]) do |row|
-      @user = User.new(:email => row[1])
-      @user.login ||= @user.email if Tog::Config["plugins.tog_user.email_as_login"]
+      user = User.new(:email => row[1].strip)
+      puts 'email >>'+user.email+"<<"
+      user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
       name = row[0].split(' ',2)
-      @user.profile = Profile.new(:first_name => name[0],:last_name => name[1])
-      @user.person = Student.new
-      @user.invite_over_email 
-      
-      # TODO check if you are allowed to invite
-      @school.group.invite_and_accept(@user)
+      user.profile = Profile.new(:first_name => name[0],:last_name => name[1])
+      user.person = Student.new      
+      if user.invite_over_email
+        puts 'invited - '+user.email
+        # TODO check if you are allowed to invite
+        @school.group.invite_and_accept(user)
+      else
+        puts 'not invited - '+user.email
+        @failed_students << row.join(",")
+      end
+      @users << user
     end
-    redirect_back_or_default(Tog::Config["plugins.tog_user.default_redirect_on_signup"])
-    flash[:notice] = I18n.t("tog_user.user.sign_up")
+    @failed_students = @failed_students.join("\n")
+    render :action => 'new' 
   end
   
   

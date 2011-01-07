@@ -26,6 +26,7 @@ en:
       details: "School details"
       students:
         invite: "Invite Students"
+        added_successfully: "{{student_name}} has been added successfully"
       teachers:
         invite: "Invite Teachers"
       admin:
