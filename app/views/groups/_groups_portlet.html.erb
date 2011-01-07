@@ -1,5 +1,8 @@
 <div class="portlet portletH" id="portlet_groups">
     <h2><span><%= title %></span></h2>
+	<% if local_assigns[:add_link] %>
+	<p><%= add_link %></p>
+	<% end %>
     <div class="portlet_content">
         <ul>
           <% items.each do |group|%>

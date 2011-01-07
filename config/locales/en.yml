@@ -20,6 +20,8 @@ en:
     model:
       klasses:
         title: "Class Networks"
+      students:
+        title: "Students"
     site:
       title: "Schools"
       create_school: "Create new school"
@@ -44,7 +46,7 @@ en:
             reject: Reject
   klasses:
     site:
-      create_klass: "Create class network"
+      create_klass: "Add new class"
       details: "Class details"
       title: "Classes"
     member:

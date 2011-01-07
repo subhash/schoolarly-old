@@ -20,7 +20,7 @@ class Member::KlassesController < Member::GroupsController
       @group.join(current_user, true)
       @group.activate!
       flash[:ok] = I18n.t("klasses.member.created", :klass_name => @group.name, :school_name => @group.parent.name)
-      redirect_to path_for_group(@group)
+      redirect_to member_klass_path(@group.network)
     else
       render :action => 'new'
     end    
