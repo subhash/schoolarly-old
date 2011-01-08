@@ -9,7 +9,7 @@ class Member::GroupsController
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'  
-    users = users_to_invite(@group)
+    users = @group.parent ? (@group.parent.members - @group.members) : (User.active - @group.members)
     @profiles = users.collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
                                  :page => @page,
                                  :order => "profiles.#{@order} #{@asc}"
@@ -31,7 +31,7 @@ class Member::GroupsController
             flash[:error] = I18n.t("groups.site.invite.already_invited", :user_name => user.profile.full_name)
             redirect_to invite_member_group_path(@group) and return
           else
-            invite_user(group,user)
+            @group.invite(user)
             GroupMailer.deliver_invitation(@group, current_user, user)            
           end
         end        
@@ -42,13 +42,5 @@ class Member::GroupsController
     end
     redirect_to path_for_group(@group)
   end
-  
-  protected
-  def users_to_invite(group)
-    group.parent ? (group.parent.members - group.members) : (User.active - group.members)
-  end
-  
-  def invite_user(group,user)
-    group.invite(user)
-  end
+
 end

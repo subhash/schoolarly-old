@@ -1,0 +1,19 @@
+<div class="portlet portletF" id="portlet_featuredUsers">
+    <h2><span><%= link_to @group.name, path_for_group(@group) %> > <%= I18n.t('groups.site.members.invite') %></span></h2>
+    <div class="portlet_content">
+    	<% form_tag add_member_klass_path(@group.network) do |f| %>
+        <ul>
+            <% @profiles.each do |profile| %>
+            <li>
+            	<%= check_box_tag 'members[]', profile.id, false %>
+                <%=link_to icon_for_profile(profile, 'medium'), profile_path(profile), :title => profile.full_name%>
+				<%=link_to profile.full_name, profile %>                
+            </li>
+            <%end %>
+			<li>
+				<%= submit_tag I18n.t('groups.site.members.invite'), :class => "button" %>
+			</li>
+        </ul>		
+		<% end %>
+    </div>
+</div>
