@@ -16,6 +16,10 @@ en:
          create_group: "Create member group"
       members:
         invite: "Invite members"
+      already_member: "{{user_name}} is already a member"      
+      invite:
+          already_invited: "{{user_name}} has already been invited"
+          invited: "{{user_count}} users have been invited"
   schools:
     model:
       klasses:
