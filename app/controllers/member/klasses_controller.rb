@@ -26,6 +26,14 @@ class Member::KlassesController < Member::GroupsController
     end    
   end
   
+  protected
+  def users_to_invite(group)
+    group.parent.student_users - (group.parent.children.klass.collect(&:student_users))
+  end
   
+    
+  def invite_user(group,user)
+    group.invite_and_accept(user)
+  end
   
 end

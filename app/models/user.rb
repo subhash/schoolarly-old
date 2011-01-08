@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   belongs_to :person, :polymorphic => true
   
+  named_scope :of_type, lambda { |type| {:conditions => {:person_type => type}}}
+  
   def password_required?
     password_reset_code.blank? && (crypted_password.blank? || !password.blank?)
   end

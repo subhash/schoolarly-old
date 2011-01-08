@@ -31,7 +31,7 @@
           <% end -%> 
 		  <% if i_am_moderator_of @group -%> 
 		  <li><%= link_to I18n.t('groups.site.sub_groups.create_group'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
-		  <li><%= link_to I18n.t('groups.site.members.invite'), invite_to_group_path(@group.id), :class => 'add' %></li>
+		  <li><%= link_to I18n.t('groups.site.members.invite'), invite_member_group_path(@group.id), :class => 'add' %></li>
 		  <% end %>
         </ul>
     </div> 

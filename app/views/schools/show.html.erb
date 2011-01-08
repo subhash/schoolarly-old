@@ -25,8 +25,8 @@
     <div class="portlet_content">
         <ul>
 		  <% if i_am_moderator_of @group -%> 
-		  <li><%= link_to I18n.t('schools.site.admin.invite'), invite_to_group_path(@group.id), :class => 'add' %></li>
-		  <li><%= link_to I18n.t('schools.site.teachers.invite'), invite_to_group_path(@group.id), :class => 'add' %></li>
+		  <li><%= link_to I18n.t('schools.site.admin.invite'), invite_member_group_path(@group.id), :class => 'add' %></li>
+		  <li><%= link_to I18n.t('schools.site.teachers.invite'), invite_member_group_path(@group.id), :class => 'add' %></li>
 		  <% end %>
         </ul>
     </div> 

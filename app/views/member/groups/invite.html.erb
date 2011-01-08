@@ -1,7 +1,7 @@
 <div class="portlet portletF" id="portlet_featuredUsers">
     <h2><span><%= link_to @group.name, path_for_group(@group) %> > <%= I18n.t('groups.site.members.invite') %></span></h2>
     <div class="portlet_content">
-    	<% form_tag member_group_invite_path(@group) do |f| %>
+    	<% form_tag add_member_group_path(@group) do |f| %>
         <ul>
             <% @profiles.each do |profile| %>
             <li>
