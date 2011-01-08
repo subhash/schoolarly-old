@@ -30,7 +30,7 @@ class Member::KlassesController < Member::GroupsController
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'  
-    users = @group.parent.student_users - (@group.parent.children.klass.collect(&:student_users))
+    users = @group.parent.student_users - (@group.parent.children.klass.collect(&:student_users)).flatten
     @profiles = users.collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
     :page => @page,
     :order => "profiles.#{@order} #{@asc}"
