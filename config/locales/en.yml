@@ -12,14 +12,15 @@ en:
       sub_groups:
         title: "Member Groups"
     site:
-      sub_groups:
-         create_group: "Create member group"
       members:
         invite: "Invite members"
       already_member: "{{user_name}} is already a member"      
       invite:
           already_invited: "{{user_name}} has already been invited"
           invited: "{{user_count}} users have been invited"
+    member:     
+      sub_groups:
+         create_group: "Create member group"    
   schools:
     model:
       klasses:
@@ -53,12 +54,14 @@ en:
       create_klass: "Add new class"
       details: "Class details"
       title: "Classes"
+      students:
+        add: "Add Students"   
     member:
       created: "{{klass_name}} network created under {{school_name}}"  
   profiles:
    site:
      invite: "Invite"
-  students:
+   students:
     model:
       name: "Name"
       email: "Email"

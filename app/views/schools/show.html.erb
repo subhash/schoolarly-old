@@ -53,6 +53,6 @@
   :style => :portletG, 
   :title => I18n.t('groups.model.sub_groups.title'),  
   :no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name),
-  :add_link => link_to_if(i_am_moderator_of(@group),I18n.t('groups.site.sub_groups.create_group'), member_new_sub_group_path(@group.id), :class => 'button add'){} } %>
+  :add_link => link_to_if(i_am_moderator_of(@group),I18n.t('groups.member.sub_groups.create_group'), member_new_sub_group_path(@group.id), :class => 'button add'){} } %>
 <% end %>
 
