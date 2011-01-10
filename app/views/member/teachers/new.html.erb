@@ -1,22 +1,22 @@
 <div class="titleB">
-    <%= link_to @school.group.name, path_for_group(@school.group) %>> <%= I18n.t('students.member.invite.title') %>
+    <%= link_to @school.group.name, path_for_group(@school.group) %>> <%= I18n.t('teachers.member.invite.title') %>
 </div>
 <br/>
 <% @users ||= [] %>
 <% @users.each do |user| %>
     <% if user.errors.blank? %>
-		<%= I18n.t('schools.site.students.added_successfully', :student_name => user.profile.full_name) %><br/>
+		<%= I18n.t('schools.site.teachers.added_successfully', :teacher_name => user.profile.full_name) %><br/>
 	<% else %>
 		<%= error_messages_for 'user', :object => user %>	
 	<% end %>
 <% end %>
 
-<% form_tag member_school_students_path(@school) , :html => {:id => "f_signup", :name => "f_signup" } do |f| -%>
+<% form_tag member_school_teachers_path(@school) , :html => {:id => "f_signup", :name => "f_signup" } do |f| -%>
 <fieldset>
     <div class="fields">
         <p>
-            <%= label_tag :students, I18n.t('students.member.invite.format') %>
-            <%= text_area_tag :students, @failed_students, :class => "fieldbox", :size => "80x20" %>
+            <%= label_tag :teachers, I18n.t('teachers.member.invite.format') %>
+            <%= text_area_tag :teachers, @failed_teachers, :class => "fieldbox", :size => "80x20" %>
         </p>
         <% if config["plugins.tog_user.captcha_enabled"] %>
         <p>
@@ -27,12 +27,12 @@
         </p>
         <% end %>
         <p>
-            <span class="fontsmaller"><%= I18n.t('students.member.invite.description') %></span>
+            <span class="fontsmaller"><%= I18n.t('teachers.member.invite.description') %></span>
         </p>
     </div>
 </fieldset>
 <br/>
 <div class="actions">
-    <%= submit_tag I18n.t('students.member.invite.title'), :class => "button mainaction" %>
+    <%= submit_tag I18n.t('teachers.member.invite.title'), :class => "button mainaction" %>
 </div>
 <% end -%>

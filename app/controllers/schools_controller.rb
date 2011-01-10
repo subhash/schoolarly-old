@@ -13,4 +13,12 @@ class SchoolsController < GroupsController
     end
   end
   
+  def show
+    store_location
+  end
+  
+  def load_group
+    @group = School.find(params[:id]).group if params[:id]
+  end
+  
 end

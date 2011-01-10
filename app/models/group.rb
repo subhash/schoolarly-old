@@ -4,6 +4,8 @@ class Group < ActiveRecord::Base
   has_many :users, :through => :memberships #include all members, pending members etc
   has_many :student_users, :through => :memberships, :source => :user,
                         :conditions => ['users.person_type = ?', 'Student']
+  has_many :teacher_users, :through => :memberships, :source => :user,
+                        :conditions => ['users.person_type = ?', 'Teacher']                        
   acts_as_tree :order => 'name'
   named_scope :base, :conditions => {:parent_id => nil}
   named_scope :school, :conditions => {:network_type => 'School'}
