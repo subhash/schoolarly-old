@@ -69,6 +69,7 @@ ActionController::Routing::Routes.draw do |map|
     member.resources :schools do |school|
       school.resources :klasses, :shallow => true , :member => {:invite => :get, :add => :post}
       school.resources :students, :shallow => true
+      school.resources :teachers, :shallow => true
     end
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'

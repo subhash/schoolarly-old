@@ -26,7 +26,7 @@
         <ul>
 		  <% if i_am_moderator_of @group -%> 
 		  <li><%= link_to I18n.t('schools.site.admin.invite'), invite_member_group_path(@group.id), :class => 'add' %></li>
-		  <li><%= link_to I18n.t('schools.site.teachers.invite'), invite_member_group_path(@group.id), :class => 'add' %></li>
+		  <li><%= link_to I18n.t('schools.site.teachers.invite'), new_member_school_teacher_path(@group.network), :class => 'add' %></li>
 		  <% end %>
         </ul>
     </div> 
@@ -47,6 +47,12 @@
   :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name),
   :add_link => link_to_if(i_am_moderator_of(@group),I18n.t('schools.site.students.invite'), new_member_school_student_path(@group.network), :class => 'button add'){} } %>
 
+<%= render :partial => "shared/profiles_portlet", :locals => { 
+  :items => @group.teacher_users.collect(&:profile), 
+  :style => :portletG, 
+  :title => I18n.t('schools.model.teachers.title', :count => @group.teacher_users.size),  
+  :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name),
+  :add_link => link_to_if(i_am_moderator_of(@group),I18n.t('schools.site.teachers.invite'), new_member_school_teacher_path(@group.network), :class => 'button add'){} } %>
 
 <%= render :partial => "groups/groups_portlet", :locals => { 
   :items => @group.children.default, 

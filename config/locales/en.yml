@@ -27,6 +27,8 @@ en:
         title: "Class Networks"
       students:
         title: "Students"
+      teachers:
+        title: "Teachers"
     site:
       title: "Schools"
       create_school: "Create new school"
@@ -36,6 +38,7 @@ en:
         added_successfully: "{{student_name}} has been added successfully"
       teachers:
         invite: "Invite Teachers"
+        added_successfully: "{{teacher_name}} has been added successfully"
       admin:
         invite: "Invite School Administrator"
     member:
@@ -70,6 +73,14 @@ en:
         title: "Invite Students"
         description: "Enter the list of new students in this school in the box, one per line, in the format: <br/> Name,Email <br/> Example: <br/>George Washington,george.w@gmail.com <br/> John Adams,j_adams@yahoo.com <br/>"
         format: "Name, Email"        
-        
+  teachers:
+    model:
+      name: "Name"
+      email: "Email"
+    member:
+      invite: 
+        title: "Invite Teachers"
+        description: "Enter the list of new teachers in this school in the box, one per line, in the format: <br/> Name,Email <br/> Example: <br/>George Washington,george.w@gmail.com <br/> John Adams,j_adams@yahoo.com <br/>"
+        format: "Name, Email"         
   
        

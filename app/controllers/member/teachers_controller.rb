@@ -1,4 +1,4 @@
-class Member::StudentsController < ApplicationController
+class Member::TeachersController < ApplicationController
   
   before_filter :find_school
   
@@ -6,8 +6,8 @@ class Member::StudentsController < ApplicationController
   
   def create
     @users = []
-    @failed_students = []
-    CSV.parse(params[:students]) do |row|
+    @failed_teachers = []
+    CSV.parse(params[:teachers]) do |row|
       user = User.new(:email => row[1].strip)
       user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
       name = row[0].split(' ',2)
@@ -17,17 +17,17 @@ class Member::StudentsController < ApplicationController
         # TODO check if you are allowed to invite
         @school.group.invite_and_accept(user)
       else
-        @failed_students << row.join(",")
+        @failed_teachers << row.join(",")
       end
       @users << user
     end
-    @failed_students = @failed_students.join("\n")
+    @failed_teachers = @failed_teachers.join("\n")
     render :action => 'new' 
   end
   
-  
   private
   def find_school
-    @school = School.find(params[:school_id])
-  end 
+     @school = School.find(params[:school_id])
+  end
+  
 end
