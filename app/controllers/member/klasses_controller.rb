@@ -1,16 +1,10 @@
 class Member::KlassesController < Member::GroupsController
-  def find_group
-    @group = Klass.find(params[:id]).group if params[:id]
-  end
   
-  def new
-    @parent = School.find(params[:school_id]).group
-    @group = Group.new(:parent => @parent)
-  end
-  
+  before_filter :find_school, :only => [:index, :new, :create]
   
   def create
     @group = Group.new(params[:group])
+    @group.parent = @school.group
     @group.author = current_user
     @group.moderated = true
     @group.private = false
@@ -63,5 +57,16 @@ class Member::KlassesController < Member::GroupsController
     end
     redirect_to path_for_group(@group)
   end
+  
+  protected
+  
+  def find_group
+    @group = Klass.find(params[:id]).group if params[:id]
+  end
+  
+  def find_school
+    @school = School.find(params[:school_id])
+  end
+  
   
 end
