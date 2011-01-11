@@ -1,0 +1,1 @@
+1. Group model's validate_uniqueness_of :name is overridden with parent scope 

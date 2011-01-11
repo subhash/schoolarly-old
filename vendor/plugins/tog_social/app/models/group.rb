@@ -23,7 +23,7 @@ class Group < ActiveRecord::Base
   named_scope :can_invite, :include => :memberships, 
                            :conditions => ["memberships.state='active' and groups.state='active' and(memberships.moderator = ? or groups.moderated = ?)", true, false]  
   
-  validates_uniqueness_of :name
+#  validates_uniqueness_of :name
   validates_presence_of :name
   validates_presence_of :author
 
