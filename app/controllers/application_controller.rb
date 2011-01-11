@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
       school_path(group.network)
       when  'Klass'
       member_klass_path(group.network)
+      when  'Subject'
+      member_subject_path(group.network)
     else
       group_path(group) 
     end    

@@ -67,7 +67,9 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :member do |member|
     member.resources :groups , :member => {:invite => :get, :add => :post}
     member.resources :schools do |school|
-      school.resources :klasses, :shallow => true , :member => {:invite => :get, :add => :post}
+      school.resources :klasses, :shallow => true, :member => {:invite => :get, :add => :post} do |klass|
+        klass.resources :subjects, :shallow => true, :member => {:invite => :get, :add => :post}
+      end
       school.resources :students, :shallow => true
       school.resources :teachers, :shallow => true
     end

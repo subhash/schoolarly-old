@@ -13,6 +13,7 @@ class Group < ActiveRecord::Base
   named_scope :base, :conditions => {:parent_id => nil}
   named_scope :school, :conditions => {:network_type => 'School'}
   named_scope :klass, :conditions => {:network_type => 'Klass'}
+  named_scope :subject, :conditions => {:network_type => 'Subject'}
   named_scope :default, :conditions => {:network_type => nil }
   
   def invite_and_accept(user)

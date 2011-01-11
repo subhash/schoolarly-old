@@ -1,20 +1,20 @@
-class Member::KlassesController < Member::GroupsController
+class Member::SubjectsController < Member::GroupsController
   
-  before_filter :find_school, :only => [:index, :new, :create]
+  before_filter :find_klass, :only => [:index, :new, :create]
   
   def create
     @group = Group.new(params[:group])
-    @group.parent = @school.group
+    @group.parent = @klass.group
     @group.author = current_user
     @group.moderated = true
     @group.private = false
-    @group.network = Klass.new
+    @group.network = Subject.new
     @group.save  
     if @group.errors.empty?     
       @group.join(current_user, true)
       @group.activate!
-      flash[:ok] = I18n.t("klasses.member.created", :klass_name => @group.name, :school_name => @group.parent.name)
-      redirect_to member_klass_path(@group.network)
+      flash[:ok] = I18n.t("subjects.member.created", :subject_name => @group.name, :klass_name => @group.parent.name)
+      redirect_back_or_default member_subject_path(@group.network)
     else
       render :action => 'new'
     end    
@@ -40,11 +40,11 @@ class Member::KlassesController < Member::GroupsController
         user = Profile.find(profile_id).user
         if @group.members.include? user
           flash[:notice] = I18n.t("groups.site.already_member", :user_name => user.profile.full_name)
-          redirect_to invite_member_klass_path(@group) and return
+          redirect_to invite_member_subject_path(@group) and return
         else
           if @group.invited_members.include? user
             flash[:error] = I18n.t("groups.site.invite.already_invited", :user_name => user.profile.full_name)
-            redirect_to invite_member_klass_path(@group) and return
+            redirect_to invite_member_subject_path(@group) and return
           else
             @group.invite_and_accept(user)
             KlassMailer.deliver_welcome(@group, current_user, user)            
@@ -58,18 +58,14 @@ class Member::KlassesController < Member::GroupsController
     redirect_to path_for_group(@group)
   end
   
-  def show
-    store_location
-  end
-  
   protected
   
   def find_group
-    @group = Klass.find(params[:id]).group if params[:id]
+    @group = Subject.find(params[:id]).group if params[:id]
   end
   
-  def find_school
-    @school = School.find(params[:school_id])
+  def find_klass
+    @klass = Klass.find(params[:klass_id])
   end
   
   
