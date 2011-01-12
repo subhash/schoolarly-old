@@ -7,8 +7,8 @@
         <ul>
           <% items.each do |group|%>
           <li class="clearfix">
-              <div class="image"><%=link_to image_for_group(group, 'medium'), path_for_group(group) %></div>
-              <div class="title"><%= link_to group.name, path_for_group(group) %></div>
+              <div class="image"><%=link_to image_for_group(group, 'medium'), group_path(group) %></div>
+              <div class="title"><%= link_to group.name, group_path(group) %></div>
               <div class="text">
                  <%=group.description%>
               </div>

@@ -9,8 +9,10 @@ en:
     model:
       groups_not_found: "%{parent} has 0 groups."
       parent: "Parent group"
-      sub_groups:
+      groups:
         title: "Member Groups"
+      klasses:
+        title: "Class Networks"
     site:
       title: "Groups"
       details: "Group Details"
@@ -24,7 +26,7 @@ en:
     member:   
       pending: "Your group has been created but is pending for administrator's approval"  
       sub_groups:
-         create_group: "Create member group"  
+         create: "Create member group"  
       mail:
         activation_request:
           subject: Request for new group '{{group_name}}'
@@ -71,14 +73,14 @@ en:
       students:
         title: Students
     site:
-      create_klass: "Add new class"
+      create: "Add new class"
       details: "Class details"
       title: "Classes"
       students:
         add: "Add Students"
         invite: "Add Students"
     member:
-      created: "%{klass_name} network created under %{school_name}"  
+
   subjects:
     site:
       create_subject: "Add subject"

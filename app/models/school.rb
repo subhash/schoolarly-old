@@ -9,10 +9,4 @@ class School < ActiveRecord::Base
   
   named_scope :active, :include => :group, :conditions => ['groups.state = ?', 'active']
   
-  
-  def initialize_group
-    group.moderated = true
-    group.private = false
-  end
-  
 end

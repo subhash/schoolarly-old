@@ -12,22 +12,26 @@ class Member::GroupsController
     @group.author = current_user
     case @type
       when 'schools':
-      @group.network = School.new
+      @group.network = School.new    
+      @group.moderated = true
+      @group.private = false
+      when 'klasses':
+      @group.network = Klass.new    
+      @group.moderated = true
+      @group.private = false
     end
-    @group.network.initialize_group if @group.network
     @group.save   
     
     if @group.errors.empty?
       
       @group.join(current_user, true)
       #    @group.activate_membership(current_user)
-      
-      if current_user.admin == true || Tog::Config['plugins.tog_social.group.moderation.creation'] != true
+#      activate child groups directly
+      if (@group.parent and @group.parent.active?) || current_user.admin == true || Tog::Config['plugins.tog_social.group.moderation.creation'] != true
         @group.activate!
         flash[:ok] = I18n.t("tog_social.groups.member.created")
         redirect_to group_path(@group)
-      else
-        
+      else        
         admins = User.find_all_by_admin(true)        
         admins.each do |admin|
           Message.new(
@@ -86,7 +90,7 @@ class Member::GroupsController
     else
       flash[:error] = I18n.t("tog_social.groups.site.invite.you_could_not_invite")    
     end
-    redirect_to path_for_group(@group)
+    redirect_to group_path(@group)
   end
   
   protected
