@@ -59,6 +59,6 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
-Tog::Interface.sections(:site).add :schools, "/schools"
+Tog::Interface.sections(:site).add :schools, "/groups?type='schools'"
 
 Tog::Config['plugins.tog_user.email_as_login'] = true

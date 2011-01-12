@@ -21,4 +21,8 @@ class Group < ActiveRecord::Base
     accept_invitation(user)
   end
   
+#  def type
+#    network_type ? network_type.downcase : 'group'
+#  end
+  
 end

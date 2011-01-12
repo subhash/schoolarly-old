@@ -1,5 +1,7 @@
 class Member::GroupsController
   
+  before_filter :find_type, :only => [:new,:create]
+  
   def new
     @parent = Group.find(params[:id]) if params[:id]
     @group = Group.new(:parent => @parent)
@@ -41,6 +43,11 @@ class Member::GroupsController
       flash[:error] = I18n.t("tog_social.groups.site.invite.you_could_not_invite")    
     end
     redirect_to path_for_group(@group)
+  end
+  
+  protected
+  def find_type
+    @type = params[:type] || 'groups'
   end
 
 end

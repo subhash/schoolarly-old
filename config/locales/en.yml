@@ -12,12 +12,15 @@ en:
       sub_groups:
         title: "Member Groups"
     site:
+      title: "Groups"
+      details: "Group Details"
+      create: "Create Group"
       members:
         invite: "Invite members"
-      already_member: "{{user_name}} is already a member"      
+      already_member: "%{user_name} is already a member"      
       invite:
-          already_invited: "{{user_name}} has already been invited"
-          invited: "{{user_count}} user(s) invited"
+          already_invited: "%{user_name} has already been invited"
+          invited: "%{user_count} user(s) invited"
     member:     
       sub_groups:
          create_group: "Create member group"    
@@ -31,25 +34,25 @@ en:
         title: "Teachers"
     site:
       title: "Schools"
-      create_school: "Create new school"
+      create: "Create school"
       details: "School details"
       students:
         invite: "Invite Students"
-        added_successfully: "{{student_name}} has been added successfully"
+        added_successfully: "%{student_name} has been added successfully"
       teachers:
         invite: "Invite Teachers"
-        added_successfully: "{{teacher_name}} has been added successfully"
+        added_successfully: "%{teacher_name} has been added successfully"
       admin:
         invite: "Invite School Administrator"
     member:
-      group_created: "{{school_name}} network created"
-      group_pending: "{{school_name}} network has been created but is pending for administrator's approval"
+      group_created: "%{school_name} network created"
+      group_pending: "%{school_name} network has been created but is pending for administrator's approval"
       mail:
           activation_request:
-            subject: Request for new school '{{school_name}}'
-            content: "<p>User '{{user_name}}' has requested the creation of a new school called '{{school_name}}'.</p><p><a href=\"{{activation_url}}\">{{activation_url}}</a></p>"
+            subject: Request for new school '%{school_name}'
+            content: "<p>User '%{user_name}' has requested the creation of a new school called '%{school_name}'.</p><p><a href=\"%{activation_url}\">%{activation_url}</a></p>"
           invitation:
-            subject: Invitation to the school {{school}}
+            subject: Invitation to the school %{school}
             accept: Accept
             reject: Reject
   klasses:
@@ -66,7 +69,7 @@ en:
         add: "Add Students"
         invite: "Add Students"
     member:
-      created: "{{klass_name}} network created under {{school_name}}"  
+      created: "%{klass_name} network created under %{school_name}"  
   subjects:
     site:
       create_subject: "Add subject"
@@ -75,7 +78,7 @@ en:
         add: "Add Students"
         invite: "Add Students"
     member:
-      created: "{{subject_name}} added to {{klass_name}}"
+      created: "%{subject_name} added to %{klass_name}"
     model:
       students:
         title: "Students"    

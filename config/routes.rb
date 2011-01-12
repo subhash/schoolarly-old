@@ -76,13 +76,11 @@ ActionController::Routing::Routes.draw do |map|
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
       group.new_group_with_type   'groups/new/:type', :action => 'new'
-      group.group_invite     '/group/:id/invite', :action => 'invite', :conditions => {:method => :post }
-                              
+      group.group_invite     '/group/:id/invite', :action => 'invite', :conditions => {:method => :post }   
     end
   end
   
-  map.resources :schools
-  
+  #  map.resources :schools
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

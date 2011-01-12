@@ -1,9 +1,9 @@
 <div class="titleB">
 	<% if @group.parent %>
-	<%= link_to @group.parent.name, path_for_group(@group.parent) %> > 
+	<%= link_to @group.parent.name, group_path(@group.parent) %> > 
 	<%= I18n.t('groups.member.sub_groups.create_group') %>
 	<% else %>
-	<%= I18n.t('tog_social.groups.site.create_group') %>
+	<%= I18n.t("#{@type}.site.create") %>
 	<% end %>
 	</div>
 <br />
@@ -14,9 +14,9 @@
 </div>
 <% end -%>
 
-<% form_for(:group, :url=>member_groups_path, :html=>{:multipart=>true}) do |f| %>
+<% form_for(:group, :url=>member_groups_path(:type => @type), :html=>{:multipart=>true}) do |f| %>
   <fieldset>
-    <legend><%= I18n.t('tog_social.groups.site.details') %></legend>
+    <legend><%= I18n.t("#{@type}.site.details") %></legend>
     <div class="fields">
     	 <p>
         <%= f.hidden_field  :parent_id %>
@@ -40,6 +40,7 @@
         <%= file_field "group", "image" %><br/>
         <span class="helpinfo"><%= I18n.t('tog_social.groups.model.image_help') %></span>
       </p>
+	  <% if @type =='groups' %>
       <p>
         <label for="group_private" class="nolabel"><%= f.check_box :private %> <%= I18n.t('tog_social.groups.model.private') %></label><br/>
         <span class="helpinfo"><%= I18n.t('tog_social.groups.model.private_help') %></span>
@@ -48,6 +49,7 @@
         <label for="group_moderated" class="nolabel"><%= f.check_box :moderated %> <%= I18n.t('tog_social.groups.model.moderated') %></label><br/>
         <span class="helpinfo"><%= I18n.t('tog_social.groups.model.moderated_help') %></span>
       </p>
+	  <% end %>
     </div>
     <div class="actions">
       <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>
