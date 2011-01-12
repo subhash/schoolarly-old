@@ -21,9 +21,18 @@ en:
       invite:
           already_invited: "%{user_name} has already been invited"
           invited: "%{user_count} user(s) invited"
-    member:     
+    member:   
+      pending: "Your group has been created but is pending for administrator's approval"  
       sub_groups:
-         create_group: "Create member group"    
+         create_group: "Create member group"  
+      mail:
+        activation_request:
+          subject: Request for new group '{{group_name}}'
+          content: "<p>User '{{user_name}}' has requested the creation of a new group called '{{group_name}}'.</p><p><a href=\"{{activation_url}}\">{{activation_url}}</a></p>"
+        invitation:
+          subject: Invitation to the group {{group}}
+          accept: Accept
+          reject: Reject  
   schools:
     model:
       klasses:
@@ -46,7 +55,7 @@ en:
         invite: "Invite School Administrator"
     member:
       group_created: "%{school_name} network created"
-      group_pending: "%{school_name} network has been created but is pending for administrator's approval"
+      pending: "Your school network has been created but is pending for administrator's approval"
       mail:
           activation_request:
             subject: Request for new school '%{school_name}'

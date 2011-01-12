@@ -37,7 +37,7 @@ class Member::SchoolsController < Member::GroupsController
           ).dispatch!     
         end
         
-        flash[:warning] = I18n.t("schools.member.group_pending")
+        flash[:warning] = I18n.t("schools.member.pending")
         redirect_to schools_path
       end
     else

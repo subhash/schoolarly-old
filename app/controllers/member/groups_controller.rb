@@ -7,6 +7,50 @@ class Member::GroupsController
     @group = Group.new(:parent => @parent)
   end
   
+  def create
+    @group = Group.new(params[:group])
+    @group.author = current_user
+    case @type
+      when 'schools':
+      @group.network = School.new
+    end
+    @group.network.initialize_group if @group.network
+    @group.save   
+    
+    if @group.errors.empty?
+      
+      @group.join(current_user, true)
+      #    @group.activate_membership(current_user)
+      
+      if current_user.admin == true || Tog::Config['plugins.tog_social.group.moderation.creation'] != true
+        @group.activate!
+        flash[:ok] = I18n.t("tog_social.groups.member.created")
+        redirect_to group_path(@group)
+      else
+        
+        admins = User.find_all_by_admin(true)        
+        admins.each do |admin|
+          Message.new(
+            :from => current_user,
+            :to   => admin,
+            :subject => I18n.t("#{@type}.member.mail.activation_request.subject", :group_name => @group.name),
+            :content => I18n.t("#{@type}.member.mail.activation_request.content", 
+                               :user_name   => current_user.profile.full_name, 
+                               :group_name => @group.name, 
+                               :activation_url => edit_admin_group_url(@group)) 
+          ).dispatch!     
+        end
+        
+        flash[:warning] = I18n.t("#{@type}.member.pending")
+        redirect_to groups_path
+      end
+    else
+      render :action => 'new'
+    end
+    
+  end
+  
+  
   def invite
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
@@ -49,5 +93,5 @@ class Member::GroupsController
   def find_type
     @type = params[:type] || 'groups'
   end
-
+  
 end
