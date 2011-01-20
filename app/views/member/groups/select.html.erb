@@ -1,5 +1,5 @@
 <div class="portlet portletF" id="portlet_featuredUsers">
-    <h2><span><%= link_to @group.name, group_path(@group) %> > <%= I18n.t("groups.site.add.#{@type}") %></span></h2>
+    <h2><span><%= link_to @group.name, group_path(@group) %> > <%= I18n.t("groups.site.#{@type}.select") %></span></h2>
     <div class="portlet_content">
     	<% form_tag add_member_group_path(@group) do |f| %>
         <ul>
@@ -12,7 +12,7 @@
             <%end %>
 			<li>
 				<%= submit_tag I18n.t("groups.site.add.#{@type}"), :class => "button" %> or 
-				<%= link_to I18n.t("groups.site.invite.#{@type}"), "#{@type.downcase.pluralize}/new" %>
+				<%= link_to I18n.t("groups.site.#{@type}.invite"), "#{@type.downcase.pluralize}/new" %>
 			</li>
         </ul>		
 		<% end %>

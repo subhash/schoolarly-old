@@ -21,8 +21,13 @@ class Member::StudentsController < ApplicationController
       end
       @users << user
     end
-    @failed_students = @failed_students.join("\n")
-    render :action => 'new' 
+    if @failed_students.blank?
+      flash[:ok] = I18n.t("groups.site.invite.invited", :user_count => @users.count)      
+      redirect_back_or_default(Tog::Config["plugins.tog_user.default_redirect_on_login"])
+    else    
+      @failed_students = @failed_students.join("\n")
+      render :action => 'new'
+    end
   end
   
   

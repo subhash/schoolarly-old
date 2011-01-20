@@ -32,12 +32,12 @@
 		  <% if i_am_moderator_of @group -%> 
 		  <% if @group.school? %>
 		    <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group.id, :type => 'klasses'), :class => 'add' %></li>
-		    <li><%= link_to I18n.t('schools.site.admin.invite'), invite_member_group_path(@group), :class => 'add' %></li>
-		    <li><%= link_to I18n.t('schools.site.teachers.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
-		    <li><%= link_to I18n.t('schools.site.students.invite'), new_member_group_student_path(@group), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('schools.site.admin.invite'), select_member_group_path(@group), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>
 		  <% else %>
-		    <li><%= link_to I18n.t('groups.site.add.Teacher'), invite_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
-		    <li><%= link_to I18n.t('groups.site.add.Student'), invite_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('groups.site.Teacher.select'), select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('groups.site.Student.select'), select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
 			<li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
 		  <% end %>
 		  <% end %>

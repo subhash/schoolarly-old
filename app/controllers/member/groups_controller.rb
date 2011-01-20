@@ -54,7 +54,7 @@ class Member::GroupsController
     
   end
   
-  def invite
+  def select
     @type = params[:type]
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
@@ -63,7 +63,7 @@ class Member::GroupsController
                                  :page => @page,
                                  :order => "profiles.#{@order} #{@asc}"
     respond_to do |format|
-      format.html { render :template => 'member/groups/invite'}
+      format.html { render :template => 'member/groups/select'}
       format.xml  { render :xml => @profiles }
     end    
   end
@@ -74,11 +74,11 @@ class Member::GroupsController
         user = Profile.find(profile_id).user
         if @group.members.include? user
           flash[:notice] = I18n.t("groups.site.already_member", :user_name => user.profile.full_name)
-          redirect_to invite_member_group_path(@group) and return
+          redirect_to select_member_group_path(@group) and return
         else
           if @group.invited_members.include? user
             flash[:error] = I18n.t("groups.site.invite.already_invited", :user_name => user.profile.full_name)
-            redirect_to invite_member_group_path(@group) and return
+            redirect_to select_member_group_path(@group) and return
           else
             @group.invite(user)
             GroupMailer.deliver_invitation(@group, current_user, user)            

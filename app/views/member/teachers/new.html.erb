@@ -33,6 +33,7 @@
 </fieldset>
 <br/>
 <div class="actions">
-    <%= submit_tag I18n.t('teachers.member.invite.title'), :class => "button mainaction" %>
+    <%= submit_tag I18n.t('teachers.member.invite.title'), :class => "button mainaction" %> or
+	<%= link_to I18n.t("groups.site.Teacher.select"), select_member_group_path(@group, :type => 'Teacher')%>
 </div>
 <% end -%>

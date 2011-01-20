@@ -16,6 +16,7 @@ class GroupsController < ApplicationController
   end
   
   def show
+    store_location
   end
   
 end

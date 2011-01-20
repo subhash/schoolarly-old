@@ -30,6 +30,12 @@ en:
       invite:
         Student: "Invite new students"
         Teacher: "Invite new teachers"
+      Student:
+        invite: "Invite new students"
+        select: "Select existing students"
+      Teacher:
+        invite: "Invite new teachers"
+        select: "Select existing teachers"        
       
     member:   
       pending: "Your group has been created but is pending for administrator's approval"  
@@ -56,10 +62,12 @@ en:
       create: "Create school"
       details: "School details"
       students:
-        invite: "Invite Students"
+        invite: "Invite new students"
+        select: "Select existing students"
         added_successfully: "%{student_name} has been added successfully"
       teachers:
-        invite: "Invite Teachers"
+        invite: "Invite new teachers"
+        select: "Select existing teachers"
         added_successfully: "%{teacher_name} has been added successfully"
       admin:
         invite: "Invite School Administrator"

@@ -41,7 +41,7 @@ class Group < ActiveRecord::Base
   def applicable_members(type)
     case network_type
       when 'School'
-      User.of_type(type) - Group.school.users_of_type(type)
+      User.of_type(type) - Group.school.collect(&:users).flatten
       when 'Klass'
         case type
           when 'Student'
