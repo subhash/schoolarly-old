@@ -1,5 +1,5 @@
 <div class="titleB">
-    <%= link_to @school.group.name, path_for_group(@school.group) %>> <%= I18n.t('teachers.member.invite.title') %>
+    <%= link_to @group.name, group_path(@group) %>> <%= I18n.t('teachers.member.invite.title') %>
 </div>
 <br/>
 <% @users ||= [] %>
@@ -11,7 +11,7 @@
 	<% end %>
 <% end %>
 
-<% form_tag member_school_teachers_path(@school) , :html => {:id => "f_signup", :name => "f_signup" } do |f| -%>
+<% form_tag member_group_teachers_path(@group) , :html => {:id => "f_signup", :name => "f_signup" } do |f| -%>
 <fieldset>
     <div class="fields">
         <p>

@@ -19,10 +19,18 @@ en:
       create: "Create Group"
       members:
         invite: "Invite members"
+        add: "Add members"
       already_member: "%{user_name} is already a member"      
       invite:
           already_invited: "%{user_name} has already been invited"
           invited: "%{user_count} user(s) invited"
+      add:
+        Student: "Add Students"
+        Teacher: "Add Teachers"
+      invite:
+        Student: "Invite new students"
+        Teacher: "Invite new teachers"
+      
     member:   
       pending: "Your group has been created but is pending for administrator's approval"  
       sub_groups:

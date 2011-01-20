@@ -1,10 +1,15 @@
 class Group < ActiveRecord::Base
-
+  
   # Add new validates_uniqueness_of with correct scope
   validates_uniqueness_of :name, :scope => 'parent_id', :case_sensitive => false
   
   belongs_to :network, :polymorphic => true
-  has_many :users, :through => :memberships #include all members, pending members etc
+  #include all members, pending members etc
+  has_many :users, :through => :memberships do
+    def of_type(type)
+      find :all, :conditions => ['users.person_type = ?', type]
+    end
+  end
   has_many :student_users, :through => :memberships, :source => :user,
                         :conditions => ['users.person_type = ?', 'Student']
   has_many :teacher_users, :through => :memberships, :source => :user,
@@ -27,11 +32,26 @@ class Group < ActiveRecord::Base
   
   def school?
     network_type == 'School'
-  end
+  end 
   
-    
   def klass?
     network_type == 'Klass'
-  end
+  end 
   
+  def applicable_members(type)
+    case network_type
+      when 'School'
+      User.of_type(type) - Group.school.users_of_type(type)
+      when 'Klass'
+        case type
+          when 'Student'
+            parent.student_users - (parent.children.klass.collect(&:student_users)).flatten
+          else
+            parent.users.of_type(type) - users.of_type(type)
+        end     
+     else
+        parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
+    end
+  end
+
 end

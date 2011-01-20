@@ -65,18 +65,18 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
   map.namespace :member do |member|
-    member.resources :groups , :member => {:invite => :get, :add => :post}
+    member.resources :groups , :member => {:invite => :get, :add => :post} do |group|
+      group.resources :students, :shallow => true
+      group.resources :teachers, :shallow => true
+    end
     member.resources :schools do |school|
       school.resources :klasses, :shallow => true, :member => {:invite => :get, :add => :post} do |klass|
         klass.resources :subjects, :shallow => true, :member => {:invite => :get, :add => :post}
       end
-      school.resources :students, :shallow => true
-      school.resources :teachers, :shallow => true
     end
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
-      group.new_group_with_type   'groups/new/:type', :action => 'new'
-      group.group_invite     '/group/:id/invite', :action => 'invite', :conditions => {:method => :post }   
+      group.new_group_with_type   'groups/new/:type', :action => 'new' 
     end
   end
   

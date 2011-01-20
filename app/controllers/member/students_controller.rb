@@ -1,6 +1,6 @@
 class Member::StudentsController < ApplicationController
   
-  before_filter :find_school
+  before_filter :find_group
   
   require "csv"
   
@@ -15,7 +15,7 @@ class Member::StudentsController < ApplicationController
       user.person = Student.new      
       if user.invite_over_email
         # TODO check if you are allowed to invite
-        @school.group.invite_and_accept(user)
+        @group.invite_and_accept(user)
       else
         @failed_students << row.join(",")
       end
@@ -27,7 +27,7 @@ class Member::StudentsController < ApplicationController
   
   
   private
-  def find_school
-    @school = School.find(params[:school_id])
+  def find_group
+    @group = Group.find(params[:group_id])
   end 
 end

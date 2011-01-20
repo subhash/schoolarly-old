@@ -31,12 +31,15 @@
           <% end -%> 
 		  <% if i_am_moderator_of @group -%> 
 		  <% if @group.school? %>
-		   <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group.id, :type => 'klasses'), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group.id, :type => 'klasses'), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('schools.site.admin.invite'), invite_member_group_path(@group), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('schools.site.teachers.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('schools.site.students.invite'), new_member_group_student_path(@group), :class => 'add' %></li>
+		  <% else %>
+		    <li><%= link_to I18n.t('groups.site.add.Teacher'), invite_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('groups.site.add.Student'), invite_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>
+			<li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
 		  <% end %>
-		  <li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
-		  <li><%= link_to I18n.t('schools.site.admin.invite'), invite_member_group_path(@group.id), :class => 'add' %></li>
-		  <li><%= link_to I18n.t('schools.site.teachers.invite'), new_member_school_teacher_path(@group.network), :class => 'add' %></li>
-		  <li><%= link_to I18n.t('schools.site.students.invite'), new_member_school_student_path(@group.network), :class => 'add' %></li>
 		  <% end %>
         </ul>
     </div> 
@@ -48,6 +51,7 @@
   :style => :portletG, 
   :title => I18n.t('tog_social.groups.model.members', :count => @group.members.size),  
   :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
+  
 <% @group.children.group_by(&:type).each do |type, groups| %>
 	<%= render :partial => "groups_portlet", :locals => { 
 	:items => groups, 

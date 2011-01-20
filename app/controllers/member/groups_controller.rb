@@ -26,7 +26,7 @@ class Member::GroupsController
       
       @group.join(current_user, true)
       #    @group.activate_membership(current_user)
-#      activate child groups directly
+      #      activate child groups directly
       if (@group.parent and @group.parent.active?) || current_user.admin == true || Tog::Config['plugins.tog_social.group.moderation.creation'] != true
         @group.activate!
         flash[:ok] = I18n.t("tog_social.groups.member.created")
@@ -54,19 +54,18 @@ class Member::GroupsController
     
   end
   
-  
   def invite
+    @type = params[:type]
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'  
-    users = @group.parent ? (@group.parent.members - @group.members) : (User.active - @group.members)
-    @profiles = users.collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
+    @profiles = @group.applicable_members(@type).collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
                                  :page => @page,
                                  :order => "profiles.#{@order} #{@asc}"
     respond_to do |format|
       format.html { render :template => 'member/groups/invite'}
       format.xml  { render :xml => @profiles }
-    end
+    end    
   end
   
   def add
