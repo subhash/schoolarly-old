@@ -19,6 +19,10 @@ class Member::GroupsController
       @group.network = Klass.new    
       @group.moderated = true
       @group.private = false
+      when 'subjects':
+      @group.network = Subject.new    
+      @group.moderated = true
+      @group.private = false
     end
     @group.save   
     

@@ -41,17 +41,23 @@ class Group < ActiveRecord::Base
     network_type == 'Klass'
   end 
   
+  def subject?
+    network_type == 'Subject'
+  end 
+  
   def applicable_members(type)
     case network_type
       when 'School'
       User.of_type(type) - Group.school.collect(&:users).flatten
       when 'Klass'
-      case type
-        when 'Student'
-        parent.student_users - (parent.children.klass.collect(&:student_users)).flatten
-      else
-        parent.users.of_type(type) - users.of_type(type)
-      end     
+        case type
+          when 'Student'
+          parent.student_users - (parent.children.klass.collect(&:student_users)).flatten
+        else
+          parent.users.of_type(type) - users.of_type(type)
+        end     
+      when 'Subject' && type == 'Teacher' && parent.klass?
+        parent.parent.teacher_users - teacher_users
     else
       parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
     end

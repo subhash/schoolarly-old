@@ -19,6 +19,8 @@ en:
         title: "Teachers"
       members:
         title: "Other Members"
+      subjects:
+        title: "Subjects"
     site:
       title: "Groups"
       details: "Group Details"
@@ -107,7 +109,7 @@ en:
 
   subjects:
     site:
-      create_subject: "Add subject"
+      create: "Add Subject"
       details: "Subject details"
       students:
         add: "Add Students"
