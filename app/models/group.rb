@@ -22,8 +22,11 @@ class Group < ActiveRecord::Base
   named_scope :default, :conditions => {:network_type => nil }
   
   def invite_and_accept(user)
-    invite(user)
-    accept_invitation(user)
+    parent.invite_and_accept(user) if parent
+    unless users.include?(user)
+      invite(user)
+      accept_invitation(user)
+    end
   end
   
   def type
@@ -43,15 +46,15 @@ class Group < ActiveRecord::Base
       when 'School'
       User.of_type(type) - Group.school.collect(&:users).flatten
       when 'Klass'
-        case type
-          when 'Student'
-            parent.student_users - (parent.children.klass.collect(&:student_users)).flatten
-          else
-            parent.users.of_type(type) - users.of_type(type)
-        end     
-     else
-        parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
+      case type
+        when 'Student'
+        parent.student_users - (parent.children.klass.collect(&:student_users)).flatten
+      else
+        parent.users.of_type(type) - users.of_type(type)
+      end     
+    else
+      parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
     end
   end
-
+  
 end

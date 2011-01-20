@@ -36,8 +36,8 @@
 		    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
 		    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>
 		  <% else %>
-		    <li><%= link_to I18n.t('groups.site.Teacher.select'), select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
-		    <li><%= link_to I18n.t('groups.site.Student.select'), select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
+		    <li><%= link_to I18n.t('groups.site.add.Teacher'), select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
+		    <li><%= link_to I18n.t('groups.site.add.Student'), select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
 			<li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
 		  <% end %>
 		  <% end %>
@@ -45,20 +45,20 @@
     </div> 
 </div>    
 
-
-<%= render :partial => "shared/profiles_portlet", :locals => { 
-  :items => @group.members.collect(&:profile), 
-  :style => :portletG, 
-  :title => I18n.t('tog_social.groups.model.members', :count => @group.members.size),  
-  :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
-  
+<% @group.users.group_by(&:type).each do |type, users| %>
+	<%= render :partial => "shared/profiles_portlet", :locals => { 
+	  :items => users.collect(&:profile), 
+	  :style => :portletG, 
+	  :title => I18n.t("groups.model.#{type}.title", :count => @group.members.size),  
+	  :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
+ <% end %>
+ 
 <% @group.children.group_by(&:type).each do |type, groups| %>
 	<%= render :partial => "groups_portlet", :locals => { 
 	:items => groups, 
 	:style => :portletG, 
 	:title => I18n.t("groups.model.#{type}.title"),  
-	:no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name) } %>
-  
+	:no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name) } %> 
 <% end %>
 <% end %>
 

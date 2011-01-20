@@ -13,6 +13,12 @@ en:
         title: "Member Groups"
       klasses:
         title: "Class Networks"
+      students:
+        title: "Students"
+      teachers:
+        title: "Teachers"
+      members:
+        title: "Other Members"
     site:
       title: "Groups"
       details: "Group Details"
@@ -33,9 +39,11 @@ en:
       Student:
         invite: "Invite new students"
         select: "Select existing students"
+        invited: "%{count} student(s) invited"
       Teacher:
         invite: "Invite new teachers"
-        select: "Select existing teachers"        
+        select: "Select existing teachers"
+        invited: "%{count} teacher(s) invited"        
       
     member:   
       pending: "Your group has been created but is pending for administrator's approval"  

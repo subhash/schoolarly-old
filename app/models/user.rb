@@ -23,4 +23,9 @@ class User < ActiveRecord::Base
     UserMailer.deliver_invite_notification(self) if self.recently_invited_over_email?
   end
   
+  def type
+    person_type ? person_type.downcase.pluralize : 'members'
+  end
+  
+  
 end
