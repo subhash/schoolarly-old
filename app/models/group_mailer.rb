@@ -10,4 +10,13 @@ class GroupMailer < ActionMailer::Base
       @body[:group] = group         
   end
   
+  def exit_notification(group, moderator, user)
+      setup_email(moderator.email, user.email)
+      @subject    += "Exit from #{group.name}"
+      @content_type = "text/html"
+      @body[:group_url]  = group_url(group)
+      @body[:group] = group  
+      @body[:moderator] = moderator
+  end
+  
 end

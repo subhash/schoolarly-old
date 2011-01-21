@@ -85,7 +85,7 @@ class Member::GroupsController
             redirect_to select_member_group_path(@group) and return
           else
             @group.invite(user)
-            GroupMailer.deliver_invitation(@group, current_user, user)            
+#            GroupMailer.deliver_invitation(@group, current_user, user)            
           end
         end        
       end

@@ -90,10 +90,10 @@ en:
       pending: "Your school network has been created but is pending for administrator's approval"
       mail:
           activation_request:
-            subject: Request for new school '%{school_name}'
-            content: "<p>User '%{user_name}' has requested the creation of a new school called '%{school_name}'.</p><p><a href=\"%{activation_url}\">%{activation_url}</a></p>"
+            subject: Request for new school '%{group_name}'
+            content: "<p>User '%{user_name}' has requested the creation of a new school called '%{group_name}'.</p><p><a href=\"%{activation_url}\">%{activation_url}</a></p>"
           invitation:
-            subject: Invitation to the school %{school}
+            subject: Invitation to the school %{group}
             accept: Accept
             reject: Reject
   klasses:

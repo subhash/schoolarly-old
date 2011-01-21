@@ -33,6 +33,8 @@ class GroupsController < ApplicationController
           flash[:error] = I18n.t("tog_social.groups.site.last_moderator")
         else
           @group.exit(user)
+          GroupMailer.deliver_exit_notification(@group, current_user, user)
+#          TODO send mail to other moderators
           #todo: eliminar cuando este claro que sucede si un usuario ya es miembro
           flash[:ok] = I18n.t("groups.site.exited", :user_name => user.profile.full_name, :group_name => @group.name)
         end

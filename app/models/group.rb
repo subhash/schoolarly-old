@@ -21,6 +21,40 @@ class Group < ActiveRecord::Base
   named_scope :subject, :conditions => {:network_type => 'Subject'}
   named_scope :default, :conditions => {:network_type => nil }
   
+  def invite(user)
+    parent.invite if (parent and !parent.membership_of(user))
+    mem = membership_of(user)
+    mem = self.memberships.build(:user => user) unless mem
+    mem.save!
+    mem.invite!
+  end
+  
+  def accept_invitation(user)
+    parent.accept_invitation if (parent and parent.membership_of(user).invited?)
+    mem = membership_of(user)
+    mem.accept_invitation! if mem && mem.invited?
+  end
+  
+  def join(user,moderator=false)
+    # todo Confirm what to do if th user is already a member. By now just ignore it and continue.
+    parent.join if (parent and parent.membership_of(user))
+    mem = membership_of(user)
+    mem = self.memberships.build(:user => user, :moderator => moderator) unless mem
+    mem.save!
+    grant_moderator(user) if moderator
+    mem.activate! unless self.moderated?
+  end
+  
+  def leave(user)
+    for child in children
+      child.leave if child.membership_of(user)
+    end
+    mem = membership_of(user)
+    mem.destroy if mem
+  end
+  
+  
+  
   def invite_and_accept(user)
     parent.invite_and_accept(user) if parent
     unless users.include?(user)
@@ -57,14 +91,14 @@ class Group < ActiveRecord::Base
       when 'School'
       User.of_type(type) - Group.school.collect(&:users).flatten
       when 'Klass'
-        case type
-          when 'Student'
-          parent.student_users - (parent.children.klass.collect(&:student_users)).flatten
-        else
-          parent.users.of_type(type) - users.of_type(type)
-        end     
+      case type
+        when 'Student'
+        parent.student_users - (parent.children.klass.collect(&:student_users)).flatten
+      else
+        parent.users.of_type(type) - users.of_type(type)
+      end     
       when 'Subject' && type == 'Teacher' && parent.klass?
-        parent.parent.teacher_users - teacher_users
+      parent.parent.teacher_users - teacher_users
     else
       parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
     end
