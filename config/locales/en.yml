@@ -25,9 +25,13 @@ en:
       title: "Groups"
       details: "Group Details"
       create: "Create Group"
+      exited: "%{user_name} removed from %{group_name}"
+      not_moderator: "You are not a moderator of this group"
       members:
         invite: "Invite members"
         add: "Add members"
+        remove: "Exit group"
+        remove_confirm: "Do you want to remove %{user_name} from %{group_name}?"
       already_member: "%{user_name} is already a member"      
       invite:
           already_invited: "%{user_name} has already been invited"

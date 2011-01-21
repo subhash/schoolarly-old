@@ -95,7 +95,7 @@ class Member::GroupsController
     end
     redirect_to group_path(@group)
   end
-  
+    
   protected
   def find_type
     @type = params[:type] || 'groups'

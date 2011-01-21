@@ -29,6 +29,13 @@ class Group < ActiveRecord::Base
     end
   end
   
+  def exit(user)
+    leave(user)
+    for child in children
+      child.exit(user) if child.users.include?(user)
+    end
+  end
+  
   def type
     network_type ? network_type.downcase.pluralize : 'groups'
   end
