@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
         if @group.moderators.include?(user) && @group.moderators.size == 1
           flash[:error] = I18n.t("tog_social.groups.site.last_moderator")
         else
-          @group.exit(user)
+          @group.leave(user)
           GroupMailer.deliver_exit_notification(@group, current_user, user)
 #          TODO send mail to other moderators
           #todo: eliminar cuando este claro que sucede si un usuario ya es miembro

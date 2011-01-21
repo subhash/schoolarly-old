@@ -16,6 +16,7 @@ class Member::TeachersController < ApplicationController
       if user.invite_over_email
         # TODO check if you are allowed to invite
         @group.invite_and_accept(user)
+        GroupMailer.deliver_entry_notification(@group, current_user, user)          
       else
         @failed_teachers << row.join(",")
       end

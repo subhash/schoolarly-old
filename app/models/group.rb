@@ -11,9 +11,9 @@ class Group < ActiveRecord::Base
     end
   end
   has_many :student_users, :through => :memberships, :source => :user,
-                        :conditions => ['users.person_type = ?', 'Student']
+  :conditions => ['users.person_type = ?', 'Student']
   has_many :teacher_users, :through => :memberships, :source => :user,
-                        :conditions => ['users.person_type = ?', 'Teacher']                        
+  :conditions => ['users.person_type = ?', 'Teacher']                        
   acts_as_tree :order => 'name'
   named_scope :base, :conditions => {:parent_id => nil}
   named_scope :school, :conditions => {:network_type => 'School'}
@@ -22,7 +22,7 @@ class Group < ActiveRecord::Base
   named_scope :default, :conditions => {:network_type => nil }
   
   def invite(user)
-    parent.invite if (parent and !parent.membership_of(user))
+    parent.invite(user) if (parent and !parent.membership_of(user))
     mem = membership_of(user)
     mem = self.memberships.build(:user => user) unless mem
     mem.save!
@@ -30,7 +30,7 @@ class Group < ActiveRecord::Base
   end
   
   def accept_invitation(user)
-    parent.accept_invitation if (parent and parent.membership_of(user).invited?)
+    parent.accept_invitation(user) if (parent and parent.membership_of(user).invited?)
     mem = membership_of(user)
     mem.accept_invitation! if mem && mem.invited?
   end
@@ -47,27 +47,15 @@ class Group < ActiveRecord::Base
   
   def leave(user)
     for child in children
-      child.leave if child.membership_of(user)
+      child.leave(user) if child.membership_of(user)
     end
     mem = membership_of(user)
     mem.destroy if mem
   end
   
-  
-  
   def invite_and_accept(user)
-    parent.invite_and_accept(user) if parent
-    unless users.include?(user)
-      invite(user)
-      accept_invitation(user)
-    end
-  end
-  
-  def exit(user)
-    leave(user)
-    for child in children
-      child.exit(user) if child.users.include?(user)
-    end
+    invite(user)
+    accept_invitation(user)
   end
   
   def type

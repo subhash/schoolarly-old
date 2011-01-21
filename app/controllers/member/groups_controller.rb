@@ -84,8 +84,8 @@ class Member::GroupsController
             flash[:error] = I18n.t("groups.site.invite.already_invited", :user_name => user.profile.full_name)
             redirect_to select_member_group_path(@group) and return
           else
-            @group.invite(user)
-#            GroupMailer.deliver_invitation(@group, current_user, user)            
+            @group.invite_and_accept(user)
+            GroupMailer.deliver_entry_notification(@group, current_user, user)            
           end
         end        
       end
