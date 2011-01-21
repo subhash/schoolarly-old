@@ -11,7 +11,7 @@
               <% for group in @profile.user.groups %>
                 <li><%= link_to group.name, group_path(group) %>
 				<% if i_am_moderator_of group %>
-					<span><%= link_to I18n.t('groups.site.members.remove'), group_exit_member_path(group, :user_id => @profile.user.id), :confirm => I18n.t('groups.site.members.remove_confirm', :user_name => @profile.full_name, :group_name => group.name), :class => 'delete' %></span>
+					<span><%= link_to I18n.t('groups.site.members.remove'), group_exit_member_path(group,@profile.user.id), :confirm => I18n.t('groups.site.members.remove_confirm', :user_name => @profile.full_name, :group_name => group.name), :class => 'delete' %></span>
 				<% end %>
 				</li>
               <% end %>

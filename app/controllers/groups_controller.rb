@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
   
   def exit_member
     user = User.find(params[:user_id])
-    if group.moderators.include?(current_user)    
+    if @group.moderators.include?(current_user)    
       if !@group.members.include?(user) && !@group.pending_members.include?(user)
         flash[:error] = I18n.t("tog_social.groups.site.not_member")
       else
