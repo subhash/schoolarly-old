@@ -85,7 +85,8 @@ class Member::GroupsController
             redirect_to select_member_group_path(@group) and return
           else
             @group.invite_and_accept(user)
-            GroupMailer.deliver_entry_notification(@group, current_user, user)            
+            GroupMailer.deliver_entry_notification(@group, current_user, user)  
+#           TODO Send notification to other moderators
           end
         end        
       end
