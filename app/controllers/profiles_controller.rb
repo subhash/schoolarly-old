@@ -8,5 +8,6 @@ class ProfilesController < ApplicationController
       format.xml  { render :xml => @profile }
     end
   end
+  
 
 end

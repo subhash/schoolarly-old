@@ -66,10 +66,11 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
   
   map.with_options :controller => 'groups' do |group| 
-      group.group_exit_member   '/groups/:id/exit/:user_id', :action => 'exit_member'
+    group.group_exit_member   '/groups/:id/exit/:user_id', :action => 'exit_member'
   end
   
   map.namespace :member do |member|
+    member.resources :profiles, :collection => {:search => :get, :search2 => :get}
     member.resources :groups , :member => {:select => :get, :add => :post} do |group|
       group.resources :students, :shallow => true
       group.resources :teachers, :shallow => true
@@ -82,7 +83,10 @@ ActionController::Routing::Routes.draw do |map|
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
       group.new_group_with_type   'groups/new/:type', :action => 'new' 
-    end
+    end   
+#    member.with_options :controller => 'profiles' do |profile|
+#      profile.search    'profiles/search' , :action  => 'search'
+#    end
   end
   
   #  map.resources :schools
