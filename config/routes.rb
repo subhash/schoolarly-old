@@ -1,4 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.namespace :member do |member|
+    member.resources :profiles, :collection => {:search => :get}
+  end
+  
   map.routes_from_plugin 'tog_picto'
   
   map.routes_from_plugin 'tog_picto'
@@ -69,8 +74,9 @@ ActionController::Routing::Routes.draw do |map|
     group.group_exit_member   '/groups/:id/exit/:user_id', :action => 'exit_member'
   end
   
+  
+  
   map.namespace :member do |member|
-    member.resources :profiles, :collection => {:search => :get, :search2 => :get}
     member.resources :groups , :member => {:select => :get, :add => :post} do |group|
       group.resources :students, :shallow => true
       group.resources :teachers, :shallow => true
@@ -84,11 +90,8 @@ ActionController::Routing::Routes.draw do |map|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
       group.new_group_with_type   'groups/new/:type', :action => 'new' 
     end   
-#    member.with_options :controller => 'profiles' do |profile|
-#      profile.search    'profiles/search' , :action  => 'search'
-#    end
   end
-  
+
   #  map.resources :schools
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
