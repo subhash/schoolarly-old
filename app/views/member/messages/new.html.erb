@@ -14,7 +14,7 @@
           <%= @to.profile.full_name %>
           <%= f.hidden_field :to_user_id, :value => @to.id %>
         <% else %>
-          <%= f.text_field :to_user_ids, {:id => 'tokenize'} %>
+          <%= f.text_field :to_user_id, {:id => 'tokenize'} %>
         <% end %>
       </p>
       <p>
@@ -33,10 +33,23 @@
 <% end %>
 
 
-
 <script type="text/javascript">
 jQuery(document).ready(function () {
-  jQuery("#tokenize").tokenInput("/member/profiles/search", {});
+  jQuery("#tokenize").tokenInput("<%= search_member_profiles_path %>",{
+  	hintText: "<%=I18n.t('mail.messages.to.search')%>",
+  	classes: {
+  		tokenList: "token-input-list-facebook",
+  		token: "token-input-token-facebook",
+  		tokenDelete: "token-input-delete-token-facebook",
+  		selectedToken: "token-input-selected-token-facebook",
+  		highlightedToken: "token-input-highlighted-token-facebook",
+  		dropdown: "token-input-dropdown-facebook",
+  		dropdownItem: "token-input-dropdown-item-facebook",
+  		dropdownItem2: "token-input-dropdown-item2-facebook",
+  		selectedDropdownItem: "token-input-selected-dropdown-item-facebook",
+  		inputToken: "token-input-input-token-facebook"
+  	}
+  });
 });
 </script>
 

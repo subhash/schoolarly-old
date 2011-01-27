@@ -144,6 +144,10 @@ en:
       invite: 
         title: "Invite Teachers"
         description: "Enter the list of new teachers in this school in the box, one per line, in the format: <br/> Name,Email <br/> Example: <br/>George Washington,george.w@gmail.com <br/> John Adams,j_adams@yahoo.com <br/>"
-        format: "Name, Email"         
+        format: "Name, Email" 
+  mail:
+    messages:
+      to:
+        search: "Type in the name of a contact"        
   
        
