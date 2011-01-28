@@ -1,3 +1,8 @@
+<% include_javascript "jquery-1.4.2.min.js" %>
+<% include_javascript "jquery.tokeninput.js" %>
+<% include_stylesheet "token-input-facebook.css" %>
+
+
 <div class="titleB"><%= link_to I18n.t("tog_mail.plugin_name"), member_messages_path %> / <%= I18n.t("tog_mail.member.compose_new_message") %></div>
 <br/>
 <%= error_messages_for :message %>
