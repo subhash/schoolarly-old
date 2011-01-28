@@ -21,6 +21,8 @@ class Group < ActiveRecord::Base
   named_scope :subject, :conditions => {:network_type => 'Subject'}
   named_scope :default, :conditions => {:network_type => nil }
   
+  has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc"
+  
   def invite(user)
     parent.invite(user) if (parent and !parent.membership_of(user))
     mem = membership_of(user)

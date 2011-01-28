@@ -20,9 +20,9 @@ class GroupsController < ApplicationController
   
   def show
     @page = params[:page] || '1'
-    @shares = @group.sharings.collect(&:shareable).paginate :per_page => 10,
+    @sharings = @group.sharings.paginate :per_page => 10,
                                            :page => @page, 
-                                           :order => "updated_at desc"
+                                           :order => "updated_at asc"
     store_location
   end
   

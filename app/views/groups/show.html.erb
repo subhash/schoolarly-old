@@ -24,22 +24,22 @@
 
     <div class="portlet_content">
         <ul>
-              <% for share in @shares %>
-			  <% if share.is_a? Post %>
-                <%= render :partial => '/conversatio/posts/list_detail', :locals => { :blog => share.blog, :post => share } %>
+              <% for share in @sharings %>
+			  <% if share.shareable.is_a? Post %>
+                <%= render :partial => '/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable } %>
 			  <% end %>
               <% end %>
         </ul>
     </div>
 </div>
 
-<% if !@shares.empty? %>
+<% if !@sharings.empty? %>
   <div class="info_results">
       <span class="info_items">
-        <%= page_entries_info @shares %>
+        <%= page_entries_info @sharings %>
       </span>
       <span class="pages_navigation right">
-          <%= will_paginate @shares %>
+          <%= will_paginate @sharings %>
       </span>
   </div>
 <%end%>
