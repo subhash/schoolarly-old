@@ -18,6 +18,34 @@
   </div>
 </div> <!-- /.detail1 --> 
 
+<% if i_am_member_of @group %>
+<div class="portlet portletB">
+    <h2><span><%= I18n.t('tog_conversatio.views.blogs.show.last_posts') %></span></h2>
+
+    <div class="portlet_content">
+        <ul>
+              <% for share in @shares %>
+			  <% if share.is_a? Post %>
+                <%= render :partial => '/conversatio/posts/list_detail', :locals => { :blog => share.blog, :post => share } %>
+			  <% end %>
+              <% end %>
+        </ul>
+    </div>
+</div>
+
+<% if !@shares.empty? %>
+  <div class="info_results">
+      <span class="info_items">
+        <%= page_entries_info @shares %>
+      </span>
+      <span class="pages_navigation right">
+          <%= will_paginate @shares %>
+      </span>
+  </div>
+<%end%>
+
+<% end %>
+
 <% content_for :sidebar do %>
 
 <div class="portlet portletC" id="portlet_moreLinks">
