@@ -28,6 +28,9 @@
 			  <% if share.shareable.is_a? Post %>
                 <%= render :partial => '/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable } %>
 			  <% end %>
+			  <% if share.shareable.is_a? Event %>
+                <%= render :partial => '/conclave/events/list_detail', :locals => { :event => share.shareable } %>
+			  <% end %>
               <% end %>
         </ul>
     </div>
@@ -55,6 +58,7 @@
           <% if i_am_member_of @group -%>
             <li><%= I18n.t('tog_social.groups.site.member') %><%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %></li>
 			<li><%= link_to I18n.t('groups.member.post.create'), new_member_conversatio_blog_post_url(current_user.default_blog, :group => @group) %></li>
+			<li><%= link_to I18n.t('groups.member.event.create'), new_member_conclave_event_url(:group => @group) %></li>
           <% else -%>
             <li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
           <% end -%> 

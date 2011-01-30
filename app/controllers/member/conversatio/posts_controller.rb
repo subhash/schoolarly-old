@@ -12,7 +12,6 @@ class Member::Conversatio::PostsController < Member::BaseController
         @post.send("#{params[:state].to_s}!") if @post.aasm_events_for_current_state.map{|e| e.to_s}.include?("#{params[:state]}")
         wants.html do
           flash[:ok] = I18n.t('tog_conversatio.member.posts.post_created')
-          puts 'Need to share with group '+@group.inspect
           if @group
             @group.share(current_user, @post.class.to_s, @post.id)
             redirect_back_or_default groups_path(@group)

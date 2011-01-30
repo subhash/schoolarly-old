@@ -65,6 +65,8 @@ en:
           reject: Reject
       post:
         create: Post message to group    
+      event:
+        create: Create event for group
   schools:
     model:
       klasses:
