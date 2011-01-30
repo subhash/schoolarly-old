@@ -62,7 +62,9 @@ en:
         invitation:
           subject: Invitation to the group {{group}}
           accept: Accept
-          reject: Reject  
+          reject: Reject
+      post:
+        create: Post message to group    
   schools:
     model:
       klasses:
