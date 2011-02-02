@@ -62,3 +62,4 @@ end
 Tog::Interface.sections(:site).add :schools, "/groups?type='schools'"
 
 Tog::Config['plugins.tog_user.email_as_login'] = true
+Tog::Config['plugins.tog_core.site.name'] = "Schoolarly"

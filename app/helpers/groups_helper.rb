@@ -4,6 +4,4 @@ module GroupsHelper
     group.ancestors.reverse.each{|a| s << "#{link_to(a.name, group_path(a))} > "}
     s.join
   end
-  
-  
 end
