@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110111083545) do
+ActiveRecord::Schema.define(:version => 20110201090033) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(:version => 20110111083545) do
   end
 
   add_index "activities", ["item_type", "item_id"], :name => "index_activities_on_item_type_and_item_id"
+
+  create_table "attachments", :force => true do |t|
+    t.string   "description"
+    t.integer  "user_id"
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attachments", ["user_id"], :name => "user_id"
 
   create_table "attendances", :force => true do |t|
     t.integer  "event_id"
@@ -371,5 +384,7 @@ ActiveRecord::Schema.define(:version => 20110111083545) do
     t.string   "person_type"
     t.integer  "person_id"
   end
+
+  add_foreign_key "attachments", ["user_id"], "users", ["id"], :name => "attachments_ibfk_1"
 
 end

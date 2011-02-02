@@ -64,9 +64,11 @@ en:
           accept: Accept
           reject: Reject
       post:
-        create: Post message to group    
+        share: Post message to group    
       event:
-        create: Create event for group
+        share: Create event for group
+      attachment:
+        share: Share document with group
   schools:
     model:
       klasses:
@@ -152,6 +154,18 @@ en:
   mail:
     messages:
       to:
-        search: "Type in the name of a contact"        
-  
+        search: "Type in the name of a contact"  
+        
+  attachments:
+    member:
+      add: "Add attachment"
+      add_success: "Document attached"
+      add_failure: "Failure in adding document"  
+    
+    model:
+      doc: 
+        title: "Upload Document"
+      description: 
+        title: "Description"
+
        

@@ -1,0 +1,33 @@
+<div class="titleB">
+	<% if @group %>
+    <%= link_to @group.name, group_path(@group) if @group %> > <%= I18n.t('groups.member.attachment.share') %>
+	<% else %>
+	<%= I18n.t('attachments.member.add') %>
+	<% end %>
+</div>
+<br />
+
+<% if @attachment && !@attachment.errors.empty? -%>
+<div class="error">
+  <%= error_messages_for :attachment %>
+</div>
+<% end -%>
+
+<% form_for(:attachment, :url=>member_attachments_path, :html=>{:multipart=>true}) do |f| %>
+  <fieldset>
+    <div class="fields">
+      <p>
+        <label for="attachment_description"><%= I18n.t('attachments.model.description.title') %></label>
+        <%= f.text_area  :description, :class => 'fieldbox wide', :size => '60x10' %></dd>
+      </p>
+      <p>
+        <label for="attachment_doc"><%= I18n.t('attachments.model.doc.title') %></label>
+        <%= f.file_field  :doc %><br/>
+      </p>
+	  <%= hidden_field_tag :group, @group.id if @group%>
+    </div>
+    <div class="actions">
+      <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>
+    </div>
+  </fieldset>
+<% end %>

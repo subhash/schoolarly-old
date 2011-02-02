@@ -86,6 +86,7 @@ ActionController::Routing::Routes.draw do |map|
         klass.resources :subjects, :shallow => true, :member => {:invite => :get, :add => :post}
       end
     end
+    member.resources :attachments
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
       group.new_group_with_type   'groups/new/:type', :action => 'new' 
