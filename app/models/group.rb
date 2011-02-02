@@ -39,7 +39,7 @@ class Group < ActiveRecord::Base
   
   def join(user,moderator=false)
     # todo Confirm what to do if th user is already a member. By now just ignore it and continue.
-    parent.join if (parent and parent.membership_of(user))
+    parent.join(user) if (parent and !parent.membership_of(user))
     mem = membership_of(user)
     mem = self.memberships.build(:user => user, :moderator => moderator) unless mem
     mem.save!
