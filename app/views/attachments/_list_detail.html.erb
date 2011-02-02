@@ -1,5 +1,10 @@
+
+
+
 <div class="detail detail1">
-    <!-- <div class="image"><img src="../design/garbage/foto140x140.jpg" alt="Imagen"></div> -->
-    <div class="title"><%= attachment.description%></div>
-	<%= image_tag attachment.doc.url('big') %>
-</div> <!-- /.detail1 -->
+    <div class="title"><%= link_to "#{sanitize attachment.doc.original_filename}", attachment.doc.url, :title => "#{sanitize attachment.doc.original_filename}" %> - <%= sanitize attachment.title%></div>
+    <div class="subtitle"><%= I18n.t('attachments.site.list_detail.attached_time_ago_by_author', :time => time_ago_in_words(attachment.created_at), :author => attachment.user.profile.full_name) %></div>
+    <div class="text"><%= sanitize(textilize(attachment.description), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %></div>
+</div>
+
+<!-- TODO tags and comments -->

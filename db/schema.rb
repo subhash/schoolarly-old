@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20110201090033) do
   add_index "activities", ["item_type", "item_id"], :name => "index_activities_on_item_type_and_item_id"
 
   create_table "attachments", :force => true do |t|
+    t.string   "title"
     t.string   "description"
     t.integer  "user_id"
     t.string   "doc_file_name"

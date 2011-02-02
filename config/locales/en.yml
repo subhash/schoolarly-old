@@ -157,6 +157,9 @@ en:
         search: "Type in the name of a contact"  
         
   attachments:
+    site:
+      list_detail:
+        attached_time_ago_by_author: "Attached {{time}} ago by {{author}}"
     member:
       add: "Add attachment"
       add_success: "Document attached"
@@ -167,5 +170,7 @@ en:
         title: "Upload Document"
       description: 
         title: "Description"
+      title:
+        title: "Title"
 
        
