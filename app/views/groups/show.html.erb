@@ -60,7 +60,7 @@
         <ul>
           <% if i_am_member_of @group -%>
             <li><%= I18n.t('tog_social.groups.site.member') %><%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %></li>
-			<li><%= link_to I18n.t('groups.member.post.share'), new_member_conversatio_blog_post_path(current_user.default_blog, :group => @group) %></li>
+			<li><%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(current_user.default_blog, :group => @group) %></li>
 			<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group) %></li>
 			<li><%= link_to I18n.t('groups.member.attachment.share'), new_member_attachment_path(:group => @group) %></li>			
           <% else -%>

@@ -63,8 +63,9 @@ en:
           subject: Invitation to the group {{group}}
           accept: Accept
           reject: Reject
-      post:
-        share: Post message to group    
+      notes:
+        share: Post note to group 
+        new: New note 
       event:
         share: Create event for group
       attachment:
@@ -159,7 +160,7 @@ en:
   attachments:
     site:
       list_detail:
-        attached_time_ago_by_author: "Attached {{time}} ago by {{author}}"
+        attached_time_ago_by_author: "Attached %{time} ago by %{author}"
     member:
       add: "Add attachment"
       add_success: "Document attached"
@@ -172,5 +173,11 @@ en:
         title: "Description"
       title:
         title: "Title"
+        
+  notebooks:
+    member:
+      notes:
+        new: "New note in notebook %{blog_title}"
+      
 
        

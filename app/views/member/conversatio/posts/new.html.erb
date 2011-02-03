@@ -1,0 +1,24 @@
+<div class="titleB">
+	<% if @group %>
+	<%= link_to @group.name, group_path(@group) %> > <%= I18n.t('groups.member.notes.new')%>
+	<% else %>
+	<%= I18n.t('notebooks.member.notes.new', :blog_title => @blog.title) %>
+	<% end %>
+	</div>
+
+<%= error_messages_for :post %>
+<% form_for :post, :url => member_conversatio_blog_posts_path(@blog), :html => {:method => "post"} do |f| -%>
+
+  <%= render :partial => 'form', :locals => {:f => f}%>
+
+  <div class="actions">
+    <%= submit_tag I18n.t('tog_conversatio.views.member.posts.new.create_post'), {:class => "button mainaction", :accesskey => "s"} %>
+  </div>
+<% end -%>
+
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'member/conversatio/blogs/manage', :locals => {:blog => @blog} %>
+  <br/>  
+  <%= render :partial => 'conversatio/blogs/tag_cloud_single_blog', :locals => { :blog => @blog } %>
+<% end %>

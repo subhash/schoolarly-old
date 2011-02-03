@@ -1,11 +1,12 @@
 class Member::Conversatio::PostsController < Member::BaseController
   
+  before_filter :find_group
+  
   def create
-    @group = Group.find(params[:group]) if params[:group]
     @post = Post.new params[:post]
     @post.blog = @blog
     @post.user = current_user
-    @post.published_at = nil unless params[:update_published_at]
+    @post.published_at = Time.now
     
     respond_to do |wants|
       if @post.save
@@ -21,15 +22,15 @@ class Member::Conversatio::PostsController < Member::BaseController
         end
       else
         wants.html do
-          flash.now[:error] = 'Failed to create a new post.'
-          if @group
-            redirect_to_back_or_default groups_path(@group)
-          else
-            render :action => :new            
-          end
+          render :action => :new            
         end
       end
     end
+  end
+  
+  private
+  def find_group
+    @group = Group.find(params[:group]) if params[:group]
   end
   
 end
