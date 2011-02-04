@@ -53,34 +53,44 @@
 <% end %>
 
 <% content_for :sidebar do %>
+<% if i_am_moderator_of(@group) %>
+	<div class="portlet portletC" id="portlet_adminLinks">
+	    <h2><span><%= I18n.t('groups.member.admin_links') %></span></h2>  
+	    <div class="portlet_content">
+	        <ul>
+	        	  <%= link_to I18n.t('tog_social.groups.member.edit'), edit_member_group_path(@group), :class => 'set_highlight' -%>
+			  <% if @group.school? %>
+			    <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group.id, :type => 'klasses'), :class => 'add' %></li>
+			    <li><%= link_to I18n.t('schools.site.admin.invite'), select_member_group_path(@group), :class => 'add' %></li>
+			    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
+			    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>
+			  <% else %>
+			    <li><%= link_to I18n.t('groups.site.add.Teacher'), select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
+			    <li><%= link_to I18n.t('groups.site.add.Student'), select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
+				<li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
+			  <% end %>
+			  <% if @group.klass? %>
+			    <li><%= link_to I18n.t('subjects.site.create'), member_new_sub_group_path(@group.id, :type => 'subjects'), :class => 'add' %></li>
+			  <% end %>
+	        </ul>
+	    </div> 
+	</div> 
+<% end %>
 
 <div class="portlet portletC" id="portlet_moreLinks">
     <h2><span><%= I18n.t('tog_social.more_links') %></span></h2>
     <div class="portlet_content">
         <ul>
           <% if i_am_member_of @group -%>
-            <li><%= I18n.t('tog_social.groups.site.member') %><%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %></li>
-			<li><%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(current_user.default_blog, :group => @group) %></li>
-			<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group) %></li>
-			<li><%= link_to I18n.t('groups.member.attachment.share'), new_member_attachment_path(:group => @group) %></li>			
-          <% else -%>
+			  <% unless (@group.klass? || @group.school? || @group.subject? )%>
+	            <li><%= I18n.t('tog_social.groups.site.member') %><%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %></li>
+			  <% end %>
+				<li><%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(current_user.default_blog, :group => @group), :class => 'sendmail' %></li>
+				<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group) %></li>
+				<li><%= link_to I18n.t('groups.member.attachment.share'), new_member_attachment_path(:group => @group) %></li>			
+          <% elsif  !(@group.klass? || @group.school? || @group.subject? ) -%>
             <li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
           <% end -%> 
-		  <% if i_am_moderator_of @group -%> 
-		  <% if @group.school? %>
-		    <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group.id, :type => 'klasses'), :class => 'add' %></li>
-		    <li><%= link_to I18n.t('schools.site.admin.invite'), select_member_group_path(@group), :class => 'add' %></li>
-		    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
-		    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>
-		  <% else %>
-		    <li><%= link_to I18n.t('groups.site.add.Teacher'), select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
-		    <li><%= link_to I18n.t('groups.site.add.Student'), select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
-			<li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
-		  <% end %>
-		  <% if @group.klass? %>
-		    <li><%= link_to I18n.t('subjects.site.create'), member_new_sub_group_path(@group.id, :type => 'subjects'), :class => 'add' %></li>
-		  <% end %>
-		  <% end %>
         </ul>
     </div> 
 </div>    

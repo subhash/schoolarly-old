@@ -52,6 +52,7 @@ en:
         invited: "%{count} teacher(s) invited"        
       
     member:   
+      admin_links: "Group Settings"
       pending: "Your group has been created but is pending for administrator's approval"  
       sub_groups:
          create: "Create member group"  
