@@ -88,8 +88,12 @@ class Group < ActiveRecord::Base
       else
         parent.users.of_type(type) - users.of_type(type)
       end     
-      when 'Subject' && type == 'Teacher' && parent.klass?
-      parent.parent.teacher_users - teacher_users
+      when 'Subject' 
+      if  type == 'Teacher' && parent.klass?
+        parent.parent.teacher_users - teacher_users
+      else
+        parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
+      end
     else
       parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
     end
