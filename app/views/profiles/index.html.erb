@@ -1,0 +1,25 @@
+<% if @group %>
+	<%= render :partial => 'groups/header' %>
+<% else %>
+	<h2><span><%= I18n.t('tog_social.profiles.site.title') %></span></h2>
+<% end %>
+
+
+<div class="portlet portletG" id="portlet_featuredUsers">
+	<% if @group %>
+	<h2><span><%= I18n.t("groups.model.#{@type}.title") %></span></h2>
+	<% end %>
+    <div class="portlet_content">
+        <ul class="clearfix">
+          <% @profiles.each do |profile|%>
+            <li>
+	            	<%= link_to icon_for_profile(profile, 'medium'), profile_path(profile), :title => profile.full_name %>
+				<div><%= profile.full_name %></div>
+				<div><%= profile.user.state %></div>
+			</li>
+          <%end%>          
+        </ul>
+    </div>    
+</div>
+
+<%= will_paginate @profiles %>

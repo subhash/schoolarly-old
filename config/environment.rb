@@ -68,3 +68,4 @@ Tog::Interface.sections(:site).add :events, "/conclave/events"
 
 Tog::Config['plugins.tog_user.email_as_login'] = true
 Tog::Config['plugins.tog_core.site.name'] = "Schoolarly"
+Tog::Plugins.settings :tog_social, "profile.image.versions.tiny"   => "35x35#"

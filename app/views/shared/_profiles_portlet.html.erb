@@ -1,15 +1,12 @@
 <div class="portlet <%= style || 'portletA' %>" id="portlet_friends">
-  <h2><span><%= title %> (<%=  items.size %>)</span></h2>
-  <% if local_assigns[:add_link] %>
-  <p><%= add_link %></p>
-  <% end %>
+  	<h2>
+  		<span><%= link_to_if items.size > 5, "#{title} (#{items.size})", profiles_path(:group => @group, :type => type) %></span>
+	</h2>
   <div class="portlet_content">
       <ul class="clearfix">
         <% unless items.blank? %>
-          <% for item in items %>
+          <% for item in items.first(5) %>
             <li><%= link_to icon_for_profile(item, 'small'), profile_path(item), :title => item.full_name %>
-			<div><%= item.full_name %></div>
-			<div><%= item.user.state %></div>
           </li>
           <% end %>
         <% else %>

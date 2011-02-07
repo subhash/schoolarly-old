@@ -1,22 +1,4 @@
-<div class="breadcrumbs"><%= ancestor_path_for(@group) %></div>
-<div class="detail detail1">
-  <div class="image"><%= link_to image_for_group(@group, 'medium', :class=>"img"), group_path(@group) %></div>
-  <div class="title"><%= link_to @group.name, group_path(@group) %></div>
-  <div class="subtitle"><%= I18n.t('tog_social.groups.model.created_at') %> <%= @group.created_at.strftime("%d/%m/%Y") %>, <%= I18n.t('tog_social.groups.model.members', :count => @group.members.size) %></div>
-  <div class="summary"><%= I18n.t('tog_social.groups.model.moderated_by') %>:
-    <% for moderator in @group.moderators -%>
-      <%=link_to moderator.profile.full_name, profile_path(moderator.profile), :class=> 'maincolor4'%>
-    <% end -%>
-    <br/>
-    <%= I18n.t('tog_social.tags.tags') %>: 
-      <% for tag in @group.tag_list %>
-        <%= link_to tag.to_s, tag_groups_path(tag) %>
-      <% end %>   
-  </div>
-  <div class="text">
-    <p><%= @group.description %></p>
-  </div>
-</div> <!-- /.detail1 --> 
+<%= render :partial => 'groups/header' %>
 
 <% if i_am_member_of @group %>
 <div class="portlet portletB">
@@ -98,6 +80,7 @@
 <% @group.users.group_by(&:type).each do |type, users| %>
 	<%= render :partial => "shared/profiles_portlet", :locals => { 
 	  :items => users.collect(&:profile), 
+      :type => users.first.person_type,
 	  :style => :portletG, 
 	  :title => I18n.t("groups.model.#{type}.title", :count => @group.members.size),  
 	  :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>

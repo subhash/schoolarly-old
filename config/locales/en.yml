@@ -143,7 +143,10 @@ en:
       invite: 
         title: "Invite Students"
         description: "Enter the list of new students in this school in the box, one per line, in the format: <br/> Name,Email <br/> Example: <br/>George Washington,george.w@gmail.com <br/> John Adams,j_adams@yahoo.com <br/>"
-        format: "Name, Email"        
+        format: "Name, Email"  
+    site:
+      view:
+        all: "View all %{size} students"      
   teachers:
     model:
       name: "Name"
