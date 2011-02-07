@@ -1,0 +1,20 @@
+.date {
+        width: 42px;
+        height: 10px;
+        padding: 18px 0 14px 0;
+        text-align: center;
+}
+
+.month1 { background: url(../images/date/01.gif) no-repeat 0 0; }
+.month2 { background: url(../images/date/02.gif) no-repeat 0 0; }
+.month3 { background: url(../images/date/03.gif) no-repeat 0 0; }
+.month4 { background: url(../images/date/04.gif) no-repeat 0 0; }
+.month5 { background: url(../images/date/05.gif) no-repeat 0 0; }
+.month6 { background: url(../images/date/06.gif) no-repeat 0 0; }
+.month7 { background: url(../images/date/07.gif) no-repeat 0 0; }
+.month8 { background: url(../images/date/08.gif) no-repeat 0 0; }
+.month9 { background: url(../images/date/09.gif) no-repeat 0 0; }
+.month10 { background: url(../images/date/10.gif) no-repeat 0 0; }
+.month11 { background: url(../images/date/11.gif) no-repeat 0 0; }
+.month12 { background: url(../images/date/12.gif) no-repeat 0 0; }
+
