@@ -25,6 +25,7 @@ en:
       title: "Groups"
       details: "Group Details"
       create: "Create Group"
+      added_successfully: "%{group_name} added successfully"
       exited: "%{user_name} removed from %{group_name}"
       not_moderator: "You are not a moderator of this group"
       members:
@@ -112,6 +113,11 @@ en:
         title: Students
     site:
       create: "Add new class"
+      add_multiple: 
+        title: "Add multiple classes"
+        help: "Enter the list of new classes in this school in the box, one per line, in the format: <br/> Name,Description <br/> Example: <br/>Prep green,  Preschool first division<br/> 1A <br/>If there is no description, just enter the name of the class per line"
+        format: "Name, Description"
+        added: "%{count} classed added"
       details: "Class details"
       title: "Classes"
       students:
@@ -121,7 +127,12 @@ en:
 
   subjects:
     site:
-      create: "Add Subject"
+      create: "Add Subjects"
+      add_multiple: 
+        title: "Add multiple subjects"
+        help: "Enter the list of new subjects in the box, one per line, in the format: <br/> Name,Description <br/> Example: <br/>Social Science,  History and Geography combined<br/> English <br/>If there is no description, just enter the name of the subject per line"
+        format: "Name, Description"
+        added: "%{count} subjects added"
       details: "Subject details"
       students:
         add: "Add Students"

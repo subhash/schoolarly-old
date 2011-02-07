@@ -1,0 +1,31 @@
+<div class="titleB">
+    <%= path_for(@parent) %> > 
+    <%= I18n.t("#{@type}.site.add_multiple.title") %>
+</div>
+<br/>
+<% @groups ||= [] %>
+<% @groups.each do |group| %>
+	<% if group.errors.blank? %>
+		<%= I18n.t('groups.site.added_successfully', :group_name => group.name) %>
+		<br/>
+	<% else %>
+		<%= error_messages_for 'group', :object => group %>
+	<% end %>
+<% end %>
+<% form_tag create_multiple_member_group_path(@parent.id, :type => @type) , :html=>{ :multipart=>true } do |f| -%>
+<fieldset>
+    <div class="fields">
+        <p>
+            <%= label_tag :groups, I18n.t("#{@type}.site.add_multiple.format") %>
+            <%= text_area_tag :groups, @failed_groups, :class => "fieldbox", :size => "80x20" %>
+        </p>
+        <p>
+            <span class="fontsmaller"><%= I18n.t("#{@type}.site.add_multiple.help") %></span>
+        </p>
+    </div>
+</fieldset>
+<br/>
+<div class="actions">
+    <%= submit_tag I18n.t("#{@type}.site.add_multiple.title"), :class => "button mainaction" %>or <%= link_to I18n.t("#{@type}.site.create"), member_new_sub_group_path(@parent.id, :type => 'klasses') %>
+</div>
+<% end -%>

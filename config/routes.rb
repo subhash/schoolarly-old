@@ -77,7 +77,7 @@ ActionController::Routing::Routes.draw do |map|
   
   
   map.namespace :member do |member|
-    member.resources :groups , :member => {:select => :get, :add => :post} do |group|
+    member.resources :groups , :member => {:new_multiple => :get, :create_multiple => :post, :select => :get, :add => :post} do |group|
       group.resources :students, :shallow => true
       group.resources :teachers, :shallow => true
     end

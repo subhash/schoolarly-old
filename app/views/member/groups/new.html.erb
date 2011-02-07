@@ -49,6 +49,7 @@
     </div>
     <div class="actions">
       <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>
+	  or <%= link_to I18n.t("#{@type}.site.add_multiple.title"), new_multiple_member_group_path(@group.id, :type => @type) if (@type == 'klasses' or @type == 'subjects')%>
     </div>
   </fieldset>
 <% end %>
