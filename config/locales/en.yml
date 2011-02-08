@@ -22,6 +22,8 @@ en:
       subjects:
         title: "Subjects"
     site:
+      posts:
+        latest: "Latest Posts"
       title: "Groups"
       details: "Group Details"
       create: "Create Group"

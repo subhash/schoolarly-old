@@ -2,7 +2,10 @@
 
 <% if i_am_member_of @group %>
 <div class="portlet portletB">
-    <h2><span><%= I18n.t('tog_conversatio.views.blogs.show.last_posts') %></span></h2>
+    <h2>
+    	    <span><%= I18n.t('groups.site.posts.latest') %></span>
+		<span style="float: right">View <%= select_tag "filter_posts" ,options_for_select(%w{ All Notes Photos Events }, "All")%></span>
+	</h2>
 
     <div class="portlet_content">
         <ul>
