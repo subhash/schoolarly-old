@@ -4,37 +4,12 @@
 <div class="portlet portletB">
     <h2>
     	    <span><%= I18n.t('groups.site.posts.latest') %></span>
-		<span style="float: right">View <%= select_tag "filter_posts" ,options_for_select(%w{ All Notes Photos Events }, "All")%></span>
+		<span style="float: right">View <%= select_tag "filter_sharings" ,options_for_select([['All', 'All'], ['Notes','Post'],['Events', 'Event'],['Photos', 'Photo'], ['Documents', 'Attachment']], "All"), :onchange => remote_function(:url => sharings_group_path(@group.id), :with => "'filter='+this.value")%></span>
 	</h2>
-
-    <div class="portlet_content">
-        <ul>
-              <% for share in @sharings %>
-			  <% if share.shareable.is_a? Post %>
-                <%= render :partial => '/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable } %>
-			  <% end %>
-			  <% if share.shareable.is_a? Event %>
-                <%= render :partial => '/conclave/events/list_detail', :locals => { :event => share.shareable } %>
-			  <% end %>
-			  <% if share.shareable.is_a? Attachment %>
-                <%= render :partial => '/attachments/list_detail', :locals => { :attachment => share.shareable } %>
-			  <% end %>			  
-              <% end %>
-        </ul>
-    </div>
+	<div id="sharings">
+ 		<%= render :partial => 'groups/sharings' %>
+	</div>
 </div>
-
-<% if !@sharings.empty? %>
-  <div class="info_results">
-      <span class="info_items">
-        <%= page_entries_info @sharings %>
-      </span>
-      <span class="pages_navigation right">
-          <%= will_paginate @sharings %>
-      </span>
-  </div>
-<%end%>
-
 <% end %>
 
 <% content_for :sidebar do %>

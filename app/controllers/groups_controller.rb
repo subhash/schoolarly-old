@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   
   before_filter :login_required, :only => [:join, :leave, :exit_member]
-  before_filter :load_group, :only => [:show, :join, :leave, :members, :accept_invitation, :reject_invitation, :share, :exit_member]
+  before_filter :load_group, :only => [:show, :join, :leave, :members, :accept_invitation, :reject_invitation, :share, :exit_member, :sharings]
   
   def index
     @type = params[:type] || 'groups'
@@ -38,7 +38,7 @@ class GroupsController < ApplicationController
         else
           @group.leave(user)
           GroupMailer.deliver_exit_notification(@group, current_user, user)
-#          TODO send mail to other moderators
+          #          TODO send mail to other moderators
           #todo: eliminar cuando este claro que sucede si un usuario ya es miembro
           flash[:ok] = I18n.t("groups.site.exited", :user_name => user.profile.full_name, :group_name => @group.name)
         end
@@ -47,6 +47,24 @@ class GroupsController < ApplicationController
       flash[:error] = I18n.t("groups.site.not_moderator")
     end
     redirect_back_or_default profiles_path(user)
+  end
+  
+  def sharings
+    filter = params[:filter]
+    if filter == 'All'
+      @sharings = @group.sharings.paginate :per_page => 10,
+                                           :page => @page, 
+                                           :order => "updated_at desc"
+    else
+      @sharings = @group.sharings.of_type(filter).paginate :per_page => 10,
+                                           :page => @page, 
+                                           :order => "updated_at desc"
+      
+    end
+    render :update do |page|
+      page.replace_html 'sharings', :partial => 'groups/sharings'
+    end
+    
   end
   
   

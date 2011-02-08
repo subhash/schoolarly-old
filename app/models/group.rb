@@ -21,7 +21,11 @@ class Group < ActiveRecord::Base
   named_scope :subject, :conditions => {:network_type => 'Subject'}
   named_scope :default, :conditions => {:network_type => nil }
   
-  has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc"
+  has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc"  do
+    def of_type(type)
+      find :all, :conditions => {:shareable_type => type}
+    end
+  end
   
   def invite(user)
     parent.invite(user) if (parent and !parent.membership_of(user))

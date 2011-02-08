@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   
+
   map.namespace :member do |member|
     member.resources :profiles, :collection => {:search => :get}
   end
@@ -75,7 +76,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   
-  
+  map.resources :groups, :member => {:sharings => :post }  
   map.namespace :member do |member|
     member.resources :groups , :member => {:new_multiple => :get, :create_multiple => :post, :select => :get, :add => :post} do |group|
       group.resources :students, :shallow => true
