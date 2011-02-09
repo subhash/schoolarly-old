@@ -1,4 +1,4 @@
-class Member::AttachmentsController < ApplicationController
+class Member::AttachmentsController < Member::BaseController
   
   before_filter :find_group
   

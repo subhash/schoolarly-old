@@ -11,6 +11,8 @@ en:
       parent: "Parent group"
       groups:
         title: "Member Groups"
+      schools:
+        title: "School Networks"
       klasses:
         title: "Class Networks"
       students:
