@@ -1,0 +1,4 @@
+Spinner plugin
+--------------
+
+script/plugin install git://github.com/ssoroka/busy_ajax.git
