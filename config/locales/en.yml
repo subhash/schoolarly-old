@@ -26,6 +26,9 @@ en:
     site:
       posts:
         latest: "Latest Posts"
+      attachments:
+        comments:
+          comment_title: Leaving A Comment On {{attachment_title}}
       title: "Groups"
       details: "Group Details"
       create: "Create Group"
@@ -35,7 +38,7 @@ en:
       members:
         invite: "Invite members"
         add: "Add members"
-        remove: "Exit group"
+        remove: "Remove from group"
         remove_confirm: "Do you want to remove %{user_name} from %{group_name}?"
       already_member: "%{user_name} is already a member"      
       invite:
