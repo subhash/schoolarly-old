@@ -158,6 +158,45 @@ class Member::GroupsController < Member::BaseController
     redirect_to group_path(@group)
   end
   
+  def remove_select
+    @type = params[:type]
+    @order = params[:order] || 'created_at'
+    @page = params[:page] || '1'
+    @asc = params[:asc] || 'desc'
+    @removable_members = @group.removable_members(@type) - [current_user]
+    @profiles = @removable_members.collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
+                                 :page => @page,
+                                 :order => "profiles.#{@order} #{@asc}"
+    respond_to do |format|
+      format.html { render :template => 'member/groups/remove_select'}
+      format.xml  { render :xml => @profiles }
+    end    
+  end
+  
+  def remove
+    params[:members].each do |profile_id|
+      user = Profile.find(profile_id).user
+      if @group.moderators.include?(current_user)    
+        if !@group.members.include?(user) && !@group.pending_members.include?(user)
+          flash[:error] = I18n.t("tog_social.groups.site.not_member")
+        else
+          if @group.moderators.include?(user) && @group.moderators.size == 1
+            flash[:error] = I18n.t("tog_social.groups.site.last_moderator")
+          else
+            @group.leave(user)
+            GroupMailer.deliver_exit_notification(@group, current_user, user)
+            #          TODO send mail to other moderators
+            #todo: eliminar cuando este claro que sucede si un usuario ya es miembro
+          end
+        end
+      else
+        flash[:error] = I18n.t("groups.site.not_moderator")
+      end
+    end
+    flash[:ok] = I18n.t("groups.site.remove.removed", :user_count => params[:members].count)      
+    redirect_to edit_member_group_path(@group)    
+  end
+  
   protected
   def find_type
     @type = params[:type] || 'groups'

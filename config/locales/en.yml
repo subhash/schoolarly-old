@@ -44,16 +44,22 @@ en:
       add:
         Student: "Add Students"
         Teacher: "Add Teachers"
+      remove:
+        Student: "Remove Students"
+        Teacher: "Remove Teachers"
+        removed: "%{user_count} user(s) removed"
       invite:
         Student: "Invite new students"
         Teacher: "Invite new teachers"
       Student:
         invite: "Invite new students"
         select: "Select existing students"
+        remove_select: "Select students to be removed"
         invited: "%{count} student(s) invited"
       Teacher:
         invite: "Invite new teachers"
         select: "Select existing teachers"
+        remove_select: "Select teachers to be removed"        
         invited: "%{count} teacher(s) invited"        
       
     member:   
