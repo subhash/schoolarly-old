@@ -71,10 +71,6 @@ ActionController::Routing::Routes.draw do |map|
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
   
-  map.with_options :controller => 'groups' do |group| 
-    group.group_exit_member   '/groups/:id/exit/:user_id', :action => 'exit_member'
-  end
-  
   
   map.resources :groups, :member => {:sharings => :post }  
   map.namespace :member do |member|

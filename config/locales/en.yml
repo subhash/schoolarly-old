@@ -33,7 +33,6 @@ en:
       details: "Group Details"
       create: "Create Group"
       added_successfully: "%{group_name} added successfully"
-      exited: "%{user_name} removed from %{group_name}"
       not_moderator: "You are not a moderator of this group"
       members:
         invite: "Invite members"
