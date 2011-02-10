@@ -23,12 +23,12 @@
 	        	  <%= link_to I18n.t('tog_social.groups.member.edit'), edit_member_group_path(@group), :class => 'ok' -%>
 			  <% if @group.school? %>
 			    <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group.id, :type => 'klasses'), :class => 'add' %></li>
-			    <li><%= link_to I18n.t('schools.site.admin.invite'), select_member_group_path(@group), :class => 'add' %></li>
+			    <li><%= link_to I18n.t('schools.site.admin.invite'), add_select_member_group_path(@group), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>
 			  <% else %>
-			    <li><%= link_to I18n.t('groups.site.add.Teacher'), select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
-			    <li><%= link_to I18n.t('groups.site.add.Student'), select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
+			    <li><%= link_to I18n.t('groups.site.add.Teacher'), add_select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
+			    <li><%= link_to I18n.t('groups.site.add.Student'), add_select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
 				<li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
 			  <% end %>
 			  <% if @group.klass? %>

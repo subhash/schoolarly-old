@@ -74,7 +74,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :groups, :member => {:sharings => :post }  
   map.namespace :member do |member|
-    member.resources :groups , :member => {:new_multiple => :get, :create_multiple => :post, :select => :get, :add => :post, :remove_select => :get, :remove => :post} do |group|
+    member.resources :groups , :member => {:new_multiple => :get, :create_multiple => :post, :add_select => :get, :add => :post, :remove_select => :get, :remove => :post} do |group|
       group.resources :students, :shallow => true
       group.resources :teachers, :shallow => true
     end

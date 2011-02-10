@@ -5,7 +5,7 @@
 <% @users ||= [] %>
 <% @users.each do |user| %>
     <% if user.errors.blank? %>
-		<%= I18n.t('schools.site.teachers.added_successfully', :teacher_name => user.profile.full_name) %><br/>
+		<%= I18n.t('groups.site.Teacher.added_successfully', :teacher_name => user.profile.full_name) %><br/>
 	<% else %>
 		<%= error_messages_for 'user', :object => user %>	
 	<% end %>
@@ -34,6 +34,6 @@
 <br/>
 <div class="actions">
     <%= submit_tag I18n.t('teachers.member.invite.title'), :class => "button mainaction" %> or
-	<%= link_to I18n.t("groups.site.Teacher.select"), select_member_group_path(@group, :type => 'Teacher')%>
+	<%= link_to I18n.t("groups.site.Teacher.add_select"), add_select_member_group_path(@group, :type => 'Teacher')%>
 </div>
 <% end -%>

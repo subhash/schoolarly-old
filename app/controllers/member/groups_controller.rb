@@ -119,7 +119,7 @@ class Member::GroupsController < Member::BaseController
     
   end
   
-  def select
+  def add_select
     @type = params[:type]
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
@@ -128,22 +128,26 @@ class Member::GroupsController < Member::BaseController
                                  :page => @page,
                                  :order => "profiles.#{@order} #{@asc}"
     respond_to do |format|
-      format.html { render :template => 'member/groups/select'}
+      format.html { render :template => 'member/groups/add_select'}
       format.xml  { render :xml => @profiles }
     end    
   end
   
   def add
+    unless params[:members]
+      flash[:error] = I18n.t("groups.site.select.none_selected", :types => params[:type].downcase.pluralize)    
+      redirect_to add_select_member_group_path(@group, :type => params[:type]) and return
+    end
     if @group.can_invite?(current_user)
       params[:members].each do |profile_id|
         user = Profile.find(profile_id).user
         if @group.members.include? user
           flash[:notice] = I18n.t("groups.site.already_member", :user_name => user.profile.full_name)
-          redirect_to select_member_group_path(@group) and return
+          redirect_to add_select_member_group_path(@group, :type => params[:type]) and return
         else
           if @group.invited_members.include? user
-            flash[:error] = I18n.t("groups.site.invite.already_invited", :user_name => user.profile.full_name)
-            redirect_to select_member_group_path(@group) and return
+            flash[:error] = I18n.t("groups.site.select.already_invited", :user_name => user.profile.full_name)
+            redirect_to add_select_member_group_path(@group, :type => params[:type]) and return
           else
             @group.invite_and_accept(user)
             GroupMailer.deliver_entry_notification(@group, current_user, user)  
@@ -151,7 +155,7 @@ class Member::GroupsController < Member::BaseController
           end
         end        
       end
-      flash[:ok] = I18n.t("groups.site.invite.invited", :user_count => params[:members].count)      
+      flash[:ok] = I18n.t("groups.site.select.invited", :user_count => params[:members].count)      
     else
       flash[:error] = I18n.t("tog_social.groups.site.invite.you_could_not_invite")    
     end

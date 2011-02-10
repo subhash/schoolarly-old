@@ -1,4 +1,4 @@
-<div class="titleB"><%= ancestor_path_for(@group) %><%= I18n.t('tog_social.groups.member.edit_group', :group => @group.name) %></div>
+<div class="titleB"><%= ancestor_path_for(@group) %><%= link_to @group.name, group_path(@group) %> > <%= I18n.t('groups.site.edit.title') %></div>
 <br/>
 <%= error_messages_for :group %>
 
