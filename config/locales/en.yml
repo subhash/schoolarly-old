@@ -21,12 +21,11 @@ en:
         title: "Other Members"
       subjects:
         title: "Subjects"
+      shared:
+        title: "Shared Groups"
     site:
       posts:
         latest: "Latest Posts"
-      attachments:
-        comments:
-          comment_title: Leaving A Comment On {{attachment_title}}
       title: "Groups"
       details: "Group Details"
       create: "Create Group"
@@ -179,8 +178,18 @@ en:
         
   attachments:
     site:
+      title : "Attachment"
+      uploaded_by: "Uploaded by"
+      update: "Update Document"
+      show:
+        posted: "Posted %{time}"
+      manage:
+        title: "Manage document %{name}"
+        edit: "Edit document"
       list_detail:
-        attached_time_ago_by_author: "Attached %{time} ago by %{author}"
+        time_ago: "%{time} ago"
+      comments:
+        comment_title: Leaving A Comment On {{attachment_title}}
     member:
       add: "Add attachment"
       add_success: "Document attached"
@@ -189,6 +198,7 @@ en:
     model:
       doc: 
         title: "Upload Document"
+        change: "Change Document"
       description: 
         title: "Description"
       title:

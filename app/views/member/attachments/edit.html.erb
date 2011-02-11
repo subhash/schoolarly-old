@@ -1,0 +1,32 @@
+<div class="titleB">
+    <%= I18n.t('attachments.site.update') %> - <%=@attachment.title %>
+</div>
+<%= error_messages_for :attachment %>
+<% form_for :attachment, :url => member_attachment_path(@attachment), :html => {:method => "put"} do |f| -%>
+<fieldset>
+    <div class="fields">
+        <p>
+            <label for="attachment_title">
+                <%= I18n.t('attachments.model.title.title') %>
+            </label>
+            <%= f.text_field :title, :class=>"fieldbox wide" -%>
+        </p>
+        <p>
+            <label for="attachment_description">
+                <%= I18n.t('attachments.model.description.title') %>
+            </label>
+            <%= f.text_area :description, :class=>"fieldbox wide" -%>
+        </p>
+        <p>
+        	<% if @attachment.doc_file_name %>
+            <%= I18n.t('attachments.site.title') %> - <%= link_to "#{sanitize @attachment.doc.original_filename}", @attachment.doc.url, :title => "#{sanitize @attachment.doc.original_filename}" %>
+		<% else %>
+		     <p><label for="attachment_doc"><%= I18n.t('attachments.model.doc.title') %></label><%= f.file_field  :doc %><br/></p>
+		<% end %>
+        </p>
+    </div>
+</fieldset>
+<div class="actions">
+    <%= submit_tag I18n.t('attachments.site.update'), {:class=>"button mainaction", :accesskey => "s"} %>
+</div>
+<% end -%>

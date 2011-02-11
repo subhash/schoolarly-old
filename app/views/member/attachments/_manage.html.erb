@@ -1,0 +1,11 @@
+<% if attachment.user == current_user %>
+<div class="portlet portletD" id="portlet_userWall">
+    <h2><span><%= I18n.t('attachments.site.manage.title', :name => attachment.title) %></span></h2>
+    <div class="portlet_content">
+        <%= link_to I18n.t('attachments.site.manage.edit'), edit_member_attachment_path(attachment) %>
+		<br />
+        <%= share_with_groups_link(@attachment) %>
+		<br />
+    </div>
+</div>
+<% end %>

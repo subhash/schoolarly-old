@@ -75,7 +75,7 @@ ActionController::Routing::Routes.draw do |map|
     group.group_exit_member   '/groups/:id/exit/:user_id', :action => 'exit_member'
   end
   
-  
+  map.resources :attachments
   map.resources :groups, :member => {:sharings => :post }  
   map.namespace :member do |member|
     member.resources :groups , :member => {:new_multiple => :get, :create_multiple => :post, :select => :get, :add => :post} do |group|

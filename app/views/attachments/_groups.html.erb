@@ -1,0 +1,12 @@
+<div class="portlet portletC" id="portlet_moreLinks">
+    <h2><span><%= I18n.t('groups.model.shared.title') %></span></h2>
+    <div class="portlet_content">
+        <ul>
+            <% for group in @shared_groups %>
+            <li>
+                <%= link_to group.name, group_path(group) %>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
