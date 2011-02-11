@@ -1,5 +1,5 @@
 <div class="titleB">
-    <%= link_to @group.name, group_path(@group) %>> <%= I18n.t('students.member.invite.title') %>
+    <%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t('students.member.invite.title') %>
 </div>
 <br/>
 <% @users ||= [] %>

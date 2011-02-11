@@ -56,7 +56,7 @@ class Member::GroupsController < Member::BaseController
     end
     if @failed_groups.blank?
       flash[:ok] = I18n.t("#{@type}.site.add_multiple.added", :count => @groups.count)      
-      redirect_to group_path(@parent)
+      redirect_to member_group_path(@parent)
     else    
       @failed_groups = @failed_groups.join("\n")
       render :action => 'new_multiple'
@@ -95,7 +95,7 @@ class Member::GroupsController < Member::BaseController
       if (@group.parent and @group.parent.active?) || current_user.admin == true || Tog::Config['plugins.tog_social.group.moderation.creation'] != true
         @group.activate!
         flash[:ok] = I18n.t("tog_social.groups.member.created")
-        redirect_to group_path(@group)
+        redirect_to member_group_path(@group)
       else        
         admins = User.find_all_by_admin(true)        
         admins.each do |admin|
@@ -111,7 +111,7 @@ class Member::GroupsController < Member::BaseController
         end
         
         flash[:warning] = I18n.t("#{@type}.member.pending")
-        redirect_back_or_default groups_path
+        redirect_back_or_default member_groups_path
       end
     else
       render :action => 'new'
@@ -159,7 +159,7 @@ class Member::GroupsController < Member::BaseController
     else
       flash[:error] = I18n.t("tog_social.groups.site.invite.you_could_not_invite")    
     end
-    redirect_to group_path(@group)
+    redirect_to member_group_path(@group)
   end
   
   def remove_select
@@ -200,6 +200,14 @@ class Member::GroupsController < Member::BaseController
     flash[:ok] = I18n.t("groups.site.remove.removed", :user_count => params[:members].count)      
     redirect_to edit_member_group_path(@group)    
   end
+  
+  def show
+    @page = params[:page] || '1'
+    @sharings = @group.sharings.paginate :per_page => 10,
+                                           :page => @page, 
+                                           :order => "updated_at desc"
+    store_location
+  end   
   
   protected
   def find_type

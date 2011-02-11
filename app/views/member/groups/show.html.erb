@@ -1,6 +1,6 @@
 <% include_javascript "busy_ajax" %>
 <% include_stylesheet 'upgrade' %>
-<%= render :partial => 'groups/header' %>
+<%= render :partial => 'header' %>
 
 <% if i_am_member_of @group %>
 <div class="portlet portletB">
@@ -9,7 +9,7 @@
 		<span style="float: right">View <%= select_tag "filter_sharings" ,options_for_select([['All', 'All'], ['Notes','Post'],['Events', 'Event'],['Photos', 'Photo'], ['Documents', 'Attachment']], "All"), :onchange => remote_function(:url => sharings_group_path(@group.id), :with => "'filter='+this.value")%></span>
 	</h2>
 	<div id="sharings">
- 		<%= render :partial => 'groups/sharings' %>
+ 		<%= render :partial => 'sharings' %>
 	</div>
 </div>
 <% end %>
@@ -58,7 +58,7 @@
 </div>    
 
 <% @group.users.group_by(&:type).each do |type, users| %>
-	<%= render :partial => "profiles/profiles_portlet", :locals => { 
+	<%= render :partial => "member/profiles/profiles_portlet", :locals => { 
 	  :items => users.collect(&:profile), 
       :type => users.first.person_type,
 	  :style => :portletG, 
