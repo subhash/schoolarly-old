@@ -103,6 +103,10 @@ class Group < ActiveRecord::Base
     end
   end
   
+  def removable_members(type)
+    users.of_type(type)
+  end
+  
   
   def set_default_image
     unless self.image?

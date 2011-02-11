@@ -1,11 +1,11 @@
-class Member::GroupsController
+class Member::GroupsController < Member::BaseController
   
   before_filter :find_parent, :only => [:new, :new_multiple, :create_multiple]
   before_filter :find_type, :only => [:new,:create, :new_multiple, :create_multiple]
   before_filter :find_group, :except => [:index, :new, :create, :new_multiple, :create_multiple]
   before_filter :check_moderator, :except => [:index, :new, :create, :new_multiple, :create_multiple, :invite, :accept_invitation, :reject_invitation]
   
-  
+  require "csv"
   
   def create_multiple
     @groups = []
@@ -119,7 +119,7 @@ class Member::GroupsController
     
   end
   
-  def select
+  def add_select
     @type = params[:type]
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
@@ -128,22 +128,26 @@ class Member::GroupsController
                                  :page => @page,
                                  :order => "profiles.#{@order} #{@asc}"
     respond_to do |format|
-      format.html { render :template => 'member/groups/select'}
+      format.html { render :template => 'member/groups/add_select'}
       format.xml  { render :xml => @profiles }
     end    
   end
   
   def add
+    unless params[:members]
+      flash[:error] = I18n.t("groups.site.select.none_selected", :types => params[:type].downcase.pluralize)    
+      redirect_to add_select_member_group_path(@group, :type => params[:type]) and return
+    end
     if @group.can_invite?(current_user)
       params[:members].each do |profile_id|
         user = Profile.find(profile_id).user
         if @group.members.include? user
           flash[:notice] = I18n.t("groups.site.already_member", :user_name => user.profile.full_name)
-          redirect_to select_member_group_path(@group) and return
+          redirect_to add_select_member_group_path(@group, :type => params[:type]) and return
         else
           if @group.invited_members.include? user
-            flash[:error] = I18n.t("groups.site.invite.already_invited", :user_name => user.profile.full_name)
-            redirect_to select_member_group_path(@group) and return
+            flash[:error] = I18n.t("groups.site.select.already_invited", :user_name => user.profile.full_name)
+            redirect_to add_select_member_group_path(@group, :type => params[:type]) and return
           else
             @group.invite_and_accept(user)
             GroupMailer.deliver_entry_notification(@group, current_user, user)  
@@ -151,11 +155,50 @@ class Member::GroupsController
           end
         end        
       end
-      flash[:ok] = I18n.t("groups.site.invite.invited", :user_count => params[:members].count)      
+      flash[:ok] = I18n.t("groups.site.select.invited", :user_count => params[:members].count)      
     else
       flash[:error] = I18n.t("tog_social.groups.site.invite.you_could_not_invite")    
     end
     redirect_to group_path(@group)
+  end
+  
+  def remove_select
+    @type = params[:type]
+    @order = params[:order] || 'created_at'
+    @page = params[:page] || '1'
+    @asc = params[:asc] || 'desc'
+    @removable_members = @group.removable_members(@type) - [current_user]
+    @profiles = @removable_members.collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
+                                 :page => @page,
+                                 :order => "profiles.#{@order} #{@asc}"
+    respond_to do |format|
+      format.html { render :template => 'member/groups/remove_select'}
+      format.xml  { render :xml => @profiles }
+    end    
+  end
+  
+  def remove
+    params[:members].each do |profile_id|
+      user = Profile.find(profile_id).user
+      if @group.moderators.include?(current_user)    
+        if !@group.members.include?(user) && !@group.pending_members.include?(user)
+          flash[:error] = I18n.t("tog_social.groups.site.not_member")
+        else
+          if @group.moderators.include?(user) && @group.moderators.size == 1
+            flash[:error] = I18n.t("tog_social.groups.site.last_moderator")
+          else
+            @group.leave(user)
+            GroupMailer.deliver_exit_notification(@group, current_user, user)
+            #          TODO send mail to other moderators
+            #todo: eliminar cuando este claro que sucede si un usuario ya es miembro
+          end
+        end
+      else
+        flash[:error] = I18n.t("groups.site.not_moderator")
+      end
+    end
+    flash[:ok] = I18n.t("groups.site.remove.removed", :user_count => params[:members].count)      
+    redirect_to edit_member_group_path(@group)    
   end
   
   protected

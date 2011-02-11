@@ -1,0 +1,11 @@
+a.calendar {
+    background: url(../tog_core/images/ico/calendar.gif) no-repeat 0 0.2em;
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+a.ok {
+    background: url(../tog_core/images/ico/ok.gif) no-repeat 0 0.2em;
+    padding-left: 20px;
+    text-decoration: none;
+}

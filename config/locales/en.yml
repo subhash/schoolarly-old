@@ -11,6 +11,8 @@ en:
       parent: "Parent group"
       groups:
         title: "Member Groups"
+      schools:
+        title: "School Networks"
       klasses:
         title: "Class Networks"
       students:
@@ -30,30 +32,40 @@ en:
       details: "Group Details"
       create: "Create Group"
       added_successfully: "%{group_name} added successfully"
-      exited: "%{user_name} removed from %{group_name}"
       not_moderator: "You are not a moderator of this group"
       members:
         invite: "Invite members"
         add: "Add members"
         remove: "Remove from group"
         remove_confirm: "Do you want to remove %{user_name} from %{group_name}?"
-      already_member: "%{user_name} is already a member"      
-      invite:
-          already_invited: "%{user_name} has already been invited"
-          invited: "%{user_count} user(s) invited"
+      already_member: "%{user_name} is already a member"              
       add:
         Student: "Add Students"
         Teacher: "Add Teachers"
+      remove:
+        Student: "Remove Students"
+        Teacher: "Remove Teachers"
+        removed: "%{user_count} user(s) removed"
+      edit:
+        title: "Settings"
       invite:
         Student: "Invite new students"
         Teacher: "Invite new teachers"
+      select:
+        none_selected: "No %{types} were selected"
+        invited: "%{user_count} user(s) invited"
+        already_invited: "%{user_name} has already been invited"
       Student:
         invite: "Invite new students"
-        select: "Select existing students"
+        add_select: "Select existing students"
+        added_successfully: "%{student_name} has been added successfully"
+        remove_select: "Select students to be removed"
         invited: "%{count} student(s) invited"
       Teacher:
         invite: "Invite new teachers"
-        select: "Select existing teachers"
+        add_select: "Select existing teachers"
+        added_successfully: "%{teacher_name} has been added successfully"        
+        remove_select: "Select teachers to be removed"        
         invited: "%{count} teacher(s) invited"        
       
     member:   
@@ -90,12 +102,8 @@ en:
       details: "School details"
       students:
         invite: "Invite new students"
-        select: "Select existing students"
-        added_successfully: "%{student_name} has been added successfully"
       teachers:
         invite: "Invite new teachers"
-        select: "Select existing teachers"
-        added_successfully: "%{teacher_name} has been added successfully"
       admin:
         invite: "Invite School Administrator"
     member:
