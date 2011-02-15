@@ -1,15 +1,19 @@
-
-<div class="detail detail1">
-    <div class="title"><%= link_to "#{sanitize attachment.title}", attachment_path(attachment, :group => @group) %></div>
-	<div class="summary"><%= I18n.t('attachments.site.title')%> - <%= link_to "#{sanitize attachment.doc.original_filename}", attachment.doc.url, :title => "#{sanitize attachment.doc.original_filename}" %> </div>
-    <div class="subtitle"><%= I18n.t('attachments.site.uploaded_by') %> 
-	 <%= link_to attachment.user.profile.full_name, profile_path(attachment.user)%>
-	 <%= I18n.t('attachments.site.list_detail.time_ago', :time => time_ago_in_words(attachment.created_at)) %>
-	 </div>
-    <div class="text"><%= sanitize(textilize(attachment.description), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %></div>
-	<div class="portlet portletC">
-        <%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => attachment.comments.size), attachment_path(attachment, :group => @group) %> | 
-		<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), attachment_path(attachment, :group => @group), :title => I18n.t('groups.comments.comment_title', :attachment_title => h(attachment.title)) %> |
-		<%= share_with_groups_link(attachment) if i_am_the_author_of? attachment%>
+<li class="detail detail1">
+    <div class="title">
+        <%= link_to "#{sanitize attachment.title}", attachment_path(attachment, :group => @group) %>
     </div>
-</div>
+    <div class="summary">
+        <%= I18n.t('attachments.site.title') %> - <%= link_to "#{sanitize attachment.doc.original_filename}", attachment.doc.url, :title => "#{sanitize attachment.doc.original_filename}" %>
+    </div>
+    <div class="subtitle">
+        <%= I18n.t('attachments.site.uploaded_by') %>
+        <%= link_to attachment.user.profile.full_name, profile_path(attachment.user) %>
+        <%= I18n.t('attachments.site.list_detail.time_ago', :time => time_ago_in_words(attachment.created_at)) %>
+    </div>
+    <div class="text">
+        <%= sanitize(textilize(attachment.description), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
+    </div>
+    <div class="portlet portletC">
+        <%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => attachment.comments.size), attachment_path(attachment, :group => @group) %>| <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), attachment_path(attachment, :group => @group), :title => I18n.t('groups.comments.comment_title', :attachment_title => h(attachment.title)) %> |<%= share_with_groups_link(attachment) if i_am_the_author_of? attachment %>
+    </div>
+</li>
