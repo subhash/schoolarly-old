@@ -19,26 +19,4 @@
         </div> 
     </div> 
 
-	<div class="portlet portletC" id="portlet_moreLinks">
-	  <% if !@profile.user.groups.blank? %>
-	    <h2><span><%= I18n.t('tog_social.groups.site.title') %></span></h2>
-	    <div class="portlet_content">
-	      <ul>
-	          <% for group in @profile.user.groups %>
-	            <li><%= link_to group.name, group_path(group) %></li>
-	          <% end %>
-	      </ul>
-	    </div> 
-	  <% else %>
-	
-	  <% end %>        
-	</div>
-	 
-	<% @profile.user.groups.group_by(&:type).each do |type, groups| %>
-		<%= render :partial => "groups/groups_portlet", :locals => { 
-		:items => groups, 
-		:style => :portletG, 
-		:title => I18n.t("groups.model.#{type}.title") } %> 
-	<% end %>
-
 <% end %>
