@@ -66,16 +66,18 @@ Tog::Interface.sections(:site).add :groups, "/groups"
 Tog::Interface.sections(:site).add :blogs, "/blogs"
 Tog::Interface.sections(:site).add :events, "/conclave/events"
 
+Tog::Interface.sections(:member).tabs(:home).url = '/member' 
+
 Tog::Plugins.settings :tog_core, {"site.name" => "Schoolarly"}, :force => true
 
 Tog::Plugins.settings :tog_social, {"profile.image.versions.tiny"   => "35x35#"}, :force => true
 
 Tog::Plugins.settings :tog_user,  {
     :email_as_login                   => true, 
-    :default_redirect_on_login        => "/member/groups",
+    :default_redirect_on_login        => "/member",
     :default_redirect_on_logout       => "/",
     :default_redirect_on_signup       => "/",
-    :default_redirect_on_activation   => "/member/groups",
+    :default_redirect_on_activation   => "/member",
     :default_redirect_on_forgot       => "/",
     :default_redirect_on_reset        => "/"
   }, :force => true
