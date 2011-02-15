@@ -1,6 +1,6 @@
 class Member::AttachmentsController < Member::BaseController
   
-  before_filter :find_group
+  before_filter :find_group, :except => :index
   
   def new
     @attachment = Attachment.new
@@ -46,6 +46,10 @@ class Member::AttachmentsController < Member::BaseController
   
   def edit
     @attachment = Attachment.find params[:id]
+  end
+  
+  def index
+    @attachments = current_user.attachments
   end
   
   private  

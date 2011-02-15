@@ -66,7 +66,13 @@ Tog::Interface.sections(:site).add :groups, "/groups"
 Tog::Interface.sections(:site).add :blogs, "/blogs"
 Tog::Interface.sections(:site).add :events, "/conclave/events"
 
-Tog::Interface.sections(:member).tabs(:home).url = '/member' 
+Tog::Interface.sections(:member).tabs(:home).url = '/member'
+Tog::Interface.sections(:member).remove "My groups"
+Tog::Interface.sections(:member).remove "My account"
+Tog::Interface.sections(:member).remove "My sharings"
+Tog::Interface.sections(:member).add :attachments, "/member/attachments"
+Tog::Interface.sections(:member).add :sharings, "/member/sharings"
+
 
 Tog::Plugins.settings :tog_core, {"site.name" => "Schoolarly"}, :force => true
 
