@@ -1,3 +1,4 @@
+rails --version 2.3.8
 redhillonrails_core
 acts_as_tree
 RedCloth --version '>= 4.2.0'
