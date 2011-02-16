@@ -10,7 +10,7 @@ mbleigh-acts-as-taggable-on --source http://gems.github.com --version 1.0.5
 mreinsch-acts_as_rateable --source http://gems.github.com --version 2.0.1
 jackdempsey-acts_as_commentable --source http://gems.github.com --version 2.0.1
 thoughtbot-factory_girl --source http://gems.github.com
-tog-tog --source http://gems.github.com --version 0.5.4
+tog-tog --source http://gems.github.com --version '>= 0.5' --ignore-dependencies
 mislav-will_paginate --source http://gems.github.com --version '~> 2.3.6'
 desert --version '>= 0.5.2'
 i18n --version 0.4.0
