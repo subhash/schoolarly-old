@@ -1,7 +1,7 @@
 redhillonrails_core
 acts_as_tree
 RedCloth --version '>= 4.2.0'
-hoe --version 1.1.4
+hoe --version 2.3.2
 google-geocode --version  '~> 1.2.1'
 oauth --version  '>= 0.3.5'
 rubyist-aasm --source http://gems.github.com --version '~> 2.1.1'
@@ -10,7 +10,7 @@ mbleigh-acts-as-taggable-on --source http://gems.github.com --version 1.0.5
 mreinsch-acts_as_rateable --source http://gems.github.com --version 2.0.1
 jackdempsey-acts_as_commentable --source http://gems.github.com --version 2.0.1
 thoughtbot-factory_girl --source http://gems.github.com
+tog-tog --source http://gems.github.com --version '>= 0.5'
 mislav-will_paginate --source http://gems.github.com --version '~> 2.3.6'
-desert --version 0.5.2
+desert --version '>= 0.5.2'
 i18n --version 0.4.0
-tog-tog --source http://gems.github.com --version 0.5.4
