@@ -1,6 +1,6 @@
 redhillonrails_core
 acts_as_tree
-google-geocode  --lib google_geocode --version  '~> 1.2.1'
+google_geocode --version  '~> 1.2.1'
 oauth --version  '>= 0.3.5'
 rubyist-aasm --version '~> 2.1.1'
 linkingpaths-acts_as_abusable --version 0.0.2
