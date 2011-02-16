@@ -4,7 +4,7 @@ RedCloth --version '>= 4.2.0'
 hoe --version 1.1.4
 google-geocode --version  '~> 1.2.1'
 oauth --version  '>= 0.3.5'
-rubyist-aasm --version '~> 2.1.1'
+rubyist-aasm --source http://gems.github.com --version '~> 2.1.1'
 linkingpaths-acts_as_abusable --version 0.0.2
 mbleigh-acts-as-taggable-on --version 1.0.5
 mreinsch-acts_as_rateable --version 2.0.1
