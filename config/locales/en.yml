@@ -89,10 +89,10 @@ en:
          create: "Create member group"  
       mail:
         activation_request:
-          subject: Request for new group '{{group_name}}'
-          content: "<p>User '{{user_name}}' has requested the creation of a new group called '{{group_name}}'.</p><p><a href=\"{{activation_url}}\">{{activation_url}}</a></p>"
+          subject: Request for new group '%{group_name}'
+          content: "<p>User '%{user_name}' has requested the creation of a new group called '%{group_name}'.</p><p><a href=\"%{activation_url}\">%{activation_url}</a></p>"
         invitation:
-          subject: Invitation to the group {{group}}
+          subject: Invitation to the group %{group}
           accept: Accept
           reject: Reject
       notes:
@@ -211,7 +211,7 @@ en:
       list_detail:
         time_ago: "%{time} ago"
       comments:
-        comment_title: Leaving A Comment On {{attachment_title}}
+        comment_title: Leaving A Comment On %{attachment_title}
     member:
       add: "Add attachment"
       add_success: "Document attached"
