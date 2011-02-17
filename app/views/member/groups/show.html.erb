@@ -29,11 +29,11 @@
 			  <% else %>
 			    <li><%= link_to I18n.t('groups.site.add.Teacher'), add_select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('groups.site.add.Student'), add_select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
-				<li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
 			  <% end %>
 			  <% if @group.klass? %>
 			    <li><%= link_to I18n.t('subjects.site.create'), member_new_sub_group_path(@group.id, :type => 'subjects'), :class => 'add' %></li>
 			  <% end %>
+			  <li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
 	        </ul>
 	    </div> 
 	</div> 
