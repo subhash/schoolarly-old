@@ -230,6 +230,10 @@ en:
     member:
       notes:
         new: "New note in notebook %{blog_title}"
+        
+  sharings:
+    member:
+      remove_confirmation: Are you sure you want to stop sharing '%{shareable}' with the group '%{group}'?         
       
 
        
