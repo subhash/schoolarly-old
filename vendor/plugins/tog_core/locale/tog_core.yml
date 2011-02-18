@@ -2,7 +2,7 @@ en:
   will_paginate:
     previous: "« Previous"
     next: "Next »"
-    page_entries_info: Displaying {{count}} {{entry_name}} from {{start}} to {{end}} of {{total}}
+    page_entries_info: Displaying %{count} %{entry_name} from %{start} to %{end} of %{total}
     entry_name: Entry
   interface:
     admin:
@@ -73,7 +73,7 @@ en:
     views:
       home:
         index:
-          welcome_to: Welcome to {{site_name}}, a tog powered social network.
+          welcome_to: Welcome to %{site_name}, a tog powered social network.
           you_would_be_able_to: In this site you would be able to
           create_your_own_profile: Create your own profile.
           find_your_friends_and_colleagues: Find your friends and colleagues.
@@ -103,11 +103,11 @@ en:
             error: error | not found
       search:
         search:
-          title: Matching results for <strong>'{{term}}'</strong>
+          title: Matching results for <strong>'%{term}'</strong>
           not_found: No matching results.
       shared:
         anon_footer:
-          about: About {{site}}
+          about: About %{site}
         header_options:
           greeting: Hello
           account: Account

@@ -2,7 +2,7 @@ pt-BR:
   will_paginate:
     previous: "« Anterior"
     next: "Seguinte »"
-    page_entries_info: Mostrando {{count}} {{entry_name}} | {{start}} a {{end}} de {{total}}
+    page_entries_info: Mostrando %{count} %{entry_name} | %{start} a %{end} de %{total}
     entry_name: Entrada    
   interface:
     admin:
@@ -71,7 +71,7 @@ pt-BR:
     views:
       home:
         index:
-          welcome_to: Bem-vindo ao {{site_name}}, uma rede social criada com o Tog
+          welcome_to: Bem-vindo ao %{site_name}, uma rede social criada com o Tog
           you_would_be_able_to: Aqui você poderá
           create_your_own_profile: Criar seu próprio perfil.
           find_your_friends_and_colleagues: Encontrar seus amigos e colegas
@@ -101,11 +101,11 @@ pt-BR:
             error: erro | não encontrado
       search:
         search:
-          title: "Resultados para <strong>'{{term}}'</strong>"
+          title: "Resultados para <strong>'%{term}'</strong>"
           not_found: Nenhum resultado encontrado.
       shared:
         anon_footer:
-          about: Sobre {{site}}
+          about: Sobre %{site}
         header_options:
           greeting: Olá
           account: Conta

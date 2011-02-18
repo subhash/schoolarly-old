@@ -42,9 +42,9 @@ pt-BR:
       sign_up: Obrigado por se inscrever! Enviamos um email para você com as instruções para ativar sua conta.
       sign_up_completed: Cadastro completo!
       activation_resent: "Reenviamos o email de ativação da conta. Por favor, siga as instruções desse email."
-      password_updated: Senha atualizada com sucesso para {{email}}
-      password_reset_sent: Enviamos um email com instruções para recuperar sua senha para {{email}}
-      password_reset_not_found: "O email {{email}} não tem uma conta nesse sistema"
+      password_updated: Senha atualizada com sucesso para %{email}
+      password_reset_sent: Enviamos um email com instruções para recuperar sua senha para %{email}
+      password_reset_not_found: "O email %{email} não tem uma conta nesse sistema"
       forgot_password: Esqueceu sua senha?
       forgot_password_help: "Após enviar esse formulário, você receberá um email com as instruções de recuperação da sua senha."
       already_registered: Já se registrou?
@@ -69,8 +69,8 @@ pt-BR:
       sign_in: Entrar
     admin:
       error_saving: Alguns erros impedem salvar esse usuário
-      user_created: Usuário {{login}} criado com sucesso!
-      user_updated: Usuário {{login}} atualizado com sucesso!
+      user_created: Usuário %{login} criado com sucesso!
+      user_updated: Usuário %{login} atualizado com sucesso!
       create_user: Criar usuário
       edit_user: Editar usuário
       email_user: Enviar um email para esse usuário

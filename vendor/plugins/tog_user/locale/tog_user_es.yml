@@ -44,9 +44,9 @@ es:
       activation_resent: Hemos reenviado el mensaje de activación. Por favor, sigue las instrucciones detalladas en él.
       activation_code_bogus: No hemos encontrado un usuario con este código de activación -- ¿Comprueba tu email? o Quizás ya estás registrado -- intenta entrar en la aplicación.      
       activation_code_missing: No se ha indicado el código de activación. Por favor, sigue la URL de tu e-mail.
-      password_updated: Contraseña actualizada con éxitio para {{email}}
-      password_reset_sent: Hemos enviado un correo a {{email}} con instrucciones para cambiar tu contraseña.
-      password_reset_not_found: El {{email}} no tiene cuenta en este sistema
+      password_updated: Contraseña actualizada con éxitio para %{email}
+      password_reset_sent: Hemos enviado un correo a %{email} con instrucciones para cambiar tu contraseña.
+      password_reset_not_found: El %{email} no tiene cuenta en este sistema
       forgot_password: ¿Has olvidado tu contraseña?
       forgot_password_help: Tras rellenar este formulario, recibirás un correo electrónico con instrucciones para cambiar tu contraseña.
       already_registered: ¿Ya estás registrado?
@@ -71,8 +71,8 @@ es:
       sign_in: Registrarse
     admin:
       error_saving: Ha sucedido algo que no permite grabar este usuario
-      user_created: Usuario {{login}} creado correctamente!
-      user_updated: Usuario {{login}} actualizado correctamente!
+      user_created: Usuario %{login} creado correctamente!
+      user_updated: Usuario %{login} actualizado correctamente!
       create_user: Crear usuario  
       edit_user: Editar usuario
       email_user: Enviar un email a este usuario

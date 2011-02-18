@@ -44,9 +44,9 @@ en:
       activation_resent: We have resend the activation message. Please, follow the instructions detailed in it.
       activation_code_bogus: We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in.
       activation_code_missing: The activation code was missing.  Please follow the URL from your email.
-      password_updated: Password successfully updated for {{email}}
-      password_reset_sent: We have send an email with instructions to reset your password to {{email}}
-      password_reset_not_found: The {{email}} doesn''t have an account in this system
+      password_updated: Password successfully updated for %{email}
+      password_reset_sent: We have send an email with instructions to reset your password to %{email}
+      password_reset_not_found: The %{email} doesn''t have an account in this system
       forgot_password: Forgot your password?
       forgot_password_help: After sending this form, you will receive an email with instructions for reseting your password.
       already_registered: Already Registered?
@@ -71,8 +71,8 @@ en:
       sign_in: Sign in
     admin:
       error_saving: An error prevented us from saving this user
-      user_created: User {{login}} created successfully!
-      user_updated: User {{login}} updated successfully!
+      user_created: User %{login} created successfully!
+      user_updated: User %{login} updated successfully!
       create_user: Create user
       edit_user: Edit user
       email_user: Send an email to this user

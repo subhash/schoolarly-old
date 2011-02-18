@@ -48,27 +48,27 @@ en:
         tag_cloud_blogs:
           all_tags: Tags in all blogs
         tag_cloud_single_blog:
-          tags_on_blog: Tags on {{blog_title}}
+          tags_on_blog: Tags on %{blog_title}
       posts:
         comments:
-          comments: Comments ({{size}})
+          comments: Comments (%{size})
           add_comment: Add comment
-          comment_title: Leaving A Comment On {{post_title}}
+          comment_title: Leaving A Comment On %{post_title}
         all_by_tag:
-          title: Posts tagged with {{tag_name}}
+          title: Posts tagged with %{tag_name}
           not_found: has no blog posts with selected tag.
-          posted_in: Posted {{time}} in
+          posted_in: Posted %{time} in
         by_tag:
-          title: Posts tagged with {{tag}}
-          not_found: There are no posts in this blog tagged with {{tag}}
-          posts_to_of: Posts {{start}} to {{end}} of {{page}}
+          title: Posts tagged with %{tag}
+          not_found: There are no posts in this blog tagged with %{tag}
+          posts_to_of: Posts %{start} to %{end} of %{page}
         archives:
           not_found: There are no posts in this blog for the specified date.
           archive_of: Archive of
         list_detail:
-          posted_time_ago_by_author: Posted {{time}} ago by {{author}}
+          posted_time_ago_by_author: Posted %{time} ago by %{author}
         show:
-          posted: Posted {{time}}
+          posted: Posted %{time}
         tags:
           title: Tags
           not_found: No tags associated
@@ -84,7 +84,7 @@ en:
             remove: Remove
             remove_confirm: Are you sure you want to remove this editor?
             editors: Editors
-            blog_editors: "{{blog}} editors"
+            blog_editors: "%{blog} editors"
         blogs:
           index:
             title: Your blogs
@@ -111,14 +111,14 @@ en:
             description: Blog description
             update_blog: Update blog
           manage:
-            title: Manage blog '{{blog_title}}'
+            title: Manage blog '%{blog_title}'
             edit_blog: Edit blog
             editors: Editors
             posts: Posts
             add_post: Add post
         posts:
           index:
-            posts_in_blog: Posts in {{blog_title}}
+            posts_in_blog: Posts in %{blog_title}
             create_post: Create Post
             create_post_title: Create a new post on this blog
             title: Title
@@ -127,13 +127,13 @@ en:
             created_at: Created at
             post: post
           edit:
-            update_post_in_blog: Update post in {{blog_title}}
+            update_post_in_blog: Update post in %{blog_title}
             update_post: Update post
           new:
             create_post: Create Post
             create_post_title: Create a new post on this blog
           show:
-            comments_post: Comments {{post_title}}
+            comments_post: Comments %{post_title}
             author: Author
             comment: Comment
             created_at: Created at
