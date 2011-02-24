@@ -1,9 +1,6 @@
 class Attachment < ActiveRecord::Base
   acts_as_commentable
-  has_attached_file :doc, 
-    :storage => :s3, 
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
-    :path => "/system/:class/:attachment/:id/:style_:basename.:extension"
+  has_attached_file :doc, Tog::Plugins.storage_options 
   
   belongs_to :user
   
