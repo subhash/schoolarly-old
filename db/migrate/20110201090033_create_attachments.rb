@@ -7,7 +7,9 @@ class CreateAttachments < ActiveRecord::Migration
       t.string :doc_file_name
       t.string :doc_content_type
       t.integer :doc_file_size
-      t.datetime :doc_updated_at      
+      t.datetime :doc_updated_at
+      t.string :shortId
+      t.string :uuid
       t.timestamps
       
       t.foreign_key :user_id, :users, :id
