@@ -78,12 +78,6 @@ Tog::Interface.sections(:member).add :sharings, "/member/sharings"
 
 
 Tog::Plugins.settings :tog_core, {"site.name" => "Schoolarly"}, :force => true
-Tog::Plugins.settings :tog_core, {"storage" => "S3"}, :force => true
-Tog::Plugins.settings :tog_core, {"storage.s3.path" => "/system/:class/:attachment/:id/:style_:basename.:extension"}, :force => true
-Tog::Plugins.settings :tog_core, {"storage.s3.bucket" => "Schoolarly"}, :force => true
-Tog::Plugins.settings :tog_core, {"storage.s3.access_key_id" => "AKIAIMQFQ2BSZ5X5SWFQ"}, :force => true
-Tog::Plugins.settings :tog_core, {"storage.s3.secret_access_key" => "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"}, :force => true
-Tog::Plugins.settings :tog_core, {"storage.s3.url" => "/system/:class/:attachment/:id/:style_:basename.:extension"}, :force => true
 
 Tog::Plugins.settings :tog_social, {"profile.image.versions.tiny"   => "35x35#"}, :force => true
 

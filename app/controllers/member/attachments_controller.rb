@@ -55,6 +55,7 @@ class Member::AttachmentsController < Member::BaseController
   
   def show
     @attachment = Attachment.find params[:id]
+    @session_id = @attachment.get_session_from_crocodoc(current_user.profile.full_name)
   end
   
   private  

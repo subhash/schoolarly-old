@@ -1,6 +1,10 @@
 class Attachment < ActiveRecord::Base
   acts_as_commentable
-  has_attached_file :doc, Tog::Plugins.storage_options 
+  has_attached_file :doc, 
+    :storage => :s3, 
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml", 
+    :path => "/system/:class/:attachment/:id/:style_:basename.:extension"
+    
   
   belongs_to :user
   
@@ -22,6 +26,7 @@ class Attachment < ActiveRecord::Base
   def upload_to_crocodoc
     url = "https://crocodoc.com/api/v1/document/upload?token=vJK2p8cYFP1Xo0CUmweD"
     url += "&url=#{self.doc.url}"
+    url += "&private=true"
     puts url
     open url do |f|
       puts 'crocodoc responded with - '+f.string
@@ -41,6 +46,30 @@ class Attachment < ActiveRecord::Base
       end
     end
     self.save
+  end
+  
+  def get_session_from_crocodoc(user_name)
+    url = "https://crocodoc.com/api/v1/session/get?token=vJK2p8cYFP1Xo0CUmweD"
+    url += "&uuid=#{self.uuid}"
+    url += "&name=#{CGI::escape(user_name)}"
+    open_url(url) do |k,v|
+      case k
+      when 'error'
+        puts "error in getting session from crocodoc - #{v} "
+        return nil
+      when 'sessionId'
+        return v
+      else
+      end
+    end    
+  end
+  
+  def open_url(url, &block)
+    puts 'request - '+url
+    open url do |f|
+      puts 'response - '+f.string
+      ActiveSupport::JSON.decode(f.string).each {|k, v| block.call(k,v)}      
+    end
   end
   
 end
