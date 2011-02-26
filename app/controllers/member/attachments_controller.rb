@@ -12,7 +12,7 @@ class Member::AttachmentsController < Member::BaseController
     @attachment.title = @attachment.doc.original_filename if @attachment.title.blank?
     respond_to do |wants|
       if @attachment.save
-        @attachment.upload_to_crocodoc
+        @attachment.to_crocodoc
         @group.share(current_user, @attachment.class.to_s, @attachment.id) if @group
         wants.html do
           flash[:ok] = I18n.t('attachments.member.add_success')
@@ -55,7 +55,7 @@ class Member::AttachmentsController < Member::BaseController
   
   def show
     @attachment = Attachment.find params[:id]
-    @session_id = @attachment.get_session_from_crocodoc(current_user.profile.full_name)
+    @session_id = @attachment.from_crocodoc(current_user.profile.full_name)
   end
   
   private  
