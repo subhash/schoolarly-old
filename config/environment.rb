@@ -90,4 +90,9 @@ Tog::Plugins.settings :tog_user,  {
     :default_redirect_on_activation   => "/member",
     :default_redirect_on_forgot       => "/",
     :default_redirect_on_reset        => "/"
-  }, :force => true
+}, :force => true
+
+Tog::Plugins.settings :schoolarly, {
+    "assignment.image.default"        => "assignment.png",
+    "attachment.image.default"        => "document.png"
+}, :force => true

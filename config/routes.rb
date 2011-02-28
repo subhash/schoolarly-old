@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   
 
   map.namespace :member do |member|
-    member.resources :profiles, :collection => {:search => :get}
+    member.resources :profiles, :collection => {:search => :get}, :member => {:shares => :post}
   end
   
   map.routes_from_plugin 'tog_picto'
@@ -89,9 +89,6 @@ ActionController::Routing::Routes.draw do |map|
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
       group.new_group_with_type   'groups/new/:type', :action => 'new' 
-    end  
-    member.with_options :controller => 'users' do |user|
-      user.shares 'users/shares' , :action  => 'shares', :conditions => { :method => :post }
     end  
   end
 

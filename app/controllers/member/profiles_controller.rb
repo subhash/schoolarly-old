@@ -21,7 +21,7 @@ class Member::ProfilesController < Member::BaseController
     end
   end
   
-    def index
+  def index
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'  
@@ -40,6 +40,24 @@ class Member::ProfilesController < Member::BaseController
       format.html # index.html.erb
       format.xml  { render :xml => @profiles }
     end
+  end
+  
+  def shares
+    @profile = Profile.find(params[:id])
+    filter = params[:filter]
+    if filter == 'All'
+      @shares = Share.shared_to_groups(@profile.user.group_ids).paginate :per_page => 10,
+                                           :page => @page, 
+                                           :order => "updated_at desc"
+    else
+      @shares = Share.shared_to_groups_of_type(@profile.user.group_ids,filter).paginate :per_page => 10,
+                                           :page => @page, 
+                                           :order => "updated_at desc"  
+    end
+    render :update do |page|
+      page.replace_html 'sharings', :partial => 'member/profiles/sharings'
+    end
+    
   end
   
 end

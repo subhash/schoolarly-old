@@ -213,7 +213,7 @@ en:
       list_detail:
         time_ago: "%{time} ago"
       comments:
-        comment_title: Leaving A Comment On %{attachment_title}
+        comment_title: Leaving A Comment On %{title}
     member:
       add: "Add attachment"
       add_success: "Document attached"

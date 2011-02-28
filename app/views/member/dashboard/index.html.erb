@@ -1,12 +1,15 @@
+<% include_javascript "busy_ajax" %>
 <%= render :partial => 'profiles/header' %>    
 
+<br />
+<br />
 <div class="portlet portletB">
     <h2>
     	    <span><%= I18n.t('groups.site.posts.latest') %></span>
-		<span style="float: right">View <%= select_tag "filter_sharings" ,options_for_select([['All', 'All'], ['Notes','Post'],['Events', 'Event'],['Photos', 'Photo'], ['Documents', 'Attachment'],['Assignments', 'Assignment']], "All"), :onchange => remote_function(:url => member_shares_path, :with => "'filter='+this.value")%></span>
+		<span style="float: right">View <%= select_tag "filter_sharings" ,options_for_select([['All', 'All'], ['Notes','Post'],['Events', 'Event'],['Photos', 'Photo'], ['Documents', 'Attachment'],['Assignments', 'Assignment']], "All"), :onchange => remote_function(:url => shares_member_profile_path(@profile, :method => :post), :with => "'filter='+this.value")%></span>
 	</h2>
 	<div id="sharings">
- 		<%= render :partial => 'member/users/sharings' %>
+ 		<%= render :partial => 'member/profiles/sharings' %>
 	</div>
 </div>
     

@@ -1,0 +1,15 @@
+<div class="title">
+    <%= link_to "#{sanitize post.title}", conversatio_blog_post_path(blog, post), :title => "#{sanitize post.title}" %>
+</div>
+<div class="subtitle">
+    <%= I18n.t('tog_conversatio.views.posts.list_detail.posted_time_ago_by_author', :time => time_ago_in_words(post.published_at), :author => post.owner.profile.full_name) %>
+</div>
+<div class="summary">
+    <%= render :partial => 'conversatio/posts/tags', :locals => { :post => post } %>
+</div>
+<div class="text">
+    <%= sanitize(textilize(post.body), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
+</div>
+<div class="portlet portletC">
+    <%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => post.comments.size), conversatio_blog_post_path(blog, post) %>| <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), conversatio_blog_post_path(blog, post), :title => I18n.t('tog_conversatio.views.posts.comments.comment_title', :post_title => h(post.title)) %>| <%= share_with_groups_link(post) if i_am_the_author_of? post %>
+</div>
