@@ -1,6 +1,6 @@
 <li class="detail detail1">
     <div class="title">
-        <%= link_to_if attachment.shortId, "#{sanitize attachment.title}", member_attachment_path(attachment, :group => @group) %>
+        <%= link_to "#{sanitize attachment.title}", attachment_path(attachment, :group => @group) %>
     </div>
     <div class="summary">
         <%= I18n.t('attachments.site.title') %> - <%= link_to "#{sanitize attachment.doc.original_filename}", attachment.doc.url, :title => "#{sanitize attachment.doc.original_filename}" %>

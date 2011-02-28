@@ -1,0 +1,28 @@
+<div class="titleB">
+	<% if @group %>
+    <%= link_to @group.name, member_group_path(@group) if @group %> > <%= I18n.t('groups.member.assignment.share') %>
+	<% else %>
+	<%= I18n.t('assignments.member.add') %>
+	<% end %>
+</div>
+<br />
+
+<% if @assignment && !@assignment.errors.empty? -%>
+<div class="error">
+  <%= error_messages_for :assignment %>
+</div>
+<% end -%>
+
+<% form_for(:assignment, :url=>member_assignments_path, :html=>{:multipart=>true}) do |f| %>
+  <fieldset>
+    <div class="fields">
+	    <p><label for="assignment_title"><%= I18n.t('assignments.model.title.title')%></label><%= f.text_field :title, :class=>"fieldbox wide" -%></p>
+	    <p><label for="assignment_description"><%= I18n.t('assignments.model.description.title')%></label><%= f.text_area :description, :class=>"fieldbox wide" -%></p>
+	    <p><label for="assignment_doc"><%= I18n.t('assignments.model.doc.title') %></label><%= f.file_field  :doc %><br/></p>
+		<%= hidden_field_tag :group, @group.id if @group%>
+    </div>
+    <div class="actions">
+      <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>
+    </div>
+  </fieldset>
+<% end %>

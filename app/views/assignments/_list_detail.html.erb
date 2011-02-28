@@ -1,0 +1,19 @@
+<li class="detail detail1">
+    <div class="title">
+        <%= link_to "#{sanitize assignment.title}", member_assignment_path(assignment, :group => @group) %>
+    </div>
+    <div class="summary">
+        <%= I18n.t('assignments.site.title') %> - <%= link_to "#{sanitize assignment.doc.original_filename}", assignment.doc.url, :title => "#{sanitize assignment.doc.original_filename}" %>
+    </div>
+    <div class="subtitle">
+        <%= I18n.t('assignments.site.uploaded_by') %>
+        <%= link_to assignment.user.profile.full_name, profile_path(assignment.user) %>
+        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.created_at)) %>
+    </div>
+    <div class="text">
+        <%= sanitize(textilize(assignment.description), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
+    </div>
+    <div class="portlet portletC">
+        <%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => assignment.comments.size), member_assignment_path(assignment, :group => @group) %>| <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => @group), :title => I18n.t('groups.comments.comment_title', :assignment_title => h(assignment.title)) %> |<%= share_with_groups_link(assignment) if i_am_the_author_of? assignment %>
+    </div>
+</li>

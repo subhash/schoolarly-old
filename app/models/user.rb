@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   
   has_many :attachments
   
+  
   def password_required?
     password_reset_code.blank? && (crypted_password.blank? || !password.blank?)
   end

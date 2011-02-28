@@ -85,10 +85,14 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
     member.resources :attachments
+    member.resources :assignments
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
       group.new_group_with_type   'groups/new/:type', :action => 'new' 
-    end   
+    end  
+    member.with_options :controller => 'users' do |user|
+      user.shares 'users/shares' , :action  => 'shares', :conditions => { :method => :post }
+    end  
   end
 
   #  map.resources :schools

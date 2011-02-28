@@ -1,6 +1,6 @@
 <div class="portlet_content">
     <ul>
-        <% for share in @sharings %>
+        <% for share in @shares %>
         <% if share.shareable.is_a? Post %>
         <%= render :partial => '/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable } %>
         <% end %>
@@ -16,11 +16,11 @@
         <% end %>
     </ul>
 </div>
-<% if !@sharings.empty? %>
+<% if !@shares.empty? %>
 <div class="info_results">
-    <span class="info_items"><%= page_entries_info @sharings %>
+    <span class="info_items"><%= page_entries_info @shares %>
     </span>
-    <span class="pages_navigation right"><%= will_paginate @sharings %>
+    <span class="pages_navigation right"><%= will_paginate @shares %>
     </span>
 </div>
 <%end %>

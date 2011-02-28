@@ -102,6 +102,8 @@ en:
         share: Create event for group
       attachment:
         share: Share document with group
+      assignment:
+        share: New assignment
   schools:
     model:
       klasses:
@@ -215,8 +217,7 @@ en:
     member:
       add: "Add attachment"
       add_success: "Document attached"
-      add_failure: "Failure in adding document"  
-    
+      add_failure: "Failure in adding document"          
     model:
       doc: 
         title: "Upload Document"
@@ -225,7 +226,34 @@ en:
         title: "Description"
       title:
         title: "Title"
-        
+
+  assignments:
+    site:
+      title : "Assignment"
+      uploaded_by: "Issued by"
+      update: "Update Assignment"
+      show:
+        posted: "Posted %{time}"
+      manage:
+        title: "Manage assignment %{name}"
+        edit: "Edit assignment"
+      list_detail:
+        time_ago: "%{time} ago"
+      comments:
+        comment_title: Leaving A Comment On %{title}
+    model:
+      doc: 
+        title: "Or upload an assignment document"
+        change: "Change Document"
+      description: 
+        title: "Describe the assignment here"
+      title:
+        title: "Title"
+    member:
+      add: "Add assignment"
+      add_success: "Assignment created"
+      add_failure: "Failure in creating assignment"  
+             
   notebooks:
     member:
       notes:

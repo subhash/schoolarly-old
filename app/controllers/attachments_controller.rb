@@ -4,7 +4,7 @@ class AttachmentsController < ApplicationController
   
   def show
     @attachment = Attachment.find(params[:id])
-    @shared_groups = Share.shares_to_groups_of_object(@attachment).collect(&:shared_to)
+    @shared_groups = @attachment.shares_to_groups.collect(&:shared_to)
   end
   
   

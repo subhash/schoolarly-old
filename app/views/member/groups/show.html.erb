@@ -6,7 +6,7 @@
 <div class="portlet portletB">
     <h2>
     	    <span><%= I18n.t('groups.site.posts.latest') %></span>
-		<span style="float: right">View <%= select_tag "filter_sharings" ,options_for_select([['All', 'All'], ['Notes','Post'],['Events', 'Event'],['Photos', 'Photo'], ['Documents', 'Attachment']], "All"), :onchange => remote_function(:url => sharings_group_path(@group.id), :with => "'filter='+this.value")%></span>
+		<span style="float: right">View <%= select_tag "filter_sharings" ,options_for_select([['All', 'All'], ['Notes','Post'],['Events', 'Event'],['Photos', 'Photo'], ['Documents', 'Attachment'],['Assignments', 'Assignment']], "All"), :onchange => remote_function(:url => sharings_group_path(@group.id), :with => "'filter='+this.value")%></span>
 	</h2>
 	<div id="sharings">
  		<%= render :partial => 'sharings' %>
@@ -49,7 +49,8 @@
 			  <% end %>
 				<li><%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(current_user.default_blog, :group => @group), :class => 'sendmail' %></li>
 				<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group), :class => 'calendar' %></li>
-				<li><%= link_to I18n.t('groups.member.attachment.share'), new_member_attachment_path(:group => @group), :class => 'set_highlight' %></li>			
+				<li><%= link_to I18n.t('groups.member.attachment.share'), new_member_attachment_path(:group => @group), :class => 'set_highlight' %></li>		
+				<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_assignment_path(:group => @group), :class => 'set_highlight' %></li>			
           <% elsif  !(@group.klass? || @group.school? || @group.subject? ) -%>
             <li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
           <% end -%> 
