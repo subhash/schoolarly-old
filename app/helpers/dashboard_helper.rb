@@ -13,4 +13,8 @@ module DashboardHelper
     return image_tag("/images/#{config["plugins.schoolarly.post.image.default"]}" , options)
   end
   
+  def icon_for_event(options={})
+    return image_tag("/images/#{config["plugins.schoolarly.event.image.default"]}" , options)
+  end
+  
 end

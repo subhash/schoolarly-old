@@ -6,9 +6,8 @@
     <div class="image date month<%= event.start_date.month %>">
         <%= event.start_date.day %>
     </div>
-    <div class="subtitle">
-        <%= link_to event.title, conclave_event_path(event), :title => event.title %>
-        <%= write_event_date(event) %>
+    <div>
+        <span class="title"><%= link_to event.title, conclave_event_path(event), :title => event.title %></span>
     </div>
     <div class="text">
         <%= write_event_time(event) %>
@@ -17,7 +16,8 @@
     <div>
         <%= event.description %>
     </div>
-    <div class="portlet portletC">
+    <div class="portlet portletL">
+    		<%= link_to icon_for_event, conclave_event_path(event), :title => event.title %>
         <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(event.created_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => event.comments.size), conclave_event_path(event) %> . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), conclave_event_path(event), :title => I18n.t('groups.comments.comment_title', :title => h(event.title)) %> . <%= share_with_groups_link(event) if i_am_the_owner_of? event %>
     </div>
 </div>
