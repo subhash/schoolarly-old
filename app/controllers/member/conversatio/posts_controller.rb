@@ -6,7 +6,7 @@ class Member::Conversatio::PostsController < Member::BaseController
     @post = Post.new params[:post]
     @post.blog = @blog
     @post.user = current_user
-    @post.published_at = Time.now
+    @post.publish!
     
     respond_to do |wants|
       if @post.save

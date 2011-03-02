@@ -94,5 +94,6 @@ Tog::Plugins.settings :tog_user,  {
 
 Tog::Plugins.settings :schoolarly, {
     "assignment.image.default"        => "assignment.png",
-    "attachment.image.default"        => "document.png"
+    "attachment.image.default"        => "document.png",
+    "post.image.default"        => "note.png"
 }, :force => true
