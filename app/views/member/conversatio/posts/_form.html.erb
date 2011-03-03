@@ -2,7 +2,7 @@
   <legend><%= I18n.t('tog_conversatio.model.post.content')%></legend>
   <div class="fields">
     <p><label for="post_title"><%= I18n.t('tog_conversatio.model.post.title')%></label><%= f.text_field :title, :class=>"fieldbox wide" -%></p>
-    <p><label for="post_body"><%= I18n.t('tog_conversatio.model.post.body')%></label><%= f.text_area :body, :class=>"fieldbox wide" -%></p>
+    <p><label for="post_body"><%= I18n.t('tog_conversatio.model.post.body')%></label><%= f.text_area :body, :class=>"fieldbox wide mceEditor" -%></p>
   </div>
 </fieldset>
 <fieldset>
