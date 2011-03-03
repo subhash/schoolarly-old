@@ -55,7 +55,7 @@ class Member::ProfilesController < Member::BaseController
                                            :order => "updated_at desc"  
     end
     render :update do |page|
-      page.replace_html 'sharings', :partial => 'member/profiles/sharings'
+      page.replace_html 'sharings', :partial => 'member/sharings/sharings'
     end
     
   end
