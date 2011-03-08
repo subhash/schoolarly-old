@@ -1,4 +1,4 @@
-class Member::TeachersController < ApplicationController
+class Member::TeachersController < Member::BaseController
   
   before_filter :find_group
   

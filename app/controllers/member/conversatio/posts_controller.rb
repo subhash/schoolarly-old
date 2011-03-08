@@ -2,6 +2,8 @@ class Member::Conversatio::PostsController < Member::BaseController
   
   before_filter :find_group
   
+  uses_tiny_mce :only => [:new, :create, :edit, :update]
+  
   def create
     @post = Post.new params[:post]
     @post.blog = @blog

@@ -203,7 +203,7 @@ class Member::GroupsController < Member::BaseController
   
   def show
     @page = params[:page] || '1'
-    @sharings = @group.sharings.paginate :per_page => 10,
+    @shares = @group.sharings.paginate :per_page => 10,
                                            :page => @page, 
                                            :order => "updated_at desc"
     store_location

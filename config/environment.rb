@@ -30,6 +30,7 @@ Rails::Initializer.run do |config|
   config.gem 'aws-s3', :lib => 'aws/s3'
   config.gem 'right_aws'
   config.gem 'rest-client'
+  config.gem 'tiny_mce'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -93,7 +94,8 @@ Tog::Plugins.settings :tog_user,  {
 }, :force => true
 
 Tog::Plugins.settings :schoolarly, {
-    "assignment.image.default"        => "assignment.png",
-    "attachment.image.default"        => "document.png",
-    "post.image.default"        => "note.png"
+    "assignment.image.default"        => "assignment2.png",
+    "attachment.image.default"        => "document2.png",
+    "post.image.default"        => "note2.png",
+    "event.image.default"        => "event2.png"
 }, :force => true

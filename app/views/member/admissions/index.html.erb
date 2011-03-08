@@ -1,0 +1,6 @@
+<ul>
+<% @entries.each do |entry| %>
+<% puts entry.inspect %>
+<li><%= link_to "#{entry["Field18"]} #{entry["Field19"]}", member_group_admission_path(@group.id, entry["EntryId"]) %></li>
+<% end %>
+</ul>
