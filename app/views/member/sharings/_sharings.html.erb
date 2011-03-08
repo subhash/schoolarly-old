@@ -1,0 +1,38 @@
+<div class="portlet_content">
+    <ul>
+        <% for share in @shares %>
+		<% profile = share.user.profile %>
+        <li class="detail detail1">
+            <div class="image">
+                <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
+            </div>
+            <div>
+                <%= link_to profile.full_name, member_profile_path(profile) %>
+                <% unless @group %>
+                > <span class="subtitle"><%= link_to share.shared_to.name, member_group_path(share.shared_to) %></span>
+                <% end %>
+            </div>
+            <% if share.shareable.is_a? Post %>
+            <%= render :partial => '/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable } %>
+            <% end %>
+            <% if share.shareable.is_a? Event %>
+            <%= render :partial => '/conclave/events/list_detail', :locals => { :event => share.shareable } %>
+            <% end %>
+            <% if share.shareable.is_a? Attachment %>
+            <%= render :partial => '/attachments/list_detail', :locals => { :attachment => share.shareable } %>
+            <% end %>
+            <% if share.shareable.is_a? Assignment %>
+            <%= render :partial => '/assignments/list_detail', :locals => { :assignment => share.shareable } %>
+            <% end %>
+        </li>
+        <% end %>
+    </ul>
+</div>
+<% if !@shares.empty? %>
+<div class="info_results">
+    <span class="info_items"><%= page_entries_info @shares %>
+    </span>
+    <span class="pages_navigation right"><%= will_paginate @shares %>
+    </span>
+</div>
+<%end %>
