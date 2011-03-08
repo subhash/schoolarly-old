@@ -15,7 +15,21 @@
 }
 
 .portletL {
-	color: #666;
+    color: #666;
+}
+
+.portletB .portletI li {
+    margin-left: 60px;
+    background-image: none;
+    border: none;
+	margin-bottom: 2px;
+	padding-left: 10px;
+	background-color: #E9E9E9;
+}
+
+.portletB .portletI ul {
+    border: none;
+    background-image: none;
 }
 
 /*
