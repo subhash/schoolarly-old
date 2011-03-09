@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110226091047) do
+ActiveRecord::Schema.define(:version => 20110309052407) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -225,6 +225,15 @@ ActiveRecord::Schema.define(:version => 20110226091047) do
     t.datetime "updated_at"
   end
 
+  create_table "notices", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notices", ["user_id"], :name => "user_id"
+
   create_table "oauth_nonces", :force => true do |t|
     t.string   "nonce"
     t.integer  "timestamp"
@@ -405,5 +414,7 @@ ActiveRecord::Schema.define(:version => 20110226091047) do
   add_foreign_key "assignments", ["user_id"], "users", ["id"], :name => "assignments_ibfk_1"
 
   add_foreign_key "attachments", ["user_id"], "users", ["id"], :name => "attachments_ibfk_1"
+
+  add_foreign_key "notices", ["user_id"], "users", ["id"], :name => "notices_ibfk_1"
 
 end

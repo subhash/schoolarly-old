@@ -1,0 +1,8 @@
+<div id="notice_<%= @notice.id %>" class="border_top">
+  <h1><%= link_to @blog.title, conversatio_blog_path(@blog) -%> / <%= sanitize @notice.title %></h1>
+  <div><%= I18n.t('tog_conversatio.views.notices.show.noticeed', :time => time_ago_in_words(@notice.published_at)) %></div>
+  <%= render :partial => 'tags', :locals => { :notice => @notice } %>
+  <div><%= sanitize(textilize(@notice.body), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %></div>
+  <br/>
+  <%= render :partial => "shared/comments", :locals => { :commentable => @notice } %>
+</div>

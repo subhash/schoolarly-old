@@ -98,6 +98,11 @@ en:
       notes:
         share: Post note to group 
         new: New note 
+      notices:
+        share: Post message to group 
+        new: New message
+        create: Post message
+        created: Message posted
       event:
         share: Create event for group
       attachment:

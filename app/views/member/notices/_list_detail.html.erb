@@ -1,0 +1,12 @@
+<div class="text">
+    <%= truncate_to_words(sanitize(notice.content)) %>
+</div>
+<br />
+<%= render :partial => "shared/comments", :locals => { :commentable => notice , :exclude_add_comment => true} %>
+<div class="portlet portletL">
+    <%= link_to icon_for_notice, member_notice_path(notice) %>
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(notice.created_at)) %> .
+	<%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => notice.comments.size), member_notice_path(notice) %> . 
+	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_notice_path(notice) %> . 
+	<%= share_with_groups_link(notice) if i_am_the_author_of? notice %>
+</div>

@@ -94,10 +94,11 @@ Tog::Plugins.settings :tog_user,  {
 }, :force => true
 
 Tog::Plugins.settings :schoolarly, {
-    "assignment.image.default"        => "assignment2.png",
-    "attachment.image.default"        => "document2.png",
-    "post.image.default"        => "note2.png",
-    "event.image.default"        => "event2.png"
+    "assignment.image.default"        => "dashboard/assignment2.png",
+    "attachment.image.default"        => "dashboard/document2.png",
+    "post.image.default"        => "dashboard/note2.png",
+    "event.image.default"        => "dashboard/event2.png",
+    "notice.image.default"        => "dashboard/notice2.png"
 }, :force => true
 
 Tog::Plugins.settings :tog_core,  {

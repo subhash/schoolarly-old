@@ -23,6 +23,6 @@
     </div>
 </div>
 <!-- /#potlet_featuredPosts -->
-<% unless local_assigns[:include_add_comment] %>
+<% unless local_assigns[:exclude_add_comment] %>
 <%= render :partial => "shared/add_comment", :locals => {:commentable => commentable} %>
 <% end %>
