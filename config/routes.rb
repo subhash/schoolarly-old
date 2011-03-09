@@ -79,6 +79,7 @@ ActionController::Routing::Routes.draw do |map|
       group.resources :students, :shallow => true
       group.resources :teachers, :shallow => true
       group.resources :admissions, :member => {:admit => :get}
+      group.resources :notices, :shallow => true
     end
     member.resources :schools do |school|
       school.resources :klasses, :shallow => true, :member => {:invite => :get, :add => :post} do |klass|
