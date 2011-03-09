@@ -7,6 +7,10 @@ class Profile < ActiveRecord::Base
     }
   }
   
+  def self.from_wufoo_entry(entry)
+    Profile.new(:first_name => entry["Field18"], :last_name => entry["Field19"])
+  end
+    
   def set_default_icon
     unless self.icon?
       if FileTest.exist?(RAILS_ROOT + "/public/images/#{full_name}.jpg")

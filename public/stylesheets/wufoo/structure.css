@@ -57,19 +57,19 @@ form.wufoo{
 	min-height:40px;
 	height:40px;
 	display:block;
-	background:url(../images/wflogo.png) no-repeat left top;
+	background:url(../../images/wufoo/wflogo.png) no-repeat left top;
 	overflow:hidden;
 }
 * html #logo2 a{
 	_background-image: none;
-	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/wflogo.png", sizingMethod="crop");
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/wufoo/wflogo.png", sizingMethod="crop");
 }
 img, a img{
 	border:none;
 	-ms-interpolation-mode: bicubic;
 }
 * html #bottom{ 
-	_behavior: url(../images/iepngfix.htc);
+	_behavior: url(../../images/wufoo/iepngfix.htc);
 }
 .hide, .cloak div, .cloak span, .likert.cloak tbody, .likert.cloak thead{
 	display:none !important;

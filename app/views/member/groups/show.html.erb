@@ -22,10 +22,11 @@
 	        <ul>
 	        	  <%= link_to I18n.t('tog_social.groups.member.edit'), edit_member_group_path(@group), :class => 'ok' -%>
 			  <% if @group.school? %>
+			  	<li><%= link_to I18n.t('groups.member.admissions.title'), member_group_admissions_path(@group) %></li>
 			    <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group.id, :type => 'klasses'), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('schools.site.admin.invite'), add_select_member_group_path(@group), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
-			    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>
+			    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>				
 			  <% else %>
 			    <li><%= link_to I18n.t('groups.site.add.Teacher'), add_select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('groups.site.add.Student'), add_select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
@@ -52,9 +53,14 @@
 				<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group), :class => 'calendar' %></li>
 				<li><%= link_to I18n.t('groups.member.attachment.share'), new_member_attachment_path(:group => @group), :class => 'set_highlight' %></li>		
 				<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_assignment_path(:group => @group), :class => 'set_highlight' %></li>			
-          <% elsif  !(@group.klass? || @group.school? || @group.subject? ) -%>
-            <li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
-          <% end -%> 
+          <% else -%>
+            <% if !(@group.klass? || @group.school? || @group.subject? )%>
+				<li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
+			<% end %>
+			<% if @group.school? %>
+			  <li><%= link_to I18n.t('groups.member.admission.new'), new_member_group_admission_path(@group) %></li>				
+			<% end %>
+          <% end -%>		  	
         </ul>
     </div> 
 </div>    
