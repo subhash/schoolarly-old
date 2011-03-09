@@ -4,10 +4,11 @@
 <div class="summary">
     <%= render :partial => 'conversatio/posts/tags', :locals => { :post => post } %>
 </div>
-<div class="text">
-    <%= sanitize(textilize(post.body), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
+<div>
+    <%= 	sanitize(post.body, :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split)  %>
+	<!-- <%= 	truncate_html(post.body, :length => 100)  %> -->
 </div>
-<%= render :partial => "shared/comments", :locals => { :commentable => post , :include_add_comment => true} %>
+<%= render :partial => "shared/comments", :locals => { :commentable => post , :include_add_comment => false} %>
 <div class="portlet portletL">
     <%= link_to icon_for_post, conversatio_blog_post_path(blog, post), :title => "#{sanitize post.title}" %>
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(post.published_at)) %>.<%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => post.comments.size), conversatio_blog_post_path(blog, post) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), conversatio_blog_post_path(blog, post), :title => I18n.t('tog_conversatio.views.posts.comments.comment_title', :post_title => h(post.title)) %>. <%= share_with_groups_link(post) if i_am_the_author_of? post %>
