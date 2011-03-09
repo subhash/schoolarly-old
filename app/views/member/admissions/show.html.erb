@@ -1,35 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div class="titleB">
+    <%= link_to @group.name, member_group_path(@group) %> > <%= link_to I18n.t("groups.member.admissions.title"), member_group_admissions_path(@group) %> > <%= @user.profile.full_name %>
+</div>
+<br/><br/>
+<div id="container2">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-
-<title>
-Bangalore International School
-</title>
-
-<!-- Meta Tags -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Wufoo.com" />
-
-<!-- CSS -->
-<link rel="stylesheet" href="/stylesheets/wufoo/structure.css" type="text/css" />
+<!-- CSS 
+<link rel="stylesheet" href="/stylesheets/wufoo/structure.css" type="text/css" /> -->
 <link rel="stylesheet" href="/stylesheets/wufoo/form.css" type="text/css" />
 
 <!-- JavaScript -->
 <script type="text/javascript" src="/javascripts/wufoo/wufoo.js"></script>
-</head>
-
-<body id="public">
-<div id="container2">
-
-<h1 id="logo2">
-		<a href="http://wufoo.com" title="Powered by Wufoo">Wufoo</a>
-	</h1>
 
 <form id="form6" name="form6" class="wufoo topLabel page" autocomplete="off" enctype="multipart/form-data" method="post" action="#public">
 
-<div id="header" class="info">
+<div id="header2" class="info">
 	<h2>Bangalore International School</h2>
 	<div>Bangalore International School, Geddalahalli<br />
 Hennur Bagalur Road, Kothanur Post<br />
@@ -158,16 +142,21 @@ Email:info@bisedu.co.in</div>
 </form>
 
 </div><!--container-->
-<img id="bottom" src="/images/wufoo/bottom.png" alt="" />
 
-<style type="text/css">
-@import url(/css/global/power.14344.css);
-</style>
-
-<a class="powertiny" href="http://wufoo.com" title="Powered by Wufoo"
-style="display:block !important;visibility:visible !important;text-indent:0 !important;position:relative !important;height:auto !important;width:95px !important;overflow:visible !important;text-decoration:none;cursor:pointer !important;margin:0 auto !important">
-<span style="background:url(/images/wufoo/powerlogo.png) no-repeat center 7px; margin:0 auto;display:inline-block !important;visibility:visible !important;text-indent:-9000px !important;position:static !important;overflow: auto !important;width:62px !important;height:30px !important">Wufoo</span>
-<b style="display:block !important;visibility:visible !important;text-indent:0 !important;position:static !important;height:auto !important;width:auto !important;overflow: auto !important;font-weight:normal;font-size:9px;color:#777;padding:0 0 0 3px;">Designed</b>
-</a>
-</body>
-</html>
+<% content_for :sidebar do %>
+<% if @user %>
+<div class="error">
+  <%= error_messages_for :user %>
+</div>
+<% end %>
+<div class="portlet portletC" id="portlet_moreLinks">
+    <h2><span><%= I18n.t('tog_social.more_links') %></span></h2>
+    <div class="portlet_content">
+        <ul>
+          <% if i_am_moderator_of @group -%>
+				<li><%= link_to "Admit", admit_member_group_admission_path(@group, @fields["EntryId"]) %></li>
+          <% end -%>		  	
+        </ul>
+    </div> 
+</div>   
+<% end %>

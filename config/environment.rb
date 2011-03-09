@@ -31,6 +31,7 @@ Rails::Initializer.run do |config|
   config.gem 'right_aws'
   config.gem 'rest-client'
   config.gem 'tiny_mce'
+  config.gem 'wuparty'
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -77,7 +78,6 @@ Tog::Interface.sections(:member).remove "My account"
 Tog::Interface.sections(:member).remove "My sharings"
 Tog::Interface.sections(:member).add :attachments, "/member/attachments"
 Tog::Interface.sections(:member).add :sharings, "/member/sharings"
-
 
 Tog::Plugins.settings :tog_core, {"site.name" => "Schoolarly"}, :force => true
 

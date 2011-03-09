@@ -104,6 +104,9 @@ en:
         share: Share document with group
       assignment:
         share: New assignment
+      admissions:
+        title: Admissions
+        new: Apply for admission        
   schools:
     model:
       klasses:
