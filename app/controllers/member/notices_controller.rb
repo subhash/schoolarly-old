@@ -2,6 +2,10 @@ class Member::NoticesController < Member::BaseController
   
   before_filter :find_group
   
+  def show
+    @notice = Notice.find(params[:id])
+  end
+  
   def create
     @notice = Notice.new params[:notice]
     @notice.user = current_user   

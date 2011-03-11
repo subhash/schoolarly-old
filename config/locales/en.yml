@@ -266,6 +266,9 @@ en:
     member:
       notes:
         new: "New note in notebook %{blog_title}"
+  notices:
+    site:
+      title: "Message"
         
   sharings:
     member:
