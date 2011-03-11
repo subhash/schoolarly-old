@@ -226,7 +226,7 @@ ActiveRecord::Schema.define(:version => 20110309052407) do
   end
 
   create_table "notices", :force => true do |t|
-    t.string   "content"
+    t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,7 +1,12 @@
-<div class="text">
-    <%= truncate_to_words(sanitize(notice.content)) %>
+<div id="see_more" class="text">
+    <%= truncate_to_words sanitize(notice.content, :words => 100) %>
+    <% if (notice.content.split.size > 100) %>
+    <%= link_to_function "See More" do |page|
+    page[:see_more].replace_html sanitize(notice.content)
+    end %>
+    <% end %>
 </div>
-<br />
+<br/>
 <%= render :partial => "shared/comments", :locals => { :commentable => notice , :exclude_add_comment => true} %>
 <div class="portlet portletL">
     <%= link_to icon_for_notice, member_group_notice_path(group, notice) %>

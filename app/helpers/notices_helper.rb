@@ -4,7 +4,7 @@ module NoticesHelper
   end
   
   def truncate_to_words(text, opts = {})
-    opts = {:words => 25, :omission => "..."}.merge(opts)
+    opts = {:words => 100, :omission => "..."}.merge(opts)
     words = opts[:words]
     omission = opts[:omission]
     text.split[0..(words-1)].join(" ") + (text.split.size > words ? " " + omission : "")

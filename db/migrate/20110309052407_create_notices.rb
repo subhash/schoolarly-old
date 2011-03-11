@@ -1,7 +1,7 @@
 class CreateNotices < ActiveRecord::Migration
   def self.up
     create_table :notices do |t|
-      t.string :content
+      t.text :content
       t.integer :user_id
       t.timestamps
       
