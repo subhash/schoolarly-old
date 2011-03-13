@@ -11,7 +11,8 @@ class SmerfFormsUser < ActiveRecord::Base
     if user.invite_over_email
       membership = Membership.new
       membership.user = user
-      membership.group = School.first.group
+      school = School.all.find {|s| s.form_code == self.smerf_form.code}
+      membership.group = school.group
       membership.save
       # send email
     end    

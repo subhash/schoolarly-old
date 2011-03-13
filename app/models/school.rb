@@ -9,4 +9,8 @@ class School < ActiveRecord::Base
   
   named_scope :active, :include => :group, :conditions => ['groups.state = ?', 'active']
   
+  def form_code
+    group.name.parameterize[0, 20]
+  end
+  
 end
