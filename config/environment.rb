@@ -32,6 +32,7 @@ Rails::Initializer.run do |config|
   config.gem 'rest-client'
   config.gem 'tiny_mce'
   config.gem 'wuparty'
+  
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

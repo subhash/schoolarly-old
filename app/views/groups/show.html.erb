@@ -43,7 +43,7 @@
 				<li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
 			<% end %>
 			<% if @group.school? %>
-			  <li><%= link_to I18n.t('groups.member.admission.new'), new_member_group_admission_path(@group) %></li>				
+			  <li><%= link_to I18n.t('groups.member.admissions.new'), smerf_form_url('bis') %></li>				
 			<% end %>			
           <% end -%> 
         </ul>

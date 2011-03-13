@@ -9,6 +9,7 @@
             <li>
                 <%=link_to icon_for_profile(profile, 'medium'), member_group_admission_path(@group, entry["EntryId"]), :title => profile.full_name%>
 				<%=link_to profile.full_name,  member_group_admission_path(@group, entry["EntryId"]) %>
+				<%= link_to('Complete Test Smerf Form', smerf_form_url('bis'))%>
             </li>
             <%end %>
         </ul>		

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :smerf_forms
+
   
 
   map.namespace :member do |member|

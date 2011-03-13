@@ -1,0 +1,41 @@
+--- 
+smerfform:   
+  name: Bangalore International School
+  welcome: | 
+    <b>Welcome:</b><br>
+    Thank you for taking part in our Test survey we appreciate your
+    input.<br><br>
+
+    <b>PRIVACY STATEMENT</b><br>
+    We will keep all the information you provide private and not share
+    it with anyone else....<br>
+
+  thank_you: | 
+    <b>Thank you for your input.</b><br><br>
+
+    Should you wish to discuss this survey please contact<br>
+    Joe Bloggs<br>
+    Tel. 12 345 678<br>
+    e-mail <A HREF=\"mailto:jbloggs@xyz.com.au\">Joe's email</A><br><br>
+ 
+    February 2007
+  group_sort_order_field: code
+
+  groups:
+    personal_details:
+      code: 1
+      name: Personal Details Group
+      description: | This is a brief description of the Personal Details Group
+        here we ask you some personal details ...
+      questions:
+        mention_name:
+          code: q_name
+          type: textfield
+          question: | What's your name
+          sort_order: 1          
+        mention_email:
+          code: q_email
+          type: textfield
+          question: | What's your email
+          sort_order: 1          
+

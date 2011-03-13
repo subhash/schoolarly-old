@@ -8,11 +8,8 @@ class Member::AdmissionsController < Member::BaseController
   
   before_filter :login_required, :except => [:new]
   
-  def index    
-    wufoo = WuParty.new(ACCOUNT, API_KEY)
-    form = wufoo.form(FORM_ID)
-    @entries = form.entries
-    @profiles = @entries.map {|e| Profile.from_wufoo_entry(e)}
+  def index
+    @profiles = @group.pending_members.map {|u| u.profile}
   end
   
   def show
