@@ -6,7 +6,7 @@
 	<% else %>
 	<%= I18n.t('notebooks.member.notes.new', :blog_title => @blog.title) %>
 	<% end %>
-	</div>
+</div>
 
 <%= error_messages_for :post %>
 <% form_for :post, :url => member_conversatio_blog_posts_path(@blog), :html => {:method => "post"} do |f| -%>

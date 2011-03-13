@@ -1,0 +1,14 @@
+<div class="titleB">
+    <%= link_to @group.name, member_group_path(@group) %> > <%= I18n.t('groups.member.notices.new') %>
+</div>
+<%= error_messages_for :notice %>
+<% form_for :notice, :url => member_group_notices_path(@group), :html => {:method => "post"} do |f| -%>
+	<div>
+	    <%= f.text_area :content, :class=>"fieldbox wide" -%>
+	</div>
+	<%= hidden_field_tag :group, params[:group] if params[:group] %>
+	<div class="actions">
+	    <%= submit_tag I18n.t('groups.member.notices.create'), {:class => "button mainaction", :accesskey => "s"} %>
+	</div>
+<% end -%>
+

@@ -32,6 +32,13 @@
     background-image: none;
 }
 
+.portletI li {
+    margin-left: 60px;
+	margin-bottom: 2px;
+	padding-left: 10px;
+	background-color: #E9E9E9;
+}
+
 /*
  general
  notice

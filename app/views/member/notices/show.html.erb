@@ -1,0 +1,21 @@
+<div class="titleB">
+    <%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t('notices.site.title') %>
+</div>
+<div class="detail detail1">
+    <div class="image">
+        <% profile = @notice.user.profile %>
+        <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
+    </div>
+    <div>
+        <%= link_to profile.full_name, member_profile_path(profile) %>
+        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(@notice.created_at)) %>
+    </div>
+</div>
+<br />
+<div id="notice_<%= @notice.id %>" class="border_top">
+    <div>
+        <%= sanitize(@notice.content, :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
+    </div>
+    <br/>
+    <%= render :partial => "shared/comments", :locals => { :commentable => @notice } %>
+</div>

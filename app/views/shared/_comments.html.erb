@@ -7,7 +7,7 @@
                 <div class="image">
                     <%= link_to icon_for_profile(comment.user.profile, 'tiny'), profile_path(comment.user.profile) %>
                 </div>
-                <div class="text">
+                <div>
                     <%= link_to comment.user.profile.full_name, profile_path(comment.user.profile) %>
                 </div>
                 <% else %>
@@ -16,13 +16,15 @@
                 </div>
                 <% end %>
                 <%= sanitize(textilize(comment.comment), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.comments.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.comments.allowed_attributes').split) %>
-                <span class="helpinfo"><%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(comment.created_at)) %></span>
+                <div class="portletL fontsmaller">
+                    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(comment.created_at)) %>
+                </div>
             </li>
             <% end %>
         </ul>
     </div>
 </div>
 <!-- /#potlet_featuredPosts -->
-<% unless local_assigns[:include_add_comment] %>
+<% unless local_assigns[:exclude_add_comment] %>
 <%= render :partial => "shared/add_comment", :locals => {:commentable => commentable} %>
 <% end %>
