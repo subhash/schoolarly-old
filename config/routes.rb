@@ -80,7 +80,6 @@ ActionController::Routing::Routes.draw do |map|
     member.resources :groups , :member => {:new_multiple => :get, :create_multiple => :post, :add_select => :get, :add => :post, :remove_select => :get, :remove => :post} do |group|
       group.resources :students, :shallow => true
       group.resources :teachers, :shallow => true
-      group.resources :admissions, :member => {:admit => :get}
       group.resources :notices
     end
     member.resources :schools do |school|
@@ -92,7 +91,8 @@ ActionController::Routing::Routes.draw do |map|
     member.resources :assignments
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
-      group.new_group_with_type   'groups/new/:type', :action => 'new' 
+      group.new_group_with_type   'groups/new/:type', :action => 'new'
+      group.group_apply   '/:id/members/:user_id/apply', :action => 'apply'
     end  
   end
 

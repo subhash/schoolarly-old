@@ -207,7 +207,15 @@ class Member::GroupsController < Member::BaseController
                                            :page => @page, 
                                            :order => "updated_at desc"
     store_location
-  end   
+  end
+  
+  def apply
+    user = User.find(params[:user_id])
+    @smerfform = SmerfForm.find_by_code(@group.network.form_code)
+    puts "finding form - #{user.id} - #{@smerfform.id}"
+    @smerf_forms_user = SmerfFormsUser.find_user_smerf_form(user.id, @smerfform.id)
+    @responses = @smerf_forms_user.responses
+  end
   
   protected
   def find_type

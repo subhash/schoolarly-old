@@ -173,8 +173,6 @@ class SmerfForm < ActiveRecord::Base
   def validate_responses(responses, errors)
     # Perform all validations by calling the validation helper methods
     # defined in the SmerfHelpers module 
-    puts 'form - '+self.form.inspect
-    puts 'responses - '+responses.inspect
     call_validations(self.form, responses, errors)
   end
     
