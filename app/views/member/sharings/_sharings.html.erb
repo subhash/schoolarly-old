@@ -13,7 +13,7 @@
                 <% end %>
             </div>
             <% if share.shareable.is_a? Post %>
-            <%= render :partial => '/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable , :group => share.shared_to} %>
+            <%= render :partial => '/member/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable , :group => share.shared_to} %>
             <% end %>
             <% if share.shareable.is_a? Event %>
             <%= render :partial => '/member/conclave/events/list_detail', :locals => { :event => share.shareable , :group => share.shared_to } %>
