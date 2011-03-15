@@ -11,7 +11,6 @@ capybara-*.html
 /coverage/
 /spec/tmp/*
 **.orig
-config/*.yml
 /public/system/*
 rerun.txt
 Thumbs.db
