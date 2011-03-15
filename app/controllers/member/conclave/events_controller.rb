@@ -1,5 +1,7 @@
 class Member::Conclave::EventsController < Member::BaseController
   
+    helper LaterDude::CalendarHelper
+  
   def create
     @group = Group.find(params[:group]) if params[:group]
     @event = Event.new(params[:event])

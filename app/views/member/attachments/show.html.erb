@@ -2,7 +2,7 @@
     <h1><%= sanitize @attachment.title %></h1>
     <div>
         <%= I18n.t('attachments.site.uploaded_by') %>
-        <%= link_to @attachment.user.profile.full_name, profile_path(@attachment.user) %>
+        <%= link_to @attachment.user.profile.full_name, member_profile_path(@attachment.user) %>
         <%= I18n.t('attachments.site.list_detail.time_ago', :time => time_ago_in_words(@attachment.created_at)) %>
     </div>
     <div>
@@ -17,6 +17,6 @@
 </div>
 <% content_for :sidebar do %>
 <%= render :partial => 'member/attachments/manage', :locals => {:attachment => @attachment} %>
-<%= render :partial => 'attachments/groups', :locals => {:attachment => @attachment} %>
+<%= render :partial => 'member/attachments/groups', :locals => {:attachment => @attachment} %>
 <!-- TODO tags & archive -->
 <% end %>

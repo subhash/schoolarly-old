@@ -16,13 +16,13 @@
             <%= render :partial => '/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable , :group => share.shared_to} %>
             <% end %>
             <% if share.shareable.is_a? Event %>
-            <%= render :partial => '/conclave/events/list_detail', :locals => { :event => share.shareable , :group => share.shared_to } %>
+            <%= render :partial => '/member/conclave/events/list_detail', :locals => { :event => share.shareable , :group => share.shared_to } %>
             <% end %>
             <% if share.shareable.is_a? Attachment %>
-            <%= render :partial => '/attachments/list_detail', :locals => { :attachment => share.shareable , :group => share.shared_to } %>
+            <%= render :partial => '/member/attachments/list_detail', :locals => { :attachment => share.shareable , :group => share.shared_to } %>
             <% end %>
             <% if share.shareable.is_a? Assignment %>
-            <%= render :partial => '/assignments/list_detail', :locals => { :assignment => share.shareable , :group => share.shared_to } %>
+            <%= render :partial => '/member/assignments/list_detail', :locals => { :assignment => share.shareable , :group => share.shared_to } %>
             <% end %>
             <% if share.shareable.is_a? Notice %>
             <%= render :partial => '/member/notices/list_detail', :locals => { :notice => share.shareable , :group => share.shared_to } %>

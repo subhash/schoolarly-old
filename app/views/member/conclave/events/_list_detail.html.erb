@@ -1,0 +1,23 @@
+<% include_stylesheet "date.css" %>
+<div class="clearfix">
+    <!--
+    <div class="image left"><%= image_tag event.icon.url :small %></div>
+    -->
+    <div class="image date month<%= event.start_date.month %>">
+        <%= event.start_date.day %>
+    </div>
+    <div>
+        <span class="title"><%= link_to event.title, member_conclave_event_path(event), :title => event.title %></span>
+    </div>
+    <div class="summary">
+        <%= write_event_time(event) %>
+        <%= "at #{event.venue}"  if event.venue %>
+    </div>
+    <div  class="text">
+        <%= event.description %>
+    </div>
+    <div class="portlet portletL">
+    		<%= link_to icon_for_event, member_conclave_event_path(event), :title => event.title %>
+        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(event.created_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => event.comments.size), member_conclave_event_path(event) %> . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_conclave_event_path(event), :title => I18n.t('groups.comments.comment_title', :title => h(event.title)) %> . <%= share_with_groups_link(event) if i_am_the_owner_of? event %>
+    </div>
+</div>

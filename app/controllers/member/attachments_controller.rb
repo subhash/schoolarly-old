@@ -1,6 +1,6 @@
 class Member::AttachmentsController < Member::BaseController
   
-  before_filter :find_group, :except => [:index]
+  before_filter :find_group, :except => [:index, :show]
   
   def new
     @attachment = Attachment.new
@@ -50,6 +50,11 @@ class Member::AttachmentsController < Member::BaseController
   
   def index
     @attachments = current_user.attachments
+  end
+  
+  def show
+    @attachment = Attachment.find(params[:id])
+    @shared_groups = @attachment.shares_to_groups.collect(&:shared_to)
   end
   
   private  

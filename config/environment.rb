@@ -66,11 +66,6 @@ Rails::Initializer.run do |config|
 end
 
 Tog::Interface.sections(:site).clear
-Tog::Interface.sections(:site).add :home, "/"
-Tog::Interface.sections(:site).add :schools, "/groups?type='schools'"
-Tog::Interface.sections(:site).add :groups, "/groups"
-Tog::Interface.sections(:site).add :blogs, "/blogs"
-Tog::Interface.sections(:site).add :events, "/conclave/events"
 
 Tog::Interface.sections(:member).tabs(:home).url = '/member'
 Tog::Interface.sections(:member).remove "My groups"
