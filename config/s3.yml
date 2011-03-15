@@ -1,0 +1,14 @@
+development:
+  bucket: Schoolarly
+  access_key_id: AKIAIMQFQ2BSZ5X5SWFQ
+  secret_access_key: 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
+
+test:
+  bucket: Schoolarly
+  access_key_id: AKIAIMQFQ2BSZ5X5SWFQ
+  secret_access_key: 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
+
+production:
+  bucket: Schoolarly
+  access_key_id: AKIAIMQFQ2BSZ5X5SWFQ
+  secret_access_key: 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
