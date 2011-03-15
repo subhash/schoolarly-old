@@ -251,10 +251,10 @@ en:
         comment_title: Leaving A Comment On %{title}
     model:
       doc: 
-        title: "Or upload an assignment document"
+        title: "Or upload a document"
         change: "Change Document"
       description: 
-        title: "Describe the assignment here"
+        title: "Compose assignment"
       title:
         title: "Title"
     member:

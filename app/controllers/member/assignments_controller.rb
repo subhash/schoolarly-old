@@ -2,6 +2,8 @@ class Member::AssignmentsController < Member::BaseController
   
   before_filter :find_group
   
+  uses_tiny_mce :only => [:new, :create, :edit, :update]
+  
   def new
     @assignment = Assignment.new
   end
@@ -25,10 +27,10 @@ class Member::AssignmentsController < Member::BaseController
     end
   end
   
-    
-#  def show
-#    @session_id = Assignment.find(params[:id]).from_crocodoc(current_user.profile.full_name)
-#  end
+  
+    def show
+      @assignment = Assignment.find(params[:id])
+    end
   
   
   private  

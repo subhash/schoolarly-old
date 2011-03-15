@@ -2,7 +2,7 @@
     <%= link_to "#{sanitize assignment.title}", member_assignment_path(assignment, :group => @group) %>
 </div>
 <div class="text">
-    <%= sanitize(textilize(assignment.description), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
+    <%= sanitize(assignment.description, :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
 </div>
 <div class="portlet portletL">
     <%= link_to icon_for_assignment, assignment.doc.url, :title => "#{sanitize assignment.doc.original_filename}" %>
