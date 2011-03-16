@@ -4,6 +4,8 @@ class Assignment < ActiveRecord::Base
   
   belongs_to :user
   
+  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
+  
   def to_crocodoc
     url = "https://crocodoc.com/api/v1/document/upload"
     response = RestClient.post(url, :token => 'vJK2p8cYFP1Xo0CUmweD', :file => attachment.doc.to_file, :private => true)

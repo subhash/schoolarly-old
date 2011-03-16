@@ -1,7 +1,8 @@
 <div class="titleB">
     <% if @group %>
-    <%= link_to @group.name, member_group_path(@group) %>> <% end %>
+    <%= link_to @group.name, member_group_path(@group) %> > <% end %>
     <%= sanitize @assignment.title %>
+	<%= link_to icon_for_assignment, @assignment.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @assignment.doc.file? %>
 </div>
 <div class="detail detail1">
     <div class="image">
@@ -15,9 +16,9 @@
     </div>
     <!-- include tags -->
 </div>
-<div id="post_<%= @post.id %>" class="border_top">
-    <% if @assignment.doc %>
-    <iframe src="http://docs.google.com/viewer?embedded=true&url=<%= @assignment.doc.url %>" style="border:1px solid #ddd; width: 700px; height: 100%">
+<div id="assignment_<%= @assignment.id %>" class="border_top">
+    <% if @assignment.doc.file? %>	
+    <iframe src="http://docs.google.com/viewer?embedded=true&url=<%= @assignment.doc.url %>" style="border:1px solid #ddd; width: 100%; height: 100%">
     </iframe>
     <% else %>
     <div>
@@ -27,3 +28,8 @@
     <br/>
     <%= render :partial => "shared/comments", :locals => { :commentable => @assignment } %>
 </div>
+<% content_for :sidebar do %>
+<%= render :partial => 'member/assignments/manage', :locals => {:assignment => @assignment} %>
+<%= render :partial => 'shared/groups' %>
+<!-- TODO tags & archive -->
+<% end %>

@@ -2,7 +2,7 @@ class CreateAssignments < ActiveRecord::Migration
   def self.up
     create_table :assignments do |t|
       t.string :title
-      t.string :description
+      t.text :description
       t.integer :user_id
       t.string :doc_file_name
       t.string :doc_content_type

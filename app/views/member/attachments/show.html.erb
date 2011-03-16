@@ -17,6 +17,6 @@
 </div>
 <% content_for :sidebar do %>
 <%= render :partial => 'member/attachments/manage', :locals => {:attachment => @attachment} %>
-<%= render :partial => 'member/attachments/groups', :locals => {:attachment => @attachment} %>
+<%= render :partial => 'shared/groups' %>
 <!-- TODO tags & archive -->
 <% end %>

@@ -240,6 +240,7 @@ en:
       title : "Assignment"
       uploaded_by: "Issued by"
       update: "Update Assignment"
+      open_in_browser: "Open in browser"
       show:
         posted: "Posted %{time}"
       manage:

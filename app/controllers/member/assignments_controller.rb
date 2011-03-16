@@ -28,9 +28,10 @@ class Member::AssignmentsController < Member::BaseController
   end
   
   
-    def show
-      @assignment = Assignment.find(params[:id])
-    end
+  def show
+    @assignment = Assignment.find(params[:id])
+    @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
+  end
   
   
   private  

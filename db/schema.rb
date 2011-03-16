@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20110309090200) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.integer  "user_id"
     t.string   "doc_file_name"
     t.string   "doc_content_type"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20110309090200) do
     t.string   "doc_content_type"
     t.integer  "doc_file_size"
     t.datetime "doc_updated_at"
+    t.string   "shortId"
+    t.string   "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

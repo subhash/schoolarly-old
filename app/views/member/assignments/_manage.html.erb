@@ -1,0 +1,11 @@
+<% if assignment.user == current_user %>
+<div class="portlet portletD" id="portlet_userWall">
+    <h2><span><%= I18n.t('assignments.site.manage.title', :name => assignment.title) %></span></h2>
+    <div class="portlet_content">
+        <%= link_to I18n.t('assignments.site.manage.edit'), edit_member_assignment_path(assignment) %>
+		<br />
+        <%= share_with_groups_link(@assignment) %>
+		<br />
+    </div>
+</div>
+<% end %>
