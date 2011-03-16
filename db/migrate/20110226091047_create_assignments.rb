@@ -1,16 +1,10 @@
 class CreateAssignments < ActiveRecord::Migration
   def self.up
     create_table :assignments do |t|
-      t.string :title
-      t.text :description
-      t.integer :user_id
-      t.string :doc_file_name
-      t.string :doc_content_type
-      t.integer :doc_file_size
-      t.datetime :doc_updated_at
+      t.integer :post_id
       t.timestamps
       
-      t.foreign_key :user_id, :users, :id
+      t.foreign_key :post_id, :posts, :id
     end
   end
 

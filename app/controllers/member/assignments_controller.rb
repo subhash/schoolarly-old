@@ -10,7 +10,8 @@ class Member::AssignmentsController < Member::BaseController
   
   def create
     @assignment = Assignment.new(params[:assignment])
-    @assignment.user = current_user
+    @assignment.post.user = current_user
+    @assignment.post.publish!
     respond_to do |wants|
       if @assignment.save
         @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
@@ -29,8 +30,9 @@ class Member::AssignmentsController < Member::BaseController
   
   
   def show
-    @assignment = Assignment.find(params[:id])
-    @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
+    @assignment =  Assignment.find(params[:id])
+    @post = @assignment.post
+    @shared_groups = @post.shares_to_groups.collect(&:shared_to)
   end
   
   

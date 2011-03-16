@@ -1,0 +1,25 @@
+<div class="detail detail1">
+    <div class="image">
+        <% profile = @post.user.profile %>
+        <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
+    </div>
+    <div>
+        <%= link_to profile.full_name, member_profile_path(profile) %>
+        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(@post.published_at)) %>
+    </div>
+    <!--
+    <%= render :partial => 'conversatio/posts/tags', :locals => { :post => @post } %>
+    -->
+</div>
+<div id="post_<%= @post.id %>" class="border_top">
+    <% if @post.doc.file? %>
+    <iframe src="http://docs.google.com/viewer?embedded=true&url=<%= @post.doc.url %>" style="border:1px solid #ddd; width: 100%; height: 100%">
+    </iframe>
+    <% else %>
+    <div>
+        <%= sanitize(@post.body, :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
+    </div>
+    <% end %>
+    <br/>
+    <%= render :partial => "shared/comments", :locals => { :commentable => @post } %>
+</div>

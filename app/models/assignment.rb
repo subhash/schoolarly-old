@@ -1,10 +1,10 @@
-class Assignment < ActiveRecord::Base
-  acts_as_commentable
-  has_attached_file :doc, Tog::Plugins.storage_options   
+class Assignment < ActiveRecord::Base 
   
-  belongs_to :user
+  belongs_to :post, :dependent => :destroy
   
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
+  
+  accepts_nested_attributes_for :post
   
   def to_crocodoc
     url = "https://crocodoc.com/api/v1/document/upload"

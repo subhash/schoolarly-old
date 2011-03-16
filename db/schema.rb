@@ -34,18 +34,12 @@ ActiveRecord::Schema.define(:version => 20110316080718) do
   add_index "activities", ["item_type", "item_id"], :name => "index_activities_on_item_type_and_item_id"
 
   create_table "assignments", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "user_id"
-    t.string   "doc_file_name"
-    t.string   "doc_content_type"
-    t.integer  "doc_file_size"
-    t.datetime "doc_updated_at"
+    t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "assignments", ["user_id"], :name => "user_id"
+  add_index "assignments", ["post_id"], :name => "post_id"
 
   create_table "attachments", :force => true do |t|
     t.string   "title"
@@ -437,7 +431,7 @@ ActiveRecord::Schema.define(:version => 20110316080718) do
     t.integer  "person_id"
   end
 
-  add_foreign_key "assignments", ["user_id"], "users", ["id"], :name => "assignments_ibfk_1"
+  add_foreign_key "assignments", ["post_id"], "posts", ["id"], :name => "assignments_ibfk_1"
 
   add_foreign_key "attachments", ["user_id"], "users", ["id"], :name => "attachments_ibfk_1"
 

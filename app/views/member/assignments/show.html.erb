@@ -1,35 +1,12 @@
 <div class="titleB">
     <% if @group %>
     <%= link_to @group.name, member_group_path(@group) %> > <% end %>
-    <%= sanitize @assignment.title %>
-	<%= link_to icon_for_assignment, @assignment.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @assignment.doc.file? %>
+    <%= sanitize @post.title %>
+	<%= link_to icon_for_assignment, @post.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @post.doc.file? %>
 </div>
-<div class="detail detail1">
-    <div class="image">
-        <% profile = @assignment.user.profile %>
-        <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
-    </div>
-    <div>
-        <%= link_to profile.full_name, member_profile_path(profile) %>
-        <!-- time ago should be changed to when assignment was shared & not created -->
-        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(@assignment.created_at)) %>
-    </div>
-    <!-- include tags -->
-</div>
-<div id="assignment_<%= @assignment.id %>" class="border_top">
-    <% if @assignment.doc.file? %>	
-    <iframe src="http://docs.google.com/viewer?embedded=true&url=<%= @assignment.doc.url %>" style="border:1px solid #ddd; width: 100%; height: 100%">
-    </iframe>
-    <% else %>
-    <div>
-        <%= sanitize(@assignment.description, :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
-    </div>
-    <% end %>
-    <br/>
-    <%= render :partial => "shared/comments", :locals => { :commentable => @assignment } %>
-</div>
+<%= render :partial => 'member/conversatio/posts/post' %>
 <% content_for :sidebar do %>
-<%= render :partial => 'member/assignments/manage', :locals => {:assignment => @assignment} %>
+<%= render :partial => 'member/assignments/manage' %>
 <%= render :partial => 'shared/groups' %>
 <!-- TODO tags & archive -->
 <% end %>

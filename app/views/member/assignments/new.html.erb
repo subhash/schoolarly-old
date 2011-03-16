@@ -12,28 +12,10 @@
 </div>
 <% form_for(:assignment, :url=>member_assignments_path, :html=>{:multipart=>true}) do |f| %>
 <fieldset>
-    <div class="fields">
-        <p>
-            <label for="assignment_title">
-                <%= I18n.t('assignments.model.title.title') %>
-            </label>
-            <%= f.text_field :title, :class=>"fieldbox wide" -%>
-        </p>
-        <p>
-            <label for="assignment_description">
-                <%= I18n.t('assignments.model.description.title') %>
-            </label>
-            <%= f.text_area :description, :class=>"fieldbox wide mceEditor" -%>
-        </p>
-        <p>
-            <label for="assignment_doc">
-                <%= I18n.t('assignments.model.doc.title') %>
-            </label>
-            <%= f.file_field  :doc %>
-            <br/>
-        </p>
-        <%= hidden_field_tag :group, @group.id if @group %>
-    </div>
+    <% f.fields_for :post_attributes do |p| %>
+    <%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
+    <%= hidden_field_tag :group, @group.id if @group %>
+    <% end %>
     <div class="actions">
         <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>
     </div>
