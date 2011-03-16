@@ -1,16 +1,28 @@
-<div>
-    <label for="post_title">
-        <%= I18n.t('tog_conversatio.model.post.title') %>
-    </label>
-    <%= f.text_field :title, :class=>"fieldbox wide" -%>
-    <label for="post_body">
-        <%= I18n.t('tog_conversatio.model.post.content') %>
-    </label>
-    <%= f.text_area :body, :class=>"fieldbox wide mceEditor" -%>
+<div class="fields">
+    <p>
+        <label for="post_title">
+            <%= I18n.t('tog_conversatio.model.post.title') %>
+        </label>
+        <%= f.text_field :title, :class=>"fieldbox wide" -%>
+    </p>
+    <p>
+        <label for="post_body">
+            <%= I18n.t('tog_conversatio.model.post.content') %>
+        </label>
+        <%= f.text_area :body, :class=>"fieldbox wide mceEditor" -%>
+    </p>
+    <p>
+        <label for="post_doc">
+            <%= I18n.t('posts.model.doc.title') %>
+        </label>
+        <%= f.file_field  :doc %>
+        <br/>
+    </p>
+    <!--
     <label for="post_tag_list">
-        <%= I18n.t('tog_conversatio.model.post.tags') %><%= I18n.t('tog_conversatio.model.post.tags_explanation') %>
+    <%= I18n.t('tog_conversatio.model.post.tags') %><%= I18n.t('tog_conversatio.model.post.tags_explanation') %>
     </label>
-    <%= f.text_field :tag_list, :class=>"fieldbox wide" -%>
+    <%= f.text_field :tag_list, :class=>"fieldbox wide" -%> -->
     <%= hidden_field_tag 'post_state', I18n.t('tog_conversatio.model.states.published') %>
+    <%= hidden_field_tag :group, params[:group] if params[:group] %>
 </div>
-<%= hidden_field_tag :group, params[:group] if params[:group] %>

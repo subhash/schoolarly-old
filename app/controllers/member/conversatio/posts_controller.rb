@@ -8,6 +8,7 @@ class Member::Conversatio::PostsController < Member::BaseController
     @post = Post.new params[:post]
     @post.blog = @blog
     @post.user = current_user
+    @post.body = @post.title if @post.doc.file?
     @post.publish!
     
     respond_to do |wants|
@@ -28,6 +29,12 @@ class Member::Conversatio::PostsController < Member::BaseController
         end
       end
     end
+  end
+  
+  def show
+    @post = @blog.posts.find params[:id]
+    @comments = @post.all_comments
+    @shared_groups = @post.shares_to_groups.collect(&:shared_to)
   end
   
   private

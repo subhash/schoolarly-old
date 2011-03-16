@@ -7,11 +7,9 @@
     <% end %>
 </div>
 <br/>
-<% if @assignment && !@assignment.errors.empty? -%>
 <div class="error">
     <%= error_messages_for :assignment %>
 </div>
-<% end -%>
 <% form_for(:assignment, :url=>member_assignments_path, :html=>{:multipart=>true}) do |f| %>
 <fieldset>
     <div class="fields">

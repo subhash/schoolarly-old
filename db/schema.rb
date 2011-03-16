@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309090200) do
+ActiveRecord::Schema.define(:version => 20110316080718) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -307,6 +307,10 @@ ActiveRecord::Schema.define(:version => 20110309090200) do
     t.datetime "updated_at"
     t.string   "state"
     t.datetime "published_at"
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
   end
 
   create_table "profiles", :force => true do |t|

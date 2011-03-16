@@ -13,5 +13,11 @@
 #
 
 class Post < ActiveRecord::Base
- has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
+  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
+  has_attached_file :doc, Tog::Plugins.storage_options   
+  
+  validates_presence_of :body, :unless => Proc.new{|p| p.doc.file?}
+  
+  validates_attachment_presence :doc, :if => Proc.new{|p| p.body.blank?}
+
 end

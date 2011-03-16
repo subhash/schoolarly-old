@@ -270,6 +270,11 @@ en:
   notices:
     site:
       title: "Message"
+      
+  posts:
+    model:
+      doc: 
+        title: "Or upload a document"
         
   sharings:
     member:
