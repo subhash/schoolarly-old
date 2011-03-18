@@ -15,7 +15,7 @@ Rails::Initializer.run do |config|
   config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
   config.reload_plugins = true if RAILS_ENV == 'development'
   config.gem 'oauth', :version => '>= 0.3.5'
-  config.gem 'rubyist-aasm', :lib => 'aasm', :version => '~> 2.1.1'
+  config.gem 'aasm'
   config.gem 'linkingpaths-acts_as_abusable', :lib => 'acts_as_abusable', :version => '0.0.2'
   config.gem 'mbleigh-acts-as-taggable-on', :lib => 'acts-as-taggable-on', :version => '1.0.5'
   config.gem 'RedCloth', :lib => 'redcloth', :version => '>= 4.2.0'
@@ -91,9 +91,10 @@ Tog::Plugins.settings :tog_user,  {
 Tog::Plugins.settings :schoolarly, {
     "assignment.image.default"        => "dashboard/assignment2.png",
     "attachment.image.default"        => "dashboard/document2.png",
-    "post.image.default"        => "dashboard/note2.png",
-    "event.image.default"        => "dashboard/event2.png",
-    "notice.image.default"        => "dashboard/notice2.png"
+    "post.image.default"              => "dashboard/note2.png",
+    "event.image.default"             => "dashboard/event2.png",
+    "notice.image.default"            => "dashboard/notice2.png",
+    "group.notebook.default"              => "Default notebook for group"
 }, :force => true
 
 Tog::Plugins.settings :tog_core,  {

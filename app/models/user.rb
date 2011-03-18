@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   
   after_save :send_invitation_over_email
   
-  after_save :create_default_blog
+#  after_save :create_default_blog
   
   def send_invitation_over_email
     UserMailer.deliver_invite_notification(self) if self.recently_invited_over_email?
@@ -33,22 +33,22 @@ class User < ActiveRecord::Base
     person_type ? person_type.downcase.pluralize : 'members'
   end
   
-  def create_default_blog
-    if self.recently_activated?      
-      blog_name = "#{self.profile.full_name}'s blog"
-      blog_description = "Default blog for #{self.profile.full_name}"
-      unless self.bloggerships.find_by_rol("default")
-        bs = self.bloggerships.new
-        bs.rol = "default"
-        bs.build_blog(:title => blog_name, :description => blog_description, :author => self)
-        bs.save
-      end
-    end
-  end
+#  def create_default_blog
+#    if self.recently_activated?      
+#      blog_name = "#{self.profile.full_name}'s blog"
+#      blog_description = "Default blog for #{self.profile.full_name}"
+#      unless self.bloggerships.find_by_rol("default")
+#        bs = self.bloggerships.new
+#        bs.rol = "default"
+#        bs.build_blog(:title => blog_name, :description => blog_description, :author => self)
+#        bs.save
+#      end
+#    end
+#  end
   
-  def default_blog
-    self.bloggerships.find_by_rol("default").blog
-  end
+#  def default_blog
+#    self.bloggerships.find_by_rol("default").blog
+#  end
   
   def self.from_wufoo_entry(entry)
     User.new(:email => entry["Field38"]) do |u|
