@@ -12,7 +12,7 @@ module GroupsHelper
   end
   
   def default_blog_for(group)
-    blog = current_user.blogs.find_by_title_and_description(group.path, config["plugins.schoolarly.group.notebook.default"])
+    blog = current_user.blogs.find_by_title_and_description(group.name, config["plugins.schoolarly.group.notebook.default"]+" "+group.path)
   end
   
 end

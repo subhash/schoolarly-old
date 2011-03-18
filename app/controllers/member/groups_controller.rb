@@ -1,11 +1,12 @@
-class Member::GroupsController < Member::BaseController
-  
+require "csv"
+
+class Member::GroupsController < Member::BaseController 
   before_filter :find_parent, :only => [:new, :new_multiple, :create_multiple]
   before_filter :find_type, :only => [:new,:create, :new_multiple, :create_multiple]
   before_filter :find_group, :except => [:index, :new, :create, :new_multiple, :create_multiple]
-  before_filter :check_moderator, :except => [:index, :new, :create, :new_multiple, :create_multiple, :invite, :accept_invitation, :reject_invitation]
+  before_filter :check_moderator, :except => [:index, :new, :create, :new_multiple, :create_multiple, :invite, :accept_invitation, :reject_invitation, :show]
   
-  require "csv"
+  
   
   def create_multiple
     @groups = []
