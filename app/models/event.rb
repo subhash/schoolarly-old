@@ -26,5 +26,8 @@
 #  moderated         :boolean
 #
 class Event < ActiveRecord::Base
+
+  named_scope :between, lambda { |start_date, end_date| { :conditions => ['start_date >= ? and end_date <= ?', start_date, end_date], :order => 'start_date desc, start_time desc' } }  
+  
   acts_as_commentable
 end

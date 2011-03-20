@@ -1,4 +1,22 @@
+<% include_javascript 'jquery-1.4.2.min.js' %>
+<% include_stylesheet 'fullcalendar/adjustments' %>
+<% include_stylesheet 'fullcalendar/fullcalendar' %>
+<% include_javascript 'fullcalendar/fullcalendar' %>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+        events: "<%= member_conclave_events_path %>"
+    });
+
+});
+</script>
+
+<div id='calendar'></div>
+<% content_for :sidebar do %>
           <div class="title3 clearfix margin1">
               My events
           </div> 
@@ -32,3 +50,4 @@
               <%end%>
             <%end%>
           </ul>
+<% end %>		  

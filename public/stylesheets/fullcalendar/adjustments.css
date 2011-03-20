@@ -1,0 +1,6 @@
+/*
+ * To get rid of table border styles offered by style.css
+ */
+.fc table, .fc table th, .fc table td {
+	border: none;
+}
