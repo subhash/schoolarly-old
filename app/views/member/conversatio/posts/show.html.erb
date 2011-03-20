@@ -1,8 +1,11 @@
 <% include_autodiscovery(:atom, conversatio_blog_url(@blog, :format => :atom), :title => @blog.title) %>
 <div class="titleB">
     <% if @group %>
-    <%= link_to @group.name, member_group_path(@group) %> > <% end %>
-    <%= link_to @blog.title, conversatio_blog_path(@blog) -%>/ <%= sanitize @post.title %>
+    <%= link_to @group.name, member_group_path(@group) %> > 
+	<% else %>
+    <%= link_to @blog.title, conversatio_blog_path(@blog) -%> / 
+	<% end %>
+	<%= sanitize @post.title %>
     <%= link_to icon_for_post, @post.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @post.doc.file? %>
 </div>
 <%= render :partial => 'post' %>
