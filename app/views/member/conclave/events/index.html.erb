@@ -3,13 +3,23 @@
 <% include_stylesheet 'fullcalendar/fullcalendar' %>
 <% include_javascript 'fullcalendar/fullcalendar' %>
 
+<% url_params = {} %>
+<% url_params[:group] = @group if @group%>
+
+<% if @group %>
+	<% json_feed_path =  member_conclave_events_path(:group => @group) %>
+	<%= render :partial => '/member/groups/header' %>		
+<% else %>
+	<% json_feed_path =  member_conclave_events_path %>
+<% end %>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
     // page is now ready, initialize the calendar...
 
     $('#calendar').fullCalendar({
-        events: "<%= member_conclave_events_path %>"
+        events: "<%= json_feed_path %>"
     });
 
 });
