@@ -11,7 +11,9 @@ class Member::AssignmentsController < Member::BaseController
   def create
     @assignment = Assignment.new(params[:assignment])
     @assignment.post.user = current_user
+    published_at = @assignment.post.published_at
     @assignment.post.publish!
+    @assignment.post.published_at = published_at if published_at > Time.now
     respond_to do |wants|
       if @assignment.save
         @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group

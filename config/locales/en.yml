@@ -258,6 +258,8 @@ en:
         title: "Compose assignment"
       title:
         title: "Title"
+      starts_at: "Starts at"
+      due_by: "Due by"
     member:
       add: "Add assignment"
       add_success: "Assignment created"

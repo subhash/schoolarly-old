@@ -10,4 +10,10 @@ class Share < ActiveRecord::Base
     }
   }
   
+  def published?
+    if shareable.is_a? Assignment
+      return shareable.post.published?
+      else return true
+    end
+  end
 end
