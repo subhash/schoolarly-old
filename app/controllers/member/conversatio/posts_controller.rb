@@ -9,12 +9,7 @@ class Member::Conversatio::PostsController < Member::BaseController
     @post.blog = @blog
     @post.user = current_user
     @post.body = @post.title if @post.doc.file?
-    if @group
-      @post.publish!
-      @post.published_at = params[:post][:published_at]
-    else
-       @post.published_at = nil unless params[:update_published_at]   
-    end   
+    @post.publish! 
     respond_to do |wants|
       if @post.save
         @post.send("#{params[:state].to_s}!") if @post.aasm_events_for_current_state.map{|e| e.to_s}.include?("#{params[:state]}")
