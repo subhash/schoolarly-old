@@ -1,7 +1,7 @@
 <%= include_tiny_mce_if_needed %>
 <div class="titleB">
     <% if @group %>
-    <%= link_to @group.name, member_group_path(@group) if @group %>> <%= I18n.t('groups.member.assignment.share') %>
+    <%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t('groups.member.assignment.share') %>
     <% else %>
     <%= I18n.t('assignments.member.add') %>
     <% end %>
@@ -15,6 +15,7 @@
     <% f.fields_for :post_attributes do |p| %>
     <%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
     <%= hidden_field_tag :group, @group.id if @group %>
+    <%= hidden_field_tag 'post_state', I18n.t('tog_conversatio.model.states.published') %>
     <div class="fields">
         <p>
             <label for="starts_at">

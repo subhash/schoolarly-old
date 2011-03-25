@@ -284,6 +284,14 @@ en:
       
   submissions:
     site:
+      new: 
+        title: "Submissions for %{user}"
+        draft: "Save draft"
+        publish: "Submit"
+        confirm: "This will submit your answer. Are you sure?"
+        success: "Submission success"
+        failure: "Error in submitting"
+        
       manage:
         title: "Submissions"
         new: "Submit my answer"
