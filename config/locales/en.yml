@@ -292,6 +292,9 @@ en:
         confirm: "This will submit your answer. Are you sure?"
         success: "Submission success"
         failure: "Error in submitting"
+      edit:
+        success: "Submission updated"
+        failure: "Error in updating submission"  
         
       manage:
         title: "Submissions"

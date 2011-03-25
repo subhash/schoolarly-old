@@ -6,7 +6,11 @@
         <% if submission.blank? %>
         <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(@assignment) %>
         <% else %>
-        <%= link_to I18n.t('submissions.site.manage.view'), member_submission_path(submission) %>
+			<% if submission.post.published? %>
+        		<%= link_to I18n.t('submissions.site.manage.view'), member_submission_path(submission) %>
+			<% else %>
+        		<%= link_to I18n.t('submissions.site.manage.view'), edit_member_submission_path(submission) %>			
+			<% end %>
         <% end %>
         <br/>
     </div>
