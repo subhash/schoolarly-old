@@ -88,7 +88,9 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
     member.resources :attachments
-    member.resources :assignments
+    member.resources :assignments do |assignment|
+      assignment.resources :submissions, :shallow => true
+    end
     member.with_options :controller => 'groups' do |group|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
       group.new_group_with_type   'groups/new/:type', :action => 'new'

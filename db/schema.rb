@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110316080718) do
+ActiveRecord::Schema.define(:version => 20110325045127) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -381,6 +381,16 @@ ActiveRecord::Schema.define(:version => 20110316080718) do
     t.datetime "updated_at"
   end
 
+  create_table "submissions", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "assignment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "submissions", ["post_id"], :name => "post_id"
+  add_index "submissions", ["assignment_id"], :name => "assignment_id"
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -437,5 +447,8 @@ ActiveRecord::Schema.define(:version => 20110316080718) do
   add_foreign_key "attachments", ["user_id"], "users", ["id"], :name => "attachments_ibfk_1"
 
   add_foreign_key "notices", ["user_id"], "users", ["id"], :name => "notices_ibfk_1"
+
+  add_foreign_key "submissions", ["post_id"], "posts", ["id"], :name => "submissions_ibfk_1"
+  add_foreign_key "submissions", ["assignment_id"], "assignments", ["id"], :name => "submissions_ibfk_2"
 
 end

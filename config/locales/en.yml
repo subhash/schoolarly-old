@@ -282,5 +282,10 @@ en:
     member:
       remove_confirmation: Are you sure you want to stop sharing '%{shareable}' with the group '%{group}'?         
       
-
+  submissions:
+    site:
+      manage:
+        title: "Submissions"
+        new: "Submit my answer"
+        view: "My answer"
        

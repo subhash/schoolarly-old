@@ -6,6 +6,16 @@ class Assignment < ActiveRecord::Base
   
   accepts_nested_attributes_for :post
   
+  has_many :submissions do
+    def by(user)
+      find :first, :include => :post, :conditions => ["posts.user_id=?", user.id]
+    end
+  end
+  
+  def shared_to?(user)
+    shares_to_groups.any?{|s|user.groups.include?(s.shared_to)}
+  end
+  
   def to_crocodoc
     url = "https://crocodoc.com/api/v1/document/upload"
     response = RestClient.post(url, :token => 'vJK2p8cYFP1Xo0CUmweD', :file => attachment.doc.to_file, :private => true)

@@ -34,7 +34,7 @@ class Member::AssignmentsController < Member::BaseController
   def show
     @assignment =  Assignment.find(params[:id])
     @post = @assignment.post
-    @shared_groups = @post.shares_to_groups.collect(&:shared_to)
+    @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
   end
   
   
