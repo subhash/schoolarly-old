@@ -24,10 +24,10 @@ class Member::Conclave::EventsController < Member::BaseController
   def index
     respond_to do |wants|
       wants.html do
-        @order = params[:order] || 'title'
+        @order = params[:order] || 'start_date'
         @page = params[:page] || '1'
-        @asc = params[:asc] || 'asc'
-        @events = current_user.events.paginate :per_page => 10,
+        @asc = params[:asc] || 'desc'
+        @events = current_user.events.paginate :per_page => 3,
                                                :page => @page,
                                                :order => @order + " " + @asc        
       end
