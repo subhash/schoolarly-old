@@ -277,7 +277,11 @@ en:
   posts:
     model:
       doc: 
-        title: "Or upload a document"
+        title: "Upload document"
+        title_or: "Or upload a document"
+      compose:
+        title: "Compose here"
+        title_or: "or Compose here"
         
   sharings:
     member:
