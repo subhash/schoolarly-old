@@ -52,6 +52,7 @@
 				<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group), :class => 'calendar' %></li>
 				<li><%= link_to I18n.t('groups.member.attachment.share'), new_member_attachment_path(:group => @group), :class => 'set_highlight' %></li>		
 				<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_assignment_path(:group => @group), :class => 'set_highlight' %></li>			
+				<li><%= link_to I18n.t('groups.member.event.calendar'), member_conclave_events_path(:group => @group) %></li>				
           <% else -%>
             <% if !(@group.klass? || @group.school? || @group.subject? )%>
 				<li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>

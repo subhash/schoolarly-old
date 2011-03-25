@@ -13,6 +13,7 @@
       <th scope="row"><%= I18n.t("tog_conclave.fields.url") %></th>
       <td nowrap="nowrap"><%=f.text_field :url, :class=>"fieldbox" %></td>
   </tr>
+  <!--
   <tr>
       <th scope="row"><%= I18n.t("tog_conclave.fields.tags") %></th>
       <td nowrap="nowrap">
@@ -20,7 +21,8 @@
         <br/>
         <span class="helpinfo"><%= I18n.t("tog_conclave.fields.tags_explanation") %></span>
       </td>      
-  </tr>   
+  </tr>
+  -->   
   <tr>
       <th scope="row"><%= I18n.t("tog_conclave.fields.icon") %></th>
       <td nowrap="nowrap"><%= file_field "event", "icon" %></td>      
@@ -46,6 +48,7 @@
       <td nowrap="nowrap"><%=f.time_select :end_time, :class=>"fieldbox" %></td>
   </tr>                
 </tbody></table>
+<!--
 <table class="tableE">
   <caption><%= I18n.t("tog_conclave.admin.localization") %></caption>
   <tbody>
@@ -74,6 +77,6 @@
         <td nowrap="nowrap"><%=f.text_field :capacity, :class=>"fieldbox" %></td>
     </tr>
 </tbody></table>
-
+-->
 <%= hidden_field_tag :group, params[:group] if params[:group]%>
 <br />

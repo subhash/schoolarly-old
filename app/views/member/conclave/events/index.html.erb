@@ -3,13 +3,30 @@
 <% include_stylesheet 'fullcalendar/fullcalendar' %>
 <% include_javascript 'fullcalendar/fullcalendar' %>
 
+<% include_stylesheet "date.css" %>
+
+<% url_params = {} %>
+<% url_params[:group] = @group if @group%>
+
+<% if @group %>
+	<% json_feed_path =  member_conclave_events_path(:group => @group) %>
+	<%= render :partial => '/member/groups/header' %>		
+<% else %>
+	<% json_feed_path =  member_conclave_events_path %>
+<% end %>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
     // page is now ready, initialize the calendar...
 
     $('#calendar').fullCalendar({
-        events: "<%= member_conclave_events_path %>"
+		header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},		
+        events: "<%= json_feed_path %>"
     });
 
 });
@@ -27,27 +44,33 @@
               <li class="clearfix">You haven't create any event
             <% else %>
               <% @events.each do |event| %>
-              <li class="clearfix" id="event<%=event.id.to_s%>">
-                  <div class="li_content">
-                      <div class="metadata">
-                          <span class="meta">Title:</span> <%= link_to '<strong>'+event.title+'</strong>', conclave_event_path(event), :title => event.title %>
-                          <br />
-                          <span class="meta">Date:</span> <%=event.start_date.to_s %>
-                          <br />
-                          <span class="meta">Time:</span> From <%=event.start_time.to_s %> to <%=event.end_time.to_s %>
-                          <br />
-                          <span id="current_status<%=event.id.to_s%>">
-                            <%if logged_in? && event.registered?(current_user)%>
-                              <%=link_to I18n.t('tog_conclave.member.unregister'), member_conclave_event_attendance_path(event, event), :method => :delete %>
-                            <%elsif event.active? && event.places_left?%>
-                              <%=link_to I18n.t('tog_conclave.member.register'), member_conclave_event_attendances_path(event), :method => :post %>
-                            <%end%>
-							| <%= share_with_groups_link(event) if i_am_the_owner_of? event %>                          
-                          </span>
-                      </div>
-                  </div> <!-- /.li_content -->    
-              </li>
+			  	<li class="clearfix detail1" id="event<%=event.id.to_s%>">
+				<div class="clearfix">
+				    <!--
+				    <div class="image left"><%= image_tag event.icon.url :small %></div>
+				    -->
+				    <div class="image date month<%= event.start_date.month %>">
+				        <%= event.start_date.day %>
+				    </div>
+				    <div>
+				        <span class="title"><%= link_to event.title, member_conclave_event_path(event), :title => event.title %></span>
+				    </div>
+				    <div class="summary">
+				        <%= write_event_time(event) %>
+				        <%= "at #{event.venue}"  if event.venue %>
+				    </div>
+				    <div  class="text">
+				        <%= event.description %>
+				    </div>
+				</div>
+				</li>
               <%end%>
+			  <div class="info_results">
+			      <span class="info_items"><%= page_entries_info @events %>
+			      </span>
+			      <span class="pages_navigation right"><%= will_paginate @events %>
+			      </span>
+			  </div>			  			  
             <%end%>
           </ul>
 <% end %>		  
