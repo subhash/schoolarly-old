@@ -259,6 +259,8 @@ en:
         title: "Compose assignment"
       title:
         title: "Title"
+      starts_at: "Starts at"
+      due_by: "Due by"
     member:
       add: "Add assignment"
       add_success: "Assignment created"
@@ -281,5 +283,18 @@ en:
     member:
       remove_confirmation: Are you sure you want to stop sharing '%{shareable}' with the group '%{group}'?         
       
-
+  submissions:
+    site:
+      new: 
+        title: "Submissions for %{user}"
+        draft: "Save draft"
+        publish: "Submit"
+        confirm: "This will submit your answer. Are you sure?"
+        success: "Submission success"
+        failure: "Error in submitting"
+        
+      manage:
+        title: "Submissions"
+        new: "Submit my answer"
+        view: "My answer"
        
