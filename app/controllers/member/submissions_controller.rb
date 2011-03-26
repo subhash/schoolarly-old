@@ -11,7 +11,8 @@ class Member::SubmissionsController < Member::BaseController
   
   def create
     @submission = Submission.create(params[:submission])
-    @submission.post.user = @user  
+    @submission.post.user = @user
+    @submission.post.to_crocodoc
     respond_to do |wants|
       if @submission.save 
         @submission.post.publish!  if params[:publish]
@@ -47,7 +48,14 @@ class Member::SubmissionsController < Member::BaseController
         end
       end      
     end
-  end  
+  end
+  
+  def show
+    puts @submission.post.inspect
+    if @submission.post.uuid
+      @session = @submission.post.from_crocodoc(current_user.profile.full_name, @submission.assignment.post.user == current_user)
+    end
+  end
   
   private
   def find_assignment

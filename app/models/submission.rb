@@ -5,4 +5,5 @@ class Submission < ActiveRecord::Base
   
   accepts_nested_attributes_for :post
   
+  
 end
