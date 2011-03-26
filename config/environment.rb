@@ -65,6 +65,11 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'criterion', 'criteria'
+end
+
+
 Tog::Interface.sections(:site).clear
 
 Tog::Interface.sections(:member).tabs(:home).url = '/member'
