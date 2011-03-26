@@ -32,9 +32,11 @@ class Member::AssignmentsController < Member::BaseController
   
   
   def show
+    store_location
     @assignment =  Assignment.find(params[:id])
     @post = @assignment.post
     @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
+    @submitters = @shared_groups.collect(&:student_users).flatten
   end
   
   
