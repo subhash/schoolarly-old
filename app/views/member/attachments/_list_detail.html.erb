@@ -2,7 +2,7 @@
     <%= link_to "#{sanitize attachment.title}", member_attachment_path(attachment, :group => @group) %>
 </div>
 <div class="text"> 
-	<%= sanitize(textilize(attachment.description), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
+	<%= sanitize(textilize(attachment.description), :tags => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_attributes').split) %>
 </div>
 <div class="portlet portletL">
 	<%= link_to icon_for_attachment, attachment.doc.url, :title => "#{sanitize attachment.doc.original_filename}" %>

@@ -1,1 +1,7 @@
-<iframe src="https://crocodoc.com/view/?sessionId=<%= @session %>" style="border:1px solid #ddd; width: 900px; height: 100%"></iframe>
+<iframe src="https://crocodoc.com/view/?sessionId=<%= @session %>" style="border:1px solid #ddd; width: 900px; height: 100%">
+</iframe>
+<% content_for :sidebar do %>
+<div>
+    <%= sanitize(@submission.post.body, :tags => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_attributes').split) %>
+</div>
+<% end %>
