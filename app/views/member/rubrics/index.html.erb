@@ -24,11 +24,7 @@
     <% for rubric in @rubrics %>
     <tr<%= cycle(' class="pair"', '') -%>>
       <td>
-      	<% if i_am_the_author_of?(rubric) %>
-		<%= link_to rubric.title, edit_member_rubric_path(rubric) %>
-		<% else %>
-      	<%= link_to rubric.title, member_rubric_path(blog) %>
-		<% end %>
+		<%= link_to rubric.title, member_rubric_path(rubric) %>
 		</td>
       <td><%= link_to rubric.user.profile.full_name, member_profile_path(rubric.user.profile) %></td>
       <td>

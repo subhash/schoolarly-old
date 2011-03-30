@@ -36,6 +36,10 @@ class Member::RubricsController < Member::BaseController
     end
   end
   
+  def show
+    @rubric = Rubric.find(params[:id])
+  end
+  
   def add_level
     @rubric = Rubric.new(params[:rubric])
     level = Level.new
