@@ -265,7 +265,10 @@ en:
     member:
       add: "Add assignment"
       add_success: "Assignment created"
-      add_failure: "Failure in creating assignment"  
+      add_failure: "Failure in creating assignment"
+      edit: "Edit assignment"
+      edit_success: "Assignment updated"
+      edit_failure: "Failed to update assignment"
              
   notebooks:
     member:

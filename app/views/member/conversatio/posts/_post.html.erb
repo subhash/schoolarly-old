@@ -13,9 +13,6 @@
 </div>
 <div id="post_<%= @post.id %>" class="border_top">
     <% if @post.doc.file? %>
-	<%= post.doc.original_filename.inspect %>
-	<%= post.doc.content_type.inspect %>
-	<%= post.doc.path.inspect %>	
     <iframe src="http://docs.google.com/viewer?embedded=true&url=<%= @post.doc.url %>" style="border:1px solid #ddd; width: 100%; height: 100%">
     </iframe>
     <% else %>
