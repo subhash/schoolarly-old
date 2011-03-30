@@ -10,7 +10,7 @@
     </div>
 	<br />
     <div>
-        <%= sanitize(textilize(@attachment.description), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.allowed_attributes').split) %>
+        <%= sanitize(textilize(@attachment.description), :tags => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_attributes').split) %>
     </div>
     <br/>
     <%= render :partial => "shared/comments", :locals => { :commentable => @attachment } %>

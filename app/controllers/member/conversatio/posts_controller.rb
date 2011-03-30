@@ -8,7 +8,6 @@ class Member::Conversatio::PostsController < Member::BaseController
     @post = Post.new params[:post]
     @post.blog = @blog
     @post.user = current_user
-    @post.body = @post.title if @post.doc.file?
     @post.publish! 
     respond_to do |wants|
       if @post.save
