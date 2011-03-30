@@ -30,7 +30,6 @@ class Member::SubmissionsController < Member::BaseController
   end
   
   def edit
-    puts @submission.post.body
   end
   
   def update
@@ -66,6 +65,7 @@ class Member::SubmissionsController < Member::BaseController
   def find_submission
     @submission = Submission.find(params[:id])
     @assignment = @submission.assignment
+    @post = @submission.post
   end
   
   def find_user

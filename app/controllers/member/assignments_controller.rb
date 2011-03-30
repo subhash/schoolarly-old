@@ -1,6 +1,7 @@
 class Member::AssignmentsController < Member::BaseController
   
   before_filter :find_group
+  before_filter :find_assignment, :except => [:new, :create]
   
   uses_tiny_mce :only => [:new, :create, :edit, :update]
   
@@ -32,17 +33,43 @@ class Member::AssignmentsController < Member::BaseController
   
   
   def show
-    store_location
-    @assignment =  Assignment.find(params[:id])
-    @post = @assignment.post
+    store_location    
     @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
     @submitters = @shared_groups.collect(&:student_users).flatten
+  end
+  
+  def edit    
+  end
+  
+  def update
+    @assignment.attributes = params[:assignment]
+    published_at = @assignment.post.published_at
+    @assignment.post.published_at = published_at if published_at > Time.now
+    respond_to do |wants|
+      if @assignment.save
+        @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
+        wants.html do
+          flash[:ok] = I18n.t('assignments.member.edit_success')
+          redirect_back_or_default member_assignments_path(@assignment)
+        end
+      else
+        wants.html do
+          flash[:error] = I18n.t('assignments.member.edit_failure')
+          render :new
+        end
+      end      
+    end  
   end
   
   
   private  
   def find_group
     @group = Group.find(params[:group]) if params[:group]
+  end
+  
+  def find_assignment
+    @assignment =  Assignment.find(params[:id])
+    @post = @assignment.post
   end
   
 end
