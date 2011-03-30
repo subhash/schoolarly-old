@@ -29,13 +29,43 @@ class Member::RubricsController < Member::BaseController
         rd.level = level
       end
     end
-    if 
-      @rubric.save
+    if @rubric.save
       redirect_back_or_default member_rubrics_path
     else
       render :action => 'new'
     end
   end
   
+  def add_level
+    @rubric = Rubric.new(params[:rubric])
+    level = Level.new
+    @rubric.levels << level
+    @rubric.criteria.each do |criterion|
+      criterion.rubric_descriptors << RubricDescriptor.new(:level => level)
+    end
+    respond_to do |format|
+      format.js {
+        render :update do |page|
+          page[:rubric].replace_html :partial => 'member/rubrics/form'
+        end
+      }
+    end
+  end
+  
+  def add_criterion
+    @rubric = Rubric.new(params[:rubric])
+    criterion = Criterion.new
+    @rubric.levels.each do |level|
+      criterion.rubric_descriptors << RubricDescriptor.new(:level => level)
+    end
+    @rubric.criteria << criterion
+    respond_to do |format|
+      format.js {
+        render :update do |page|
+          page[:rubric].replace_html :partial => 'member/rubrics/form'
+        end
+      }
+    end   
+  end
   
 end

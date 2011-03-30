@@ -1,0 +1,58 @@
+<% form_for @rubric, :url => member_rubrics_path , :html => {:id => 'rubric_form'} do |f| %>
+<p>
+    <label for="rubric_title">
+        <%= I18n.t('rubrics.model.title') %>
+    </label>
+    <%= f.text_field :title, :class=>"fieldbox wide" -%>
+</p>
+<table class="tableB">
+    <thead>
+        <tr>
+            <td>
+            </td>
+            <th colspan=<%=@rubric.levels.size%>
+                ><%= I18n.t('rubrics.member.new.levels.title') %>
+                <%= link_to_remote I18n.t('rubrics.member.new.levels.add'),
+                :url => {:controller => :rubrics, :action => 'add_level'}, :method => :post,
+                :html => {:class => 'button add'},
+                :with => "$('rubric_form').serialize()" %>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="col">
+                <%= I18n.t('rubrics.member.new.criteria.title') %>
+                <%= link_to_remote I18n.t('rubrics.member.new.criteria.add'),
+                :url => {:controller => :rubrics, :action => 'add_criterion'}, :method => :post,
+                :html => {:class => 'button add'},
+                :with => "$('rubric_form').serialize()" %>
+            </th>
+            <% i = 0 %>
+            <% f.fields_for :levels do |l| %>
+            <th scope="col">
+                <%= l.text_field :name, :placeholder => "scale name" %>
+                <%= l.hidden_field :position, :value => i %>
+                <% i+= 1 %>
+            </th>
+            <% end %>
+        </tr>
+        <% f.fields_for :criteria do |c| %>
+        <tr>
+            <th>
+                <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" %>
+            </th>
+            <% i = 0 %>
+            <% c.fields_for :rubric_descriptors do |rd| %>
+            <td>
+                <%= rd.text_field :description, :placeholder => "Type description here..." %>
+                <%= rd.hidden_field :position, :value => i %>
+                <% i+= 1 %>
+            </td>
+            <% end %>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<%= submit_tag :create %>
+<% end %>
