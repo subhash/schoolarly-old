@@ -88,6 +88,7 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
     member.resources :attachments
+    member.resources :rubrics
     member.resources :assignments do |assignment|
       assignment.resources :submissions, :shallow => true
     end

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   named_scope :of_type, lambda { |type| {:conditions => {:person_type => type}}}
   
   has_many :attachments
+  has_many :rubrics
   
   def student?
     person.is_a? Student

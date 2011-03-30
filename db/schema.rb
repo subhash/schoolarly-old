@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
   create_table "criteria", :force => true do |t|
     t.string   "name"
     t.integer  "rubric_id"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
   create_table "levels", :force => true do |t|
     t.string   "name"
     t.integer  "rubric_id"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -355,6 +357,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
     t.string   "description"
     t.integer  "criterion_id"
     t.integer  "level_id"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -364,9 +367,12 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
 
   create_table "rubrics", :force => true do |t|
     t.string   "title"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "rubrics", ["user_id"], :name => "user_id"
 
   create_table "schools", :force => true do |t|
     t.datetime "created_at"
@@ -489,6 +495,8 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
 
   add_foreign_key "rubric_descriptors", ["criterion_id"], "criteria", ["id"], :name => "rubric_descriptors_ibfk_1"
   add_foreign_key "rubric_descriptors", ["level_id"], "levels", ["id"], :name => "rubric_descriptors_ibfk_2"
+
+  add_foreign_key "rubrics", ["user_id"], "users", ["id"], :name => "rubrics_ibfk_1"
 
   add_foreign_key "submissions", ["post_id"], "posts", ["id"], :name => "submissions_ibfk_1"
   add_foreign_key "submissions", ["assignment_id"], "assignments", ["id"], :name => "submissions_ibfk_2"

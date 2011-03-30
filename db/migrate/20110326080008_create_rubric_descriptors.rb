@@ -3,7 +3,8 @@ class CreateRubricDescriptors < ActiveRecord::Migration
     create_table :rubric_descriptors do |t|
       t.string :description
       t.integer :criterion_id
-       t.integer :level_id
+      t.integer :level_id
+      t.integer :position
       t.timestamps
       
       t.foreign_key :criterion_id, :criteria, :id
@@ -11,7 +12,7 @@ class CreateRubricDescriptors < ActiveRecord::Migration
       t.timestamps
     end
   end
-
+  
   def self.down
     drop_table :rubric_descriptors
   end

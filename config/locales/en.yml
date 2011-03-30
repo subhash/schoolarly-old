@@ -19,6 +19,7 @@ en:
     member:
       attachments: "Documents"
       sharings: "Shared items"
+      rubrics: "Rubrics"
   groups:
     model:
       groups_not_found: "%{parent} has 0 groups."
@@ -307,4 +308,22 @@ en:
       state:
         pending: "Pending"
         draft: "Draft"
+  
+  rubrics:
+    model:
+      title: "Title"
+    member:
+      index:
+        title: "Rubrics Library"
+        create: "Create Rubric"
+        created_by: "Created by"
+        rubric: "rubric"
+      new:
+        title: New Rubric
+        criteria:
+          add: "Add criterion"
+          title: "Criteria"
+        levels:
+          add: "Add level"
+          title: "Levels -> "
        

@@ -4,6 +4,7 @@ class CreateLevels < ActiveRecord::Migration
       
       t.string :name
       t.integer :rubric_id
+      t.integer :position
       t.timestamps
       
       t.foreign_key :rubric_id, :rubrics, :id

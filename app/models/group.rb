@@ -119,9 +119,9 @@ class Group < ActiveRecord::Base
     end
   end
   
-    
+  
   private
-    
+  
   def path
     s = []
     ancestors.reverse.each{|a| s << a.name + " > "}

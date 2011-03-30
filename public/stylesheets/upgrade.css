@@ -22,9 +22,9 @@
     margin-left: 60px;
     background-image: none;
     border: none;
-	margin-bottom: 2px;
-	padding-left: 10px;
-	background-color: #E9E9E9;
+    margin-bottom: 2px;
+    padding-left: 10px;
+    background-color: #E9E9E9;
 }
 
 .portletB .portletI ul {
@@ -34,9 +34,9 @@
 
 .portletI li {
     margin-left: 60px;
-	margin-bottom: 2px;
-	padding-left: 10px;
-	background-color: #E9E9E9;
+    margin-bottom: 2px;
+    padding-left: 10px;
+    background-color: #E9E9E9;
 }
 
 .col_70_30 {
@@ -58,7 +58,6 @@
 
 form .fields p {
     margin: 0 0 1em 20%;
-
 }
 
 a.calendar {
@@ -72,3 +71,8 @@ a.ok {
     padding-left: 20px;
     text-decoration: none;
 }
+
+table th.level {
+    border: none;
+}
+

@@ -9,6 +9,7 @@ class Share < ActiveRecord::Base
       :conditions => {:shared_to_id => group_ids, :shared_to_type => 'Group', :shareable_type => type}
     }
   }
+
   
   def published?
     if shareable.is_a? Assignment
