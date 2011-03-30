@@ -1,5 +1,5 @@
 <h2><span><%= I18n.t('rubrics.member.new.title') %></span></h2>
-<% form_for @rubric, :url => member_rubrics_path(@rubric) do |f| %>
+<% form_for @rubric, :url => member_rubrics_path(@rubric, :id => 'rubric_form' ) do |f| %>
 <p>
     <label for="rubric_title">
         <%= I18n.t('rubrics.model.title') %>
@@ -12,7 +12,7 @@
         </td>
         <th colspan=<%=@rubric.levels.size%>
             ><%= I18n.t('rubrics.member.new.levels.title') %>
-            <%= link_to_function I18n.t('rubrics.member.new.levels.add'), :class => 'button add' %>
+            <%= link_to_remote I18n.t('rubrics.member.new.levels.add'), :url => {:controller => :rubrics, :action => 'add_level', :method => :post}, :html => {:class => 'button add'}, :with => "Form.serialize($('rubric_form').form)" %>
         </th>
     </thead>
     <tbody>
