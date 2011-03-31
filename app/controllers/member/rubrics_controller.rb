@@ -58,6 +58,9 @@ class Member::RubricsController < Member::BaseController
     if @rubric.save
       redirect_back_or_default member_rubrics_path
     else
+      @rubrics = (current_user.rubrics  | Share.shared_to_groups_of_type(current_user.groups,'Rubric')).paginate :per_page => 20,
+                                 :page => @page,
+                                 :order => "title DESC"  
       render :action => 'new'
     end
   end
