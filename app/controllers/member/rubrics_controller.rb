@@ -24,7 +24,7 @@ class Member::RubricsController < Member::BaseController
   
   def new_template
     rubric_old = Rubric.find(params[:rubric_id])
-    @rubric = Rubric.new(:title => rubric_old.title)
+    @rubric = Rubric.new
     for level_old in rubric_old.levels
       level = Level.new(:name => level_old.name, :position => level_old.position)
       @rubric.levels << level
