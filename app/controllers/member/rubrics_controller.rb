@@ -17,7 +17,33 @@ class Member::RubricsController < Member::BaseController
   
   def new
     @rubric = Rubric.new
-    @rubric.add_default_attributes
+    @rubrics = (current_user.rubrics  | Share.shared_to_groups_of_type(current_user.groups,'Rubric')).paginate :per_page => 20,
+                                 :page => @page,
+                                 :order => "title DESC"  
+  end
+  
+  def new_template
+    rubric_old = Rubric.find(params[:rubric_id])
+    @rubric = Rubric.new(:title => rubric_old.title)
+    for level_old in rubric_old.levels
+      level = Level.new(:name => level_old.name, :position => level_old.position)
+      @rubric.levels << level
+    end
+    for criterion_old in rubric_old.criteria
+      criterion = Criterion.new(:name => criterion_old.name)
+      for rd_old in criterion_old.rubric_descriptors  
+        rd = RubricDescriptor.new(:description => rd_old.description,:level => @rubric.levels.at(rd_old.level.position))
+        criterion.rubric_descriptors << rd
+      end
+      @rubric.criteria << criterion
+    end
+    respond_to do |format|
+      format.js {
+        render :update do |page|
+          page[:rubric].replace_html :partial => 'member/rubrics/form'
+        end
+      }
+    end
   end
   
   def create

@@ -323,6 +323,7 @@ en:
         rubric: "rubric"
       new:
         title: New Rubric
+        choose_template: "Choose a template"
         criteria:
           add: "Add criterion"
           title: "Criteria"
