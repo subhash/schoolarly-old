@@ -1,0 +1,41 @@
+<% include_javascript 'jquery-1.4.2.min' %>
+<% include_javascript 'jeditable/jquery.jeditable' %>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('.editable').editable('<%= member_rubric_path(@rubric) %>', {
+			method: 'PUT',
+			id: 'element'
+		});
+	}
+	);	
+</script>
+
+<h2><span><%= I18n.t('rubrics.member.new.title') %></span></h2>
+
+<table class="tableB">
+    <tbody>
+        <tr>
+            <th scope="col">
+                
+            </th>
+            <% for level in @rubric.levels %>
+            <th scope="col">
+                <b class="editable" name="rubric[level_attributes][<%= level.id %>][name]" id="level_<%= level.id%>_name"><%= level.name %></b>
+            </th>
+            <% end %>
+        </tr>
+        <% for criterion in @rubric.criteria%>
+        <tr>
+            <th>
+                <%= criterion.name %>
+            </th>
+            <% for rd in criterion.rubric_descriptors %>
+            <td>
+                <%= rd.description %>
+            </td>
+            <% end %>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

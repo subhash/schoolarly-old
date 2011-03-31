@@ -1,0 +1,7 @@
+<%=
+    case params[:wants]
+    when 'name' then h( @email.name )
+    # add other attributes if you have more inline forms for this model
+    else h(params[:value])
+    end
+%>

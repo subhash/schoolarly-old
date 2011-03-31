@@ -40,6 +40,32 @@ class Member::RubricsController < Member::BaseController
     @rubric = Rubric.find(params[:id])
   end
   
+  def edit
+    puts "edit #{params.inspect}"
+    @rubric = Rubric.find(params[:id])
+  end
+  
+  def update
+    puts "update #{params.inspect}"
+    obj, id, attr = params[:element].split("_")
+    record = case obj 
+      when 'level' then Level.find(id)
+      when 'criterion' then Criterion.find(id)
+      when 'rubric_descriptor' then RubricDescriptor.find(id)
+    end
+    record[attr] = params[:value]
+    if record.save
+      respond_to do |wants|
+        wants.js 
+      end
+    end
+  end
+  
+  def see
+    puts "see #{params.inspect}"
+    puts "request #{request.inspect}"
+  end
+  
   def add_level
     @rubric = Rubric.new(params[:rubric])
     level = Level.new
