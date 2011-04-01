@@ -1,10 +1,5 @@
 class Member::RubricsController < Member::BaseController
   
-  in_place_edit_for :rubric, :title
-  in_place_edit_for :category, :name
-  in_place_edit_for :level, :name
-  in_place_edit_for :rubric_descriptor, :description
-  
   def index
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
