@@ -70,8 +70,7 @@ class Member::RubricsController < Member::BaseController
   end
   
   def update
-    puts "update #{params.inspect}"
-    obj, id, attr = params[:element].split("_")
+    obj, id, attr = params[:element].split("-")
     record = case obj 
       when 'level' then Level.find(id)
       when 'criterion' then Criterion.find(id)

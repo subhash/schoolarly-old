@@ -3,12 +3,15 @@
 <% include_javascript 'elastic/jquery.elastic' %>
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery('.level').editable('<%= member_rubric_path(@rubric) %>', {
-            tooltip: "Click to edit",
-            width: 200,
-            method: 'PUT',
-            id: 'element'
-        });
+        jQuery('.level').each(function(i){
+				jQuery(this).editable('<%= member_rubric_path(@rubric) %>', {
+	            tooltip: "Click to edit",
+	            width: 200,
+	            method: 'PUT',
+	            id: 'element',
+				name: jQuery(this).attr('name')
+        	});
+		});
         jQuery('.criterion').editable('<%= member_rubric_path(@rubric) %>', {
             tooltip: "Click to edit",
             width: 200,
@@ -36,18 +39,18 @@
             </th>
             <% for level in @rubric.levels %>
             <th scope="col">
-                <b class="level" name="rubric[levels_attributes][<%= level.id %>][name]" id="level_<%= level.id%>_name"><%= level.name %></b>
+                <b class="level" name="rubric[levels_attributes][<%= level.id %>][name]" id="level-<%= level.id%>-name"><%= level.name %></b>
             </th>
             <% end %>
         </tr>
         <% for criterion in @rubric.criteria %>
         <tr>
             <th>
-                <b class="criterion" name="rubric[criteria_attributes][<%= criterion.id %>][name]" id="criterion_<%= criterion.id%>_name"><%= criterion.name %></b>
+                <b class="criterion" name="rubric[criteria_attributes][<%= criterion.id %>][name]" id="criterion-<%= criterion.id%>-name"><%= criterion.name %></b>
             </th>
             <% for rd in criterion.rubric_descriptors %>
             <td>
-                <b class="rubric_descriptor" name="rubric[criteria_attributes][<%= criterion.id %>][rubric_descriptors_attributes][<%= rd.id %>][description]" id="rubric_descriptor_<%= rd.id%>_description"><%= rd.description %></b>
+                <b class="rubric_descriptor" name="rubric[criteria_attributes][<%= criterion.id %>][rubric_descriptors_attributes][<%= rd.id %>][description]" id="rubric_descriptor-<%= rd.id%>-description"><%= rd.description %></b>
             </td>
             <% end %>
         </tr>
