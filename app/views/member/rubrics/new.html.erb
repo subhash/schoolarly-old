@@ -1,4 +1,52 @@
+<% include_javascript "busy_ajax" %>
+
 <h2><span><%= I18n.t('rubrics.member.new.title') %></span></h2>
+<% if @rubrics %>
+<table class="tableB">
+    <caption>
+        <%= I18n.t('rubrics.member.new.choose_template') %>
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col">
+                &nbsp;
+            </th>
+            <th scope="col">
+                <%= I18n.t('rubrics.member.index.title') %>
+            </th>
+            <th scope="col">
+                <%= I18n.t('rubrics.member.index.created_by') %>
+            </th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="info_results">
+                <span class="info_items"><%= page_entries_info @rubrics, :entry_name =>  I18n.t('rubrics.member.index.rubric') %></span>
+                <span class="pages_navigation right"><%= will_paginate @rubrics, :container => false %>
+                </span>
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <% for rubric in @rubrics %>
+        <tr<%= cycle(' class="pair"', '') -%>>
+            <td>
+                <%= radio_button_tag "template_rubric", rubric.id, false, :onclick => remote_function(:url => {:controller => :rubrics, :action => 'new_template', :rubric_id => rubric.id}) %>
+            </td>
+            <td>
+                <%= link_to rubric.title, member_rubric_path(rubric) %>
+            </td>
+            <td>
+                <%= link_to rubric.user.profile.full_name, member_profile_path(rubric.user.profile) %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<br/>
+<br/>
+<% end %>
 <div class="error">
     <%= error_messages_for :rubric %>
 </div>

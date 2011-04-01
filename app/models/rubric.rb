@@ -1,7 +1,11 @@
 class Rubric < ActiveRecord::Base
   
   has_many :criteria, :order => 'position', :dependent => :destroy
-  has_many :levels, :order => 'position', :dependent => :destroy
+  has_many :levels, :order => 'position', :dependent => :destroy do
+    def at(position)
+      find :first, :conditions => {:position => position}
+    end
+  end
   belongs_to :user
   
   validates_presence_of :title

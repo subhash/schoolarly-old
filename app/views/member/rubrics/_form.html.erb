@@ -10,8 +10,8 @@
         <tr>
             <td>
             </td>
-            <th colspan=<%=@rubric.levels.size%>
-                ><%= I18n.t('rubrics.member.new.levels.title') %>
+            <th colspan=<%=@rubric.levels.size%> class="level">
+                <%= I18n.t('rubrics.member.new.levels.title') %>
                 <%= link_to_remote I18n.t('rubrics.member.new.levels.add'),
                 :url => {:controller => :rubrics, :action => 'add_level'}, :method => :post,
                 :html => {:class => 'button add'},
@@ -21,7 +21,7 @@
     </thead>
     <tbody>
         <tr>
-            <th scope="col">
+            <th scope="col" class="criterion">
                 <%= I18n.t('rubrics.member.new.criteria.title') %>
                 <%= link_to_remote I18n.t('rubrics.member.new.criteria.add'),
                 :url => {:controller => :rubrics, :action => 'add_criterion'}, :method => :post,
@@ -30,7 +30,7 @@
             </th>
             <% i = 0 %>
             <% f.fields_for :levels do |l| %>
-            <th scope="col">
+            <th scope="col" class="level">
                 <%= l.text_field :name, :placeholder => "scale name" %>
                 <%= l.hidden_field :position, :value => i %>
                 <% i+= 1 %>
@@ -39,7 +39,7 @@
         </tr>
         <% f.fields_for :criteria do |c| %>
         <tr>
-            <th>
+            <th class="criterion">
                 <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" %>
             </th>
             <% i = 0 %>

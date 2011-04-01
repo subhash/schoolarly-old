@@ -27,9 +27,11 @@
 		<%= link_to rubric.title, member_rubric_path(rubric) %>
 		</td>
       <td><%= link_to rubric.user.profile.full_name, member_profile_path(rubric.user.profile) %></td>
+	  <% if i_am_the_author_of?(rubric) %>
       <td>
         <%= share_with_groups_link(rubric)  %> 
       </td>
+	  <% end %>
     </tr>
     <% end %>
   </tbody>

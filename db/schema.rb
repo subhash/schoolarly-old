@@ -149,7 +149,6 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
   create_table "criteria", :force => true do |t|
     t.string   "name"
     t.integer  "rubric_id"
-    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -250,7 +249,6 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
   create_table "levels", :force => true do |t|
     t.string   "name"
     t.integer  "rubric_id"
-    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -473,7 +471,6 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
     t.string   "description"
     t.integer  "criterion_id"
     t.integer  "level_id"
-    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -483,20 +480,25 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
 
   create_table "rubrics", :force => true do |t|
     t.string   "title"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "rubrics", ["user_id"], :name => "user_id"
 
   create_table "schools", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-# Could not dump table "shares" because of following ActiveRecord::StatementInvalid
-#   Mysql::Error: Can't create/write to file 'C:\DOCUME~1\Subhash\LOCALS~1\Temp\#sql_c04_0.MYD' (Errcode: 13): describe `shares`
+  create_table "shares", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "shareable_type", :limit => 30
+    t.integer  "shareable_id"
+    t.string   "shared_to_type", :limit => 30
+    t.integer  "shared_to_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "status",                       :default => 1
+  end
 
   create_table "smerf_forms", :force => true do |t|
     t.string   "name",       :default => "", :null => false
@@ -642,3 +644,28 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
     t.datetime "updated_at"
   end
 
+  create_table "validations", :force => true do |t|
+    t.integer  "answer_id"
+    t.string   "rule"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_foreign_key "assignments", ["post_id"], "posts", ["id"], :name => "assignments_ibfk_1"
+
+  add_foreign_key "attachments", ["user_id"], "users", ["id"], :name => "attachments_ibfk_1"
+
+  add_foreign_key "criteria", ["rubric_id"], "rubrics", ["id"], :name => "criteria_ibfk_1"
+
+  add_foreign_key "levels", ["rubric_id"], "rubrics", ["id"], :name => "levels_ibfk_1"
+
+  add_foreign_key "notices", ["user_id"], "users", ["id"], :name => "notices_ibfk_1"
+
+  add_foreign_key "rubric_descriptors", ["criterion_id"], "criteria", ["id"], :name => "rubric_descriptors_ibfk_1"
+  add_foreign_key "rubric_descriptors", ["level_id"], "levels", ["id"], :name => "rubric_descriptors_ibfk_2"
+
+  add_foreign_key "submissions", ["post_id"], "posts", ["id"], :name => "submissions_ibfk_1"
+  add_foreign_key "submissions", ["assignment_id"], "assignments", ["id"], :name => "submissions_ibfk_2"
+
+end
