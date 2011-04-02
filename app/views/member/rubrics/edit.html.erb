@@ -1,10 +1,11 @@
+<% include_javascript "busy_ajax" %>
 <% include_javascript 'jquery-1.4.2.min' %>
 <% include_javascript 'jeditable/jquery.jeditable' %>
 <% include_javascript 'elastic/jquery.elastic' %>
-<% include_javascript "busy_ajax" %>
 <script type="text/javascript">
 	jQuery.noConflict();
 </script>
+
 
 <h2><span><%= I18n.t('rubrics.member.new.title') %></span></h2>
 <div id="rubric"><%= render :partial => 'rubric_table'%></div>
