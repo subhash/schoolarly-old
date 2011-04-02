@@ -1,0 +1,56 @@
+<script type="text/javascript">	
+    jQuery(document).ready(function(){
+        jQuery('.level').each(function(i){
+				jQuery(this).editable('<%= member_rubric_path(@rubric) %>', {
+	            tooltip: "Click to edit",
+	            width: 200,
+	            method: 'PUT',
+	            id: 'element'				
+        	});
+		});
+        jQuery('.criterion').editable('<%= member_rubric_path(@rubric) %>', {
+            tooltip: "Click to edit",
+            width: 200,
+            method: 'PUT',
+            id: 'element'
+        });
+        jQuery('.rubric_descriptor').editable('<%= member_rubric_path(@rubric) %>', {
+            type: 'textarea',
+            cancel: 'Cancel',
+            submit: 'OK',
+            tooltip: "Click to edit",
+            width: 200,
+            method: 'PUT',
+            id: 'element'
+        }).click(function(){
+            jQuery('.rubric_descriptor textarea').elastic();
+        });
+    });
+</script>
+<table class="tableB">
+    <tbody>
+        <tr>
+            <th scope="col">
+            </th>
+            <% for level in @rubric.levels %>
+            <th scope="col">
+                <span><b class="level" name="rubric[levels_attributes][<%= level.id %>][name]" id="level-<%= level.id%>-name"><%= level.name %></b></span>
+				<span><%= link_to_remote image_tag("jeditable/delete.gif"), :url => del_level_member_rubric_path(@rubric, :level => level), :method => :get  %></span>
+            </th>
+            <% end %>
+        </tr>
+        <% for criterion in @rubric.criteria %>
+        <tr>
+            <th>
+                <span><b class="criterion" name="rubric[criteria_attributes][<%= criterion.id %>][name]" id="criterion-<%= criterion.id%>-name"><%= criterion.name %></b></span>
+				<span><%= link_to_remote image_tag("jeditable/delete.gif"), :url => del_criterion_member_rubric_path(@rubric, :criterion => criterion), :method => :get %></span>
+            </th>
+            <% for rd in criterion.rubric_descriptors %>
+            <td>
+                <b class="rubric_descriptor" name="rubric[criteria_attributes][<%= criterion.id %>][rubric_descriptors_attributes][<%= rd.id %>][description]" id="rubric_descriptor-<%= rd.id%>-description"><%= rd.description %></b>
+            </td>
+            <% end %>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
