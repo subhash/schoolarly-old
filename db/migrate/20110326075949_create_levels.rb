@@ -5,6 +5,7 @@ class CreateLevels < ActiveRecord::Migration
       t.string :name
       t.integer :rubric_id
       t.integer :position
+      t.decimal :weightage, :precision => 6, :scale => 2
       t.timestamps
       
       t.foreign_key :rubric_id, :rubrics, :id
