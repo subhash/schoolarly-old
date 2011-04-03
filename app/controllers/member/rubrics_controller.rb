@@ -106,6 +106,32 @@ class Member::RubricsController < Member::BaseController
     end
   end
   
+  def remove_level
+    position = params[:position].to_i
+    @rubric = Rubric.new(params[:rubric])
+    for level in @rubric.levels
+      if level.position == position
+        for criterion in @rubric.criteria
+          for rd in criterion.rubric_descriptors
+            puts "rd = "+rd.inspect
+            if rd.level.position == position
+              criterion.rubric_descriptors.delete(rd)
+            end
+          end
+        end
+      end
+    end
+    puts "rubric = "+@rubric.levels.inspect
+    respond_to do |format|
+      format.js {
+        render :update do |page|
+          page[:rubric].replace_html :partial => 'member/rubrics/form'
+        end
+      }
+    end
+  end
+  
+  
   def add_criterion
     @rubric = Rubric.new(params[:rubric])
     criterion = Criterion.new

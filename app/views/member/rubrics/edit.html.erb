@@ -32,10 +32,10 @@
 <table class="tableB">
     <tbody>
         <tr>
-            <th scope="col">
+            <th scope="col" style="width: 200px;">
             </th>
             <% for level in @rubric.levels %>
-            <th scope="col">
+            <th scope="col" style="width: 200px;">
                 <b class="level" name="rubric[levels_attributes][<%= level.id %>][name]" id="level_<%= level.id%>_name"><%= level.name %></b>
             </th>
             <% end %>

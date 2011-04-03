@@ -328,6 +328,7 @@ en:
           add: "Add criterion"
           title: "Criteria"
         levels:
+          remove: "remove"
           add: "Add level"
           title: "Levels"
        

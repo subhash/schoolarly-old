@@ -10,8 +10,8 @@
         <tr>
             <td>
             </td>
-            <th colspan=<%=@rubric.levels.size%> class="level">
-                <%= I18n.t('rubrics.member.new.levels.title') %>
+            <th colspan=<%=@rubric.levels.size%>
+                class="level"><%= I18n.t('rubrics.member.new.levels.title') %>
                 <%= link_to_remote I18n.t('rubrics.member.new.levels.add'),
                 :url => {:controller => :rubrics, :action => 'add_level'}, :method => :post,
                 :html => {:class => 'button add'},
@@ -33,6 +33,10 @@
             <th scope="col" class="level">
                 <%= l.text_field :name, :placeholder => "scale name" %>
                 <%= l.hidden_field :position, :value => i %>
+                <%= link_to_remote "",
+                :url => {:controller => :rubrics, :action => 'remove_level', :position => i }, :method => :post,
+                :html => {:class => 'button delete'},
+                :with => "$('rubric_form').serialize()" %>
                 <% i+= 1 %>
             </th>
             <% end %>
