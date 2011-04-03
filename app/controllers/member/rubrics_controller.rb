@@ -101,13 +101,17 @@ class Member::RubricsController < Member::BaseController
     end
   end
   
-  def remove_level
+  def remove_field
     position = params[:position].to_i
     @rubric = Rubric.new(params[:rubric])
-    for criterion in @rubric.criteria
-      criterion.rubric_descriptors.delete_at(position)
+    if params[:type] == 'level'
+      for criterion in @rubric.criteria
+        criterion.rubric_descriptors.delete_at(position)
+      end
+      @rubric.levels.delete_at(position)
+    elsif params[:type] == 'criterion'
+      @rubric.criteria.delete_at(position)
     end
-    @rubric.levels.delete_at(position)
     respond_to do |format|
       format.js {
         render :update do |page|

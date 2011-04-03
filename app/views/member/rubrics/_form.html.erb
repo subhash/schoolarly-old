@@ -34,16 +34,21 @@
                 <%= l.text_field :name, :placeholder => "level name"%>
                 <%= l.hidden_field :position, :value => i %>
                 <%= link_to_remote image_tag("jeditable/delete.gif"),
-                :url => {:controller => :rubrics, :action => 'remove_level', :position => i }, :method => :post,
+                :url => {:controller => :rubrics, :action => 'remove_field', :position => i,:type => 'level' }, :method => :post,
                 :with => "$('rubric_form').serialize()" %>
                 <% i+= 1 %>
             </th>
             <% end %>
         </tr>
+		<% j = 0 %>
         <% f.fields_for :criteria do |c| %>
         <tr>
             <th class="criterion">
                 <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" %>
+				<%= link_to_remote image_tag("jeditable/delete.gif"),
+                :url => {:controller => :rubrics, :action => 'remove_field', :position => j,:type => 'criterion'  }, :method => :post,
+                :with => "$('rubric_form').serialize()" %>
+				<% j+= 1 %>
             </th>
             <% i = 0 %>
             <% c.fields_for :rubric_descriptors do |rd| %>
