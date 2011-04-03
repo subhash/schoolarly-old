@@ -1,11 +1,10 @@
 class CreateRubricDescriptors < ActiveRecord::Migration
   def self.up
     create_table :rubric_descriptors do |t|
-      t.text :description
+      t.string :description
       t.integer :criterion_id
       t.integer :level_id
       t.integer :position
-      t.decimal :points, :precision => 6, :scale => 2
       t.timestamps
       
       t.foreign_key :criterion_id, :criteria, :id

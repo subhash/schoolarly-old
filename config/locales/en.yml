@@ -324,9 +324,6 @@ en:
       new:
         title: New Rubric
         choose_template: "Choose a template"
-        total: 
-          title: "Total"
-          points: "Total points"
         criteria:
           add: "Add criterion"
           title: "Criteria"

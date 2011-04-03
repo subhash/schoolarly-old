@@ -3,10 +3,8 @@ class CreateCriteria < ActiveRecord::Migration
     create_table :criteria do |t|
       
       t.string :name
-      t.text :description
       t.integer :rubric_id
       t.integer :position
-      t.decimal :points, :precision => 6, :scale => 2
       t.timestamps
       
       t.foreign_key :rubric_id, :rubrics, :id   
