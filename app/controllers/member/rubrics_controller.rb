@@ -70,8 +70,7 @@ class Member::RubricsController < Member::BaseController
   end
   
   def update
-    puts "update #{params.inspect}"
-    obj, id, attr = params[:element].split("_")
+    obj, id, attr = params[:element].split("-")
     record = case obj 
       when 'level' then Level.find(id)
       when 'criterion' then Criterion.find(id)
@@ -85,12 +84,8 @@ class Member::RubricsController < Member::BaseController
     end
   end
   
-  def see
-    puts "see #{params.inspect}"
-    puts "request #{request.inspect}"
-  end
-  
   def add_level
+    puts 'add_level'
     @rubric = Rubric.new(params[:rubric])
     level = Level.new
     @rubric.levels << level
@@ -146,6 +141,69 @@ class Member::RubricsController < Member::BaseController
         end
       }
     end   
+  end
+  
+  def inc_level
+    @rubric = Rubric.find(params[:id])
+    level = Level.new
+    @rubric.levels << level
+    @rubric.criteria.each do |criterion|
+      criterion.rubric_descriptors << RubricDescriptor.new(:level => level)
+    end
+    if @rubric.save
+      respond_to do |format|
+        format.js {
+          render :update do |page|
+            page[:rubric].replace_html :partial => 'member/rubrics/rubric_table'
+          end
+        }
+      end
+    end
+  end  
+  
+  def inc_criterion
+    @rubric = Rubric.find(params[:id])
+    criterion = Criterion.new
+    @rubric.levels.each do |level|
+      criterion.rubric_descriptors << RubricDescriptor.new(:level => level)
+    end
+    @rubric.criteria << criterion
+    if @rubric.save
+      respond_to do |format|
+        format.js {
+          render :update do |page|
+            page[:rubric].replace_html :partial => 'member/rubrics/rubric_table'
+          end
+        }
+      end
+    end
+  end
+  
+  def del_level
+    Level.destroy(params[:level])
+    @rubric = Rubric.find(params[:id])    
+    respond_to do |format|
+      format.js {
+        render :update do |page|
+          page[:rubric].replace_html :partial => 'member/rubrics/rubric_table'
+        end
+      }
+    end
+  end  
+  
+  def del_criterion
+    puts 'del_criterion '+params.inspect
+    puts Criterion.destroy(params[:criterion])
+    
+    @rubric = Rubric.find(params[:id])
+    puts @rubric.criteria
+    respond_to do |format|
+      format.js {
+        render :update do |page|
+          page[:rubric].replace_html :partial => 'member/rubrics/rubric_table'
+        end
+      }
+    end
   end
   
 end
