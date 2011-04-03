@@ -21,7 +21,7 @@
     </thead>
     <tbody>
         <tr>
-            <th scope="col" class="criterion">
+            <th class="criterion">
                 <%= I18n.t('rubrics.member.new.criteria.title') %>
                 <%= link_to_remote I18n.t('rubrics.member.new.criteria.add'),
                 :url => {:controller => :rubrics, :action => 'add_criterion'}, :method => :post,
@@ -30,12 +30,11 @@
             </th>
             <% i = 0 %>
             <% f.fields_for :levels do |l| %>
-            <th scope="col" class="level">
-                <%= l.text_field :name, :placeholder => "scale name" %>
+            <th class="level">
+                <%= l.text_field :name, :placeholder => "level name"%>
                 <%= l.hidden_field :position, :value => i %>
-                <%= link_to_remote "",
+                <%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_level', :position => i }, :method => :post,
-                :html => {:class => 'button delete'},
                 :with => "$('rubric_form').serialize()" %>
                 <% i+= 1 %>
             </th>
