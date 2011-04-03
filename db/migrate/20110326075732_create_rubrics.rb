@@ -3,6 +3,7 @@ class CreateRubrics < ActiveRecord::Migration
     create_table :rubrics do |t|
       t.string :title
       t.integer :user_id
+      t.decimal :points, :precision => 6, :scale => 2
       t.timestamps
       
       t.foreign_key :user_id, :users, :id   

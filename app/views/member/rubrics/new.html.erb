@@ -2,7 +2,7 @@
 <% include_stylesheet "rubric" %>
 
 <h2><span><%= I18n.t('rubrics.member.new.title') %></span></h2>
-<% if @rubrics %>
+<% unless @rubrics.blank? %>
 <table class="tableB">
     <caption>
         <%= I18n.t('rubrics.member.new.choose_template') %>
