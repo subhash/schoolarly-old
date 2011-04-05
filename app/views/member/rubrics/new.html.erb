@@ -1,5 +1,10 @@
 <% include_javascript "busy_ajax" %>
+<% include_javascript 'jquery-1.4.2.min' %>
 <% include_stylesheet "rubric" %>
+
+<script type="text/javascript">
+	jQuery.noConflict();
+</script>
 
 <h2><span><%= I18n.t('rubrics.member.new.title') %></span></h2>
 <% unless @rubrics.blank? %>

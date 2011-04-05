@@ -1,3 +1,16 @@
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('.editable').click(function(){
+            this.hide();
+            this.next().show();
+        });
+        jQuery('.field').blur(function(){
+            this.hide();
+            this.previous().show();
+			this.previous().innerText = jQuery(this).val();
+        });
+    });
+</script>
 <% form_for @rubric, :url => member_rubrics_path , :html => {:id => 'rubric_form'} do |f| %>
 <p>
     <label for="rubric_title">
@@ -35,9 +48,9 @@
             <% i = 0 %>
             <% f.fields_for :levels do |l| %>
             <th class="level">
-                <%= l.text_field :name, :placeholder => "level name" %>
+                <span class="editable"><%= @rubric.levels[i].name ? @rubric.levels[i].name : "Enter level name" %></span>
+                <%= l.text_field :name, :placeholder => "level name" , :class => "field",  :style => "display: none;" %>
                 <%= l.hidden_field :position, :value => i %>
-				<%= l.text_field :weightage, :placeholder => "weightage"%>%
                 <%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_field', :position => i,:type => 'level' }, :method => :post,
                 :with => "$('rubric_form').serialize()" %>
@@ -49,27 +62,26 @@
         <% f.fields_for :criteria do |c| %>
         <tr>
             <th class="criterion">
-                <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" %>
-				<%= c.text_field :points%>
+                <span class="editable"><%= @rubric.criteria[j].name ? @rubric.criteria[j].name : "Enter criterion name" %></span>
+                <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" , :class => "field",  :style => "display: none;" %>
                 <%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_field', :position => j,:type => 'criterion'  }, :method => :post,
                 :with => "$('rubric_form').serialize()" %>
-                <% j+= 1 %>
             </th>
-            <% i = 0 %>
+            <% k = 0 %>
             <% c.fields_for :rubric_descriptors do |rd| %>
             <td>
-                <%= rd.text_field :description, :placeholder => "Type description here..." %>
-                <%= rd.hidden_field :position, :value => i %>
-				<%= rd.text_field :points %>
-                <% i+= 1 %>
+                <span class="editable"><%= @rubric.criteria[j].rubric_descriptors[k].description ? @rubric.criteria[j].rubric_descriptors[k].description : "Type description here.." %></span>
+                <%= rd.text_area :description, :placeholder => "Type description here..." , :class => "field",  :style => "display: none;" %>
+                <%= rd.hidden_field :position, :value => k %>
+                <% k+= 1 %>
             </td>
             <% end %>
         </tr>
+        <% j+= 1 %>
         <% end %>
     </tbody>
 </table>
-<%= f.label :total, I18n.t('rubrics.member.new.total.title') %>
-<%= f.text_field :points, :placeholder => I18n.t('rubrics.member.new.total.points') %>
+
 <%= submit_tag :create %>
 <% end %>
