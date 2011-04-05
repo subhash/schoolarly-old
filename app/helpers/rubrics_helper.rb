@@ -4,4 +4,8 @@ module RubricsHelper
 #    obj.user == current_user
 #  end
   
+  def trim(number)
+    number.to_i == number ? number.to_i : number
+  end
+  
 end

@@ -1,9 +1,15 @@
 <script type="text/javascript">
     jQuery(document).ready(function(){
+        // jQuery('.field').keydown(function(e){
+        //    if (e.keyCode === 9) {
+        //		e.preventDefault();
+        //		jQuery(this).parents('table').next().find('.editable').click();
+        //   }
+        //  });
         jQuery('.editable').click(function(){
             jQuery('.field').each(function(i){
-				this.previous().show();
-				jQuery(this).hide();
+                this.previous().show();
+                jQuery(this).hide();
             });
             this.hide();
             this.next().show();
@@ -13,7 +19,7 @@
             this.previous().show();
             this.previous().innerText = jQuery(this).val();
         });
-		 jQuery('textarea.field').elastic();
+        jQuery('textarea.field').elastic();
     });
 </script>
 <% form_for @rubric, :url => member_rubrics_path , :html => {:id => 'rubric_form'} do |f| %>
@@ -53,11 +59,15 @@
             <% i = 0 %>
             <% f.fields_for :levels do |l| %>
             <th class="level">
-                <span class="editable"><%= @rubric.levels[i].name ? @rubric.levels[i].name : "Enter level name" %></span>
+                <% level = @rubric.levels[i] %>
+                <span class="editable"><%=level.name.blank? ? "Enter level name" : level.name %></span>
                 <%= l.text_field :name, :placeholder => "level name" , :class => "field",  :style => "display: none;" %>
                 <%= l.hidden_field :position, :value => i %>
+                <span class="editable point"><%= trim(level.points) %></span>
+                <%= l.text_field :points, :placeholder => "Points" , :class => "field",  :style => "display: none;" %>
                 <%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_field', :position => i,:type => 'level' }, :method => :post,
+                :html => {:class => "float_right"},
                 :with => "$('rubric_form').serialize()" %>
                 <% i+= 1 %>
             </th>
@@ -67,16 +77,19 @@
         <% f.fields_for :criteria do |c| %>
         <tr>
             <th class="criterion">
-                <span class="editable"><%= @rubric.criteria[j].name ? @rubric.criteria[j].name : "Enter criterion name" %></span>
+                <% criterion = @rubric.criteria[j] %>
+                <span class="editable"><%= criterion.name.blank? ?  "Enter criterion name" : criterion.name %></span>
                 <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" , :class => "field",  :style => "display: none;" %>
-                <%= link_to_remote image_tag("jeditable/delete.gif"),
+                <span class="editable point"><%= trim(criterion.weightage) %></span>
+                <%= c.text_field :weightage, :placeholder => "Weightage" , :class => "field point",  :style => "display: none;", :size => 5 %>%<%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_field', :position => j,:type => 'criterion'  }, :method => :post,
+                :html => {:class => "float_right"},
                 :with => "$('rubric_form').serialize()" %>
             </th>
             <% k = 0 %>
             <% c.fields_for :rubric_descriptors do |rd| %>
             <td>
-                <span class="editable"><%= @rubric.criteria[j].rubric_descriptors[k].description ? @rubric.criteria[j].rubric_descriptors[k].description : "Type description here.." %></span>
+                <span class="editable"><%= @rubric.criteria[j].rubric_descriptors[k].description.blank? ? "Type description here.." :  @rubric.criteria[j].rubric_descriptors[k].description %></span>
                 <%= rd.text_area :description, :placeholder => "Type description here..." , :class => "field",  :style => "display: none;" %>
                 <%= rd.hidden_field :position, :value => k %>
                 <% k+= 1 %>

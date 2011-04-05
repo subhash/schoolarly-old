@@ -5,4 +5,8 @@ class RubricDescriptor < ActiveRecord::Base
   
   acts_as_list :scope => :criterion
   
+  def points
+    level.points * criterion.weightage
+  end
+  
 end

@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
     t.text     "description"
     t.integer  "rubric_id"
     t.integer  "position"
-    t.decimal  "points",      :precision => 6, :scale => 2
+    t.decimal  "weightage",   :precision => 6, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -206,7 +206,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
     t.string   "name"
     t.integer  "rubric_id"
     t.integer  "position"
-    t.decimal  "weightage",  :precision => 6, :scale => 2
+    t.decimal  "points",     :precision => 6, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -361,7 +361,6 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
     t.integer  "criterion_id"
     t.integer  "level_id"
     t.integer  "position"
-    t.decimal  "points",       :precision => 6, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -372,7 +371,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
   create_table "rubrics", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.decimal  "points",     :precision => 6, :scale => 2
+    t.decimal  "score",      :precision => 6, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
