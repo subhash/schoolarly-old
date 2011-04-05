@@ -1,14 +1,19 @@
 <script type="text/javascript">
     jQuery(document).ready(function(){
         jQuery('.editable').click(function(){
+            jQuery('.field').each(function(i){
+				this.previous().show();
+				jQuery(this).hide();
+            });
             this.hide();
             this.next().show();
         });
         jQuery('.field').blur(function(){
             this.hide();
             this.previous().show();
-			this.previous().innerText = jQuery(this).val();
+            this.previous().innerText = jQuery(this).val();
         });
+		 jQuery('textarea.field').elastic();
     });
 </script>
 <% form_for @rubric, :url => member_rubrics_path , :html => {:id => 'rubric_form'} do |f| %>
@@ -82,6 +87,5 @@
         <% end %>
     </tbody>
 </table>
-
 <%= submit_tag :create %>
 <% end %>
