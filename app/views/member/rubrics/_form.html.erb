@@ -61,10 +61,10 @@
             <th class="level">
                 <% level = @rubric.levels[i] %>
                 <span class="editable"><%=level.name.blank? ? "Enter level name" : level.name %></span>
-                <%= l.text_field :name, :placeholder => "level name" , :class => "field",  :style => "display: none;" %>
+                <%= l.text_field :name, :placeholder => "level name" , :class => "field",  :style => "display: none;" , :size => 20 %>
                 <%= l.hidden_field :position, :value => i %>
                 <span class="editable point"><%= trim(level.points) %></span>
-                <%= l.text_field :points, :placeholder => "Points" , :class => "field",  :style => "display: none;" %>
+                <%= l.text_field :points, :placeholder => "Points" , :class => "field",  :style => "display: none;", :size => 5 %>
                 <%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_field', :position => i,:type => 'level' }, :method => :post,
                 :html => {:class => "float_right"},
@@ -79,7 +79,7 @@
             <th class="criterion">
                 <% criterion = @rubric.criteria[j] %>
                 <span class="editable"><%= criterion.name.blank? ?  "Enter criterion name" : criterion.name %></span>
-                <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" , :class => "field",  :style => "display: none;" %>
+                <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" , :class => "field",  :style => "display: none;", :size => 20 %>
                 <span class="editable point"><%= trim(criterion.weightage) %></span>
                 <%= c.text_field :weightage, :placeholder => "Weightage" , :class => "field point",  :style => "display: none;", :size => 5 %>%<%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_field', :position => j,:type => 'criterion'  }, :method => :post,
