@@ -64,8 +64,8 @@
             <% f.fields_for :levels do |l| %>
             <th class="level">
                 <% level = @rubric.levels[i] %>
-                <span class="editable"><%=level.name.blank? ? "Enter level name" : level.name %></span>
-                <%= l.text_field :name, :placeholder => "level name" , :class => "field",  :style => "display: none;" , :size => 20 %>
+                <span class="editable"><%=level.name.blank? ? I18n.t('rubrics.member.new.levels.name.default') : level.name %></span>
+                <%= l.text_field :name, :placeholder => I18n.t('rubrics.member.new.levels.name.default')  , :class => "field",  :style => "display: none;" , :size => 20 %>
                 <%= l.hidden_field :position, :value => i %>
                 <span class="editable point"><%= trim(level.points) %></span>
                 <%= l.text_field :points, :placeholder => "Points" , :class => "field",  :style => "display: none;", :size => 5 %>
@@ -82,23 +82,23 @@
         <tr>
             <th class="criterion">
                 <% criterion = @rubric.criteria[j] %>
-                <span class="editable"><%= criterion.name.blank? ?  "Enter criterion name" : criterion.name %></span>
-                <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" , :class => "field",  :style => "display: none;", :size => 20 %>
+                <span class="editable"><%= criterion.name.blank? ?  I18n.t('rubrics.member.new.criteria.name.default') : criterion.name %></span>
+                <%= c.text_field :name, :title => I18n.t('rubrics.member.new.criteria.name.default'), :placeholder => I18n.t('rubrics.member.new.criteria.name.default') , :class => "field",  :style => "display: none;", :size => 20 %>
 				
-                <span class="editable point"><%= trim(criterion.weightage) %></span>
-                <%= c.text_field :weightage, :placeholder => "Weightage" , :class => "field point",  :style => "display: none;", :size => 5 %>%<%= link_to_remote image_tag("jeditable/delete.gif"),
+                <span class="editable point"><%= trim(criterion.weightage) %>%</span>
+                <%= c.text_field :weightage, :placeholder => "Weightage" , :class => "field point",  :style => "display: none;", :size => 5 %><%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_field', :position => j,:type => 'criterion'  }, :method => :post,
                 :html => {:class => "float_right"},
                 :with => "$('rubric_form').serialize()" %>
 				
-				<div class="editable"><%= criterion.description.blank? ? "Description[optional]" :  criterion.description %></div>
-                <%= c.text_area :description, :placeholder => "Describe criterion" , :class => "field",  :style => "display: none;" %>
+				<div class="editable"><%= criterion.description.blank? ? I18n.t('rubrics.member.new.criteria.description.default') :  criterion.description %></div>
+                <%= c.text_area :description, :placeholder => I18n.t('rubrics.member.new.criteria.description.default') , :class => "field",  :style => "display: none;" %>
             </th>
             <% k = 0 %>
             <% c.fields_for :rubric_descriptors do |rd| %>
             <td>
-                <span class="editable"><%= @rubric.criteria[j].rubric_descriptors[k].description.blank? ? "Type description here.." :  @rubric.criteria[j].rubric_descriptors[k].description %></span>
-                <%= rd.text_area :description, :placeholder => "Type description here..." , :class => "field",  :style => "display: none;" %>
+                <span class="editable"><%= @rubric.criteria[j].rubric_descriptors[k].description.blank? ? I18n.t('rubrics.member.new.descriptors.default') :  @rubric.criteria[j].rubric_descriptors[k].description %></span>
+                <%= rd.text_area :description, :placeholder => I18n.t('rubrics.member.new.descriptors.default') , :class => "field",  :style => "display: none;" %>
                 <%= rd.hidden_field :position, :value => k %>
                 <% k+= 1 %>
             </td>

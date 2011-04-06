@@ -332,8 +332,16 @@ en:
         criteria:
           add: "Add criterion"
           title: "Criteria"
+          name:
+            default: "[Criterion name]"
+          description:
+            default: "[Optional description]"
         levels:
           remove: "remove"
           add: "Add level"
           title: "Levels"
+          name:
+            default: "[Level name]"      
+        descriptors:
+          default: "[Type description here]"
        
