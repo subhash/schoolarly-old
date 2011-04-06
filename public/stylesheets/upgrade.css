@@ -1,6 +1,17 @@
 /*
  * schoolarly
  */
+input, select, textarea {
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
+}
+
+#container {
+    font: normal 0.85em / 1.7em 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
+    margin: 0 auto;
+    min-width: 768px;
+    width: 65%;
+}
+
 .breadcrumbs a {
     padding: 3px 10px;
     display: inline-block;

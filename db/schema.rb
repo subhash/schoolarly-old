@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
   create_table "assignments", :force => true do |t|
     t.integer  "post_id"
     t.datetime "due_date"
+    t.decimal  "score",      :precision => 6, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,8 +51,6 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
     t.string   "doc_content_type"
     t.integer  "doc_file_size"
     t.datetime "doc_updated_at"
-    t.string   "shortId"
-    t.string   "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -129,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
     t.text     "description"
     t.integer  "rubric_id"
     t.integer  "position"
-    t.decimal  "weightage",   :precision => 6, :scale => 2
+    t.decimal  "weightage",   :precision => 6, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -329,6 +328,8 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
     t.string   "doc_content_type"
     t.integer  "doc_file_size"
     t.datetime "doc_updated_at"
+    t.string   "shortId"
+    t.string   "uuid"
   end
 
   create_table "profiles", :force => true do |t|
@@ -371,7 +372,6 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
   create_table "rubrics", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.decimal  "score",      :precision => 6, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
