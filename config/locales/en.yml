@@ -315,6 +315,8 @@ en:
   rubrics:
     model:
       title: "Title"
+      level: "Level"
+      criterion: "Criterion"
     member:
       index:
         title: "Rubrics Library"
@@ -324,9 +326,9 @@ en:
       new:
         title: New Rubric
         choose_template: "Choose a template"
-        total: 
-          title: "Total"
-          points: "Total points"
+        score: 
+          title: "Rubric Score"
+          score: "Score"
         criteria:
           add: "Add criterion"
           title: "Criteria"

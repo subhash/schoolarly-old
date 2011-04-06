@@ -22,11 +22,11 @@ class Member::RubricsController < Member::BaseController
     rubric_old = Rubric.find(params[:rubric_id])
     @rubric = Rubric.new
     for level_old in rubric_old.levels
-      level = Level.new(:name => level_old.name, :position => level_old.position)
+      level = Level.new(:name => level_old.name, :position => level_old.position, :points => level_old.points)
       @rubric.levels << level
     end
     for criterion_old in rubric_old.criteria
-      criterion = Criterion.new(:name => criterion_old.name)
+      criterion = Criterion.new(:name => criterion_old.name, :weightage => criterion_old.weightage)
       for rd_old in criterion_old.rubric_descriptors  
         rd = RubricDescriptor.new(:description => rd_old.description,:level => @rubric.levels.at(rd_old.level.position))
         criterion.rubric_descriptors << rd
@@ -86,9 +86,13 @@ class Member::RubricsController < Member::BaseController
   end
   
   def add_level
-    puts 'add_level'
     @rubric = Rubric.new(params[:rubric])
-    level = Level.new
+    if @rubric.levels.size > 0
+      points = @rubric.levels.first.points == 0 ? @rubric.levels.last.points + 1 :  (@rubric.levels.last.points +  @rubric.levels.first.points) 
+    else  
+      points = 0
+    end
+    level = Level.new(:name => "#{I18n.t('rubrics.model.level')}#{@rubric.levels.size+1}", :points => points)
     @rubric.levels << level
     @rubric.criteria.each do |criterion|
       criterion.rubric_descriptors << RubricDescriptor.new(:level => level)

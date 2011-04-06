@@ -6,7 +6,7 @@ class CreateCriteria < ActiveRecord::Migration
       t.text :description
       t.integer :rubric_id
       t.integer :position
-      t.decimal :weightage, :precision => 6, :scale => 2
+      t.decimal :weightage, :precision => 6, :scale => 2, :default => 0
       t.timestamps
       
       t.foreign_key :rubric_id, :rubrics, :id   

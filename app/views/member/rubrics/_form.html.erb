@@ -23,37 +23,41 @@
     });
 </script>
 <% form_for @rubric, :url => member_rubrics_path , :html => {:id => 'rubric_form'} do |f| %>
-<p>
-    <label for="rubric_title">
-        <%= I18n.t('rubrics.model.title') %>
-    </label>
-    <%= f.text_field :title, :class=>"fieldbox wide" -%>
-</p>
-<%= link_to_remote I18n.t('rubrics.member.new.criteria.add'),
-:url => {:controller => :rubrics, :action => 'add_criterion'}, :method => :post,
-:html => {:class => 'button add'},
-:with => "$('rubric_form').serialize()" %>
-<%= link_to_remote I18n.t('rubrics.member.new.levels.add'),
-:url => {:controller => :rubrics, :action => 'add_level'}, :method => :post,
-:html => {:class => 'button add'},
-:with => "$('rubric_form').serialize()" %>
+<div class="fields">
+    <p>
+        <label for="rubric_title">
+            <%= I18n.t('rubrics.model.title') %>
+        </label>
+        <%= f.text_field :title, :class=>"fieldbox wide" -%>
+    </p>
+    <p>
+        <label for="rubric_score">
+            <%= I18n.t('rubrics.member.new.score.title') %>
+        </label>
+        <%= f.text_field :score -%>
+    </p>
+</div>
 <table class="tableB">
-    <% unless @rubric.levels.blank? %>
     <thead>
         <tr>
-            <td>
-            </td>
+            <th class="criterion">
+                <%= link_to_remote I18n.t('rubrics.member.new.criteria.add'),
+                :url => {:controller => :rubrics, :action => 'add_criterion'}, :method => :post,
+                :html => {:class => 'add'},
+                :with => "$('rubric_form').serialize()" %>
+            </th>
             <th colspan=<%=@rubric.levels.size%>
-                class="level"><%= I18n.t('rubrics.member.new.levels.title') %>
+                class="level"><%= link_to_remote I18n.t('rubrics.member.new.levels.add'),
+                :url => {:controller => :rubrics, :action => 'add_level'}, :method => :post,
+                :html => {:class => 'add'},
+                :with => "$('rubric_form').serialize()" %>
             </th>
         </tr>
     </thead>
-    <% end %>
     <tbody>
         <tr>
             <% unless @rubric.criteria.blank? %>
             <th class="criterion">
-                <%= I18n.t('rubrics.member.new.criteria.title') %>
             </th>
             <% end %>
             <% i = 0 %>
@@ -80,11 +84,15 @@
                 <% criterion = @rubric.criteria[j] %>
                 <span class="editable"><%= criterion.name.blank? ?  "Enter criterion name" : criterion.name %></span>
                 <%= c.text_field :name, :title => "criterion name", :placeholder => "criterion name" , :class => "field",  :style => "display: none;", :size => 20 %>
+				
                 <span class="editable point"><%= trim(criterion.weightage) %></span>
                 <%= c.text_field :weightage, :placeholder => "Weightage" , :class => "field point",  :style => "display: none;", :size => 5 %>%<%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_field', :position => j,:type => 'criterion'  }, :method => :post,
                 :html => {:class => "float_right"},
                 :with => "$('rubric_form').serialize()" %>
+				
+				<div class="editable"><%= criterion.description.blank? ? "Description[optional]" :  criterion.description %></div>
+                <%= c.text_area :description, :placeholder => "Describe criterion" , :class => "field",  :style => "display: none;" %>
             </th>
             <% k = 0 %>
             <% c.fields_for :rubric_descriptors do |rd| %>
@@ -100,5 +108,7 @@
         <% end %>
     </tbody>
 </table>
-<%= submit_tag :create %>
+<div class="actions">
+    <%= submit_tag I18n.t('rubrics.member.index.create'), {:class => "button mainaction", :accesskey => "s"} %>
+</div>
 <% end %>
