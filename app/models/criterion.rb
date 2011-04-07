@@ -11,4 +11,7 @@ class Criterion < ActiveRecord::Base
   end 
   accepts_nested_attributes_for :rubric_descriptors
   
+  validates_presence_of :name, :weightage
+  validates_numericality_of :weightage
+  
 end

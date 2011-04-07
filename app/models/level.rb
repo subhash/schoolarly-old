@@ -5,4 +5,7 @@ class Level < ActiveRecord::Base
 
   has_many :rubric_descriptors, :dependent => :destroy
   
+  validates_presence_of :name, :points
+  validates_numericality_of :points
+  
 end

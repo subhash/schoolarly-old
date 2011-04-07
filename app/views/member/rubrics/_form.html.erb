@@ -8,16 +8,22 @@
         //  });
         jQuery('.editable').click(function(){
             jQuery('.field').each(function(i){
-                this.previous().show();
+				jQuery(this).closest('.edit').find('.editable').show();
                 jQuery(this).hide();
             });
             this.hide();
-            this.next().show();
+			jQuery(this).closest('.edit').find('.field').show();
         });
         jQuery('.field').blur(function(){
             this.hide();
-            this.previous().show();
-            this.previous().innerText = jQuery(this).val();
+			editable = jQuery(this).closest('.edit').find('.editable');
+			val = jQuery(this).val();
+			if (val) {
+				editable.text(val);
+			} else {
+				editable.text(editable.attr('title'));
+			}
+			jQuery(this).closest('.edit').find('.editable').show();
         });
         jQuery('textarea.field').elastic();
     });
@@ -64,11 +70,15 @@
             <% f.fields_for :levels do |l| %>
             <th class="level">
                 <% level = @rubric.levels[i] %>
-                <span class="editable"><%=level.name.blank? ? I18n.t('rubrics.member.new.levels.name.default') : level.name %></span>
-                <%= l.text_field :name, :placeholder => I18n.t('rubrics.member.new.levels.name.default')  , :class => "field",  :style => "display: none;" , :size => 20 %>
+				<span class="edit">
+                	<span class="editable" title="<%= I18n.t('rubrics.member.new.levels.name.default') %>"><%=level.name.blank? ? I18n.t('rubrics.member.new.levels.name.default') : level.name %></span>
+                	<%= l.text_field :name, :placeholder => I18n.t('rubrics.member.new.levels.name.default')  , :class => "field",  :style => "display: none;" , :size => 20 %>
+				</span>
                 <%= l.hidden_field :position, :value => i %>
-                <span class="editable point"><%= trim(level.points) %></span>
-                <%= l.text_field :points, :placeholder => "Points" , :class => "field",  :style => "display: none;", :size => 5 %>
+				<span class="edit">
+                	<span class="editable point" title="<%= I18n.t('rubrics.member.new.levels.points.default') %>"><%= trim(level.points) %></span>
+                	<%= l.text_field :points, :placeholder => I18n.t('rubrics.member.new.levels.points.default') , :class => "field",  :style => "display: none;", :size => 5 %>
+				</span>
                 <%= link_to_remote image_tag("jeditable/delete.gif"),
                 :url => {:controller => :rubrics, :action => 'remove_field', :position => i,:type => 'level' }, :method => :post,
                 :html => {:class => "float_right"},
@@ -82,24 +92,30 @@
         <tr>
             <th class="criterion">
                 <% criterion = @rubric.criteria[j] %>
-                <span class="editable"><%= criterion.name.blank? ?  I18n.t('rubrics.member.new.criteria.name.default') : criterion.name %></span>
-                <%= c.text_field :name, :title => I18n.t('rubrics.member.new.criteria.name.default'), :placeholder => I18n.t('rubrics.member.new.criteria.name.default') , :class => "field",  :style => "display: none;", :size => 20 %>
-				
-                <span class="editable point"><%= trim(criterion.weightage) %>%</span>
-                <%= c.text_field :weightage, :placeholder => "Weightage" , :class => "field point",  :style => "display: none;", :size => 5 %><%= link_to_remote image_tag("jeditable/delete.gif"),
-                :url => {:controller => :rubrics, :action => 'remove_field', :position => j,:type => 'criterion'  }, :method => :post,
-                :html => {:class => "float_right"},
-                :with => "$('rubric_form').serialize()" %>
-				
-				<div class="editable"><%= criterion.description.blank? ? I18n.t('rubrics.member.new.criteria.description.default') :  criterion.description %></div>
-                <%= c.text_area :description, :placeholder => I18n.t('rubrics.member.new.criteria.description.default') , :class => "field",  :style => "display: none;" %>
+				<span class="edit">
+                	<span class="editable"><%= criterion.name.blank? ?  I18n.t('rubrics.member.new.criteria.name.default') : criterion.name %></span>
+                	<%= c.text_field :name, :title => I18n.t('rubrics.member.new.criteria.name.default'), :placeholder => I18n.t('rubrics.member.new.criteria.name.default') , :class => "field",  :style => "display: none;", :size => 20 %>
+				</span>
+                <span class="edit">
+					<span class="editable point" title="<%= I18n.t('rubrics.member.new.criteria.weightage.default')%>"><%= trim(criterion.weightage) %>%</span>
+                	<%= c.text_field :weightage, :placeholder => I18n.t('rubrics.member.new.criteria.weightage.default') , :class => "field point",  :style => "display: none;", :size => 5 %><%= link_to_remote image_tag("jeditable/delete.gif"),
+		                :url => {:controller => :rubrics, :action => 'remove_field', :position => j,:type => 'criterion'  }, :method => :post,
+        		        :html => {:class => "float_right"},
+                		:with => "$('rubric_form').serialize()" %>
+				</span>
+				<span class="edit">
+					<div class="editable" title="<%= I18n.t('rubrics.member.new.criteria.description.default')%>"><%= criterion.description.blank? ? I18n.t('rubrics.member.new.criteria.description.default') :  criterion.description %></div>
+                	<%= c.text_area :description, :placeholder => I18n.t('rubrics.member.new.criteria.description.default') , :class => "field",  :style => "display: none;" %>
+				</span>					
             </th>
             <% k = 0 %>
             <% c.fields_for :rubric_descriptors do |rd| %>
             <td>
-                <span class="editable"><%= @rubric.criteria[j].rubric_descriptors[k].description.blank? ? I18n.t('rubrics.member.new.descriptors.default') :  @rubric.criteria[j].rubric_descriptors[k].description %></span>
-                <%= rd.text_area :description, :placeholder => I18n.t('rubrics.member.new.descriptors.default') , :class => "field",  :style => "display: none;" %>
-                <%= rd.hidden_field :position, :value => k %>
+            	<span class="edit">
+                	<span class="editable" title="<%= I18n.t('rubrics.member.new.descriptors.default')%>"><%= @rubric.criteria[j].rubric_descriptors[k].description.blank? ? I18n.t('rubrics.member.new.descriptors.default') :  @rubric.criteria[j].rubric_descriptors[k].description %></span>
+                	<%= rd.text_area :description, :placeholder => I18n.t('rubrics.member.new.descriptors.default') , :class => "field",  :style => "display: none;" %>
+                </span>
+				<%= rd.hidden_field :position, :value => k %>
                 <% k+= 1 %>
             </td>
             <% end %>
