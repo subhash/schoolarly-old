@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110326080008) do
+ActiveRecord::Schema.define(:version => 20110406085342) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "post_id"
+    t.integer  "rubric_id"
     t.datetime "due_date"
     t.decimal  "score",      :precision => 6, :scale => 2
     t.datetime "created_at"
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
   end
 
   add_index "assignments", ["post_id"], :name => "post_id"
+  add_index "assignments", ["rubric_id"], :name => "rubric_id"
 
   create_table "attachments", :force => true do |t|
     t.string   "title"
@@ -488,6 +490,7 @@ ActiveRecord::Schema.define(:version => 20110326080008) do
   end
 
   add_foreign_key "assignments", ["post_id"], "posts", ["id"], :name => "assignments_ibfk_1"
+  add_foreign_key "assignments", ["rubric_id"], "rubrics", ["id"], :name => "assignments_ibfk_2"
 
   add_foreign_key "attachments", ["user_id"], "users", ["id"], :name => "attachments_ibfk_1"
 

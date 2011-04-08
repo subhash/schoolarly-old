@@ -15,6 +15,8 @@ class Rubric < ActiveRecord::Base
   accepts_nested_attributes_for :criteria
   accepts_nested_attributes_for :levels
   
+  has_many :assignments
+  
   has_many :rubric_descriptors, :through => :criteria, :dependent => :destroy do
     def of(criterion, level)
       find :first, :conditions => {:criterion_id => criterion.id, :level_id => level.id}

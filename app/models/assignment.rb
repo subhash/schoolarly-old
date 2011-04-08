@@ -6,6 +6,8 @@ class Assignment < ActiveRecord::Base
   
   accepts_nested_attributes_for :post
   
+  belongs_to :rubric
+  
   has_many :submissions do
     def by(user)
       find :first, :include => :post, :conditions => ["posts.user_id=?", user.id]

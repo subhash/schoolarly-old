@@ -271,6 +271,8 @@ en:
       edit_failure: "Failed to update assignment"
       new:
         score: "Total score"
+      rubric:
+        attach: "Attach Rubric"
              
   notebooks:
     member:
