@@ -1,0 +1,8 @@
+
+<% form_for @rubric, :url => member_rubrics_path , :html => {:id => 'rubric_form'} do |f| %>
+<%= render :partial => 'form', :locals => {:f => f} %>
+
+<div class="actions">
+    <%= submit_tag I18n.t('rubrics.member.index.create'), {:class => "button mainaction", :accesskey => "s"} %>
+</div>
+<% end %>

@@ -37,7 +37,7 @@ class Member::RubricsController < Member::BaseController
     respond_to do |format|
       format.js {
         render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/form'
+          page[:rubric].replace_html :partial => 'member/rubrics/new'
         end
       }
     end
@@ -80,17 +80,13 @@ class Member::RubricsController < Member::BaseController
   end
   
   def update
-    obj, id, attr = params[:element].split("-")
-    record = case obj 
-      when 'level' then Level.find(id)
-      when 'criterion' then Criterion.find(id)
-      when 'rubric_descriptor' then RubricDescriptor.find(id)
-    end
-    record[attr] = params[:value]
-    if record.save
-      respond_to do |wants|
-        wants.js 
-      end
+    @rubric = Rubric.find(params[:id])
+    @rubric.attributes = params[:rubric]
+    puts @rubric.levels.inspect
+    if @rubric.update_attributes(params[:rubric])
+       redirect_to member_rubric_path(@rubric)
+     else
+       render :action => 'edit'
     end
   end
   
@@ -109,7 +105,7 @@ class Member::RubricsController < Member::BaseController
     respond_to do |format|
       format.js {
         render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/form'
+          page[:rubric].replace_html :partial => 'member/rubrics/new'
         end
       }
     end
@@ -129,7 +125,7 @@ class Member::RubricsController < Member::BaseController
     respond_to do |format|
       format.js {
         render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/form'
+          page[:rubric].replace_html :partial => 'member/rubrics/new'
         end
       }
     end
@@ -146,7 +142,7 @@ class Member::RubricsController < Member::BaseController
     respond_to do |format|
       format.js {
         render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/form'
+          page[:rubric].replace_html :partial => 'member/rubrics/new'
         end
       }
     end   
