@@ -5,6 +5,9 @@
 	<%= link_to icon_for_assignment, @post.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @post.doc.file? %>
 </div>
 <%= render :partial => 'member/conversatio/posts/post' %>
+<% if @rubric %>
+<%= render :partial => 'member/rubrics/table' %>
+<% end %>
 <% content_for :sidebar do %>
 <%= render :partial => 'member/assignments/manage' %>
 <%= render :partial => 'shared/groups' %>
