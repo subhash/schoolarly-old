@@ -1,0 +1,34 @@
+/*
+* Adjustments to make rubric table a field
+*/
+form .fields div.p {
+    position: relative;
+    margin: 0 0 1em 20%;
+    padding: 0;
+    clear: both;
+    line-height: 1.2em;
+}
+form .fields div.p:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+form .fields div.p label, form .fields div.p .label {
+    margin-left: -65%;
+    float: left;
+    clear: both;
+    display: inline;
+    width: 60%;
+    text-align: right;
+    position: relative;
+    font-weight: bold;
+}
+
+form .fields div.p label.nolabel {
+    margin-left: 0;
+    float: none;
+    width: auto;
+    text-align: left;
+}

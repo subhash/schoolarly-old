@@ -20,7 +20,7 @@ class Member::RubricsController < Member::BaseController
   end
   
   def new_template
-    rubric_old = Rubric.find(params[:rubric_id])
+    rubric_old = Rubric.find(params[:id])
     @rubric = Rubric.new
     for level_old in rubric_old.levels
       level = Level.new(:name => level_old.name, :position => level_old.position, :points => level_old.points)
@@ -64,6 +64,14 @@ class Member::RubricsController < Member::BaseController
   
   def show
     @rubric = Rubric.find(params[:id])
+    respond_to do |format|
+      format.js do
+        render :update do |page|
+          page[:rubric].replace_html :partial => 'member/rubrics/table'
+        end
+      end
+      format.html
+    end    
   end
   
   def edit

@@ -7,6 +7,9 @@ class Member::AssignmentsController < Member::BaseController
   
   def new
     @assignment = Assignment.new
+    @rubrics = (current_user.rubrics  | Share.shared_to_groups_of_type(current_user.groups,'Rubric')).paginate :per_page => 20,
+                                 :page => @page,
+                                 :order => "title DESC"  
   end
   
   def create

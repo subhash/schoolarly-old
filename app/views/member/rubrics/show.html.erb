@@ -1,28 +1,3 @@
 <h2><span><%= @rubric.title %></span></h2>
 
-<table class="tableB">
-    <tbody>
-        <tr>
-            <th scope="col">
-                
-            </th>
-            <% for level in @rubric.levels %>
-            <th scope="col">
-                <%= level.name %>
-            </th>
-            <% end %>
-        </tr>
-        <% for criterion in @rubric.criteria%>
-        <tr>
-            <th>
-                <%= criterion.name %>
-            </th>
-            <% for rd in criterion.rubric_descriptors %>
-            <td>
-                <%= rd.description %>
-            </td>
-            <% end %>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+<%= render :partial => 'table'%>
