@@ -63,7 +63,7 @@
             <th class="criterion">
             </th>
             <% end %>
-            <% i = 0 %>
+            <% i = 1 %>
             <% f.fields_for :levels, @rubric.levels do |l| %>
             <th class="level">
                 <% level = l.object %>
@@ -84,7 +84,7 @@
             </th>
             <% end %>
         </tr>
-        <% j = 0 %>
+        <% j = 1 %>
         <% f.fields_for :criteria, @rubric.criteria do |c| %>
         <tr>
             <th class="criterion">
@@ -105,7 +105,7 @@
                 	<%= c.text_area :description, :placeholder => I18n.t('rubrics.member.new.criteria.description.default') , :class => "field",  :style => "display: none;" %>
 				</span>					
             </th>
-            <% k = 0 %>
+            <% k = 1 %>
             <% c.fields_for :rubric_descriptors do |rd| %>
 			<% rubric_descriptor = rd.object %>
             <td>

@@ -29,7 +29,7 @@ class Member::RubricsController < Member::BaseController
     for criterion_old in rubric_old.criteria
       criterion = Criterion.new(:name => criterion_old.name, :weightage => criterion_old.weightage)
       for rd_old in criterion_old.rubric_descriptors  
-        rd = RubricDescriptor.new(:description => rd_old.description,:level => @rubric.levels.at(rd_old.level.position))
+        rd = RubricDescriptor.new(:description => rd_old.description,:level => @rubric.levels.at(rd_old.level.position - 1))
         criterion.rubric_descriptors << rd
       end
       @rubric.criteria << criterion
@@ -48,7 +48,7 @@ class Member::RubricsController < Member::BaseController
     @rubric.user = current_user
     for criterion in @rubric.criteria
       for level in @rubric.levels
-        rd = criterion.rubric_descriptors[level.position]
+        rd = criterion.rubric_descriptors[level.position - 1]
         rd.level = level
       end
     end
@@ -104,7 +104,7 @@ class Member::RubricsController < Member::BaseController
   end
   
   def remove_field
-    position = params[:position].to_i
+    position = (params[:position].to_i) - 1
     @rubric = Rubric.new(params[:rubric])
     if params[:type] == 'level'
       for criterion in @rubric.criteria
