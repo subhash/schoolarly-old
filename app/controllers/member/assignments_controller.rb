@@ -7,6 +7,9 @@ class Member::AssignmentsController < Member::BaseController
   
   def new
     @assignment = Assignment.new
+    @rubrics = (current_user.rubrics  | Share.shared_to_groups_of_type(current_user.groups,'Rubric')).paginate :per_page => 20,
+                                 :page => @page,
+                                 :order => "title DESC"  
   end
   
   def create
@@ -15,6 +18,7 @@ class Member::AssignmentsController < Member::BaseController
     published_at = @assignment.post.published_at
     @assignment.post.publish!
     @assignment.post.published_at = published_at if published_at > Time.now
+    @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]
     respond_to do |wants|
       if @assignment.save
         @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
@@ -23,6 +27,10 @@ class Member::AssignmentsController < Member::BaseController
           redirect_back_or_default member_assignments_path(@assignment)
         end
       else
+        @rubric = @assignment.rubric
+        @rubrics = (current_user.rubrics  | Share.shared_to_groups_of_type(current_user.groups,'Rubric')).paginate :per_page => 20,
+                                 :page => @page,
+                                 :order => "title DESC"                                 
         wants.html do
           flash[:error] = I18n.t('assignments.member.add_failure')
           render :new
@@ -70,6 +78,7 @@ class Member::AssignmentsController < Member::BaseController
   def find_assignment
     @assignment =  Assignment.find(params[:id])
     @post = @assignment.post
+    @rubric = @assignment.rubric
   end
   
 end

@@ -1,4 +1,6 @@
 <%= include_tiny_mce_if_needed %>
+<% include_javascript "busy_ajax" %>
+<% include_stylesheet 'assignments/rubric' %>
 <div class="titleB">
     <% if @group %>
     <%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t('groups.member.assignment.share') %>
@@ -40,6 +42,15 @@
             </label>
             <%= f.text_field :score -%>
         </p>
+    </div>
+    <div class="fields">
+        <div class="p">
+            <label for="assignment_score">
+                <%= "Choose a rubric" %>
+            </label>
+            <%= render :partial => 'member/rubrics/choose_rubric', :locals => {:action => 'show' } %>
+			<div id='rubric'></div>
+        </div>		
     </div>
     <div class="actions">
         <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>
