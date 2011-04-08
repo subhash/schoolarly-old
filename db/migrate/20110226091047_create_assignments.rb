@@ -3,12 +3,13 @@ class CreateAssignments < ActiveRecord::Migration
     create_table :assignments do |t|
       t.integer :post_id
       t.datetime :due_date
+      t.decimal :score, :precision => 6, :scale => 2
       t.timestamps
       
       t.foreign_key :post_id, :posts, :id
     end
   end
-
+  
   def self.down
     drop_table :assignments
   end

@@ -1,6 +1,7 @@
 class Member::RubricsController < Member::BaseController
   
   def index
+    store_location
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'desc'  
