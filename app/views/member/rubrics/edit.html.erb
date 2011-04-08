@@ -1,6 +1,5 @@
 <% include_javascript "busy_ajax" %>
 <% include_javascript 'jquery-1.4.2.min' %>
-<% include_javascript 'jeditable/jquery.jeditable' %>
 <% include_javascript 'elastic/jquery.elastic' %>
 <% include_stylesheet "rubric" %>
 
@@ -8,10 +7,12 @@
 	jQuery.noConflict();
 </script>
 
-
 <h2><span><%= I18n.t('rubrics.member.new.title') %></span></h2>
-<div id="rubric"><%= render :partial => 'rubric_table'%></div>
-<br/>
-<%= link_to_remote I18n.t('rubrics.member.new.criteria.add'), :url => {:controller => :rubrics, :action => 'inc_criterion'}, :method => :get, :html => {:class => 'button add'}%>
-<%= link_to_remote I18n.t('rubrics.member.new.levels.add'), :url => {:controller => :rubrics, :action => 'inc_level'}, :method => :get, :html => {:class => 'button add'}%>
+<div class="error">
+    <%= error_messages_for :rubric %>
+</div>
+<div id='rubric'>
+    <%= render :partial => 'edit' %>
+</div>
+
 

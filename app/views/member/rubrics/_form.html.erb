@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
     jQuery(document).ready(function(){
         // jQuery('.field').keydown(function(e){
@@ -28,7 +29,9 @@
         jQuery('textarea.field').elastic();
     });
 </script>
-<% form_for @rubric, :url => member_rubrics_path , :html => {:id => 'rubric_form'} do |f| %>
+
+
+
 <div class="fields">
     <p>
         <label for="rubric_title">
@@ -61,9 +64,9 @@
             </th>
             <% end %>
             <% i = 0 %>
-            <% f.fields_for :levels do |l| %>
+            <% f.fields_for :levels, @rubric.levels do |l| %>
             <th class="level">
-                <% level = @rubric.levels[i] %>
+                <% level = l.object %>
 				<span class="edit">
                 	<span class="editable" title="<%= I18n.t('rubrics.member.new.levels.name.default') %>"><%=level.name.blank? ? I18n.t('rubrics.member.new.levels.name.default') : level.name %></span>
                 	<%= l.text_field :name, :placeholder => I18n.t('rubrics.member.new.levels.name.default')  , :class => "field",  :style => "display: none;" , :size => 20 %>
@@ -82,10 +85,10 @@
             <% end %>
         </tr>
         <% j = 0 %>
-        <% f.fields_for :criteria do |c| %>
+        <% f.fields_for :criteria, @rubric.criteria do |c| %>
         <tr>
             <th class="criterion">
-                <% criterion = @rubric.criteria[j] %>
+                <% criterion = c.object %>
 				<span class="edit">
                 	<span class="editable"><%= criterion.name.blank? ?  I18n.t('rubrics.member.new.criteria.name.default') : criterion.name %></span>
                 	<%= c.text_field :name, :title => I18n.t('rubrics.member.new.criteria.name.default'), :placeholder => I18n.t('rubrics.member.new.criteria.name.default') , :class => "field",  :style => "display: none;", :size => 20 %>
@@ -104,9 +107,10 @@
             </th>
             <% k = 0 %>
             <% c.fields_for :rubric_descriptors do |rd| %>
+			<% rubric_descriptor = rd.object %>
             <td>
             	<span class="edit">
-                	<span class="editable" title="<%= I18n.t('rubrics.member.new.descriptors.default')%>"><%= @rubric.criteria[j].rubric_descriptors[k].description.blank? ? I18n.t('rubrics.member.new.descriptors.default') :  @rubric.criteria[j].rubric_descriptors[k].description %></span>
+                	<span class="editable" title="<%= I18n.t('rubrics.member.new.descriptors.default')%>"><%= rubric_descriptor.description.blank? ? I18n.t('rubrics.member.new.descriptors.default') :  rubric_descriptor.description %></span>
                 	<%= rd.text_area :description, :placeholder => I18n.t('rubrics.member.new.descriptors.default') , :class => "field",  :style => "display: none;" %>
                 </span>
 				<%= rd.hidden_field :position, :value => k %>
@@ -118,7 +122,3 @@
         <% end %>
     </tbody>
 </table>
-<div class="actions">
-    <%= submit_tag I18n.t('rubrics.member.index.create'), {:class => "button mainaction", :accesskey => "s"} %>
-</div>
-<% end %>

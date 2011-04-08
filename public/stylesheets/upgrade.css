@@ -1,16 +1,16 @@
 /*
  * schoolarly
  */
-input, select, textarea {
-    font-family: 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
+/*input, select, textarea {
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #container {
-    font: normal 0.85em / 1.7em 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
+    font: normal 0.7em / 1.7em Georgia, 'Times New Roman', Times, serif;
     margin: 0 auto;
     min-width: 768px;
     width: 65%;
-}
+}*/
 
 .breadcrumbs a {
     padding: 3px 10px;

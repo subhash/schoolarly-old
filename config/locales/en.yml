@@ -327,6 +327,8 @@ en:
         create: "Create Rubric"
         created_by: "Created by"
         rubric: "rubric"
+      edit:
+        save: "Save Rubric"
       new:
         title: New Rubric
         choose_template: "Choose a template"
