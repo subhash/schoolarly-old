@@ -333,8 +333,20 @@ en:
         criteria:
           add: "Add criterion"
           title: "Criteria"
+          name:
+            default: "[Criterion name]"
+          description:
+            default: "[Optional description]"
+          weightage:
+            default: "[Weightage]"            
         levels:
           remove: "remove"
           add: "Add level"
           title: "Levels"
+          name:
+            default: "[Level name]"
+          points:
+            default: "[Points]"    
+        descriptors:
+          default: "[Type description here]"
        
