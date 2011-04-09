@@ -1,5 +1,7 @@
 class Member::RubricsController < Member::BaseController
   
+  before_filter :init_rubric, :only => [:remove_field, :add_criterion, :add_level ]
+  
   def index
     store_location
     @order = params[:order] || 'created_at'
@@ -93,7 +95,6 @@ class Member::RubricsController < Member::BaseController
   end
   
   def add_level
-    @rubric = Rubric.new(params[:rubric])
     if @rubric.levels.size > 0
       points = @rubric.levels.first.points == 0 ? @rubric.levels.last.points + 1 :  (@rubric.levels.last.points +  @rubric.levels.first.points) 
     else  
@@ -107,21 +108,18 @@ class Member::RubricsController < Member::BaseController
     respond_to do |format|
       format.js {
         render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/new'
+          if params[:id]
+            page[:rubric].replace_html :partial => 'member/rubrics/edit'
+          else
+            page[:rubric].replace_html :partial => 'member/rubrics/new'
+          end     
         end
       }
     end
   end
   
   def remove_field
-    puts "in remove field"
-    if params[:id]
-      @rubric = Rubric.find(params[:id])
-      @rubric.levels(true)
-      @rubric.criteria(true)      
-      @rubric.attributes = params[:rubric]
-    else
-      @rubric = Rubric.new(params[:rubric])
+    unless params[:id]
       position = (params[:position].to_i) - 1
       if params[:type] == 'level'
         for criterion in @rubric.criteria
@@ -133,7 +131,6 @@ class Member::RubricsController < Member::BaseController
         @rubric.criteria.delete_at(position)
       end
     end    
-    puts "rubric = "+@rubric.criteria.inspect
     respond_to do |format|
       format.js {
         render :update do |page|
@@ -149,7 +146,6 @@ class Member::RubricsController < Member::BaseController
   
   
   def add_criterion
-    @rubric = Rubric.new(params[:rubric])
     criterion = Criterion.new
     @rubric.levels.each do |level|
       criterion.rubric_descriptors << RubricDescriptor.new(:level => level)
@@ -158,12 +154,26 @@ class Member::RubricsController < Member::BaseController
     respond_to do |format|
       format.js {
         render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/new'
+          if params[:id]
+            page[:rubric].replace_html :partial => 'member/rubrics/edit'
+          else
+            page[:rubric].replace_html :partial => 'member/rubrics/new'
+          end     
         end
       }
     end   
   end
   
   
-  
+  private
+  def init_rubric
+    if params[:id]
+      @rubric = Rubric.find(params[:id])
+      @rubric.levels(true)
+      @rubric.criteria(true)      
+      @rubric.attributes = params[:rubric]
+    else
+      @rubric = Rubric.new(params[:rubric])
+    end
+  end
 end
