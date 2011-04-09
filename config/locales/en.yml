@@ -272,6 +272,7 @@ en:
       new:
         score: "Total score"
       rubric:
+        title: "Rubric"
         attach: "Attach Rubric"
              
   notebooks:
