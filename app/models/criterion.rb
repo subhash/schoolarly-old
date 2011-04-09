@@ -9,7 +9,7 @@ class Criterion < ActiveRecord::Base
       find :first, :conditions => {:level_id => level.id}
     end
   end 
-  accepts_nested_attributes_for :rubric_descriptors
+  accepts_nested_attributes_for :rubric_descriptors, :allow_destroy => true
   
   validates_presence_of :name, :weightage
   validates_numericality_of :weightage
