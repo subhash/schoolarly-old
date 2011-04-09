@@ -75,18 +75,20 @@ class Member::RubricsController < Member::BaseController
   end
   
   def edit
-    puts "edit #{params.inspect}"
     @rubric = Rubric.find(params[:id])
   end
   
   def update
     @rubric = Rubric.find(params[:id])
-    @rubric.attributes = params[:rubric]
-    puts @rubric.levels.inspect
+    
+    #    due to bug https://rails.lighthouseapp.com/projects/8994/tickets/4766-nested_attributes-fails-to-updatedestroy-when-association-is-loaded-between-setting-attributes-and-saving-parent
+    @rubric.levels(true)
+    @rubric.criteria(true)
     if @rubric.update_attributes(params[:rubric])
-       redirect_to member_rubric_path(@rubric)
-     else
-       render :action => 'edit'
+      puts "levels = "+@rubric.levels.inspect
+      redirect_to member_rubric_path(@rubric)
+    else
+      render :action => 'edit'
     end
   end
   
@@ -112,20 +114,34 @@ class Member::RubricsController < Member::BaseController
   end
   
   def remove_field
-    position = (params[:position].to_i) - 1
-    @rubric = Rubric.new(params[:rubric])
-    if params[:type] == 'level'
-      for criterion in @rubric.criteria
-        criterion.rubric_descriptors.delete_at(position)
+    puts "in remove field"
+    if params[:id]
+      @rubric = Rubric.find(params[:id])
+      @rubric.levels(true)
+      @rubric.criteria(true)      
+      @rubric.attributes = params[:rubric]
+    else
+      @rubric = Rubric.new(params[:rubric])
+      position = (params[:position].to_i) - 1
+      if params[:type] == 'level'
+        for criterion in @rubric.criteria
+          criterion.rubric_descriptors(true)
+          criterion.rubric_descriptors.delete_at(position)
+        end
+        @rubric.levels.delete_at(position)
+      elsif params[:type] == 'criterion'
+        @rubric.criteria.delete_at(position)
       end
-      @rubric.levels.delete_at(position)
-    elsif params[:type] == 'criterion'
-      @rubric.criteria.delete_at(position)
-    end
+    end    
+    puts "rubric = "+@rubric.criteria.inspect
     respond_to do |format|
       format.js {
         render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/new'
+          if params[:id]
+            page[:rubric].replace_html :partial => 'member/rubrics/edit'
+          else
+            page[:rubric].replace_html :partial => 'member/rubrics/new'
+          end         
         end
       }
     end
@@ -148,67 +164,6 @@ class Member::RubricsController < Member::BaseController
     end   
   end
   
-  def inc_level
-    @rubric = Rubric.find(params[:id])
-    level = Level.new
-    @rubric.levels << level
-    @rubric.criteria.each do |criterion|
-      criterion.rubric_descriptors << RubricDescriptor.new(:level => level)
-    end
-    if @rubric.save
-      respond_to do |format|
-        format.js {
-          render :update do |page|
-            page[:rubric].replace_html :partial => 'member/rubrics/rubric_table'
-          end
-        }
-      end
-    end
-  end  
   
-  def inc_criterion
-    @rubric = Rubric.find(params[:id])
-    criterion = Criterion.new
-    @rubric.levels.each do |level|
-      criterion.rubric_descriptors << RubricDescriptor.new(:level => level)
-    end
-    @rubric.criteria << criterion
-    if @rubric.save
-      respond_to do |format|
-        format.js {
-          render :update do |page|
-            page[:rubric].replace_html :partial => 'member/rubrics/rubric_table'
-          end
-        }
-      end
-    end
-  end
-  
-  def del_level
-    Level.destroy(params[:level])
-    @rubric = Rubric.find(params[:id])    
-    respond_to do |format|
-      format.js {
-        render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/rubric_table'
-        end
-      }
-    end
-  end  
-  
-  def del_criterion
-    puts 'del_criterion '+params.inspect
-    puts Criterion.destroy(params[:criterion])
-    
-    @rubric = Rubric.find(params[:id])
-    puts @rubric.criteria
-    respond_to do |format|
-      format.js {
-        render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/rubric_table'
-        end
-      }
-    end
-  end
   
 end

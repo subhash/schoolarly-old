@@ -1,6 +1,6 @@
 class Rubric < ActiveRecord::Base
   
-  has_many :criteria, :order => 'position', :dependent => :destroy
+  has_many :criteria, :order => 'position', :include => :rubric_descriptors, :dependent => :destroy
   has_many :levels, :order => 'position', :dependent => :destroy do
     def at(position)
       find :first, :conditions => {:position => position}
@@ -12,8 +12,8 @@ class Rubric < ActiveRecord::Base
   validates_presence_of :criteria
   validates_presence_of :levels
   
-  accepts_nested_attributes_for :criteria
-  accepts_nested_attributes_for :levels
+  accepts_nested_attributes_for :criteria, :levels, :allow_destroy => true
+
   
   has_many :assignments
   
