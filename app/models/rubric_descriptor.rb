@@ -5,6 +5,8 @@ class RubricDescriptor < ActiveRecord::Base
   
   acts_as_list :scope => :criterion
   
+  has_and_belongs_to_many :grades
+  
 #  validates_presence_of :description
   
   def points
