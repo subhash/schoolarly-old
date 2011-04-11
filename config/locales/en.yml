@@ -274,6 +274,9 @@ en:
       rubric:
         title: "Rubric"
         attach: "Attach Rubric"
+      grades:
+        assign: "Assign Grade"
+
              
   notebooks:
     member:
@@ -352,4 +355,11 @@ en:
             default: "[Points]"    
         descriptors:
           default: "[Type description here]"
+          
+  grades:
+    member:
+      new:
+        title: "Grade"
+        total: "Total Score"
+        create: "Assign Grade"
        

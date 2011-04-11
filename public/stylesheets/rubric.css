@@ -10,6 +10,7 @@ table th.criterion {
 .point{
 	font-size: 14px;
 	padding-left: 10px;
+	float: right;
 }
 
 

@@ -3,14 +3,20 @@ class RubricDescriptor < ActiveRecord::Base
   belongs_to :criterion
   belongs_to :level
   
+  has_one :rubric, :through => :level
+  
   acts_as_list :scope => :criterion
   
-  has_and_belongs_to_many :grades
+  has_many :grade_rubric_descriptors  
+  has_many :grades, :through => :grade_rubric_descriptors
   
 #  validates_presence_of :description
   
   def points
-    level.points * criterion.weightage
+    level.points * criterion.weightage/100
   end
   
+  def max_points
+    rubric.levels.last.points
+  end
 end

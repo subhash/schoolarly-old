@@ -12,6 +12,13 @@
                 <div>
                     <%= link_to s.profile.full_name, profile_path(s.profile) %>
                 </div>
+				<span class="float_right">
+					<% if @assignment.grades.for_user(s) %>
+					 
+					 <% else %>
+					 <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => s) %>
+					 <% end %>
+				</span>
                 <% if submission.blank? or !submission.post.published? %>
                 <div class="subtitle">
                     <%= I18n.t('submissions.model.state.pending') %>

@@ -4,23 +4,27 @@
             <th scope="col">
                 
             </th>
-            <% for level in @rubric.levels %>
+            <% for level in rubric.levels %>
             <th scope="col">
                 <%= level.name %>
 				<span class='point'><%= trim(level.points) %></span>
             </th>
             <% end %>
         </tr>
-        <% for criterion in @rubric.criteria%>
+        <% for criterion in rubric.criteria%>
         <tr>
             <th>
                 <%= criterion.name %>
 				<span class='point'><%= trim(criterion.weightage) %>%</span>
             </th>
             <% for rd in criterion.rubric_descriptors %>
+			<% f.fields_for 'rubric_descriptors[]', criterion do |rd_form| %>
             <td>
+            	    <%= rd_form.radio_button :id, rd.id %>
                 <%= rd.description %>
+				<span class='point'><%= trim(rd.points) %>/<%= trim(rd.max_points) %></span>
             </td>
+			<% end %>
             <% end %>
         </tr>
         <% end %>

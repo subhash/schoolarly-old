@@ -52,6 +52,9 @@ class Member::SubmissionsController < Member::BaseController
   end
   
   def show
+    @assignment = @submission.assignment
+    @user = @submission.post.owner
+    @profile = @user.profile
     if @submission.post.uuid
       @session = @submission.post.from_crocodoc(current_user.profile.full_name, @submission.assignment.post.user == current_user)
     end

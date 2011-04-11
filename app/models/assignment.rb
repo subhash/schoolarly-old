@@ -8,6 +8,12 @@ class Assignment < ActiveRecord::Base
   
   belongs_to :rubric
   
+  has_many :grades do
+    def for_user(user)
+      find :first, :conditions => {:user_id => user.id}
+    end
+  end
+  
   has_many :submissions do
     def by(user)
       find :first, :include => :post, :conditions => ["posts.user_id=?", user.id]

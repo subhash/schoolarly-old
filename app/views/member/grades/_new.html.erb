@@ -1,0 +1,24 @@
+<% include_stylesheet "rubric" %>
+<% if i_am_the_owner_of?(@assignment.post) %>
+<div class='titleB'>
+    <%= I18n.t('grades.member.new.title') %>
+</div>
+<% form_for :grade, :url => member_assignment_grades_path(@assignment) do |f| %>
+<div class='fields'>
+    <% if @assignment.rubric %>
+    <%= render :partial => 'member/grades/rubric', :locals => {:rubric => @assignment.rubric, :f => f } %>
+    <% else %>
+    <p>
+        <label>
+            <%= I18n.t('grades.member.new.total') %>
+        </label>
+        <%= f.text_field :score %>/<%= @assignment.score %>
+        <%= link_to I18n.t('assignments.member.rubric.attach'), edit_member_assignment_path(@assignment) %>
+    </p>
+    <% end %>
+</div>
+<div class="actions">
+    <%= submit_tag I18n.t('grades.member.new.create'), {:class => "button mainaction", :accesskey => "s"} %>
+</div>
+<% end %>
+<% end %>

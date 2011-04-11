@@ -1,7 +1,6 @@
-class CreateGradesRubricDescriptors < ActiveRecord::Migration
-  
+class CreateGradeRubricDescriptors < ActiveRecord::Migration
   def self.up   
-    create_table :grades_rubric_descriptors, :id => false do |t|
+    create_table :grade_rubric_descriptors do |t|
       t.integer :grade_id
       t.integer :rubric_descriptor_id
       t.timestamps
