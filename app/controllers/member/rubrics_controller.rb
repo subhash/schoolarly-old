@@ -103,7 +103,7 @@ class Member::RubricsController < Member::BaseController
     level = Level.new(:name => "#{I18n.t('rubrics.model.level')}#{@rubric.levels.size+1}", :points => points)
     @rubric.levels << level
     @rubric.criteria.each do |criterion|
-      criterion.rubric_descriptors << RubricDescriptor.new(:level => level)
+      criterion.rubric_descriptors << RubricDescriptor.new(:level => level, :position => level.position)
     end
     respond_to do |format|
       format.js {
@@ -123,7 +123,6 @@ class Member::RubricsController < Member::BaseController
       position = (params[:position].to_i) - 1
       if params[:type] == 'level'
         for criterion in @rubric.criteria
-          criterion.rubric_descriptors(true)
           criterion.rubric_descriptors.delete_at(position)
         end
         @rubric.levels.delete_at(position)
@@ -148,7 +147,7 @@ class Member::RubricsController < Member::BaseController
   def add_criterion
     criterion = Criterion.new
     @rubric.levels.each do |level|
-      criterion.rubric_descriptors << RubricDescriptor.new(:level => level)
+      criterion.rubric_descriptors << RubricDescriptor.new(:level => level, :position => level.position)
     end
     @rubric.criteria << criterion
     respond_to do |format|
