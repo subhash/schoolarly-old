@@ -6,4 +6,6 @@ class Grade < ActiveRecord::Base
   has_many :grade_rubric_descriptors
   has_many :rubric_descriptors, :through => :grade_rubric_descriptors
   
+  accepts_nested_attributes_for :rubric_descriptors
+  
 end

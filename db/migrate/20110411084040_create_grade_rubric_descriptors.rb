@@ -11,6 +11,6 @@ class CreateGradeRubricDescriptors < ActiveRecord::Migration
   end
 
   def self.down    
-    drop_table :grades_rubric_descriptors
+    drop_table :grade_rubric_descriptors
   end
 end

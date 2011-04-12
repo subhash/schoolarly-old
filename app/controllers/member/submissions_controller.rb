@@ -58,6 +58,8 @@ class Member::SubmissionsController < Member::BaseController
     if @submission.post.uuid
       @session = @submission.post.from_crocodoc(current_user.profile.full_name, @submission.assignment.post.user == current_user)
     end
+    @grade = @assignment.grades.for_user(@user) || Grade.new(:assignment => @assignment, :user => @user, :rubric_descriptors => [])
+    puts '@grade - '+@grade.inspect
   end
   
   private

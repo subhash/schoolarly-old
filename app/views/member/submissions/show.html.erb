@@ -4,12 +4,13 @@
     <%= link_to @assignment.post.title, member_assignment_path(@assignment) %> > <%= @submission.post.title %>
 </div>
 
+<!--
 <iframe src="https://crocodoc.com/view/?sessionId=<%= @session %>" style="border:1px solid #ddd; width: 900px; height: 100%">
 </iframe>
 
-<% @grade = @assignment.grades.for_user(@user) %>
+-->
 <% if @grade %>
-<%= render :partial => 'member/grades/show' %>
+<%= render :partial => 'member/grades/edit' %>
 <% else %>
 <%= render :partial => 'member/grades/new' %>
 <% end %>
