@@ -20,7 +20,7 @@
             <% for rd in criterion.rubric_descriptors %>
 			<% fields_for 'rubric_descriptors[]', criterion do |rd_form| %>
             <td>
-            	<%= rd_form.radio_button :id, rd.id, {:checked => @grade.rubric_descriptors.include?(rd)} %>
+            	<%= rd_form.radio_button :id, rd.id, :checked => @grade.rubric_descriptors.include?(rd) %>
                 <%= rd.description %>
 				<span class='point'><%= trim(rd.points) %>/<%= trim(rd.max_points) %></span>
             </td>

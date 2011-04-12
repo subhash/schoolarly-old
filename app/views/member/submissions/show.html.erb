@@ -9,8 +9,8 @@
 </iframe>
 
 -->
-<% if @grade %>
-<%= render :partial => 'member/grades/edit' %>
-<% else %>
+<% if @grade.new_record? %>
 <%= render :partial => 'member/grades/new' %>
+<% else %>
+<%= render :partial => 'member/grades/edit' %>
 <% end %>
