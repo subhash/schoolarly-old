@@ -1,34 +1,10 @@
-<% rubric = @assignment.rubric%>
-<table class="tableB">
-    <tbody>
-        <tr>
-            <th scope="col">
-                
-            </th>
-            <% for level in rubric.levels %>
-            <th scope="col">
-                <%= level.name %>
-				<span class='point'><%= trim(level.points) %></span>
-            </th>
-            <% end %>
-        </tr>
-        <% for criterion in rubric.criteria%>
-        <tr>
-            <th>
-                <%= criterion.name %>
-				<span class='point'><%= trim(criterion.weightage) %>%</span>
-            </th>
-            <% for rd in criterion.rubric_descriptors %>
-			<% fields_for 'rubric_descriptors[]', criterion do |rd_form| %>
-            <td>
-            	<%= rd_form.radio_button :id, rd.id, :checked => @grade.rubric_descriptors.include?(rd), :onchange => 
-						remote_function(:url => change_rubric_member_grade_path(@grade, :rubric_descriptor => rd.id)) %>
-                <%= rd.description %>
-				<span class='point'><%= trim(rd.points) %>/<%= trim(rd.max_points) %></span>
-            </td>
-			<% end %>
-            <% end %>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+
+<div class='titleB'>
+    <%= I18n.t('grades.member.edit.change') %>
+</div>
+<% remote_form_for :grade, :url => member_grade_path(@grade),:method => :put, :update => 'grade' do |f| %>
+<%= render :partial => 'member/grades/form' , :locals => {:f => f } %>
+<div class="actions">
+    <%= submit_tag I18n.t('grades.member.edit.update'), {:class => "button mainaction", :accesskey => "s"} %>
+</div>
+<% end %>

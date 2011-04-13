@@ -362,4 +362,8 @@ en:
         title: "Grade"
         total: "Total Score"
         create: "Assign Grade"
+      edit:
+        change: "Change Grade"
+        remove: "Remove Grade"
+        update: "Save changes"
        

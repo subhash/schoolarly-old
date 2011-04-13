@@ -1,16 +1,19 @@
+<% include_stylesheet "rubric" %>
+<% include_javascript 'busy_ajax' %>
+
 <%= render :partial => 'member/profiles/header' %>
-
 <div class="titleB">
-    <%= link_to @assignment.post.title, member_assignment_path(@assignment) %> > <%= @submission.post.title %>
+    <%= link_to @assignment.post.title, member_assignment_path(@assignment) %>> <%= @submission.post.title %>
 </div>
-
 <!--
 <iframe src="https://crocodoc.com/view/?sessionId=<%= @session %>" style="border:1px solid #ddd; width: 900px; height: 100%">
 </iframe>
-
 -->
-<% if @grade.new_record? %>
-<%= render :partial => 'member/grades/new' %>
-<% else %>
-<%= render :partial => 'member/grades/edit' %>
-<% end %>
+<br/>
+<div id='grade'>
+    <% if @grade %>
+    <%= render :partial => 'member/grades/show' %>
+    <% elsif i_am_the_owner_of?(@assignment.post) %>
+    <%= render :partial => 'member/grades/empty' %>
+    <% end %>
+</div>

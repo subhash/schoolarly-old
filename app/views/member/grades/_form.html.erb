@@ -1,4 +1,4 @@
-<% form_for :grade, :url => member_assignment_grades_path(@assignment) do |f| %>
+
 <div class='fields'>
 	<%= f.hidden_field :assignment_id %>
 	<%= f.hidden_field :user_id %>
@@ -14,7 +14,3 @@
     </p>
     <% end %>
 </div>
-<div class="actions">
-    <%= submit_tag I18n.t('grades.member.new.create'), {:class => "button mainaction", :accesskey => "s"} %>
-</div>
-<% end %>

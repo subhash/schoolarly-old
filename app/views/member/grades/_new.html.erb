@@ -1,7 +1,10 @@
-<% include_stylesheet "rubric" %>
-<% if i_am_the_owner_of?(@assignment.post) %>
+
 <div class='titleB'>
     <%= I18n.t('grades.member.new.title') %>
 </div>
-<%= render :partial => 'member/grades/form' %>
+<% remote_form_for :grade, :url => member_assignment_grades_path(@assignment), :update => 'grade' do |f| %>
+<%= render :partial => 'member/grades/form' , :locals => {:f => f } %>
+<div class="actions">
+    <%= submit_tag I18n.t('grades.member.new.create'), {:class => "button mainaction", :accesskey => "s"} %>
+</div>
 <% end %>

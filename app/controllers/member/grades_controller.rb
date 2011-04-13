@@ -1,8 +1,18 @@
 class Member::GradesController < Member::BaseController
   
-  before_filter :find_assignment, :only => [:create]
+  before_filter :find_assignment, :only => [:new, :create]
   
-  before_filter :find_grade
+  before_filter :find_grade, :only => [:edit, :update, :destroy]
+  
+  def new
+    @user = User.find(params[:user_id])
+    @grade = Grade.new(:assignment => @assignment, :user => @user, :rubric_descriptors => [])
+    respond_to do |format|
+      format.js {
+        render :partial => 'new'
+      }
+    end
+  end
   
   def create
     @grade = Grade.new(params[:grade])
@@ -10,18 +20,54 @@ class Member::GradesController < Member::BaseController
       desc_ids = params[:rubric_descriptors].values.map{|v| v["id"]}
       @grade.rubric_descriptor_ids = desc_ids
     end
-    if @grade.save
-      puts @grade.inspect
-      redirect_to member_assignment_path(@assignment)
-    else 
-      puts @grade.errors.inspect
-      render :new
+    respond_to do |format|
+      format.js {
+        if @grade.save   
+          render :partial => 'show'
+        else 
+          render :partial => 'new'
+        end
+      }
+    end
+  end
+  
+  def edit
+    respond_to do |format|
+      format.js {
+        render :partial => 'edit'
+      }
+    end
+  end
+  
+  def update
+    if params[:rubric_descriptors]
+      desc_ids = params[:rubric_descriptors].values.map{|v| v["id"]}
+      @grade.rubric_descriptor_ids = desc_ids
+    end
+    respond_to do |format|
+      format.js {
+        if @grade.save   
+          render :partial => 'show'
+        else 
+          render :partial => 'edit'
+        end
+      }
+    end
+  end
+  
+  def destroy
+    respond_to do |format|
+      format.js {
+        if @grade.destroy   
+          render :partial => 'empty'
+        else 
+          render :partial => 'show'
+        end
+      }
     end
   end
   
   def change_rubric
-    puts 'hoo - '+params.inspect
-    puts 'req - '+request.inspect
     if params[:rubric_descriptor]
       @descriptor = RubricDescriptor.find(params[:rubric_descriptor])
       puts 'replacing with '+@descriptor.inspect
@@ -46,6 +92,8 @@ class Member::GradesController < Member::BaseController
   
   def find_grade
     @grade = Grade.find(params[:id]) if params[:id]
+    @assignment = @grade.assignment
+    @user = @grade.user
   end
   
 end
