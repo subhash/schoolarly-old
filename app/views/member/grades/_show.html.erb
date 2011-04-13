@@ -22,7 +22,7 @@
             <% for rd in criterion.rubric_descriptors %>
             <td>
                 <%= rd.description %>
-                <span class='point'><%= trim(rd.points) %>/<%= trim(rd.max_points) %></span>
+                <span class='point'><%= trim(rd.points) %>/<%= trim(@rubric.max_points) %></span>
             </td>
             <% end %>
         </tr>
@@ -31,10 +31,10 @@
 </table>
 <% end %>
 <div>
-    Grade Points : <%= trim(@grade.grade_points) %>/<%= trim(@grade.max_points) %>
+    Grade Points : <%= trim(@grade.grade_points) %>/<%= trim(@rubric.max_points) %>
 </div>
 <div>
-    Total Score : <%= trim(@grade.total_points) %>/<%= trim(@grade.assignment.score) %>
+    Total Score : <%= trim(@grade.score) %>/<%= trim(@grade.assignment.score) %>
 </div>
 <% if i_am_the_author_of?(@grade.assignment.post) %>
     <%= link_to_remote I18n.t('grades.member.edit.remove'), :url => member_grade_path(@grade), :method => :delete , :update => 'grade' , :html => {:class => 'button'} %>

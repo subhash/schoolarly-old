@@ -357,6 +357,8 @@ en:
           default: "[Type description here]"
           
   grades:
+    model:
+      grade_points: "Grade points"
     member:
       new:
         title: "Grade"

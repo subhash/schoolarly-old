@@ -16,7 +16,4 @@ class RubricDescriptor < ActiveRecord::Base
     level.points * criterion.weightage/100
   end
   
-  def max_points
-    rubric.levels.last.points
-  end
 end

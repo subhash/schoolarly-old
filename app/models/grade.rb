@@ -11,12 +11,4 @@ class Grade < ActiveRecord::Base
     rubric_descriptors.collect(&:points).sum
   end
   
-  def max_points
-    rubric_descriptors.first.max_points
-  end
-  
-  def total_points
-    grade_points/max_points * assignment.score
-  end
-  
 end

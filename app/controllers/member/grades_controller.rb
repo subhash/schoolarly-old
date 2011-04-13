@@ -40,6 +40,7 @@ class Member::GradesController < Member::BaseController
   end
   
   def update
+    @grade.attributes = params[:grade]
     if params[:rubric_descriptors]
       desc_ids = params[:rubric_descriptors].values.map{|v| v["id"]}
       @grade.rubric_descriptor_ids = desc_ids

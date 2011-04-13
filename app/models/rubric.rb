@@ -13,7 +13,7 @@ class Rubric < ActiveRecord::Base
   validates_presence_of :levels
   
   accepts_nested_attributes_for :criteria, :levels, :allow_destroy => true
-
+  
   
   has_many :assignments
   
@@ -41,5 +41,10 @@ class Rubric < ActiveRecord::Base
       criterion.rubric_descriptors << RubricDescriptor.new(:level => level4)
     end
   end
+  
+  def max_points
+    levels.last.points
+  end
+  
   
 end
