@@ -1,5 +1,7 @@
 class Rubric < ActiveRecord::Base
   
+  acts_as_shareable
+  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
   has_many :criteria, :order => 'position', :include => :rubric_descriptors, :dependent => :destroy
   has_many :levels, :order => 'position', :dependent => :destroy do
     def at(position)
@@ -29,11 +31,10 @@ class Rubric < ActiveRecord::Base
     level3 = Level.new(:points => 3)
     level4 = Level.new(:points => 4)
     self.levels = [level1,level2,level3,level4]
-    criterion1 = Criterion.new(:weightage => 25)
-    criterion2 = Criterion.new(:weightage => 25)
-    criterion3 = Criterion.new(:weightage => 25)
-    criterion4 = Criterion.new(:weightage => 25)
-    self.criteria = [criterion1,criterion2,criterion3,criterion4]
+    criterion1 = Criterion.new(:weightage => 30)
+    criterion2 = Criterion.new(:weightage => 30)
+    criterion3 = Criterion.new(:weightage => 40)
+    self.criteria = [criterion1,criterion2,criterion3]
     for criterion in self.criteria
       criterion.rubric_descriptors << RubricDescriptor.new(:level => level1)
       criterion.rubric_descriptors << RubricDescriptor.new(:level => level2)

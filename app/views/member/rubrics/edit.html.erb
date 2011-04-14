@@ -14,5 +14,10 @@
 <div id='rubric'>
     <%= render :partial => 'edit' %>
 </div>
+<% content_for :sidebar do %>
+    <%= render :partial => 'manage' %>
+	<%= render :partial => 'shared/groups' %>
+<% end %>
+
 
 

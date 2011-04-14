@@ -326,8 +326,10 @@ en:
       level: "Level"
       criterion: "Criterion"
     member:
+      manage:
+        title: "Manage Rubric Library"
       index:
-        title: "Rubrics Library"
+        title: "Rubric Library"
         create: "Create Rubric"
         created_by: "Created by"
         rubric: "rubric"

@@ -1,7 +1,7 @@
 <div class="portlet_content">
     <ul>
         <% for share in @shares %>
-        <% if share.published? %>
+        <% if share.published? and !share.shareable.is_a? Rubric %>
         <% profile = share.user.profile %>
         <li class="detail detail1">
             <div class="image">
