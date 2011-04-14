@@ -12,17 +12,12 @@
                 <div>
                     <%= link_to s.profile.full_name, profile_path(s.profile) %>
                 </div>
-                <span class="float_right"><% if @assignment.grades.for_user(s) %>
+                <span class="float_right">              	
+					<% if @assignment.grades.for_user(s) %>
                     <% score = "#{trim(@assignment.grades.for_user(s).score)}/#{trim(@assignment.score)}" %>
-					<% if i_am_the_author_of?(@assignment.post) %>
-					<%= link_to score, edit_member_grade_path(@assignment.grades.for_user(s)) %>
-					<% else %>
-					<%= score %>
-					<% end %>
-                    <% elsif submission.blank? or !submission.post.published? %>
-                    <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => s) %>
+                    <%= link_to score, member_grade_path(@assignment.grades.for_user(s)) %>
                     <% else %>
-                    <%= link_to I18n.t('assignments.member.grades.assign'), member_submission_path(submission) %>
+                    <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => s) %>                    
                     <% end %>
                 </span>
                 <% if submission.blank? or !submission.post.published? %>
