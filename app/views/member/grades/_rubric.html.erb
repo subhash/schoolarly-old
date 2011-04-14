@@ -1,14 +1,24 @@
 <script type="text/javascript">
         jQuery(document).ready(function(){      
             jQuery('.radio').change(function(){
-    			var sum =  0;
+				    jQuery('.radio').each(function(i){
+    					if (jQuery(this).is(':checked')) 
+							jQuery(this).closest('td').addClass('highlight');  							
+						else 
+							jQuery(this).closest('td').removeClass('highlight');						
+					});    					
+    				var sum =  0;
                 jQuery('.radio:checked').each(function(i){
-                sum += parseFloat(jQuery(this).closest('td').find('.points').text());
+                		sum += parseFloat(jQuery(this).closest('td').find('.points').text());					
                 });
-            jQuery('#grade_points').text(sum);
-    			jQuery('#total_score').val(sum/<%=rubric.max_points %> * <%=@assignment.score %>);
+            		jQuery('#grade_points').text(sum);
+    				jQuery('#total_score').val(sum/<%=rubric.max_points %> * <%=@assignment.score %>);
+
             });
-           
+	
+    			jQuery('.radio:checked').each(function(i){
+    				jQuery(this).closest('td').addClass('highlight')
+    			}); 
         });
 </script>
 <table class="tableB">

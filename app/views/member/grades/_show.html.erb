@@ -20,7 +20,8 @@
                 <span class='point'><%= trim(criterion.weightage) %>%</span>
             </th>
             <% for rd in criterion.rubric_descriptors %>
-            <td>
+			<% c = @grade.rubric_descriptors.include?(rd) ? 'highlight' : ''%>
+            <td class=<%=c%> >
                 <%= rd.description %>
                 <span class='point'><%= trim(rd.points) %>/<%= trim(@rubric.max_points) %></span>
             </td>
