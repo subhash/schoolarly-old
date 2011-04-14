@@ -12,12 +12,11 @@
                 <div>
                     <%= link_to s.profile.full_name, profile_path(s.profile) %>
                 </div>
-                <span class="float_right">              	
-					<% if @assignment.grades.for_user(s) %>
+                <span class="float_right"><% if @assignment.grades.for_user(s) %>
                     <% score = "#{trim(@assignment.grades.for_user(s).score)}/#{trim(@assignment.score)}" %>
                     <%= link_to score, member_grade_path(@assignment.grades.for_user(s)) %>
                     <% else %>
-                    <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => s) %>                    
+                    <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => s) %>
                     <% end %>
                 </span>
                 <% if submission.blank? or !submission.post.published? %>
@@ -43,14 +42,20 @@
                 <div>
                     <%= link_to current_user.profile.full_name, profile_path(current_user.profile) %>
                 </div>
+                <span class="float_right">
+                	<% if @assignment.grades.for_user(current_user) %>
+                    <% score = "#{trim(@assignment.grades.for_user(current_user).score)}/#{trim(@assignment.score)}" %>
+                    <%= link_to score, member_grade_path(@assignment.grades.for_user(current_user)) %>
+                    <% else %>
+                    <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => current_user) %>
+                    <% end %>
+                </span>
                 <% if submission.blank? %>
                 <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(@assignment) %>
-                <% else %>
-                <% if submission.post.published? %>
+                <% elsif submission.post.published? %>
                 <%= link_to I18n.t('submissions.site.manage.view'), member_submission_path(submission) %>
                 <% else %>
                 <%= I18n.t("submissions.model.state.draft") %>: <%= link_to I18n.t('submissions.site.manage.view'), edit_member_submission_path(submission) %>
-                <% end %>
                 <% end %>
             </li>
             <% end %>
