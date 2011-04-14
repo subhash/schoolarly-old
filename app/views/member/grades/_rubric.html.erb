@@ -52,9 +52,13 @@
         <% end %>
     </tbody>
 </table>
+<% if rubric.max_points %>
 <div>
     <%= I18n.t('grades.model.grade_points') %>: <span id="grade_points"><%= trim(@grade.grade_points) %></span>/<%= trim(rubric.max_points) %>
 </div>
+<% end %>
+<% if @grade.assignment.score %>
 <div>
     <%= I18n.t('grades.member.new.total') %>: <%= f.text_field :score, :size => 10, :id => "total_score" %>/<%= trim(@grade.assignment.score) %>
 </div>
+<% end %>

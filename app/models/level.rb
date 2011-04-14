@@ -5,7 +5,7 @@ class Level < ActiveRecord::Base
 
   has_many :rubric_descriptors, :dependent => :destroy
   
-  validates_presence_of :name, :points
-  validates_numericality_of :points
+  validates_presence_of :name
+  validates_numericality_of :points, :allow_nil => true
   
 end

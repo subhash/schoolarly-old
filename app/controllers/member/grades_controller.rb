@@ -8,6 +8,10 @@ class Member::GradesController < Member::BaseController
     @user = User.find(params[:user_id])
     @grade = Grade.new(:assignment => @assignment, :user => @user, :rubric_descriptors => [])
     respond_to do |format|
+      format.html{
+        @profile = @user.profile
+        render :template => 'member/grades/new'
+      }
       format.js {
         render :partial => 'new'
       }
@@ -33,6 +37,10 @@ class Member::GradesController < Member::BaseController
   
   def edit
     respond_to do |format|
+      format.html{
+        @profile = @user.profile
+        render :template => 'member/grades/edit'
+      }
       format.js {
         render :partial => 'edit'
       }
@@ -40,7 +48,9 @@ class Member::GradesController < Member::BaseController
   end
   
   def update
+    puts "grade before - "+@grade.inspect
     @grade.attributes = params[:grade]
+    puts "grade after - "+@grade.inspect
     if params[:rubric_descriptors]
       desc_ids = params[:rubric_descriptors].values.map{|v| v["id"]}
       @grade.rubric_descriptor_ids = desc_ids

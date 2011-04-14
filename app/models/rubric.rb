@@ -13,9 +13,18 @@ class Rubric < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :criteria
   validates_presence_of :levels
+  validate :weightage_summation
   
   accepts_nested_attributes_for :criteria, :levels, :allow_destroy => true
   
+    
+  def weightage_summation   
+    unless criteria.select{|c|c.weightage}.blank?
+      unless (criteria.collect(&:weightage).sum == 100)
+        errors.add(:weightage, "should addup to 100%")
+      end
+    end
+  end
   
   has_many :assignments
   

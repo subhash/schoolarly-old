@@ -366,6 +366,7 @@ en:
         title: "Grade"
         total: "Total Score"
         create: "Assign Grade"
+        pending: "Submission pending"
       edit:
         change: "Change Grade"
         remove: "Remove Grade"
