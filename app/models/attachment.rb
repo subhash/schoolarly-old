@@ -1,5 +1,6 @@
 class Attachment < ActiveRecord::Base
   acts_as_commentable
+  acts_as_shareable
   has_attached_file :doc, Tog::Plugins.storage_options   
   
   belongs_to :user

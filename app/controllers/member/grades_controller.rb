@@ -2,7 +2,7 @@ class Member::GradesController < Member::BaseController
   
   before_filter :find_assignment, :only => [:new, :create]
   
-  before_filter :find_grade, :only => [:edit, :update, :destroy]
+  before_filter :find_grade, :only => [:edit, :update, :destroy, :show]
   
   def new
     @user = User.find(params[:user_id])
@@ -37,15 +37,12 @@ class Member::GradesController < Member::BaseController
   
   def edit
     respond_to do |format|
-      format.html{
-        @profile = @user.profile
-        render :template => 'member/grades/edit'
-      }
       format.js {
         render :partial => 'edit'
       }
     end
   end
+  
   
   def update
     puts "grade before - "+@grade.inspect
@@ -105,6 +102,7 @@ class Member::GradesController < Member::BaseController
     @grade = Grade.find(params[:id]) if params[:id]
     @assignment = @grade.assignment
     @user = @grade.user
+    @profile = @user.profile
   end
   
 end
