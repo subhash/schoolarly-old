@@ -25,3 +25,4 @@ right_aws
 rest-client
 tiny_mce
 acts_as_list --version '~>0.1'
+aasm
