@@ -24,9 +24,7 @@ smerfform:
   groups:
     personal_details:
       code: 1
-      name: Personal Details Group
-      description: | This is a brief description of the Personal Details Group
-        here we ask you some personal details ...
+      name: Personal Details
       questions:
         mention_name:
           code: q_name

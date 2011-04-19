@@ -2,6 +2,9 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  tog_user:
+    user:
+      sign_up: Thanks for signing up! We have sent to you an email with instructions to activate your account.
   home:
     index:
       about_schoolarly: "Schoolarly is a communication platform that connects students, teachers and parents in a school"
