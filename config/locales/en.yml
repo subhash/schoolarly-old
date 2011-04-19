@@ -96,6 +96,8 @@ en:
           subject: Invitation to the group %{group}
           accept: Accept
           reject: Reject
+      photos:
+        share: Share Photo
       notes:
         share: Post note to group 
         new: New note 

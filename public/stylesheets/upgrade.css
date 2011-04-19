@@ -72,8 +72,8 @@ form .fields p {
 }
 
 a.calendar {
-    background: url(../tog_core/images/ico/calendar.gif) no-repeat 0 0.2em;
-    padding-left: 20px;
+	background: url(../images/ico/calendar.gif) no-repeat 0 0;
+    padding: 2px 0 2px 20px;
     text-decoration: none;
 }
 
@@ -83,4 +83,9 @@ a.ok {
     text-decoration: none;
 }
 
+a.photo{
+	background: url(../images/ico/photo.gif) no-repeat 0 0;
+    padding: 2px 0 2px 20px;
+    text-decoration: none;
+}
 

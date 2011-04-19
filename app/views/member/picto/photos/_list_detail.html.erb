@@ -1,0 +1,29 @@
+<% group = group if local_assigns[:group]%>
+
+<div class="photo">
+  <div class="photo_container">
+    <%= link_to image_tag(photo.image.url(:tiny)), picto_scaled_photo_path(photo, :tiny) %>
+	<%= link_to photo.title, member_picto_photo_path(photo, :group => group) %>
+  </div>
+  <p><%= photo.description %></p>
+  <p>
+    <% tags = photo.tag_list %>
+    Tags:
+    <% if !tags.blank? %>
+      <% for tag in tags %>
+        <%= link_to tag, tags_picto_photos_path(:tag => tag, :user => photo.user_id) %>
+      <% end %>
+    <% else %>
+      No tags.
+    <% end %>
+  </p>
+
+<%= render :partial => "shared/comments", :locals => { :commentable => photo , :exclude_add_comment => true} %>
+
+<div class="portlet portletL">
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(photo.image_updated_at)) %> . 
+	<%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size =>photo.comments.size), member_picto_photo_path(photo, :group => group) %> . 
+	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_picto_photo_path(photo, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(photo.title)) %> . 
+	<%= share_with_groups_link(photo) if i_am_the_owner_of? photo %>
+</div>
+</div>

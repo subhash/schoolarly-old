@@ -1,0 +1,46 @@
+<% content_for :sidebar do %>
+<% end %>
+<div class="titleB">
+	<% if @group %>
+    <%= link_to @group.name, member_group_path(@group) %> > <% end %>
+	<%= @photo.title %>
+</div>
+
+<div class="photo">
+  <p><%= link_to 'tiny', picto_scaled_photo_path(@photo, :tiny)%> |
+    <%= link_to "small", picto_scaled_photo_path(@photo, :small) %> |
+    <%= link_to "medium", picto_scaled_photo_path(@photo, :medium) %> |
+    <%= link_to "big", picto_scaled_photo_path(@photo, :big) %> |
+    <%= link_to "original", picto_scaled_photo_path(@photo, :original) %>
+    </p>
+  <div class="photo_container">
+    <%= image_tag(@photo.image.url(@size)) %>
+  </div>
+  <p><%= @photo.description %></p>
+  <p>
+    <% tags = @photo.tag_list %>
+    Tags:
+    <% if !tags.blank? %>
+      <% for tag in tags %>
+        <%= link_to tag, tags_picto_photos_path(:tag => tag, :user => @photo.user_id) %>
+      <% end %>
+    <% else %>
+      No tags.
+    <% end %>
+  </p>
+
+  <%= render :partial => "shared/comments", :locals => { :commentable => @photo } %>
+
+  <div class="info_results">
+    <%= text_navigation_links(@photo) %>
+<!--
+    <%= text_navigation_links(@photo, {
+        :prev_text => image_tag('/img/ico/greenarrow-6.gif', :alt =>'Anterior'),
+        :next_text => image_tag('/img/ico/greenarrow-5.gif', :alt =>'Siguiente'),
+        :separator => ""
+      }, {:class => "imgnavigation"}) %>
+-->
+    <%= image_navigation_links(@photo) %>
+  </div>
+  	
+</div>
