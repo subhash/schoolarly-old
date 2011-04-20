@@ -46,11 +46,6 @@
 	<td>//input[@name='commit' and @value='Add multiple subjects']</td>
 	<td></td>
 </tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Add Students</td>
-	<td></td>
-</tr>
 </tbody></table>
 </body>
 </html>

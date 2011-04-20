@@ -24,7 +24,7 @@
 <tr>
 	<td>type</td>
 	<td>group_name</td>
-	<td>Griffindor</td>
+	<td>Gryffindor</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -156,7 +156,6 @@
 	<td>link=Hogwarts</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

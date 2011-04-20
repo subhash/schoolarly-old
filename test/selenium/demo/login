@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://127.0.0.1:3004/" />
-<title>new_school</title>
+<title>login</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">new_school</td></tr>
+<tr><td rowspan="1" colspan="3">login</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -18,12 +18,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//div[@id='portlet_splashHome']/div/p[1]/span[1]/a/strong</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Create school</td>
+	<td>link=Log-in</td>
 	<td></td>
 </tr>
 <tr>
@@ -41,21 +36,7 @@
 	<td>//input[@name='commit' and @value='Sign in']</td>
 	<td></td>
 </tr>
-<tr>
-	<td>type</td>
-	<td>group_name</td>
-	<td>Hogwarts</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>group_description</td>
-	<td>Hogwarts is a coeducational, secondary boarding school, taking children from ages eleven to eighteen. Education at Hogwarts is not compulsory, with some students being home schooled</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Create']</td>
-	<td></td>
-</tr>
+
 </tbody></table>
 </body>
 </html>
