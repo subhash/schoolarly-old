@@ -29,7 +29,7 @@
     <% end %>
   </p>
 
-  <%= render :partial => "shared/comments", :locals => { :commentable => @photo } %>
+  <%= render :partial => "shared/comments", :locals => { :commentable => @photo, :show_all => true } %>
 
   <div class="info_results">
     <%= text_navigation_links(@photo) %>

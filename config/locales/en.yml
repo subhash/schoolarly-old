@@ -60,6 +60,7 @@ en:
       add:
         Student: "Add Students"
         Teacher: "Add Teachers"
+        Admin: "Add administrators"
       remove:
         Student: "Remove Students"
         Teacher: "Remove Teachers"
@@ -69,6 +70,7 @@ en:
       invite:
         Student: "Invite new students"
         Teacher: "Invite new teachers"
+        Admin: "Invite administrators"
       select:
         none_selected: "No %{types} were selected"
         invited: "%{user_count} user(s) invited"
@@ -84,7 +86,13 @@ en:
         add_select: "Select existing teachers"
         added_successfully: "%{teacher_name} has been added successfully"        
         remove_select: "Select teachers to be removed"        
-        invited: "%{count} teacher(s) invited"        
+        invited: "%{count} teacher(s) invited"  
+      Admin:
+        invite: "Invite non-teaching members"  
+        add_select: "Select existing members"
+        added_successfully: "%{name} has been added successfully"        
+        remove_select: "Select members to be removed"        
+        invited: "%{count} member(s) invited"    
       
     member:   
       admin_links: "Group Settings"
@@ -376,4 +384,9 @@ en:
         change: "Change Grade"
         remove: "Remove Grade"
         update: "Save changes"
+  
+  comments:
+    member:
+      view:
+        all: "View all %{size} comments"
        

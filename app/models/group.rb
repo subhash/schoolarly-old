@@ -110,9 +110,11 @@ class Group < ActiveRecord::Base
   
   def set_default_image
     unless self.image?
-      if FileTest.exist?(RAILS_ROOT + "/public/images/#{name.upcase}.png")
-        self.image = File.new(RAILS_ROOT + "/public/images/#{name.upcase}.png")
-      elsif Tog::Config["plugins.tog_social.group.image.default"]
+      Dir.glob(RAILS_ROOT + "/public/images/#{name}.*") do |filename|
+        self.image = File.new(filename)
+        return
+      end
+      if Tog::Config["plugins.tog_social.group.image.default"]
         default_group_image = File.join(RAILS_ROOT, 'public', 'tog_social', 'images', Tog::Config["plugins.tog_social.group.image.default"])
         self.image = File.new(default_group_image)
       end

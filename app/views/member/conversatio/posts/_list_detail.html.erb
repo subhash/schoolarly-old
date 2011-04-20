@@ -9,7 +9,6 @@
 <div class="portlet portletL">
     <%= link_to icon_for_post, member_conversatio_blog_post_path(blog, post, :group => group), :title => "#{sanitize post.title}" %>
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(post.published_at)) %> .
-	<%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => post.comments.size), member_conversatio_blog_post_path(blog, post, :group => @group) %> . 
 	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_conversatio_blog_post_path(blog, post, :group => group), :title => I18n.t('tog_conversatio.views.posts.comments.comment_title', :post_title => h(post.title)) %> . 
 	<%= share_with_groups_link(post) if i_am_the_author_of? post %>
 </div>

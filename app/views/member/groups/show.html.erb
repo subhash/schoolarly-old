@@ -28,7 +28,7 @@
 			  <% if @group.school? %>
 			  	<li><%= link_to I18n.t('groups.member.admissions.title'), member_group_pending_members_path(@group) %></li>
 			    <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group.id, :type => 'klasses'), :class => 'add' %></li>
-			    <li><%= link_to I18n.t('schools.site.admin.invite'), add_select_member_group_path(@group), :class => 'add' %></li>
+			   <!-- <li><%= link_to I18n.t('schools.site.admin.invite'), add_select_member_group_path(@group, :type => 'Admin'), :class => 'add' %></li> -->
 			    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>				
 			  <% else %>

@@ -13,7 +13,7 @@
         <%= sanitize(textilize(@attachment.description), :tags => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_attributes').split) %>
     </div>
     <br/>
-    <%= render :partial => "shared/comments", :locals => { :commentable => @attachment } %>
+    <%= render :partial => "shared/comments", :locals => { :commentable => @attachment, :show_all => true } %>
 </div>
 <% content_for :sidebar do %>
 <%= render :partial => 'member/attachments/manage', :locals => {:attachment => @attachment} %>

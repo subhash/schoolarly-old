@@ -199,16 +199,6 @@ ActiveRecord::Schema.define(:version => 20110411084040) do
   add_index "grades", ["user_id"], :name => "user_id"
   add_index "grades", ["assignment_id"], :name => "assignment_id"
 
-  create_table "grades_rubric_descriptors", :id => false, :force => true do |t|
-    t.integer  "grade_id"
-    t.integer  "rubric_descriptor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "grades_rubric_descriptors", ["grade_id"], :name => "grade_id"
-  add_index "grades_rubric_descriptors", ["rubric_descriptor_id"], :name => "rubric_descriptor_id"
-
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -532,9 +522,6 @@ ActiveRecord::Schema.define(:version => 20110411084040) do
 
   add_foreign_key "grades", ["user_id"], "users", ["id"], :name => "grades_ibfk_1"
   add_foreign_key "grades", ["assignment_id"], "assignments", ["id"], :name => "grades_ibfk_2"
-
-  add_foreign_key "grades_rubric_descriptors", ["grade_id"], "grades", ["id"], :name => "grades_rubric_descriptors_ibfk_1"
-  add_foreign_key "grades_rubric_descriptors", ["rubric_descriptor_id"], "rubric_descriptors", ["id"], :name => "grades_rubric_descriptors_ibfk_2"
 
   add_foreign_key "levels", ["rubric_id"], "rubrics", ["id"], :name => "levels_ibfk_1"
 

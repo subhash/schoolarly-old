@@ -1,26 +1,27 @@
+<% if local_assigns[:show_all] and show_all == true %>
+<% comments = commentable.comments %>
+<% else %>
+<% comments = commentable.comments.to(1) %>
+<% end %>
 <div class="portlet portletI">
     <div class="portlet_content">
         <ul>
-            <% for comment in commentable.comments %>
-            <li id="comment_<%= comment.id %>">
-                <% if comment.user %>
-                <div class="image">
-                    <%= link_to icon_for_profile(comment.user.profile, 'tiny'), profile_path(comment.user.profile) %>
-                </div>
-                <div>
-                    <%= link_to comment.user.profile.full_name, profile_path(comment.user.profile) %>
-                </div>
-                <% else %>
-                <div class="text">
-                    <%= comment_user_name(comment) %>
-                </div>
-                <% end %>
-                <%= sanitize(textilize(comment.comment), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.comments.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.comments.allowed_attributes').split) %>
-                <div class="portletL fontsmaller">
-                    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(comment.created_at)) %>
-                </div>
-            </li>
+            <% for comment in comments %>
+				<%= render :partial => 'shared/comment', :object => comment %>
             <% end %>
+			<% unless commentable.comments.size < 2 or local_assigns[:show_all] %>
+			<li id="comments_view_more">
+				<%= link_to_function I18n.t('comments.member.view.all', :size => commentable.comments.size) do |page| 
+					page[:comments_more].show
+					page[:comments_view_more].hide
+				end %>
+			</li>
+			<div id="comments_more" style="display: none;">
+			<% for comment in commentable.comments.from(2) %>
+				<%= render :partial => 'shared/comment', :object => comment %>
+            <% end %>
+			</div>
+			<% end %>
         </ul>
     </div>
 </div>
