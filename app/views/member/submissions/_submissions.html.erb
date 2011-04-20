@@ -47,7 +47,7 @@
                     <% score = "#{trim(@assignment.grades.for_user(current_user).score)}/#{trim(@assignment.score)}" %>
                     <%= link_to score, member_grade_path(@assignment.grades.for_user(current_user)) %>
                     <% else %>
-                    <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => current_user) %>
+                    <%= I18n.t('assignments.member.grades.pending') %>
                     <% end %>
                 </span>
                 <% if submission.blank? %>

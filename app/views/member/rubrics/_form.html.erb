@@ -7,10 +7,7 @@
         //   }
         //  });
         jQuery('.editable').click(function(){
-            jQuery('.field').each(function(i){
-                jQuery(this).closest('.edit').find('.editable').show();
-                jQuery(this).hide();
-            });
+            jQuery('.field').blur();
             this.hide();
             jQuery(this).closest('.edit').find('.field').show();
         });

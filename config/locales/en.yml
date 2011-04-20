@@ -289,6 +289,7 @@ en:
         attach: "Attach Rubric"
       grades:
         assign: "Assign Grade"
+        pending: "Grade pending"
 
              
   notebooks:

@@ -31,9 +31,9 @@ class Member::Picto::PhotosController < Member::BaseController
     
     unless @photoset.nil?
       @photoset.save!
-      redirect_to_back_or_default edit_member_picto_photoset_path(@photoset)
+      redirect_back_or_default edit_member_picto_photoset_path(@photoset)
     else
-      redirect_to_back_or_default member_picto_photos_path
+      redirect_back_or_default member_picto_photos_path
     end
   end
   

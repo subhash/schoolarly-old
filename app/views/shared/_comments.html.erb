@@ -9,7 +9,7 @@
             <% for comment in comments %>
 				<%= render :partial => 'shared/comment', :object => comment %>
             <% end %>
-			<% unless commentable.comments.size < 2 or local_assigns[:show_all] %>
+			<% unless commentable.comments.size <= 2 or local_assigns[:show_all] %>
 			<li id="comments_view_more">
 				<%= link_to_function I18n.t('comments.member.view.all', :size => commentable.comments.size) do |page| 
 					page[:comments_more].show
