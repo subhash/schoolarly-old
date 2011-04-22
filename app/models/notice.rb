@@ -5,8 +5,6 @@ class Notice < ActiveRecord::Base
   
   belongs_to :user
   
-  has_many :comments, :order => "created_at DESC", :as => :commentable
-  
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
   
   def title

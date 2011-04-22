@@ -1,27 +1,18 @@
-<% if local_assigns[:show_all] and show_all == true %>
 <% comments = commentable.comments %>
-<% else %>
-<% comments = commentable.comments.to(1) %>
+<% unless commentable.comments.size <= 2 or local_assigns[:show_all] %>
+	<% comments = commentable.comments.last(2) %>
 <% end %>
 <div class="portlet portletI">
     <div class="portlet_content">
-        <ul>
-            <% for comment in comments %>
-				<%= render :partial => 'shared/comment', :object => comment %>
+        <ul id="comments_<%=commentable.type%>_<%=commentable.id%>">
+            <%= render :partial => 'shared/comment', :collection => comments %>
+            <% unless commentable.comments.size <= 2 or local_assigns[:show_all] %>
+            <li>
+                <%= link_to_function I18n.t('comments.member.view.all', :size => commentable.comments.size) do |page|
+                page["comments_#{commentable.type}_#{commentable.id}"].replace_html :partial => 'shared/comment', :collection => commentable.comments
+                end %>
+            </li>
             <% end %>
-			<% unless commentable.comments.size <= 2 or local_assigns[:show_all] %>
-			<li id="comments_view_more">
-				<%= link_to_function I18n.t('comments.member.view.all', :size => commentable.comments.size) do |page| 
-					page[:comments_more].show
-					page[:comments_view_more].hide
-				end %>
-			</li>
-			<div id="comments_more" style="display: none;">
-			<% for comment in commentable.comments.from(2) %>
-				<%= render :partial => 'shared/comment', :object => comment %>
-            <% end %>
-			</div>
-			<% end %>
         </ul>
     </div>
 </div>
