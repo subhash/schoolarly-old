@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:3004/" />
+<title>add_maths_note</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">add_maths_note</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>hooch@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>workworkwork</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Mathematics</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Post note to group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>post_title</td>
+	<td>Notes on Bayes' Theorem</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>post_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>&lt;h2&gt;An Introduction to Bayes' Theorem&lt;/h2&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;Bayes' Theorem is a theorem of probability theory originally stated by the Reverend Thomas Bayes. It can be seen as a way of understanding how the probability that a theory is true is affected by a new piece of evidence. It has been used in a wide variety of contexts, ranging from marine biology to the development of &quot;Bayesian&quot; spam blockers for email systems. In the philosophy of science, it has been used to try to clarify the relationship between theory and evidence. Many insights in the philosophy of science involving confirmation, falsification, the relation between science and pseudosience, and other topics can be made more precise, and sometimes extended or corrected, by using Bayes' Theorem. These pages will introduce the theorem and its use in the philosophy of science.&lt;br /&gt;&lt;br /&gt;Begin by having a look at the theorem, displayed below. Then we'll look at the notation and terminology involved.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;http://www.trinity.edu/cbrown/bayesweb/bayesFormula.gif&quot; alt=&quot;&quot; width=&quot;548&quot; height=&quot;85&quot; /&gt;&lt;/p&gt; &lt;p&gt;In this formula, T stands for a theory or hypothesis that we are interested in testing, and E represents a new piece of evidence that seems to confirm or disconfirm the theory. For any proposition S, we will use P(S) to stand for our degree of belief, or &quot;subjective probability,&quot; that S is true. In particular, P(T) represents our best estimate of the probability of the theory we are considering, prior to consideration of the new piece of evidence. It is known as the prior probability of T.&lt;br /&gt;&lt;br /&gt;What we want to discover is the probability that T is true supposing that our new piece of evidence is true. This is a conditional probability, the probability that one proposition is true provided that another proposition is true. For instance, suppose you draw a card from a deck of 52, without showing it to me. Assuming the deck has been well shuffled, I should believe that the probability that the card is a jack, P(J), is 4/52, or 1/13, since there are four jacks in the deck. But now suppose you tell me that the card is a face card. The probability that the card is a jack, given that it is a face card, is 4/12, or 1/3, since there are 12 face cards in the deck. We represent this conditional probability as P(J|F), meaning the probability that the card is a jack given that it is a face card.&lt;br /&gt;&lt;br /&gt;(We don't need to take conditional probability as a primitive notion; we can define it in terms of absolute probabilities: P(A|B) = P(A and B) / P(B), that is, the probability that A and B are both true divided by the probability that B is true.)&lt;br /&gt;Using this idea of conditional probability to express what we want to use Bayes' Theorem to discover, we say that P(T|E), the probability that T is true given that E is true, is the posterior probability of T. The idea is that P(T|E) represents the probability assigned to T after taking into account the new piece of evidence, E. To calculate this we need, in addition to the prior probability P(T), two further conditional probabilities indicating how probable our piece of evidence is depending on whether our theory is or is not true. We can represent these as P(E|T) and P(E|~T), where ~T is the negation of T, i.e. the proposition that T is false.&lt;/p&gt;</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Create Post']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

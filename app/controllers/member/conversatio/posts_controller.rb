@@ -36,6 +36,11 @@ class Member::Conversatio::PostsController < Member::BaseController
   end
   
   private
+  
+  def load_blog
+    @blog  = Blog.find params[:blog_id]
+  end
+  
   def find_group
     @group = Group.find(params[:group]) if params[:group]
   end
