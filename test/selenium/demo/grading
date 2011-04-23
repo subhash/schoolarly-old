@@ -38,7 +38,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=The Sun also Rises</td>
+	<td>link=Assignment - The Sun also Rises</td>
 	<td></td>
 </tr>
 <tr>
@@ -73,17 +73,22 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=The Sun also Rises</td>
+	<td>link=Assignment - The Sun also Rises</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Bill Gorton Living Undaunted in Hemingway’s The Sun Also Rises</td>
+	<td>link=Robert Cohn as an Antagonist in The Sun Also Rises</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
 	<td>link=Assign Grade</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>rubric_descriptors_1_id_3</td>
 	<td></td>
 </tr>
 <tr>
@@ -113,7 +118,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=The Sun also Rises</td>
+	<td>link=Assignment - The Sun also Rises</td>
 	<td></td>
 </tr>
 <tr>
@@ -124,6 +129,11 @@
 <tr>
 	<td>click</td>
 	<td>link=Assign Grade</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>rubric_descriptors_1_id_3</td>
 	<td></td>
 </tr>
 <tr>
@@ -156,7 +166,6 @@
 	<td>link=Log-out</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

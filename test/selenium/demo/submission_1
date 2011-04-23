@@ -38,7 +38,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=The Sun also Rises</td>
+	<td>link=Assignment - The Sun also Rises</td>
 	<td></td>
 </tr>
 <tr>
@@ -72,8 +72,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>waitForPageToLoad</td>
-	<td></td>
+	<td>waitForElementPresent</td>
+	<td>//iframe</td>
 	<td></td>
 </tr>
 <tr>
