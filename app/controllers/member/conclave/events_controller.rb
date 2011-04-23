@@ -61,4 +61,12 @@ class Member::Conclave::EventsController < Member::BaseController
     end    
   end
   
+  def find_event
+    @event = Event.find(params[:id]) rescue nil
+    if @event.nil?
+      flash[:error] = I18n.t("tog_conclave.page_not_found")
+      redirect_to member_conclave_events_path
+    end
+  end
+  
 end
