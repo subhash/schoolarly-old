@@ -6,7 +6,7 @@
 <div class="portlet portletB">
     <h2>
     	    <span><%= I18n.t('groups.site.posts.latest') %></span>
-		<span style="float: right">View <%= select_tag "filter_sharings" ,options_for_select([['All', 'All'], ['Notes','Post'],['Events', 'Event'],['Photos', 'Photo'], ['Documents', 'Attachment'],['Assignments', 'Assignment']], "All"), :onchange => remote_function(:url => shares_member_profile_path(@profile, :method => :post), :with => "'filter='+this.value")%></span>
+		<span style="float: right">View <%= select_tag "filter_sharings" ,options_for_select([['All', 'All'], ['Notes','Post'],['Events', 'Event'],['Photos', 'Picto::Photo'], ['Documents', 'Attachment'],['Assignments', 'Assignment']], "All"), :onchange => remote_function(:url => shares_member_profile_path(@profile, :method => :post), :with => "'filter='+this.value")%></span>
 	</h2>
 	<div id="sharings">
  		<%= render :partial => 'member/sharings/sharings' %>
