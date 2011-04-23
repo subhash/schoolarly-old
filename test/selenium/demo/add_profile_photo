@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:3004/" />
+<title>add_profile_photo</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">add_profile_photo</td></tr>
+</thead><tbody>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>dumbledore@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>workworkwork</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a[href=&quot;/profiles/2&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Edit Profile</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>profile_first_name</td>
+	<td>Albus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>profile_last_name</td>
+	<td>Dumbledore</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>profile_icon</td>
+	<td>/Ideosphere/workspace/schoolarly/public/images/dumbledore.jpg</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Update Profile']</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
