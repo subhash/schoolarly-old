@@ -13,7 +13,12 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/member/groups/1-hogwarts</td>
+	<td>/member</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Hogwarts</td>
 	<td></td>
 </tr>
 <tr>

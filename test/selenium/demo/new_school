@@ -12,8 +12,8 @@
 <tr><td rowspan="1" colspan="3">new_school</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
+	<td>clickAndWait</td>
+	<td>link=Schoolarly</td>
 	<td></td>
 </tr>
 <tr>
@@ -24,21 +24,6 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>link=Create school</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>login</td>
-	<td>dumbledore@schoolarly.com</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>password</td>
-	<td>workworkwork</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Sign in']</td>
 	<td></td>
 </tr>
 <tr>

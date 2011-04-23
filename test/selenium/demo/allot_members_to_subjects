@@ -12,8 +12,8 @@
 <tr><td rowspan="1" colspan="3">allot_members_to_subjects</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/member/groups/1-hogwarts</td>
+	<td>clickAndWait</td>
+	<td>link=Hogwarts</td>
 	<td></td>
 </tr>
 <tr>
@@ -118,7 +118,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>members_</td>
+	<td>//input[following-sibling::a[@title=&quot;Minerva McGonagall&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -221,7 +221,6 @@
 	<td>//input[@name='commit' and @value='Add Students']</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

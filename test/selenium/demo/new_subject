@@ -12,16 +12,6 @@
 <tr><td rowspan="1" colspan="3">new_subject</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/member/groups/2-1a/students/new</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>students</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=1A</td>
 	<td></td>

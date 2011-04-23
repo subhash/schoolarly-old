@@ -18,7 +18,7 @@ class Member::SubmissionsController < Member::BaseController
         @submission.post.publish!  if params[:publish]
         wants.html do
           flash[:ok] = I18n.t('submissions.site.new.success')
-          redirect_back_or_default member_assignment_path(@assignment)
+          redirect_to member_submission_path(@submission)
         end
       else
         wants.html do
