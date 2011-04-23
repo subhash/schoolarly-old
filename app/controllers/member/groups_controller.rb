@@ -204,7 +204,7 @@ class Member::GroupsController < Member::BaseController
   
   def show
     @page = params[:page] || '1'
-    @shares = @group.sharings.sort_by{|share|share.shareable.updated_at}.reverse.paginate :per_page => 10,
+    @shares = @group.sharings.paginate :per_page => 10,
                                            :page => @page, 
                                            :order => "updated_at desc"
     store_location

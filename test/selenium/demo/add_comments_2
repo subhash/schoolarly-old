@@ -38,18 +38,8 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Next »</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
 	<td>link=Summer reading list</td>
 	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>comment_comment</td>
-	<td>I could not find </td>
 </tr>
 <tr>
 	<td>type</td>
@@ -84,11 +74,6 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>//input[@name='commit' and @value='Sign in']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Next »</td>
 	<td></td>
 </tr>
 <tr>
