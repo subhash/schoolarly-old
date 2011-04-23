@@ -12,11 +12,6 @@
 <tr><td rowspan="1" colspan="3">add_event</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/signup</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
 	<td></td>
@@ -111,7 +106,6 @@
 	<td>link=Log-out</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

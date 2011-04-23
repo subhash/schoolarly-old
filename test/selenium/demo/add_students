@@ -12,11 +12,6 @@
 <tr><td rowspan="1" colspan="3">add_students</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/member/groups/2-1a</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Add Students</td>
 	<td></td>
