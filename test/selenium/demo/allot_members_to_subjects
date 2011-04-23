@@ -28,17 +28,17 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>members_</td>
+	<td>//input[following-sibling::a[@title=&quot;Rolonda Hooch&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='9']</td>
+	<td>//input[following-sibling::a[@title=&quot;Minerva McGonagall&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='10']</td>
+	<td>//input[following-sibling::a[@title=&quot;Severus Snape&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -58,7 +58,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='9']</td>
+	<td>//input[following-sibling::a[@title=&quot;Severus Snape&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -73,27 +73,27 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='7']</td>
+	<td>//input[following-sibling::a[@title=&quot;Harry Potter&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='6']</td>
+	<td>//input[following-sibling::a[@title=&quot;Ron Weasley&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='5']</td>
+	<td>//input[following-sibling::a[@title=&quot;Hermione Granger&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='4']</td>
+	<td>//input[following-sibling::a[@title=&quot;Neville Longbottom&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>members_</td>
+	<td>//input[following-sibling::a[@title=&quot;Draco Malfoy&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -133,27 +133,27 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='7']</td>
+	<td>//input[following-sibling::a[@title=&quot;Harry Potter&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='6']</td>
+	<td>//input[following-sibling::a[@title=&quot;Ron Weasley&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='5']</td>
+	<td>//input[following-sibling::a[@title=&quot;Hermione Granger&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='4']</td>
+	<td>//input[following-sibling::a[@title=&quot;Neville Longbottom&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>members_</td>
+	<td>//input[following-sibling::a[@title=&quot;Draco Malfoy&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -178,7 +178,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='10']</td>
+	<td>//input[following-sibling::a[@title=&quot;Rolonda Hooch&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -193,32 +193,37 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='7']</td>
+	<td>//input[following-sibling::a[@title=&quot;Harry Potter&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='6']</td>
+	<td>//input[following-sibling::a[@title=&quot;Ron Weasley&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='5']</td>
+	<td>//input[following-sibling::a[@title=&quot;Hermione Granger&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[@id='members_' and @name='members[]' and @value='4']</td>
+	<td>//input[following-sibling::a[@title=&quot;Neville Longbottom&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>members_</td>
+	<td>//input[following-sibling::a[@title=&quot;Draco Malfoy&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
 	<td>//input[@name='commit' and @value='Add Students']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
 	<td></td>
 </tr>
 </tbody></table>

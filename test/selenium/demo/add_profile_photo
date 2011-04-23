@@ -33,7 +33,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>css=a[href=&quot;/profiles/2&quot;]</td>
+	<td>link=dumbledore@schoolarly.com</td>
 	<td></td>
 </tr>
 <tr>
