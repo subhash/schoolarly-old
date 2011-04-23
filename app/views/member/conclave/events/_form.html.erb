@@ -26,7 +26,11 @@
   <tr>
       <th scope="row"><%= I18n.t("tog_conclave.fields.icon") %></th>
       <td nowrap="nowrap"><%= file_field "event", "icon" %></td>      
-  </tr>         
+  </tr> 
+  <tr>
+      <th scope="row"><%= I18n.t("tog_conclave.fields.venue") %></th>
+      <td nowrap="nowrap"><%=f.text_field :venue, :class=>"fieldbox" %></td>
+  </tr>        
 </tbody></table>
 <table class="tableE">
   <caption><%= I18n.t("tog_conclave.admin.datetimes") %></caption>
