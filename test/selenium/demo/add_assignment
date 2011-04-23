@@ -49,7 +49,7 @@
 <tr>
 	<td>type</td>
 	<td>assignment_post_attributes_title</td>
-	<td>The Sun also Rises</td>
+	<td>Assignment - The Sun also Rises</td>
 </tr>
 <tr>
 	<td>selectFrame</td>
@@ -70,11 +70,6 @@
 	<td>selectFrame</td>
 	<td>relative=parent</td>
 	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>assignment_post_attributes_title</td>
-	<td>The Sun also Rises</td>
 </tr>
 <tr>
 	<td>select</td>

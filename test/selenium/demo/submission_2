@@ -38,7 +38,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=The Sun also Rises</td>
+	<td>link=Assignment - The Sun also Rises</td>
 	<td></td>
 </tr>
 <tr>
@@ -54,12 +54,12 @@
 <tr>
 	<td>type</td>
 	<td>submission_post_attributes_doc</td>
-	<td>/Users/shenuja/Documents/schoolarly/notes/Castillo124.4.pdf</td>
+	<td>/Users/shenuja/Documents/schoolarly/notes/Robert_Cohn.pdf</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>submission_post_attributes_title</td>
-	<td>Bill Gorton Living Undaunted in Hemingway’s The Sun Also Rises</td>
+	<td>Robert Cohn as an Antagonist in The Sun Also Rises</td>
 </tr>
 <tr>
 	<td>click</td>
@@ -72,8 +72,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>waitForPageToLoad</td>
-	<td></td>
+	<td>waitForElementPresent</td>
+	<td>//iframe</td>
 	<td></td>
 </tr>
 <tr>
