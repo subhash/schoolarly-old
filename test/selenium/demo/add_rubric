@@ -13,6 +13,11 @@
 </thead><tbody>
 <tr>
 	<td>open</td>
+	<td>/signup</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
 	<td>/</td>
 	<td></td>
 </tr>
@@ -208,12 +213,12 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>pagebody</td>
+	<td>//form[@id='rubric_form']/table/tbody/tr[1]/th[5]/a/img</td>
 	<td></td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>//form[@id='rubric_form']/table/tbody/tr[1]/th[5]/a/img</td>
+	<td>waitForElementNotPresent</td>
+	<td>rubric_levels_attributes_3_name</td>
 	<td></td>
 </tr>
 <tr>
@@ -531,7 +536,6 @@
 	<td>link=Log-out</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>
