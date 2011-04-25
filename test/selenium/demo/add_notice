@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://demo.schoolarly.com/" />
-<title>new_subject</title>
+<title>add_notice</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">new_subject</td></tr>
+<tr><td rowspan="1" colspan="3">add_notice</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -24,7 +24,7 @@
 <tr>
 	<td>type</td>
 	<td>login</td>
-	<td>mcgonagall@schoolarly.com</td>
+	<td>snape@schoolarly.com</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -38,29 +38,30 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=1A</td>
+	<td>link=Hogwarts</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Add Subjects</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Add multiple subjects</td>
+	<td>link=Post message to group</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>groups</td>
-	<td>English<br />History<br />Geography<br />Physics<br />Chemistry<br />Biology<br />Mathematics</td>
+	<td>notice_content</td>
+	<td>May 1st will be a holiday. Senior students can visit Hogsmeade on that day, provided everyone is back in their dorms by 6 PM.</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Add multiple subjects']</td>
+	<td>//input[@name='commit' and @value='Post message']</td>
 	<td></td>
 </tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
+	<td></td>
+</tr>
+
 </tbody></table>
 </body>
 </html>

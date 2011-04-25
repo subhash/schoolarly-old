@@ -4,36 +4,16 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://demo.schoolarly.com/" />
-<title>new_subject</title>
+<title>allot_members_to_subjects</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">new_subject</td></tr>
+<tr><td rowspan="1" colspan="3">allot_members_to_subjects</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
-	<td>link=Log-in</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>login</td>
-	<td>mcgonagall@schoolarly.com</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>password</td>
-	<td>workworkwork</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td>link=Hogwarts</td>
 	<td></td>
 </tr>
 <tr>
@@ -43,22 +23,22 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Add Subjects</td>
+	<td>link=Add Teachers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[following-sibling::a[@title=&quot;Minerva McGonagall&quot;]]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Add multiple subjects</td>
+	<td>//input[@name='commit' and @value='Add Teachers']</td>
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>groups</td>
-	<td>English<br />History<br />Geography<br />Physics<br />Chemistry<br />Biology<br />Mathematics</td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Add multiple subjects']</td>
+	<td>link=Log-out</td>
 	<td></td>
 </tr>
 </tbody></table>
