@@ -9,12 +9,14 @@ class Share < ActiveRecord::Base
       :conditions => {:shared_to_id => group_ids, :shared_to_type => 'Group', :shareable_type => type}
     }
   }
-
+  
   
   def published?
     if shareable.is_a? Assignment
       return shareable.post.published?
-      else return true
+    elsif shareable.is_a? Post
+      return shareable.published?
+    else return true
     end
   end
 end

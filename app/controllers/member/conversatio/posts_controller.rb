@@ -29,6 +29,26 @@ class Member::Conversatio::PostsController < Member::BaseController
     end
   end
   
+  def update
+    @post = @blog.posts.find params[:id]
+    
+    respond_to do |wants|
+      if @post.update_attributes(params[:post])      
+        @post.send("#{params[:state].to_s}!") if @post.aasm_events_for_current_state.map{|e| e.to_s}.include?("#{params[:state]}")
+        wants.html do
+          flash[:ok]=I18n.t('tog_conversatio.member.posts.post_updated')
+          redirect_to member_conversatio_blog_posts_path(@post.blog)
+        end
+      else
+        wants.html do
+          flash.now[:error]='Failed to update the post.'
+          render :action => :edit
+        end
+      end
+    end
+  end
+  
+  
   def show
     @post = @blog.posts.find params[:id]
     @comments = @post.all_comments
