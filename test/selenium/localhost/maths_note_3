@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:3004/" />
+<title>maths_note_3</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">maths_note_3</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>hooch@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>workworkwork</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[3]/div/ul/li/div[2]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Post note to group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>post_title</td>
+	<td>Algebra - Rings and modules</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>post_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>&lt;h2&gt;Definition of a module&lt;/h2&gt; &lt;p&gt;&lt;a class=&quot;mceItemAnchor&quot; name=&quot;10101&quot;&gt;&lt;/a&gt; &lt;strong&gt; 10.1.1 Definition.&lt;/strong&gt; Let R be a ring, and let M be an abelian group. Then M is called a &lt;strong&gt; left R-module&lt;/strong&gt; if there exists a scalar multiplication&nbsp;&nbsp;&lt;br&gt;&amp;nbsp; μ: R × M -&amp;gt; M denoted by μ(r,m)=rm,&nbsp;&nbsp;for all&nbsp;&nbsp;r ε R and all&nbsp;&nbsp;m&amp;nbsp;ε M, &lt;br&gt; such that&nbsp;&nbsp;for all&nbsp;&nbsp;r, r, r&lt;sub&gt;2&lt;/sub&gt; ε R and all m, m&lt;sub&gt;1&lt;/sub&gt;, m&lt;sub&gt;2&lt;/sub&gt; ε M, &lt;br&gt; (i)&nbsp;&nbsp;&nbsp;r(m&lt;sub&gt;1&lt;/sub&gt; +&nbsp;&nbsp;m&lt;sub&gt;2&lt;/sub&gt;) =&nbsp;&nbsp;&nbsp;r m&lt;sub&gt;1&lt;/sub&gt; +&nbsp;&nbsp;r m&lt;sub&gt;2&lt;/sub&gt; &lt;br&gt; (ii)&nbsp;&nbsp;&nbsp;( r&lt;sub&gt;1&lt;/sub&gt; +&nbsp;&nbsp;r&lt;sub&gt;2&lt;/sub&gt; ) m&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;r&lt;sub&gt;1&lt;/sub&gt; m +&nbsp;&nbsp;r&lt;sub&gt;2&lt;/sub&gt; m&nbsp;&nbsp;&lt;br&gt; (iii)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r&lt;sub&gt;1&lt;/sub&gt; (&nbsp;&nbsp;r&lt;sub&gt;2&lt;/sub&gt; m )&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;( r&lt;sub&gt;1&lt;/sub&gt; r&lt;sub&gt;2&lt;/sub&gt; ) m&nbsp;&nbsp;&lt;br&gt; (iv)&nbsp;&nbsp;&nbsp;&nbsp;1 m&nbsp;&nbsp;=&nbsp;&nbsp;m&nbsp;&nbsp;.&lt;/p&gt; &lt;p&gt;&lt;strong&gt; Example.&lt;/strong&gt; 10.1.1. (Vector spaces over F are F-modules) If V is a vector space over a field F, then it is an abelian group under addition of vectors. The familiar rules for scalar multiplication are precisely those needed to show that V is a module over the ring F.&lt;/p&gt; &lt;p&gt;&lt;strong&gt; Example.&lt;/strong&gt; 10.1.2. (Abelian groups are &lt;em&gt;&lt;strong&gt;Z&lt;/strong&gt;&lt;/em&gt;-modules) If A is an abelian group with its operation denoted additively, then for any element x ε Z and any positive integer n, we have defined nx to be the sum of x with itself n times. This is extended to negative integers by taking sums of -x. With this familiar multiplication, it is easy to check that A becomes a &lt;em&gt;&lt;strong&gt;Z&lt;/strong&gt;&lt;/em&gt;-module.&lt;/p&gt; &lt;p&gt;Another way to show that A is a &lt;em&gt;&lt;strong&gt;Z&lt;/strong&gt;&lt;/em&gt;-module is to define a ring homomorphism μ:&lt;em&gt;&lt;strong&gt;Z&lt;/strong&gt;&lt;/em&gt;-&amp;gt;End(A) by letting μ(n)=n1,&nbsp;&nbsp;for all n ε &lt;em&gt;&lt;strong&gt;Z&lt;/strong&gt;&lt;/em&gt;. This is the familiar mapping that is used to determine the characteristic of the ring End(A). The action of &lt;em&gt;&lt;strong&gt;Z&lt;/strong&gt;&lt;/em&gt; on A determined by this mapping is the same one used in the previous paragraph.&lt;/p&gt; &lt;p&gt;If M is a left R-module, then there is an obvious definition of a &lt;strong&gt; submodule&lt;/strong&gt; of M: any subset of M that is a left R-module under the operations induced from M. The subset {0} is called the &lt;strong&gt; trivial submodule&lt;/strong&gt;, and is denoted by (0). The module M is a submodule of itself, an&nbsp;&nbsp;&lt;strong&gt; improper&lt;/strong&gt; submodule. It can be shown that if M is a left R-module, then a subset&nbsp;&nbsp;N ε M&nbsp;&nbsp;is a submodule if and only if it is nonempty, closed under sums, and closed under multiplication by elements of R.&lt;/p&gt; &lt;p&gt;If N is a submodule of &lt;sub&gt;R&lt;/sub&gt;M, then we can form the factor group M/N. There is a natural multiplication defined on the cosets of N: for any&nbsp;&nbsp;r ε R and any&nbsp;&nbsp;x ε M, let r(x+N)=rx+N. If x+N=y+N, then x-yεN,&nbsp;&nbsp;and so rx-ry=r(x-y)εN, and this shows that scalar multiplication is well-defined. It follows that M/N is a left R-module.&lt;/p&gt; &lt;p&gt;Any submodule of &lt;sub&gt;R&lt;/sub&gt;R is called a &lt;strong&gt; left ideal&lt;/strong&gt; of R. A submodule of R&lt;sub&gt;R&lt;/sub&gt; is called a &lt;strong&gt; right ideal&lt;/strong&gt; of R, and it is clear that a subset of R is an ideal if and only if it is both a left ideal and a right ideal of R.&lt;/p&gt; &lt;p&gt;For any element m of the module M, we can construct the submodule&lt;/p&gt; &lt;p&gt;Rm = { x ε M | x&nbsp;&nbsp;= rm&nbsp;&nbsp;for some&nbsp;&nbsp;r ε R }.&lt;/p&gt; &lt;p&gt;This is the smallest submodule of M that contains m, so it is called the &lt;strong&gt; cyclic submodule&lt;/strong&gt; generated by m.&nbsp;&nbsp;More generally, if X is any subset of M, then the intersection of all submodules of M which contain X is the smallest submodule of M which contains X. We will use the notation &amp;lt;X&amp;gt; for this submodule, and call it the submodule &lt;strong&gt; generated by&lt;/strong&gt; X. We must have Rx&lt;img src=&quot;http://www.math.niu.edu/%7Ebeachy/aaol/sym/subseteq.gif&quot; _mce_src=&quot;http://www.math.niu.edu/~beachy/aaol/sym/subseteq.gif&quot; alt=&quot;&quot;&gt;&amp;lt;X&amp;gt; for all xεX, and then it is not difficult to show that&lt;/p&gt; &lt;p&gt;&amp;lt; X &amp;gt; = ∑&lt;sub&gt;xεX&lt;/sub&gt;Rx.&lt;/p&gt; &lt;p&gt;&lt;br&gt;&lt;/p&gt; &lt;p&gt;&lt;a class=&quot;mceItemAnchor&quot; name=&quot;10309&quot;&gt;&lt;/a&gt; &lt;strong&gt; 10.3.9 Proposition.&lt;/strong&gt; Let D be a principal ideal domain. Any finitely generated torsion D-module has finite length.&lt;/p&gt; &lt;p&gt;We can now give some fairly wide classes of examples of Noetherian and Artinian rings. If D is a principal ideal domain, then D is Noetherian since each ideal is generated by a single element. It follows that the polynomial ring&nbsp;&nbsp;D[x&lt;sub&gt;1&lt;/sub&gt;,x&lt;sub&gt;2&lt;/sub&gt;,...,x&lt;sub&gt;n&lt;/sub&gt;] is also Noetherian. If F is a field, then F[x]/I is Artinian, for any nonzero ideal I of F[x], since F[x] is a principal ideal domain. This allows the construction of many interesting examples. Note that D[x]/I need not be Artinian when D is assumed to be a principal ideal domain rather than a field, since&nbsp;&nbsp;&lt;em&gt;&lt;strong&gt;Z&lt;/strong&gt;&lt;/em&gt;[x]/&amp;lt;x&amp;gt; is isomorphic to&nbsp;&nbsp;&lt;em&gt;&lt;strong&gt;Z&lt;/strong&gt;&lt;/em&gt;, which is not Artinian.&lt;/p&gt;</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Create Post']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

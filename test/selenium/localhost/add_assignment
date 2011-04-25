@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:3004/" />
+<title>add_assignment</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">add_assignment</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>mcgonagall@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>workworkwork</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[3]/div/ul/li/div[2]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=New assignment</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>Assignment - The Sun also Rises</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>Analyze any major character in The Sun Also Rises (except Jake Barnes): Robert Cohn, Brett Ashley, Bill Gorton, Michael Campbell, or Pedro Romero. Discuss your character's influence on Jake.</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>assignment_due_date_2i</td>
+	<td>label=June</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_due_date_4i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>assignment_due_date_4i</td>
+	<td>label=00</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//select[@id='assignment_due_date_4i']/option[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//select[@id='assignment_due_date_5i']/option[15]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>assignment_due_date_5i</td>
+	<td>label=00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>rubric_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Create']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

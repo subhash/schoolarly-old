@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:3004/" />
+<title>add_groups</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">add_groups</td></tr>
+</thead><tbody>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Hogwarts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create member group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>group_name</td>
+	<td>Gryffindor</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>group_description</td>
+	<td>&quot;You might belong in Gryffindor,<br />Where dwell the brave at heart,<br />Their daring, nerve and chivalry<br />Set Gryffindors apart&quot;<br />—The Sorting Hat</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>group_private</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>group_moderated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Create']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Hogwarts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create member group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>group_name</td>
+	<td>Hufflepuff</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>group_description</td>
+	<td>&quot;You might belong in Hufflepuff,<br />Where they are just and loyal,<br />Those patient Hufflepuffs are true,<br />And unafraid of toil&quot;<br />—The Sorting Hat</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>group_private</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>group_moderated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Create']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Hogwarts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create member group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>group_description</td>
+	<td>&quot;Or yet in wise old Ravenclaw,<br />If you've a ready mind,<br />Where those of wit and learning,<br />Will always find their kind.&quot;<br />—The Sorting Hat</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>group_name</td>
+	<td>Ravenclaw</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>group_private</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>group_moderated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Create']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Hogwarts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create member group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>group_name</td>
+	<td>Slytherin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>group_description</td>
+	<td>&quot;Or perhaps in Slytherin,<br />You'll make your real friends,<br />Those cunning folk use any means,<br />To achieve their ends.&quot;<br />—The Sorting Hat</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>group_private</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>group_moderated</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Create']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Hogwarts</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

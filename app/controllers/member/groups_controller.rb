@@ -203,11 +203,26 @@ class Member::GroupsController < Member::BaseController
   end
   
   def show
+    store_location
     @page = params[:page] || '1'
-    @shares = @group.sharings.paginate :per_page => 10,
+    @filter = params[:filter] || 'All'
+    if @filter == 'All'
+      @shares = @group.sharings.paginate :per_page => 1,
                                            :page => @page, 
                                            :order => "updated_at desc"
-    store_location
+    else
+      @shares = @group.sharings.of_type(@filter).paginate :per_page => 1,
+                                           :page => @page, 
+                                           :order => "updated_at desc"  
+    end
+    respond_to do |wants|
+      wants.html
+      wants.js do
+        render :update do |page|
+          page.replace_html 'sharings', :partial => 'member/sharings/sharings'
+        end
+      end
+    end
   end
   
   def apply
