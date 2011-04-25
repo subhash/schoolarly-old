@@ -40,7 +40,7 @@
 <div class="info_results">
     <span class="info_items"><%= page_entries_info @shares %>
     </span>
-    <span class="pages_navigation right"><%= will_paginate @shares %>
+    <span class="pages_navigation right"><%= will_paginate @shares, :params => {:filter => @filter} %>
     </span>
 </div>
 <%end %>
