@@ -8,8 +8,6 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
-<tr><td><a href="new_subject">new_subject</a></td></tr>
-<tr><td><a href="allot_members_to_subjects">allot_members_to_subjects</a></td></tr>
 <tr><td><a href="login">login</a></td></tr>
 <tr><td><a href="add_note">add_note</a></td></tr>
 <tr><td><a href="add_maths_note">add_maths_note</a></td></tr>

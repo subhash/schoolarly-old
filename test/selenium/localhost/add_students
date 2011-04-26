@@ -13,6 +13,11 @@
 </thead><tbody>
 <tr>
 	<td>clickAndWait</td>
+	<td>link=1A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
 	<td>link=Add Students</td>
 	<td></td>
 </tr>

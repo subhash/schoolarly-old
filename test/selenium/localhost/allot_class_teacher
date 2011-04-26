@@ -36,11 +36,6 @@
 	<td>//input[@name='commit' and @value='Add Teachers']</td>
 	<td></td>
 </tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Log-out</td>
-	<td></td>
-</tr>
 </tbody></table>
 </body>
 </html>

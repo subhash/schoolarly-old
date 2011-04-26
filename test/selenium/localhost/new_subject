@@ -12,31 +12,6 @@
 <tr><td rowspan="1" colspan="3">new_subject</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Log-in</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>login</td>
-	<td>mcgonagall@schoolarly.com</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>password</td>
-	<td>workworkwork</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Sign in']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=1A</td>
 	<td></td>

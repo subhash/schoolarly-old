@@ -151,6 +151,7 @@ class Member::GroupsController < Member::BaseController
             redirect_to add_select_member_group_path(@group, :type => params[:type]) and return
           else
             @group.invite_and_accept(user)
+            @group.grant_moderator(user) if (user.person.is_a?(Teacher) and @group.teacher_users.size == 1)
             GroupMailer.deliver_entry_notification(@group, current_user, user)  
             #           TODO Send notification to other moderators
           end
