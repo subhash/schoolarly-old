@@ -1,13 +1,10 @@
-
 Hi
-
-This video shows you how to set up a school group within Schoolarly. To demonstrate this, we will login as 
 
 Welcome to schoolarly
 
 In this video, I will demonstrate how to set up a school group once you acquire an administrator account.
 
-To start, I login as Dumbledore, the administrator of Hogwarts school. If you don't know what I am talking about, please wait until the photo comes up.
+To start, I login as Dumbledore, the administrator of Hogwarts school. If you don't know what I am talking about, wait until the photo comes up.
 
 Now, I go to the homepage to create the school group. I enter details about the school and create it
 
@@ -15,12 +12,13 @@ This brings us to the school page. Note that on the right side, you have links t
 
 I will start with creating the classes. You will see that multiple classes can be created at one shot.
 
-The same holds for students, whose names and email addresses are entered separated by commas. Each of these students will receive an invitation email asking them to activate them membership in schoolarly.
+The same holds for students, whose names and email addresses are entered separated by commas. Each of these students will receive an invitation email asking them to activate their membership in schoolarly.
 
-I will now add teachers to make this story more interesting. 
+I will now add teachers to make this story more interesting.
 
 I also want Minerva Mcgonagall to be the class teacher of class 1A. That's as simple as going to class group 1A and clicking on Add teachers. Select the teacher you want to include in this class and you are done.
 
 You can do more with the school, like creating groups for the different houses, say. Each of these groups then become a communication-space for all the members of the group.
 
-There, we have Hogwarts school setup. Thanks for your attention, 
+There, we have Hogwarts school setup. Thanks for your attention,
+
