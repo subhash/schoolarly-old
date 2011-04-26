@@ -27,9 +27,15 @@ class Member::Conclave::EventsController < Member::BaseController
         @order = params[:order] || 'start_date'
         @page = params[:page] || '1'
         @asc = params[:asc] || 'desc'
-        @events = current_user.events.paginate :per_page => 3,
+        if @group
+          @events = @group.sharings.of_type('Event').map(&:shareable).paginate :per_page => 3,
                                                :page => @page,
-                                               :order => @order + " " + @asc        
+                                               :order => @order + " " + @asc
+        else
+          @events = (current_user.events  | Share.shared_to_groups_of_type(current_user.groups,'Event').collect(&:shareable)).paginate :per_page => 3,
+                                               :page => @page,
+                                               :order => @order + " " + @asc
+        end                                       
       end
       wants.json do
         from = Time.at(params[:start].to_i)
@@ -57,7 +63,8 @@ class Member::Conclave::EventsController < Member::BaseController
     if @group
       @group.sharings.of_type('Event').map(&:shareable)
     else
-      current_user.events.between(from.to_date, to.to_date)
+     # TODO .between(from.to_date, to.to_date)
+     (current_user.events  | Share.shared_to_groups_of_type(current_user.groups,'Event').collect(&:shareable))
     end    
   end
   
