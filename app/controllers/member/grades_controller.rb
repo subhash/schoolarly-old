@@ -7,6 +7,10 @@ class Member::GradesController < Member::BaseController
   def new
     @user = User.find(params[:user_id])
     @grade = Grade.new(:assignment => @assignment, :user => @user, :rubric_descriptors => [])
+    @submission = @assignment.submissions.by(@user)
+    if @submission && @submission.post && @submission.post.uuid
+      @session = @submission.post.from_crocodoc(current_user.profile.full_name, @submission.assignment.post.user == current_user)
+    end
     respond_to do |format|
       format.html{
         @profile = @user.profile
