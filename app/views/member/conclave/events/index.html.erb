@@ -26,12 +26,20 @@
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay'
 				},		
-        events: "<%= json_feed_path %>"
+        events: "<%= json_feed_path %>",
+		loading: function(bool){
+			if(bool){
+				jQuery("#loading").show();
+			} else {
+				jQuery("#loading").hide();
+			}
+		}
     });
 
 });
 </script>
 
+<div id='loading' style='display:none'>loading...</div> 
 <div id='calendar'></div>
 <% content_for :sidebar do %>
           <div class="title3 clearfix margin1">
