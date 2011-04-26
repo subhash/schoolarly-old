@@ -52,7 +52,7 @@
                 </div>
                 <span class="float_right">
                 	<% if @assignment.grades.for_user(current_user) %>
-                    	<% grade = @assignment.grades.for_user(s) %>
+                    	<% grade = @assignment.grades.for_user(current_user) %>
                 		<% if grade %>	
 						<% if @assignment.score %>				
                     		<% score = "#{trim(grade.score)}/#{trim(@assignment.score)}" %>
