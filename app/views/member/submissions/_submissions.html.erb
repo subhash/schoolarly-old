@@ -12,20 +12,19 @@
                 <div>
                     <%= link_to s.profile.full_name, profile_path(s.profile) %>
                 </div>
-                <span class="float_right">
-                	<% grade = @assignment.grades.for_user(s) %>
-                	<% if grade %>	
-					<% if @assignment.score %>				
+                <span class="float_right"><% grade = @assignment.grades.for_user(s) %>
+                    <% if grade %>
+                    <% if @assignment.score %>
                     <% score = "#{trim(grade.score)}/#{trim(@assignment.score)}" %>
-					<% elsif @assignment.rubric %>
-					<% score = "#{trim(grade.grade_points)}/#{trim(@assignment.rubric.max_points)}" %>
-					<% else %>
-					<% score = "View Grade" %>
-					<% end %>
-                		<%= link_to score, member_grade_path(@assignment.grades.for_user(s)) %>
-                <% else %>
+                    <% elsif @assignment.rubric %>
+                    <% score = "#{trim(grade.grade_points)}/#{trim(@assignment.rubric.max_points)}" %>
+                    <% else %>
+                    <% score = "View Grade" %>
+                    <% end %>
+                    <%= link_to score, member_grade_path(@assignment.grades.for_user(s)) %>
+                    <% else %>
                     <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => s) %>
-                <% end %>
+                    <% end %>
                 </span>
                 <% if submission.blank? or !submission.post.published? %>
                 <div class="subtitle">
@@ -50,17 +49,15 @@
                 <div>
                     <%= link_to current_user.profile.full_name, profile_path(current_user.profile) %>
                 </div>
-                <span class="float_right">
-                	<% if @assignment.grades.for_user(current_user) %>
-                    	<% grade = @assignment.grades.for_user(current_user) %>
-                		<% if grade %>	
-						<% if @assignment.score %>				
-                    		<% score = "#{trim(grade.score)}/#{trim(@assignment.score)}" %>
-						<% elsif @assignment.rubric %>
-						<% score = "#{trim(grade.grade_points)}/#{trim(@assignment.rubric.max_points)}" %>
-						<% else %>
-						<% score = "View Grade" %>
-					<% end %>
+                <span class="float_right"><% grade = @assignment.grades.for_user(current_user) %>
+                    <% if grade %>
+                    <% if @assignment.score %>
+                    <% score = "#{trim(grade.score)}/#{trim(@assignment.score)}" %>
+                    <% elsif @assignment.rubric %>
+                    <% score = "#{trim(grade.grade_points)}/#{trim(@assignment.rubric.max_points)}" %>
+                    <% else %>
+                    <% score = "View Grade" %>
+                    <% end %>
                     <%= link_to score, member_grade_path(@assignment.grades.for_user(current_user)) %>
                     <% else %>
                     <%= I18n.t('assignments.member.grades.pending') %>
