@@ -34,9 +34,11 @@
 <div>
     Grade Points : <%= trim(@grade.grade_points) %>/<%= trim(@rubric.max_points) %>
 </div>
+<% if @grade.assignment.score %>
 <div>
     Total Score : <%= trim(@grade.score) %>/<%= trim(@grade.assignment.score) %>
 </div>
+<% end %>
 <% if i_am_the_author_of?(@grade.assignment.post) %>
     <%= link_to_remote I18n.t('grades.member.edit.remove'), :url => member_grade_path(@grade), :method => :delete , :update => 'grade' , :html => {:class => 'button'} %>
     <%= link_to_remote I18n.t('grades.member.edit.change'), :url => edit_member_grade_path(@grade), :method => :get , :update => 'grade', :html => {:class => 'button mainaction'} %>
