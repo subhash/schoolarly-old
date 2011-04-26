@@ -7,9 +7,8 @@
 </script>
 
 <%= render :partial => 'member/profiles/header' %>
-<% submission = @assignment.submissions.by(@user) %>
-<% pending_submission = submission.blank? or !submission.post.published? %>
-<% title = pending_submission ? I18n.t('grades.member.new.pending') : submission.post.title%>
+<% pending_submission = @submission.blank? or !@submission.post.published? %>
+<% title = pending_submission ? I18n.t('grades.member.new.pending') : @submission.post.title%>
 
 <div class="titleB">
     <%= link_to @assignment.post.title, member_assignment_path(@assignment) %> > <%= title %>
