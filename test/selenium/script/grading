@@ -20,5 +20,15 @@ The start date specifies when this assignment will be posted to the group and th
 submissions will be accepted
 Here, you can pick the rubric you created and enter a total score for the assignment if required
 
- 
+When a student logs in, she sees the assignment on top of her dashboard and rushes in to make a submission
+She can either enter formatted text for attach a document
+
+After a while, when I log back in as the teacher, I see all the submissions made against my assignment
+I can highlight and comment on parts of the submissions, and make various annotations in context
+The annotated submission can be downloaded as a pdf document if required 
+For grading the submission, I pick the level at which the submission meets each criterion
+Note that the total score is updated as I continue grading for each criterion
+
+Once grading is complete, the student can view her own submission with all the comments and annotations
+She can also view the total grade and the various rubric descriptors associated with it
  
