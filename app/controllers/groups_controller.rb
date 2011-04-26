@@ -41,22 +41,4 @@ class GroupsController < ApplicationController
     end
   end
   
-  def sharings
-    filter = params[:filter]
-    if filter == 'All'
-      @shares = @group.sharings.paginate :per_page => 10,
-                                           :page => @page, 
-                                           :order => "updated_at desc"
-    else
-      @shares = @group.sharings.of_type(filter).paginate :per_page => 10,
-                                           :page => @page, 
-                                           :order => "updated_at desc"  
-    end
-    render :update do |page|
-      page.replace_html 'sharings', :partial => 'member/sharings/sharings'
-    end
-    
-  end
-  
-  
 end

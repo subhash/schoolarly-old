@@ -1,11 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :smerf_forms
-
-  
-
-  map.namespace :member do |member|
-    member.resources :profiles, :collection => {:search => :get}, :member => {:shares => :post}
-  end
   
   map.routes_from_plugin 'tog_picto'
   
@@ -75,7 +69,6 @@ ActionController::Routing::Routes.draw do |map|
   
 
   map.resources :attachments
-  map.resources :groups, :member => {:sharings => :post }  
   map.namespace :member do |member|
     member.resources :groups , :member => {:new_multiple => :get, :create_multiple => :post, :add_select => :get, :add => :post, :remove_select => :get, :remove => :post} do |group|
       group.resources :students, :shallow => true
