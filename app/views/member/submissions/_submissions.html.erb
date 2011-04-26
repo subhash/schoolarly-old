@@ -52,7 +52,15 @@
                 </div>
                 <span class="float_right">
                 	<% if @assignment.grades.for_user(current_user) %>
-                    <% score = "#{trim(@assignment.grades.for_user(current_user).score)}/#{trim(@assignment.score)}" %>
+                    	<% grade = @assignment.grades.for_user(s) %>
+                		<% if grade %>	
+						<% if @assignment.score %>				
+                    		<% score = "#{trim(grade.score)}/#{trim(@assignment.score)}" %>
+						<% elsif @assignment.rubric %>
+						<% score = "#{trim(grade.grade_points)}/#{trim(@assignment.rubric.max_points)}" %>
+						<% else %>
+						<% score = "View Grade" %>
+					<% end %>
                     <%= link_to score, member_grade_path(@assignment.grades.for_user(current_user)) %>
                     <% else %>
                     <%= I18n.t('assignments.member.grades.pending') %>
