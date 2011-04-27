@@ -93,7 +93,9 @@ ActionController::Routing::Routes.draw do |map|
     end  
   end
 
-  #  map.resources :schools
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+  
+  # for static files eg. /demo
+  map.connect ':action', :controller => "static"
 end
