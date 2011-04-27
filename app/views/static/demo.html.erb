@@ -1,6 +1,39 @@
-<h3>Click on a link to login as that user</h3>
-<ul>
-<li><%= link_to 'Albus Dumbledore', '/dumbledore' %>, the school administrator</li>
-<li><%= link_to 'Minerva Mcgonagall', '/mcgonagall' %>, the English teacher</li>
-<li><%= link_to 'Harry Potter', '/harry' %>, a student of class 1A</li>
-</ul>
+<div class="portletK" id="portlet_splashHome">
+    <h2><span>Click on a button to log in</span></h2>
+    <div class="portlet_content">
+        <p>
+            <div>
+            <span class="action"><%= link_to 'Administrator', '/dumbledore'%></span> - Albus Dumbledore, the headmaster of Hogwarts school    
+			</div>
+			<br/>
+			<div>
+            <span class="action"><%= link_to 'Teacher', '/mcgonagall'%></span> - Minerva Mcgonagall, the English teacher    
+			</div>
+			<br/>
+			<div>
+            <span class="action"><%= link_to 'Student', '/harry'%></span> - Harry Potter, a student of class 1A    
+			</div>
+        </p>
+    </div>
+</div>
+<br/>
+<hr class="wide" />
+<br/>
+<br/>
+<% content_for :sidebar do %>
+<h2><span>Screencasts</span></h2>
+<div class="image">
+    <iframe title="YouTube video player" width="330" height="250" src="http://www.youtube.com/embed/ao3dL2ABEeg" frameborder="0" allowfullscreen>
+    </iframe>
+</div>
+<br/>
+<div>
+    <iframe title="YouTube video player" width="330" height="250" src="http://www.youtube.com/embed/nIOVcdrMGCA" frameborder="0" allowfullscreen>
+    </iframe>
+</div>
+<br/>
+<div>
+    <iframe title="YouTube video player" width="330" height="250" src="http://www.youtube.com/embed/-026XiumjrU" frameborder="0" allowfullscreen>
+    </iframe>
+</div>
+<% end %>
