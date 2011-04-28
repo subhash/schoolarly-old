@@ -19,6 +19,7 @@ en:
   interface:
     site:
       schools: "Schools"
+      demo: "Demo"
     member:
       attachments: "Documents"
       sharings: "Shared items"
