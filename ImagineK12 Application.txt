@@ -1,11 +1,4 @@
 
-Successful Login For: shenuja
-Please continue and fill out the form. Answers to this form will be saved in account shenuja.
-
-
-
-
-
 Imagine K12 Application
 
 Tell us about the founders
@@ -69,26 +62,49 @@ Company URL, if any.
 www.schoolarly.com
 
 * What is your company going to make? Why did you pick this idea to work on?
-Schoolarly is Blackboard, done the facebook way. It will allow teachers and students to work on assignments, make lesson plans, have discussions and share stuff like they are doing it on facebook. We iterated over many ideas before we realized teachers were struggling with the very basic use-cases - and that we needed to build that platform which is imperative for the features above
+
+Schoolarly is Blackboard, done the facebook way. 
+
+It will allow teachers and students to work on assignments, make lesson plans, have discussions and share stuff like how they'd do it on facebook. School admins can post notices, plan events and accept fee payments, without the hassle of installing and maintaining servers. Students can share all their works and grades as one lifetime portfolio.
+
+The paths of information between a student and a teacher will come through the courses he's enrolled for, but it can be enhanced by 'following' a teacher too. This will lead to discovery of information and resources, the way you hear about an interesting local event on facebook.
+
+We iterated over many ideas before we realized teachers were struggling with the very basic use-cases. Also, a tool to make lesson plans would not make sense without messaging, commenting and a student list.  Since none of the schools we spoke to, vouched for a particular LMS platform we decided to build our own.
+
+The possibilities are promising. Schoolarly could evolve into a platform for third-party school applications or use the community of students for targeted ads. We could provide virtual classes for e-tutors and provide a marketplace for their study material in the lines of tutorspree.
+
+ 
 
 * How do you know someone needs what you're making? Who are the intended users (e.g., parents, teachers, students)?
-When we talked about Schoolarly in the TAISI conference in bangalore, the teachers immediately 'get' it. One of them took pains to explain to the sysadmin in her school how they wouldn't need to go about clicking their way to something, instead they would find it right there in the page. 
+
+
+None of the schools in India use Blackboard. They use a set of haphazard solutions for their requirements like Renweb for administration, Turnitin for assignments, eCollege for lessonplanning etc. It's evident that they know these solutions don't scale, that an integrated solution is inevitable.
+
+When we talked about Schoolarly in the TAISI conference in bangalore, the teachers immediately 'got' it. One of them took pains to explain to the sysadmin in her school how they wouldn't need to go about clicking their way to something, instead they would find it right there in the dashboard. 
 
 A school principal told us they are prepared to take up to $10000/year from the school's budget for a solution that would help them be in touch with the parent over email and SMS.
 
-Teachers are disappointed when we tell them Schoolarly is not already available in this academic year
+Teachers are disappointed when we tell them Schoolarly is not already available in this academic year.
+
+We see online reports of dissatisfaction in Blackboard and other existing solutions by teachers and students. The ***** summarizes it all. We're building exactly what a student here has envisioned , representing the community of Blackboard users.
+
+The intended users are everyone related to the education field. Parents, teachers, students, School Administrators, E-tutors. Competitive exam co-ordinators,  student summer camp organizers...
 
 * What is new about what you're making? What substitutes do people resort to because it doesn't exist yet (or they don't know about it)?
-When teachers log in to their school management system, they are forced to grapple with the complex view of the entire school. Schoolarly inverts the view, puts the user in the driver's seat and uses the school organization information to connect them to other users
+Schools, teachers, students and parents combined have the following needs: communication, assessment, lesson planning, admissions, fees. Blackboard attempts to solve most of these but is cumbersome to maintain and use. RenWeb is a desk-application and gives only reports to students and parents. Turnitin, Engrade solve only subsets of the whole problem - so, data will be scattered for users. All these applications 
 
-Schoolarly focusses on the individuals and views the school and class as the connections between them. This inverts the way the current systems work and puts the student or the teacher in the driver's seat 
+In Schoolarly, school admins would find setup to be as simple as signing up, creating a school and inviting users. Teachers will see relevant information right there in their dashboard. While studying for an exam, a student can search over all the assignments, lesson plans, Q&As from one search-box instead of hardcopies and multiple websites.
 
 Teachers use the software systems to store information and use other means (paper, email) to communicate. They keep paper files of assignments and projects to maintain a portfolio on a student. Students submit assignments in CDs
+
+Schoolarly enables teachers and students to collaborate across school boundaries for preparing for a competitive exam, say
 
 * Who are your competitors and who might become competitors? Who do you fear the most?
 Blackboard has a huge install base but they need dedicated people to install and maintain their software. They don't have a hosted solution except for installing a seat on their servers and letting you use it. RenWeb is gaining traction in India through a reseller. Moodle and Pearson eCollege are other solutions. Point solutions like turnitin and engrade are quite good but are limited in features.
 
 Blackboard might acquire a nimble startup with a cloud application and transition their users to that. But given their investment in support and sales, they might not be eager to take this approach
+
+Turnitin might expand their offering wide enough to become what Schoolarly wants to be
 
 * What do you understand about education that other companies just don't get?
 Any useful feature in education needs to be set in context
@@ -99,6 +115,10 @@ Teachers' expectations of software are set by facebook and gmail and they are pu
 Schools register online and add teacher and student accounts
 
 * How do or how will you make money? How much could you make? We realize you can't know precisely, but give your best estimate (rough estimates only, no spreadsheets).
+
+The market for school management software in India is about 2000 schools (150 international + 750 ICSE + 1100 CBSE). Each school charges about $2-3 million/year as fees - the student fee varies from $2000 (CBSE, small-town) to $10000 (international, metro city).  We have confirmation from schools that they can afford upto $10000/year for a complete software solution. So, we would place our potential annual revenue at $20 million from  subscriptions from Indian schools alone.
+
+We do not have first-hand information about the US market. But industry reports suggest that for Blackboard, the maintenance fee alone could be $70000/year. We find that all other software – RenWeb etc charge in the range of $10000/year which is probably a more realistic estimate without all the sales overhead that Blackboard undertakes.
 
 If you had any other ideas you considered applying with, please list them. One may be something we've been waiting for.
 
@@ -150,4 +170,4 @@ yes
 * Indicates Response Required
 
 
-Ê
+ 
