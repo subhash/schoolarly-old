@@ -16,7 +16,7 @@ en:
       assessments: "Use holistic tools for assessments with innovative features. eg. playback of a student's answer to understand the thought process behind it"
       attendance: "Maintain attendance, generate timetables and schedule events into the class or school calendars"
       etextbook: "Provide students with the ability to search across e-textbooks and share notes on specific portions of the e-textbook"
-      admission: "Provide tools for schools to manage admissions and fees payments"
+      admission: "Provide tools for schools to manage admissions and fee payments"
   interface:
     site:
       schools: "Schools"
