@@ -1,6 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :smerf_forms
   
+  map.namespace :member do |member|
+    member.resources :profiles, :collection => {:search => :get}
+  end  
+  
   map.routes_from_plugin 'tog_picto'
   
   map.routes_from_plugin 'tog_picto'

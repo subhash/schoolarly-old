@@ -83,7 +83,7 @@ The possibilities are promising. Schoolarly could evolve into a platform for thi
 * How do you know someone needs what you're making? Who are the intended users (e.g., parents, teachers, students)?
 We spoke to 7 leading schools across India and none of them use an integrated solution like Blackboard. Some of them use point-solutions like Renweb for administration, Turnitin for assignments or eCollege for lessonplanning. It was obvious that they were tired of the patch solutions and were looking for a complete product. In fact, they were disappointed when we told them Schoolarly was not immediately available for use.  
 
-When we talked about Schoolarly in the TAISI conference in bangalore, the teachers got so excited that one of them went to grab their sysadmin.  She also started pitching the facebook-style interface to her and told her they would no longer have to “go to this class, and then to this section” to find information she's interested in – it would be easily accessible from her dashboard.
+When we talked about Schoolarly in the TAISI conference in bangalore, the teachers got so excited that one of them went to grab their sysadmin.  She also started pitching the facebook-style interface to her and told her they would no longer have to “go to this class, and then to this section�? to find information she's interested in – it would be easily accessible from her dashboard.
 
 Not only is Blackboard so expensive, its users are far from happy. This report (XXX) is actually wishing Blackboard was more like Schoolarly.
 
