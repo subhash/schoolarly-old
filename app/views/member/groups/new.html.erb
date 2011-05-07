@@ -10,7 +10,6 @@
 
 <% form_for(:group, :url=>member_groups_path(:type => @type), :html=>{:multipart=>true}) do |f| %>
   <fieldset>
-    <legend><%= I18n.t("#{@type}.site.details") %></legend>
     <div class="fields">
     	 <p>
         <%= f.hidden_field  :parent_id %>
