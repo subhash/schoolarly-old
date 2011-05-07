@@ -4,6 +4,7 @@
 jQuery.noConflict();
 
 jQuery(document).ready(function(){
+
     jQuery('.fields *').focus(function(){
         jQuery(this).parents('p').addClass('focused');
     }).blur(function(){
