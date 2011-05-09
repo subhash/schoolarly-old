@@ -1,4 +1,5 @@
-
+<% include_javascript "jquery-1.4.2.min.js" %>
+<% include_javascript 'form' %>
 
 <% content_for :sidebar do %>
   <%= link_to I18n.t("tog_picto.member.sidebar.upload_more_photos"),  new_member_picto_photo_url, { :class => "add", :title => I18n.t("tog_picto.member.sidebar.upload_new_images") } %>
