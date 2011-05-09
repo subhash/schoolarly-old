@@ -127,7 +127,7 @@ form .fields select {
     vertical-align: top;
 }
 
-form .fields p.focused {
+form .fields p.focused, form .fields tr.focused {
     background-color: #FFF7C0;
     opacity: 1;
     visibility: visible;
