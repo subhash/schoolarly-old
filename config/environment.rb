@@ -77,7 +77,6 @@ Tog::Interface.sections(:member).tabs(:home).url = '/member'
 Tog::Interface.sections(:member).remove "My groups"
 Tog::Interface.sections(:member).remove "My account"
 Tog::Interface.sections(:member).remove "My sharings"
-Tog::Interface.sections(:member).add :attachments, "/member/attachments"
 Tog::Interface.sections(:member).add :sharings, "/member/sharings"
 Tog::Interface.sections(:member).add :rubrics, "/member/rubrics"
 
