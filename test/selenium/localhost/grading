@@ -1,171 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head profile="http://selenium-ide.openqa.org/profiles/test-case">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost:3004/" />
-<title>grading</title>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
 </head>
 <body>
-<table cellpadding="1" cellspacing="1" border="1">
-<thead>
-<tr><td rowspan="1" colspan="3">grading</td></tr>
-</thead><tbody>
-<tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Log-in</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>login</td>
-	<td>mcgonagall@schoolarly.com</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>password</td>
-	<td>workworkwork</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Sign in']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Assignment - The Sun also Rises</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Assign Grade</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_1_id_1</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_2_id_6</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_3_id_8</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_4_id_12</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//input[@name='commit' and @value='Assign Grade']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Assignment - The Sun also Rises</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Robert Cohn as an Antagonist in The Sun Also Rises</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>link=Assign Grade</td>
-	<td></td>
-</tr>
-<tr>
-	<td>waitForElementPresent</td>
-	<td>rubric_descriptors_1_id_3</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_1_id_3</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_2_id_5</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_3_id_9</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_4_id_11</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//input[@name='commit' and @value='Assign Grade']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Assignment - The Sun also Rises</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Lady Ashley's Ring of Indiscretions in Hemingway's The Sun Also Rises</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>link=Assign Grade</td>
-	<td></td>
-</tr>
-<tr>
-	<td>waitForElementPresent</td>
-	<td>rubric_descriptors_1_id_3</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_1_id_3</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_2_id_6</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_3_id_9</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>rubric_descriptors_4_id_11</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//input[@name='commit' and @value='Assign Grade']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Log-out</td>
-	<td></td>
-</tr>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="add_rubric">add_rubric</a></td></tr>
+<tr><td><a href="add_assignment">add_assignment</a></td></tr>
+<tr><td><a href="submission_1">submission_1</a></td></tr>
+<tr><td><a href="submission_2">submission_2</a></td></tr>
+<tr><td><a href="../localhost/grade_students">grade_students</a></td></tr>
 </tbody></table>
 </body>
 </html>

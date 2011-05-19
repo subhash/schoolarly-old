@@ -104,8 +104,8 @@ Tog::Plugins.settings :schoolarly, {
 }, :force => true
 
 Tog::Plugins.settings :schoolarly,  {
-    'sanitized.allowed_tags'       => (Tog::Plugins.settings(:tog_core, 'sanitized.allowed_tags').to_a + %w( table tr td caption )).join(' '),
-    'sanitized.allowed_attributes' => (Tog::Plugins.settings(:tog_core, 'sanitized.allowed_attributes').to_a + %w( style )).join(' '),
+    'sanitized.allowed_tags'       => (Tog::Plugins.settings(:tog_core, 'sanitized.allowed_tags').to_a + %w( table tbody tr td th caption iframe)).join(' '),
+    'sanitized.allowed_attributes' => (Tog::Plugins.settings(:tog_core, 'sanitized.allowed_attributes').to_a + %w( style border src title allowfullscreen frameborder)).join(' '),
     'sanitized.comments.allowed_tags' => ActionView::Base.sanitized_allowed_tags.to_a.join(' '),
     'sanitized.comments.allowed_attributes' => ActionView::Base.sanitized_allowed_attributes.to_a.join(' ')
 }, :force => true

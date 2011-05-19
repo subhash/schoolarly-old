@@ -7,17 +7,10 @@ input, select, textarea {
 
 #container {
     font: normal 0.75em / 1.7em 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
-    margin: 0 auto;
-    min-width: 768px;
-    width: 75%;
-}
 
-#menu {
-    margin: 60px 0 0 0;
 }
 
     #menu li {
-        display: inline;
         margin-right: 0;
     }
     #menu a {
@@ -159,7 +152,7 @@ form .fields p label, form .fields p .label {
     float: left;
     clear: both;
     display: block;
-    width: 25%;
+
     text-align: left;
     position: relative;
     font-weight: normal;

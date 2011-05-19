@@ -22,6 +22,13 @@ class Member::GradesController < Member::BaseController
     end
   end
   
+  def show
+    @submission = @assignment.submissions.by(@user)
+    if @submission and @submission.post.uuid
+      @session = @submission.post.from_crocodoc(current_user.profile.full_name, @submission.assignment.post.user == current_user)
+    end
+  end
+  
   def create
     @grade = Grade.new(params[:grade])
     if params[:rubric_descriptors]

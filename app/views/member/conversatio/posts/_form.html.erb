@@ -1,3 +1,5 @@
+<% include_form_effects %>
+
 <div class="fields">
     <p>
         <label for="post_title">
@@ -25,6 +27,13 @@
         page[:compose].show
         page[:doc].hide
         end %>
+    </p>
+    <p>
+        <label for="post_tag_list">
+            <%= I18n.t('tog_conversatio.model.post.tags') %>
+        </label>
+        <%= f.text_field :tag_list, :class=>"fieldbox wide" -%>
+		<span class="helpinfo"><%= I18n.t('tog_social.tags.separated_by_comma') %></span>
     </p>
     <!--
     <label for="post_tag_list">
