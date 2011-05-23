@@ -129,6 +129,8 @@ en:
       admissions:
         title: Admissions
         new: Apply for admission
+      reports:
+        title: Grades and Reports
   schools:
     model:
       klasses:
@@ -392,4 +394,11 @@ en:
     member:
       view:
         all: "View all %{size} comments"
+        
+  reports:
+    member:
+      index:
+        title: Grades and reports
+      new:
+        aggregate: Aggregate
        

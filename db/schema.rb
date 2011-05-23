@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110411084040) do
+ActiveRecord::Schema.define(:version => 20110519062107) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -33,17 +33,31 @@ ActiveRecord::Schema.define(:version => 20110411084040) do
 
   add_index "activities", ["item_type", "item_id"], :name => "index_activities_on_item_type_and_item_id"
 
-  create_table "assignments", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "rubric_id"
-    t.datetime "due_date"
-    t.decimal  "score",      :precision => 6, :scale => 2
+  create_table "aggregations", :force => true do |t|
+    t.string   "name"
+    t.decimal  "score",            :precision => 6, :scale => 2
+    t.integer  "parent_id"
+    t.decimal  "weightage",        :precision => 5, :scale => 2
+    t.integer  "drop_lowest"
+    t.boolean  "weighted_average",                               :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "assignments", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "rubric_id"
+    t.datetime "due_date"
+    t.decimal  "score",          :precision => 6, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "weightage",      :precision => 5, :scale => 2
+    t.integer  "aggregation_id"
+  end
+
   add_index "assignments", ["post_id"], :name => "post_id"
   add_index "assignments", ["rubric_id"], :name => "rubric_id"
+  add_index "assignments", ["aggregation_id"], :name => "aggregation_id"
 
   create_table "attachments", :force => true do |t|
     t.string   "title"
@@ -510,6 +524,7 @@ ActiveRecord::Schema.define(:version => 20110411084040) do
     t.integer  "person_id"
   end
 
+  add_foreign_key "assignments", ["aggregation_id"], "aggregations", ["id"], :name => "assignments_ibfk_3"
   add_foreign_key "assignments", ["post_id"], "posts", ["id"], :name => "assignments_ibfk_1"
   add_foreign_key "assignments", ["rubric_id"], "rubrics", ["id"], :name => "assignments_ibfk_2"
 
