@@ -42,9 +42,11 @@
             <% if !(@group.klass? || @group.school? || @group.subject? )%>
 				<li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
 			<% end %>
+			<!--
 			<% if @group.school? %>
 			  <li><%= link_to I18n.t('groups.member.admissions.new'), smerf_form_url(@group.network.form_code) %></li>				
-			<% end %>			
+			<% end %>
+			-->			
           <% end -%> 
         </ul>
     </div> 

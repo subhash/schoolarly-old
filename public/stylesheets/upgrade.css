@@ -7,18 +7,16 @@ input, select, textarea {
 
 #container {
     font: normal 0.75em / 1.7em 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
-
 }
 
-    #menu li {
-        margin-right: 0;
-    }
-    #menu a {
-        font-size: 1.2em;
-		background-color: transparent;		
-    }
- 
+#menu li {
+    margin-right: 0;
+}
 
+#menu a {
+    font-size: 1.2em;
+    background-color: transparent;
+}
 
 .breadcrumbs a {
     padding: 3px 10px;
@@ -124,10 +122,10 @@ form .fields p.focused, form .fields tr.focused {
     background-color: #FFF7C0;
     opacity: 1;
     visibility: visible;
-	-webkit-box-shadow:rgba(0,0,0,.20) 0px 0px 9px;
-    -moz-box-shadow:rgba(0,0,0,.20) 0px 0px 9px;
-    -o-box-shadow:rgba(0,0,0,.20) 0px 0px 9px;
-    box-shadow:rgba(0,0,0,.20) 0px 0px 9px;
+    -webkit-box-shadow: rgba(0, 0, 0, .20) 0px 0px 9px;
+    -moz-box-shadow: rgba(0, 0, 0, .20) 0px 0px 9px;
+    -o-box-shadow: rgba(0, 0, 0, .20) 0px 0px 9px;
+    box-shadow: rgba(0, 0, 0, .20) 0px 0px 9px;
 }
 
 form .fields p {
@@ -152,7 +150,6 @@ form .fields p label, form .fields p .label {
     float: left;
     clear: both;
     display: block;
-
     text-align: left;
     position: relative;
     font-weight: normal;
@@ -216,4 +213,11 @@ a.photo {
     border-color: #8c9db0;
     background-color: #8c9db0;
     color: #fff;
+}
+
+.adhoc {
+    border-top: 1px solid #D6D6D6;
+    background: #FAFAFA;
+    color: inherit;
+
 }
