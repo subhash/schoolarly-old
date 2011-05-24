@@ -8,10 +8,18 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
+  before_filter :set_title
+  
   include Smerf
   
   def smerf_user_id
     session[:smerf_user_id] || current_user.id      
+  end
+  
+  private
+  
+  def set_title
+    @title = current_user.school.group.name if current_user
   end
   
 end

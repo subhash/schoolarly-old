@@ -1,7 +1,9 @@
 class Member::ProfilesController < Member::BaseController
   
-  def show
-    @profile = Profile.find(params[:id])
+  before_filter :find_profile, :only => [:show]
+  before_filter :check_profile, :only => [:edit, :update]
+  
+  def show    
     retrieve_smerf_form(@profile.form_code, @profile.user)
     store_location
     respond_to do |format|
@@ -44,13 +46,10 @@ class Member::ProfilesController < Member::BaseController
   end
   
   def edit
-    @profile = current_user.profile
-    puts '@profile - '+@profile.inspect
     retrieve_smerf_form(@profile.form_code, @profile.user)
   end
   
   def update
-    @profile = current_user.profile
     @profile.update_attributes(params[:profile])
     if @profile.save and handle_dynamic_responses(params)
       flash[:ok] = I18n.t("tog_social.profiles.member.updated")
@@ -102,6 +101,15 @@ class Member::ProfilesController < Member::BaseController
       return false
     end
     
+  end
+  
+  def find_profile
+    @profile = Profile.find(params[:id]) if params[:id]
+  end
+  
+  def check_profile
+    @profile = Profile.find(params[:id]) if params[:id]
+    raise Exception.new("Unauthorized access") unless @profile.user == current_user
   end
   
 end

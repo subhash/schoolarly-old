@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title><%=config['plugins.tog_core.site.name']%></title>
+<title><%= config['plugins.tog_core.site.name']%></title>
 <meta name="language" content="<%=I18n.locale%>" />
 <meta http-equiv="content-style-type" content="text/css" />
 <meta http-equiv="title" content="<%=config['plugins.tog_core.site.name']%>"/>
@@ -45,7 +45,7 @@
   <div id="container">
     <div id="header" class="clearfix">
       <div id="header_content">
-        <h1 id="logo"><a href="/">Schoolarly</a></h1>
+        <h1 id="logo"><a href="/"><%= @title || "Schoolarly" %></a></h1>
 
         <div id="header_options">
           <%= render :partial => "shared/header_options" %>

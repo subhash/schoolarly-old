@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
     person.is_a? Student
   end
   
+  def school
+    groups.school.first.network unless groups.school.blank?
+  end
+  
   def password_required?
     password_reset_code.blank? && (crypted_password.blank? || !password.blank?)
   end

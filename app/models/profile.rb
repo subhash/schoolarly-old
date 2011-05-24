@@ -34,7 +34,7 @@ class Profile < ActiveRecord::Base
   
   def form_code
     # sboa-students
-    user.groups.school.first.network.form_code + "-" + user.type
+    user.school.form_code + "-" + user.type if user.school
   end
   
   private

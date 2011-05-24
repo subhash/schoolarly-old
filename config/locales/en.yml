@@ -5,6 +5,13 @@ en:
   tog_user:
     user:
       sign_up: Thanks for signing up! We have sent to you an email with instructions to activate your account.
+  tog_core:
+    views:
+      shared:
+        header_options:
+          home: Home
+          profile: My profile
+          schoolarly: Schoolarly
   home:
     index:
       about_schoolarly: "Schoolarly is a communication platform that connects students, teachers and parents in a school"
