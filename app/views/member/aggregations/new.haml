@@ -7,50 +7,46 @@
   });
 
 
+- if @aggregation and !@aggregation.errors.empty?
+  %div.errors
+    = error_messages_for :aggregation
+
 - form_for @aggregation, :url => member_group_aggregations_path(@group) do |f|
   %div.portlet.portletB
     %div.portlet_content    
-      %fieldset
-        %div.fields 
-          %h2
-            %span
-              =f.text_field :name, :class => 'fieldbox', :placeholder => "Enter a name for aggregation"             
-            %span
-              = f.check_box :weighted_average, :id => "weighted_average"
-              %label{:for => 'weighted_average'}
-                = "Weighted Average"
-            %span
-              %label{:for => "aggergation_drop_lowest", :class => "drop_lowest"}
-                = "Drop Lowest"
-                = f.select :drop_lowest, [0..@aggregation.nodes.size-1]
-            %span
-              %label{:for => "score"}
-                = "Score"
-              = f.text_field :score, :size => 5
-        %table.tableB  
-          %tbody
-            - f.fields_for :assignments do |a|
-              %tr
-                %td=a.object.post.title
-                %td=a.object.score
-                %td
-                  =a.text_field :weightage, :placeholder => "Weightage", :size => 10, :class => "weightage", :style => "display: none;"
-        %ul
-          - for node in @aggregation.all_children do
-            - f.fields_for node do |n|
-              %li{:class => "_"+node.ancestors.size.to_s} 
-                = node.name
-                = node.score
-                = node.drop_lowest
-                = n.text_field :weightage, :placeholder => "Weightage", :size => 10, :class => "weightage", :style => "display: none;"
-                - if node.assignments.any?
-                  %table.tableB
-                    %tbody
-                      - for assignment in node.assignments do
-                        %tr
-                          %td=assignment.post.title
-                          %td=assignment.weightage
-                          %td=assignment.score
+      %h2
+        %span
+          =f.text_field :name, :class => 'fieldbox', :placeholder => "Enter a name for aggregation"             
+        %span
+          = f.check_box :weighted_average, :id => "weighted_average"
+          %label{:for => 'weighted_average'}
+            = "Weighted Average"
+        %span
+          %label{:for => "aggergation_drop_lowest", :class => "drop_lowest"}
+            = "Drop Lowest"
+            = f.select :drop_lowest, (0..@aggregation.nodes.size-1).collect{|a| [a.to_s, a]}
+        %span
+          %label{:for => "score"}
+            = "Score"
+          = f.text_field :score, :size => 5
+      %table.tableB  
+        %tbody       
+          - f.fields_for :weighted_assignments do |w|  
+            = w.hidden_field :assignment_id          
+            %tr.assignment
+              %td=w.object.assignment.post.title
+              %td=w.object.assignment.score
+              %td
+                =w.text_field :weightage, :placeholder => "Weightage", :size => 10, :class => "weightage", :style => "display: none;"
+             
+          - f.fields_for :children do |child|
+            %tr.aggregation
+              %td=child.object.name
+              %td=child.object.score
+              %td=child.text_field :weightage, :placeholder => "Weightage", :size => 10, :class => "weightage", :style => "display: none;"
+              
+              
+
                           
                           
   %div.actions

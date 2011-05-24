@@ -8,11 +8,11 @@
             = aggregation.name
         %table.tableB  
           %tbody
-            - for assignment in aggregation.assignments do
+            - for wa in aggregation.weighted_assignments do
               %tr
-                %td=assignment.post.title
-                %td=assignment.weightage
-                %td=assignment.score
+                %td=wa.assignment.post.title
+                %td=wa.weightage
+                %td=wa.assignment.score
         %ul
           - for node in aggregation.all_children do
             %li{:class => "_"+node.ancestors.size.to_s} 
@@ -36,9 +36,8 @@
         %ul
           - for ass in @assignments do
             %li
-              = check_box_tag "aggregation[assignment_ids][]", ass.id
+              = check_box_tag "aggregation[weighted_assignments_attributes][#{ass.id}][assignment_id]", ass.id
               = ass.post.title
-              = ass.weightage
               = ass.score
   -#
     = link_to_remote I18n.t('reports.member.new.aggregate'),

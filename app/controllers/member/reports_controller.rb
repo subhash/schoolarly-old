@@ -4,7 +4,7 @@ class Member::ReportsController < Member::BaseController
   
   def new   
     @aggregations = @group.sharings.of_type('Aggregation').collect(&:shareable).reject(&:parent)
-    @assignments = @group.sharings.of_type('Assignment').collect(&:shareable).reject(&:aggregation)
+    @assignments = @group.sharings.of_type('Assignment').collect(&:shareable).reject(&:weighted_assignment)
   end
   
   

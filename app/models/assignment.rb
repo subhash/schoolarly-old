@@ -9,7 +9,7 @@ class Assignment < ActiveRecord::Base
   
   belongs_to :rubric
   
-  belongs_to :aggregation
+  has_one :weighted_assignment
   
   has_many :grades do
     def for_user(user)
