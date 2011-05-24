@@ -1,0 +1,11 @@
+  <% smerf_get_groups().each do |group| %>
+    <!-- Display the group name and description -->
+    <%= smerf_group_name(group) %>
+    <%= smerf_group_description(group) %>
+    <!-- Display the questions within the group -->
+    <% smerf_get_group_questions(group).each do |question| %>
+      <%= smerf_group_question(question) %>
+    <% end %>
+  <% end %>
+  
+  <%= hidden_field_tag("smerf_form_id", @smerfform.id) %>

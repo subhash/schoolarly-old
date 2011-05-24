@@ -1,5 +1,9 @@
-<%= render :partial => 'header' %>    
-
+<%= render :partial => 'header' %>
+<br/><br/><br/><br/>
+<div class="adhoc">
+<% @view_only = true %>
+<%= render(:partial => 'smerf_form') if @smerfform %>
+</div>
     
 
 <% content_for :sidebar do %>

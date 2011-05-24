@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   def student?
     person.is_a? Student
   end
+  
   def password_required?
     password_reset_code.blank? && (crypted_password.blank? || !password.blank?)
   end

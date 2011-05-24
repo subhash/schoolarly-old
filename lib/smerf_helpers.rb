@@ -46,4 +46,19 @@ module SmerfHelpers
     return nil
   end
   
+  def validate_email(question, responses, form)
+    # Validate numeric
+    puts "checking email"
+    answer = smerf_get_question_answer(question, responses)
+    puts 'checking if answer is email  '+answer
+    if (answer)
+      # Expression will return nil if regex fail, also check charcters
+      # after the match to determine if > 2 numbers specified 
+      res = ("#{answer}" =~ Authentication.email_regex)      
+      return Authentication.bad_email_message if (!res or $'.length() > 0)      
+    end
+    
+    return nil
+  end  
+  
 end

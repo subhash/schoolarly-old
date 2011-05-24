@@ -22,5 +22,10 @@ class Profile < ActiveRecord::Base
     end
   end
   
+  def form_code
+    # like sboa-students
+    user.groups.school.first.network.form_code + "-" + user.type
+  end
+  
   
 end

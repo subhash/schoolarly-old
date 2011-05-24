@@ -1,6 +1,6 @@
 class SmerfFormsUser < ActiveRecord::Base
   
-  before_create :create_user
+#  before_create :create_user
   
   private
   
