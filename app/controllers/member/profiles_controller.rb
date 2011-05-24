@@ -86,21 +86,17 @@ class Member::ProfilesController < Member::BaseController
     return unless (params.has_key?("responses"))
     @responses = params['responses'] 
     # Retrieve the smerf form record, rails will raise error if not found
-    puts 'responses - '+@responses.inspect
     @smerfform = SmerfForm.find(params[:smerf_form_id])
-    puts 'form - '+@smerfform.inspect
     # Validate user responses
     @errors = Hash.new()    
     @smerfform.validate_responses(@responses, @errors)
     # Save if no errors
-    puts "errors - "+@errors.inspect
     if (@errors.empty?()) 
       if(SmerfFormsUser.find_user_smerf_form(current_user.id, @smerfform.id))
         SmerfFormsUser.update_records(@smerfform.id, current_user.id, @responses)        
       else
         SmerfFormsUser.create_records(@smerfform.id, current_user.id, @responses)
       end
-      flash[:notice] = "#{@smerfform.name} saved successfully"
       return true
     else
       return false

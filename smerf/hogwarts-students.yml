@@ -1,6 +1,6 @@
 --- 
 smerfform:   
-  name: SBOA School
+  name: Hogwarts School Student information
   group_sort_order_field: code
 
   groups:
