@@ -1,5 +1,15 @@
 class Profile < ActiveRecord::Base
   
+  has_dynamic_attributes
+  
+  DYNAMIC_ATTRIBUTES = {
+                        :personal => %w{dob mname fname}, 
+                        :contact => %w{alt_email phone add_line1 add_line2 add_line3}, 
+                        :health => %w{height weight blood_group vision_l vision_r teeth oral_hygiene specific_ailment}
+  }
+  
+  before_create :initialize_dynamic_attributes
+  
   named_scope :for_group_for_type, lambda{ |group, type|
     {
         :joins      => {:user, :memberships},
@@ -10,7 +20,7 @@ class Profile < ActiveRecord::Base
   def self.from_wufoo_entry(entry)
     Profile.new(:first_name => entry["Field18"], :last_name => entry["Field19"])
   end
-    
+  
   def set_default_icon
     unless self.icon?
       if FileTest.exist?(RAILS_ROOT + "/public/images/#{full_name}.jpg")
@@ -23,8 +33,15 @@ class Profile < ActiveRecord::Base
   end
   
   def form_code
-    # like sboa-students
+    # sboa-students
     user.groups.school.first.network.form_code + "-" + user.type
+  end
+  
+  private
+  
+  def initialize_dynamic_attributes
+    # To initialize all profiles - Profile::DYNAMIC_ATTRIBUTES.values.flatten.each {|attr| Profile.all.each{|p| p.send("field_#{attr}=", nil); p.save}}
+    DYNAMIC_ATTRIBUTES.values.flatten.each {|attr| self.send("field_#{attr}=", nil)}
   end
   
   

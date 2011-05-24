@@ -45,6 +45,7 @@ class Member::ProfilesController < Member::BaseController
   
   def edit
     @profile = current_user.profile
+    puts '@profile - '+@profile.inspect
     retrieve_smerf_form(@profile.form_code, @profile.user)
   end
   

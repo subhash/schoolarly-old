@@ -27,6 +27,20 @@
     </div>
   </fieldset>
   
+  <% Profile::DYNAMIC_ATTRIBUTES.each do |section, attrs| %>
+  <fieldset>
+  	<legend><%= I18n.t("profiles.model.dynamic_attributes.section.#{section}") %></legend>
+  	<div class="fields">
+  		<% attrs.each do |attr| %>
+  		<p>
+  			<%= f.label "field_#{attr}", I18n.t("profiles.model.dynamic_attributes.attr.#{attr}") %>
+			<%= f.text_field "field_#{attr}" %>
+  		</p>
+		<% end %>
+  	</div>
+  </fieldset>
+  <% end %>
+  
   <fieldset class="adhoc">
   	<div class="fields">
   		<%= render(:partial => 'smerf_form') if @smerfform%>
