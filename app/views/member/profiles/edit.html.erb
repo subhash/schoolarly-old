@@ -1,9 +1,11 @@
+<% include_stylesheet "profiles/profile" %>
+
 <div class="titleB"><%= I18n.t('tog_social.profiles.member.update_profile') %></div>
 <br />
 
 <%= error_messages_for :profile %>
 <% form_for :profile, :url => member_profile_path(@profile), :html => {:method => :put, :multipart=>true} do |f| -%>
-  <fieldset>
+  <fieldset class="profile">
     <legend><%= I18n.t('tog_social.profiles.member.profile_details') %></legend>
     <div class="fields">
       <p>
@@ -28,7 +30,7 @@
   </fieldset>
   
   <% Profile::DYNAMIC_ATTRIBUTES.each do |section, attrs| %>
-  <fieldset>
+  <fieldset class="profile">
   	<legend><%= I18n.t("profiles.model.dynamic_attributes.section.#{section}") %></legend>
   	<div class="fields">
   		<% attrs.each do |attr| %>
