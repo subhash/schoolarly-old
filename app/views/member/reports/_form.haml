@@ -10,23 +10,23 @@
           %tbody
             - for wa in aggregation.weighted_assignments do
               %tr
-                %td=wa.assignment.post.title
+                %td=wa.name
                 %td=wa.weightage
-                %td=wa.assignment.score
+                %td=wa.score
         %ul
           - for node in aggregation.all_children do
             %li{:class => "_"+node.ancestors.size.to_s} 
               = node.name
               = node.score
               = node.drop_lowest
-              - if node.assignments.any?
+              - if node.weighted_assignments.any?
                 %table.tableB
                   %tbody
-                    - for assignment in node.assignments do
+                    - for wa in node.weighted_assignments do
                       %tr
-                        %td=assignment.post.title
-                        %td=assignment.weightage
-                        %td=assignment.score
+                        %td=wa.name
+                        %td=wa.weightage
+                        %td=wa.score
   - if @assignments.any?  
     %div.portlet.portletB
       %div.portlet_content         

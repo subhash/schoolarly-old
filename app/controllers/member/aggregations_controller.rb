@@ -9,6 +9,11 @@ class Member::AggregationsController < Member::BaseController
   
   def create
     @aggregation = Aggregation.new(params[:aggregation])
+    params[:children].each do |k, v|
+      child = Aggregation.find(k)
+      child.update_attributes(v)
+      @aggregation.children << child
+    end if params[:children]
     if @aggregation.save
       @group.share(current_user, @aggregation.class.to_s, @aggregation.id)
       @aggregations = @group.sharings.of_type('Aggregation').collect(&:shareable).reject(&:parent)
@@ -17,19 +22,19 @@ class Member::AggregationsController < Member::BaseController
     else
       render :template => 'new'
     end  
-      #    respond_to do |wants|
-      #      wants.html{ redirect_to new_member_group_report_path(@group)}
-      #      wants.js{
-      #        render :update do |page|
-      #          page[:reports].replace_html :partial => 'member/reports/form'
-      #        end
-      #      }
-      #    end
-    end
-    
-    private
-    def find_group
-      @group = Group.find(params[:group_id]) if params[:group_id]
-    end
-    
+    #    respond_to do |wants|
+    #      wants.html{ redirect_to new_member_group_report_path(@group)}
+    #      wants.js{
+    #        render :update do |page|
+    #          page[:reports].replace_html :partial => 'member/reports/form'
+    #        end
+    #      }
+    #    end
   end
+  
+  private
+  def find_group
+    @group = Group.find(params[:group_id]) if params[:group_id]
+  end
+  
+end

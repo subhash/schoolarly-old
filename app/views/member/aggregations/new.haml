@@ -29,22 +29,21 @@
           %label{:for => "score"}
             = "Score"
           = f.text_field :score, :size => 5
-      %table.tableB  
-        %tbody       
-          - f.fields_for :weighted_assignments do |w|  
-            = w.hidden_field :assignment_id          
-            %tr.assignment
-              %td=w.object.assignment.post.title
-              %td=w.object.assignment.score
-              %td
-                =w.text_field :weightage, :placeholder => "Weightage", :size => 10, :class => "weightage", :style => "display: none;"
-             
-          - f.fields_for :children do |child|
-            %tr.aggregation
-              %td=child.object.name
-              %td=child.object.score
-              %td=child.text_field :weightage, :placeholder => "Weightage", :size => 10, :class => "weightage", :style => "display: none;"
-              
+      %ul     
+        - f.fields_for :weighted_assignments do |w|  
+          = w.hidden_field :assignment_id          
+          %li.assignment
+            %span=w.object.assignment.post.title
+            %span=w.object.assignment.score
+            %span
+              =w.text_field :weightage, :placeholder => "Weightage", :size => 10, :class => "weightage", :style => "display: none;"   
+        -for child in @aggregation.children
+          -fields_for "children[]", child do |c|
+            %li.aggregation
+              %span=child.name
+              %span=child.score
+              %span=c.text_field :weightage, :placeholder => "Weightage", :size => 10, :class => "weightage", :style => "display: none;"
+            
               
 
                           
