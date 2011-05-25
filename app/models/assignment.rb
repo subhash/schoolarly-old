@@ -9,6 +9,8 @@ class Assignment < ActiveRecord::Base
   
   belongs_to :rubric
   
+  has_one :weighted_assignment
+  
   has_many :grades do
     def for_user(user)
       find :first, :conditions => {:user_id => user.id}

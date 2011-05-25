@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110411084040) do
+ActiveRecord::Schema.define(:version => 20110524063100) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(:version => 20110411084040) do
   end
 
   add_index "activities", ["item_type", "item_id"], :name => "index_activities_on_item_type_and_item_id"
+
+  create_table "aggregations", :force => true do |t|
+    t.string   "name"
+    t.decimal  "score",            :precision => 6, :scale => 2
+    t.integer  "parent_id"
+    t.decimal  "weightage",        :precision => 5, :scale => 2
+    t.integer  "drop_lowest"
+    t.boolean  "weighted_average",                               :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "assignments", :force => true do |t|
     t.integer  "post_id"
@@ -510,6 +521,17 @@ ActiveRecord::Schema.define(:version => 20110411084040) do
     t.integer  "person_id"
   end
 
+  create_table "weighted_assignments", :force => true do |t|
+    t.integer  "assignment_id"
+    t.integer  "aggregation_id"
+    t.decimal  "weightage",      :precision => 5, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weighted_assignments", ["assignment_id"], :name => "assignment_id"
+  add_index "weighted_assignments", ["aggregation_id"], :name => "aggregation_id"
+
   add_foreign_key "assignments", ["post_id"], "posts", ["id"], :name => "assignments_ibfk_1"
   add_foreign_key "assignments", ["rubric_id"], "rubrics", ["id"], :name => "assignments_ibfk_2"
 
@@ -534,5 +556,8 @@ ActiveRecord::Schema.define(:version => 20110411084040) do
 
   add_foreign_key "submissions", ["post_id"], "posts", ["id"], :name => "submissions_ibfk_1"
   add_foreign_key "submissions", ["assignment_id"], "assignments", ["id"], :name => "submissions_ibfk_2"
+
+  add_foreign_key "weighted_assignments", ["assignment_id"], "assignments", ["id"], :name => "weighted_assignments_ibfk_1"
+  add_foreign_key "weighted_assignments", ["aggregation_id"], "aggregations", ["id"], :name => "weighted_assignments_ibfk_2"
 
 end

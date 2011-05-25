@@ -1,0 +1,50 @@
+- form_for :report, :url => new_member_group_aggregation_path(@group) , :html => {:id => 'reports_form'} do |f|
+  - for aggregation in @aggregations do
+    %div.portlet.portletB
+      %div.portlet_content       
+        %h2
+          %span
+            = check_box_tag "aggregation[child_ids][]", aggregation.id
+            = aggregation.name
+        %table.tableB  
+          %tbody
+            - for wa in aggregation.weighted_assignments do
+              %tr
+                %td=wa.assignment.post.title
+                %td=wa.weightage
+                %td=wa.assignment.score
+        %ul
+          - for node in aggregation.all_children do
+            %li{:class => "_"+node.ancestors.size.to_s} 
+              = node.name
+              = node.score
+              = node.drop_lowest
+              - if node.assignments.any?
+                %table.tableB
+                  %tbody
+                    - for assignment in node.assignments do
+                      %tr
+                        %td=assignment.post.title
+                        %td=assignment.weightage
+                        %td=assignment.score
+  - if @assignments.any?  
+    %div.portlet.portletB
+      %div.portlet_content         
+        %h2
+          %span
+            Assignments
+        %ul
+          - for ass in @assignments do
+            %li
+              = check_box_tag "aggregation[weighted_assignments_attributes][#{ass.id}][assignment_id]", ass.id
+              = ass.post.title
+              = ass.score
+  -#
+    = link_to_remote I18n.t('reports.member.new.aggregate'),
+    :url => {:controller => :aggregations, :action => 'create', :group_id => @group}, :method => :post,
+    :html => {:class => 'button'},
+    :with => "$('reports_form').serialize()" 
+  %div.actions
+    = submit_tag I18n.t('reports.member.new.aggregate') , :class => "button mainaction"          
+               
+  

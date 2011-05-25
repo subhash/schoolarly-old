@@ -31,6 +31,32 @@ input, select, textarea {
     padding: 5px 10px 5px 0;
 }
 
+.portletB ul li._2 {
+    background-color: #E5E5E5;
+    color: inherit;
+	margin-left: 20px;
+}
+
+.portletB ul li._3 {
+    background-color: inherit;
+    color: inherit;
+	margin-left: 40px;
+}
+
+.portletB ul li._4 {
+    background-color: inherit;
+    color: inherit;
+	margin-left: 60px;
+}
+
+.portletB li .tableB{
+	background-color: #F5DEB3;
+}
+
+.portletB li .tableB{
+	margin: 5px 0 5px 20px;
+}
+
 .portletL {
     color: #666;
 }

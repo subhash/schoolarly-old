@@ -136,6 +136,8 @@ en:
       admissions:
         title: Admissions
         new: Apply for admission
+      reports:
+        title: Grades and Reports
   schools:
     model:
       klasses:
@@ -399,7 +401,7 @@ en:
     member:
       view:
         all: "View all %{size} comments"
-        
+
   profiles:
     model:
       dynamic_attributes:
@@ -424,3 +426,11 @@ en:
           teeth: Teeth
           oral_hygiene: Oral Hygiene
           specific_ailment: Specific Ailment, if any
+
+  reports:
+    member:
+      index:
+        title: Grades and reports
+      new:
+        aggregate: Aggregate
+       
