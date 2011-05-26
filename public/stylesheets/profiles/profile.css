@@ -8,8 +8,8 @@ fieldset.profile legend {
 	border: 1px solid #D6D6D6;
 	padding: 3px;
 	background: white;
+	margin-bottom: 20px;
 }
-
 
 fieldset.adhoc {
     border-top: 1px solid #D6D6D6;

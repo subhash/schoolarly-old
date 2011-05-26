@@ -33,9 +33,9 @@
 </fieldset>
 <% end %>
 
-<fieldset class="adhoc">
+<fieldset class="profile">
 	<div class="fields">
-		<%= render(:partial => 'smerf_form') if @smerfform%>
+		<%= render(:partial => 'smerf_form', :locals => {:view_only => true}) if @smerfform%>
 	</div>
 </fieldset>
     
