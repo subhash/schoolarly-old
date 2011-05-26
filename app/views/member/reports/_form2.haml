@@ -28,9 +28,8 @@
           %ul
             - for wa in aggregation.weighted_assignments do
               %li
-                =wa.name
+                =render :partial => 'member/assignments/aggregation_children_detail', :locals => {:assignment => wa.assignment}
                 =wa.weightage
-                =wa.score
             - for child in aggregation.children do
               %li.child 
                 = link_to child.name,'#', :class => "view_details"
@@ -41,7 +40,7 @@
                   %ul                  
                     - for wa in child.weighted_assignments do
                       %li{:class => ["_2", "assignment"]} 
-                        =wa.name
+                        =render :partial => 'member/assignments/aggregation_children_detail', :locals => {:assignment => wa.assignment}
                         =wa.weightage
                         =wa.score
                     - for node in child.all_children do

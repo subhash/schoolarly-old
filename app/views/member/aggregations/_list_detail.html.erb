@@ -1,0 +1,16 @@
+<% group = group if local_assigns[:group] %>
+<% profile = aggregation.user.profile %>
+<div class="image">
+    <div class="image">
+        <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
+    </div>
+    <div>
+        <%= link_to profile.full_name, member_profile_path(profile) %>
+    </div>
+</td>
+<td class="title">
+    <%= link_to aggregation.name, member_aggregation_path(aggregation, :group => group) %>
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(aggregation.created_at)) %>
+    <h2 class="float_right"><%= aggregation.score %>
+    </h2>
+</td>

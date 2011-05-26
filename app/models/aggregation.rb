@@ -5,7 +5,7 @@ class Aggregation < ActiveRecord::Base
   has_many :weighted_assignments, :dependent => :destroy
   has_many :assignments, :through => :weighted_assignments
   
-  
+  belongs_to :user
   acts_as_tree
   
   has_many :children, :class_name => 'Aggregation', :foreign_key => 'parent_id', :dependent => :nullify
