@@ -8,8 +8,10 @@ class Aggregation < ActiveRecord::Base
   
   acts_as_tree
   
+  has_many :children, :class_name => 'Aggregation', :foreign_key => 'parent_id', :dependent => :nullify
+  
   accepts_nested_attributes_for :weighted_assignments, :allow_destroy => true
-  accepts_nested_attributes_for :children
+  accepts_nested_attributes_for :children, :allow_destroy => true
   
   #  validates_presence_of :score
   #  validates_presence_of :name
@@ -50,5 +52,6 @@ class Aggregation < ActiveRecord::Base
       errors.add(:weightage, "should addup to 100%")
     end
   end
+  
   
 end
