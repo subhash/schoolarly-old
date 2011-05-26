@@ -1,5 +1,11 @@
 class Profile < ActiveRecord::Base
   
+  has_dynamic_attributes
+  
+  DYNAMIC_ATTRIBUTES = YAML.load_file("#{RAILS_ROOT}/config/attributes/attributes.yml")
+  
+  before_create :initialize_dynamic_attributes
+  
   named_scope :for_group_for_type, lambda{ |group, type|
     {
         :joins      => {:user, :memberships},
@@ -7,10 +13,19 @@ class Profile < ActiveRecord::Base
     }
   }
   
-  def self.from_wufoo_entry(entry)
-    Profile.new(:first_name => entry["Field18"], :last_name => entry["Field19"])
+  def attributes_list
+    attributes_hash.collect {|k,v| config[k].keys}.flatten
   end
-    
+  
+  def attributes_hash
+    attr = DYNAMIC_ATTRIBUTES
+    file = "#{RAILS_ROOT}/config/attributes/#{user.school.form_code}.yml"
+    if FileTest.exist?(file)
+      attr.deep_merge!(YAML.load_file(file))
+    end
+    attr[user.type]
+  end
+  
   def set_default_icon
     unless self.icon?
       if FileTest.exist?(RAILS_ROOT + "/public/images/#{full_name}.jpg")
@@ -22,9 +37,11 @@ class Profile < ActiveRecord::Base
     end
   end
   
-  def form_code
-    # like sboa-students
-    user.groups.school.first.network.form_code + "-" + user.type
+  private
+  
+  def initialize_dynamic_attributes
+    # To initialize all profiles - Profile::DYNAMIC_ATTRIBUTES.values.flatten.each {|attr| Profile.all.each{|p| p.send("field_#{attr}=", nil); p.save}}
+    attributes_list.each {|attr| self.send("field_#{attr}=", nil)}
   end
   
   

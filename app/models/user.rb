@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
     person.is_a? Student
   end
   
+  def school
+    groups.school.first.network unless groups.school.blank?
+  end
+  
   def password_required?
     password_reset_code.blank? && (crypted_password.blank? || !password.blank?)
   end
@@ -53,11 +57,6 @@ class User < ActiveRecord::Base
   #  def default_blog
   #    self.bloggerships.find_by_rol("default").blog
   #  end
-  
-  def self.from_wufoo_entry(entry)
-    User.new(:email => entry["Field38"]) do |u|
-      u.profile = Profile.from_wufoo_entry(entry)
-    end
-  end
+
   
 end

@@ -5,6 +5,13 @@ en:
   tog_user:
     user:
       sign_up: Thanks for signing up! We have sent to you an email with instructions to activate your account.
+  tog_core:
+    views:
+      shared:
+        header_options:
+          home: Home
+          profile: My profile
+          schoolarly: Schoolarly
   home:
     index:
       about_schoolarly: "Schoolarly is a communication platform that connects students, teachers and parents in a school"
@@ -394,7 +401,36 @@ en:
     member:
       view:
         all: "View all %{size} comments"
-        
+
+  profiles:
+    model:
+      dynamic_attributes:
+        section:
+          personal: Personal Information
+          contact: Contact Information
+          health: Health Status
+          magical: Magical Status
+        attr:
+          dob: Date of Birth
+          mname: Mother's name
+          fname: Father's name
+          alt_email: Alternate Email Address
+          phone: Telephone number
+          add_line1: Address (Line 1)
+          add_line2: Address (Line 2)
+          add_line3: Address (Line 3)
+          fax: Fax number
+          height: Height
+          weight: Weight
+          blood_group: Blood Group
+          vision_l: Vision (L)
+          vision_r: Vision (R)
+          teeth: Teeth
+          oral_hygiene: Oral Hygiene
+          specific_ailment: Specific Ailment, if any
+          vaccinations: Vaccinations provided
+          belief: Do you believe in Magical stuff?
+
   reports:
     member:
       index:

@@ -1,0 +1,20 @@
+students:
+  personal:
+    dob:
+    mname:
+    fname:
+  contact:
+    alt_email:
+    phone:
+    add_line1:
+    add_line2: 
+    add_line3:
+  health:
+    height: 
+    weight: 
+    blood_group: 
+    vision_l: 
+    vision_r: 
+    teeth: 
+    oral_hygiene: 
+    specific_ailment:
