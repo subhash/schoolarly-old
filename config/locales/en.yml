@@ -409,6 +409,7 @@ en:
           personal: Personal Information
           contact: Contact Information
           health: Health Status
+          magical: Magical Status
         attr:
           dob: Date of Birth
           mname: Mother's name
@@ -418,6 +419,7 @@ en:
           add_line1: Address (Line 1)
           add_line2: Address (Line 2)
           add_line3: Address (Line 3)
+          fax: Fax number
           height: Height
           weight: Weight
           blood_group: Blood Group
@@ -426,6 +428,8 @@ en:
           teeth: Teeth
           oral_hygiene: Oral Hygiene
           specific_ailment: Specific Ailment, if any
+          vaccinations: Vaccinations provided
+          belief: Do you believe in Magical stuff?
 
   reports:
     member:

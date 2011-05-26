@@ -19,11 +19,11 @@
     </div>
 </fieldset>
 
-<% Profile::DYNAMIC_ATTRIBUTES.each do |section, attrs| %>
+<% @profile.attributes_hash.each do |section, attrs| %>
 <fieldset class="profile">
 	<legend><%= I18n.t("profiles.model.dynamic_attributes.section.#{section}") %></legend>
 	<div class="fields">
-		<% attrs.each do |attr| %>
+		<% attrs.keys.each do |attr| %>
 		<p>
 			<%= label_tag "field_#{attr}", I18n.t("profiles.model.dynamic_attributes.attr.#{attr}") %>
 			<strong><%= @profile.send "field_#{attr}" %></strong>
@@ -32,12 +32,6 @@
 	</div>
 </fieldset>
 <% end %>
-
-<fieldset class="profile">
-	<div class="fields">
-		<%= render(:partial => 'smerf_form', :locals => {:view_only => true}) if @smerfform%>
-	</div>
-</fieldset>
     
 
 <% content_for :sidebar do %>

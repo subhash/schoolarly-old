@@ -2,11 +2,7 @@ class Profile < ActiveRecord::Base
   
   has_dynamic_attributes
   
-  DYNAMIC_ATTRIBUTES = {
-                        :personal => %w{dob mname fname}, 
-                        :contact => %w{alt_email phone add_line1 add_line2 add_line3}, 
-                        :health => %w{height weight blood_group vision_l vision_r teeth oral_hygiene specific_ailment}
-  }
+  DYNAMIC_ATTRIBUTES = YAML.load_file("#{RAILS_ROOT}/config/attributes/attributes.yml")
   
   before_create :initialize_dynamic_attributes
   
@@ -17,8 +13,17 @@ class Profile < ActiveRecord::Base
     }
   }
   
-  def self.from_wufoo_entry(entry)
-    Profile.new(:first_name => entry["Field18"], :last_name => entry["Field19"])
+  def attributes_list
+    attributes_hash.collect {|k,v| config[k].keys}.flatten
+  end
+  
+  def attributes_hash
+    attr = DYNAMIC_ATTRIBUTES
+    file = "#{RAILS_ROOT}/config/attributes/#{user.school.form_code}.yml"
+    if FileTest.exist?(file)
+      attr.deep_merge!(YAML.load_file(file))
+    end
+    attr[user.type]
   end
   
   def set_default_icon
@@ -32,16 +37,11 @@ class Profile < ActiveRecord::Base
     end
   end
   
-  def form_code
-    # sboa-students
-    user.school.form_code + "-" + user.type if user.school
-  end
-  
   private
   
   def initialize_dynamic_attributes
     # To initialize all profiles - Profile::DYNAMIC_ATTRIBUTES.values.flatten.each {|attr| Profile.all.each{|p| p.send("field_#{attr}=", nil); p.save}}
-    DYNAMIC_ATTRIBUTES.values.flatten.each {|attr| self.send("field_#{attr}=", nil)}
+    attributes_list.each {|attr| self.send("field_#{attr}=", nil)}
   end
   
   

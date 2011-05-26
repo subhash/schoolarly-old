@@ -57,11 +57,6 @@ class User < ActiveRecord::Base
   #  def default_blog
   #    self.bloggerships.find_by_rol("default").blog
   #  end
-  
-  def self.from_wufoo_entry(entry)
-    User.new(:email => entry["Field38"]) do |u|
-      u.profile = Profile.from_wufoo_entry(entry)
-    end
-  end
+
   
 end
