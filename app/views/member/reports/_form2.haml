@@ -1,0 +1,76 @@
+- include_stylesheet "reports"
+- include_javascript "jquery-1.4.2.min.js" 
+:javascript
+  jQuery.noConflict();
+  
+  jQuery(document).ready(function(){
+    jQuery('.checkbox input:checkbox').change(function(){
+      if(jQuery(this).is(':checked'))
+        jQuery(this).closest('tr').addClass('highlight');
+      else
+        jQuery(this).closest('tr').removeClass('highlight');
+    });
+    jQuery('a.view_details').click(function(){ 
+        jQuery(this).closest('li.child').find('div.details').toggle();
+    });
+  });
+  
+
+- form_for :report, :url => new_member_group_aggregation_path(@group) , :html => {:id => 'reports_form'} do |f|  
+  %table.aggregation
+    - for aggregation in @aggregations do  
+      %tr         
+        %td.checkbox
+          = check_box_tag "aggregation[child_ids][]", aggregation.id
+        %td.title
+          = aggregation.name
+        %td.children
+          %ul
+            - for wa in aggregation.weighted_assignments do
+              %li
+                =wa.name
+                =wa.weightage
+                =wa.score
+            - for child in aggregation.children do
+              %li.child 
+                = link_to child.name,'#', :class => "view_details"
+                = child.formula
+                = child.score
+                = child.drop_lowest
+                %div{:class => "details", :style => "display: none; "}
+                  %ul                  
+                    - for wa in child.weighted_assignments do
+                      %li{:class => ["_2", "assignment"]} 
+                        =wa.name
+                        =wa.weightage
+                        =wa.score
+                    - for node in child.all_children do
+                      %li{:class => ["_"+node.ancestors.size.to_s, "aggregation"]} 
+                        = node.name
+                        = node.score
+                        = node.drop_lowest
+                        - if node.weighted_assignments.any?
+                          %table.tableB
+                            %tbody
+                              - for wa in node.weighted_assignments do
+                                %tr
+                                  =render :partial => 'member/assignments/aggregation_detail', :locals => {:assignment => wa.assignment}
+                                  %td="#{wa.weightage}%" if node.weighted_average
+  - if @assignments.any?  
+    %table.assignment
+      %caption="Assignments"
+      %tbody
+        - for ass in @assignments do
+          %tr
+            %td.checkbox
+              = check_box_tag "aggregation[weighted_assignments_attributes][#{ass.id}][assignment_id]", ass.id
+            = render :partial => 'member/assignments/aggregation_detail', :locals => {:assignment => ass}
+  -#
+    = link_to_remote I18n.t('reports.member.new.aggregate'),
+    :url => {:controller => :aggregations, :action => 'create', :group_id => @group}, :method => :post,
+    :html => {:class => 'button'},
+    :with => "$('reports_form').serialize()" 
+  %div.actions
+    = submit_tag I18n.t('reports.member.new.aggregate') , :class => "button mainaction"          
+               
+  
