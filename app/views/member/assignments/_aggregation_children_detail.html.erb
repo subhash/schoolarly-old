@@ -1,17 +1,9 @@
 <% group = group if local_assigns[:group] %>
 <% profile = assignment.post.user.profile %>
-<div class="section1">
-    <%= link_to "#{sanitize assignment.post.title}", member_assignment_path(assignment, :group => group) %>
-    <span><%= trim(assignment.score) %>
-    </span>
-    <span class="details">
-        <%= link_to icon_for_assignment, member_assignment_path(assignment, :group => group), :title => "#{sanitize assignment.post.title}" %>
-        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>
-    </span>
-</div>
-<div class="section2">
-    <%= link_to icon_for_profile(profile, 'tiny', :class=>"img"), member_profile_path(profile) %>
-    <div>
-        <%= link_to profile.full_name, member_profile_path(profile) %>
-    </div>
-</div>
+<%= link_to icon_for_assignment, member_assignment_path(assignment, :group => group), :title => "#{sanitize assignment.post.title}" %>
+<span class="title"><%= link_to "#{sanitize assignment.post.title}", member_assignment_path(assignment, :group => group) %></span>
+<%= trim(assignment.score) %>
+<span class="details"><%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>
+</span>
+<%= link_to icon_for_profile(profile, 'tiny', :class=>"img"), member_profile_path(profile) %>
+<%= link_to profile.full_name, member_profile_path(profile) %>

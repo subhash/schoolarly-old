@@ -27,9 +27,9 @@
         %td.children
           %ul
             - for wa in aggregation.weighted_assignments do
-              %li
+              %li{:class => "assignment"}
                 =render :partial => 'member/assignments/aggregation_children_detail', :locals => {:assignment => wa.assignment}
-                =wa.weightage
+                ="#{wa.weightage}%" if aggregation.weighted_average
             - for child in aggregation.children do
               %li.child 
                 = link_to child.name,'#', :class => "view_details"
@@ -41,15 +41,14 @@
                     - for wa in child.weighted_assignments do
                       %li{:class => ["_2", "assignment"]} 
                         =render :partial => 'member/assignments/aggregation_children_detail', :locals => {:assignment => wa.assignment}
-                        =wa.weightage
-                        =wa.score
+                        ="#{wa.weightage}%" if child.weighted_average
                     - for node in child.all_children do
-                      %li{:class => ["_"+node.ancestors.size.to_s, "aggregation"]} 
+                      %li{:class => "_"+node.ancestors.size.to_s} 
                         = node.name
                         = node.score
                         = node.drop_lowest
                       - for wa in node.weighted_assignments do
-                        %li{:class => ["_#{node.ancestors.size+1}", "aggregation"]} 
+                        %li{:class => ["_#{node.ancestors.size+1}", "assignment"]} 
                           =render :partial => 'member/assignments/aggregation_children_detail', :locals => {:assignment => wa.assignment}
                           ="#{wa.weightage}%" if node.weighted_average
   - if @assignments.any?  
