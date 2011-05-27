@@ -48,13 +48,10 @@
                         = node.name
                         = node.score
                         = node.drop_lowest
-                        - if node.weighted_assignments.any?
-                          %table.tableB
-                            %tbody
-                              - for wa in node.weighted_assignments do
-                                %tr
-                                  =render :partial => 'member/assignments/aggregation_detail', :locals => {:assignment => wa.assignment}
-                                  %td="#{wa.weightage}%" if node.weighted_average
+                      - for wa in node.weighted_assignments do
+                        %li{:class => ["_#{node.ancestors.size+1}", "aggregation"]} 
+                          =render :partial => 'member/assignments/aggregation_children_detail', :locals => {:assignment => wa.assignment}
+                          ="#{wa.weightage}%" if node.weighted_average
   - if @assignments.any?  
     %table.assignment
       %caption="Assignments"
