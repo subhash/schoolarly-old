@@ -40,9 +40,12 @@ ActiveRecord::Schema.define(:version => 20110524063100) do
     t.decimal  "weightage",        :precision => 5, :scale => 2
     t.integer  "drop_lowest"
     t.boolean  "weighted_average",                               :default => false
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "aggregations", ["user_id"], :name => "user_id"
 
   create_table "assignments", :force => true do |t|
     t.integer  "post_id"
@@ -531,6 +534,8 @@ ActiveRecord::Schema.define(:version => 20110524063100) do
 
   add_index "weighted_assignments", ["assignment_id"], :name => "assignment_id"
   add_index "weighted_assignments", ["aggregation_id"], :name => "aggregation_id"
+
+  add_foreign_key "aggregations", ["user_id"], "users", ["id"], :name => "aggregations_ibfk_1"
 
   add_foreign_key "assignments", ["post_id"], "posts", ["id"], :name => "assignments_ibfk_1"
   add_foreign_key "assignments", ["rubric_id"], "rubrics", ["id"], :name => "assignments_ibfk_2"

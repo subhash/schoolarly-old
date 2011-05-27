@@ -14,6 +14,7 @@ class Member::AggregationsController < Member::BaseController
       child.update_attributes(v)
       @aggregation.children << child
     end if params[:children]
+    @aggregation.user = current_user
     if @aggregation.save
       @group.share(current_user, @aggregation.class.to_s, @aggregation.id)
       @aggregations = @group.sharings.of_type('Aggregation').collect(&:shareable).reject(&:parent)

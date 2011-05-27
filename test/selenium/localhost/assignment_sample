@@ -42,6 +42,11 @@
 	<td>sample</td>
 </tr>
 <tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
 	<td>click</td>
 	<td>assignment_score</td>
 	<td></td>

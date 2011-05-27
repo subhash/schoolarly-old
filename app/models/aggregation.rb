@@ -5,7 +5,7 @@ class Aggregation < ActiveRecord::Base
   has_many :weighted_assignments, :dependent => :destroy
   has_many :assignments, :through => :weighted_assignments
   
-  
+  belongs_to :user
   acts_as_tree
   
   has_many :children, :class_name => 'Aggregation', :foreign_key => 'parent_id', :dependent => :nullify
@@ -54,4 +54,21 @@ class Aggregation < ActiveRecord::Base
   end
   
   
+  def formula
+    str = ""
+    if weighted_average
+      for child in nodes
+        str << "("+child.weightage.to_s+"% of "+child.name+")+"
+      end
+      str.chomp("+")
+    else  
+      str << "("
+      for child in nodes
+        str << child.name+"+"
+      end
+      str.chomp("+")
+      puts "str = "+str
+      str << ")/"+nodes.size.to_s
+    end   
+  end
 end
