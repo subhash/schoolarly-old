@@ -69,6 +69,9 @@ class Group < ActiveRecord::Base
     network_type ? network_type.downcase.pluralize : 'groups'
   end
   
+  def general?
+    network_type.blank?
+  end
   def school?
     network_type == 'School'
   end 
