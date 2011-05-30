@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  before_filter :ban_access, :except => [:reset]
+  
   def reset
     @user = User.find_by_password_reset_code(params[:reset_code]) unless params[:reset_code].nil?
     if request.post?
