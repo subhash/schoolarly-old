@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
   
+  before_filter :ban_access
+  
   def show
     @profile = Profile.find(params[:id])
     store_location

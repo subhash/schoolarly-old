@@ -65,7 +65,7 @@ class Member::ProfilesController < Member::BaseController
   
   def check_profile
     @profile = Profile.find(params[:id]) if params[:id]
-    raise Exception.new("Unauthorized access") unless @profile.user == current_user
+    raise UnauthorizedException.new unless @profile.user == current_user
   end
   
 end

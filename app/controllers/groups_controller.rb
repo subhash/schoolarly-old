@@ -3,6 +3,8 @@ class GroupsController < ApplicationController
   before_filter :login_required, :only => [:join, :leave]
   before_filter :load_group, :only => [:show, :join, :leave, :members, :accept_invitation, :reject_invitation, :share, :sharings]
   
+  before_filter :ban_access
+  
   def index
     @type = params[:type] || 'groups'
     @order = params[:order] || 'created_at'
