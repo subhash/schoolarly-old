@@ -64,7 +64,6 @@ table.aggregation div.details ul {
     padding: 10px 0;
 }
 
-
 li.assignment {
     background-color: #FFFAE7;
 }
@@ -75,11 +74,9 @@ table.aggregation ul li._2 {
     margin-left: 20px;
 }
 
-
 table.aggregation li._2.assignment {
     background-color: #D9D7AC;
 }
-
 
 div.details ul li {
     width: auto;
@@ -88,7 +85,6 @@ div.details ul li {
 table.aggregation ul li._3 {
     color: inherit;
     margin-left: 40px;
-    margin-right: 0;
 }
 
 table.aggregation ul li._4 {
@@ -104,3 +100,16 @@ table.aggregation td .tableB {
     margin: 5px 0 5px 20px;
 }
 
+
+.left {
+    float: left;
+	display: inline-block;
+	width: 75%;
+}
+
+.right{
+	display: inline-block;
+}
+.right img{
+    display: block;
+}
