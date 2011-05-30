@@ -1,13 +1,13 @@
 fieldset.profile {
 	margin: 50px 0px 50px 0px;
 	border: 1px solid #D6D6D6;
-	background: #FAFAFA;
+	background: #FCFAE6;
 }
 
 fieldset.profile legend {
 	border: 1px solid #D6D6D6;
 	padding: 3px;
-	background: white;
+	background-color	: #D9D7AC;
 	margin-bottom: 20px;
 }
 
