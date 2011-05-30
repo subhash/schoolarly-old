@@ -41,10 +41,12 @@ en:
       moderator: "Moderator"
       groups:
         title: "Member Groups"
+        view_all: "View all groups"
       schools:
         title: "School Networks"
       klasses:
         title: "Class Networks"
+        view_all: "View all classes"
       students:
         title: "Students"
       teachers:
@@ -53,6 +55,7 @@ en:
         title: "Other Members"
       subjects:
         title: "Subjects"
+        view_all: "View all subjects"        
       shared:
         title: "Shared Groups"
     site:
