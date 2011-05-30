@@ -14,16 +14,16 @@ class Profile < ActiveRecord::Base
   }
   
   def attributes_list
-    attributes_hash.collect {|k,v| config[k].keys}.flatten
+    attributes_hash.collect {|k,v| v.keys}.flatten
   end
   
   def attributes_hash
     attr = DYNAMIC_ATTRIBUTES
-    file = "#{RAILS_ROOT}/config/attributes/#{user.school.form_code}.yml"
-    if FileTest.exist?(file)
+    file = "#{RAILS_ROOT}/config/attributes/#{user.school.form_code}.yml" if user.school
+    if file and FileTest.exist?(file)
       attr.deep_merge!(YAML.load_file(file))
     end
-    attr[user.type]
+    attr[user.type] || {}
   end
   
   def set_default_icon
@@ -40,7 +40,7 @@ class Profile < ActiveRecord::Base
   private
   
   def initialize_dynamic_attributes
-    # To initialize all profiles - Profile::DYNAMIC_ATTRIBUTES.values.flatten.each {|attr| Profile.all.each{|p| p.send("field_#{attr}=", nil); p.save}}
+    # To initialize all profiles - Profile.all.each{|p| p.attributes_list.each {|attr| p.send("field_#{attr}=", nil)}; p.save}
     attributes_list.each {|attr| self.send("field_#{attr}=", nil)}
   end
   

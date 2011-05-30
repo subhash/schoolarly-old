@@ -1,53 +1,66 @@
 <% include_stylesheet "profiles/profile" %>
-
 <%= render :partial => 'header' %>
 <fieldset class="profile">
+    <legend>
+        <%= I18n.t('tog_social.profiles.member.profile_details') %>
+    </legend>
     <div class="fields">
-      <legend><%= I18n.t('tog_social.profiles.member.profile_details') %></legend>    	
-      <p>
-        <label><%= I18n.t('tog_social.profiles.model.first_name') %></label>
-        <strong><%= @profile.first_name%></strong>
-      </p>
-      <p>
-        <label><%= I18n.t('tog_social.profiles.model.last_name') %></label>
-        <strong><%= @profile.last_name%></strong>
-      </p>
-      <p>
-        <label><%= I18n.t('tog_social.profiles.model.website') %></label>
-        <strong><%= @profile.website%></strong>
-      </p>  
+        <p>
+            <label>
+                <%= I18n.t('tog_social.profiles.model.first_name') %>
+            </label>
+            <strong><%= @profile.first_name %></strong>
+        </p>
+        <p>
+            <label>
+                <%= I18n.t('tog_social.profiles.model.last_name') %>
+            </label>
+            <strong><%= @profile.last_name %></strong>
+        </p>
+        <p>
+            <label>
+                <%= I18n.t('tog_social.profiles.model.website') %>
+            </label>
+            <strong><%= @profile.website %></strong>
+        </p>
     </div>
 </fieldset>
-
 <% @profile.attributes_hash.each do |section, attrs| %>
 <fieldset class="profile">
-	<div class="fields">
-	<legend><%= I18n.t("profiles.model.dynamic_attributes.section.#{section}") %></legend>		
-		<% attrs.keys.each do |attr| %>
-		<p>
-			<%= label_tag "field_#{attr}", I18n.t("profiles.model.dynamic_attributes.attr.#{attr}") %>
-			<strong><%= @profile.send "field_#{attr}" %></strong>
-		</p>
-	<% end %>
-	</div>
+    <legend>
+        <%= I18n.t("profiles.model.dynamic_attributes.section.#{section}") %>
+    </legend>
+    <div class="fields">
+        <% attrs.keys.each do |attr| %>
+        <p>
+            <%= label_tag "field_#{attr}", I18n.t("profiles.model.dynamic_attributes.attr.#{attr}") %>
+            <strong><%= @profile.send "field_#{attr}" %></strong>
+        </p>
+        <% end %>
+    </div>
 </fieldset>
 <% end %>
-    
-
 <% content_for :sidebar do %>
-    
-	<div class="portlet portletC" id="portlet_moreLinks">
-        <h2><span><%= I18n.t('tog_social.more_links') %></span></h2>
-        <div class="portlet_content">
-            <ul>
-              <% if its_me? -%>         
-                <li><%= link_to I18n.t('tog_social.profiles.site.edit_profile'), edit_member_profile_path(@profile) %></li>
-              <% else -%>
-                <li><%= link_to_if(@profile.user.active?, I18n.t('tog_social.profiles.site.send_message'), member_new_message_to_path(@profile.user)) {}%></li>
-                <li><%= report_abuse_link @profile %></li>
-                <li><%= following_options(@profile) %></li>
-              <% end -%>
-            </ul>
-        </div> 
-    </div> 
+<div class="portlet portletC" id="portlet_moreLinks">
+    <h2><span><%= I18n.t('tog_social.more_links') %></span></h2>
+    <div class="portlet_content">
+        <ul>
+            <% if its_me? -%>
+            <li>
+                <%= link_to I18n.t('tog_social.profiles.site.edit_profile'), edit_member_profile_path(@profile) %>
+            </li>
+            <% else -%>
+            <li>
+                <%= link_to_if(@profile.user.active?, I18n.t('tog_social.profiles.site.send_message'), member_new_message_to_path(@profile.user)) {} %>
+            </li>
+            <li>
+                <%= report_abuse_link @profile %>
+            </li>
+            <li>
+                <%= following_options(@profile) %>
+            </li>
+            <% end -%>
+        </ul>
+    </div>
+</div>
 <% end %>

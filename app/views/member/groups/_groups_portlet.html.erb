@@ -1,29 +1,38 @@
 <div class="portlet portletH" id="portlet_groups">
     <h2><span><%= title %></span></h2>
-	<% if local_assigns[:add_link] %>
-	<p><%= add_link %></p>
-	<% end %>
+    <% if local_assigns[:add_link] %>
+    <p>
+        <%= add_link %>
+    </p>
+    <% end %>
     <div class="portlet_content">
         <ul>
-          <% items.each do |group|%>
-          <li class="clearfix">
-              <div class="image"><%=link_to image_for_group(group, 'medium'), member_group_path(group) %></div>
-              <div class="title"><%= link_to group.name, member_group_path(group) %></div>
-              <div class="text">
-                 <%=group.description%>
-              </div>
-              <div class="members"><strong>
-              <%= I18n.t('tog_social.groups.model.members', :count => group.members.size) %></strong></div>
-	            <div id="actions">
-	            <% if i_am_moderator_of(group) and group.pending_members.size > 0 %>
-					<%= link_to I18n.t('tog_social.groups.member.members_pending', :size => group.pending_members.size), member_group_pending_members_path(group) %>
-				<% end %>
-				<% if i_am_member_of(group) and !group.network_type%>
-					<%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete'%>
-				<% end %>				
-	            </div>
-          </li>          
-          <%end%>          
+            <% items.each do |group| %>
+            <li class="clearfix">
+                <div class="image">
+                    <%=link_to image_for_group(group, 'medium'), member_group_path(group) %>
+                </div>
+                <div class="title">
+                    <%= link_to group.name, member_group_path(group) %>
+                </div>
+                <div class="text">
+                    <%=group.description %>
+                </div>
+                <div class="members">
+                    <strong><%= I18n.t('tog_social.groups.model.members', :count => group.members.size) %></strong>
+                </div>
+                <div id="actions">
+                    <% if i_am_moderator_of(group) and group.pending_members.size > 0 %>
+                    <%= link_to I18n.t('tog_social.groups.member.members_pending', :size => group.pending_members.size), member_group_pending_members_path(group) %>
+                    <% end %>
+                    <% if i_am_moderator_of(group) and !group.school? %>
+                    <%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %>
+                    <% elsif i_am_member_of(group) and !group.network_type %>
+                    <%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %>
+                    <% end %>
+                </div>
+            </li>
+            <%end %>
         </ul>
-    </div>    
+    </div>
 </div>

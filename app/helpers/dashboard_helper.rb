@@ -4,6 +4,10 @@ module DashboardHelper
     return image_tag("/images/#{config["plugins.schoolarly.assignment.image.default"]}" , options)
   end
   
+  def icon_for_aggregation(options={})
+    return image_tag("/images/#{config["plugins.schoolarly.aggregation.image.default"]}" , options)
+  end
+  
   
   def icon_for_attachment(options={})
     return image_tag("/images/#{config["plugins.schoolarly.attachment.image.default"]}" , options)
@@ -17,7 +21,7 @@ module DashboardHelper
     return image_tag("/images/#{config["plugins.schoolarly.event.image.default"]}" , options)
   end
   
-    def icon_for_notice(options={})
+  def icon_for_notice(options={})
     return image_tag("/images/#{config["plugins.schoolarly.notice.image.default"]}" , options)
   end
   

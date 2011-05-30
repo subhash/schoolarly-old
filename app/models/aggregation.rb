@@ -60,15 +60,9 @@ class Aggregation < ActiveRecord::Base
       for child in nodes
         str << "("+child.weightage.to_s+"% of "+child.name+")+"
       end
-      str.chomp("+")
+      str.chop!
     else  
-      str << "("
-      for child in nodes
-        str << child.name+"+"
-      end
-      str.chomp("+")
-      puts "str = "+str
-      str << ")/"+nodes.size.to_s
+      str =  "Average(" + nodes.collect(&:name) * ", " + ")"
     end   
   end
 end

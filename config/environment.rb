@@ -97,6 +97,7 @@ Tog::Plugins.settings :tog_user,  {
 }, :force => true
 
 Tog::Plugins.settings :schoolarly, {
+    "aggregation.image.default"        => "dashboard/aggregation2.png",
     "assignment.image.default"        => "dashboard/assignment2.png",
     "attachment.image.default"        => "dashboard/document2.png",
     "post.image.default"              => "dashboard/note2.png",
