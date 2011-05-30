@@ -1,6 +1,10 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
+
+class UnauthorizedException < StandardError
+end
+
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -9,6 +13,8 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   before_filter :set_title
+  
+  rescue_from UnauthorizedException, :with => :unauthorized
   
   include Smerf
   
@@ -20,6 +26,14 @@ class ApplicationController < ActionController::Base
   
   def set_title
     @title = current_user.school.group.name if current_user
+  end
+  
+  def unauthorized
+    render :template => "member/site/unauthorized"
+  end
+  
+  def ban_access
+    raise UnauthorizedException.new
   end
   
 end

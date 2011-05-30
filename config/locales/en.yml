@@ -32,10 +32,13 @@ en:
       attachments: "Documents"
       sharings: "Shared items"
       rubrics: "Rubrics"
+      unauthorized: You are not authorized to view this page. Please contact your school administrator for details.
+
   groups:
     model:
       groups_not_found: "%{parent} has 0 groups."
       parent: "Parent group"
+      moderator: "Moderator"
       groups:
         title: "Member Groups"
       schools:
