@@ -1,3 +1,5 @@
+<% include_stylesheet 'shared/errors' %>
+
 <div class="titleB">
     <%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t('students.member.invite.title') %>
 </div>
@@ -5,9 +7,9 @@
 <% @users ||= [] %>
 <% @users.each do |user| %>
     <% if user.errors.blank? %>
-		<%= I18n.t('groups.site.Student.added_successfully', :student_name => user.profile.full_name) %><br/>
+		<div class="ok"><%= I18n.t('groups.site.Student.add_success', :student_name => "<b>#{user.profile.full_name} (#{user.email})</b>") %></div>
 	<% else %>
-		<%= error_messages_for 'user', :object => user %>	
+		<div class="error"><%= I18n.t('groups.site.Student.add_failure', :student_name => "<b>#{user.profile.full_name} (#{user.email})</b>", :failure_reason => user.errors.full_messages.join(', ')) %></div>
 	<% end %>
 <% end %>
 

@@ -64,7 +64,8 @@ en:
       title: "Groups"
       details: "Group Details"
       create: "Create Group"
-      added_successfully: "%{group_name} added successfully"
+      add_success: "%{group_name} has been added successfully"
+      add_failure: "%{group_name} could not be added because: %{failure_reason}"  
       not_moderator: "You are not a moderator of this group"
       members:
         invite: "Invite members"
@@ -93,13 +94,15 @@ en:
       Student:
         invite: "Invite new students"
         add_select: "Select existing students"
-        added_successfully: "%{student_name} has been added successfully"
+        add_success: "%{student_name} has been added successfully"
+        add_failure: "%{student_name} could not be added because: %{failure_reason}"  
         remove_select: "Select students to be removed"
         invited: "%{count} student(s) invited"
       Teacher:
         invite: "Invite new teachers"
         add_select: "Select existing teachers"
-        added_successfully: "%{teacher_name} has been added successfully"        
+        add_success: "%{teacher_name} has been added successfully"
+        add_failure: "%{teacher_name} could not be added because: %{failure_reason}"        
         remove_select: "Select teachers to be removed"        
         invited: "%{count} teacher(s) invited"  
       Admin:

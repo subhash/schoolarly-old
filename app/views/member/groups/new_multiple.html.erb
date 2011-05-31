@@ -1,3 +1,5 @@
+<% include_stylesheet 'shared/errors' %>
+
 <div class="titleB">
     <%= path_for(@parent) %> > 
     <%= I18n.t("#{@type}.site.add_multiple.title") %>
@@ -6,10 +8,9 @@
 <% @groups ||= [] %>
 <% @groups.each do |group| %>
 	<% if group.errors.blank? %>
-		<%= I18n.t('groups.site.added_successfully', :group_name => group.name) %>
-		<br/>
+		<div class="ok"><%= I18n.t('groups.site.add_success', :group_name => "<b>#{group.name}</b>") %></div>
 	<% else %>
-		<%= error_messages_for 'group', :object => group %>
+		<div class="error"><%= I18n.t('groups.site.add_failure', :group_name => "<b>#{group.name}</b>", :failure_reason => group.errors.full_messages.join(', ')) %></div>
 	<% end %>
 <% end %>
 <% form_tag create_multiple_member_group_path(@parent.id, :type => @type) , :html=>{ :multipart=>true } do |f| -%>
