@@ -82,6 +82,11 @@ input, select, textarea {
     background-color: #E9E9E9;
 }
 
+.portletH h2{
+	background-color: #E9E9E9;
+	padding: 8px 3px;
+}
+
 .col_70_30 {
     clear: both;
     width: 100%;
