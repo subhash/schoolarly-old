@@ -37,6 +37,7 @@
         <br/>
         <span class="helpinfo"><%= I18n.t('tog_social.groups.model.image_help') %></span>
     </p>
+	<% if @group.general? %>
     <p>
         <label for="group_private" class="nolabel">
             <%= f.check_box :private %><%= I18n.t('tog_social.groups.model.private') %>
@@ -51,6 +52,7 @@
         <br/>
         <span class="helpinfo"><%= I18n.t('tog_social.groups.model.moderated_help') %></span>
     </p>
+	<% end %>
     </div>
 </fieldset>
 <div class="actions">
