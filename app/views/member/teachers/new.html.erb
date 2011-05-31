@@ -26,6 +26,9 @@
             <%= recaptcha_tags(:display =>{:lang => config["plugins.tog_core.language.default"]}) %>
         </p>
         <% end %>
+		<p>
+			<label for="moderators" class="nolabel"><%= check_box_tag :moderator, "1", !@group.school?%> <%=I18n.t('teachers.member.invite.moderator')%></label>
+		</p>	
         <p>
             <span class="fontsmaller"><%= I18n.t('teachers.member.invite.description') %></span>
         </p>
@@ -33,7 +36,10 @@
 </fieldset>
 <br/>
 <div class="actions">
-    <%= submit_tag I18n.t('teachers.member.invite.title'), :class => "button mainaction" %> or
+    <%= submit_tag I18n.t('teachers.member.invite.title'), :class => "button mainaction" %>
+	<% unless @group.school? %>
+	or
 	<%= link_to I18n.t("groups.site.Teacher.add_select"), add_select_member_group_path(@group, :type => 'Teacher')%>
+	<% end %>
 </div>
 <% end -%>

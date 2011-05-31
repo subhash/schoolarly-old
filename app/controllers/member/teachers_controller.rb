@@ -16,8 +16,7 @@ class Member::TeachersController < Member::BaseController
       if user.invite_over_email
         # TODO check if you are allowed to invite
         @group.invite_and_accept(user)
-        # Make all teachers moderators
-        @group.grant_moderator(user)
+        @group.grant_moderator(user) unless params[:moderator].blank?
         GroupMailer.deliver_entry_notification(@group, current_user, user)  
         #           TODO Send notification to other moderators
       else
