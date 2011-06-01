@@ -27,6 +27,6 @@
 </fieldset>
 <br/>
 <div class="actions">
-    <%= submit_tag I18n.t("#{@type}.site.add_multiple.title"), :class => "button mainaction" %>or <%= link_to I18n.t("#{@type}.site.create"), member_new_sub_group_path(@parent.id, :type => 'klasses') %>
+    <%= submit_tag I18n.t("#{@type}.site.add_multiple.title"), :class => "button mainaction" %>or <%= link_to I18n.t("#{@type}.site.create"), member_new_sub_group_path(@parent, :type => 'klasses') %>
 </div>
 <% end -%>
