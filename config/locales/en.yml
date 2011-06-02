@@ -83,6 +83,17 @@ en:
         removed: "%{user_count} user(s) removed"
       edit:
         title: "Settings"
+        moderators:
+          title: "Moderators"
+          add:
+            title: "Add"
+            success: "These users have been added as moderators of %{group_name}: %{user_name}"
+            failure: "%{user_name} could not be added as a moderator of %{group_name}"
+          remove:
+            title: "Revoke"
+            confirm: "Do you really want to revoke moderator privileges from %{user_name}" 
+            success: "%{user_name} is no longer a moderator of %{group_name}"
+            failure: "%{user_name} could not be revoked of moderator privileges of %{group_name}"          
       invite:
         Student: "Invite new students"
         Teacher: "Invite new teachers"

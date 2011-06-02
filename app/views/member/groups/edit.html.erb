@@ -85,5 +85,39 @@
         </ul>
     </div>
 </div>
+
+<div class="portlet portletH" id="portlet_groups">
+	<h2>
+		<span><%= I18n.t('groups.site.edit.moderators.title') %></span>
+		<% if i_am_moderator_of(@group) %>
+		<span><%= link_to I18n.t('groups.site.edit.moderators.add.title'), select_moderators_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></span>
+		<% end %>
+	</h2>	
+	<div class="portlet_content">		
+        <ul id="profiles_moderators">        	
+        	<% for moderator in @group.moderators %>
+			<li class="clearfix">
+			    <div class="image small">
+			        <%=link_to icon_for_profile(moderator.profile, 'small'), member_profile_path(moderator.profile) %>
+			    </div>
+			    <div class="title">
+			        <%= link_to moderator.profile.full_name, member_profile_path(moderator.profile) %>
+			    </div>
+				<% if i_am_moderator_of(@group) %>
+			    <div id="actions">
+			        <%= link_to(I18n.t('groups.site.edit.moderators.remove.title'), remove_moderator_member_group_path(@group, :moderator => moderator), 
+							:confirm => I18n.t('groups.site.edit.moderators.remove.confirm', :user_name => moderator.profile.full_name), :class => 'delete') %>
+			    </div>
+				<% end %>
+			</li>
+			<% end %>
+			<li class="clearfix">
+				<div class="actions">
+					
+				</div>
+			</li>
+        </ul>
+    </div>
+</div>
 <% end %>
 <% end %>
