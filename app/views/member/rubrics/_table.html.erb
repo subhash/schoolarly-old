@@ -1,11 +1,11 @@
-<table class="tableB">
+<table class="rubric">
     <tbody>
         <tr>
             <th scope="col">
                 
             </th>
             <% for level in @rubric.levels %>
-            <th scope="col">
+            <th scope="col" class="level">
                 <%= level.name %>
 				<span class='point'><%= trim(level.points) %></span>
             </th>
@@ -13,7 +13,7 @@
         </tr>
         <% for criterion in @rubric.criteria%>
         <tr>
-            <th>
+            <th  class="criterion">
                 <%= criterion.name %>
 				<span class='point'><%= trim(criterion.weightage) %>%</span>
             </th>

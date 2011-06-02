@@ -37,7 +37,7 @@
         <%= f.text_field :title, :class=>"fieldbox wide" -%>
     </p>
 </div>
-<table class="tableB">
+<table class="rubric">
     <thead>
         <tr>
             <th class="criterion">
@@ -66,12 +66,10 @@
             <%= l.hidden_field :_destroy %>
             <% else %>
             <th class="level">
-                <span class="edit"><span class="editable" title="<%= I18n.t('rubrics.member.new.levels.name.default') %>"><%=level.name.blank? ? I18n.t('rubrics.member.new.levels.name.default') : level.name %></span><%= l.text_field :name, :placeholder => I18n.t('rubrics.member.new.levels.name.default')  , :class => "field",  :style => "display: none;" , :size => 20 %>
-                </span>
-                <span class="edit"><span class="editable point" title="<%= I18n.t('rubrics.member.new.levels.points.default') %>"><%= trim(level.points) %></span><%= l.text_field :points, :placeholder => I18n.t('rubrics.member.new.levels.points.default') , :class => "field",  :style => "display: none;", :size => 5 %>
-                </span>
+                <%= l.text_field :name, :placeholder => I18n.t('rubrics.member.new.levels.name.default') , :size => 20 %>
+                <%= l.text_field :points, :placeholder => I18n.t('rubrics.member.new.levels.points.default') , :class => "point", :size => 3 %>
                 <%= l.hidden_field :_destroy, :class => 'destroy' %>
-                <%= link_to_remote image_tag("jeditable/delete.gif"),
+                <%= link_to_remote image_tag("delete.png"),
                 :url => {:controller => :rubrics, :action => 'remove_field',:type => 'level' , :id => @rubric}, :method => :post,
                 :html => {:class => "float_right"},
                 :before => "jQuery(this).closest('.level').find('.destroy').val(1)",
@@ -87,31 +85,23 @@
         <% else %>
         <tr>
             <th class="criterion">
-                <span class="edit"><span class="editable"><%= criterion.name.blank? ?  I18n.t('rubrics.member.new.criteria.name.default') : criterion.name %></span><%= c.text_field :name, :title => I18n.t('rubrics.member.new.criteria.name.default'), :placeholder => I18n.t('rubrics.member.new.criteria.name.default') , :class => "field",  :style => "display: none;", :size => 20 %>
-                </span>
-                <span class="edit"><span class="editable point" title="<%= I18n.t('rubrics.member.new.criteria.weightage.default')%>"><%= trim(criterion.weightage) %></span><%= c.text_field :weightage, :placeholder => I18n.t('rubrics.member.new.criteria.weightage.default') , :class => "field point",  :style => "display: none;", :size => 5 %>%<%= c.hidden_field :_destroy, :class => 'destroy' %>
-                    <%= link_to_remote image_tag("jeditable/delete.gif"),
-                    :url => {:controller => :rubrics, :action => 'remove_field',:type => 'criterion', :id => @rubric }, :method => :post,
-                    :html => {:class => "float_right"},
-                    :before => "jQuery(this).closest('.criterion').find('.destroy').val(1)",
-                    :with => "$('rubric_form').serialize()" %>
-                </span>
-                <span class="edit">
-                    <div class="editable" title="<%= I18n.t('rubrics.member.new.criteria.description.default')%>">
-                        <%= criterion.description.blank? ? I18n.t('rubrics.member.new.criteria.description.default') :  criterion.description %>
-                    </div>
-                    <%= c.text_area :description, :placeholder => I18n.t('rubrics.member.new.criteria.description.default') , :class => "field",  :style => "display: none;" %>
-                </span>
+                <%= c.text_field :name, :title => I18n.t('rubrics.member.new.criteria.name.default'), :placeholder => I18n.t('rubrics.member.new.criteria.name.default'), :size => 20 %>
+                <%= c.text_field :weightage, :placeholder => I18n.t('rubrics.member.new.criteria.weightage.default') , :class => "point", :size => 3 %>%<%= c.hidden_field :_destroy, :class => 'destroy' %>
+                <%= link_to_remote image_tag("delete.png"),
+                :url => {:controller => :rubrics, :action => 'remove_field',:type => 'criterion', :id => @rubric }, :method => :post,
+                :html => {:class => "float_right"},
+                :before => "jQuery(this).closest('.criterion').find('.destroy').val(1)",
+                :with => "$('rubric_form').serialize()" %>
+                <%= c.text_area :description, :placeholder => I18n.t('rubrics.member.new.criteria.description.default'), :rows => 5 , :cols => 10 %>
             </th>
             <% c.fields_for :rubric_descriptors do |rd| %>
             <% rubric_descriptor = rd.object %>
             <% unless @rubric.levels[rubric_descriptor.position-1]._destroy %>
             <td>
-                <span class="edit"><span class="editable" title="<%= I18n.t('rubrics.member.new.descriptors.default')%>"><%= rubric_descriptor.description.blank? ? I18n.t('rubrics.member.new.descriptors.default') :  rubric_descriptor.description %></span><%= rd.text_area :description, :placeholder => I18n.t('rubrics.member.new.descriptors.default') , :class => "field",  :style => "display: none;" %>
-                </span>
+                <%= rd.text_area :description, :placeholder => I18n.t('rubrics.member.new.descriptors.default') , :rows => 5 , :cols => 10 %>
             </td>
             <% end %>
-			<% end %>
+            <% end %>
         </tr>
         <% end %>
         <% end %>
