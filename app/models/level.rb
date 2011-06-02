@@ -8,4 +8,8 @@ class Level < ActiveRecord::Base
   validates_presence_of :name
   validates_numericality_of :points, :allow_nil => true
   
+  def points
+    Rubric.trim(self[:points])
+  end
+  
 end

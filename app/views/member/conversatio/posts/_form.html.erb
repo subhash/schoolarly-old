@@ -1,5 +1,15 @@
-<% include_form_effects %>
-
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery("#compose_link").click(function(){
+            jQuery("#compose").show();
+            jQuery("#doc").hide();
+        });
+        jQuery("#doc_link").click(function(){
+            jQuery("#compose").hide();
+            jQuery("#doc").show();
+        });
+    });
+</script>
 <div class="fields">
     <p>
         <label for="post_title">
@@ -13,27 +23,21 @@
         </label>
         <%= f.text_area :body, :class=>"fieldbox wide mceEditor" -%>
         <br/>
-        <%= link_to_function I18n.t('posts.model.doc.title_or') do |page|
-        page[:compose].hide
-        page[:doc].show
-        end %>
+        <%= link_to I18n.t('posts.model.doc.title_or'), '#', :id => "doc_link" %>
     </p>
     <p id="doc" style="display:none;">
         <label for="post_doc">
             <%= I18n.t('posts.model.doc.title') %>
         </label>
         <%= f.file_field  :doc %>
-        <%= link_to_function I18n.t('posts.model.compose.title_or') do |page|
-        page[:compose].show
-        page[:doc].hide
-        end %>
+        <%= link_to_function I18n.t('posts.model.compose.title_or'), '#', :id => "compose_link" %>
     </p>
     <p>
         <label for="post_tag_list">
             <%= I18n.t('tog_conversatio.model.post.tags') %>
         </label>
         <%= f.text_field :tag_list, :class=>"fieldbox wide" -%>
-		<span class="helpinfo"><%= I18n.t('tog_social.tags.separated_by_comma') %></span>
+        <span class="helpinfo"><%= I18n.t('tog_social.tags.separated_by_comma') %></span>
     </p>
     <!--
     <label for="post_tag_list">

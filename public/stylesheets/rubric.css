@@ -1,19 +1,49 @@
-
-table th.level {
-	background-color: #fdffcb;
+table.rubric{
+	width: 110%;
 }
 
-table th.criterion {
-	background-color: #edf3fd;
+table.rubric td{
+	padding: 0;
+	border: 1px solid #D1D1D1;
+}
+table.rubric input[type=text]{
+	border:none;
+	background-color: transparent;
 }
 
+table.rubric textarea{
+	border:none;
+	background-color: transparent;
+	width: 85%;
+}
+
+table.rubric input:focus, table.rubric textarea:focus{
+	background-color: #D9D7AC;
+	border: 1px solid #D9D7AC;
+}
+
+table.rubric th.level {
+	background-color: #EFEED1;
+	font-size: 1.2em;
+}
+
+table.rubric th.criterion {
+	background-color: #E0EEFB;
+	font-size: 1.2em;
+}
+
+table.rubric a.add{
+    background: url(../images/add2.png) no-repeat right center;
+    padding-right: 30px;
+    text-decoration: none;
+}
 .point{
-	font-size: 14px;
+	font-size: 1.5em;
 	padding-left: 10px;
+	display: inline;
 }
 
 .highlight{
 	background-color:#FADC76;
 }
-
 

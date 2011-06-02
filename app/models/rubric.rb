@@ -17,7 +17,7 @@ class Rubric < ActiveRecord::Base
   
   accepts_nested_attributes_for :criteria, :levels, :allow_destroy => true
   
-    
+  
   def weightage_summation   
     unless criteria.select{|c|c.weightage}.blank?
       unless (criteria.collect(&:weightage).sum == 100)
@@ -54,6 +54,10 @@ class Rubric < ActiveRecord::Base
   
   def max_points
     levels.last.points
+  end
+  
+  def self.trim(number)
+    number.to_i == number ? number.to_i : number
   end
   
   

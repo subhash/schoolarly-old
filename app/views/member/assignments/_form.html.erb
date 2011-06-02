@@ -1,3 +1,17 @@
+<% include_mootools_datepicker %>
+<%= include_tiny_mce_if_needed %>
+<% include_form_effects %>
+<% include_stylesheet 'assignments/rubric' %>
+<script type="text/javascript">
+    jQuery.noConflict();
+    
+    window.addEvent('load', function(){
+        new DatePicker('.date_with_time', {
+            timePicker: true,
+            format: 'd-m-Y @ H:i'
+        });
+    });
+</script>
 <fieldset>
     <% f.fields_for :post do |p| %>
     <%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
@@ -6,9 +20,9 @@
     <div class="fields">
         <p>
             <label for="starts_at">
-                <%= I18n.t('assignments.model.starts_at') %>
+                <%= I18n.t('assignments.model.publish_at') %>
             </label>
-            <%= p.datetime_select :published_at -%>
+            <%= p.text_field :published_at,  :class => "date_with_time" %>
             <br/>
         </p>
     </div>
@@ -18,7 +32,7 @@
             <label for="due_by">
                 <%= I18n.t('assignments.model.due_by') %>
             </label>
-            <%= f.datetime_select :due_date -%>
+            <%= f.text_field :due_date,  :class => "date_with_time" %>
             <br/>
         </p>
         <p>
@@ -30,12 +44,10 @@
     </div>
     <div class="fields">
         <div class="p">
-            <label for="assignment_score">
-                <%= "Choose a rubric" %>
-            </label>
-            <%= render :partial => 'member/rubrics/choose_rubric', :locals => {:action => 'show' } %>
-			<div id='rubric'></div>
-        </div>		
+            <%= render :partial => 'member/rubrics/choose_rubric', :locals => {:action => 'show' , :title => I18n.t('assignments.member.rubric.attach')} %>
+            <div id='rubric'>
+            </div>
+        </div>
     </div>
     <div class="actions">
         <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>

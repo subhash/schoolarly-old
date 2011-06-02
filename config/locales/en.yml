@@ -305,7 +305,7 @@ en:
         title: "Compose assignment"
       title:
         title: "Title"
-      starts_at: "Starts at"
+      publish_at: "Publish at"
       due_by: "Due by"
     member:
       add: "Add assignment"
