@@ -66,6 +66,12 @@ class Member::AssignmentsController < Member::BaseController
   end
   
   
+  def set_javascripts_and_stylesheets
+    @javascripts = %w(application)
+    @stylesheets = %w()
+    @feeds = %w()
+  end    
+  
   private  
   def find_group
     @group = Group.find(params[:group]) if params[:group]
