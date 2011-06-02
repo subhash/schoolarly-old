@@ -14,4 +14,8 @@ class Criterion < ActiveRecord::Base
   validates_presence_of :name
   validates_numericality_of :weightage, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100, :allow_nil => true
   
+  def weightage
+    Rubric.trim(self[:weightage])
+  end
+  
 end
