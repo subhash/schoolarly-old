@@ -2,7 +2,6 @@
 <%= include_tiny_mce_if_needed %>
 <% include_form_effects %>
 <% include_stylesheet 'assignments/rubric' %>
-
 <script type="text/javascript">
     jQuery.noConflict();
     
@@ -21,7 +20,7 @@
     <div class="fields">
         <p>
             <label for="starts_at">
-                <%= I18n.t('assignments.model.starts_at') %>
+                <%= I18n.t('assignments.model.publish_at') %>
             </label>
             <%= p.text_field :published_at,  :class => "date_with_time" %>
             <br/>
@@ -45,10 +44,7 @@
     </div>
     <div class="fields">
         <div class="p">
-            <label for="assignment_score">
-                <%= "Choose a rubric" %>
-            </label>
-            <%= render :partial => 'member/rubrics/choose_rubric', :locals => {:action => 'show' } %>
+            <%= render :partial => 'member/rubrics/choose_rubric', :locals => {:action => 'show' , :title => I18n.t('assignments.member.rubric.attach')} %>
             <div id='rubric'>
             </div>
         </div>
