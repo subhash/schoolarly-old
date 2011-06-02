@@ -1,34 +1,4 @@
-<script type="text/javascript">
-    jQuery(document).ready(function(){
-        // jQuery('.field').keydown(function(e){
-        //    if (e.keyCode === 9) {
-        //		e.preventDefault();
-        //		jQuery(this).parents('table').next().find('.editable').click();
-        //   }
-        //  });
-        jQuery('.editable').click(function(){
-            jQuery('.field').each(function(i){
-                jQuery(this).closest('.edit').find('.editable').show();
-                jQuery(this).hide();
-            });
-            this.hide();
-            jQuery(this).closest('.edit').find('.field').show();
-        });
-        jQuery('.field').blur(function(){
-            this.hide();
-            editable = jQuery(this).closest('.edit').find('.editable');
-            val = jQuery(this).val();
-            if (val) {
-                editable.text(val);
-            }
-            else {
-                editable.text(editable.attr('title'));
-            }
-            jQuery(this).closest('.edit').find('.editable').show();
-        });
-        jQuery('textarea.field').elastic();
-    });
-</script>
+
 <div class="fields">
     <p>
         <label for="rubric_title">
