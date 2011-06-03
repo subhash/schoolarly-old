@@ -7,7 +7,7 @@ class Member::AssignmentsController < Member::BaseController
   uses_tiny_mce :only => [:new, :create, :edit, :update]
   
   def new
-    @assignment = Assignment.new(:post => Post.new) 
+    @assignment = Assignment.new(:post => Post.new(:published_at => Time.now)) 
   end
   
   def create

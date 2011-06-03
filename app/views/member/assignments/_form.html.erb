@@ -8,7 +8,13 @@
     window.addEvent('load', function(){
         new DatePicker('.date_with_time', {
             timePicker: true,
-            format: 'd-m-Y @ H:i'
+            format: 'd-m-Y @ H:i',
+			dayShort: 3,
+            inputOutputFormat: 'Y-m-d H:i',
+            minDate: {
+                date: "<%= Date.today.to_s %>",
+                format: 'Y-m-d'
+            }
         });
     });
 </script>
