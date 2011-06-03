@@ -1,13 +1,12 @@
 <% include_form_effects %>
+<% include_stylesheet 'shared/errors' %>
 
 <div class="titleB"><%= ancestor_path_for(@group) %>
 <%= I18n.t("#{@type}.site.create") %>
 </div>
 
 <% if @group && !@group.errors.empty? -%>
-<div class="error">
-  <%= error_messages_for :group %>
-</div>
+<div class="error"><%= I18n.t('groups.site.add_failure', :group_name => "<b>#{@group.name}</b>", :failure_reason => @group.errors.full_messages.join(', ')) %></div>
 <% end -%>
 
 <% form_for(:group, :url=>member_groups_path(:type => @type), :html=>{:multipart=>true}) do |f| %>
@@ -51,7 +50,7 @@
     <div class="actions">
       <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>
 	  <% if (@type == 'klasses' or @type == 'subjects') %>
-	  or <%= link_to I18n.t("#{@type}.site.add_multiple.title"), new_multiple_member_group_path(@group.id, :type => @type) %>
+	  or <%= link_to I18n.t("#{@type}.site.add_multiple.title"), new_multiple_member_group_path(@group.parent, :type => @type) %>
 	  <% end %>
     </div>
   </fieldset>

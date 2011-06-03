@@ -5,8 +5,8 @@ class Member::GroupsController < Member::BaseController
   before_filter :find_type, :only => [:new,:create, :new_multiple, :create_multiple]
   before_filter :find_group, :except => [:index, :new, :create, :new_multiple, :create_multiple]
   before_filter :check_moderator, :except => [:index, :new, :create, :new_multiple, :create_multiple, :invite, :accept_invitation, :reject_invitation, :show]
-  
-  
+  before_filter :find_moderator, :only => [:remove_moderator]
+  before_filter :set_paginate_options, :only => [:add_select, :remove_select, :select_moderators]
   
   def create_multiple
     @groups = []
@@ -121,10 +121,6 @@ class Member::GroupsController < Member::BaseController
   end
   
   def add_select
-    @type = params[:type]
-    @order = params[:order] || 'created_at'
-    @page = params[:page] || '1'
-    @asc = params[:asc] || 'desc'  
     @profiles = @group.applicable_members(@type).collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
                                  :page => @page,
                                  :order => "profiles.#{@order} #{@asc}"
@@ -165,10 +161,6 @@ class Member::GroupsController < Member::BaseController
   end
   
   def remove_select
-    @type = params[:type]
-    @order = params[:order] || 'created_at'
-    @page = params[:page] || '1'
-    @asc = params[:asc] || 'desc'
     @removable_members = @group.removable_members(@type) - [current_user]
     @profiles = @removable_members.collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
                                  :page => @page,
@@ -234,6 +226,43 @@ class Member::GroupsController < Member::BaseController
     @responses = @smerf_forms_user.responses
   end
   
+  def select_moderators
+    @profiles = (@group.users.of_type(@type) - @group.moderators).collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
+                                 :page => @page,
+                                 :order => "profiles.#{@order} #{@asc}"
+    @form_url = add_moderators_member_group_path(@group, :type => params[:type])                               
+    render :template => 'member/groups/add_select'
+  end
+  
+  def add_moderators
+    unless params[:members]
+      flash[:error] = I18n.t("groups.site.select.none_selected", :types => params[:type].downcase.pluralize)    
+      redirect_to select_moderators_member_group_path(@group, :type => params[:type]) and return
+    end
+    added_users = []
+    params[:members].each do |profile_id|
+      user = Profile.find(profile_id).user
+      unless @group.grant_moderator(user)
+        flash[:ok] = I18n.t("groups.site.edit.moderators.add.success", :user_name => added_users.join(", "), :group_name => @group.name)
+        flash[:error] = I18n.t("groups.site.edit.moderators.add.failure", :user_name => user.profile.full_name, :group_name => @group.name)
+        render 'edit'
+      end
+      added_users << user.profile.full_name
+    end
+    flash[:ok] = I18n.t("groups.site.edit.moderators.add.success", :user_name => added_users.join(", "), :group_name => @group.name)
+    redirect_to member_group_path(@group)
+  end
+  
+  def remove_moderator
+    if @group.revoke_moderator(@moderator)
+      flash[:ok] = I18n.t("groups.site.edit.moderators.remove.success", :user_name => @moderator.profile.full_name, :group_name => @group.name)
+      redirect_to member_group_path(@group)
+    else
+      flash[:error] = I18n.t("groups.site.edit.moderators.remove.failure", :user_name => @moderator.profile.full_name, :group_name => @group.name)
+      render 'edit'
+    end    
+  end
+  
   protected
   def find_type
     @type = params[:type] || 'groups'
@@ -241,6 +270,17 @@ class Member::GroupsController < Member::BaseController
   
   def find_parent
     @parent = Group.find(params[:id]) if params[:id]
+  end
+  
+  def find_moderator
+    @moderator = User.find(params[:moderator]) if params[:moderator]
+  end
+  
+  def set_paginate_options
+    @type = params[:type]
+    @order = params[:order] || 'created_at'
+    @page = params[:page] || '1'
+    @asc = params[:asc] || 'desc'
   end
   
 end

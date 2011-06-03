@@ -87,6 +87,18 @@ input, select, textarea {
 	padding: 8px 3px;
 }
 
+/*
+ * Group edit page
+ */
+.portletH .image.small {
+	margin-left: -70px;
+}
+
+.portletH h2 a {
+	font-size: 0.5em;
+	float: right;
+}
+
 .col_70_30 {
     clear: both;
     width: 100%;
