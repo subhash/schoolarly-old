@@ -29,7 +29,8 @@
         <% for rubric in @rubrics %>
         <tr<%= cycle(' class="pair"', '') -%>>
             <td>
-                <%= radio_button_tag "rubric", rubric.id, rubric == @rubric, :onclick => remote_function(:url => {:controller => :rubrics, :action => action, :id => rubric.id}, :method => :get) %>
+                <%= radio_button_tag "rubric", rubric.id, rubric == @rubric, 
+					:onclick => "jQuery.get('#{member_rubric_path(rubric)}', function(data){jQuery('#rubric').html(data);});" %>
             </td>
             <td>
                 <%= link_to rubric.title, member_rubric_path(rubric) %>

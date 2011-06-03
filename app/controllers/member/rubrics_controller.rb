@@ -68,9 +68,7 @@ class Member::RubricsController < Member::BaseController
     @rubric = Rubric.find(params[:id])
     respond_to do |format|
       format.js do
-        render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/table'
-        end
+        render :partial => 'member/rubrics/table'
       end
       format.html
     end    
