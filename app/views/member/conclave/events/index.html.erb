@@ -2,83 +2,82 @@
 <% include_stylesheet 'fullcalendar/adjustments' %>
 <% include_stylesheet 'fullcalendar/fullcalendar' %>
 <% include_javascript 'fullcalendar/fullcalendar' %>
-
 <% include_stylesheet "date.css" %>
-
 <% url_params = {} %>
-<% url_params[:group] = @group if @group%>
-
+<% url_params[:group] = @group if @group %>
 <% if @group %>
-	<% json_feed_path =  member_conclave_events_path(:group => @group) %>
-	<%= render :partial => '/member/groups/header' %>		
+<% json_feed_path =  member_conclave_events_path(:group => @group) %>
+<%= render :partial => '/member/groups/header' %>
 <% else %>
-	<% json_feed_path =  member_conclave_events_path %>
+<% json_feed_path =  member_conclave_events_path %>
 <% end %>
-
 <script type="text/javascript">
-	$(document).ready(function() {
-
-    // page is now ready, initialize the calendar...
-
-    $('#calendar').fullCalendar({
-		header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'month,agendaWeek,agendaDay'
-				},		
-        events: "<%= json_feed_path %>",
-		loading: function(bool){
-			if(bool){
-				jQuery("#loading").show();
-			} else {
-				jQuery("#loading").hide();
-			}
-		}
+    $(document).ready(function(){
+    
+        // page is now ready, initialize the calendar...
+        
+        $('#calendar').fullCalendar({
+            allDayDefault: false,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            events: "<%= json_feed_path %>",
+            loading: function(bool){
+                if (bool) {
+                    jQuery("#loading").show();
+                }
+                else {
+                    jQuery("#loading").hide();
+                }
+            }
+        });
+        
     });
-
-});
 </script>
-
-<div id='loading' style='display:none'>loading...</div> 
-<div id='calendar'></div>
+<div id='loading' style='display:none'>
+    loading...
+</div>
+<div id='calendar'>
+</div>
 <% content_for :sidebar do %>
-          <div class="title3 clearfix margin1">
-              My events
-          </div> 
-          <br />
-          
-          <ul class="list2">
-            <% if @events.empty? %>
-              <li class="clearfix">You haven't create any event
-            <% else %>
-              <% @events.each do |event| %>
-			  	<li class="clearfix detail1" id="event<%=event.id.to_s%>">
-				<div class="clearfix">
-				    <!--
-				    <div class="image left"><%= image_tag event.icon.url :small %></div>
-				    -->
-				    <div class="image date month<%= event.start_date.month %>">
-				        <%= event.start_date.day %>
-				    </div>
-				    <div>
-				        <span class="title"><%= link_to event.title, member_conclave_event_path(event), :title => event.title %></span>
-				    </div>
-				    <div class="summary">
-				        <%= write_event_time(event) %>
-				        <%= "at #{event.venue}"  if event.venue %>
-				    </div>
-				    <div  class="text">
-				        <%= event.description %>
-				    </div>
-				</div>
-				</li>
-              <%end%>
-			  <div class="info_results">
-			      <span class="info_items"><%= page_entries_info @events %>
-			      </span>
-			      <span class="pages_navigation right"><%= will_paginate @events %>
-			      </span>
-			  </div>			  			  
-            <%end%>
-          </ul>
-<% end %>		  
+<div class="title3 clearfix margin1">
+    My events
+</div>
+<br/>
+<ul class="list2">
+    <% if @events.empty? %>
+    <li class="clearfix">
+    You haven't create any event<% else %>
+    <% @events.each do |event| %>
+    <li class="clearfix detail1" id="event<%=event.id.to_s%>">
+        <div class="clearfix">
+            <!--
+            <div class="image left"><%= image_tag event.icon.url :small %></div>
+            -->
+            <div class="image date month<%= event.start_date.month %>">
+                <%= event.start_date.day %>
+            </div>
+            <div>
+                <span class="title"><%= link_to event.title, member_conclave_event_path(event), :title => event.title %></span>
+            </div>
+            <div class="summary">
+                <%= write_event_time(event) %>
+                <%= "at #{event.venue}"  if event.venue %>
+            </div>
+            <div class="text">
+                <%= event.description %>
+            </div>
+        </div>
+    </li>
+    <%end %>
+    <div class="info_results">
+        <span class="info_items"><%= page_entries_info @events %>
+        </span>
+        <span class="pages_navigation right"><%= will_paginate @events %>
+        </span>
+    </div>
+    <%end %>
+</ul>
+<% end %>

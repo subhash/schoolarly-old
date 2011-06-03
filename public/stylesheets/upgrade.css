@@ -18,6 +18,17 @@ input, select, textarea {
     background-color: transparent;
 }
 
+.time {
+    float: right;
+    display: inline;
+    font-size: 0.7em;
+    color: #666;
+}
+
+.time .detail {
+    font-size: 0.7em;
+}
+
 .breadcrumbs a {
     padding: 3px 10px;
     display: inline-block;
@@ -34,27 +45,27 @@ input, select, textarea {
 .portletB ul li._2 {
     background-color: #E5E5E5;
     color: inherit;
-	margin-left: 20px;
+    margin-left: 20px;
 }
 
 .portletB ul li._3 {
     background-color: inherit;
     color: inherit;
-	margin-left: 40px;
+    margin-left: 40px;
 }
 
 .portletB ul li._4 {
     background-color: inherit;
     color: inherit;
-	margin-left: 60px;
+    margin-left: 60px;
 }
 
-.portletB li .tableB{
-	background-color: #F5DEB3;
+.portletB li .tableB {
+    background-color: #F5DEB3;
 }
 
-.portletB li .tableB{
-	margin: 5px 0 5px 20px;
+.portletB li .tableB {
+    margin: 5px 0 5px 20px;
 }
 
 .portletL {
@@ -82,21 +93,21 @@ input, select, textarea {
     background-color: #E9E9E9;
 }
 
-.portletH h2{
-	background-color: #E9E9E9;
-	padding: 8px 3px;
+.portletH h2 {
+    background-color: #E9E9E9;
+    padding: 8px 3px;
 }
 
 /*
  * Group edit page
  */
 .portletH .image.small {
-	margin-left: -70px;
+    margin-left: -70px;
 }
 
 .portletH h2 a {
-	font-size: 0.5em;
-	float: right;
+    font-size: 0.5em;
+    float: right;
 }
 
 .col_70_30 {

@@ -68,6 +68,12 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
+ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
+        :date_time_12 => "%e %b, %l:%M %p",
+        :date_only => "%d-%m-%Y",
+        :time_only => "%H:%M"
+)
+
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'criterion', 'criteria'
 end

@@ -39,11 +39,11 @@ class Member::Conclave::EventsController < Member::BaseController
         @page = params[:page] || '1'
         @asc = params[:asc] || 'desc'
         if @group
-          @events = @group.sharings.of_type('Event').map(&:shareable).paginate :per_page => 3,
+          @events = @group.sharings.of_type('Event').map(&:shareable).paginate :per_page => 10,
                                                :page => @page,
                                                :order => @order + " " + @asc
         else
-          @events = (current_user.events  | Share.shared_to_groups_of_type(current_user.groups,'Event').collect(&:shareable)).paginate :per_page => 3,
+          @events = (current_user.events  | Share.shared_to_groups_of_type(current_user.groups,'Event').collect(&:shareable)).paginate :per_page => 10,
                                                :page => @page,
                                                :order => @order + " " + @asc
         end                                       
@@ -55,7 +55,8 @@ class Member::Conclave::EventsController < Member::BaseController
         puts "group #{@group} events #{@events.inspect}"
         events = @events.collect do |event|
           start_time = event.start_date.to_time.advance(:hours => event.start_time.hour, :minutes => event.start_time.min, :seconds => event.start_time.sec)
-          {:title => event.title, :start => start_time.iso8601}          
+          end_time = event.end_date.to_time.advance(:hours => event.end_time.hour, :minutes => event.end_time.min, :seconds => event.end_time.sec)
+          {:title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}          
         end
         render :text => events.to_json
         puts "start #{from} to stop #{to}"
