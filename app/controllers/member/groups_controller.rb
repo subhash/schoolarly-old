@@ -4,7 +4,7 @@ class Member::GroupsController < Member::BaseController
   before_filter :find_parent, :only => [:new, :new_multiple, :create_multiple]
   before_filter :find_type, :only => [:new,:create, :new_multiple, :create_multiple]
   before_filter :find_group, :except => [:index, :new, :create, :new_multiple, :create_multiple]
-  before_filter :check_moderator, :except => [:index, :new, :create, :new_multiple, :create_multiple, :invite, :accept_invitation, :reject_invitation, :show]
+  before_filter :check_moderator, :only => [:edit, :update, :add_select, :remove_select, :add, :remove, :select_moderators, :add_moderators, :remove_moderator]
   before_filter :find_moderator, :only => [:remove_moderator]
   before_filter :set_paginate_options, :only => [:add_select, :remove_select, :select_moderators]
   
@@ -192,7 +192,7 @@ class Member::GroupsController < Member::BaseController
       end
     end
     flash[:ok] = I18n.t("groups.site.remove.removed", :user_count => params[:members].count)      
-    redirect_to edit_member_group_path(@group)    
+    redirect_to edit_member_group_path(@group)
   end
   
   def show
@@ -227,17 +227,19 @@ class Member::GroupsController < Member::BaseController
   end
   
   def select_moderators
-    @profiles = (@group.users.of_type(@type) - @group.moderators).collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
+    @profiles = @group.moderator_candidates.collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
                                  :page => @page,
                                  :order => "profiles.#{@order} #{@asc}"
-    @form_url = add_moderators_member_group_path(@group, :type => params[:type])                               
-    render :template => 'member/groups/add_select'
+    @form_url = add_moderators_member_group_path(@group)
+    @form_title = I18n.t("groups.site.edit.moderators.select.title")
+    @form_submit = I18n.t("groups.site.edit.moderators.select.submit")
+    render :template => 'member/groups/remove_select'
   end
   
   def add_moderators
     unless params[:members]
-      flash[:error] = I18n.t("groups.site.select.none_selected", :types => params[:type].downcase.pluralize)    
-      redirect_to select_moderators_member_group_path(@group, :type => params[:type]) and return
+      flash[:error] = I18n.t("groups.site.edit.moderators.select.none")    
+      redirect_to select_moderators_member_group_path(@group) and return
     end
     added_users = []
     params[:members].each do |profile_id|
@@ -250,13 +252,16 @@ class Member::GroupsController < Member::BaseController
       added_users << user.profile.full_name
     end
     flash[:ok] = I18n.t("groups.site.edit.moderators.add.success", :user_name => added_users.join(", "), :group_name => @group.name)
-    redirect_to member_group_path(@group)
+    redirect_to edit_member_group_path(@group)
   end
   
   def remove_moderator
-    if @group.revoke_moderator(@moderator)
+    if @group.moderators.size <= 1
+      flash[:error] = I18n.t("groups.site.edit.moderators.remove.last_moderator", :user_name => @moderator.profile.full_name, :group_name => @group.name)
+      render 'edit'
+    elsif @group.revoke_moderator(@moderator)
       flash[:ok] = I18n.t("groups.site.edit.moderators.remove.success", :user_name => @moderator.profile.full_name, :group_name => @group.name)
-      redirect_to member_group_path(@group)
+      redirect_to edit_member_group_path(@group)
     else
       flash[:error] = I18n.t("groups.site.edit.moderators.remove.failure", :user_name => @moderator.profile.full_name, :group_name => @group.name)
       render 'edit'
@@ -283,4 +288,10 @@ class Member::GroupsController < Member::BaseController
     @asc = params[:asc] || 'desc'
   end
   
+  def check_moderator
+    unless @group.moderators.include? current_user
+      flash[:error] = I18n.t("tog_social.groups.member.not_moderator") 
+      redirect_to member_group_path(@group)
+    end
+  end  
 end

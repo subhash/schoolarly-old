@@ -59,28 +59,28 @@
     <%= f.submit I18n.t('tog_social.groups.member.update'),:class=>"button mainaction" %>
 </div>
 <% end %>
+
 <% content_for :sidebar do %>
 <% if i_am_member_of(@group) %>
+
 <div class="portlet portletC" id="portlet_adminLinks">
     <h2><span><%= I18n.t('groups.member.admin_links') %></span></h2>
     <div class="portlet_content">
         <ul>
             <% if i_am_moderator_of(@group) %>
-            <li>
-                <%= link_to I18n.t('groups.site.remove.Teacher'), remove_select_member_group_path(@group, :type => 'Teacher'), :class => 'delete' %>
-            </li>
-            <li>
-                <%= link_to I18n.t('groups.site.remove.Student'), remove_select_member_group_path(@group, :type => 'Student'), :class => 'delete' %>
-            </li>
-            <% unless @group.school? %>
-            <li>
-                <%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %>
-            </li>
-            <% end %>
-            <% elsif @group.general? %>
-            <li>
-                <%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %>
-            </li>
+	            <li>
+	                <%= link_to I18n.t('groups.site.remove.Teacher'), remove_select_member_group_path(@group, :type => 'Teacher'), :class => 'delete' %>
+	            </li>
+	            <li>
+	                <%= link_to I18n.t('groups.site.remove.Student'), remove_select_member_group_path(@group, :type => 'Student'), :class => 'delete' %>
+	            </li>
+			<% end %>
+            <% if @group.general? or (i_am_moderator_of(@group) and !@group.school?)%>
+				<% unless (i_am_moderator_of(@group) and @group.moderators.size <= 1) %>
+		            <li>
+		                <%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %>
+		            </li>
+				<% end %>
             <% end %>
         </ul>
     </div>
@@ -90,7 +90,7 @@
 	<h2>
 		<span><%= I18n.t('groups.site.edit.moderators.title') %></span>
 		<% if i_am_moderator_of(@group) %>
-		<span><%= link_to I18n.t('groups.site.edit.moderators.add.title'), select_moderators_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></span>
+		<span><%= link_to I18n.t('groups.site.edit.moderators.add.title'), select_moderators_member_group_path(@group), :class => 'add' %></span>
 		<% end %>
 	</h2>	
 	<div class="portlet_content">		
@@ -103,7 +103,7 @@
 			    <div class="title">
 			        <%= link_to moderator.profile.full_name, member_profile_path(moderator.profile) %>
 			    </div>
-				<% if i_am_moderator_of(@group) %>
+				<% if i_am_moderator_of(@group) and @group.moderators.size > 1 %>
 			    <div id="actions">
 			        <%= link_to(I18n.t('groups.site.edit.moderators.remove.title'), remove_moderator_member_group_path(@group, :moderator => moderator), 
 							:confirm => I18n.t('groups.site.edit.moderators.remove.confirm', :user_name => moderator.profile.full_name), :class => 'delete') %>
@@ -119,5 +119,6 @@
         </ul>
     </div>
 </div>
+
 <% end %>
 <% end %>
