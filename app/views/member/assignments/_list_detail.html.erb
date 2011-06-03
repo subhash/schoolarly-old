@@ -1,12 +1,13 @@
-<% group = group if local_assigns[:group]%>
+<% group = group if local_assigns[:group] %>
 <div class="title">
     <%= link_to "#{sanitize assignment.post.title}", member_assignment_path(assignment, :group => group) %>
+    <% if assignment.due_date %>
+    <span class="time"><span class="detail"><%= I18n.t('assignments.model.due_by') %></span><%=assignment.due_date.to_s(:date_time_12) %></span>
+    <% end %>
 </div>
 <%= render :partial => "shared/comments", :locals => { :commentable => assignment.post , :exclude_add_comment => true} %>
-<br />
+<br/>
 <div class="portlet portletL">
     <%= link_to icon_for_assignment, member_assignment_path(assignment, :group => group), :title => "#{sanitize assignment.post.title}" %>
-    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %> .  
-	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(assignment.post.title)) %> . 
-	<%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(assignment.post.title)) %>. <%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
 </div>

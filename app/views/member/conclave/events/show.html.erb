@@ -2,7 +2,7 @@
     <div class="image"></div>
     <div class="title"><%= @event.title -%></div>
     <div class="subtitle">
-      <%= write_event_date(@event) %>
+      <%= write_event_date_time_detail(@event) %>
     </div>
     <div class="text">
         <%= sanitize @event.description %>

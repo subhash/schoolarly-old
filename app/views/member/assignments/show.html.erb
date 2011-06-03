@@ -1,19 +1,20 @@
 <div class="titleB">
     <% if @group %>
-    <%= link_to @group.name, member_group_path(@group) %> > <% end %>
+    <%= link_to @group.name, member_group_path(@group) %>> <% end %>
     <%= sanitize @post.title %>
-	<%= link_to icon_for_assignment, @post.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @post.doc.file? %>
+    <%= link_to icon_for_assignment, @post.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @post.doc.file? %>
+    <% if @assignment.due_date %>
+    <span class="time"><span class="detail"><%= I18n.t('assignments.model.due_by')%></span><%=@assignment.due_date.to_s(:date_time_12) %></span>
+    <% end %>
 </div>
 <%= render :partial => 'member/conversatio/posts/post' %>
 <% if @rubric %>
 <h3><span><%= I18n.t('assignments.member.rubric.title') %></span></h3>
 <%= render :partial => 'member/rubrics/table' %>
 <% end %>
-
 <% content_for :sidebar do %>
 <%= render :partial => 'member/assignments/manage' %>
 <%= render :partial => 'shared/groups' %>
-
 <%= render :partial => 'member/submissions/submissions' %>
 <!-- TODO tags & archive -->
 <% end %>

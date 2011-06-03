@@ -10,7 +10,7 @@
         <span class="title"><%= link_to event.title, member_conclave_event_path(event), :title => event.title %></span>
     </div>
     <div class="summary">
-        <%= write_event_time(event) %>
+        <%= write_event_date_time(event) %>
         <%= "at #{event.venue}"  if event.venue %>
     </div>
     <div  class="text">
