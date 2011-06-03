@@ -7,6 +7,8 @@ class Assignment < ActiveRecord::Base
   
   accepts_nested_attributes_for :post
   
+  validates_presence_of :due_date
+  
   belongs_to :rubric
   
   has_one :weighted_assignment

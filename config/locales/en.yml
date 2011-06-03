@@ -459,3 +459,8 @@ en:
       new:
         aggregate: Aggregate
        
+  events:
+    model:
+      start_time: "Starts at"
+      end_time: "Ends by"
+       

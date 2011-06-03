@@ -4,8 +4,19 @@ class Member::Conclave::EventsController < Member::BaseController
   
   before_filter :find_group
   
+  def new
+    @event = Event.new(:url => "http://")
+    @event.capacity = 0
+    @event.start_date = Date.today
+    @event.start_time = Time.now
+    @event.end_date = Date.today
+    @event.end_time = 1.hour.from_now
+  end
+  
   def create
     @event = Event.new(params[:event])
+    #    puts "validation = "+ !(@event.start_date && @event.end_date && @event.start_time && @event.end_time) || (@event.start_date > @event.end_date || (@event.start_date == @event.end_date && @event.start_time >= @event.end_time))
+    puts "event = "+@event.inspect
     @event.owner = current_user
     @event.save!
     flash[:ok] = I18n.t("tog_conclave.member.event_created", :title => @event.title)
@@ -63,8 +74,8 @@ class Member::Conclave::EventsController < Member::BaseController
     if @group
       @group.sharings.of_type('Event').map(&:shareable)
     else
-     # TODO .between(from.to_date, to.to_date)
-     (current_user.events  | Share.shared_to_groups_of_type(current_user.groups,'Event').collect(&:shareable))
+      # TODO .between(from.to_date, to.to_date)
+       (current_user.events  | Share.shared_to_groups_of_type(current_user.groups,'Event').collect(&:shareable))
     end    
   end
   
@@ -75,5 +86,11 @@ class Member::Conclave::EventsController < Member::BaseController
       redirect_to member_conclave_events_path
     end
   end
+  
+  def set_javascripts_and_stylesheets
+    @javascripts = %w(application)
+    @stylesheets = %w()
+    @feeds = %w()
+  end 
   
 end

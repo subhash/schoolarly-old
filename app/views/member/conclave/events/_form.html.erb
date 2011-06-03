@@ -1,5 +1,21 @@
+<% include_mootools_datepicker %>
 <% include_form_effects %>
-
+<script type="text/javascript">
+    jQuery.noConflict();
+    
+    window.addEvent('load', function(){
+        new DatePicker('.date_without_time', {
+            timePicker: false,
+            format: 'd-m-Y',
+            inputOutputFormat: 'Y-m-d H:i',
+        });
+        new DatePicker('.time_only', {
+            timePickerOnly: true,
+            format: 'H:i',
+            inputOutputFormat: 'Y-m-d H:i',
+        });
+    });
+</script>
 <div class="fields">
     <table class="tableE">
         <caption>
@@ -65,34 +81,30 @@
         <tbody>
             <tr>
                 <th scope="row">
-                    <%= I18n.t("tog_conclave.fields.start_date") %>
+                    <%= I18n.t("events.model.start_time") %>
                 </th>
                 <td nowrap="nowrap">
-                    <%=f.date_select :start_date, :class=>"fieldbox" %>
+                    <%=f.text_field :start_date, :class=>"fieldbox date_without_time" %>
+                </td>
+                <td>
+                    @
+                </td>
+                <td nowrap="nowrap">
+                    <%=f.text_field :start_time, :class=>"fieldbox time_only", :value => @event.start_time.iso8601 %>
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <%= I18n.t("tog_conclave.fields.end_date") %>
+                    <%= I18n.t("events.model.end_time") %>
                 </th>
                 <td nowrap="nowrap">
-                    <%=f.date_select :end_date, :class=>"fieldbox" %>
+                    <%=f.text_field :end_date, :class=>"fieldbox date_without_time" %>
                 </td>
-            </tr>
-            <tr>
-                <th scope="row">
-                    <%= I18n.t("tog_conclave.fields.start_time") %>
-                </th>
-                <td nowrap="nowrap">
-                    <%=f.time_select :start_time, :class=>"fieldbox" %>
+                <td>
+                    @
                 </td>
-            </tr>
-            <tr>
-                <th scope="row">
-                    <%= I18n.t("tog_conclave.fields.end_time") %>
-                </th>
                 <td nowrap="nowrap">
-                    <%=f.time_select :end_time, :class=>"fieldbox" %>
+                    <%=f.text_field :end_time, :class=>"fieldbox time_only" , :value => @event.end_time.iso8601 %>
                 </td>
             </tr>
         </tbody>
