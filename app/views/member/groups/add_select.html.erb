@@ -1,7 +1,7 @@
 <div class="portlet portletF" id="portlet_featuredUsers">
     <h2><span><%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t("groups.site.#{@type}.add_select") %></span></h2>
     <div class="portlet_content">
-        <% form_tag (@form_url || add_member_group_path(@group, :type => @type)) do |f| %>
+        <% form_tag add_member_group_path(@group, :type => @type) do |f| %>
         <ul>
             <% @profiles.each do |profile| %>
             <p>

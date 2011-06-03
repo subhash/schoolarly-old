@@ -110,6 +110,9 @@ class Group < ActiveRecord::Base
     users.of_type(type)
   end
   
+  def moderator_candidates
+    (self.general? ? self.users : self.users.of_type('Teacher')) - self.moderators
+  end
   
   def set_default_image
     unless self.image?

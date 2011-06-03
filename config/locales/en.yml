@@ -85,6 +85,10 @@ en:
         title: "Settings"
         moderators:
           title: "Moderators"
+          select:
+            title: "Select Moderators"
+            submit: "Add Moderator Privileges"
+            none: "No moderators were selected"
           add:
             title: "Add"
             success: "These users have been added as moderators of %{group_name}: %{user_name}"
@@ -93,7 +97,8 @@ en:
             title: "Revoke"
             confirm: "Do you really want to revoke moderator privileges from %{user_name}" 
             success: "%{user_name} is no longer a moderator of %{group_name}"
-            failure: "%{user_name} could not be revoked of moderator privileges of %{group_name}"          
+            failure: "%{user_name} could not be revoked of moderator privileges of %{group_name}"
+            last_moderator: "%{user_name} is the last remaining moderator of %{group_name}"          
       invite:
         Student: "Invite new students"
         Teacher: "Invite new teachers"

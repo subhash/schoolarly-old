@@ -1,7 +1,7 @@
 <div class="portlet portletF" id="portlet_featuredUsers">
-    <h2><span><%= link_to @group.name, member_group_path(@group) %> > <%= I18n.t("groups.site.#{@type}.remove_select") %></span></h2>
+    <h2><span><%= link_to @group.name, member_group_path(@group) %> > <%= @form_title || I18n.t("groups.site.#{@type}.remove_select") %></span></h2>
     <div class="portlet_content">
-    	<% form_tag remove_member_group_path(@group) do |f| %>
+    	<% form_tag (@form_url || remove_member_group_path(@group)) do |f| %>
         <ul>
             <% @profiles.each do |profile| %>
             <li>
@@ -11,7 +11,7 @@
             </li>
             <%end %>
 			<li>
-				<%= submit_tag I18n.t("groups.site.remove.#{@type}"), :class => "button" %>
+				<%= submit_tag (@form_submit || I18n.t("groups.site.remove.#{@type}")), :class => "button" %>
 			</li>
         </ul>		
 		<% end %>
