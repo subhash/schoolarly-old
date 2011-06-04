@@ -10,4 +10,7 @@
  theme_advanced_toolbar_location: top
  media_strict: false 
  extended_valid_elements: "iframe[src|width|height|name|align], embed[width|height|name|flashvars|src|bgcolor|align|play|loop|quality|allowscriptaccess|type|pluginspage]"
+ content_css : "/stylesheets/tinymce.css"
+ theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px"
+ font_size_style_values : "10px,12px,13px,14px,16px,18px,20px"
 
