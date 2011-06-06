@@ -7,33 +7,8 @@ class Member::AssignmentsController < Member::BaseController
   uses_tiny_mce :only => [:new, :create, :edit, :update]
   
   def new
-    @assignment = Assignment.new(:post => Post.new(:published_at => Time.now), :due_date => 1.day.from_now) 
-  end
-  
-  def create
-    @assignment = Assignment.new(params[:assignment])
-    @assignment.post.user = current_user
-    published_at = @assignment.post.published_at
-    @assignment.post.publish!
-    @assignment.post.published_at = published_at if published_at > Time.now
-    @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]
-    respond_to do |wants|
-      if @assignment.save
-        @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
-        wants.html do
-          flash[:ok] = I18n.t('assignments.member.add_success')
-          redirect_back_or_default member_assignments_path(@assignment)
-        end
-      else
-        @rubric = @assignment.rubric                                
-        wants.html do
-          flash[:error] = I18n.t('assignments.member.add_failure')
-          render :new
-        end
-      end      
-    end
-  end
-  
+    @assignment = Assignment.new(:post => Post.new(:published_at => Time.now)) 
+  end 
   
   def show
     store_location    

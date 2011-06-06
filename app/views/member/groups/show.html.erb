@@ -58,7 +58,8 @@
 			    <li><%= link_to I18n.t('groups.member.notices.share'), new_member_group_notice_path(@group), :class => 'sendmail' %></li>
 				<li><%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(default_blog_for(@group), :group => @group), :class => 'sendmail' %></li>
 				<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group), :class => 'calendar' %></li>	
-				<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_assignment_path(:group => @group), :class => 'set_highlight' %></li>			
+				<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_home_activity_path(:group => @group), :class => 'homeactivity' %></li>
+				<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_class_activity_path(:group => @group), :class => 'classactivity' %></li>			
 				<li><%= link_to I18n.t('groups.member.photos.share'), new_member_picto_photo_path(:group => @group), :class => 'photo' %></li>				
           <% else -%>
             <% if !(@group.klass? || @group.school? || @group.subject? )%>

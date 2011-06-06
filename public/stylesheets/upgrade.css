@@ -233,8 +233,20 @@ html > /**/ body form .actions .button { /* hack, IE ignores */
     min-width: 150px;
 }
 
+a.classactivity {
+    background: url(../images/ico/classactivity.png) no-repeat 0 0;
+    padding: 2px 0 2px 20px;
+    text-decoration: none;
+}
+
+a.homeactivity {
+    background: url(../images/ico/homeactivity.png) no-repeat 0 0;
+    padding: 2px 0 2px 20px;
+    text-decoration: none;
+}
+
 a.calendar {
-    background: url(../images/ico/calendar.gif) no-repeat 0 0;
+    background: url(../images/ico/calendar2.png) no-repeat 0 0;
     padding: 2px 0 2px 20px;
     text-decoration: none;
 }

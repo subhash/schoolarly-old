@@ -1,8 +1,12 @@
 module DashboardHelper
   
-  def icon_for_assignment(options={})
-    return image_tag("/images/#{config["plugins.schoolarly.assignment.image.default"]}" , options)
-  end
+  def icon_for_assignment(assignment, options={})
+    if assignment.home?
+      return image_tag("/images/#{config["plugins.schoolarly.homeactivity.image.default"]}" , options)
+    else
+      return image_tag("/images/#{config["plugins.schoolarly.classactivity.image.default"]}" , options)
+    end
+  end    
   
   def icon_for_aggregation(options={})
     return image_tag("/images/#{config["plugins.schoolarly.aggregation.image.default"]}" , options)

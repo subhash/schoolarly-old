@@ -10,7 +10,7 @@
         new DatePicker('.date_with_time', {
             timePicker: true,
             format: 'd-m-Y @ H:i',
-			dayShort: 3,
+            dayShort: 3,
             inputOutputFormat: 'Y-m-d H:i',
             minDate: {
                 date: "<%= Date.today.to_s %>",
@@ -19,44 +19,34 @@
         });
     });
 </script>
-<fieldset>
-    <% f.fields_for :post do |p| %>
-    <%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
-    <%= hidden_field_tag :group, @group.id if @group %>
-    <%= hidden_field_tag 'post_state', I18n.t('tog_conversatio.model.states.published') %>
-    <div class="fields">
-        <p>
-            <label for="starts_at">
-                <%= I18n.t('assignments.model.publish_at') %>
-            </label>
-            <%= p.text_field :published_at,  :class => "date_with_time" %>
-            <br/>
-        </p>
-    </div>
-    <% end %>
-    <div class="fields">
-        <p>
-            <label for="due_by">
-                <%= I18n.t('assignments.model.due_by') %>
-            </label>
-            <%= f.text_field :due_date,  :class => "date_with_time" %>
-            <br/>
-        </p>
-        <p>
-            <label for="assignment_score">
-                <%= I18n.t('assignments.member.new.score') %>
-            </label>
-            <%= f.text_field :score -%>
-        </p>
-    </div>
-    <div class="fields">
-        <div class="p">
-            <%= render :partial => 'member/rubrics/choose_rubric', :locals => {:action => 'show' , :title => I18n.t('assignments.member.rubric.attach')} %>
-            <div id='rubric'>
-            </div>
+
+<% f.fields_for :post do |p| %>
+<%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
+<%= hidden_field_tag :group, @group.id if @group %>
+<%= hidden_field_tag 'post_state', I18n.t('tog_conversatio.model.states.published') %>
+<div class="fields">
+    <p>
+        <label for="starts_at">
+            <%= I18n.t('assignments.model.publish_at') %>
+        </label>
+        <%= p.text_field :published_at,  :class => "date_with_time" %>
+        <br/>
+    </p>
+</div>
+<% end %>
+<div class="fields">
+    <p>
+        <label for="assignment_score">
+            <%= I18n.t('assignments.member.new.score') %>
+        </label>
+        <%= f.text_field :score -%>
+    </p>
+</div>
+<div class="fields">
+    <div class="p">
+        <%= render :partial => 'member/rubrics/choose_rubric', :locals => {:action => 'show' , :title => I18n.t('assignments.member.rubric.attach')} %>
+        <div id='rubric'>
         </div>
     </div>
-    <div class="actions">
-        <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>
-    </div>
-</fieldset>
+</div>
+
