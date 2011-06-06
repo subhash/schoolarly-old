@@ -104,7 +104,8 @@ Tog::Plugins.settings :tog_user,  {
 
 Tog::Plugins.settings :schoolarly, {
     "aggregation.image.default"        => "dashboard/aggregation2.png",
-    "assignment.image.default"        => "dashboard/assignment2.png",
+    "homeactivity.image.default"        => "dashboard/homeactivity2.png",
+    "classactivity.image.default"        => "dashboard/classactivity.png",
     "attachment.image.default"        => "dashboard/document2.png",
     "post.image.default"              => "dashboard/note2.png",
     "event.image.default"             => "dashboard/event2.png",

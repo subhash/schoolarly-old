@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110524063100) do
+ActiveRecord::Schema.define(:version => 20110606050346) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -50,8 +50,9 @@ ActiveRecord::Schema.define(:version => 20110524063100) do
   create_table "assignments", :force => true do |t|
     t.integer  "post_id"
     t.integer  "rubric_id"
-    t.datetime "due_date"
-    t.decimal  "score",      :precision => 6, :scale => 2
+    t.decimal  "score",         :precision => 6, :scale => 2
+    t.string   "activity_type"
+    t.integer  "activity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,6 +95,13 @@ ActiveRecord::Schema.define(:version => 20110524063100) do
     t.string   "title"
     t.text     "description"
     t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "class_activities", :force => true do |t|
+    t.datetime "start"
+    t.datetime "end"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -231,6 +239,12 @@ ActiveRecord::Schema.define(:version => 20110524063100) do
     t.string   "network_type"
     t.integer  "network_id"
     t.integer  "parent_id"
+  end
+
+  create_table "home_activities", :force => true do |t|
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "klasses", :force => true do |t|

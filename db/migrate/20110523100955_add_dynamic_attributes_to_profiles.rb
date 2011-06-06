@@ -4,6 +4,6 @@ class AddDynamicAttributesToProfiles < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :dynamic_models, :dynamic_attributes
+    remove_column :profiles, :dynamic_attributes
   end
 end
