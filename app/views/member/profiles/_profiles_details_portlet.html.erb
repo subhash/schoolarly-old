@@ -1,0 +1,17 @@
+<div class="portlet portletH" id="portlet_profiles">
+    <h2><span><%= title %></span><%= link_to 'Add', add_url, :class => 'add  float_right' if local_assigns[:add_url] and add_url %></h2>
+    <div class="portlet_content">
+    	<% if items.empty? %>
+		<ul id="profiles">
+			<li><%= no_items %></li>
+		</ul>
+		<% else %>
+        <ul id="profiles_<%=items.first.type %>_<%=items.first.id %>">
+            <%= render :partial => 'member/profiles/profile', :collection => items.first(4) %>
+			<% if items.size > 4 %>
+            <%= link_to_function I18n.t("groups.model.#{items.first.type}.view_all") { |page| page["profiles_#{items.first.type}_#{items.first.id}"].replace_html :partial => 'member/profiles/profile', :collection => items } %>
+			<% end %>
+        </ul>
+		<% end %>
+    </div>
+</div>

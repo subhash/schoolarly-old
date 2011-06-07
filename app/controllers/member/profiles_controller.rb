@@ -1,6 +1,6 @@
 class Member::ProfilesController < Member::BaseController
   
-  before_filter :find_profile, :only => [:show]
+  before_filter :find_profile, :only => [:show, :new_parent, :create_parent]
   before_filter :check_profile, :only => [:edit, :update]
   
   def show    
@@ -55,6 +55,11 @@ class Member::ProfilesController < Member::BaseController
     else
       render 'edit'
     end
+  end
+  
+  def create_parent
+    @user = User.new(params[:user])
+    
   end
   
   private

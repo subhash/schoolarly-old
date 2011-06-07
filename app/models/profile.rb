@@ -11,6 +11,8 @@ class Profile < ActiveRecord::Base
     }
   }
   
+  accepts_nested_attributes_for :user
+  
   def attributes_list
     attributes_hash.collect {|k,v| v.keys}.flatten
   end

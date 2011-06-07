@@ -231,10 +231,6 @@ en:
     model:
       students:
         title: "Students"    
-      
-  profiles:
-   site:
-     invite: "Invite"
   students:
     model:
       name: "Name"
@@ -246,7 +242,9 @@ en:
         format: "Name, Email"  
     site:
       view:
-        all: "View all %{size} students"      
+        all: "View all %{size} students"
+      parent:
+        new: Add Parent             
   teachers:
     model:
       name: "Name"
@@ -410,7 +408,12 @@ en:
         all: "View all %{size} comments"
 
   profiles:
+    site:
+      invite: "Invite"
     model:
+      parents:
+        title: Parents
+        no_items: %{profile_name}'s parents have not yet joined Schoolarly
       dynamic_attributes:
         section:
           personal: Personal Information

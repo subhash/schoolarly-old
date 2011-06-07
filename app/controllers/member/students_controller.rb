@@ -1,6 +1,8 @@
 class Member::StudentsController < Member::BaseController
   
-  before_filter :find_group
+  before_filter :find_group, :except => [:new_parent, :create_parent]
+  
+  before_filter :find_student, :only => [:new_parent, :create_parent]
   
   require "csv"
   
@@ -36,11 +38,29 @@ class Member::StudentsController < Member::BaseController
     end
   end
   
+  def create_parent
+    @user = User.new(params[:user])
+    # TODO check why nested attributes does not work
+    @user.profile = Profile.new(params[:user][:profile])
+    @user.login ||= @user.email if Tog::Config["plugins.tog_user.email_as_login"]
+    @user.person = Parent.new
+    if @user.invite_over_email
+      @student.user.profile.add_friend(@user.profile)
+      redirect_to member_profile_path(@student.user.profile)
+    else
+      render :action => 'new_parent'
+    end
+  end
+  
   
   private
   def find_group
     @group = Group.find(params[:group_id])
-  end 
+  end
+  
+  def find_student
+    @student = Student.find(params[:id]) if params[:id]
+  end
   
   def create_user(email, name, person)
       first = last = nil

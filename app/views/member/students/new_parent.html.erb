@@ -1,0 +1,34 @@
+<div class="titleB">
+    <%= link_to @student.user.profile.full_name, member_profile_path(@student.user.profile) %>> <%= I18n.t('students.site.parent.new') %>
+</div>
+
+<br />
+<%= error_messages_for :user %>
+<% form_for :user, :url => create_parent_member_student_path(@student), :html => {:id => "f_signup", :name => "f_signup" } do |f| -%>
+  <fieldset>
+    <div class="fields">
+      <p>
+        <%= f.label :email, I18n.t('tog_user.model.email') %>
+        <%= f.text_field :email, :class => "fieldbox", :size => "40" %>
+      </p>
+	  
+	  <% f.fields_for :profile do |p| %>
+	  <p>
+        <%= p.label :first_name, I18n.t('tog_social.profiles.model.first_name') %>
+        <%= p.text_field :first_name, :class => "fieldbox", :size => "40" %>
+      </p>
+	  <p>
+        <%= p.label :last_name, I18n.t('tog_social.profiles.model.last_name') %>
+        <%= p.text_field :last_name, :class => "fieldbox", :size => "40" %>
+      </p>	  
+	  <% end %>
+
+    </div>
+  </fieldset>
+
+  <br />
+  <div class="actions">
+    <%= submit_tag I18n.t('students.site.parent.new'), :class => "button mainaction" %>
+  </div>
+     
+<% end -%>
