@@ -6,7 +6,10 @@
         <%= assignment.activity.date.inspect %>, <%=assignment.activity.start_time.to_s(:time_only) %>- <%=assignment.activity.end_time.to_s(:time_only) %>
     </div>
     <% elsif assignment.activity.due_date %>
-    <span class="time"><span class="detail"><%= I18n.t('assignments.model.due_by') %></span><%=assignment.activity.due_date.to_s(:date_time_12) %></span>
+    <div class="time">
+        <span class="detail"><%= I18n.t('assignments.model.due_by') %></span>
+        <%=assignment.activity.due_date.to_s(:date_time_12) %>
+    </div>
     <% end %>
 </div>
 <%= render :partial => "shared/comments", :locals => { :commentable => assignment.post , :exclude_add_comment => true} %>

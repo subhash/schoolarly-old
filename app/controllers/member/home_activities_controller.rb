@@ -8,9 +8,11 @@ class Member::HomeActivitiesController < Member::AssignmentsController
   
   def create
     @home_activity = HomeActivity.new(params[:home_activity])
+    @home_activity.assignment.post.user = current_user
     published_at = @home_activity.assignment.post.published_at
     @home_activity.assignment.post.publish!
     @home_activity.assignment.post.published_at = published_at if published_at > Time.now
+    @home_activity.assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]
     respond_to do |wants|
       if @home_activity.save
         @group.share(current_user, @home_activity.assignment.class.to_s, @home_activity.assignment.id) if @group

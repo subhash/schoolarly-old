@@ -2,9 +2,16 @@
     <% if @group %>
     <%= link_to @group.name, member_group_path(@group) %>> <% end %>
     <%= sanitize @post.title %>
-    <%= link_to icon_for_assignment, @post.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @post.doc.file? %>
-    <% if @assignment.due_date %>
-    <span class="time"><span class="detail"><%= I18n.t('assignments.model.due_by')%></span><%=@assignment.due_date.to_s(:date_time_12) %></span>
+    <%= link_to icon_for_assignment(@assignment), @post.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @post.doc.file? %>
+    <% if @assignment.klass? %>
+    <div class="time">
+        <%= @assignment.activity.date.inspect %>, <%=@assignment.activity.start_time.to_s(:time_only) %>- <%=@assignment.activity.end_time.to_s(:time_only) %>
+    </div>
+    <% elsif @assignment.activity.due_date %>
+    <div class="time">
+        <span class="detail"><%= I18n.t('assignments.model.due_by') %></span>
+        <%=@assignment.activity.due_date.to_s(:date_time_12) %>
+    </div>
     <% end %>
 </div>
 <%= render :partial => 'member/conversatio/posts/post' %>

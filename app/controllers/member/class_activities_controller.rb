@@ -8,7 +8,9 @@ class Member::ClassActivitiesController < Member::AssignmentsController
   
   def create
     @class_activity = ClassActivity.new(params[:class_activity])
+    @class_activity.assignment.post.user = current_user
     @class_activity.assignment.post.publish!
+    @class_activity.assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]
     respond_to do |wants|
       if @class_activity.save
         @group.share(current_user, @class_activity.assignment.class.to_s, @class_activity.assignment.id) if @group
@@ -25,5 +27,5 @@ class Member::ClassActivitiesController < Member::AssignmentsController
       end      
     end
   end
-  
+
 end
