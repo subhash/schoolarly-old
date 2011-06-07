@@ -4,8 +4,6 @@ class Profile < ActiveRecord::Base
   
   DYNAMIC_ATTRIBUTES = YAML.load_file("#{RAILS_ROOT}/config/attributes/attributes.yml")
   
-  before_create :initialize_dynamic_attributes
-  
   named_scope :for_group_for_type, lambda{ |group, type|
     {
         :joins      => {:user, :memberships},
@@ -39,10 +37,20 @@ class Profile < ActiveRecord::Base
   
   private
   
-  def initialize_dynamic_attributes
-    # To initialize all profiles - Profile.all.each{|p| p.attributes_list.each {|attr| p.send("field_#{attr}=", nil)}; p.save}
-    attributes_list.each {|attr| self.send("field_#{attr}=", nil)}
+  def method_missing_with_profile_check(method_id, *args, &block)
+    begin
+      method_missing_without_profile_check method_id, *args, &block
+    rescue NoMethodError => e
+      unless method_id.to_s =~ /\=$/
+        attr = method_id.to_s
+        if attr.starts_with?('field_') and attributes_list.any? {|a| attr == "field_#{a}"}
+          return nil
+        end
+      end
+      raise e
+    end
   end
-  
+ 
+  alias_method_chain :method_missing, :profile_check
   
 end
