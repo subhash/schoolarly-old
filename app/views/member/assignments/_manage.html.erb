@@ -2,7 +2,7 @@
 <div class="portlet portletD" id="portlet_userWall">
     <h2><span><%= I18n.t('assignments.site.manage.title', :name => @assignment.post.title) %></span></h2>
     <div class="portlet_content">
-        <%= link_to I18n.t('assignments.site.manage.edit'), edit_member_assignment_path(@assignment) %>
+        <%= link_to I18n.t('assignments.site.manage.edit'), edit_member_assignment_path(@assignment, :group => @group) %>
 		<br />
         <%= share_with_groups_link(@assignment) %>
 		<br />

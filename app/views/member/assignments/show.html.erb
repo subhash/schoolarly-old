@@ -13,6 +13,12 @@
         <%=@assignment.activity.due_date.to_s(:date_time_12) %>
     </div>
     <% end %>
+    <% if @assignment.score %>
+    <span class="score">
+        <span class="detail"><%= I18n.t('assignments.model.score') %></span>
+        <%= @assignment.score %>
+    </span>
+    <% end %>
 </div>
 <%= render :partial => 'member/conversatio/posts/post' %>
 <% if @rubric %>

@@ -262,32 +262,6 @@ en:
       to:
         search: "Type in the name of a contact"  
         
-  attachments:
-    site:
-      title : "Attachment"
-      uploaded_by: "Uploaded by"
-      update: "Update Document"
-      show:
-        posted: "Posted %{time}"
-      manage:
-        title: "Manage document %{name}"
-        edit: "Edit document"
-      list_detail:
-        time_ago: "%{time} ago"
-      comments:
-        comment_title: Leaving A Comment On %{title}
-    member:
-      add: "Add attachment"
-      add_success: "Document attached"
-      add_failure: "Failure in adding document"          
-    model:
-      doc: 
-        title: "Upload Document"
-        change: "Change Document"
-      description: 
-        title: "Description"
-      title:
-        title: "Title"
 
   assignments:
     site:
@@ -314,13 +288,16 @@ en:
         title: "Title"
       publish_at: "Publish at"
       due_by: "Due by"
+      score: "Total score"
     member:
       add: "Add assignment"
       add_success: "Assignment created"
       add_failure: "Failure in creating assignment"
-      edit: "Edit assignment"
-      edit_success: "Assignment updated"
-      edit_failure: "Failed to update assignment"
+      edit: 
+        change: "Change details"
+        save: "Save"
+        success: "Assignment updated"
+        failure: "Failed to update assignment"
       new:
         score: "Total score"
       rubric:
@@ -329,6 +306,8 @@ en:
       grades:
         assign: "Assign Grade"
         pending: "Grade pending"
+      class_activity:
+        edit: "Change details"
 
              
   notebooks:

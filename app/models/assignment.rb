@@ -38,4 +38,9 @@ class Assignment < ActiveRecord::Base
     activity_type == 'ClassActivity'
   end
   
+  
+  def score
+    Rubric.trim(self[:score])
+  end
+  
 end

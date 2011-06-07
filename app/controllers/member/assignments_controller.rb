@@ -20,20 +20,23 @@ class Member::AssignmentsController < Member::BaseController
   end
   
   def update
-    @assignment.attributes = params[:assignment]
-    published_at = @assignment.post.published_at
-    @assignment.post.published_at = published_at if published_at > Time.now
+    if @assignment.home?
+      @assignment.activity.attributes = params[:home_activity]
+      published_at = @assignment.post.published_at
+      @assignment.post.published_at = published_at if published_at > Time.now 
+    else
+      @assignment.activity.attributes = params[:class_activity]
+    end
     @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]    
     respond_to do |wants|
-      if @assignment.save
-        @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
+      if @assignment.activity.save
         wants.html do
-          flash[:ok] = I18n.t('assignments.member.edit_success')
+          flash[:ok] = I18n.t('assignments.member.edit.success')
           redirect_back_or_default member_assignments_path(@assignment)
         end
       else
         wants.html do
-          flash[:error] = I18n.t('assignments.member.edit_failure')
+          flash[:error] = I18n.t('assignments.member.edit.failure')
           render :new
         end
       end      
@@ -56,6 +59,7 @@ class Member::AssignmentsController < Member::BaseController
     @assignment =  Assignment.find(params[:id])
     @post = @assignment.post
     @rubric = @assignment.rubric
+    @activity = @assignment.activity
   end
   
   def default_rubrics
