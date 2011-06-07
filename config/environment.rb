@@ -69,9 +69,8 @@ Rails::Initializer.run do |config|
 end
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
-        :date_time_12 => "%e %b, %l:%M %p",
-        :date_only => "%d-%m-%Y",
-        :time_only => "%H:%M"
+        :date_time_12 => "%a, %e %b, %l:%M %p",
+        :time_only => "%l:%M %p"
 )
 
 ActiveSupport::Inflector.inflections do |inflect|

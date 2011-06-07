@@ -19,13 +19,24 @@ input, select, textarea {
 }
 
 .time {
-    float: right;
-    display: inline;
-    font-size: 0.7em;
+    float: center;
+    font-size: 0.6em;
     color: #666;
+    margin-top: 10px;
 }
 
 .time .detail {
+    font-size: 0.7em;
+}
+
+.score {
+    float: right;
+    color: #89725B;
+	padding-left: 10px;
+	margin-right: 30px;
+}
+
+.score .detail {
     font-size: 0.7em;
 }
 

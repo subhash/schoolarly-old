@@ -100,8 +100,9 @@ ActiveRecord::Schema.define(:version => 20110606050346) do
   end
 
   create_table "class_activities", :force => true do |t|
-    t.datetime "start"
-    t.datetime "end"
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
