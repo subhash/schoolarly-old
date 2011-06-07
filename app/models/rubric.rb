@@ -53,7 +53,7 @@ class Rubric < ActiveRecord::Base
   end
   
   def max_points
-    levels.last.points
+    levels.maximum(:points)
   end
   
   def self.trim(number)

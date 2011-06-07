@@ -13,7 +13,7 @@ class RubricDescriptor < ActiveRecord::Base
 #  validates_presence_of :description
   
   def points
-    level.points * criterion.weightage/100
+    level.points * criterion.weightage/100.00
   end
   
 end

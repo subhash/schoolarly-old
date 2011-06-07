@@ -29,7 +29,7 @@ class Member::AssignmentsController < Member::BaseController
     end
     @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]    
     respond_to do |wants|
-      if @assignment.activity.save
+      if @assignment.activity.save and @assignment.save
         wants.html do
           flash[:ok] = I18n.t('assignments.member.edit.success')
           redirect_back_or_default member_assignments_path(@assignment)
