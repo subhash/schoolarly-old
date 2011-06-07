@@ -17,3 +17,9 @@ fieldset.adhoc {
     color: inherit;
 
 }
+
+a.add{
+    background: url(../../images/add2.png) no-repeat right center;
+    padding-right: 30px;
+    text-decoration: none;
+}
