@@ -2,6 +2,8 @@ class Assignment < ActiveRecord::Base
   
   belongs_to :activity, :polymorphic => true
   
+  acts_as_shareable
+  
   belongs_to :post, :dependent => :destroy
   
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}

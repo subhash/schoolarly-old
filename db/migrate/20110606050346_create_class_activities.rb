@@ -1,8 +1,9 @@
 class CreateClassActivities < ActiveRecord::Migration
   def self.up
     create_table :class_activities do |t|
-      t.datetime :start
-      t.datetime :end
+      t.date :date
+      t.time :start_time
+      t.time :end_time
       t.timestamps
     end
   end

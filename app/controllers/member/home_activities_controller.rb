@@ -13,7 +13,7 @@ class Member::HomeActivitiesController < Member::AssignmentsController
     @home_activity.assignment.post.published_at = published_at if published_at > Time.now
     respond_to do |wants|
       if @home_activity.save
-        @group.share(current_user, @home_activity.class.to_s, @home_activity.id) if @group
+        @group.share(current_user, @home_activity.assignment.class.to_s, @home_activity.assignment.id) if @group
         wants.html do
           flash[:ok] = I18n.t('assignments.member.add_success')
           redirect_back_or_default member_home_activities_path(@home_activity)

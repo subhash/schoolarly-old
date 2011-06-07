@@ -1,0 +1,32 @@
+<div class="titleB">
+    <% if @group %>
+    <%= link_to @group.name, member_group_path(@group) %> > <%= I18n.t('groups.member.class_activity.share') %>
+    <% else %>
+    <%= I18n.t('class_activities.member.add') %>
+    <% end %>
+</div>
+<br/>
+<div class="error">
+    <%= error_messages_for :class_activity %>
+</div>
+<% form_for(@class_activity, :url=>member_class_activities_path, :html=>{:multipart=>true}) do |f| %>
+<fieldset>
+    <% f.fields_for :assignment do |a| %>
+    <%= render :partial => 'member/assignments/form', :locals => {:f => a} %>
+    <% end %>
+    <div class="fields">
+        <p>
+            <%= I18n.t('class_activities.model.date') %>
+            <%= f.text_field :date,  :class => "date_without_time" %>
+            <%= I18n.t('class_activities.model.from') %>
+            <%= f.text_field :start_time,  :class => "time_only", :size => 8 , :value => @class_activity.start_time.iso8601 %>
+            <%= I18n.t('class_activities.model.to') %>
+            <%= f.text_field :end_time,  :class => "time_only", :size => 8, :value => @class_activity.end_time.iso8601 %>
+            <br/>
+        </p>
+    </div>
+</fieldset>
+<div class="actions">
+    <%= submit_tag I18n.t('tog_social.groups.site.create'), :class => "button mainaction" %>
+</div>
+<% end %>

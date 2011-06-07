@@ -163,6 +163,8 @@ en:
         new: Apply for admission
       reports:
         title: Grades and Reports
+      class_activity:
+        share: Add class activity
   schools:
     model:
       klasses:
@@ -468,4 +470,15 @@ en:
     model:
       start_time: "Starts at"
       end_time: "Ends by"
+  
+  class_activities:
+    model:
+      title: Class Activity
+      from: From
+      to: to
+      date: Date
+    member:
+      share: Add Class Activity
+    
+
        

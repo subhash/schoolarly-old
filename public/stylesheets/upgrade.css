@@ -19,10 +19,10 @@ input, select, textarea {
 }
 
 .time {
-    float: right;
-    display: inline;
-    font-size: 0.7em;
+    float: center;
+    font-size: 0.6em;
     color: #666;
+	margin-top: 10px;
 }
 
 .time .detail {

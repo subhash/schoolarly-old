@@ -6,10 +6,10 @@
 <script type="text/javascript">
     jQuery.noConflict();
     
-    window.addEvent('load', function(){
+    jQuery(document).ready(function(){
         new DatePicker('.date_with_time', {
             timePicker: true,
-            format: 'd-m-Y @ H:i',
+            format: 'd-m-Y @ h:i a',
             dayShort: 3,
             inputOutputFormat: 'Y-m-d H:i',
             minDate: {
@@ -17,13 +17,23 @@
                 format: 'Y-m-d'
             }
         });
+        new DatePicker('.date_without_time', {
+            timePicker: false,
+            format: 'd-m-Y',
+            inputOutputFormat: 'Y-m-d',
+        });
+        new DatePicker('.time_only', {
+            timePickerOnly: true,
+            format: 'H:i',
+            inputOutputFormat: 'Y-m-d H:i',
+        });
     });
 </script>
-
 <% f.fields_for :post do |p| %>
 <%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
 <%= hidden_field_tag :group, @group.id if @group %>
 <%= hidden_field_tag 'post_state', I18n.t('tog_conversatio.model.states.published') %>
+<% if local_assigns[:publish] and publish %>
 <div class="fields">
     <p>
         <label for="starts_at">
@@ -33,6 +43,7 @@
         <br/>
     </p>
 </div>
+<% end %>
 <% end %>
 <div class="fields">
     <p>
@@ -49,4 +60,3 @@
         </div>
     </div>
 </div>
-
