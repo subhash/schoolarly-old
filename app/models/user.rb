@@ -7,12 +7,16 @@ class User < ActiveRecord::Base
   has_many :attachments
   has_many :rubrics
   
-#  has_many :groups, :through => :memberships,
-#                    :conditions => "memberships.state='active' and groups.state='active'",
-#                    :order => "groups.updated_at"
+  #  has_many :groups, :through => :memberships,
+  #                    :conditions => "memberships.state='active' and groups.state='active'",
+  #                    :order => "groups.updated_at"
   
   def student?
     person.is_a? Student
+  end
+  
+  def parent?
+    person.is_a? Parent
   end
   
   def school
