@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   private
   
   def set_title
-    @title = current_user.school.group.name if current_user
+    @title = current_user.school.group.name if current_user and current_user.school
   end
   
   def unauthorized
