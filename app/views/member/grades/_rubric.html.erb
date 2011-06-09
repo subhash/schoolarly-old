@@ -1,27 +1,27 @@
 <script type="text/javascript">
-        jQuery(document).ready(function(){      
-            jQuery('.radio').change(function(){
-				    jQuery('.radio').each(function(i){
-    					if (jQuery(this).is(':checked')) 
-							jQuery(this).closest('td').addClass('highlight');  							
-						else 
-							jQuery(this).closest('td').removeClass('highlight');						
-					});    					
-    				var sum =  0;
-                jQuery('.radio:checked').each(function(i){
-                		sum += parseFloat(jQuery(this).closest('td').find('.points').text());					
+            jQuery(document).ready(function(){      
+                jQuery('.radio').change(function(){
+    				    jQuery('.radio').each(function(i){
+        					if (jQuery(this).is(':checked')) 
+    							jQuery(this).closest('td').addClass('highlight');  							
+    						else 
+    							jQuery(this).closest('td').removeClass('highlight');						
+    					});    					
+        				var sum =  0;
+                    jQuery('.radio:checked').each(function(i){
+                    		sum += parseFloat(jQuery(this).closest('td').find('.points').text());					
+                    });
+                		jQuery('#grade_points').text(sum);
+    				<% if @assignment.score %>	
+        				jQuery('#total_score').val(sum/<%=rubric.max_points %> * <%=@assignment.score %>);
+    				<% end %>
+    
                 });
-            		jQuery('#grade_points').text(sum);
-				<% if @assignment.score %>	
-    				jQuery('#total_score').val(sum/<%=rubric.max_points %> * <%=@assignment.score %>);
-				<% end %>
-
+    	
+        			jQuery('.radio:checked').each(function(i){
+        				jQuery(this).closest('td').addClass('highlight')
+        			}); 
             });
-	
-    			jQuery('.radio:checked').each(function(i){
-    				jQuery(this).closest('td').addClass('highlight')
-    			}); 
-        });
 </script>
 <table class="tableB">
     <tbody>
@@ -31,7 +31,7 @@
             <% for level in rubric.levels %>
             <th scope="col">
                 <%= level.name %>
-                <span class='point'><%= trim(level.points) %></span>
+                <span class='point'><%= level.points %></span>
             </th>
             <% end %>
         </tr>
@@ -39,14 +39,16 @@
         <tr>
             <th>
                 <%= criterion.name %>
-                <span class='point'><%= trim(criterion.weightage) %>%</span>
+                <span class='point'><%= criterion.weightage %>%</span>
             </th>
             <% for rd in criterion.rubric_descriptors %>
             <% fields_for 'rubric_descriptors[]', criterion do |rd_form| %>
             <td>
                 <%= rd_form.radio_button :id, rd.id, :checked => @grade.rubric_descriptors.include?(rd), :class => "radio" %>
                 <%= rd.description %>
+                <% if rd.points %>
                 <span class='point'><span class="points"><%= trim(rd.points) %></span>/<%= trim(rubric.max_points) %></span>
+                <% end %>
             </td>
             <% end %>
             <% end %>

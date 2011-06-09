@@ -269,9 +269,6 @@ en:
       open_in_browser: "Open in browser"
       show:
         posted: "Posted %{time}"
-      manage:
-        title: "Manage assignment %{name}"
-        edit: "Edit assignment"
       list_detail:
         time_ago: "%{time} ago"
       comments:
@@ -292,10 +289,14 @@ en:
       add_success: "Assignment created"
       add_failure: "Failure in creating assignment"
       edit: 
+        classactivity: "Edit class activity"
+        homeactivity: "Edit Assignment"
         change: "Change details"
         save: "Save"
         success: "Assignment updated"
         failure: "Failed to update assignment"
+      manage:
+        title: "Manage %{name}"
       new:
         score: "Total score"
       rubric:
