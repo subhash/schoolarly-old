@@ -410,8 +410,9 @@ en:
 
   profiles:
     site:
-      invite: "Invite"
+      invite: "Invite"      
     model:
+      avatar: Photograph
       parents:
         friends:
           title: Wards
