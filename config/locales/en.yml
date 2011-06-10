@@ -157,7 +157,7 @@ en:
       attachment:
         share: Share document with group
       assignment:
-        share: New assignment
+        share: New activity
       admissions:
         title: Admissions
         new: Apply for admission
@@ -284,10 +284,14 @@ en:
       publish_at: "Publish at"
       due_by: "Due by"
       score: "Total score"
+      from: From
+      to: to
+      date: Date
+      has_submissions: Invite student submissions
     member:
       add: "Add assignment"
       add_success: "Assignment created"
-      add_failure: "Failure in creating assignment"
+      add_failure: "Failure in creating assignment"               
       edit: 
         classactivity: "Edit class activity"
         homeactivity: "Edit Assignment"
@@ -299,6 +303,8 @@ en:
         title: "Manage %{name}"
       new:
         score: "Total score"
+        date_help: "Applicable only for tests, quizzes etc"
+        publish_help: "(Activity will not be seen by groups before this date)"
       rubric:
         title: "Rubric"
         attach: "Attach Rubric"
@@ -458,15 +464,7 @@ en:
     model:
       start_time: "Starts at"
       end_time: "Ends by"
-  
-  class_activities:
-    model:
-      title: Class Activity
-      from: From
-      to: to
-      date: Date
-    member:
-      share: Add Class Activity
+
     
 
        

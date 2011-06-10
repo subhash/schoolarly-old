@@ -10,6 +10,31 @@ class Member::AssignmentsController < Member::BaseController
     @assignment = Assignment.new(:post => Post.new(:published_at => Time.now)) 
   end 
   
+  def create
+    @assignment = Assignment.new(params[:assignment])
+    @assignment.post.user = current_user
+    published_at = Time.now || @assignment.post.published_at
+    @assignment.post.publish!
+    @assignment.post.published_at = published_at if published_at > Time.now
+    @assignment.due_date = nil unless @assignment.has_submissions
+    @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]
+    respond_to do |wants|
+      if @assignment.save
+        @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
+        wants.html do
+          flash[:ok] = I18n.t('assignments.member.add_success')
+          redirect_back_or_default member_assignment_path(@assignment)
+        end
+      else
+        @rubric = @assignment.rubric                                
+        wants.html do
+          flash[:error] = I18n.t('assignments.member.add_failure')
+          render :new
+        end
+      end      
+    end
+  end
+  
   def show
     store_location    
     @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)

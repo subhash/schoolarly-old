@@ -1,11 +1,12 @@
 <% group = group if local_assigns[:group] %>
 <div class="title">
     <%= link_to "#{sanitize assignment.post.title}", member_assignment_path(assignment, :group => group) %>
-    <% if assignment.klass? %>
+    <% if assignment.date %>
     <div class="time">
         <%= assignment.activity.date.inspect %>, <%=assignment.activity.start_time.to_s(:time_only) %>- <%=assignment.activity.end_time.to_s(:time_only) %>
     </div>
-    <% elsif assignment.activity.due_date %>
+    <% end %>
+    <% if assignment.has_submissions and assignment.due_date %>
     <div class="time">
         <span class="detail"><%= I18n.t('assignments.model.due_by') %></span>
         <%=assignment.activity.due_date.to_s(:date_time_12) %>
