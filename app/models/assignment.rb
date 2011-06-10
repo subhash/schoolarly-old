@@ -14,6 +14,8 @@ class Assignment < ActiveRecord::Base
   
   validates_presence_of :start_time, :end_time, :if => :date
   
+  before_create :reset_unwanted_fields
+  
   has_many :grades do
     def for_user(user)
       find :first, :conditions => {:user_id => user.id}
@@ -32,6 +34,13 @@ class Assignment < ActiveRecord::Base
   
   def score
     Rubric.trim(self[:score])
+  end
+  
+  
+  def reset_unwanted_fields
+    @assignment.due_date = nil unless @assignment.has_submissions
+    @assignment.start_time = nil unless @assignment.date
+    @assignment.end_time = nil unless @assignment.date
   end
   
 end

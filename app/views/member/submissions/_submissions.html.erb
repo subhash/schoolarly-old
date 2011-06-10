@@ -40,7 +40,7 @@
                 <% end %>
             </li>
             <% end %>
-            <% elsif @assignment.shared_to?(current_user) and current_user.student? %>
+            <% elsif @assignment.has_submissions and @assignment.shared_to?(current_user) and current_user.student? %>
             <% submission = @assignment.submissions.by(current_user) %>
             <li>
                 <div class="image">

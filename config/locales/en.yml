@@ -293,8 +293,7 @@ en:
       add_success: "Assignment created"
       add_failure: "Failure in creating assignment"               
       edit: 
-        classactivity: "Edit class activity"
-        homeactivity: "Edit Assignment"
+        title: "Edit activity"
         change: "Change details"
         save: "Save"
         success: "Assignment updated"

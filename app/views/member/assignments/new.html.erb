@@ -1,9 +1,8 @@
 <div class="titleB">
     <% if @group %>
-    <%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t('groups.member.assignment.share') %>
-    <% else %>
-    <%= I18n.t('assignments.member.add') %>
-    <% end %>
+    <%= link_to @group.name, member_group_path(@group) %> > 
+	<% end %>
+	<%= I18n.t('groups.member.assignment.share') %>
 </div>
 <br/>
 <div class="error">
