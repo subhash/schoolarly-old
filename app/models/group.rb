@@ -127,6 +127,9 @@ class Group < ActiveRecord::Base
     end
   end
   
+  def memberships_of(users)
+    users.collect {|u| membership_of(u)}.delete_if {|m| m.nil?}
+  end
   
   private
   

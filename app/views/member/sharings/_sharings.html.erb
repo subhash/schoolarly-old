@@ -10,8 +10,13 @@
             <div>
                 <%= link_to profile.full_name, member_profile_path(profile) %>
                 <% unless @group %>
-                > <span class="subtitle"><%= link_to share.shared_to.name, member_group_path(share.shared_to) %></span>
+                	> <span class="subtitle"><%= link_to share.shared_to.name, member_group_path(share.shared_to) %></span>
                 <% end %>
+				<% unless current_user.groups.include? share.shared_to %>
+					<% share.shared_to.memberships_of(current_user.friend_users).each do |m| %>				 
+						- <span class="subtitle"><%= link_to m.user.profile.full_name, member_profile_path(m.user.profile) %></span>
+					<% end %>
+				<% end %>
             </div>
 			<% if share.shareable.is_a? Picto::Photo %>
             <%= render :partial => '/member/picto/photos/list_detail', :locals => {:photo => share.shareable , :group => share.shared_to} %>

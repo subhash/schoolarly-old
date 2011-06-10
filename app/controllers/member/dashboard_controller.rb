@@ -8,7 +8,7 @@ class Member::DashboardController < Member::BaseController
     @filter = params[:filter] || 'All'
     group_ids = current_user.group_ids
     if current_user.parent?
-      group_ids += current_user.profile.friends.inject([]) {|c, p| c += p.user.group_ids}
+      group_ids += current_user.friend_users.inject([]) {|c, u| c += u.group_ids}
     end
     if @filter == 'All'
       @shares = Share.shared_to_groups(group_ids).paginate  :per_page => 10,
