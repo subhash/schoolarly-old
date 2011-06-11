@@ -294,7 +294,7 @@ en:
       add_failure: "Failure in creating assignment"               
       edit: 
         title: "Edit activity"
-        change: "Change details"
+        change: "Change activity details"
         save: "Save"
         success: "Assignment updated"
         failure: "Failed to update assignment"
@@ -338,7 +338,7 @@ en:
   submissions:
     site:
       new: 
-        title: "Submissions for %{user}"
+        title: "Submit answer"
         draft: "Save draft"
         publish: "Submit"
         confirm: "This will submit your answer. Are you sure?"
@@ -349,9 +349,10 @@ en:
         failure: "Error in updating submission"      
       manage:
         title: "Submissions"
-        new: "Submit my answer"
+        new: "Submit answer"
         view: "My answer"
     model:
+      by: "submitted by"
       state:
         pending: "Pending"
         draft: "Draft"

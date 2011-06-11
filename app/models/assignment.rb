@@ -38,9 +38,9 @@ class Assignment < ActiveRecord::Base
   
   
   def reset_unwanted_fields
-    @assignment.due_date = nil unless @assignment.has_submissions
-    @assignment.start_time = nil unless @assignment.date
-    @assignment.end_time = nil unless @assignment.date
+    due_date = nil unless has_submissions
+    start_time = nil unless date
+    end_time = nil unless date
   end
   
 end
