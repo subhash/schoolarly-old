@@ -20,7 +20,7 @@
     </span>
     <% end %>
 </div>
-<%= render :partial => 'member/conversatio/posts/post' %>
+<%= render :partial => 'member/conversatio/posts/post', :locals => {:commentable => @assignment} %>
 <% if @rubric %>
 <h3><span><%= I18n.t('assignments.member.rubric.title') %></span></h3>
 <%= render :partial => 'member/rubrics/table' %>

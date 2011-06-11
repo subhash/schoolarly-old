@@ -1,5 +1,6 @@
 class Submission < ActiveRecord::Base
   
+  acts_as_shareable
   belongs_to :assignment
   belongs_to :post
   

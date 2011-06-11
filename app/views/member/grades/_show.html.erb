@@ -31,11 +31,11 @@
         <% end %>
     </tbody>
 </table>
-<% end %>
 <% if @rubric.max_points %>
 <div>
     Grade Points : <%= trim(@grade.grade_points) %>/<%= trim(@rubric.max_points) %>
 </div>
+<% end %>
 <% end %>
 <% if @grade.assignment.score %>
 <div>

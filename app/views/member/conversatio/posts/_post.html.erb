@@ -1,3 +1,4 @@
+<% commentable ||= @post %>
 <div class="detail detail1">
     <div class="image">
         <% profile = @post.user.profile %>
@@ -21,5 +22,5 @@
     </div>
     <% end %>
     <br/>
-    <%= render :partial => "shared/comments", :locals => { :commentable => @post , :show_all => true} %>
+    <%= render :partial => "shared/comments", :locals => { :commentable => commentable , :show_all => true} %>
 </div>

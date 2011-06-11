@@ -56,6 +56,9 @@ class User < ActiveRecord::Base
     person_type ? person_type.downcase.pluralize : 'members'
   end
   
+  def name
+    profile.full_name
+  end
   #  def create_default_blog
   #    if self.recently_activated?      
   #      blog_name = "#{self.profile.full_name}'s blog"
