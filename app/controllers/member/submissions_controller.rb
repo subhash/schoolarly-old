@@ -15,6 +15,7 @@ class Member::SubmissionsController < Member::BaseController
     @submission.post.to_crocodoc(true)
     respond_to do |wants|
       if @submission.save 
+        @submission.share_to(@assignment.user, @submission.submitter)
         @submission.post.publish!  if params[:publish]
         wants.html do
           flash[:ok] = I18n.t('submissions.site.new.success')
@@ -36,7 +37,7 @@ class Member::SubmissionsController < Member::BaseController
     @submission.attributes = params[:submission]
     @submission.post.to_crocodoc(true)
     respond_to do |wants|
-      if @submission.save 
+      if @submission.save         
         @submission.post.publish!  if params[:publish]
         wants.html do
           flash[:ok] = I18n.t('submissions.site.edit.success')

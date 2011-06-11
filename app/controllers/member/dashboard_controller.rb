@@ -11,13 +11,13 @@ class Member::DashboardController < Member::BaseController
       group_ids += current_user.profile.friends.inject([]) {|c, p| c += p.user.group_ids}
     end
     if @filter == 'All'
-      @shares = Share.shared_to_groups(group_ids).paginate  :per_page => 10,
+      @shares = Share.to_groups_and_user(group_ids,current_user.id).paginate  :per_page => 10,
                                                   :page => @page,
                                                   :order => "#{@order} #{@asc}"
     else
-      @shares = Share.shared_to_groups_of_type(group_ids, @filter).paginate :per_page => 10,
+      @shares = Share.to_groups_and_user_of_type(group_ids, current_user.id, @filter).paginate :per_page => 10,
                                            :page => @page, 
-                                           :order => "updated_at desc" 
+                                           :order => "#{@order} #{@asc}" 
     end
     respond_to do |wants|
       wants.html

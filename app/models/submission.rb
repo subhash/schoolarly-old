@@ -8,4 +8,9 @@ class Submission < ActiveRecord::Base
   accepts_nested_attributes_for :post
   
   
+  def submitter
+    post.owner
+  end
+  
+  
 end
