@@ -12,7 +12,7 @@
 </div>
 <div class="float_right">
 	<%= I18n.t('submissions.model.by')%>
-    <%= render :partial => 'member/profiles/header', :locals => {:profile => @submitter.profile, :size => "small" } %>
+    <%= render :partial => 'member/profiles/header', :locals => {:profile => @submission.post.owner.profile, :size => "small" } %>
 </div>
 <% unless pending_submission %>
 <iframe src="https://crocodoc.com/view/?sessionId=<%= @session %>" style="border:1px solid #ddd; width: 900px; height: 100%">

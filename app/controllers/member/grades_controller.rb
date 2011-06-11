@@ -7,7 +7,7 @@ class Member::GradesController < Member::BaseController
   def new
     @user = User.find(params[:user_id])
     @grade = Grade.new(:assignment => @assignment, :user => @user, :rubric_descriptors => [])
-    @submission = @assignment.submissions.by(@user)
+    @submission = @assignment.submissions.find_by_user_id(@user.id)
     if @submission && @submission.post && @submission.post.uuid
       @session = @submission.post.from_crocodoc(current_user.profile.full_name, @submission.assignment.post.user == current_user)
     end
@@ -23,7 +23,7 @@ class Member::GradesController < Member::BaseController
   end
   
   def show
-    @submission = @assignment.submissions.by(@user)
+    @submission = @assignment.submissions.find_by_user_id(@user.id)
     if @submission and @submission.post.uuid
       @session = @submission.post.from_crocodoc(current_user.profile.full_name, @submission.assignment.post.user == current_user)
     end
@@ -56,9 +56,7 @@ class Member::GradesController < Member::BaseController
   
   
   def update
-    puts "grade before - "+@grade.inspect
     @grade.attributes = params[:grade]
-    puts "grade after - "+@grade.inspect
     if params[:rubric_descriptors]
       desc_ids = params[:rubric_descriptors].values.map{|v| v["id"]}
       @grade.rubric_descriptor_ids = desc_ids
@@ -89,12 +87,9 @@ class Member::GradesController < Member::BaseController
   def change_rubric
     if params[:rubric_descriptor]
       @descriptor = RubricDescriptor.find(params[:rubric_descriptor])
-      puts 'replacing with '+@descriptor.inspect
-      puts 'before - '+@grade.rubric_descriptors.inspect
       @grade.grade_rubric_descriptors.select {|grd| 
         grd.rubric_descriptor.criterion == @descriptor.criterion 
       }.each{|grd| grd.destroy }
-      puts 'after - '+@grade.rubric_descriptors.inspect
       @grade.rubric_descriptors << @descriptor
       if @grade.save
         puts 'done - '+@grade.rubric_descriptors.inspect
