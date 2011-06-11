@@ -50,9 +50,12 @@ ActiveRecord::Schema.define(:version => 20110606050346) do
   create_table "assignments", :force => true do |t|
     t.integer  "post_id"
     t.integer  "rubric_id"
-    t.decimal  "score",         :precision => 6, :scale => 2
-    t.string   "activity_type"
-    t.integer  "activity_id"
+    t.decimal  "score",           :precision => 6, :scale => 2
+    t.boolean  "has_submissions",                               :default => false
+    t.datetime "due_date"
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -482,11 +485,13 @@ ActiveRecord::Schema.define(:version => 20110606050346) do
   create_table "submissions", :force => true do |t|
     t.integer  "post_id"
     t.integer  "assignment_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "submissions", ["post_id"], :name => "post_id"
+  add_index "submissions", ["user_id"], :name => "user_id"
   add_index "submissions", ["assignment_id"], :name => "assignment_id"
 
   create_table "taggings", :force => true do |t|
@@ -561,10 +566,8 @@ ActiveRecord::Schema.define(:version => 20110606050346) do
   add_foreign_key "criteria", ["rubric_id"], "rubrics", ["id"], :name => "criteria_ibfk_1"
 
   add_foreign_key "grade_rubric_descriptors", ["grade_id"], "grades", ["id"], :name => "grade_rubric_descriptors_ibfk_1"
-  add_foreign_key "grade_rubric_descriptors", ["rubric_descriptor_id"], "rubric_descriptors", ["id"], :name => "grade_rubric_descriptors_ibfk_2"
 
   add_foreign_key "grades", ["user_id"], "users", ["id"], :name => "grades_ibfk_1"
-  add_foreign_key "grades", ["assignment_id"], "assignments", ["id"], :name => "grades_ibfk_2"
 
   add_foreign_key "levels", ["rubric_id"], "rubrics", ["id"], :name => "levels_ibfk_1"
 
@@ -576,9 +579,8 @@ ActiveRecord::Schema.define(:version => 20110606050346) do
   add_foreign_key "rubrics", ["user_id"], "users", ["id"], :name => "rubrics_ibfk_1"
 
   add_foreign_key "submissions", ["post_id"], "posts", ["id"], :name => "submissions_ibfk_1"
-  add_foreign_key "submissions", ["assignment_id"], "assignments", ["id"], :name => "submissions_ibfk_2"
+  add_foreign_key "submissions", ["user_id"], "users", ["id"], :name => "submissions_ibfk_2"
 
-  add_foreign_key "weighted_assignments", ["assignment_id"], "assignments", ["id"], :name => "weighted_assignments_ibfk_1"
   add_foreign_key "weighted_assignments", ["aggregation_id"], "aggregations", ["id"], :name => "weighted_assignments_ibfk_2"
 
 end

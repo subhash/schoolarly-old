@@ -1,19 +1,25 @@
 <%= include_tiny_mce_if_needed %>
+<% include_form_effects %>
+<% include_javascript "busy_ajax_jquery" %>
+<%= render :partial => 'member/profiles/header', :locals => {:profile => @profile} %>
 <div class="titleB">
-    <%= link_to @assignment.post.title, member_assignment_path(@assignment) %>> <%= I18n.t('submissions.site.new.title', :user => @user.profile.full_name) %>
+    <%= link_to @assignment.post.title, member_assignment_path(@assignment) %>> <%= I18n.t('submissions.site.new.title') %>
 </div>
 <br/>
 <div class="error">
     <%= error_messages_for :submission %>
 </div>
-<% form_for(:submission, :url=>member_assignment_submissions_path(@assignment), :html=>{:multipart=>true}) do |f| %>
+<% form_for(@submission, :url=>member_assignment_submissions_path(@assignment), :html=>{:multipart=>true}) do |f| %>
 <fieldset>
-    <% f.fields_for :post_attributes do |p| %>
+    <% f.fields_for :post do |p| %>
     <%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
     <% end %>
     <%= f.hidden_field :assignment_id %>
+    <%= f.hidden_field :user_id %>
     <div class="actions">
+        <% if @user == current_user %>
         <%= submit_tag I18n.t('submissions.site.new.draft'), :name => "draft", :class => "button mainaction" %>
+        <% end %>
         <%= submit_tag I18n.t('submissions.site.new.publish'),:name => "publish", :class => "button mainaction", :confirm =>  I18n.t('submissions.site.new.confirm') %>
     </div>
 </fieldset>

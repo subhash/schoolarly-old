@@ -6,10 +6,10 @@ class Member::RubricsController < Member::BaseController
     store_location
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
-    @asc = params[:asc] || 'desc'  
+    @asc = params[:asc] || 'asc'  
     @rubrics = (current_user.rubrics  | Share.shared_to_groups_of_type(current_user.groups,'Rubric').collect(&:shareable)).paginate :per_page => 20,
                                  :page => @page,
-                                 :order => "title DESC"  
+                                 :order => "#{@order} #{@asc}"  
     
   end
   
@@ -18,7 +18,7 @@ class Member::RubricsController < Member::BaseController
     @rubric.add_default_attributes
     @rubrics = (current_user.rubrics  | Share.shared_to_groups_of_type(current_user.groups,'Rubric').collect(&:shareable)).paginate :per_page => 20,
                                  :page => @page,
-                                 :order => "title DESC"  
+                                 :order => "title ASC"  
   end
   
   def new_template

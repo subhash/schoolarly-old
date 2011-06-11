@@ -1,6 +1,6 @@
 <div class="detail1">
-    <div class="image"><%=icon_for_profile(@profile, 'medium')%></div>
-    <div class="title"><%= link_to @profile.full_name, profile_path(@profile) %></div>
-    <div class="subtitle"><%= I18n.t('tog_social.profiles.model.username') %>: <%=@profile.user.login%></div>
+    <div class="image"><%=icon_for_profile(profile, 'medium')%></div>
+    <div class="title"><%= link_to profile.full_name, profile_path(profile) %></div>
+    <div class="subtitle"><%= I18n.t('tog_social.profiles.model.username') %>: <%=profile.user.login%></div>
     <div class="summary"><%= I18n.t('tog_social.profiles.site.summary') %></div>  
 </div> <!-- /.detail1 -->

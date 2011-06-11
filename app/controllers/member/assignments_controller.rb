@@ -6,9 +6,34 @@ class Member::AssignmentsController < Member::BaseController
   
   uses_tiny_mce :only => [:new, :create, :edit, :update]
   
+  
   def new
     @assignment = Assignment.new(:post => Post.new(:published_at => Time.now)) 
   end 
+  
+  def create
+    @assignment = Assignment.new(params[:assignment])
+    @assignment.post.user = current_user
+    published_at = Time.now || @assignment.post.published_at
+    @assignment.post.publish!
+    @assignment.post.published_at = published_at if published_at > Time.now
+    @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]
+    respond_to do |wants|
+      if @assignment.save
+        @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
+        wants.html do
+          flash[:ok] = I18n.t('assignments.member.add_success')
+          redirect_back_or_default member_assignment_path(@assignment)
+        end
+      else
+        @rubric = @assignment.rubric                                
+        wants.html do
+          flash[:error] = I18n.t('assignments.member.add_failure')
+          render :new
+        end
+      end      
+    end
+  end
   
   def show
     store_location    
@@ -20,16 +45,12 @@ class Member::AssignmentsController < Member::BaseController
   end
   
   def update
-    if @assignment.home?
-      @assignment.activity.attributes = params[:home_activity]
-      published_at = @assignment.post.published_at
-      @assignment.post.published_at = published_at if published_at > Time.now 
-    else
-      @assignment.activity.attributes = params[:class_activity]
-    end
+    @assignment.attributes = params[:assignment]
+    published_at = @assignment.post.published_at
+    @assignment.post.published_at = published_at if published_at > Time.now 
     @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]    
     respond_to do |wants|
-      if @assignment.activity.save and @assignment.save
+      if @assignment.save
         wants.html do
           flash[:ok] = I18n.t('assignments.member.edit.success')
           redirect_back_or_default member_assignments_path(@assignment)
@@ -50,7 +71,8 @@ class Member::AssignmentsController < Member::BaseController
     @feeds = %w()
   end    
   
-  private  
+  private 
+  
   def find_group
     @group = Group.find(params[:group]) if params[:group]
   end
@@ -59,7 +81,6 @@ class Member::AssignmentsController < Member::BaseController
     @assignment =  Assignment.find(params[:id])
     @post = @assignment.post
     @rubric = @assignment.rubric
-    @activity = @assignment.activity
   end
   
   def default_rubrics

@@ -1,7 +1,7 @@
 module DashboardHelper
   
   def icon_for_assignment(assignment, options={})
-    if assignment.home?
+    if assignment.has_submissions
       return image_tag("/images/#{config["plugins.schoolarly.homeactivity.image.default"]}" , options)
     else
       return image_tag("/images/#{config["plugins.schoolarly.classactivity.image.default"]}" , options)

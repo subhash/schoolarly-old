@@ -3,9 +3,12 @@ class CreateAssignments < ActiveRecord::Migration
     create_table :assignments do |t|
       t.integer :post_id
       t.integer :rubric_id
-      t.decimal :score, :precision => 6, :scale => 2     
-      t.string :activity_type
-      t.integer :activity_id
+      t.decimal :score, :precision => 6, :scale => 2  
+      t.boolean :has_submissions, :default => false
+      t.datetime :due_date
+      t.date :date
+      t.time :start_time
+      t.time :end_time
       
       t.timestamps
       

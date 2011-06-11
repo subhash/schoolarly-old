@@ -4,7 +4,7 @@
         <ul>
             <% if @assignment.post.user == current_user %>
             <% @submitters.each do |s| %>
-            <% submission = @assignment.submissions.by(s) %>
+            <% submission = @assignment.submissions.find_by_user_id(s.id) %>
             <li>
                 <div class="image">
                     <%= link_to icon_for_profile(s.profile, 'tiny'), profile_path(s.profile) %>
@@ -28,7 +28,11 @@
                 </span>
                 <% if submission.blank? or !submission.post.published? %>
                 <div class="subtitle">
+                    <% if @assignment.has_submissions %>
                     <%= I18n.t('submissions.model.state.pending') %>
+                    <% else %>
+                    <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(@assignment, :user => s) %>
+                    <% end %>
                 </div>
                 <% else %>
                 <div class="title">
@@ -40,8 +44,8 @@
                 <% end %>
             </li>
             <% end %>
-            <% elsif @assignment.shared_to?(current_user) and current_user.student? %>
-            <% submission = @assignment.submissions.by(current_user) %>
+            <% else @assignment.shared_to?(current_user) and current_user.student? %>
+            <% submission = @assignment.submissions.find_by_user_id(current_user.id) %>
             <li>
                 <div class="image">
                     <%= link_to icon_for_profile(current_user.profile, 'tiny'), profile_path(current_user.profile) %>

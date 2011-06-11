@@ -72,7 +72,6 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
   
 
-  map.resources :attachments
   map.namespace :member do |member|
     member.resources :groups , :member => {:new_multiple => :get, :create_multiple => :post, :add_select => :get, :add => :post, :remove_select => :get, :remove => :post, :select_moderators => :get, :add_moderators => :post, :remove_moderator => :get} do |group|
       group.resources :students, :shallow => true, :member => {:new_parent => :get, :select_parent => :get, :create_parent => :post, :add_parent => :post}
@@ -86,10 +85,7 @@ ActionController::Routing::Routes.draw do |map|
         klass.resources :subjects, :shallow => true, :member => {:invite => :get, :add => :post}
       end
     end
-    member.resources :attachments
     member.resources :rubrics
-    member.resources :home_activities
-    member.resources :class_activities
     member.resources :assignments do |assignment|
       assignment.resources :submissions, :shallow => true
       assignment.resources :grades, :shallow => true, :member => {:change_rubric => :post}

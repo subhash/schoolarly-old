@@ -1,7 +1,5 @@
 class Assignment < ActiveRecord::Base 
   
-  belongs_to :activity, :polymorphic => true
-  
   acts_as_shareable
   
   belongs_to :post, :dependent => :destroy
@@ -13,6 +11,10 @@ class Assignment < ActiveRecord::Base
   belongs_to :rubric
   
   has_one :weighted_assignment
+  
+  validates_presence_of :start_time, :end_time, :if => :date
+  
+  before_create :reset_unwanted_fields
   
   has_many :grades do
     def for_user(user)
@@ -30,17 +32,15 @@ class Assignment < ActiveRecord::Base
     shares_to_groups.any?{|s|user.groups.include?(s.shared_to)}
   end
   
-  def home?
-    activity_type == 'HomeActivity'
-  end
-  
-  def klass?
-    activity_type == 'ClassActivity'
-  end
-  
-  
   def score
     Rubric.trim(self[:score])
+  end
+  
+  
+  def reset_unwanted_fields
+    due_date = nil unless has_submissions
+    start_time = nil unless date
+    end_time = nil unless date
   end
   
 end

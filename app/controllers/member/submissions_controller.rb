@@ -6,15 +6,16 @@ class Member::SubmissionsController < Member::BaseController
   before_filter :find_user
   
   def new
-    @submission = Submission.new(:post => Post.new, :assignment => @assignment)
+    @submission = Submission.new(:post => Post.new, :assignment => @assignment, :user => @user)
   end
   
   def create
-    @submission = Submission.create(params[:submission])
-    @submission.post.user = @user
+    @submission = Submission.new(params[:submission])
+    @submission.post.user = current_user
     @submission.post.to_crocodoc(true)
     respond_to do |wants|
       if @submission.save 
+        @submission.share_to(@assignment.user, @submission.submitter)
         @submission.post.publish!  if params[:publish]
         wants.html do
           flash[:ok] = I18n.t('submissions.site.new.success')
@@ -36,7 +37,7 @@ class Member::SubmissionsController < Member::BaseController
     @submission.attributes = params[:submission]
     @submission.post.to_crocodoc(true)
     respond_to do |wants|
-      if @submission.save 
+      if @submission.save         
         @submission.post.publish!  if params[:publish]
         wants.html do
           flash[:ok] = I18n.t('submissions.site.edit.success')
@@ -53,7 +54,8 @@ class Member::SubmissionsController < Member::BaseController
   
   def show
     @assignment = @submission.assignment
-    @user = @submission.post.owner
+    @user = @submission.user
+    @submitter = @submission.post.owner
     @profile = @user.profile
     if @submission.post.uuid
       @session = @submission.post.from_crocodoc(current_user.profile.full_name, @submission.assignment.post.user == current_user)
@@ -76,6 +78,7 @@ class Member::SubmissionsController < Member::BaseController
   def find_user
     @user = User.find(params[:user]) if params[:user]
     @user ||= current_user
+    @profile = @user.profile
   end
   
 end

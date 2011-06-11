@@ -7,7 +7,21 @@
     jQuery.noConflict();
     
     jQuery(document).ready(function(){
+        jQuery("#assignment_has_submissions").click(function(){
+            jQuery("#due_by").toggle();
+        });
         new DatePicker('.date_with_time', {
+            timePicker: true,
+            format: 'd-m-Y @ h:i a',
+            dayShort: 3,
+            allowEmpty: true,
+            inputOutputFormat: 'Y-m-d H:i',
+            minDate: {
+                date: "<%= Date.today.to_s %>",
+                format: 'Y-m-d'
+            }
+        });
+        new DatePicker('.date_with_time_not_empty', {
             timePicker: true,
             format: 'd-m-Y @ h:i a',
             dayShort: 3,
@@ -19,11 +33,13 @@
         });
         new DatePicker('.date_without_time', {
             timePicker: false,
+            allowEmpty: true,
             format: 'd-m-Y',
             inputOutputFormat: 'Y-m-d',
         });
         new DatePicker('.time_only', {
             timePickerOnly: true,
+            allowEmpty: true,
             format: 'H:i',
             inputOutputFormat: 'Y-m-d H:i',
         });
@@ -33,24 +49,47 @@
 <%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
 <%= hidden_field_tag :group, @group.id if @group %>
 <%= hidden_field_tag 'post_state', I18n.t('tog_conversatio.model.states.published') %>
-<% if local_assigns[:publish] and publish %>
+<% if @assignment.new_record? or !@assignment.post.published? %>
 <div class="fields">
     <p>
-        <label for="starts_at">
-            <%= I18n.t('assignments.model.publish_at') %>
-        </label>
-        <%= p.text_field :published_at,  :class => "date_with_time" %>
-        <br/>
+        <%= I18n.t('assignments.model.publish_at') %>
+        <span class="helpinfo"><%= I18n.t('assignments.member.new.publish_help') %></span>
+        <%= p.text_field :published_at,  :class => "fieldbox wide date_with_time_not_empty" %>
     </p>
 </div>
 <% end %>
 <% end %>
+<br/>
 <div class="fields">
     <p>
-        <label for="assignment_score">
-            <%= I18n.t('assignments.member.new.score') %>
-        </label>
-        <%= f.text_field :score -%>
+        <% if @assignment.new_record? %>
+        <%= I18n.t('assignments.model.has_submissions') %>
+        <%= f.check_box :has_submissions %>
+        <span id="due_by" style="display: none;"><%= I18n.t('assignments.model.due_by') %>
+            <%= f.text_field :due_date,  :class => "fieldbox date_with_time" %>
+            <br/>
+        </span>
+        <% elsif @assignment.has_submissions %>
+        <%= I18n.t('assignments.model.due_by') %>
+        <%= f.text_field :due_date,  :class => "fieldbox date_with_time" %>
+        <% end %>
+    </p>
+</div>
+<div class="fields">
+    <p>
+        <%= I18n.t('assignments.model.date') %>
+        <%= f.text_field :date,  :class => "fieldbox date_without_time" %>
+        <%= I18n.t('assignments.model.from') %>
+        <%= f.text_field :start_time,  :class => "fieldbox time_only", :size => 8 %>
+        <%= I18n.t('assignments.model.to') %>
+        <%= f.text_field :end_time,  :class => "fieldbox time_only", :size => 8 %>
+        <span class="helpinfo"><%= I18n.t('assignments.member.new.date_help') %></span>
+    </p>
+</div>
+<div class="fields">
+    <p>
+        <%= I18n.t('assignments.member.new.score') %>
+        <%= f.text_field :score, :class => "fieldbox" -%>
     </p>
 </div>
 <div class="fields">
