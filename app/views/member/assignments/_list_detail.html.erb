@@ -13,9 +13,36 @@
     </div>
     <% end %>
 </div>
+<% if assignment.shared_to?(current_user) and current_user.student? %>
+<div class="score float_right">
+    <% grade = assignment.grades.for_user(current_user) %>
+    <% if grade %>
+    <% if assignment.score %>
+    <% score = "#{grade.score}/#{assignment.score}" %>
+    <% elsif assignment.rubric %>
+    <% score = grade.rubric_points %>
+    <% else %>
+    <% score = "View Grade" %>
+    <% end %>
+    <%= link_to score, member_grade_path(assignment.grades.for_user(current_user)) %>
+    <% else %>
+    <%= I18n.t('assignments.member.grades.pending') %>
+    <% end %>
+</div>
+<% end %>
 <%= render :partial => "shared/comments", :locals => { :commentable => assignment.post , :exclude_add_comment => true} %>
 <br/>
 <div class="portlet portletL">
     <%= link_to icon_for_assignment(assignment), member_assignment_path(assignment, :group => group), :title => "#{sanitize assignment.post.title}" %>
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(assignment.post.title)) %>. <%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
+    <% if assignment.shared_to?(current_user) and current_user.student? %>
+    <% submission = assignment.submissions.find_by_user_id(current_user.id) %>
+    <% if submission.blank? and @assignment.has_submissions %>
+    <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(assignment) %>
+    <% elsif submission.post.published? %>
+    <%= link_to I18n.t('submissions.site.manage.view'), member_submission_path(submission) %>
+    <% else %>
+    <%= I18n.t("submissions.model.state.draft") %>: <%= link_to I18n.t('submissions.site.manage.view'), edit_member_submission_path(submission) %>
+    <% end %>
+    <% end %>
 </div>

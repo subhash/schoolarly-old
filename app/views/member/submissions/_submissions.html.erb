@@ -44,7 +44,7 @@
                 <% end %>
             </li>
             <% end %>
-            <% else @assignment.shared_to?(current_user) and current_user.student? %>
+            <% elsif @assignment.shared_to?(current_user) and current_user.student? %>
             <% submission = @assignment.submissions.find_by_user_id(current_user.id) %>
             <li>
                 <div class="image">
@@ -67,7 +67,7 @@
                     <%= I18n.t('assignments.member.grades.pending') %>
                     <% end %>
                 </span>
-                <% if submission.blank? %>
+                <% if submission.blank? and @assignment.has_submissions %>
                 <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(@assignment) %>
                 <% elsif submission.post.published? %>
                 <%= link_to I18n.t('submissions.site.manage.view'), member_submission_path(submission) %>

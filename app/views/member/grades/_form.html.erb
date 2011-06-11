@@ -1,16 +1,19 @@
-
 <div class='fields'>
-	<%= f.hidden_field :assignment_id %>
-	<%= f.hidden_field :user_id %>
+    <%= f.hidden_field :assignment_id %>
+    <%= f.hidden_field :user_id %>
     <% if @assignment.rubric %>
     <%= render :partial => 'member/grades/rubric', :locals => {:rubric => @assignment.rubric, :f => f } %>
     <% else %>
+    <p>
+        <%= link_to I18n.t('assignments.member.rubric.attach'), edit_member_assignment_path(@assignment) %>
+    </p>
+    <% end %>
+    <% if @assignment.score %>
     <p>
         <label>
             <%= I18n.t('grades.member.new.total') %>
         </label>
         <%= f.text_field :score %>/<%= @assignment.score %>
-        <%= link_to I18n.t('assignments.member.rubric.attach'), edit_member_assignment_path(@assignment) %>
     </p>
     <% end %>
 </div>

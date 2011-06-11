@@ -8,7 +8,15 @@ class Grade < ActiveRecord::Base
   
   
   def grade_points
-    rubric_descriptors.collect(&:points).sum
+    Rubric.trim(rubric_descriptors.collect(&:points).sum)
+  end
+  
+  def rubric_points
+    assignment.rubric.grade_type ?  rubric_descriptors.first.level.name : "#{grade_points}/#{assignment.rubric.max_points}"
+  end
+  
+  def score
+    Rubric.trim(self[:score])
   end
   
 end

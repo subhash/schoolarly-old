@@ -10,11 +10,11 @@
 <div class="titleB">
     <%= link_to @assignment.post.title, member_assignment_path(@assignment) %>> <%= title %>
 </div>
-<div class="float_right">
-	<%= I18n.t('submissions.model.by')%>
-    <%= render :partial => 'member/profiles/header', :locals => {:profile => @submission.post.owner.profile, :size => "small" } %>
-</div>
 <% unless pending_submission %>
+<div class="float_right">
+    <%= I18n.t('submissions.model.by') %>
+    <%= render :partial => 'member/profiles/header', :locals => {:profile => @submission.submitter.profile, :size => "small" } %>
+</div>
 <iframe src="https://crocodoc.com/view/?sessionId=<%= @session %>" style="border:1px solid #ddd; width: 900px; height: 100%">
 </iframe>
 <% end %>
