@@ -13,7 +13,8 @@ class Group < ActiveRecord::Base
   has_many :student_users, :through => :memberships, :source => :user,
   :conditions => ['users.person_type = ?', 'Student']
   has_many :teacher_users, :through => :memberships, :source => :user,
-  :conditions => ['users.person_type = ?', 'Teacher']                        
+  :conditions => ['users.person_type = ?', 'Teacher']
+  
   acts_as_tree :order => 'name'
   named_scope :base, :conditions => {:parent_id => nil}
   named_scope :school, :conditions => {:network_type => 'School'}
@@ -87,7 +88,11 @@ class Group < ActiveRecord::Base
   def applicable_members(type)
     case network_type
       when 'School'
-      User.of_type(type) - Group.school.collect(&:users).flatten
+      if type == 'Parent'
+        self.student_users.collect(&:friend_users).flatten.uniq
+      else
+        User.of_type(type) - Group.school.collect(&:users).flatten
+      end
       when 'Klass'
       case type
         when 'Student'
@@ -111,7 +116,7 @@ class Group < ActiveRecord::Base
   end
   
   def moderator_candidates
-    (self.general? ? self.users : self.users.of_type('Teacher')) - self.moderators
+   (self.general? ? self.users : self.users.of_type('Teacher')) - self.moderators
   end
   
   def set_default_image

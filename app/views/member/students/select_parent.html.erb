@@ -1,0 +1,23 @@
+<div class="portlet portletF" id="portlet_featuredUsers">
+    <h2><span><%= link_to @student.user.profile.full_name, member_profile_path(@student.user.profile) %>> <%= I18n.t('students.site.parent.select.title') %></span></h2>
+    <div class="portlet_content">
+        <% form_tag add_parent_member_student_path(@student) do |f| %>
+        <ul>
+            <% @profiles.each do |profile| %>
+            <p>
+                <li>
+                    <%= check_box_tag 'members[]', profile.id, false %>
+                    <%=link_to icon_for_profile(profile, 'medium'), member_profile_path(profile), :title => profile.full_name %>
+                    <%=link_to profile.full_name, profile %>
+                </li>
+            </p>
+            <%end %>
+            <p>
+                <li>
+                    <%= submit_tag I18n.t('students.site.parent.add'), :class => "button" %>or <%= link_to I18n.t("students.site.parent.invite"), new_parent_member_student_path(@student) %>
+                </li>
+            </p>
+        </ul>
+        <% end %>
+    </div>
+</div>

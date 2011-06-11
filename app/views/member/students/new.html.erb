@@ -12,6 +12,15 @@
 		<div class="error"><%= I18n.t('groups.site.Student.add_failure', :student_name => "<b>#{user.profile.full_name} (#{user.email})</b>", :failure_reason => user.errors.full_messages.join(', ')) %></div>
 	<% end %>
 <% end %>
+<% @failed_parents ||= [] %>
+<% @failed_parents.each do |student, parent| %>
+    <% unless parent.errors.blank? %>
+		<div class="error"><%= I18n.t('groups.site.Student.add_parent.failure', 
+				:parent_name => "<b>#{parent.profile.full_name} (#{parent.email})</b>",
+				:student_name => "<b>#{student.profile.full_name} (#{student.email})</b>", 
+				:failure_reason => parent.errors.full_messages.join(', ')) %></div>
+	<% end %>
+<% end %>
 
 <% form_tag member_group_students_path(@group) , :html => {:id => "f_signup", :name => "f_signup" } do |f| -%>
 <fieldset>

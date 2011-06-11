@@ -114,6 +114,8 @@ en:
         add_failure: "%{student_name} could not be added because: %{failure_reason}"  
         remove_select: "Select students to be removed"
         invited: "%{count} student(s) invited"
+        add_parent:
+          failure: "%{parent_name} could not be added as a parent of %{student_name} because: %{failure_reason}"
       Teacher:
         invite: "Invite new teachers"
         add_select: "Select existing teachers"
@@ -244,7 +246,13 @@ en:
       view:
         all: "View all %{size} students"
       parent:
-        new: Add Parent             
+        add: Add Parent
+        invite: Invite new parent
+        select:
+          title: Select existing parents
+          success: Parents added
+          none_selected: Select at least one parent
+          failure: Could not add parents
   teachers:
     model:
       name: "Name"

@@ -33,7 +33,6 @@
     <div class="fields">
         <% attrs.keys.each do |attr| %>
         <p>
-        	<% puts 'cannot find - '+attr.inspect %>
             <%= label_tag "field_#{attr}", I18n.t("profiles.model.dynamic_attributes.attr.#{attr}") %>
             <strong><%= @profile.send "field_#{attr}" %></strong>
         </p>
