@@ -40,10 +40,11 @@ class Member::StudentsController < Member::BaseController
       end
       @users << user
     end
-    if @failed_students.blank?
+    if @failed_students.blank? and @failed_parents.blank?
       flash[:ok] = I18n.t("groups.site.Student.invited", :count => @users.count)      
       redirect_back_or_default(Tog::Config["plugins.tog_user.default_redirect_on_login"])
     else    
+      puts @failed_parents.inspect
       @failed_students = @failed_students.join("\n")
       render :action => 'new'
     end

@@ -240,8 +240,8 @@ en:
     member:
       invite: 
         title: "Invite Students"
-        description: "Enter the list of new students in this school in the box, one per line, in the format: <br/> Name,Email <br/> Example: <br/>George Washington,george.w@gmail.com <br/> John Adams,j_adams@yahoo.com <br/>"
-        format: "Name, Email"  
+        description: "Enter the list of new students in this school in the box, one per line, in the format: <br/> Student's name, Student's email, Father's name, Father's email, Mother's name, Mother's email <br/>Student's email is mandatory, parents' details are optional <br/>Example: <br/>Harry Potter, harry.p@gmail.com, James Potter, james.p@gmail.com, Lily Potter, lily.p@gmail.com <br/> Ron Weasley, ron.w@yahoo.com, Arthur Weasley, a.weasley@yahoo.com <br/>"
+        format: "name, email, dad's name, dad's email, mom's name, mom's email"  
     site:
       view:
         all: "View all %{size} students"
