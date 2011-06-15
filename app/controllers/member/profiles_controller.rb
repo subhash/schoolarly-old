@@ -65,7 +65,7 @@ class Member::ProfilesController < Member::BaseController
   end
   
   private
-
+  
   def find_profile
     @profile = Profile.find(params[:id]) if params[:id]
   end
@@ -76,7 +76,8 @@ class Member::ProfilesController < Member::BaseController
   end
   
   def i_am_school_moderator_for(profile)
-    profile.user.groups.school.collect(&:moderators).flatten.include?(current_user)
+    schools = profile.user.parent? ? profile.friends.collect{|f| f.user.groups.school}.flatten : profile.user.groups.school
+    schools.collect(&:moderators).flatten.include?(current_user)
   end
   
 end
