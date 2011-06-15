@@ -14,7 +14,7 @@ class Member::StudentsController < Member::BaseController
       name = email = fname = femail = mname = memail = nil
       name, email, fname, femail, mname, memail = row
       user = create_user(email, name, Student.new)      
-      if user.invite_over_email(current_user.email)
+      if user.invite_over_email
         # TODO check if you are allowed to invite
         @group.invite_and_accept(user)
         GroupMailer.deliver_entry_notification(@group, current_user, user)  

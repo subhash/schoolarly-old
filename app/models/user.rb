@@ -34,23 +34,13 @@ class User < ActiveRecord::Base
     password_reset_code.blank? && (crypted_password.blank? || !password.blank?)
   end
   
-  def invite_over_email(from = nil)
-    @invited_by = from
+  def invite_over_email
+    # Signup notification is overriden to request password reset
     self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
     save(true)
   end
   
-  def recently_invited_over_email?
-    @invited_by
-  end
-  
-  after_save :send_invitation_over_email
-  
   #  after_save :create_default_blog
-  
-  def send_invitation_over_email
-    UserMailer.deliver_invite_notification(self, @invited_by) if self.recently_invited_over_email?
-  end
   
   def type
     person_type ? person_type.downcase.pluralize : 'members'
