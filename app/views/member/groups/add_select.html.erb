@@ -12,11 +12,13 @@
                 </li>
             </p>
             <%end %>
+			<% if  @type == 'Teacher' %>
             <p>
                 <label for="moderators" class="nolabel">
                     <%= check_box_tag :moderator, "1", !@group.school? %> <%=I18n.t('teachers.member.invite.moderator') %>
                 </label>
             </p>
+			<% end %>
             <p>
                 <li>
                     <%= submit_tag I18n.t("groups.site.add.#{@type}"), :class => "button" %>or <%= link_to I18n.t("groups.site.#{@type}.invite"), "#{@type.downcase.pluralize}/new" %>

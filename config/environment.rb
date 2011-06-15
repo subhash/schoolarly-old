@@ -88,7 +88,7 @@ Tog::Interface.sections(:member).add :sharings, "/member/sharings"
 Tog::Interface.sections(:member).add :rubrics, "/member/rubrics"
 
 Tog::Plugins.settings :tog_core, {"site.name" => "Schoolarly"}, :force => true
-
+Tog::Plugins.settings :tog_core, {"mail.default_subject" => "[Schoolarly] "}, :force => true
 Tog::Plugins.settings :tog_social, {"profile.image.versions.tiny"   => "35x35#"}, :force => true
 
 Tog::Plugins.settings :tog_user,  {
