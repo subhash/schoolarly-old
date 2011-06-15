@@ -1,6 +1,7 @@
 class Assignment < ActiveRecord::Base 
   
   acts_as_shareable
+  acts_as_commentable
   
   belongs_to :post, :dependent => :destroy
   
@@ -41,6 +42,14 @@ class Assignment < ActiveRecord::Base
     due_date = nil unless has_submissions
     start_time = nil unless date
     end_time = nil unless date
+  end
+  
+  def user
+    post.owner
+  end
+  
+  def name
+    post.title
   end
   
 end

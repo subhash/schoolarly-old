@@ -53,11 +53,15 @@ class Rubric < ActiveRecord::Base
   end
   
   def max_points
-    levels.maximum(:points)
+    self.trim(levels.maximum(:points))
   end
   
   def self.trim(number)
     number.to_i == number ? number.to_i : number
+  end
+  
+  def grade_type?
+    criteria.size == 1 and max_points.blank?
   end
   
   
