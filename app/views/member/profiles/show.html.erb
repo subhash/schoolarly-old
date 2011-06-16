@@ -33,7 +33,6 @@
     <div class="fields">
         <% attrs.keys.each do |attr| %>
         <p>
-        	<% puts 'cannot find - '+attr.inspect %>
             <%= label_tag "field_#{attr}", I18n.t("profiles.model.dynamic_attributes.attr.#{attr}") %>
             <strong><%= @profile.send "field_#{attr}" %></strong>
         </p>
@@ -46,11 +45,13 @@
     <h2><span><%= I18n.t('tog_social.more_links') %></span></h2>
     <div class="portlet_content">
         <ul>
-            <% if its_me? -%>
+            <% if its_me? or i_am_school_moderator_for(@profile) -%>
             <li>
                 <%= link_to I18n.t('tog_social.profiles.site.edit_profile'), edit_member_profile_path(@profile) %>
             </li>
-            <% else -%>
+			<% end %>		
+			
+            <% unless its_me? -%>
             <li>
                 <%= link_to_if(@profile.user.active?, I18n.t('tog_social.profiles.site.send_message'), member_new_message_to_path(@profile.user)) {} %>
             </li>

@@ -1,5 +1,5 @@
-<% size = local_assigns[:size] ? size : "medium" %>
-
+<% size ||= "medium" %>
+<% profile ||= @profile%>
 <div class="detail1">
     <div class="image"><%=icon_for_profile(profile, size)%></div>
     <div class="title"><%= link_to profile.full_name, member_profile_path(profile) %></div>

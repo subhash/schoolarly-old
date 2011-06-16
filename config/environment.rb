@@ -88,7 +88,8 @@ Tog::Interface.sections(:member).add :sharings, "/member/sharings"
 Tog::Interface.sections(:member).add :rubrics, "/member/rubrics"
 
 Tog::Plugins.settings :tog_core, {"site.name" => "Schoolarly"}, :force => true
-
+Tog::Plugins.settings :tog_core, {"mail.default_subject" => "[Schoolarly] "}, :force => true
+Tog::Plugins.settings :tog_core, {"mail.system_from_address" => "admin@schoolarly.com"}, :force => true
 Tog::Plugins.settings :tog_social, {"profile.image.versions.tiny"   => "35x35#"}, :force => true
 
 Tog::Plugins.settings :tog_user,  {
@@ -98,7 +99,7 @@ Tog::Plugins.settings :tog_user,  {
     :default_redirect_on_signup       => "/",
     :default_redirect_on_activation   => "/member",
     :default_redirect_on_forgot       => "/",
-    :default_redirect_on_reset        => "/"
+    :default_redirect_on_reset        => "/member"
 }, :force => true
 
 Tog::Plugins.settings :schoolarly, {

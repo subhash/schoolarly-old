@@ -7,9 +7,18 @@
 <% @users ||= [] %>
 <% @users.each do |user| %>
     <% if user.errors.blank? %>
-		<div class="ok"><%= I18n.t('groups.site.Student.add_success', :student_name => "<b>#{user.profile.full_name} (#{user.email})</b>") %></div>
+		<div class="ok"><%= I18n.t('groups.site.Student.add_success', :student_name => "<b>(#{user.email})</b>") %></div>
 	<% else %>
-		<div class="error"><%= I18n.t('groups.site.Student.add_failure', :student_name => "<b>#{user.profile.full_name} (#{user.email})</b>", :failure_reason => user.errors.full_messages.join(', ')) %></div>
+		<div class="error"><%= I18n.t('groups.site.Student.add_failure', :student_name => "<b>(#{user.email})</b>", :failure_reason => user.errors.full_messages.join(', ')) %></div>
+	<% end %>
+<% end %>
+<% @failed_parents ||= [] %>
+<% @failed_parents.each do |student, parent| %>
+    <% unless parent.errors.blank? %>
+		<div class="error"><%= I18n.t('groups.site.Student.add_parent.failure', 
+				:parent_name => "<b>(#{parent.email})</b>",
+				:student_name => "<b>(#{student.email})</b>", 
+				:failure_reason => parent.errors.full_messages.join(', ')) %></div>
 	<% end %>
 <% end %>
 
@@ -17,7 +26,7 @@
 <fieldset>
     <div class="fields">
         <p>
-            <%= label_tag :students, I18n.t('students.member.invite.format') %>
+            <%= I18n.t('students.member.invite.format') %>
             <%= text_area_tag :students, @failed_students, :class => "fieldbox", :size => "80x20" %>
         </p>
         <% if config["plugins.tog_user.captcha_enabled"] %>

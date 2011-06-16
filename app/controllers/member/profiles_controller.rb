@@ -3,6 +3,8 @@ class Member::ProfilesController < Member::BaseController
   before_filter :find_profile, :only => [:show, :new_parent, :create_parent]
   before_filter :check_profile, :only => [:edit, :update]
   
+  helper_method :i_am_school_moderator_for
+  
   def show    
     store_location
     respond_to do |format|
@@ -63,14 +65,19 @@ class Member::ProfilesController < Member::BaseController
   end
   
   private
-
+  
   def find_profile
     @profile = Profile.find(params[:id]) if params[:id]
   end
   
   def check_profile
     @profile = Profile.find(params[:id]) if params[:id]
-    raise UnauthorizedException.new unless @profile.user == current_user
+    raise UnauthorizedException.new unless current_user.profile == @profile or i_am_school_moderator_for(@profile)
+  end
+  
+  def i_am_school_moderator_for(profile)
+    schools = profile.user.parent? ? profile.friends.collect{|f| f.user.groups.school}.flatten : profile.user.groups.school
+    schools.collect(&:moderators).flatten.include?(current_user)
   end
   
 end

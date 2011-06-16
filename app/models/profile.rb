@@ -11,6 +11,9 @@ class Profile < ActiveRecord::Base
     }
   }
   
+  # TODO Check for person type too
+  has_many :parents, :through => :friendships_by_others, :source => :inviter
+  
   accepts_nested_attributes_for :user
   
   def attributes_list

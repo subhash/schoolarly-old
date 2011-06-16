@@ -1,5 +1,5 @@
 <div class="titleB">
-    <%= link_to @student.user.profile.full_name, member_profile_path(@student.user.profile) %>> <%= I18n.t('students.site.parent.new') %>
+    <%= link_to @student.user.profile.full_name, member_profile_path(@student.user.profile) %>> <%= I18n.t('students.site.parent.invite') %>
 </div>
 
 <br />
@@ -28,7 +28,7 @@
 
   <br />
   <div class="actions">
-    <%= submit_tag I18n.t('students.site.parent.new'), :class => "button mainaction" %>
+    <%= submit_tag I18n.t('students.site.parent.add'), :class => "button mainaction" %>or <%= link_to I18n.t("students.site.parent.select.title"), select_parent_member_student_path(@student) %>
   </div>
      
 <% end -%>

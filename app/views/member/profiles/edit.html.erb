@@ -7,7 +7,8 @@
 <% form_for :profile, :url => member_profile_path(@profile), :html => {:method => :put, :multipart=>true} do |f| -%>
   <fieldset class="profile">    
     <div class="fields">
-    	<legend><%= I18n.t('tog_social.profiles.member.profile_details') %></legend>
+    <legend><%= I18n.t('tog_social.profiles.member.profile_details') %></legend>
+	  <%  if i_am_school_moderator_for(@profile) %>
       <p>
         <label for="profile_first_name"><%= I18n.t('tog_social.profiles.model.first_name') %></label>
         <%= f.text_field :first_name, :class=>"fieldbox" %>
@@ -16,12 +17,13 @@
         <label for="profile_last_name"><%= I18n.t('tog_social.profiles.model.last_name') %></label>
         <%= f.text_field :last_name, :class=>"fieldbox" %>
       </p>
+	  <% end %>
       <p>
         <label for="profile_website"><%= I18n.t('tog_social.profiles.model.website') %></label>
         <%= f.text_field :website, :class=>"fieldbox wide" %>
       </p>
       <p>
-        <label for="profile_icon"><%= I18n.t('tog_social.profiles.model.avatar') %></label>
+        <label for="profile_icon"><%= I18n.t('profiles.model.avatar') %></label>
         <%= icon_for_profile(@profile, 'big')%>
         <%= file_field "profile", "icon" %><br />
         <span class="helpinfo"><%= I18n.t('tog_social.profiles.model.avatar_help') %></span>
