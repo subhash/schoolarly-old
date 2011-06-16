@@ -32,7 +32,7 @@
             <%= render :partial => '/member/notices/list_detail', :locals => { :notice => share.shareable , :group => share.shared_to } %>
             <% end %>
 			<% if share.shareable.is_a? Submission %>
-
+			<%= render :partial => '/member/submissions/list_detail', :locals => { :submission => share.shareable , :group => share.shared_to } %>
 			<% end %>
         </li>
         <% end %>

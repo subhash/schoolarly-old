@@ -1,21 +1,26 @@
 <% group = group if local_assigns[:group] %>
+<% assignment = submission.assignment %>
 <div class="title">
-    <%= link_to "#{sanitize assignment.post.title}", member_assignment_path(assignment, :group => group) %>
+    <%= link_to "#{sanitize assignment.name}", member_assignment_path(assignment, :group => group) %><%= " > " %><%= link_to "#{sanitize submission.name}", member_submission_path(submission, :group => group) %>
     <% if assignment.date %>
     <div class="time">
-        <%= assignment.date.inspect %>, <%=assignment.start_time.to_s(:time_only) %>- <%=assignment.end_time.to_s(:time_only) %>
+        <%= assignment.date.inspect %>, <%=assignment.start_time.to_s(:time_only) %><%= " - " %><%=assignment.end_time.to_s(:time_only) %>
     </div>
     <% end %>
-    <% if assignment.has_submissions and assignment.due_date %>
-    <div class="time">
-        <span class="detail"><%= I18n.t('assignments.model.due_by') %></span>
-        <%=assignment.due_date.to_s(:date_time_12) %>
+    <% grade = assignment.grades.for_user(current_user) %>
+    <% if grade %>
+    <div class="score float_right">
+        <%= link_to "View Grade", member_grade_path(assignment.grades.for_user(current_user)) %>
     </div>
     <% end %>
+</div>
+<div class="detail float_right">
+    <%= I18n.t('submissions.model.by') %>
+    <%= render :partial => 'member/profiles/header', :locals => {:profile => submission.submitter.profile, :size => "small" } %>
 </div>
 <%= render :partial => "shared/comments", :locals => { :commentable => assignment.post , :exclude_add_comment => true} %>
 <br/>
 <div class="portlet portletL">
     <%= link_to icon_for_assignment(assignment), member_assignment_path(assignment, :group => group), :title => "#{sanitize assignment.post.title}" %>
-    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(assignment.post.title)) %>. <%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %><%= " . " %><%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(assignment.post.title)) %><%= " . " %><%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
 </div>

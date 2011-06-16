@@ -23,7 +23,7 @@ class Share < ActiveRecord::Base
   
   
   def published?
-    if shareable.is_a? Assignment
+    if shareable.is_a? Assignment or shareable.is_a? Submission
       return shareable.post.published?
     elsif shareable.is_a? Post
       return shareable.published?
