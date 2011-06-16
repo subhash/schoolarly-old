@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :ban_access, :except => [:reset, :forgot, :new, :create]
+  before_filter :ban_access, :except => [:reset, :forgot, :new, :create, :activate]
   
   def reset
     @user = User.find_by_password_reset_code(params[:reset_code]) unless params[:reset_code].nil?
