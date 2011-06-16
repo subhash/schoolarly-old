@@ -10,6 +10,7 @@ class Member::DashboardController < Member::BaseController
     if current_user.parent?
       group_ids += current_user.friend_users.inject([]) {|c, u| c += u.group_ids}
     end
+    # TODO Include the shares I created - my submissions etc 
     if @filter == 'All'
       @shares = Share.to_groups_and_user(group_ids,current_user.id).paginate  :per_page => 10,
                                                   :page => @page,

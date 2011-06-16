@@ -12,10 +12,8 @@
                 <% unless @group %>
                 	> <span class="subtitle"><%= link_to share.shared_to.name, member_group_path(share.shared_to) %></span>
                 <% end %>
-				<% unless current_user.groups.include? share.shared_to %>
-					<% share.shared_to.memberships_of(current_user.friend_users).each do |m| %>				 
-						- <span class="subtitle"><%= link_to m.user.profile.full_name, member_profile_path(m.user.profile) %></span>
-					<% end %>
+				<% shared_through_whom(share).each do |u| %>				 
+					- <span class="subtitle"><%= link_to u.profile.full_name, member_profile_path(u.profile) %></span>
 				<% end %>
             </div>
 			<% if share.shareable.is_a? Picto::Photo %>
@@ -37,6 +35,8 @@
             <%= render :partial => '/member/notices/list_detail', :locals => { :notice => share.shareable , :group => share.shared_to } %>
             <% end %>
 			<% if share.shareable.is_a? Submission %>
+
+				<div class="portlet">Submission</div>
 
 			<% end %>
         </li>
