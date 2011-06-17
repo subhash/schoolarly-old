@@ -320,6 +320,9 @@ en:
         pending: "Grade pending"
       class_activity:
         edit: "Change details"
+    mailer:
+      new:
+        subject: New activity - %{name}    
 
              
   notebooks:
@@ -421,6 +424,9 @@ en:
     member:
       view:
         all: "View all %{size} comments"
+    mailer:
+      new:
+        subject: New comment in %{commentable}
 
   profiles:
     site:
