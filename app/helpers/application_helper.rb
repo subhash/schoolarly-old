@@ -19,4 +19,18 @@ module ApplicationHelper
     whom
   end
   
+  
+  def i_am_the_owner_of?(object)
+    case(object.class.name) 
+      when 'Event', 'Post'
+      object.owner == current_user
+      when 'Assignment'
+      object.post.owner == current_user
+    else
+      object.user == current_user
+    end
+    
+  end
+  
+  
 end

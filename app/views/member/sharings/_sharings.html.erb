@@ -1,7 +1,7 @@
 <div class="portlet_content">
     <ul>
         <% for share in @shares %>
-        <% if share.published? and display(share) %>
+        <% if share.published? and display?(share) %>
         <% profile = share.user.profile %>
         <li class="detail detail1">
             <div class="image">
@@ -9,11 +9,11 @@
             </div>
             <div>
                 <%= link_to profile.full_name, member_profile_path(profile) %>
-                <% unless @group %>
+                <% unless @group or !share.shared_to.is_a?(Group)%>
                 > <span class="subtitle"><%= link_to share.shared_to.name, member_group_path(share.shared_to) %></span>
                 <% end %>
 				<% shared_through_whom(share).each do |u| %>				 
-					- <span class="subtitle"><%= link_to u.profile.full_name, member_profile_path(u.profile) %></span>
+					> <span class="subtitle"><%= link_to u.profile.full_name, member_profile_path(u.profile) %></span>
 				<% end %>
             </div>
 			<% if share.shareable.is_a? Picto::Photo %>

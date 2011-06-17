@@ -12,6 +12,7 @@
                 <div>
                     <%= link_to s.profile.full_name, profile_path(s.profile) %>
                 </div>
+				<% if s.student? %>
                 <span class="float_right"><% grade = @assignment.grades.for_user(s) %>
                     <% if grade %>
                     <% if @assignment.score %>
@@ -26,6 +27,7 @@
                     <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => s) %>
                     <% end %>
                 </span>
+				<% end %>
                 <% if submission.blank? or !submission.post.published? %>
                 <div class="subtitle">
                     <% if @assignment.has_submissions %>

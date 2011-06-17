@@ -131,6 +131,8 @@ en:
         invited: "%{count} member(s) invited"    
       
     member:   
+      post: 'Post to %{name}'
+      membership: Membership
       admin_links: "Group Settings"
       pending: "Your group has been created but is pending for administrator's approval"  
       sub_groups:
@@ -144,22 +146,22 @@ en:
           accept: Accept
           reject: Reject
       photos:
-        share: Share Photo
+        share: Photo
       notes:
-        share: Post note to group 
+        share: Note 
         new: New note 
       notices:
-        share: Post message to group 
+        share: Message 
         new: New message
         create: Post message
         created: Message posted
       event:
-        share: Create event for group
+        share: Event
         calendar: View Calendar
       attachment:
         share: Share document with group
       assignment:
-        share: New activity
+        share: Activity
       admissions:
         title: Admissions
         new: Apply for admission
