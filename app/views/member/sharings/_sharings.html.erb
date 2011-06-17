@@ -12,6 +12,9 @@
                 <% unless @group %>
                 > <span class="subtitle"><%= link_to share.shared_to.name, member_group_path(share.shared_to) %></span>
                 <% end %>
+				<% shared_through_whom(share).each do |u| %>				 
+					- <span class="subtitle"><%= link_to u.profile.full_name, member_profile_path(u.profile) %></span>
+				<% end %>
             </div>
 			<% if share.shareable.is_a? Picto::Photo %>
             <%= render :partial => '/member/picto/photos/list_detail', :locals => {:photo => share.shareable , :group => share.shared_to} %>
