@@ -86,7 +86,7 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
     member.resources :rubrics
-    member.resources :assignments do |assignment|
+    member.resources :assignments, :member => {:publish_grades => :get} do |assignment|
       assignment.resources :submissions, :shallow => true
       assignment.resources :grades, :shallow => true, :member => {:change_rubric => :post}
     end

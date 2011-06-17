@@ -19,7 +19,20 @@
 	<h2><span><%= link_to I18n.t('groups.member.event.calendar'), member_conclave_events_path(:group => @group), :class => 'calendar' %></span></h2>
 	<h2><span><%= link_to I18n.t('groups.member.reports.title'), new_member_group_report_path(@group), :class => 'calendar' %></span></h2> 
 </div>
-<% end %>
+<div class="portlet portletC" id="portlet_moreLinks">
+    <h2><span><%= I18n.t('groups.member.post', :name => @group.name) %></span></h2>
+    <div class="portlet_content">
+        <ul>         
+		    <li><%= link_to I18n.t('groups.member.notices.share'), new_member_group_notice_path(@group), :class => 'sendmail' %></li>
+			<li><%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(default_blog_for(@group), :group => @group), :class => 'note' %></li>
+			<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group), :class => 'calendar' %></li>	
+			<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_assignment_path(:group => @group), :class => 'activity' %></li>		
+			<li><%= link_to I18n.t('groups.member.photos.share'), new_member_picto_photo_path(:group => @group), :class => 'photo' %></li>					  	
+        </ul>
+    </div> 
+</div> 
+ <% end -%>	  
+ 
 <% if i_am_moderator_of(@group) %>
 	<div class="portlet portletC" id="portlet_adminLinks">
 	    <h2><span><%= I18n.t('groups.member.admin_links') %></span></h2>  
@@ -46,33 +59,25 @@
 	    </div> 
 	</div> 
 <% end %>
-
+<% if @group.general? %>
 <div class="portlet portletC" id="portlet_moreLinks">
-    <h2><span><%= I18n.t('tog_social.more_links') %></span></h2>
+    <h2><span><%= I18n.t('groups.member.membership', :name => @group.name) %></span></h2>
     <div class="portlet_content">
         <ul>
-          <% if i_am_member_of @group -%>
-			  <% unless (@group.klass? || @group.school? || @group.subject? )%>
-	            <li><%= I18n.t('tog_social.groups.site.member') %><%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %></li>
-			  <% end %>
-			    <li><%= link_to I18n.t('groups.member.notices.share'), new_member_group_notice_path(@group), :class => 'sendmail' %></li>
-				<li><%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(default_blog_for(@group), :group => @group), :class => 'sendmail' %></li>
-				<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group), :class => 'calendar' %></li>	
-				<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_assignment_path(:group => @group), :class => 'activity' %></li>		
-				<li><%= link_to I18n.t('groups.member.photos.share'), new_member_picto_photo_path(:group => @group), :class => 'photo' %></li>				
-          <% else -%>
-            <% if !(@group.klass? || @group.school? || @group.subject? )%>
+			<% if i_am_member_of @group %>
+				<li><%= I18n.t('tog_social.groups.site.member') %><%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %></li>
+			<% else %>
 				<li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
 			<% end %>
+        </ul>
+    </div> 
+</div>   	
+<% end %>
 			<!--
 			<% if @group.school? %>
 			  <li><%= link_to I18n.t('groups.member.admission.new'), smerf_form_url(@group.network.form_code) %></li>				
 			<% end %>
-			-->
-          <% end -%>		  	
-        </ul>
-    </div> 
-</div>    
+			-->	
 
 <% @group.users.group_by(&:type).each do |type, users| %>
 	<%= render :partial => "member/profiles/profiles_portlet", :locals => { 

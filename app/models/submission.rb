@@ -13,5 +13,9 @@ class Submission < ActiveRecord::Base
     post.owner
   end
   
+  def name
+    post.title
+  end
+  
   
 end

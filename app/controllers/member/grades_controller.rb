@@ -96,7 +96,7 @@ class Member::GradesController < Member::BaseController
       end
     end
     
-  end
+  end  
   
   private
   

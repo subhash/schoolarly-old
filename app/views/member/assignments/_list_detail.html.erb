@@ -13,10 +13,24 @@
     </div>
     <% end %>
 </div>
-<% grade = assignment.grades.for_user(current_user) %>
-<% if grade %>
-<div class="score float_right">
-    <%= link_to "View Grade", member_grade_path(assignment.grades.for_user(current_user)) %>
+<% if i_am_the_owner_of?(assignment) or current_user.student? %>
+<div class="score">
+    <div>
+        <% submission = assignment.submissions.find_by_user_id(current_user.id) %>
+        <% if submission.blank? %>
+        <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(assignment) if assignment.has_submissions %>
+        <% elsif submission.post.published? %>
+        <%= link_to I18n.t('submissions.site.manage.view'), member_submission_path(submission) %>
+        <% else %>
+        <%= I18n.t("submissions.model.state.draft") %>: <%= link_to I18n.t('submissions.site.manage.view'), edit_member_submission_path(submission) %>
+        <% end %>
+    </div>
+    <% grade = assignment.grades.for_user(current_user) %>
+    <% if grade and grade.shared_to?(current_user, assignment.user) %>
+    <div>
+        <%= link_to "View Grade", member_grade_path(assignment.grades.for_user(current_user)), :class => "grade" %>
+    </div>
+    <% end %>
 </div>
 <% end %>
 <%= render :partial => "shared/comments", :locals => { :commentable => assignment , :exclude_add_comment => true} %>
@@ -24,12 +38,4 @@
 <div class="portlet portletL">
     <%= link_to icon_for_assignment(assignment), member_assignment_path(assignment, :group => group), :title => "#{sanitize assignment.post.title}" %>
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(assignment.post.title)) %>. <%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
-    <% submission = assignment.submissions.find_by_user_id(current_user.id) %>
-    <% if submission.blank? %>
-    <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(assignment) if assignment.has_submissions %>
-    <% elsif submission.post.published? %>
-    <%= link_to I18n.t('submissions.site.manage.view'), member_submission_path(submission) %>
-    <% else %>
-    <%= I18n.t("submissions.model.state.draft") %>: <%= link_to I18n.t('submissions.site.manage.view'), edit_member_submission_path(submission) %>
-    <% end %>
 </div>

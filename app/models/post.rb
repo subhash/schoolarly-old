@@ -46,12 +46,7 @@ class Post < ActiveRecord::Base
     end
     puts 'file - '+file.inspect
     puts 'file path - '+file.path
-    begin
-      response = RestClient.post(url, :token => 'vJK2p8cYFP1Xo0CUmweD', :file => file, :private => true, :multipart => true)
-    rescue Exception => e
-      puts e.inspect
-      return
-    end
+    response = RestClient.post(url, :token => 'vJK2p8cYFP1Xo0CUmweD', :file => file, :private => true, :multipart => true)
     puts "Response - #{response}"
     results = ActiveSupport::JSON.decode(response.to_s)
     raise "Error while uploading to crocodoc - #{results["error"]}" if results.include? "error"

@@ -12,6 +12,7 @@
                 <div>
                     <%= link_to s.profile.full_name, profile_path(s.profile) %>
                 </div>
+				<% if s.student? %>
                 <span class="float_right"><% grade = @assignment.grades.for_user(s) %>
                     <% if grade %>
                     <% if @assignment.score %>
@@ -26,6 +27,7 @@
                     <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => s) %>
                     <% end %>
                 </span>
+				<% end %>
                 <% if submission.blank? or !submission.post.published? %>
                 <div class="subtitle">
                     <% if @assignment.has_submissions %>
@@ -44,6 +46,9 @@
                 <% end %>
             </li>
             <% end %>
+            <div class="float_right">
+                <%= button_to I18n.t('assignments.member.grades.publish'), publish_grades_member_assignment_path(@assignment), :confirm => I18n.t('assignments.member.grades.publish_confirm'), :disabled => !@publish, :method => :get %>
+            </div>
             <% elsif @assignment.shared_to?(current_user) and current_user.student? %>
             <% submission = @assignment.submissions.find_by_user_id(current_user.id) %>
             <li>
@@ -54,7 +59,7 @@
                     <%= link_to current_user.profile.full_name, profile_path(current_user.profile) %>
                 </div>
                 <span class="float_right"><% grade = @assignment.grades.for_user(current_user) %>
-                    <% if grade %>
+                    <% if grade and grade.shared_to?(current_user, @assignment.user) %>
                     <% if @assignment.score %>
                     <% score = "#{trim(grade.score)}/#{trim(@assignment.score)}" %>
                     <% elsif @assignment.rubric %>

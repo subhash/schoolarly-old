@@ -1,10 +1,6 @@
 module Conclave
   module EventsHelper
-    
-    def i_am_the_owner_of?(event)
-      event.owner == current_user
-    end
-    
+
     def write_event_date_time(event, format=:short)
       if (event.start_date != event.end_date)
         write_event_date(event)
