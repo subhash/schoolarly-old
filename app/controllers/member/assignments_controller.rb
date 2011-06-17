@@ -21,7 +21,6 @@ class Member::AssignmentsController < Member::BaseController
     respond_to do |wants|
       if @assignment.save
         @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
-        AssignmentMailer.deliver_new_assignment_notification(@assignment)
         wants.html do
           flash[:ok] = I18n.t('assignments.member.add_success')
           redirect_back_or_default member_assignment_path(@assignment)
