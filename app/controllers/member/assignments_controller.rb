@@ -1,7 +1,7 @@
 class Member::AssignmentsController < Member::BaseController
   
   before_filter :find_group
-  before_filter :default_rubrics
+  before_filter :default_rubrics, :except => [:publish_grades]
   before_filter :find_assignment, :except => [:new, :create]
   
   uses_tiny_mce :only => [:new, :create, :edit, :update]
@@ -39,6 +39,7 @@ class Member::AssignmentsController < Member::BaseController
     store_location    
     @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
     @submitters = @shared_groups.collect(&:student_users).flatten
+    @publish = @assignment.grades.select{|g|!g.shared_to?(g.user, @assignment.user)}.any?
   end
   
   def edit    
@@ -70,6 +71,17 @@ class Member::AssignmentsController < Member::BaseController
     @stylesheets = %w()
     @feeds = %w()
   end    
+  
+  
+  def publish_grades
+    for grade in @assignment.grades
+      grade.share_to(grade.user, @assignment.user)
+    end
+    puts "after publish"
+    flash[:ok] = I18n.t('assignments.member.grades.publish_success')
+    redirect_to :action => :show
+  end
+  
   
   private 
   

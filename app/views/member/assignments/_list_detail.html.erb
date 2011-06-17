@@ -14,7 +14,7 @@
     <% end %>
 </div>
 <% grade = assignment.grades.for_user(current_user) %>
-<% if grade %>
+<% if grade and grade.shared_to?(current_user, assignment.user) %>
 <div class="score float_right">
     <%= link_to "View Grade", member_grade_path(assignment.grades.for_user(current_user)) %>
 </div>

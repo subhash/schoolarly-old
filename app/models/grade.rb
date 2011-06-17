@@ -6,7 +6,10 @@ class Grade < ActiveRecord::Base
   has_many :grade_rubric_descriptors, :dependent => :destroy
   has_many :rubric_descriptors, :through => :grade_rubric_descriptors
   
+  acts_as_shareable
+  
   after_save :touch_shares
+  
   def grade_points
     Rubric.trim(rubric_descriptors.collect(&:points).sum)
   end
@@ -23,7 +26,6 @@ class Grade < ActiveRecord::Base
     for share in  assignment.shares
       share.touch
     end
-  end
-  
+  end 
   
 end

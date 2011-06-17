@@ -318,6 +318,9 @@ en:
       grades:
         assign: "Assign Grade"
         pending: "Grade pending"
+        publish: "Publish grades"
+        publish_confirm: "This will publish the grades to students. Continue?"
+        publish_success: "Grades published to all students"
       class_activity:
         edit: "Change details"
 
