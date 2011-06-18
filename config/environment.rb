@@ -109,6 +109,7 @@ Tog::Plugins.settings :schoolarly, {
     "homeactivity.image.default"        => "dashboard/homeactivity2.png",
     "classactivity.image.default"        => "dashboard/classactivity.png",
     "submission.image.default"        => "dashboard/submission2.png",
+    "grade.image.default"             => "dashboard/grade2.png",
     "attachment.image.default"        => "dashboard/document2.png",
     "post.image.default"              => "dashboard/note2.png",
     "event.image.default"             => "dashboard/event2.png",

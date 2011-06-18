@@ -1,7 +1,9 @@
 <% group = group if local_assigns[:group] %>
 <% assignment = submission.assignment %>
 <div class="title">
-    <%= link_to "#{sanitize assignment.name}", member_assignment_path(assignment, :group => group) %><%= " > " %><%= link_to "#{sanitize submission.name}", member_submission_path(submission, :group => group) %>
+    <span class="small"><%= link_to "#{sanitize assignment.name}", member_assignment_path(assignment, :group => group) %><%= " > " %>
+    </span>
+    <%= link_to "#{sanitize submission.name}", member_submission_path(submission, :group => group) %>
     <% if assignment.date %>
     <div class="time">
         <%= assignment.date.inspect %>, <%=assignment.start_time.to_s(:time_only) %><%= " - " %><%=assignment.end_time.to_s(:time_only) %>
@@ -10,7 +12,7 @@
     <% grade = assignment.grades.for_user(current_user) %>
     <% if grade and grade.shared_to?(current_user, assignment.user) %>
     <div class="score float_right">
-        <%= link_to "View Grade", member_grade_path(assignment.grades.for_user(current_user)) %>
+        <%= link_to I18n.t('grades.member.view.title'), member_grade_path(assignment.grades.for_user(current_user)) %>
     </div>
     <% end %>
 </div>

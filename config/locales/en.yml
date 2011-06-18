@@ -496,6 +496,7 @@ en:
   grades:
     model:
       grade_points: "Grade points"
+      title: Grade
     member:
       new:
         title: "Grade"
@@ -506,6 +507,9 @@ en:
         change: "Change Grade"
         remove: "Remove Grade"
         update: "Save changes"
+      view:
+        title: View grade
+        grade_for: Grade for 
   
   comments:
     member:
