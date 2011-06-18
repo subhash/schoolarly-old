@@ -18,7 +18,6 @@ class Member::TeachersController < Member::BaseController
         @group.invite_and_accept(user)
         @group.grant_moderator(user) unless params[:moderator].blank?
         GroupMailer.deliver_entry_notification(@group, current_user, user)  
-        #           TODO Send notification to other moderators
       else
         @failed_teachers << row.join(",")
       end

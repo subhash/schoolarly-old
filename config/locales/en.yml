@@ -175,6 +175,7 @@ en:
             success: "%{user_name} is no longer a moderator of %{group_name}"
             failure: "%{user_name} could not be revoked of moderator privileges of %{group_name}"
             last_moderator: "%{user_name} is the last remaining moderator of %{group_name}"          
+            last_moderator_in_child: "%{user_name} is the last remaining moderator of a group within %{group_name}"
       invite:
         Student: "Invite new students"
         Teacher: "Invite new teachers"
@@ -352,6 +353,9 @@ en:
         Assignment:
           subject: New activity [%{shareable}] for [%{shared_to}]
           detail: User %{user_name} has posted a new activity [%{shareable}] to [%{shared_to}]
+        Submission:
+          subject: New submission [%{shareable}] for [%{shared_to}]
+          detail: User %{user_name} has posted a new submission [%{shareable}] to [%{shared_to}]
         Picto::Photo:
           subject: New photo [%{shareable}] for [%{shared_to}]
           detail: User %{user_name} has posted a new photo [%{shareable}] to [%{shared_to}]
