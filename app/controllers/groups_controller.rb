@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_filter :login_required, :only => [:join, :leave]
   before_filter :load_group, :only => [:show, :join, :leave, :members, :accept_invitation, :reject_invitation, :share, :sharings]
   
-  before_filter :ban_access, :except => [:leave]
+  before_filter :ban_access, :except => [:join, :leave]
   
   def index
     @type = params[:type] || 'groups'
@@ -21,26 +21,27 @@ class GroupsController < ApplicationController
   end
   
   def show
-    store_location
-    @page = params[:page] || '1'
-    @filter = params[:filter] || 'All'
-    if @filter == 'All'
-      @shares = @group.sharings.paginate :per_page => 10,
-                                           :page => @page, 
-                                           :order => "updated_at desc"
-    else
-      @shares = @group.sharings.of_type(@filter).paginate :per_page => 10,
-                                           :page => @page, 
-                                           :order => "updated_at desc"  
-    end
-    respond_to do |wants|
-      wants.html
-      wants.js do
-        render :update do |page|
-          page.replace_html 'sharings', :partial => 'member/sharings/sharings'
-        end
-      end
-    end
+    redirect_to member_group_path(@group)
+#    store_location
+#    @page = params[:page] || '1'
+#    @filter = params[:filter] || 'All'
+#    if @filter == 'All'
+#      @shares = @group.sharings.paginate :per_page => 10,
+#                                           :page => @page, 
+#                                           :order => "updated_at desc"
+#    else
+#      @shares = @group.sharings.of_type(@filter).paginate :per_page => 10,
+#                                           :page => @page, 
+#                                           :order => "updated_at desc"  
+#    end
+#    respond_to do |wants|
+#      wants.html
+#      wants.js do
+#        render :update do |page|
+#          page.replace_html 'sharings', :partial => 'member/sharings/sharings'
+#        end
+#      end
+#    end
   end
   
 end

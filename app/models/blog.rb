@@ -12,7 +12,7 @@
 #
 class Blog < ActiveRecord::Base
   def default_for_group?
-    author.groups.each do |g|
+    Group.all.each do |g|
       if title == g.name and description == Tog::Config["plugins.schoolarly.group.notebook.default"]+ " "+g.path
         return true
       end

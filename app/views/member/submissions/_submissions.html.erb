@@ -18,7 +18,7 @@
                     <% if @assignment.score %>
                     <% score = "#{trim(grade.score)}/#{trim(@assignment.score)}" %>
                     <% elsif @assignment.rubric %>
-                    <% score = "#{trim(grade.grade_points)}/#{trim(@assignment.rubric.max_points)}" %>
+                    <% score = grade.rubric_points %>
                     <% else %>
                     <% score = "View Grade" %>
                     <% end %>
