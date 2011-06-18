@@ -30,7 +30,7 @@ module DashboardHelper
   end
   
   def display?(share)
-    !share.shareable.is_a? Rubric and !share.shareable.is_a? Aggregation and !share.shareable.is_a? Grade
+    !share.shareable.is_a? Rubric and !share.shareable.is_a? Aggregation
   end
   
 end

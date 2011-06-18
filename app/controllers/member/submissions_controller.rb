@@ -15,8 +15,8 @@ class Member::SubmissionsController < Member::BaseController
     @submission.post.to_crocodoc(true)
     respond_to do |wants|
       if @submission.save 
-        @submission.share_to(@assignment.user, @submission.submitter)
         @submission.post.publish!  if params[:publish]
+        @submission.share_to(@assignment.user, @submission.submitter)
         wants.html do
           flash[:ok] = I18n.t('submissions.site.new.success')
           redirect_to member_submission_path(@submission)

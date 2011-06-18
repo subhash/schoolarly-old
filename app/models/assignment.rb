@@ -17,6 +17,8 @@ class Assignment < ActiveRecord::Base
   
   before_create :reset_unwanted_fields
   
+  after_save :touch_shares
+  
   has_many :grades do
     def for_user(user)
       find :first, :conditions => {:user_id => user.id}
@@ -51,5 +53,13 @@ class Assignment < ActiveRecord::Base
   def name
     post.title
   end
+  
+  private
+  
+  def touch_shares
+    for share in shares
+      share.touch
+    end
+  end 
   
 end

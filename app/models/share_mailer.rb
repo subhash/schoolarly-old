@@ -1,7 +1,6 @@
 class ShareMailer < ActionMailer::Base
   
   def new_share_notification(share)
-    return unless notify?(share) and share.published?
     setup_email(share)
     @subject += I18n.t("shares.mailer.new.#{share.shareable_type}.subject", :shareable => @body[:shareable_name], :shared_to => @body[:shared_to_name])
   end
@@ -11,9 +10,9 @@ class ShareMailer < ActionMailer::Base
     @body[:share] = share
     @body[:shared_to_name] = name_or_title(share.shared_to)
     @body[:shareable_name] = name_or_title(share.shareable)
-    @body[:user_name] = user_or_owner(share.shareable).name
-    @from         = user_or_owner(share.shareable).email
-    @recipients = shareholders(shareable).map(&:email).join(",")
+    @body[:user_name] = share.user.name
+    @from         = share.user.email
+    @recipients = shareholders(share.shareable).map(&:email).join(",")
     @subject      = Tog::Config["plugins.tog_core.mail.default_subject"]
     @sent_on      = Time.now
     @content_type = "text/html"
@@ -38,8 +37,8 @@ class ShareMailer < ActionMailer::Base
     end
   end
   
-  def notify? share
-    !(share.shareable.is_a? Rubric) || (share.shareable.is_a? Aggregation)    
+  def ShareMailer.notify?(share)
+    !((share.shareable.is_a? Rubric) || (share.shareable.is_a? Aggregation))    
   end
   
 end

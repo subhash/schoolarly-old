@@ -71,8 +71,7 @@ class Member::AssignmentsController < Member::BaseController
     @stylesheets = %w()
     @feeds = %w()
   end    
-  
-  private 
+   
   def publish_grades
     for grade in @assignment.grades
       grade.share_to(grade.user, @assignment.user)

@@ -16,7 +16,7 @@ class Member::Conversatio::PostsController < Member::BaseController
           flash[:ok] = I18n.t('tog_conversatio.member.posts.post_created')
           if @group
             @group.share(current_user, @post.class.to_s, @post.id)
-            redirect_back_or_default member_groups_path(@group)
+            redirect_back_or_default member_group_path(@group)
           else            
             redirect_to member_conversatio_blog_posts_path(@blog)            
           end
