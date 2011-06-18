@@ -346,6 +346,15 @@ en:
       to:
         search: "Type in the name of a contact"  
         
+  shares:
+    mailer:
+      new:
+        Assignment:
+          subject: New activity [%{shareable}] in [%{shared_to}]
+          detail: User %{user_name} has posted a new activity [%{shareable}] in [%{shared_to}]
+        Picto::Photo:
+          subject: New photo [%{shareable}] in [%{shared_to}]
+          detail: User %{user_name} has posted a new photo [%{shareable}] in [%{shared_to}]
 
   assignments:
     site:
@@ -401,9 +410,6 @@ en:
         publish_success: "Grades published to all students"
       class_activity:
         edit: "Change details"
-    mailer:
-      new:
-        subject: New activity - %{name}    
 
              
   notebooks:
