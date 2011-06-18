@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
-
+  
   before_filter :login_required, :only => [:join, :leave]
   before_filter :load_group, :only => [:show, :join, :leave, :members, :accept_invitation, :reject_invitation, :share]
-
+  
   def index
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
       format.rss { render(:layout => false) }
     end
   end
-
+  
   def search
     @order = params[:order] || 'name'
     @page = params[:page] || '1'
@@ -27,18 +27,18 @@ class GroupsController < ApplicationController
                                             :page => @page,
                                             :order => @order + " " + @asc
     respond_to do |format|
-       format.html { render :template => "groups/index"}
-       format.xml  { render :xml => @groups }
+      format.html { render :template => "groups/index"}
+      format.xml  { render :xml => @groups }
     end
   end
-
+  
   def show
   end
-
+  
   def members
   end
-
-
+  
+  
   def tag
     @tag = params[:tag]
     @groups = Group.active.public.find_tagged_with(@tag)
@@ -47,7 +47,7 @@ class GroupsController < ApplicationController
       format.xml  { render :xml => @groups.to_xml }
     end
   end
-
+  
   def join
     if @group.members.include? current_user
       flash[:notice] = I18n.t("tog_social.groups.site.already_member")
@@ -67,12 +67,12 @@ class GroupsController < ApplicationController
     end
     redirect_to group_url(@group)
   end
-
+  
   def leave
     if !@group.members.include?(current_user) && !@group.pending_members.include?(current_user)
       flash[:error] = I18n.t("tog_social.groups.site.not_member")
     else
-      if @group.moderators.include?(current_user) && @group.moderators.size == 1
+      if @group.last_moderator?(current_user)
         flash[:error] = I18n.t("tog_social.groups.site.last_moderator")
       else
         @group.leave(current_user)
@@ -102,25 +102,25 @@ class GroupsController < ApplicationController
   end
   
   protected
-    def load_group
-      #TODO be more specific with this error control
-      begin
-        @group = Group.find(params[:id])
-        raise I18n.t("tog_social.site.groups.unactive") unless @group.active?
-      rescue
-        flash[:error] = I18n.t("tog_social.groups.site.not_found")
-        redirect_to groups_path
-      end
+  def load_group
+    #TODO be more specific with this error control
+    begin
+      @group = Group.find(params[:id])
+      raise I18n.t("tog_social.site.groups.unactive") unless @group.active?
+    rescue
+      flash[:error] = I18n.t("tog_social.groups.site.not_found")
+      redirect_to groups_path
     end
-
-    def send_message_to_moderators(group, user, subject, body)
-      group.moderators.each do |moderator|
-        message = Message.new(
+  end
+  
+  def send_message_to_moderators(group, user, subject, body)
+    group.moderators.each do |moderator|
+      message = Message.new(
           :from     => user,
           :to       => moderator,
           :subject  => subject,
           :content  => body)
-        message.dispatch!
-      end
+      message.dispatch!
     end
+  end
 end

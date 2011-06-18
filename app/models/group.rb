@@ -28,6 +28,15 @@ class Group < ActiveRecord::Base
     end
   end
   
+  def self_and_all_children
+    self.children.inject([self]) { |array, child| array += child.self_and_all_children }.flatten
+  end
+  
+  def all_children
+    self_and_all_children - [self]
+  end
+  
+  
   def invite(user)
     parent.invite(user) if (parent and !parent.membership_of(user))
     mem = membership_of(user)
@@ -144,5 +153,11 @@ class Group < ActiveRecord::Base
     s.join+name
   end
   
-  
+  def last_moderator?(user)
+    return true if moderators.include?(user) && moderators.size == 1
+    for child in all_children
+      return true if child.last_moderator?(user) 
+    end
+    return false
+  end   
 end
