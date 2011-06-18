@@ -23,7 +23,7 @@ class Grade < ActiveRecord::Base
   end
   
   def touch_shares
-    for share in  assignment.shares
+    for share in shares
       share.touch
     end
   end 
