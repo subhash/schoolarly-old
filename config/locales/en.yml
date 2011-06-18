@@ -12,6 +12,81 @@ en:
           home: Home
           profile: My profile
           schoolarly: Schoolarly
+  conversatio:
+    member:
+      blogs:
+        blog_created: Notebook created successfully
+        blog_updated: Notebook updated successfully
+        blog_removed: Notebook deleted successfully
+      posts:
+        post_created: Note created successfully
+        post_updated: Note updated successfully
+        post_removed: Note deleted successfully  
+      bloggerships:
+        author_only: "Only notebook's author can do this"          
+    views:
+      blogs:
+        index:
+          title: Notebooks
+          create_blog: Create notebook
+          not_found: There aren't any notebooks yet.
+          posts: notes
+        show:
+          posts_not_found: There aren't any notes in this notebook yet.
+        tag_cloud_blogs:
+          all_tags: Tags in all notebooks
+      posts:
+        all_by_tag:
+          title: Notes tagged with %{tag_name}
+          not_found: has no notes with selected tag.
+        by_tag:
+          title: Notes tagged with %{tag}
+          not_found: There are no notes in this notebook tagged with %{tag}
+          posts_to_of: Notes %{start} to %{end} of %{page}
+        archives:
+          not_found: There are no notes in this notebook for the specified date.
+      member:
+        blogs:
+          index:
+            title: Your notebooks
+            create_your_blog: Create notebook
+            blog_title: Title
+            blog_posts: Notes
+            add_post: Add Note
+            add_post_title: Create a new note in this notebook
+            manage_editors_title: Manage editors for this notebook
+            blog: notebook
+          new:
+            create_blog: Create notebook
+            title: Notebook title
+            description: Notebook description
+          blogs:
+            your_blogs: Your notebooks
+            posts: Notes
+            create_new_blog: Create new notebook
+          edit:
+            edit_blog: Edit notebook
+            title: Notebook title
+            description: Notebook description
+            update_blog: Update notebook
+          manage:
+            title: Manage notebook '%{blog_title}'
+            edit_blog: Edit notebook
+            editors: Editors
+            posts: Posts
+            add_post: Add post
+        posts:
+          index:
+            posts_in_blog: Notes in %{blog_title}
+            create_post: Create Note
+            create_post_title: Create a new note in this notebook
+            post: note
+          edit:
+            update_post_in_blog: Update note in %{blog_title}
+            update_post: Update note
+          new:
+            create_post: Create Note
+            create_post_title: Create a new note in this notebook
   home:
     index:
       about_schoolarly: "Schoolarly is a communication platform that connects students, teachers and parents in a school"
@@ -28,8 +103,9 @@ en:
     site:
       schools: "Schools"
       demo: "Demo"
+      notebooks: Notebooks
     member:
-      attachments: "Documents"
+      notebooks: Notebooks
       sharings: "Shared items"
       rubrics: "Rubrics"
       unauthorized: You are not authorized to view this page. Please contact your school administrator for details.
@@ -485,6 +561,7 @@ en:
       start_time: "Starts at"
       end_time: "Ends by"
 
-    
+
+
 
        

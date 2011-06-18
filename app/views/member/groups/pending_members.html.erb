@@ -24,8 +24,10 @@
                     [<%= link_to I18n.t('tog_social.groups.member.accept'), member_group_accept_member_path(@group, user), {:class => "add", :title => I18n.t('tog_social.groups.member.accept_title')} -%>]               
                                  --
                     [<%= link_to I18n.t('tog_social.groups.member.reject'), member_group_reject_member_path(@group, user), {:class => "delete", :title => I18n.t('tog_social.groups.member.reject_title')} -%>]
+					<!--
 								 --
-					[<%= link_to 'View Application', member_group_apply_path(@group, user), {:title => I18n.t('tog_social.groups.member.reject_title')} -%>]								 
+					[<%= link_to 'View Application', member_group_apply_path(@group, user), {:title => I18n.t('tog_social.groups.member.reject_title')} -%>]
+					-->								 
                   </li>
                   <% end %>
             </ul>

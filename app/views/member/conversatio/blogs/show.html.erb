@@ -8,12 +8,12 @@
 </div> <!-- /.detail1 -->
 
 <div class="portlet portletB">
-    <h2><span><%= I18n.t('tog_conversatio.views.blogs.show.last_posts') %></span></h2>
+    <h2><span><%= I18n.t('conversatio.views.blogs.show.last_posts') %></span></h2>
 
     <div class="portlet_content">
         <ul>
           <% if @posts.empty? %>
-            <li class="clearfix"><%= I18n.t('tog_conversatio.views.blogs.show.posts_not_found') %>
+            <li class="clearfix"><%= I18n.t('conversatio.views.blogs.show.posts_not_found') %>
           <% else %>
               <% @posts.each do |post| %>
                 <%= render :partial => '/member/conversatio/posts/list_detail', :locals => { :blog => @blog, :post => post } %>

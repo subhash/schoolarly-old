@@ -84,6 +84,8 @@ Tog::Interface.sections(:member).tabs(:home).url = '/member'
 Tog::Interface.sections(:member).remove "My groups"
 Tog::Interface.sections(:member).remove "My account"
 Tog::Interface.sections(:member).remove "My sharings"
+Tog::Interface.sections(:member).remove "Blogs"
+Tog::Interface.sections(:member).add :notebooks, "/member/conversatio/blogs"
 Tog::Interface.sections(:member).add :sharings, "/member/sharings"
 Tog::Interface.sections(:member).add :rubrics, "/member/rubrics"
 
@@ -106,6 +108,7 @@ Tog::Plugins.settings :schoolarly, {
     "aggregation.image.default"        => "dashboard/aggregation2.png",
     "homeactivity.image.default"        => "dashboard/homeactivity2.png",
     "classactivity.image.default"        => "dashboard/classactivity.png",
+    "submission.image.default"        => "dashboard/submission2.png",
     "attachment.image.default"        => "dashboard/document2.png",
     "post.image.default"              => "dashboard/note2.png",
     "event.image.default"             => "dashboard/event2.png",

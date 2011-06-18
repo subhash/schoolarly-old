@@ -15,7 +15,7 @@ class Grade < ActiveRecord::Base
   end
   
   def rubric_points
-    assignment.rubric.grade_type ?  rubric_descriptors.first.level.name : "#{grade_points}/#{assignment.rubric.max_points}"
+    assignment.rubric.grade_type? ?  "Grade: #{rubric_descriptors.first.level.name}" : "#{grade_points}/#{assignment.rubric.max_points}"
   end
   
   def score

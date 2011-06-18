@@ -15,8 +15,10 @@ class Member::SubmissionsController < Member::BaseController
     @submission.post.to_crocodoc(true)
     respond_to do |wants|
       if @submission.save 
-        @submission.share_to(@assignment.user, @submission.submitter)
-        @submission.post.publish!  if params[:publish]
+        if params[:publish]
+          @submission.post.publish!          
+          @submission.share_to(@assignment.user, @submission.submitter)
+        end
         wants.html do
           flash[:ok] = I18n.t('submissions.site.new.success')
           redirect_to member_submission_path(@submission)
@@ -38,7 +40,10 @@ class Member::SubmissionsController < Member::BaseController
     @submission.post.to_crocodoc(true)
     respond_to do |wants|
       if @submission.save         
-        @submission.post.publish!  if params[:publish]
+        if params[:publish]
+          @submission.post.publish!          
+          @submission.share_to(@assignment.user, @submission.submitter)
+        end
         wants.html do
           flash[:ok] = I18n.t('submissions.site.edit.success')
           redirect_back_or_default member_assignment_path(@assignment)
@@ -61,7 +66,6 @@ class Member::SubmissionsController < Member::BaseController
       @session = @submission.post.from_crocodoc(current_user.profile.full_name, @submission.assignment.post.user == current_user)
     end
     @grade = @assignment.grades.for_user(@user)
-    puts '@grade - '+@grade.inspect
   end
   
   private
