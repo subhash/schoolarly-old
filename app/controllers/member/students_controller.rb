@@ -18,7 +18,6 @@ class Member::StudentsController < Member::BaseController
         # TODO check if you are allowed to invite
         @group.invite_and_accept(user)
         GroupMailer.deliver_entry_notification(@group, current_user, user)  
-        #           TODO Send notification to other moderators
         if(femail)
           father = create_user(femail, fname, Parent.new)        
           if father.invite_over_email
@@ -43,8 +42,7 @@ class Member::StudentsController < Member::BaseController
     if @failed_students.blank? and @failed_parents.blank?
       flash[:ok] = I18n.t("groups.site.Student.invited", :count => @users.count)      
       redirect_back_or_default(Tog::Config["plugins.tog_user.default_redirect_on_login"])
-    else    
-      puts @failed_parents.inspect
+    else
       @failed_students = @failed_students.join("\n")
       render :action => 'new'
     end

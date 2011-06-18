@@ -63,6 +63,7 @@ class Group < ActiveRecord::Base
   end
   
   def leave(user)
+    # TODO Check if last member or moderator of child group
     for child in children
       child.leave(user) if child.membership_of(user)
     end
