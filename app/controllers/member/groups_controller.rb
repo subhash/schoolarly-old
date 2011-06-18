@@ -245,10 +245,10 @@ class Member::GroupsController < Member::BaseController
     params[:members].each do |profile_id|
       user = Profile.find(profile_id).user
       unless @group.grant_moderator(user)
-        flash[:ok] = I18n.t("groups.site.edit.moderators.add.success", :user_name => added_users.join(", "), :group_name => @group.name)
         flash[:error] = I18n.t("groups.site.edit.moderators.add.failure", :user_name => user.profile.full_name, :group_name => @group.name)
         render 'edit'
       end
+      GroupMailer.deliver_add_moderator_notification(@group, current_user, user)
       added_users << user.profile.full_name
     end
     flash[:ok] = I18n.t("groups.site.edit.moderators.add.success", :user_name => added_users.join(", "), :group_name => @group.name)
@@ -261,6 +261,7 @@ class Member::GroupsController < Member::BaseController
       render 'edit'
     elsif @group.revoke_moderator(@moderator)
       flash[:ok] = I18n.t("groups.site.edit.moderators.remove.success", :user_name => @moderator.profile.full_name, :group_name => @group.name)
+      GroupMailer.deliver_revoke_moderator_notification(@group, current_user, @moderator)
       redirect_to edit_member_group_path(@group)
     else
       flash[:error] = I18n.t("groups.site.edit.moderators.remove.failure", :user_name => @moderator.profile.full_name, :group_name => @group.name)
