@@ -350,11 +350,25 @@ en:
     mailer:
       new:
         Assignment:
-          subject: New activity [%{shareable}] in [%{shared_to}]
-          detail: User %{user_name} has posted a new activity [%{shareable}] in [%{shared_to}]
+          subject: New activity [%{shareable}] for [%{shared_to}]
+          detail: User %{user_name} has posted a new activity [%{shareable}] to [%{shared_to}]
         Picto::Photo:
-          subject: New photo [%{shareable}] in [%{shared_to}]
-          detail: User %{user_name} has posted a new photo [%{shareable}] in [%{shared_to}]
+          subject: New photo [%{shareable}] for [%{shared_to}]
+          detail: User %{user_name} has posted a new photo [%{shareable}] to [%{shared_to}]
+        Event:
+          subject: New event [%{shareable}] for [%{shared_to}]
+          detail: User %{user_name} has posted a new event [%{shareable}] to [%{shared_to}]
+        Notice:
+          subject: New message [%{shareable}] for [%{shared_to}]
+          detail: User %{user_name} has posted a new message [%{shareable}] to [%{shared_to}]
+        Post:
+          subject: New note [%{shareable}] for [%{shared_to}]
+          detail: User %{user_name} has posted a new note [%{shareable}] to [%{shared_to}]
+        Grade:
+          subject: New grade for [%{shared_to}]
+          detail: User %{user_name} has assigned a new grade for [%{shared_to}]        
+          
+
 
   assignments:
     site:

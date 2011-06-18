@@ -17,6 +17,8 @@ class Assignment < ActiveRecord::Base
   
   before_create :reset_unwanted_fields
   
+  after_save :touch_shares
+  
   has_many :grades do
     def for_user(user)
       find :first, :conditions => {:user_id => user.id}
@@ -52,12 +54,12 @@ class Assignment < ActiveRecord::Base
     post.title
   end
   
-  def shareholders
-    shares.inject([]) do |c, s|
-      c += s.shared_to.users if s.shared_to.is_a?(Group)  
-      c << s.shared_to if s.shared_to.is_a?(User)
-      c
+  private
+  
+  def touch_shares
+    for share in shares
+      share.touch
     end
-  end
+  end 
   
 end

@@ -46,12 +46,16 @@ class Post < ActiveRecord::Base
     end
     puts 'file - '+file.inspect
     puts 'file path - '+file.path
-    response = RestClient.post(url, :token => 'vJK2p8cYFP1Xo0CUmweD', :file => file, :private => true, :multipart => true)
-    puts "Response - #{response}"
-    results = ActiveSupport::JSON.decode(response.to_s)
-    raise "Error while uploading to crocodoc - #{results["error"]}" if results.include? "error"
-    self.shortId = results['shortId']
-    self.uuid = results['uuid']
+    begin
+      response = RestClient.post(url, :token => 'vJK2p8cYFP1Xo0CUmweD', :file => file, :private => true, :multipart => true)
+      puts "Response - #{response}"
+      results = ActiveSupport::JSON.decode(response.to_s)
+      raise "Error while uploading to crocodoc - #{results["error"]}" if results.include? "error"
+      self.shortId = results['shortId']
+      self.uuid = results['uuid']
+    rescue Exception => e
+      puts e.inspect
+    end
   end
   
   def from_crocodoc(user_name, editable = false)

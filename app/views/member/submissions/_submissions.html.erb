@@ -72,8 +72,8 @@
                     <%= I18n.t('assignments.member.grades.pending') %>
                     <% end %>
                 </span>
-                <% if submission.blank? and @assignment.has_submissions %>
-                <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(@assignment) %>
+                <% if submission.blank? %>
+                <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(@assignment) if @assignment.has_submissions%>
                 <% elsif submission.post.published? %>
                 <%= link_to I18n.t('submissions.site.manage.view'), member_submission_path(submission) %>
                 <% else %>

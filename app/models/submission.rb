@@ -8,6 +8,7 @@ class Submission < ActiveRecord::Base
   
   accepts_nested_attributes_for :post
   
+  after_save :touch_shares  
   
   def submitter
     post.owner
@@ -17,5 +18,12 @@ class Submission < ActiveRecord::Base
     post.title
   end
   
+  private
+  
+  def touch_shares
+    for share in shares
+      share.touch
+    end
+  end
   
 end
