@@ -4,9 +4,9 @@
 <div class="title">
     <span class="small"><%= link_to "#{sanitize assignment.name}", member_assignment_path(assignment) %></span>
     <% if submission %>
-    <span class="small"><%= link_to "#{sanitize submission.name}", member_submission_path(submission) %></span>
+    <span class="small"><%= " > " %><%= link_to "#{sanitize submission.name}", member_submission_path(submission) %><%= " > " %></span>
     <% end %>
-	<%= link_to I18n.t('grades.member.view.title'), member_grade_path(grade), :class => "grade" %>
+    <%= link_to I18n.t('grades.model.title'), member_grade_path(grade), :class => "grade" %>
     <% if assignment.date %>
     <div class="time">
         <%= assignment.date.inspect %>, <%=assignment.start_time.to_s(:time_only) %>- <%=assignment.end_time.to_s(:time_only) %>
@@ -15,6 +15,6 @@
 </div>
 <br/>
 <div class="portlet portletL">
-    <%= link_to icon_for_grade,  member_grade_path(grade), :title => "#{I18n.t('grades.member.view.grade_for')} #{assignment.name} %>
+    <%= link_to icon_for_grade,  member_grade_path(grade), :title => "#{I18n.t('grades.member.view.grade_for')} #{assignment.name}" %>
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at)) %>
 </div>

@@ -38,7 +38,7 @@
 			<%= render :partial => '/member/submissions/list_detail', :locals => { :submission => share.shareable , :group => share.shared_to } %>
 			<% end %>
 			<% if share.shareable.is_a? Grade %>
-			<%= render :partial => '/member/assignments/list_detail', :locals => { :assignment => share.shareable.assignment } %>
+			<%= render :partial => '/member/grades/list_detail', :locals => { :share => share } %>
 			<% end %>
         </li>
         <% end %>

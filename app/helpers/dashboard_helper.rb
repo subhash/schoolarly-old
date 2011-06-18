@@ -16,6 +16,9 @@ module DashboardHelper
     return image_tag("/images/#{config["plugins.schoolarly.submission.image.default"]}" , options)
   end
   
+  def icon_for_grade(options={})
+    return image_tag("/images/#{config["plugins.schoolarly.grade.image.default"]}" , options)
+  end
   
   def icon_for_attachment(options={})
     return image_tag("/images/#{config["plugins.schoolarly.attachment.image.default"]}" , options)
