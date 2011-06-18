@@ -33,7 +33,9 @@
       <td><%= blog.creation_date %></td>
       <td>
         <%= link_to I18n.t('conversatio.views.member.blogs.index.add_post'),  new_member_conversatio_blog_post_url(blog), {:class => "add", :title => I18n.t('conversatio.views.member.blogs.index.add_post_title') } %>
-        <%= link_to(I18n.t('tog_conversatio.views.member.blogs.index.manage_editors'),  member_conversatio_blog_bloggerships_url(blog), {:class => "add", :title =>  I18n.t('conversatio.views.member.blogs.index.manage_editors_title') }) if current_user == blog.author %> 
+		<!--
+        <%= link_to(I18n.t('tog_conversatio.views.member.blogs.index.manage_editors'),  member_conversatio_blog_bloggerships_url(blog), {:class => "add", :title =>  I18n.t('conversatio.views.member.blogs.index.manage_editors_title') }) if current_user == blog.author %>
+		--> 
       </td>
     </tr>
     <% end %>

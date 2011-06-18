@@ -73,8 +73,8 @@ en:
             title: Manage notebook '%{blog_title}'
             edit_blog: Edit notebook
             editors: Editors
-            posts: Posts
-            add_post: Add post
+            posts: Notes
+            add_post: Add note
         posts:
           index:
             posts_in_blog: Notes in %{blog_title}
