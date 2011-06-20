@@ -17,8 +17,8 @@
             allowEmpty: true,
             inputOutputFormat: 'Y-m-d H:i',
             minDate: {
-                date: "<%= Date.today.to_s %>",
-                format: 'Y-m-d'
+                date: "<%= Date.today.to_s %> 00:00",
+                format: 'Y-m-d H:i'
             }
         });
         new DatePicker('.date_with_time_not_empty', {
@@ -27,8 +27,8 @@
             dayShort: 3,
             inputOutputFormat: 'Y-m-d H:i',
             minDate: {
-                date: "<%= Date.today.to_s %>",
-                format: 'Y-m-d'
+                date: "<%= Date.today.to_s %> 00:00",
+                format: 'Y-m-d H:i'
             }
         });
         new DatePicker('.date_without_time', {
@@ -65,7 +65,8 @@
         <% if @assignment.new_record? %>
         <%= I18n.t('assignments.model.has_submissions') %>
         <%= f.check_box :has_submissions %>
-        <span id="due_by" style="display: none;"><%= I18n.t('assignments.model.due_by') %>
+        <% style = @assignment.has_submissions ? "" : "display: none;" %>
+        <span id="due_by" style=<%=style%>><%= I18n.t('assignments.model.due_by') %>
             <%= f.text_field :due_date,  :class => "fieldbox date_with_time" %>
             <br/>
         </span>
