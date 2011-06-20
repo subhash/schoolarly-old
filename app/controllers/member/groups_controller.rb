@@ -177,8 +177,8 @@ class Member::GroupsController < Member::BaseController
         if !@group.members.include?(user) && !@group.pending_members.include?(user)
           flash[:error] = I18n.t("tog_social.groups.site.not_member")
         else
-          if @group.moderators.include?(user) && @group.moderators.size == 1
-            flash[:error] = I18n.t("tog_social.groups.site.last_moderator")
+          if @group.last_moderator?(user)
+            flash[:error] = I18n.t("groups.site.last_moderator")
           else
             if @group.leave(user)
               GroupMailer.deliver_exit_notification(@group, current_user, user)

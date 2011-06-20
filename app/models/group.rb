@@ -26,7 +26,7 @@ class Group < ActiveRecord::Base
     def of_type(type)
       find :all, :conditions => {:shareable_type => type}
     end
-  end
+  end 
   
   def invite(user)
     parent.invite(user) if (parent and !parent.membership_of(user))
@@ -145,5 +145,11 @@ class Group < ActiveRecord::Base
     s.join+name
   end
   
-  
+  def last_moderator?(user)
+    return true if moderators.include?(user) && moderators.size == 1
+    for child in children
+      return true if child.last_moderator?(user) 
+    end
+    return false
+  end   
 end
