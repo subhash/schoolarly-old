@@ -26,16 +26,7 @@ class Group < ActiveRecord::Base
     def of_type(type)
       find :all, :conditions => {:shareable_type => type}
     end
-  end
-  
-  def self_and_all_children
-    self.children.inject([self]) { |array, child| array += child.self_and_all_children }.flatten
-  end
-  
-  def all_children
-    self_and_all_children - [self]
-  end
-  
+  end 
   
   def invite(user)
     parent.invite(user) if (parent and !parent.membership_of(user))
@@ -156,7 +147,7 @@ class Group < ActiveRecord::Base
   
   def last_moderator?(user)
     return true if moderators.include?(user) && moderators.size == 1
-    for child in all_children
+    for child in children
       return true if child.last_moderator?(user) 
     end
     return false
