@@ -28,6 +28,8 @@
 <% content_for :sidebar do %>
 <%= render :partial => 'member/assignments/manage' %>
 <%= render :partial => 'shared/groups' %>
+<% if @assignment.post.published? %>
 <%= render :partial => 'member/submissions/submissions' %>
+<% end %>
 <!-- TODO tags & archive -->
 <% end %>

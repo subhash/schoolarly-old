@@ -84,9 +84,12 @@ en:
           edit:
             update_post_in_blog: Update note in %{blog_title}
             update_post: Update note
+            edit_note: Edit note
           new:
             create_post: Create Note
             create_post_title: Create a new note in this notebook
+          manage:
+            title: Manage note '%{name}'
   home:
     index:
       about_schoolarly: "Schoolarly is a communication platform that connects students, teachers and parents in a school"
@@ -385,6 +388,8 @@ en:
         posted: "Posted %{time}"
       list_detail:
         time_ago: "%{time} ago"
+        from_now: "%{time} from now"
+        not_published_yet: Not published yet
       comments:
         comment_title: Leaving A Comment On %{title}
     model:

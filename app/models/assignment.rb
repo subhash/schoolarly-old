@@ -17,7 +17,7 @@ class Assignment < ActiveRecord::Base
   
   before_create :reset_unwanted_fields
   
-  after_save :touch_shares
+  after_update :touch_shares
   
   has_many :grades do
     def for_user(user)

@@ -8,7 +8,7 @@ class Grade < ActiveRecord::Base
   
   acts_as_shareable
   
-  after_save :touch_shares
+  after_update :touch_shares
   
   def grade_points
     Rubric.trim(rubric_descriptors.collect(&:points).sum)

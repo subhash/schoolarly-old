@@ -23,6 +23,8 @@ class Post < ActiveRecord::Base
   
   before_validation :adjust_body
   
+  after_save :touch_shares
+  
   
   def to_crocodoc(use_body = false)
     url = "https://crocodoc.com/api/v1/document/upload"
@@ -74,6 +76,12 @@ class Post < ActiveRecord::Base
     puts 'adjust body'
     self.body = self.title if self.doc.file?
   end
+  
+  def touch_shares
+    for share in shares
+      share.touch
+    end
+  end 
   
 end
 
