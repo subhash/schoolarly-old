@@ -1,0 +1,8 @@
+<% if i_am_the_owner_of?(post) %>
+<div class="portlet portletD" id="portlet_userWall">
+    <h2><span><%= I18n.t('conversatio.views.member.posts.manage.title', :name => post.title) %></span></h2>
+    <div class="portlet_content">
+        <%= link_to I18n.t('conversatio.views.member.posts.edit.edit_note'), edit_member_conversatio_blog_post_path(@blog, post) %>
+    </div>
+</div>
+<% end %>

@@ -6,7 +6,12 @@
     </div>
     <div>
         <%= link_to profile.full_name, member_profile_path(profile) %>
+        <% if @post.published? %>
         <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(@post.published_at)) %>
+        <% else %>
+        <%= I18n.t('assignments.site.list_detail.from_now', :time => time_ago_in_words(@post.published_at)) %>
+		<span class="subtitle">[<%= I18n.t('assignments.site.list_detail.not_published_yet')%>]</span>
+        <% end %>
     </div>
     <!--
     <%= render :partial => 'conversatio/posts/tags', :locals => { :post => @post } %>
@@ -22,5 +27,5 @@
     </div>
     <% end %>
     <br/>
-    <%= render :partial => "shared/comments", :locals => { :commentable => commentable , :show_all => true} %>
+    <%= render :partial => "shared/comments", :locals => { :commentable => commentable , :show_all => true} if @post.published? %>
 </div>

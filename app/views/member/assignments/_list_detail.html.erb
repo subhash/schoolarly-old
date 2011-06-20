@@ -13,7 +13,7 @@
     </div>
     <% end %>
 </div>
-<% if i_am_the_owner_of?(assignment) or current_user.student? %>
+<% if assignment.post.published? and (i_am_the_owner_of?(assignment) or current_user.student?) %>
 <div class="score">
     <div>
         <% submission = assignment.submissions.find_by_user_id(current_user.id) %>
@@ -37,5 +37,11 @@
 <br/>
 <div class="portlet portletL">
     <%= link_to icon_for_assignment(assignment), member_assignment_path(assignment, :group => group), :title => "#{sanitize assignment.post.title}" %>
-    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(assignment.post.title)) %>. <%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
+    <% if assignment.post.published? %>
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>
+    <% else %>
+    <%= I18n.t('assignments.site.list_detail.from_now', :time => time_ago_in_words(assignment.post.published_at)) %>
+	<% end %>
+    <%= " . " %>
+    <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(assignment.post.title)) %>. <%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
 </div>
