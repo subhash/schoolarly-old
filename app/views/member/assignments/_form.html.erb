@@ -46,7 +46,7 @@
     });
 </script>
 <% f.fields_for :post do |p| %>
-<%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
+<%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p, :post => @assignment.post } %>
 <%= hidden_field_tag :group, @group.id if @group %>
 <%= hidden_field_tag 'post_state', I18n.t('tog_conversatio.model.states.published') %>
 <% if @assignment.new_record? or !@assignment.post.published? %>
@@ -71,7 +71,7 @@
             <br/>
         </span>
         <% elsif @assignment.has_submissions %>
-        <%= I18n.t('assignments.model.due_by') %>
+        <%= I18n.t('assignments.member.edit.submissions_due_by') %>
         <%= f.text_field :due_date,  :class => "fieldbox date_with_time" %>
         <% end %>
     </p>

@@ -8,8 +8,7 @@ class Member::AssignmentsController < Member::BaseController
   
   
   def new
-    @post = Post.new(:published_at => Time.now)
-    @assignment = Assignment.new(:post => @post) 
+    @assignment = Assignment.new(:post => Post.new(:published_at => Time.now)) 
   end 
   
   def create
@@ -18,7 +17,6 @@ class Member::AssignmentsController < Member::BaseController
     published_at = Time.now || @assignment.post.published_at
     @assignment.post.publish!
     @assignment.post.published_at = published_at if published_at > Time.now
-    @post = @assignment.post
     @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]
     respond_to do |wants|
       if @assignment.save
@@ -73,7 +71,7 @@ class Member::AssignmentsController < Member::BaseController
     @stylesheets = %w()
     @feeds = %w()
   end    
-   
+  
   def publish_grades
     for grade in @assignment.grades
       grade.share_to(grade.user, @assignment.user)

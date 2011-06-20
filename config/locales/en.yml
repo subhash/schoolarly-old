@@ -417,6 +417,7 @@ en:
         save: "Save"
         success: "Assignment updated"
         failure: "Failed to update assignment"
+        submissions_due_by: Student submissions due by
       manage:
         title: "Manage %{name}"
       new:

@@ -10,6 +10,7 @@
         });
     });
 </script>
+<% post ||= @post %>
 <div class="fields">
     <p>
         <label for="post_title">
@@ -17,7 +18,7 @@
         </label>
         <%= f.text_field :title, :class=>"fieldbox wide" -%>
     </p>
-    <% if @post.new_record? %>
+    <% if post.new_record? %>
     <p id="compose">
         <%= I18n.t('posts.model.compose.title') %>
         <%= f.text_area :body, :class=>"fieldbox wide mceEditor" -%>
@@ -31,7 +32,7 @@
         <%= f.file_field  :doc %>
         <%= link_to_function I18n.t('posts.model.compose.title_or'), '#', :id => "compose_link" %>
     </p>
-    <% elsif @post.doc.file? %>
+    <% elsif post.doc.file? %>
     <p id="doc">
         <label for="post_doc">
             <%= I18n.t('posts.member.edit.file') %>

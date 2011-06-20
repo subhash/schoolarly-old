@@ -12,7 +12,7 @@
 <% form_for(@submission, :url=>member_assignment_submissions_path(@assignment), :html=>{:multipart=>true}) do |f| %>
 <fieldset>
     <% f.fields_for :post do |p| %>
-    <%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p} %>
+    <%= render :partial => 'member/conversatio/posts/form', :locals => {:f => p, :post => @submission.post} %>
     <% end %>
     <%= f.hidden_field :assignment_id %>
     <%= f.hidden_field :user_id %>
