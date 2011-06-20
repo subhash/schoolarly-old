@@ -72,7 +72,7 @@ class GroupsController < ApplicationController
     if !@group.members.include?(current_user) && !@group.pending_members.include?(current_user)
       flash[:error] = I18n.t("tog_social.groups.site.not_member")
     else
-      if @group.last_moderator?(current_user)
+      if @group.moderators.include?(current_user) && @group.moderators.size == 1
         flash[:error] = I18n.t("tog_social.groups.site.last_moderator")
       else
         @group.leave(current_user)
