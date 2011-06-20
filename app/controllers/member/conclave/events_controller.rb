@@ -37,30 +37,40 @@ class Member::Conclave::EventsController < Member::BaseController
       wants.html do
         @order = params[:order] || 'start_date'
         @page = params[:page] || '1'
-        @asc = params[:asc] || 'desc'
+        @asc = params[:asc] || 'title'
         if @group
-          @events = @group.sharings.of_type('Event').map(&:shareable).paginate :per_page => 10,
-                                               :page => @page,
-                                               :order => @order + " " + @asc
+          groups = [@group]
         else
-          @events = (current_user.events  | Share.shared_to_groups_of_type(current_user.groups,'Event').collect(&:shareable)).paginate :per_page => 10,
+          groups = current_user.groups
+        end
+        @events = Share.shared_to_groups_of_type(groups,'Event').collect(&:shareable).paginate :per_page => 5,
                                                :page => @page,
-                                               :order => @order + " " + @asc
-        end                                       
+                                               :order => @order + " " + @asc 
+        @assignments = Share.shared_to_groups_of_type(groups, 'Assignment').collect(&:shareable).delete_if{|a| !a.date and !a.due_date}.paginate :per_page => 5,
+                                               :page => @page,
+                                               :order => @order + " " + @asc                                                
       end
       wants.json do
         from = Time.at(params[:start].to_i)
         to = Time.at(params[:end].to_i)
-        @events = between(from, to)
-        puts "group #{@group} events #{@events.inspect}"
+        @events = between(from, to, 'Event')
         events = @events.collect do |event|
           start_time = event.start_date.to_time.advance(:hours => event.start_time.hour, :minutes => event.start_time.min, :seconds => event.start_time.sec)
           end_time = event.end_date.to_time.advance(:hours => event.end_time.hour, :minutes => event.end_time.min, :seconds => event.end_time.sec)
           {:title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}          
         end
+        @assignments = between(from, to, 'Assignment').delete_if{|a| !a.date and !a.due_date}
+        events += @assignments.collect do |ass|
+          if ass.date
+            start_time = ass.date.to_time.advance(:hours => ass.start_time.hour, :minutes => ass.start_time.min, :seconds => ass.start_time.sec)
+            end_time = ass.date.to_time.advance(:hours => ass.end_time.hour, :minutes => ass.end_time.min, :seconds => ass.end_time.sec)
+          else
+            start_time = ass.due_date
+            end_time = ass.due_date
+          end
+          {:title => ass.name, :start => start_time.iso8601, :end => end_time.iso8601}          
+        end
         render :text => events.to_json
-        puts "start #{from} to stop #{to}"
-        puts 'json - '+events.to_json
       end
     end
   end
@@ -71,13 +81,15 @@ class Member::Conclave::EventsController < Member::BaseController
     @group = Group.find(params[:group]) if params[:group]
   end
   
-  def between(from, to)
+  def between(from, to, type)
+    # TODO need to check from and to
     if @group
-      @group.sharings.of_type('Event').map(&:shareable)
+      groups = [@group]
     else
-      # TODO .between(from.to_date, to.to_date)
-       (current_user.events  | Share.shared_to_groups_of_type(current_user.groups,'Event').collect(&:shareable))
-    end    
+      groups = current_user.groups   
+    end
+    # TODO check why we needed (current_user.events  | 
+    Share.shared_to_groups_of_type(groups, type).collect(&:shareable)
   end
   
   def find_event

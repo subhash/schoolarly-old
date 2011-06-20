@@ -49,7 +49,7 @@
 <ul class="list2">
     <% if @events.empty? %>
     <li class="clearfix">
-    You haven't create any event<% else %>
+    No events<% else %>
     <% @events.each do |event| %>
     <li class="clearfix detail1" id="event<%=event.id.to_s%>">
         <div class="clearfix">
@@ -72,10 +72,39 @@
         </div>
     </li>
     <%end %>
+    <%end %>
+</ul>
+
+<div class="title3 clearfix margin1">
+    My activities
+</div>
+<br/>
+<ul class="list2">
+    <% if @assignments.empty? %>
+    <li class="clearfix">
+    No activities<% else %>
+    <% @assignments.each do |assignment| %>
+	<% date = assignment.due_date || assignment.date %>
+    <li class="clearfix detail1" id="assignment<%=assignment.id.to_s%>">
+        <div class="clearfix">			
+
+            <div class="image date month<%= date.month %>">
+                <%= date.day %>
+            </div>
+			
+            <div>
+                <span class="title"><%= link_to assignment.name, member_assignment_path(assignment), :title => assignment.name %></span>
+            </div>
+			<% if assignment.start_time and assignment.end_time %>
+            <div class="summary">
+                <%= "#{I18n.t('tog_conclave.site.from_time')} #{assignment.start_time} #{I18n.t('tog_conclave.site.to_time')} #{assignment.end_time}" %>
+            </div>
+			<% end %>
+        </div>
+    </li>
+    <%end %>
     <div class="info_results">
-        <span class="info_items"><%= page_entries_info @events %>
-        </span>
-        <span class="pages_navigation right"><%= will_paginate @events %>
+        <span class="pages_navigation"><%= will_paginate (@events.size > @assignments.size) ? @events : @assignments %>
         </span>
     </div>
     <%end %>

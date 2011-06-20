@@ -35,9 +35,20 @@ class User < ActiveRecord::Base
   end
   
   def invite_over_email
-    # Signup notification is overriden to request password reset
     self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    @invited = true
     save(true)
+  end
+  
+  after_create :send_signup_invitation
+  
+  def send_signup_invitation    
+    UserMailer.deliver_signup_invitation_notification(self) if @invited    
+  end
+  
+  def send_activation_request    
+    # Prevent activation emails for invites    
+    UserMailer.deliver_signup_notification(self) unless self.activation_code.blank?    
   end
   
   #  after_save :create_default_blog
