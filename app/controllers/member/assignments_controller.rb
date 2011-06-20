@@ -71,12 +71,11 @@ class Member::AssignmentsController < Member::BaseController
     @stylesheets = %w()
     @feeds = %w()
   end    
-   
+  
   def publish_grades
     for grade in @assignment.grades
       grade.share_to(grade.user, @assignment.user)
     end
-    puts "after publish"
     flash[:ok] = I18n.t('assignments.member.grades.publish_success')
     redirect_to :action => :show
   end

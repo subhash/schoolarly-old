@@ -1,4 +1,7 @@
 <%= include_tiny_mce_if_needed %>
+<% include_form_effects %>
+<% include_javascript "busy_ajax_jquery" %>
+
 <div class="titleB">
     <% if @group %>
     <%= link_to @group.name, member_group_path(@group) %> > <%= I18n.t('groups.member.notes.new') %>

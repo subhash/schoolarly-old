@@ -13,6 +13,7 @@
     </div>
     <% end %>
 </div>
+
 <% if assignment.post.published? and (i_am_the_owner_of?(assignment) or current_user.student?) %>
 <div class="score">
     <div>

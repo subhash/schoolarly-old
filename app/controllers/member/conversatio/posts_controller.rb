@@ -55,6 +55,12 @@ class Member::Conversatio::PostsController < Member::BaseController
     @shared_groups = @post.shares_to_groups.collect(&:shared_to)
   end
   
+  def set_javascripts_and_stylesheets
+    @javascripts = %w(application)
+    @stylesheets = %w()
+    @feeds = %w()
+  end  
+  
   private
   
   def load_blog

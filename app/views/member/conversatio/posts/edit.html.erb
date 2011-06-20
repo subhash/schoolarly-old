@@ -1,4 +1,7 @@
 <%= include_tiny_mce_if_needed %>
+<% include_form_effects %>
+<% include_javascript "busy_ajax_jquery" %>
+
 <div class="titleB"><%= I18n.t('tog_conversatio.views.member.posts.edit.update_post_in_blog', :blog_title => @blog.title)%></div>
 
 <%= error_messages_for :post %>
