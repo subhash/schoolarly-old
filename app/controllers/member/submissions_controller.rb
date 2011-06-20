@@ -6,11 +6,13 @@ class Member::SubmissionsController < Member::BaseController
   before_filter :find_user
   
   def new
-    @submission = Submission.new(:post => Post.new, :assignment => @assignment, :user => @user)
+    @post = Post.new
+    @submission = Submission.new(:post => @post, :assignment => @assignment, :user => @user)
   end
   
   def create
     @submission = Submission.new(params[:submission])
+    @post = @submission.post
     @submission.post.user = current_user
     @submission.post.to_crocodoc(true)
     respond_to do |wants|

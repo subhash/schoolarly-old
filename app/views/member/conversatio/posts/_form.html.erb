@@ -17,19 +17,35 @@
         </label>
         <%= f.text_field :title, :class=>"fieldbox wide" -%>
     </p>
+    <% if @post.new_record? %>
     <p id="compose">
         <%= I18n.t('posts.model.compose.title') %>
         <%= f.text_area :body, :class=>"fieldbox wide mceEditor" -%>
         <br/>
         <%= link_to I18n.t('posts.model.doc.title_or'), '#', :id => "doc_link" %>
     </p>
-    <p id="doc" style="display:none;">
+    <p id="doc" style=<%= "display:none;" %>>
         <label for="post_doc">
             <%= I18n.t('posts.model.doc.title') %>
         </label>
         <%= f.file_field  :doc %>
         <%= link_to_function I18n.t('posts.model.compose.title_or'), '#', :id => "compose_link" %>
     </p>
+    <% elsif @post.doc.file? %>
+    <p id="doc">
+        <label for="post_doc">
+            <%= I18n.t('posts.member.edit.file') %>
+        </label>
+        <%= f.file_field  :doc %>
+    </p>
+    <% else %>
+    <p id="compose">
+        <label for="post_body">
+            <%= I18n.t('posts.model.compose.title') %>
+        </label>
+        <%= f.text_area :body, :class=>"fieldbox wide mceEditor" -%>
+    </p>
+    <% end %>
     <p>
         <label for="post_tag_list">
             <%= I18n.t('tog_conversatio.model.post.tags') %>

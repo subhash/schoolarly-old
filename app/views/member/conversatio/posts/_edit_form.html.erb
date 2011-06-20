@@ -5,19 +5,26 @@
         </label>
         <%= f.text_field :title, :class=>"fieldbox wide" -%>
     </p>
-	<% if @post.doc.file? %>
-	<p id="doc">
+    <% if @post.doc.file? %>
+    <p id="doc">
         <label for="post_doc">
             <%= I18n.t('posts.model.doc.title') %>
         </label>
         <%= f.file_field  :doc %>
     </p>
-	<% else %>
+    <% else %>
     <p id="compose">
         <label for="post_body">
             <%= I18n.t('posts.model.compose.title') %>
         </label>
         <%= f.text_area :body, :class=>"fieldbox wide mceEditor" -%>
-    </p>    
-	<% end %>
+    </p>
+    <% end %>
+    <p>
+        <label for="post_tag_list">
+            <%= I18n.t('tog_conversatio.model.post.tags') %>
+        </label>
+        <%= f.text_field :tag_list, :class=>"fieldbox wide" -%>
+        <span class="helpinfo"><%= I18n.t('tog_social.tags.separated_by_comma') %></span>
+    </p>
 </div>

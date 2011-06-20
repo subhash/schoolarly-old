@@ -8,7 +8,8 @@ class Member::AssignmentsController < Member::BaseController
   
   
   def new
-    @assignment = Assignment.new(:post => Post.new(:published_at => Time.now)) 
+    @post = Post.new(:published_at => Time.now)
+    @assignment = Assignment.new(:post => @post) 
   end 
   
   def create
@@ -17,6 +18,7 @@ class Member::AssignmentsController < Member::BaseController
     published_at = Time.now || @assignment.post.published_at
     @assignment.post.publish!
     @assignment.post.published_at = published_at if published_at > Time.now
+    @post = @assignment.post
     @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]
     respond_to do |wants|
       if @assignment.save
@@ -76,7 +78,6 @@ class Member::AssignmentsController < Member::BaseController
     for grade in @assignment.grades
       grade.share_to(grade.user, @assignment.user)
     end
-    puts "after publish"
     flash[:ok] = I18n.t('assignments.member.grades.publish_success')
     redirect_to :action => :show
   end
