@@ -46,7 +46,7 @@ class Member::SubmissionsController < Member::BaseController
         end
         wants.html do
           flash[:ok] = I18n.t('submissions.site.edit.success')
-          redirect_back_or_default member_assignment_path(@assignment)
+          redirect_to member_submission_path(@submission)
         end
       else
         wants.html do

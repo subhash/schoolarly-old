@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   
   def reset
     @user = User.find_by_password_reset_code(params[:reset_code]) unless params[:reset_code].nil?
+    flash[:error] = I18n.t("users.site.reset.cannot_find") unless @user
     if request.post?
       if @user.update_attributes(:password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
         @user.reset_password
