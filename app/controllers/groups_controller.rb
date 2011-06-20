@@ -49,7 +49,7 @@ class GroupsController < ApplicationController
       flash[:error] = I18n.t("tog_social.groups.site.not_member")
     else
       if @group.last_moderator?(current_user)
-        flash[:error] = I18n.t("tog_social.groups.site.last_moderator")
+        flash[:error] = I18n.t("groups.site.last_moderator")
       else
         @group.leave(current_user)
         #todo: eliminar cuando este claro que sucede si un usuario ya es miembro

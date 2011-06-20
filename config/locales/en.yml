@@ -135,6 +135,7 @@ en:
       shared:
         title: "Shared Groups"
     site:
+      last_moderator: You are the last moderator of this group or one of its child groups. You can't leave it before nominating a new moderator
       posts:
         latest: "Latest Posts"
       title: "Groups"
