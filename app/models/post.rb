@@ -60,12 +60,16 @@ class Post < ActiveRecord::Base
   
   def from_crocodoc(user_name, editable = false)
     url = "https://crocodoc.com/api/v1/session/get"
-    response = RestClient.get(url, :params => {:token => 'vJK2p8cYFP1Xo0CUmweD', :uuid => self.uuid, :name => CGI::escape(user_name), :editable => editable, :multipart => true})
-    puts "Response - #{response}"                    
-    results = ActiveSupport::JSON.decode(response.to_s)
-    raise "Error while getting session from crocodoc - #{results["error"]}" if results.include? "error"
-    return results['sessionId'] if results.include? 'sessionId'
-    puts 'unexpected results - '+results.inspect
+    begin
+      response = RestClient.get(url, :params => {:token => 'vJK2p8cYFP1Xo0CUmweD', :uuid => self.uuid, :name => CGI::escape(user_name), :editable => editable, :multipart => true})
+      puts "Response - #{response}"                    
+      results = ActiveSupport::JSON.decode(response.to_s)
+      raise "Error while getting session from crocodoc - #{results["error"]}" if results.include? "error"
+      return results['sessionId'] if results.include? 'sessionId'
+      puts 'unexpected results - '+results.inspect
+    rescue Exception => e
+      puts e.inspect
+    end      
   end
   
   private
