@@ -33,4 +33,13 @@ module ApplicationHelper
   end
   
   
+  def site_title
+    if current_user and current_user.school
+      link_to current_user.school.group.name, member_group_path(current_user.school.group)
+    else
+      link_to 'Schoolarly', '/'
+    end
+    
+  end
+  
 end
