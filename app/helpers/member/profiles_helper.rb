@@ -1,5 +1,0 @@
-module Member::ProfilesHelper
-  
-
-  
-end
