@@ -4,11 +4,10 @@
 <script type="text/javascript">
     jQuery.noConflict();
 </script>
-<%= render :partial => 'member/profiles/header', :locals => {:profile => @profile} %>
 <% pending_submission = @submission.blank? or !@submission.post.published? %>
 <% title = pending_submission ? I18n.t('grades.member.new.pending') : @submission.post.title %>
 <div class="titleB">
-    <%= link_to @assignment.post.title, member_assignment_path(@assignment) %>> <%= title %>
+    <%= title %>
 </div>
 <% unless pending_submission %>
 <% unless @submission.user == @submission.submitter %>

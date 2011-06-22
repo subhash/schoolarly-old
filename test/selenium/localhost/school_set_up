@@ -8,7 +8,6 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
-<tr><td><a href="add_profile_photo">add_profile_photo</a></td></tr>
 <tr><td><a href="new_school">new_school</a></td></tr>
 <tr><td><a href="add_teachers">add_teachers</a></td></tr>
 <tr><td><a href="add_groups">add_groups</a></td></tr>

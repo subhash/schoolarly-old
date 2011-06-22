@@ -1,3 +1,8 @@
+<% if @grade.assignment.score %>
+<div class="grade float_right">
+    Total Score : <%= trim(@grade.score) %>/<%= trim(@grade.assignment.score) %>
+</div>
+<% end %>
 <% @rubric = @assignment.rubric %>
 <% if @rubric %>
 <table class="tableB">
@@ -32,17 +37,15 @@
     </tbody>
 </table>
 <% if @rubric.max_points %>
-<div>
+<div class="title float_right">
     Grade Points : <%= trim(@grade.grade_points) %>/<%= trim(@rubric.max_points) %>
 </div>
 <% end %>
 <% end %>
-<% if @grade.assignment.score %>
-<div class="grade float_right">
-    Total Score : <%= trim(@grade.score) %>/<%= trim(@grade.assignment.score) %>
-</div>
-<% end %>
+<br/>
 <% if i_am_the_author_of?(@grade.assignment.post) %>
-<%= link_to_remote I18n.t('grades.member.edit.remove'), :url => member_grade_path(@grade), :method => :delete , :update => 'grade' , :html => {:class => 'button'} %>
-<%= link_to_remote I18n.t('grades.member.edit.change'), :url => edit_member_grade_path(@grade), :method => :get , :update => 'grade', :html => {:class => 'button mainaction'} %>
+<div>
+    <%= link_to_remote I18n.t('grades.member.edit.remove'), :url => member_grade_path(@grade), :method => :delete , :update => 'grade' , :html => {:class => 'button'} %>
+    <%= link_to_remote I18n.t('grades.member.edit.change'), :url => edit_member_grade_path(@grade), :method => :get , :update => 'grade', :html => {:class => 'button mainaction'} %>
+</div>
 <% end %>

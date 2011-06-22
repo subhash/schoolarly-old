@@ -1,3 +1,7 @@
+<%= render :partial => 'member/profiles/header', :locals => {:profile => @profile} %>
+<div class="titleB">
+    <%= link_to @assignment.post.title, member_assignment_path(@assignment) %><%= " > " %><%= I18n.t('submissions.model.title')%>
+</div>
 <%= render :partial => 'show' %>
 <div id='grade'>
     <% if @grade %>

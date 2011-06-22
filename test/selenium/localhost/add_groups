@@ -32,16 +32,6 @@
 	<td>&quot;You might belong in Gryffindor,<br />Where dwell the brave at heart,<br />Their daring, nerve and chivalry<br />Set Gryffindors apart&quot;<br />—The Sorting Hat</td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>group_private</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>group_moderated</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>//input[@name='commit' and @value='Create']</td>
 	<td></td>
@@ -65,16 +55,6 @@
 	<td>type</td>
 	<td>group_description</td>
 	<td>&quot;You might belong in Hufflepuff,<br />Where they are just and loyal,<br />Those patient Hufflepuffs are true,<br />And unafraid of toil&quot;<br />—The Sorting Hat</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>group_private</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>group_moderated</td>
-	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -102,16 +82,6 @@
 	<td>Ravenclaw</td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>group_private</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>group_moderated</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>//input[@name='commit' and @value='Create']</td>
 	<td></td>
@@ -135,16 +105,6 @@
 	<td>type</td>
 	<td>group_description</td>
 	<td>&quot;Or perhaps in Slytherin,<br />You'll make your real friends,<br />Those cunning folk use any means,<br />To achieve their ends.&quot;<br />—The Sorting Hat</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>group_private</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>group_moderated</td>
-	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
