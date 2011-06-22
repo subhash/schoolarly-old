@@ -12,13 +12,33 @@
 <tr><td rowspan="1" colspan="3">new_school</td></tr>
 </thead><tbody>
 <tr>
-	<td>clickAndWait</td>
-	<td>link=Schoolarly</td>
+	<td>open</td>
+	<td>/</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//div[@id='portlet_splashHome']/div/p[1]/span[1]/a/strong</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>admin@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>password</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Schools</td>
 	<td></td>
 </tr>
 <tr>
@@ -32,13 +52,38 @@
 	<td>Hogwarts</td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>group_description</td>
-	<td>Hogwarts is a coeducational, secondary boarding school, taking children from ages eleven to eighteen. Education at Hogwarts is not compulsory, with some students being home schooled</td>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Create']</td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Create']</td>
+	<td>link=Invite new teachers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Select existing teachers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>members_</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>moderator</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Add Teachers']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
 	<td></td>
 </tr>
 </tbody></table>

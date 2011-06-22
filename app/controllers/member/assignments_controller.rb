@@ -17,7 +17,10 @@ class Member::AssignmentsController < Member::BaseController
     published_at = Time.now || @assignment.post.published_at
     @assignment.post.publish!
     @assignment.post.published_at = published_at if published_at > Time.now
-    @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]
+    if params[:rubric]
+      @assignment.rubric = Rubric.find(params[:rubric])
+      @assignment.score ||= @assignment.rubric.max_points
+    end
     respond_to do |wants|
       if @assignment.save
         @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
@@ -49,7 +52,10 @@ class Member::AssignmentsController < Member::BaseController
     @assignment.attributes = params[:assignment]
     published_at = @assignment.post.published_at
     @assignment.post.published_at = published_at if published_at > Time.now 
-    @assignment.rubric = Rubric.find(params[:rubric]) if params[:rubric]    
+    if params[:rubric]
+      @assignment.rubric = Rubric.find(params[:rubric])
+      @assignment.score ||= @assignment.rubric.max_points
+    end
     respond_to do |wants|
       if @assignment.save
         wants.html do
