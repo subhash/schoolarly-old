@@ -29,8 +29,10 @@
         <% for rubric in @rubrics %>
         <tr<%= cycle(' class="pair"', '') -%>>
             <td>
+            	<% url = action ? url_for(:controller => :rubrics, :action => action, :id => rubric) : member_rubric_path(rubric)  %>
+				<% puts 'action - ' +action%>
                 <%= radio_button_tag "rubric", rubric.id, rubric == @rubric, 
-					:onclick => "jQuery.get('#{member_rubric_path(rubric)}', function(data){jQuery('#rubric').html(data);});" %>
+					:onclick => "jQuery.get('#{url}', function(data){jQuery('#rubric').html(data);});" %>
             </td>
             <td>
                 <%= link_to rubric.title, member_rubric_path(rubric) %>

@@ -38,9 +38,10 @@ class Member::RubricsController < Member::BaseController
     end
     respond_to do |format|
       format.js {
-        render :update do |page|
-          page[:rubric].replace_html :partial => 'member/rubrics/new'
-        end
+#        render :update do |page|
+#          page[:rubric].replace_html :partial => 'member/rubrics/new'
+#        end
+        render :partial => 'member/rubrics/new'
       }
     end
   end
