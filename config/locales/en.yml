@@ -250,6 +250,12 @@ en:
         title: Grades and Reports
       class_activity:
         share: Add class activity
+  
+  users:
+    site:
+      reset:
+        cannot_find: Cannot find an associated user account. Please contact your school administrator
+  
   schools:
     model:
       klasses:
