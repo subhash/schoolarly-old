@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
-  before_filter :set_title
-  
   rescue_from UnauthorizedException, :with => :unauthorized
   
   include Smerf
@@ -23,10 +21,6 @@ class ApplicationController < ActionController::Base
   end
   
   private
-  
-  def set_title
-    @title = current_user.school.group.name if current_user and current_user.school
-  end
   
   def unauthorized
     render :template => "member/site/unauthorized"
