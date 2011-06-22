@@ -64,5 +64,12 @@ class Rubric < ActiveRecord::Base
     criteria.size == 1 and max_points.blank?
   end
   
+  def editable?
+    for rd in rubric_descriptors
+      return false if rd.grade_rubric_descriptors.any?
+    end
+    return true
+  end
+  
   
 end
