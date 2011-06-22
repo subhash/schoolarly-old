@@ -72,21 +72,17 @@ class Member::GroupsController < Member::BaseController
   def create
     @group = Group.new(params[:group])
     @group.author = current_user
+    @group.moderated = true
+    @group.private = false
     case @type
       when 'schools':
       @group.network = School.new    
-      @group.moderated = true
-      @group.private = false
       when 'klasses':
       @group.network = Klass.new    
-      @group.moderated = true
-      @group.private = false
       when 'subjects':
-      @group.network = Subject.new    
-      @group.moderated = true
-      @group.private = false
+      @group.network = Subject.new
     end
-    @group.save   
+    @group.save
     
     if @group.errors.empty?
       

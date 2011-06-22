@@ -59,20 +59,6 @@
 	    </div> 
 	</div> 
 <% end %>
-<% if @group.general? %>
-<div class="portlet portletC" id="portlet_moreLinks">
-    <h2><span><%= I18n.t('groups.member.membership', :name => @group.name) %></span></h2>
-    <div class="portlet_content">
-        <ul>
-			<% if i_am_member_of @group %>
-				<li><%= I18n.t('tog_social.groups.site.member') %><%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(@group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %></li>
-			<% else %>
-				<li><%= link_to I18n.t('tog_social.groups.site.join'), join_group_path(@group), :class => 'add' %></li>
-			<% end %>
-        </ul>
-    </div> 
-</div>   	
-<% end %>
 			<!--
 			<% if @group.school? %>
 			  <li><%= link_to I18n.t('groups.member.admission.new'), smerf_form_url(@group.network.form_code) %></li>				

@@ -1,4 +1,3 @@
-<p><%= link_to I18n.t('tog_social.groups.site.create_group'), new_member_group_path, :class => 'button add' %></p>
 
 <div class="portlet portletB" id="profiles_list">
     <h2><span><%= I18n.t('tog_social.groups.model.moderated_by_you') %></span></h2>
@@ -11,7 +10,6 @@
                 <div class="title"><%= link_to membership.group.name, member_group_path(membership.group) %></div>
                 <div id="actions">
                 <%= link_to I18n.t('tog_social.groups.member.edit'), edit_member_group_path(membership.group) -%>
-                <%= link_to I18n.t('tog_social.groups.member.members_pending', :size => membership.group.pending_members.size), member_group_pending_members_path(membership.group) %>
                 </div>
               </div><!--  fin info -->
             <li>
@@ -35,9 +33,7 @@
 	                    [<%= link_to I18n.t('tog_social.groups.member.accept'), accept_invitation_group_path(membership.group), {:class => "add", :title => I18n.t('tog_social.groups.member.accept_title')} -%>]               
 	                                 --
 	                    [<%= link_to I18n.t('tog_social.groups.member.reject'), reject_invitation_group_path(membership.group), {:class => "delete", :title => I18n.t('tog_social.groups.member.reject_title')} -%>]
-					<% end %>				  
-                <br/>
-                <%= link_to I18n.t('tog_social.groups.site.leave'), leave_group_path(membership.group), :confirm => I18n.t('tog_social.groups.site.leave_confirm'), :class => 'delete' %>
+					<% end %>
                 </div>
               </div><!--  fin info -->
             <li>
