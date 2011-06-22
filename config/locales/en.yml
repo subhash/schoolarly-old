@@ -488,7 +488,7 @@ en:
       state:
         pending: "Pending"
         draft: "Draft"
-        title: Submission
+      title: Submission
   
   rubrics:
     model:
