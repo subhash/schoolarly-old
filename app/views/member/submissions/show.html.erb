@@ -6,7 +6,7 @@
 <div id='grade'>
     <% if @grade %>
     <%= render :partial => 'member/grades/show' %>
-    <% elsif i_am_the_owner_of?(@assignment.post) %>
+    <% elsif i_own?(@assignment.post) %>
     <%= render :partial => 'member/grades/empty' %>
     <% end %>
 </div>

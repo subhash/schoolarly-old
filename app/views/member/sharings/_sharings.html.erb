@@ -1,7 +1,7 @@
 <div class="portlet_content">
     <ul>
         <% for share in @shares %>
-        <% if display?(share) and (i_am_the_owner_of?(share) or share.published?) %>
+        <% if display?(share) and (i_own?(share) or share.published?) %>
         <% profile = share.user.profile %>
         <li class="detail detail1">
             <div class="image">

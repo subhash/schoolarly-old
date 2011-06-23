@@ -77,6 +77,7 @@ class Member::SubmissionsController < Member::BaseController
     @submission = Submission.find(params[:id])
     @assignment = @submission.assignment
     @post = @submission.post
+    raise UnauthorizedException.new unless i_own?(@submission) or shared_to_me?(@submission)
   end
   
   def find_user

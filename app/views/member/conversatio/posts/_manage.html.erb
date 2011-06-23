@@ -1,4 +1,4 @@
-<% if i_am_the_owner_of?(post) %>
+<% if i_own?(post) %>
 <div class="portlet portletD" id="portlet_userWall">
     <h2><span><%= I18n.t('conversatio.views.member.posts.manage.title', :name => post.title) %></span></h2>
     <div class="portlet_content">

@@ -14,7 +14,7 @@
     <% end %>
 </div>
 
-<% if assignment.post.published? and (i_am_the_owner_of?(assignment) or current_user.student?) %>
+<% if assignment.post.published? and (i_own?(assignment) or current_user.student?) %>
 <div class="score">
     <div>
         <% submission = assignment.submissions.find_by_user_id(current_user.id) %>
