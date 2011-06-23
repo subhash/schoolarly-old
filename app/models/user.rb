@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   
   def invite_over_email
     self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    self.salt = self.class.make_token if new_record?
     @invited = true
     save(true)
   end
