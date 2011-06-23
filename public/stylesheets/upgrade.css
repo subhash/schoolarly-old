@@ -18,6 +18,8 @@ input, select, textarea {
     background-color: transparent;
 }
 
+iframe { background:url(//crocodoc.com/media/images/docviewer/spinner.gif) no-repeat center; }
+
 .time {
     float: center;
     font-size: 0.6em;

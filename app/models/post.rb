@@ -28,26 +28,21 @@ class Post < ActiveRecord::Base
   
   def to_crocodoc(use_body = false)
     url = "https://crocodoc.com/api/v1/document/upload"
-    puts "self.doc.file? #{self.doc.file?}"
     if(self.doc.file?)
       file = self.doc.to_file
     elsif use_body
-      file = StringIO.new(self.body)
-      puts "file - #{file}"
+      kit = PDFKit.new(self.body, :page_size => 'Letter')
+      file = StringIO.new(kit.to_pdf)
       def file.path
-        return "foo.doc"
-      end
-      
+        return "foo.pdf"
+      end      
       def file.original_filename
-        return "foo.doc"
-      end
-      
+        return "foo.pdf"
+      end      
       def file.content_type
-        return "text/html"
+        return "application/pdf"
       end
     end
-    puts 'file - '+file.inspect
-    puts 'file path - '+file.path
     begin
       response = RestClient.post(url, :token => 'vJK2p8cYFP1Xo0CUmweD', :file => file, :private => true, :multipart => true)
       puts "Response - #{response}"

@@ -8,6 +8,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 
 require 'desert'
+require 'pdfkit'
 Rails::Initializer.run do |config|
   config.gem 'redhillonrails_core'
   config.gem 'acts_as_tree'
