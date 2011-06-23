@@ -109,6 +109,7 @@ class Member::GradesController < Member::BaseController
     @assignment = @grade.assignment
     @user = @grade.user
     @profile = @user.profile
+    raise UnauthorizedException.new unless i_own?(@grade) or i_own?(@assignment) or shared_to_me?(@grade)    
   end
   
 end
