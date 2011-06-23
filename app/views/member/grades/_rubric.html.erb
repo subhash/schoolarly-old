@@ -12,7 +12,7 @@
                     		sum += parseFloat(jQuery(this).closest('td').find('.points').text());					
                     });
                 		jQuery('#grade_points').text(sum);
-    				<% if @assignment.score %>	
+    				<% if @assignment.score and rubric.max_points %>	
         				jQuery('#total_score').val(sum/<%=rubric.max_points %> * <%=@assignment.score %>);
     				<% end %>
     

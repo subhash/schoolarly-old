@@ -17,7 +17,8 @@ class Member::SubmissionsController < Member::BaseController
       if @submission.save 
         if params[:publish]
           @submission.post.publish!          
-          @submission.share_to(@assignment.user, @submission.submitter)
+          @submission.share_to(@assignment.user, @submission.submitter) 
+          @submission.share_to(@submission.user, @submission.submitter) unless @submission.user == @submission.submitter
         end
         wants.html do
           flash[:ok] = I18n.t('submissions.site.new.success')
@@ -43,6 +44,7 @@ class Member::SubmissionsController < Member::BaseController
         if params[:publish]
           @submission.post.publish!          
           @submission.share_to(@assignment.user, @submission.submitter)
+          @submission.share_to(@submission.user, @submission.submitter) unless @submission.user == @submission.submitter
         end
         wants.html do
           flash[:ok] = I18n.t('submissions.site.edit.success')

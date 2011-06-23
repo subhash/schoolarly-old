@@ -19,10 +19,7 @@
 <% unless submission.submitter == submission.user %>
 <div class="detail float_right">
     <%= I18n.t('submissions.model.by') %>
-    <%= link_to profile.full_name, profile_path(profile) %>
-    <div class="subtitle">
-        <%= I18n.t('tog_social.profiles.model.username') %>: <%=profile.user.login %>
-    </div>
+    <%= link_to submission.submitter.profile.full_name, profile_path(submission.submitter.profile) %>
 </div>
 <% end %>
 <%= render :partial => "shared/comments", :locals => { :commentable => assignment.post , :exclude_add_comment => true} %>
