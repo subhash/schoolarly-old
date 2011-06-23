@@ -8,7 +8,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 
 require 'desert'
-require 'pdfkit'
+
 Rails::Initializer.run do |config|
   config.gem 'redhillonrails_core'
   config.gem 'acts_as_tree'
@@ -36,7 +36,6 @@ Rails::Initializer.run do |config|
   config.gem 'dynamic_attributes'
   config.gem "haml"
   config.gem 'pdfkit'
-  config.gem 'wkhtmltopdf-binary'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
