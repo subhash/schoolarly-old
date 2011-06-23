@@ -27,4 +27,6 @@ tiny_mce
 acts_as_list --version '~>0.1'
 aasm
 dynamic_attributes
+pdfkit
+wkhtmltopdf-binary
 haml

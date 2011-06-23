@@ -35,6 +35,8 @@ Rails::Initializer.run do |config|
   config.gem "acts_as_list", "~>0.1"
   config.gem 'dynamic_attributes'
   config.gem "haml"
+  config.gem 'pdfkit'
+  config.gem 'wkhtmltopdf-binary'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
