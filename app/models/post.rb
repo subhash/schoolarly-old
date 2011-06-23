@@ -72,7 +72,6 @@ class Post < ActiveRecord::Base
   private
   
   def adjust_body
-    puts 'adjust body'
     self.body = self.title if self.doc.file?
   end
   
