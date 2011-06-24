@@ -18,6 +18,6 @@
     </div>
     <div class="portlet portletL">
     		<%= link_to icon_for_event, member_conclave_event_path(event), :title => event.title %>
-        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(event.created_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => event.comments.size), member_conclave_event_path(event) %> . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_conclave_event_path(event), :title => I18n.t('groups.comments.comment_title', :title => h(event.title)) %> . <%= share_with_groups_link(event) if i_own? event %>
+        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(event.created_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.comments', :size => event.comments.size), member_conclave_event_path(event) %> . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_conclave_event_path(event), :title => I18n.t('comments.member.view.title', :title => h(event.title)) %> . <%= share_with_groups_link(event) if i_own? event %>
     </div>
 </div>

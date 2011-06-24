@@ -5,13 +5,13 @@ class Share < ActiveRecord::Base
     }
   }
   
-  named_scope :to_groups_and_user, lambda {|group_ids, user_id|{
-      :conditions => ["(shared_to_id IN (?) and shared_to_type = 'Group') OR (shared_to_id = ? AND shared_to_type= 'User') ", group_ids, user_id]
+  named_scope :to_groups_and_users, lambda {|group_ids, user_ids|{
+      :conditions => ["(shared_to_id IN (?) and shared_to_type = 'Group') OR (shared_to_id IN (?) AND shared_to_type= 'User') ", group_ids, user_ids]
     }
   }
   
-  named_scope :to_groups_and_user_of_type, lambda {|group_ids, user_id, type|{
-      :conditions => ["(shared_to_id IN (?) and shared_to_type = 'Group' and shareable_type = ? ) OR (shared_to_id = ? AND shared_to_type= 'User' and shareable_type = ? ) ", group_ids, type, user_id, type]
+  named_scope :to_groups_and_users_of_type, lambda {|group_ids, user_ids, type|{
+      :conditions => ["(shared_to_id IN (?) and shared_to_type = 'Group' and shareable_type = ? ) OR (shared_to_id IN (?) AND shared_to_type= 'User' and shareable_type = ? ) ", group_ids, type, user_ids, type]
     }
   }
   

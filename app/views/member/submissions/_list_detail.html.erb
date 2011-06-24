@@ -26,5 +26,5 @@
 <br/>
 <div class="portlet portletL">
     <%= link_to icon_for_submission, member_submission_path(submission, :group => group), :title => "#{sanitize submission.name}" %>
-    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(submission.post.published_at)) %><%= " . " %><%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_submission_path(submission, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(submission.name)) %><%= " . " %><%= share_with_groups_link(submission) if i_am_the_author_of? submission.post %>
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(submission.post.published_at)) %><%= " . " %><%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_submission_path(submission, :group => group), :title => I18n.t('comments.member.view.title', :title => h(submission.name)) %><%= " . " %><%= share_with_groups_link(submission) if i_am_the_author_of? submission.post %>
 </div>
