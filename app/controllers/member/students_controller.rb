@@ -14,13 +14,13 @@ class Member::StudentsController < Member::BaseController
       name = email = fname = femail = mname = memail = nil
       name, email, fname, femail, mname, memail = row
       user = create_user(email, name, Student.new)      
-      if user.invite_over_email
+      if user.invite_over_email(current_user)
         # TODO check if you are allowed to invite
         @group.invite_and_accept(user)
         GroupMailer.deliver_entry_notification(@group, current_user, user)  
         if(femail)
           father = create_user(femail, fname, Parent.new)        
-          if father.invite_over_email
+          if father.invite_over_email(current_user)
             user.profile.add_friend(father.profile)
           else
             @failed_parents[user] = father
@@ -28,7 +28,7 @@ class Member::StudentsController < Member::BaseController
         end
         if(memail)
           mother = create_user(memail, mname, Parent.new)
-          if mother.invite_over_email
+          if mother.invite_over_email(current_user)
             user.profile.add_friend(mother.profile)
           else
             @failed_parents[user] = mother
@@ -54,7 +54,7 @@ class Member::StudentsController < Member::BaseController
     @user.profile = Profile.new(params[:user][:profile])
     @user.login ||= @user.email if Tog::Config["plugins.tog_user.email_as_login"]
     @user.person = Parent.new
-    if @user.invite_over_email
+    if @user.invite_over_email(current_user)
       @student.user.profile.add_friend(@user.profile)
       redirect_to member_profile_path(@student.user.profile)
     else

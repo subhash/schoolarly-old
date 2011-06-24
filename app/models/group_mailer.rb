@@ -23,11 +23,9 @@ class GroupMailer < ActionMailer::Base
   private
   
   def setup(group, moderator, user)
-    from = moderator.email
-    to = user.email
-    @recipients  = "#{to}"
+    @recipients  = "#{user.name} <#{user.email}>"
     cc group.moderators.map {|u| "#{u.name} <#{u.email}>"}
-    @from        = "#{from}"
+    @from        = "#{moderator.name} <#{moderator.email}>"
     @content_type = "text/html"
     @subject     = Tog::Config["plugins.tog_core.mail.default_subject"]
     @sent_on     = Time.now

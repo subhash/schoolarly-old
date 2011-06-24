@@ -34,17 +34,17 @@ class User < ActiveRecord::Base
     password_reset_code.blank? && (crypted_password.blank? || !password.blank?)
   end
   
-  def invite_over_email
+  def invite_over_email(from = User.find_by_email(Tog::Config["plugins.tog_core.mail.system_from_address"]))
     self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
     self.salt = self.class.make_token if new_record?
-    @invited = true
+    @inviter = from
     save(true)
   end
   
   after_create :send_signup_invitation
   
   def send_signup_invitation    
-    UserMailer.deliver_signup_invitation_notification(self) if @invited    
+    UserMailer.deliver_signup_invitation_notification(self, @inviter) if @inviter    
   end
   
   def send_activation_request    

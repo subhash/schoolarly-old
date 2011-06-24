@@ -13,7 +13,7 @@ class Member::TeachersController < Member::BaseController
       name = row[0].split(' ',2)
       user.profile = Profile.new(:first_name => name[0],:last_name => name[1])
       user.person = Teacher.new      
-      if user.invite_over_email
+      if user.invite_over_email(current_user)
         # TODO check if you are allowed to invite
         @group.invite_and_accept(user)
         @group.grant_moderator(user) unless params[:moderator].blank?
