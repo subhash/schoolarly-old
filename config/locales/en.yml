@@ -380,7 +380,29 @@ en:
           detail: User %{user_name} has posted a new note [%{shareable}] to [%{shared_to}]
         Grade:
           subject: New grade for [%{shared_to}]
-          detail: User %{user_name} has assigned a new grade for [%{shared_to}]        
+          detail: User %{user_name} has assigned a new grade for [%{shared_to}]
+      edit:
+        Assignment:
+          subject: Activity [%{shareable}] has been updated
+          detail: User %{user_name} has updated activity [%{shareable}] shared to [%{shared_to}]
+        Submission:
+          subject: Submission [%{shareable}] has been updated
+          detail: User %{user_name} has updated submission [%{shareable}] shared to [%{shared_to}]
+        Picto::Photo:
+          subject: Photo [%{shareable}] has been updated
+          detail: User %{user_name} has updated photo [%{shareable}] shared to [%{shared_to}]
+        Event:
+          subject: Event [%{shareable}] has been updated
+          detail: User %{user_name} has updated event [%{shareable}] shared to [%{shared_to}]
+        Notice:
+          subject: Message [%{shareable}] has been updated
+          detail: User %{user_name} has updated message [%{shareable}] shared to [%{shared_to}]
+        Post:
+          subject: Note [%{shareable}] has been updated
+          detail: User %{user_name} has updated note [%{shareable}] shared to [%{shared_to}]
+        Grade:
+          subject: Grade for [%{shared_to}] has been updated
+          detail: User %{user_name} has updated grade for [%{shared_to}]                  
           
 
 
