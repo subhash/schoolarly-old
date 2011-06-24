@@ -57,9 +57,13 @@ class Assignment < ActiveRecord::Base
   private
   
   def touch_shares
-    for share in shares
-      share.touch
-      share.update_notifications
+    puts "self.changed? or self.post.changed? - #{self.changed?.inspect} or #{self.post.changed?.inspect}"
+    puts "self.changed? or self.post.changed? - #{self.changes.inspect} or #{self.post.changes.inspect}"
+    if self.changed? or self.post.changed?
+      for share in shares
+        share.touch
+        share.update_notifications
+      end
     end
   end 
   
