@@ -44,5 +44,5 @@
     <%= I18n.t('assignments.site.list_detail.from_now', :time => time_ago_in_words(assignment.post.published_at)) %>
 	<% end %>
     <%= " . " %>
-    <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(assignment.post.title)) %>. <%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
+    <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment, :group => group), :title => I18n.t('comments.member.view.title', :title => h(assignment.post.title)) %>. <%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
 </div>

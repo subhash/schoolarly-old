@@ -22,7 +22,7 @@
 
 <div class="portlet portletL">
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(photo.image_updated_at)) %> . 
-	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_picto_photo_path(photo, :group => group), :title => I18n.t('groups.comments.comment_title', :title => h(photo.title)) %> . 
+	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_picto_photo_path(photo, :group => group), :title => I18n.t('comments.member.view.title', :title => h(photo.title)) %> . 
 	<%= share_with_groups_link(photo) if i_own? photo %>
 </div>
 </div>
