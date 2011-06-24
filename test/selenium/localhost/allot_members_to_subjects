@@ -82,6 +82,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>link=View all subjects</td>
+	<td></td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
 	<td>link=English</td>
 	<td></td>
@@ -139,6 +144,11 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>link=1A</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=View all subjects</td>
 	<td></td>
 </tr>
 <tr>

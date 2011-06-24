@@ -43,7 +43,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Share Photo</td>
+	<td>link=Photo</td>
 	<td></td>
 </tr>
 <tr>
@@ -71,7 +71,6 @@
 	<td>link=Log-out</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

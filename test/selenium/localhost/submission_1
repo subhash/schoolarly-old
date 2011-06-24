@@ -43,7 +43,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Submit my answer</td>
+	<td>link=Submit answer</td>
 	<td></td>
 </tr>
 <tr>
@@ -62,13 +62,13 @@
 	<td>/Users/shenuja/Documents/schoolarly/notes/Lady_Ashely.pdf</td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>publish</td>
+	<td>assertConfirmation</td>
+	<td>This will submit your answer. Are you sure?</td>
 	<td></td>
 </tr>
 <tr>
-	<td>assertConfirmation</td>
-	<td>This will submit your answer. Are you sure?</td>
+	<td>click</td>
+	<td>publish</td>
 	<td></td>
 </tr>
 <tr>

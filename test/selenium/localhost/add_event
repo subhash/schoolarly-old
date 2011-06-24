@@ -38,7 +38,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Create event for group</td>
+	<td>link=Event</td>
 	<td></td>
 </tr>
 <tr>
@@ -57,44 +57,24 @@
 	<td>School Grounds</td>
 </tr>
 <tr>
-	<td>select</td>
-	<td>event_start_date_2i</td>
-	<td>label=May</td>
+	<td>type</td>
+	<td>//input[@id=&quot;event_start_date&quot;]//following-sibling::input</td>
+	<td>24-07-2011</td>
 </tr>
 <tr>
-	<td>select</td>
-	<td>event_start_date_3i</td>
-	<td>label=15</td>
+	<td>type</td>
+	<td>//input[@id=&quot;event_start_time&quot;]//following-sibling::input</td>
+	<td>14:00</td>
 </tr>
 <tr>
-	<td>select</td>
-	<td>event_end_date_2i</td>
-	<td>label=May</td>
+	<td>type</td>
+	<td>//input[@id=&quot;event_end_date&quot;]//following-sibling::input</td>
+	<td>25-07-2011</td>
 </tr>
 <tr>
-	<td>select</td>
-	<td>event_end_date_3i</td>
-	<td>label=18</td>
-</tr>
-<tr>
-	<td>select</td>
-	<td>event_start_time_4i</td>
-	<td>label=09</td>
-</tr>
-<tr>
-	<td>select</td>
-	<td>event_start_time_5i</td>
-	<td>label=00</td>
-</tr>
-<tr>
-	<td>select</td>
-	<td>event_end_time_4i</td>
-	<td>label=17</td>
-</tr>
-<tr>
-	<td>select</td>
-	<td>event_end_time_5i</td>
-	<td>label=30</td>
+	<td>type</td>
+	<td>//input[@id=&quot;event_end_time&quot;]//following-sibling::input</td>
+	<td>15:00</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
