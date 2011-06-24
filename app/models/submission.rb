@@ -24,6 +24,7 @@ class Submission < ActiveRecord::Base
     if self.changed?
       for share in shares
         share.touch
+        share.update_notifications
       end
     end
   end

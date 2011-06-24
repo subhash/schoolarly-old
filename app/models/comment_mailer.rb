@@ -1,11 +1,8 @@
 class CommentMailer < ActionMailer::Base
   
   def new_comment_notification(comment, url=nil)
-    # TODO Remove comment originator from TO list
     setup_email(comment, url)
-    if comment.commentable.respond_to? :shareholders
-      @recipients = comment.commentable.shareholders.map(&:email).join(",")
-    end
+    @recipients = ([comment.commentable_owner] + ShareMailer.shareholders(comment.commentable)).map(&:email).join(",")
     @subject += I18n.t('comments.mailer.new.subject', :commentable => comment.commentable_title)
   end
   

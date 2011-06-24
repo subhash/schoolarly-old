@@ -23,7 +23,6 @@ class Share < ActiveRecord::Base
   
   after_create :create_notifications
   
-  after_update :update_notifications
   
   def published?
     if shareable.is_a? Assignment or shareable.is_a? Submission
@@ -33,8 +32,6 @@ class Share < ActiveRecord::Base
     else return true
     end
   end
-  
-  private
   
   def create_notifications
     ShareMailer.deliver_new_share_notification(self) if ShareMailer.notify?(self) and self.published?

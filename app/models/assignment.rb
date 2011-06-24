@@ -59,6 +59,7 @@ class Assignment < ActiveRecord::Base
   def touch_shares
     for share in shares
       share.touch
+      share.update_notifications
     end
   end 
   
