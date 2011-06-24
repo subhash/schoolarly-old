@@ -38,7 +38,7 @@ class ShareMailer < ActionMailer::Base
     shareable.shares.inject([]) do |c, s|
       c += s.shared_to.users if s.shared_to.is_a?(Group)  
       c << s.shared_to if s.shared_to.is_a?(User)
-      c
+      c += c.inject([]) {|a, u| a + u.friend_users}
     end
   end
   
