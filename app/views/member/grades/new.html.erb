@@ -1,8 +1,12 @@
+<%= render :partial => 'member/profiles/header' %>
+<div class="titleB">
+    <%= link_to @assignment.post.title, member_assignment_path(@assignment) %><%=" > " %><%= I18n.t('grades.model.title') %>
+</div>
+<br/>
 <%= render :partial => 'member/submissions/show' %>
 <div id='grade'>
     <%= render :partial => 'member/grades/new' %>
 </div>
-
 <% content_for :sidebar do %>
-    <%= render :partial => 'member/assignments/manage' %>
+<%= render :partial => 'member/assignments/manage' %>
 <% end %>

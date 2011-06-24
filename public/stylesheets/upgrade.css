@@ -18,7 +18,12 @@ input, select, textarea {
     background-color: transparent;
 }
 
-iframe { background:url(//crocodoc.com/media/images/docviewer/spinner.gif) no-repeat center; }
+iframe {
+    background: url(//crocodoc.com/media/images/docviewer/spinner.gif) no-repeat center;
+	border:1px solid #ddd;
+	width: 900px; 
+	height: 1000px;
+}
 
 .time {
     float: center;

@@ -16,7 +16,7 @@
     <%= render :partial => 'member/profiles/header', :locals => {:profile => @submission.submitter.profile, :size => "small" } %>
 </div>
 <% end %>
-<iframe src="https://crocodoc.com/view/?sessionId=<%= @session %>" style="border:1px solid #ddd; width: 900px; height: 100%">
+<iframe src="https://crocodoc.com/view/?sessionId=<%= @session %>" >
 </iframe>
 <% end %>
 <br/>

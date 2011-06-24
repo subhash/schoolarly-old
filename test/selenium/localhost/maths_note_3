@@ -38,12 +38,12 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//div[3]/div/ul/li/div[2]/a</td>
+	<td>link=Mathematics</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Post note to group</td>
+	<td>link=Note</td>
 	<td></td>
 </tr>
 <tr>

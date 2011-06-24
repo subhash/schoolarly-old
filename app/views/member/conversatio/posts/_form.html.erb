@@ -41,9 +41,7 @@
     </p>
     <% else %>
     <p id="compose">
-        <label for="post_body">
-            <%= I18n.t('posts.model.compose.title') %>
-        </label>
+        <%= I18n.t('posts.model.compose.title') %>
         <%= f.text_area :body, :class=>"fieldbox wide mceEditor" -%>
     </p>
     <% end %>

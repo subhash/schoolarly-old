@@ -43,7 +43,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Post note to group</td>
+	<td>link=Note</td>
 	<td></td>
 </tr>
 <tr>
@@ -81,7 +81,6 @@
 	<td>link=Log-out</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

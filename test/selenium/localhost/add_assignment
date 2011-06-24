@@ -43,7 +43,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=New assignment</td>
+	<td>link=Activity</td>
 	<td></td>
 </tr>
 <tr>
@@ -72,34 +72,14 @@
 	<td></td>
 </tr>
 <tr>
-	<td>select</td>
-	<td>assignment_due_date_2i</td>
-	<td>label=June</td>
-</tr>
-<tr>
 	<td>click</td>
-	<td>assignment_due_date_4i</td>
+	<td>assignment_has_submissions</td>
 	<td></td>
 </tr>
 <tr>
-	<td>select</td>
-	<td>assignment_due_date_4i</td>
-	<td>label=00</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//select[@id='assignment_due_date_4i']/option[1]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>//select[@id='assignment_due_date_5i']/option[15]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>select</td>
-	<td>assignment_due_date_5i</td>
-	<td>label=00</td>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_due_date&quot;]//following-sibling::input</td>
+	<td>15-07-2011 @ 10:00</td>
 </tr>
 <tr>
 	<td>type</td>
