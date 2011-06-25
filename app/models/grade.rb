@@ -23,8 +23,11 @@ class Grade < ActiveRecord::Base
   end
   
   def touch_shares
-    for share in shares
-      share.touch
+    if self.changed?
+      for share in shares
+        share.touch
+        share.update_notifications
+      end
     end
   end 
   

@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
 
   include ActsAsCommentable::Comment
 
-  belongs_to :commentable, :polymorphic => true, :touch => true
+  belongs_to :commentable, :polymorphic => true
   
   after_create :touch_shares
 

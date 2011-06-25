@@ -5,6 +5,11 @@ class ShareMailer < ActionMailer::Base
     @subject += I18n.t("shares.mailer.new.#{share.shareable_type}.subject", :shareable => @body[:shareable_name], :shared_to => @body[:shared_to_name])
   end
   
+  def share_change_notification(share)
+    setup_email(share)
+    @subject += I18n.t("shares.mailer.edit.#{share.shareable_type}.subject", :shareable => @body[:shareable_name], :shared_to => @body[:shared_to_name])
+  end
+  
   protected
   def setup_email(share)
     @body[:share] = share
@@ -12,7 +17,7 @@ class ShareMailer < ActionMailer::Base
     @body[:shareable_name] = name_or_title(share.shareable)
     @body[:user_name] = share.user.name
     @from         = share.user.email
-    @recipients = shareholders(share.shareable).map(&:email).join(",")
+    @recipients = ShareMailer.shareholders(share.shareable).map(&:email).join(",")
     @subject      = Tog::Config["plugins.tog_core.mail.default_subject"]
     @sent_on      = Time.now
     @content_type = "text/html"
@@ -29,11 +34,11 @@ class ShareMailer < ActionMailer::Base
     return object.owner if object.respond_to? :owner
   end
   
-  def shareholders(shareable)    
+  def ShareMailer.shareholders(shareable)    
     shareable.shares.inject([]) do |c, s|
       c += s.shared_to.users if s.shared_to.is_a?(Group)  
       c << s.shared_to if s.shared_to.is_a?(User)
-      c
+      c += c.inject([]) {|a, u| a + u.friend_users}
     end
   end
   
