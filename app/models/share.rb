@@ -34,10 +34,11 @@ class Share < ActiveRecord::Base
   end
   
   def create_notifications
-    ShareMailer.deliver_new_share_notification(self) if ShareMailer.notify?(self) and self.published?
+    ShareMailer.send_later(:deliver_new_share_notification, self) if ShareMailer.notify?(self) and self.published?
   end
   
   def update_notifications
-    ShareMailer.deliver_share_change_notification(self) if ShareMailer.notify?(self) and self.published?
-  end  
+    ShareMailer.send_later(:deliver_share_change_notification, self) if ShareMailer.notify?(self) and self.published?
+  end
+
 end
