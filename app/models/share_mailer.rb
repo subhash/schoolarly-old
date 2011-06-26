@@ -1,17 +1,17 @@
 class ShareMailer < ActionMailer::Base
   
-  def new_share_notification(share)
-    setup_email(share)
+  def new_share_notification(share, options)
+    setup_email(share, options)
     @subject += I18n.t("shares.mailer.new.#{share.shareable_type}.subject", :shareable => @body[:shareable_name], :shared_to => @body[:shared_to_name])
   end
   
-  def share_change_notification(share)
-    setup_email(share)
+  def share_change_notification(share, options)
+    setup_email(share, options)
     @subject += I18n.t("shares.mailer.edit.#{share.shareable_type}.subject", :shareable => @body[:shareable_name], :shared_to => @body[:shared_to_name])
   end
   
   protected
-  def setup_email(share)
+  def setup_email(share, options)
     @body[:share] = share
     @body[:shared_to_name] = name_or_title(share.shared_to)
     @body[:shareable_name] = name_or_title(share.shareable)

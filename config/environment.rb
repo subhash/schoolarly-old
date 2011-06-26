@@ -32,10 +32,12 @@ Rails::Initializer.run do |config|
   config.gem 'right_aws'
   config.gem 'rest-client'
   config.gem 'tiny_mce'
-  config.gem "acts_as_list", "~>0.1"
+  config.gem 'acts_as_list', '~>0.1'
   config.gem 'dynamic_attributes'
-  config.gem "haml"
+  config.gem 'haml'
   config.gem 'pdfkit'
+#  config.gem 'mail'
+#  config.gem 'delayed_job'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
