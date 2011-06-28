@@ -116,6 +116,26 @@
 	<td>link=Hogwarts</td>
 	<td></td>
 </tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Gryffindor</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Hufflepuff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Ravenclaw</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Slytherin</td>
+	<td></td>
+</tr>
 </tbody></table>
 </body>
 </html>

@@ -13,16 +13,6 @@
 </thead><tbody>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Hogwarts</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=1A</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
 	<td>//img[@alt='Photo for group: Chemistry']</td>
 	<td></td>
 </tr>

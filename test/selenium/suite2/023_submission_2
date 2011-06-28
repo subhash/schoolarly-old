@@ -12,11 +12,6 @@
 <tr><td rowspan="1" colspan="3">submission_2</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
 	<td></td>
@@ -74,6 +69,11 @@
 <tr>
 	<td>waitForElementPresent</td>
 	<td>//iframe</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Robert Cohn as an Antagonist in The Sun Also Rises</td>
 	<td></td>
 </tr>
 <tr>

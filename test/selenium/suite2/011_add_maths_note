@@ -12,11 +12,6 @@
 <tr><td rowspan="1" colspan="3">add_maths_note</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
 	<td></td>
@@ -74,6 +69,11 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>//input[@name='commit' and @value='Create Post']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Notes on Bayes' Theorem</td>
 	<td></td>
 </tr>
 <tr>

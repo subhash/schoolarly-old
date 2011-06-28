@@ -12,11 +12,6 @@
 <tr><td rowspan="1" colspan="3">add_assignment</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
 	<td></td>
@@ -94,6 +89,11 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>//input[@name='commit' and @value='Create']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Assignment - The Sun also Rises</td>
 	<td></td>
 </tr>
 <tr>

@@ -12,11 +12,6 @@
 <tr><td rowspan="1" colspan="3">maths_note_2</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
 	<td></td>
@@ -64,6 +59,11 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>//input[@name='commit' and @value='Create Post']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Algebra Cheat Sheet</td>
 	<td></td>
 </tr>
 <tr>

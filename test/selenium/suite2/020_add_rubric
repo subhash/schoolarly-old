@@ -12,11 +12,6 @@
 <tr><td rowspan="1" colspan="3">add_rubric</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
 	<td></td>
@@ -234,6 +229,11 @@
 <tr>
 	<td>clickAndWait</td>
 	<td>//input[@name='commit' and @value='Create Rubric']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Essay</td>
 	<td></td>
 </tr>
 <tr>

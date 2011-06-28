@@ -12,11 +12,6 @@
 <tr><td rowspan="1" colspan="3">add_comments</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
 	<td></td>
@@ -77,6 +72,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>verifyTextPresent</td>
+	<td>Gryffindor for the win!!!</td>
+	<td></td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
 	<td>//img[@alt='Tiny_before_the_match']</td>
 	<td></td>
@@ -96,7 +96,6 @@
 	<td>link=Log-out</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

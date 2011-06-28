@@ -12,16 +12,6 @@
 <tr><td rowspan="1" colspan="3">new_class</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/member</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Hogwarts</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Add new class</td>
 	<td></td>

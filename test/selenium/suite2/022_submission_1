@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://127.0.0.1:3001/" />
 <title>submission_1</title>
 </head>
 <body>
@@ -11,11 +10,6 @@
 <thead>
 <tr><td rowspan="1" colspan="3">submission_1</td></tr>
 </thead><tbody>
-<tr>
-	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
 <tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
@@ -74,6 +68,11 @@
 <tr>
 	<td>waitForElementPresent</td>
 	<td>//iframe</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Lady Ashley's Ring of Indiscretions in Hemingway's The Sun Also Rises</td>
 	<td></td>
 </tr>
 <tr>

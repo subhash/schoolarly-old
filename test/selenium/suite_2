@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="suite2/010_add_note">010_add_note</a></td></tr>
+<tr><td><a href="suite2/011_add_maths_note">011_add_maths_note</a></td></tr>
+<tr><td><a href="suite2/012_add_photo.html">012_add_photo</a></td></tr>
+<tr><td><a href="suite2/013_add_comments">013_add_comments</a></td></tr>
+<tr><td><a href="suite2/014_maths_note_2">014_maths_note_2</a></td></tr>
+<tr><td><a href="suite2/015_maths_note_3">015_maths_note_3</a></td></tr>
+<tr><td><a href="suite2/016_add_english_note">016_add_english_note</a></td></tr>
+<tr><td><a href="suite2/017_add_comments_2">017_add_comments_2</a></td></tr>
+<tr><td><a href="suite2/018_add_event">018_add_event</a></td></tr>
+<tr><td><a href="suite2/019_add_notice">019_add_notice</a></td></tr>
+<tr><td><a href="suite2/020_add_rubric">020_add_rubric</a></td></tr>
+<tr><td><a href="suite2/021_add_assignment">021_add_assignment</a></td></tr>
+<tr><td><a href="suite2/022_submission_1">022_submission_1</a></td></tr>
+<tr><td><a href="suite2/023_submission_2">023_submission_2</a></td></tr>
+<tr><td><a href="suite2/024_grade_students">024_grade_students</a></td></tr>
+</tbody></table>
+</body>
+</html>
