@@ -10,7 +10,7 @@
 <tr><td><b>Test Suite</b></td></tr>
 <tr><td><a href="suite2/010_add_note">010_add_note</a></td></tr>
 <tr><td><a href="suite2/011_add_maths_note">011_add_maths_note</a></td></tr>
-<tr><td><a href="suite2/012_add_photo.html">012_add_photo</a></td></tr>
+<tr><td><a href="suite2/012_add_photo">012_add_photo</a></td></tr>
 <tr><td><a href="suite2/013_add_comments">013_add_comments</a></td></tr>
 <tr><td><a href="suite2/014_maths_note_2">014_maths_note_2</a></td></tr>
 <tr><td><a href="suite2/015_maths_note_3">015_maths_note_3</a></td></tr>

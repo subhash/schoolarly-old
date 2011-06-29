@@ -3,6 +3,8 @@
     <%= link_to @assignment.post.title, member_assignment_path(@assignment) %><%= " > " %><%= I18n.t('submissions.model.title')%>
 </div>
 <%= render :partial => 'show' %>
+<br/>
+<br/>
 <div id='grade'>
     <% if @grade %>
     <%= render :partial => 'member/grades/show' %>
