@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
   after_save :touch_shares
   
   
-  def to_crocodoc(use_body = false)
+  def to_crocodoc!(use_body = false)
     url = "https://crocodoc.com/api/v1/document/upload"
     if(self.doc.file?)
       file = self.doc.to_file
@@ -50,6 +50,7 @@ class Post < ActiveRecord::Base
       raise "Error while uploading to crocodoc - #{results["error"]}" if results.include? "error"
       self.shortId = results['shortId']
       self.uuid = results['uuid']
+      self.save
     rescue Exception => e
       puts e.inspect
     end

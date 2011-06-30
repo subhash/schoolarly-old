@@ -12,14 +12,14 @@ class Member::SubmissionsController < Member::BaseController
   def create
     @submission = Submission.new(params[:submission])
     @submission.post.user = current_user
-    @submission.post.to_crocodoc(true)
     respond_to do |wants|
-      if @submission.save 
+      if @submission.save        
         if params[:publish]
           @submission.post.publish!          
           @submission.share_to(@assignment.user, @submission.submitter) 
           @submission.share_to(@submission.user, @submission.submitter) unless @submission.user == @submission.submitter
         end
+        @submission.post.to_crocodoc!(true)
         wants.html do
           flash[:ok] = I18n.t('submissions.site.new.success')
           redirect_to member_submission_path(@submission)
@@ -38,7 +38,6 @@ class Member::SubmissionsController < Member::BaseController
   
   def update
     @submission.attributes = params[:submission]
-    @submission.post.to_crocodoc(true)
     respond_to do |wants|
       if @submission.save         
         if params[:publish]
@@ -46,6 +45,7 @@ class Member::SubmissionsController < Member::BaseController
           @submission.share_to(@assignment.user, @submission.submitter)
           @submission.share_to(@submission.user, @submission.submitter) unless @submission.user == @submission.submitter
         end
+        @submission.post.to_crocodoc!(true)
         wants.html do
           flash[:ok] = I18n.t('submissions.site.edit.success')
           redirect_to member_submission_path(@submission)
