@@ -1,0 +1,18 @@
+<% include_stylesheet 'shared/errors' %>
+<h1><%= link_to I18n.t("tog_conclave.plugin_title"), member_conclave_events_path %> / <%= I18n.t("tog_conclave.admin.create_event") %></h1>
+
+
+<% if @event && !@event.errors.empty? -%>
+<div class="error"><%= I18n.t('groups.site.add_failure', :group_name => "<b>#{@event.title}</b>", :failure_reason => @event.errors.full_messages.join(', ')) %></div>
+<% end -%>
+
+
+<% form_for :event, :url => member_conclave_events_path,  :html => {:multipart => true, :id => "new_event"} do |f| -%>
+
+  <%= render :partial => 'form', :locals => { :f => f } %>
+
+  <div class="actions">
+    <%= submit_tag I18n.t("tog_conclave.admin.create_event"), {:accesskey => "s", :class=>"button"} %>
+  </div>
+  
+<% end -%>
