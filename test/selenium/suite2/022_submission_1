@@ -56,23 +56,18 @@
 	<td>/Users/shenuja/Documents/schoolarly/notes/Lady_Ashely.pdf</td>
 </tr>
 <tr>
-	<td>assertConfirmation</td>
-	<td>This will submit your answer. Are you sure?</td>
-	<td></td>
-</tr>
-<tr>
 	<td>click</td>
 	<td>publish</td>
 	<td></td>
 </tr>
 <tr>
-	<td>waitForElementPresent</td>
-	<td>//iframe</td>
+	<td>assertConfirmationPresent</td>
+	<td>This will submit your answer. Are you sure?</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyElementPresent</td>
-	<td>link=Lady Ashley's Ring of Indiscretions in Hemingway's The Sun Also Rises</td>
+	<td>waitForElementPresent</td>
+	<td>//iframe</td>
 	<td></td>
 </tr>
 <tr>

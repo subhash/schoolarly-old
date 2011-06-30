@@ -72,11 +72,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>verifyElementPresent</td>
-	<td>link=Robert Cohn as an Antagonist in The Sun Also Rises</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Log-out</td>
 	<td></td>
