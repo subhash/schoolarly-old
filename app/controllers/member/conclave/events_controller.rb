@@ -8,9 +8,9 @@ class Member::Conclave::EventsController < Member::BaseController
     @event = Event.new(:url => "http://")
     @event.capacity = 0
     @event.start_date = Date.today
-    @event.start_time = Time.now
+    @event.start_time = 1.hour.from_now
     @event.end_date = Date.today
-    @event.end_time = 1.hour.from_now
+    @event.end_time = 2.hour.from_now
   end
   
   def create
