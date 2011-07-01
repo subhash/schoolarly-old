@@ -1,3 +1,6 @@
+- Changed group name validation in tog_social
+- Changed max limit for login validation in tog_user
+
 Spinner plugin
 --------------
 
