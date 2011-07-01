@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://127.0.0.1:3001/" />
 <title>grading</title>
 </head>
 <body>
@@ -38,7 +37,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Assign Grade</td>
+	<td>//a[text()=&quot;Harry Potter&quot;]//parent::div//following-sibling::span/a</td>
 	<td></td>
 </tr>
 <tr>
@@ -154,6 +153,16 @@
 <tr>
 	<td>click</td>
 	<td>//input[@name='commit' and @value='Assign Grade']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@value='Publish grades']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertConfirmation</td>
+	<td>This will publish the grades to students. Continue?</td>
 	<td></td>
 </tr>
 <tr>
