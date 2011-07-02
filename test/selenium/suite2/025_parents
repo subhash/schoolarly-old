@@ -3,12 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>add_english_note</title>
+<link rel="selenium.base" href="http://demo.schoolarly.com/" />
+<title>025_parents</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">add_english_note</td></tr>
+<tr><td rowspan="1" colspan="3">025_parents</td></tr>
 </thead><tbody>
 <tr>
 	<td>clickAndWait</td>
@@ -18,7 +19,7 @@
 <tr>
 	<td>type</td>
 	<td>login</td>
-	<td>mcgonagall@schoolarly.com</td>
+	<td>harry@schoolarly.com</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -32,37 +33,27 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=English</td>
+	<td>link=My profile</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=James Potter</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>link=Lily Potter</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Note</td>
+	<td>link=James Potter</td>
 	<td></td>
 </tr>
 <tr>
-	<td>type</td>
-	<td>post_title</td>
-	<td>Summer reading list</td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>link=Or upload a document</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>post_doc</td>
-	<td>/Users/shenuja/Documents/schoolarly/notes/grade7.pdf</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Create Post']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyElementPresent</td>
-	<td>link=Summer reading list</td>
+	<td>assertElementPresent</td>
+	<td>link=Harry Potter</td>
 	<td></td>
 </tr>
 <tr>
@@ -70,6 +61,42 @@
 	<td>link=Log-out</td>
 	<td></td>
 </tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>james@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>workworkwork</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[text()=&quot;Assignment - The Sun also Rises&quot;]/parent::span//following-sibling::a[text()=&quot;Grade&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Total Score : 17/20</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
+	<td></td>
+</tr>
+
 </tbody></table>
 </body>
 </html>
