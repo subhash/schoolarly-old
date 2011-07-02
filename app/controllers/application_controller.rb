@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
-  rescue_from UnauthorizedException, :with => :unauthorized
+  #  rescue_from UnauthorizedException, :with => :unauthorized
   
   include Smerf
   
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
       when 'Assignment'
       object.post.owner == current_user
       when 'Submission'
-      (object.post.owner == current_user) || (object.user == current_user)
+       (object.post.owner == current_user) || (object.user == current_user)
     else
       object.user == current_user
     end
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   def shared_to_me?(object)
     object.shares.any? do |share| 
       s = share.shared_to
-      (s == current_user) || (current_user.friend_users.include? s) || (current_user.groups.include? s) 
+       (s == current_user) || (current_user.friend_users.include? s) || (current_user.groups.include? s) 
     end
   end
   
