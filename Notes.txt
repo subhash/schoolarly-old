@@ -5,3 +5,9 @@ Spinner plugin
 --------------
 
 script/plugin install git://github.com/ssoroka/busy_ajax.git
+script/plugin install git://github.com/ssoroka/busy_ajax.git
+
+Admin Data
+-----------
+
+ruby script/plugin install git://github.com/neerajdotname/admin_data.git -r rails2

@@ -36,6 +36,7 @@ Rails::Initializer.run do |config|
   config.gem 'dynamic_attributes'
   config.gem 'haml'
   config.gem 'pdfkit'
+  config.gem 'hoptoad_notifier'
 #  config.gem 'mail'
 #  config.gem 'delayed_job'
   

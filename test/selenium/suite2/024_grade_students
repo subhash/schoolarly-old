@@ -156,6 +156,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>clickAndWait</td>
+	<td>link=Assignment - The Sun also Rises</td>
+	<td></td>
+</tr>
+<tr>
 	<td>click</td>
 	<td>//input[@value='Publish grades']</td>
 	<td></td>
