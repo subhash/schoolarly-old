@@ -221,7 +221,19 @@ en:
       admin_links: "Group Settings"
       pending: "Your group has been created but is pending for administrator's approval"  
       sub_groups:
-         create: "Create member group"  
+         create: "Create member group"
+      edit_profiles:
+       title: "Edit Student Profiles"
+       format: "email (mandatory), var1, var2, var3 .. <br/> email address1, data1, data2, data3 .."
+       description: "Enter the profile information separated by commas, one student per line.<br/> The first line should be a list of the names of the profile data that is to be changed and the following lines should contain the data corresponding to those names. <br/>The available names (and their descriptions) are listed below (Please remember to include 'email' as the first column): <br/> %{variables}"
+       error:
+         mismatch: The data provided is insufficient or does not match the column header
+         email_missing: The mandatory 'email' column header is missing
+         message: "Could not update the profile information of %{user_name} because: %{reason}"
+       ok:
+         notice: "The profile information of %{user_count} students was updated successfully"
+         message: "The profile information of %{user_name} was updated successfully"
+         
       mail:
         activation_request:
           subject: Request for new group '%{group_name}'

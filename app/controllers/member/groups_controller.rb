@@ -4,7 +4,7 @@ class Member::GroupsController < Member::BaseController
   before_filter :find_parent, :only => [:new, :new_multiple, :create_multiple]
   before_filter :find_type, :only => [:new,:create, :new_multiple, :create_multiple]
   before_filter :find_group, :except => [:index, :new, :create, :new_multiple, :create_multiple]
-  before_filter :check_moderator, :only => [:edit, :update, :add_select, :remove_select, :add, :remove, :select_moderators, :add_moderators, :remove_moderator]
+  before_filter :check_moderator, :only => [:edit, :update, :add_select, :remove_select, :add, :remove, :select_moderators, :add_moderators, :remove_moderator, :edit_profiles, :update_profiles]
   before_filter :find_moderator, :only => [:remove_moderator]
   before_filter :set_paginate_options, :only => [:add_select, :remove_select, :select_moderators]
   
@@ -265,6 +265,57 @@ class Member::GroupsController < Member::BaseController
     end    
   end
   
+  def update_profiles
+    @users = params[:users]
+    parsed = parse_csv(@users)
+    if parsed.blank?
+      flash[:error] = I18n.t('groups.member.edit_profiles.error.mismatch')
+      render 'edit_profiles' and return
+    end
+    unless parsed.first["email"]
+      flash[:error] = I18n.t('groups.member.edit_profiles.error.email_missing')
+      render 'edit_profiles' and return
+    end
+    @ok_users = []
+    @error_users = []
+    @users = []
+    @users << parsed.first.keys.join(",")
+    parsed.each do |attr_hash|
+      dup_hash = attr_hash.dup
+      email = dup_hash.delete("email")
+      user = User.find_by_email(email)
+      if user
+        profile = user.profile
+        dup_hash.each do |k, v|
+          if profile.attributes.include? k or profile.attributes_list.include? k 
+            profile.send(profile.attributes_list.include?(k)?"field_#{k}=":"#{k}=", v)
+          else
+            user.errors.add k.to_s, "is an invalid attribute"
+          end
+        end
+        if profile.errors.blank? and user.errors.blank? and profile.save
+          @ok_users << user
+        else
+          @error_users << user
+          @users << attr_hash.values.join(",")
+        end
+      else
+        user = User.new(:email => email)
+        user.errors.add "email", "does not exist"
+        @error_users << user
+        @users << attr_hash.values.join(",")        
+      end
+    end
+    unless @error_users.blank?
+      @users = @users.join("\n")
+      render 'edit_profiles'      
+    else
+      flash[:ok] = I18n.t('groups.member.edit_profiles.ok.notice', :user_count => @ok_users.size)
+      redirect_to edit_member_group_path(@group)
+    end
+    
+  end
+  
   protected
   def find_type
     @type = params[:type] || 'groups'
@@ -290,5 +341,26 @@ class Member::GroupsController < Member::BaseController
       flash[:error] = I18n.t("tog_social.groups.member.not_moderator") 
       redirect_to member_group_path(@group)
     end
-  end  
+  end
+  
+  private
+  
+  def parse_csv(csv)
+    results = []
+    header = nil
+    CSV.parse(csv) do |row|
+      unless header
+        header = row.map {|c| c.to_s}
+      else
+        return nil unless row.size == header.size 
+        p = ActiveSupport::OrderedHash.new
+        row.each_with_index do |val, i|
+          p[header[i].strip] = val.to_s.strip
+          puts p.inspect
+        end 
+        results << p
+      end
+    end
+    results
+  end
 end

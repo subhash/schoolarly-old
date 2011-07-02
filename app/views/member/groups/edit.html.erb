@@ -58,6 +58,11 @@
 	            <li>
 	                <%= link_to I18n.t('groups.site.remove.Student'), remove_select_member_group_path(@group, :type => 'Student'), :class => 'delete' %>
 	            </li>
+				<% if @group.school? %>
+	            <li>
+	                <%= link_to I18n.t('groups.member.edit_profiles.title'), edit_profiles_member_group_path(@group)%>
+	            </li>
+				<% end %>				
 			<% end %>
             <% if i_am_moderator_of(@group) and !@group.school? and @group.moderators.size > 1%>
 		            <li>
