@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
-  #  rescue_from UnauthorizedException, :with => :unauthorized
+  rescue_from UnauthorizedException, :with => :unauthorized
   
   include Smerf
   
@@ -50,7 +50,9 @@ class ApplicationController < ActionController::Base
   end
   
   def ban_access
-    raise UnauthorizedException.new
+    ex = UnauthorizedException.new
+    notify_hoptoad(ex)
+    raise ex
   end
   
 end
