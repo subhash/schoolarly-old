@@ -1,6 +1,10 @@
+- Changed group name validation in tog_social
+- Changed max limit for login validation in tog_user
+
 Spinner plugin
 --------------
 
+script/plugin install git://github.com/ssoroka/busy_ajax.git
 script/plugin install git://github.com/ssoroka/busy_ajax.git
 
 Admin Data
