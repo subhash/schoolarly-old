@@ -12,11 +12,6 @@
 <tr><td rowspan="1" colspan="3">026_edit_profiles</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/login</td>
-	<td></td>
-</tr>
-<tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
 	<td></td>
@@ -54,7 +49,7 @@
 <tr>
 	<td>type</td>
 	<td>users</td>
-	<td>email,belief, weight<br />harry@schoolarly.com, yes, 60 kg<br />hermione@schoolarly.com, no, 50kg<br />draco@schoolarly.com, no, 65kg<br /></td>
+	<td>email,belief, weight<br />harry@schoolarly.com, yes, 60 kg<br />hermione@schoolarly.com, no, 50kg<br />draco@schoolarly.com, no, 65kg</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -198,7 +193,7 @@
 </tr>
 <tr>
 	<td>assertTextPresent</td>
-	<td>The profile information of 1 students was updated successfully<br /></td>
+	<td>The profile information of 1 students was updated successfully</td>
 	<td></td>
 </tr>
 <tr>
@@ -219,11 +214,6 @@
 <tr>
 	<td>verifyTextPresent</td>
 	<td>The profile information of Draco Malfoy was updated successfully</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertTextPresent</td>
-	<td>(lucius@schoolarly.com) has been added as a parent of (draco@schoolarly.com)</td>
 	<td></td>
 </tr>
 <tr>
@@ -276,7 +266,6 @@
 	<td>link=Log-out</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>
