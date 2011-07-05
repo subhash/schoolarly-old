@@ -279,12 +279,15 @@ class Member::GroupsController < Member::BaseController
     @ok_users = []
     @error_users = []
     @users = []
+    @failed_parents = {}
+    @ok_parents = {}
     @users << parsed.first.keys.join(",")
     parsed.each do |attr_hash|
       dup_hash = attr_hash.dup
       email = dup_hash.delete("email")
       user = User.find_by_email(email)
       if user
+        add_parents(user, dup_hash)
         profile = user.profile
         dup_hash.each do |k, v|
           if profile.attributes.include? k or profile.attributes_list.include? k 
@@ -306,7 +309,7 @@ class Member::GroupsController < Member::BaseController
         @users << attr_hash.values.join(",")        
       end
     end
-    unless @error_users.blank?
+    unless @error_users.blank? and @failed_parents.blank?
       @users = @users.join("\n")
       render 'edit_profiles'      
     else
@@ -362,5 +365,39 @@ class Member::GroupsController < Member::BaseController
       end
     end
     results
+  end
+  
+  def add_parents(user, attr)
+    femail = attr.delete("femail")
+    memail = attr.delete("memail")
+    if(femail)
+      father = create_user(femail, attr.delete("fname"), Parent.new)        
+      if father.invite_over_email(current_user)
+        user.profile.add_friend(father.profile)
+        @ok_parents[user] = father
+      else
+        @failed_parents[user] = father
+      end
+    end
+    if(memail)
+      mother = create_user(memail, attr.delete("mname"), Parent.new)
+      if mother.invite_over_email(current_user)
+        user.profile.add_friend(mother.profile)
+        @ok_parents[user] = father
+      else
+        @failed_parents[user] = mother
+      end
+    end    
+  end
+  
+  def create_user(email, name, person)
+    first = last = nil
+    first, last = name.split(' ',2) if name
+    email = email.strip if email
+    user = User.new(:email => email)
+    user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
+    user.profile = Profile.new(:first_name => first,:last_name => last)
+    user.person = person
+    return user
   end
 end
