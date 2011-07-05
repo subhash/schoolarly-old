@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://127.0.0.1:3004/" />
 <title>026_edit_profiles</title>
 </head>
 <body>
@@ -103,6 +104,176 @@
 <tr>
 	<td>assertTextPresent</td>
 	<td>Weight 60 kg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>dumbledore@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>workworkwork</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Hogwarts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Edit group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Edit Student Profiles</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>users</td>
+	<td>harry@schoolarly.com, yes</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Edit Student Profiles']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>The data provided is insufficient or does not match the column header</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>users</td>
+	<td>email, add_line1, phone<br />hermione@schoolarly.com, Greensville Cottage No.22, +919446567898<br />harry, Potter lane, 9999460543</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Edit Student Profiles']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>The profile information of Hermione Granger was updated successfully</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Could not update the profile information of harry because: Email does not exist</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>email,add_line1,phone harry,Potter lane,9999460543</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>users</td>
+	<td>email,add_line1,phone<br />harry@schoolarly.com,,9999460543</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Edit Student Profiles']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>The profile information of 1 students was updated successfully<br /></td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Edit Student Profiles</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>users</td>
+	<td>email,femail,fname,memail,mname<br />draco@schoolarly.com,lucius@schoolarly.com,Lucius Malfoy, ,Narcissa Malfoy</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Edit Student Profiles']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>The profile information of Draco Malfoy was updated successfully</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>(lucius@schoolarly.com) has been added as a parent of (draco@schoolarly.com)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>draco@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>workworkwork</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=My profile</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Lucius Malfoy</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>First Name Lucius</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Last Name Malfoy</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
 	<td></td>
 </tr>
 

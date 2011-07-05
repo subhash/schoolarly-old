@@ -14,7 +14,7 @@
 <% end %>
 <% @ok_parents ||= [] %>
 <% @ok_parents.each do |student, parent| %>
-		<div class="error"><%= I18n.t('groups.member.edit_profiles.parents.ok.message', 
+		<div class="ok"><%= I18n.t('groups.member.edit_profiles.parents.ok.message', 
 				:parent_name => "<b>(#{parent.email})</b>",
 				:student_name => "<b>(#{student.email})</b>") %></div>
 <% end %>

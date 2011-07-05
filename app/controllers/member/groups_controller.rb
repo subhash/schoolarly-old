@@ -370,8 +370,10 @@ class Member::GroupsController < Member::BaseController
   def add_parents(user, attr)
     femail = attr.delete("femail")
     memail = attr.delete("memail")
+    fname = attr.delete("fname")
+    mname = attr.delete("mname")
     if(femail)
-      father = create_user(femail, attr.delete("fname"), Parent.new)        
+      father = create_user(femail, fname, Parent.new)        
       if father.invite_over_email(current_user)
         user.profile.add_friend(father.profile)
         @ok_parents[user] = father
@@ -380,7 +382,7 @@ class Member::GroupsController < Member::BaseController
       end
     end
     if(memail)
-      mother = create_user(memail, attr.delete("mname"), Parent.new)
+      mother = create_user(memail, mname, Parent.new)
       if mother.invite_over_email(current_user)
         user.profile.add_friend(mother.profile)
         @ok_parents[user] = father
