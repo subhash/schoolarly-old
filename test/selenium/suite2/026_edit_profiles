@@ -3,13 +3,73 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>025_parents</title>
+<title>026_edit_profiles</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">025_parents</td></tr>
+<tr><td rowspan="1" colspan="3">026_edit_profiles</td></tr>
 </thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>dumbledore@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>workworkwork</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Sign in']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Hogwarts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Edit group</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Edit Student Profiles</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>users</td>
+	<td>email,belief, weight<br />harry@schoolarly.com, yes, 60 kg<br />hermione@schoolarly.com, no, 50kg<br />draco@schoolarly.com, no, 65kg<br /></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@name='commit' and @value='Edit Student Profiles']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>The profile information of 3 students was updated successfully</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-out</td>
+	<td></td>
+</tr>
 <tr>
 	<td>clickAndWait</td>
 	<td>link=Log-in</td>
@@ -36,63 +96,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>assertElementPresent</td>
-	<td>link=James Potter</td>
+	<td>assertTextPresent</td>
+	<td>Do you believe in Magical stuff? yes</td>
 	<td></td>
 </tr>
 <tr>
-	<td>assertElementPresent</td>
-	<td>link=Lily Potter</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=James Potter</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>link=Harry Potter</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Log-out</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Log-in</td>
-	<td></td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>login</td>
-	<td>james@schoolarly.com</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>password</td>
-	<td>workworkwork</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@name='commit' and @value='Sign in']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//a[text()=&quot;Assignment - The Sun also Rises&quot;]/parent::span//following-sibling::a[text()=&quot;Grade&quot;]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>Total Score : 17/20</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=Log-out</td>
+	<td>assertTextPresent</td>
+	<td>Weight 60 kg</td>
 	<td></td>
 </tr>
 
