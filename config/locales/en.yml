@@ -214,7 +214,6 @@ en:
         added_successfully: "%{name} has been added successfully"        
         remove_select: "Select members to be removed"        
         invited: "%{count} member(s) invited"    
-      
     member:   
       post: 'Post to %{name}'
       membership: Membership
@@ -233,7 +232,11 @@ en:
        ok:
          notice: "The profile information of %{user_count} students was updated successfully"
          message: "The profile information of %{user_name} was updated successfully"
-         
+       parents:
+         ok:
+           message: "%{parent_name} has been added as a parent of %{student_name}"
+         error: 
+           message: "%{parent_name} could not be added as a parent of %{student_name} because: %{failure_reason}"
       mail:
         activation_request:
           subject: Request for new group '%{group_name}'

@@ -12,6 +12,21 @@
 <% @error_users.each do |user| %>
 		<div class="error"><%= I18n.t('groups.member.edit_profiles.error.message', :user_name => user.email, :reason => user.errors.full_messages.join(', ')) %></div>		
 <% end %>
+<% @ok_parents ||= [] %>
+<% @ok_parents.each do |student, parent| %>
+		<div class="error"><%= I18n.t('groups.member.edit_profiles.parents.ok.message', 
+				:parent_name => "<b>(#{parent.email})</b>",
+				:student_name => "<b>(#{student.email})</b>") %></div>
+<% end %>
+<% @failed_parents ||= [] %>
+<% @failed_parents.each do |student, parent| %>
+    <% unless parent.errors.blank? %>
+		<div class="error"><%= I18n.t('groups.member.edit_profiles.parents.error.message', 
+				:parent_name => "<b>(#{parent.email})</b>",
+				:student_name => "<b>(#{student.email})</b>", 
+				:failure_reason => parent.errors.full_messages.join(', ')) %></div>
+	<% end %>
+<% end %>
 <% form_tag update_profiles_member_group_path(@group) , :html => {:id => "f_signup", :name => "f_signup" } do |f| -%>
 <fieldset>
     <div class="fields">
