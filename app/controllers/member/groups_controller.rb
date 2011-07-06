@@ -117,9 +117,7 @@ class Member::GroupsController < Member::BaseController
   end
   
   def add_select
-    @profiles = @group.applicable_members(@type).collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
-                                 :page => @page,
-                                 :order => "profiles.#{@order} #{@asc}"
+    @profiles = @group.applicable_members(@type).collect(&:profile)
     respond_to do |format|
       format.html { render :template => 'member/groups/add_select'}
       format.xml  { render :xml => @profiles }
