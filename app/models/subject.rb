@@ -1,5 +1,5 @@
 class Subject < ActiveRecord::Base
   
-   has_one :group, :as => :network
+  has_one :group, :as => :network
   
 end

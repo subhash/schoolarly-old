@@ -36,6 +36,10 @@ class Group < ActiveRecord::Base
     mem.invite!
   end
   
+  def display_name
+    subject? ? name+" ["+parent.name+"]" : name
+  end
+  
   def accept_invitation(user)
     parent.accept_invitation(user) if (parent and parent.membership_of(user).invited?)
     mem = membership_of(user)
