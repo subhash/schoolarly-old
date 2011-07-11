@@ -41,7 +41,7 @@ class Member::AssignmentsController < Member::BaseController
   def show
     store_location    
     @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
-    @submitters = @shared_groups.collect(&:student_users).flatten + [@assignment.user]
+    @submitters = (@shared_groups.collect(&:student_users).flatten + [@assignment.user]).uniq
     @publish = @assignment.grades.select{|g|!g.shared_to?(g.user, @assignment.user)}.any?
   end
   

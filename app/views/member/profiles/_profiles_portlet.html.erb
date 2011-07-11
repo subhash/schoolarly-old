@@ -1,11 +1,11 @@
 <div class="portlet <%= style || 'portletA' %>" id="portlet_friends">
   	<h2>
-  		<span><%= link_to_if items.size > 5, "#{title} (#{items.size})", member_profiles_path(:group => @group, :type => type) %></span>
+  		<span><%= link_to_if items.size > 8, "#{title} (#{items.size})", member_profiles_path(:group => @group, :type => type) %></span>
 	</h2>
   <div class="portlet_content">
       <ul class="clearfix">
         <% unless items.blank? %>
-          <% for item in items.first(5) %>
+          <% for item in items.first(8) %>
             <li><%= link_to icon_for_profile(item, 'small'), member_profile_path(item), :title => item.full_name %>
           </li>
           <% end %>

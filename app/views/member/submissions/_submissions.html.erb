@@ -7,10 +7,10 @@
             <% submission = @assignment.submissions.find_by_user_id(s.id) %>
             <li>
                 <div class="image">
-                    <%= link_to icon_for_profile(s.profile, 'tiny'), profile_path(s.profile) %>
+                    <%= link_to icon_for_profile(s.profile, 'tiny'), member_profile_path(s.profile) %>
                 </div>
                 <div>
-                    <%= link_to s.profile.full_name, profile_path(s.profile) %>
+                    <%= link_to s.profile.full_name, member_profile_path(s.profile) %>
                 </div>
 				<% if s.student? %>
                 <span class="float_right"><% grade = @assignment.grades.for_user(s) %>
@@ -53,10 +53,10 @@
             <% submission = @assignment.submissions.find_by_user_id(current_user.id) %>
             <li>
                 <div class="image">
-                    <%= link_to icon_for_profile(current_user.profile, 'tiny'), profile_path(current_user.profile) %>
+                    <%= link_to icon_for_profile(current_user.profile, 'tiny'), member_profile_path(current_user.profile) %>
                 </div>
                 <div>
-                    <%= link_to current_user.profile.full_name, profile_path(current_user.profile) %>
+                    <%= link_to current_user.profile.full_name, member_profile_path(current_user.profile) %>
                 </div>
                 <span class="float_right"><% grade = @assignment.grades.for_user(current_user) %>
                     <% if grade and grade.shared_to?(current_user, @assignment.user) %>

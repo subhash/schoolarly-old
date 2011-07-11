@@ -27,6 +27,9 @@
     <tbody>
         <% @users.each do |user| %>
         <tr<%= cycle(' class="pair"','') -%>>
+            <td nowrap="nowrap">
+                <%= link_to I18n.t("tog_user.model.login"), hijack_admin_user_path(user), :title =>  "#{I18n.t('tog_user.model.login')} #{user.email}" -%>
+            </td>
             <td>
                 <strong><%= link_to user.login, edit_admin_user_url(user), {:title => I18n.t("tog_user.admin.edit_user")} -%></strong>
             </td>
@@ -38,9 +41,6 @@
             </td>
             <td nowrap="nowrap">
                 <%= I18n.l(user.created_at, :format => :long) -%>
-            </td>
-            <td nowrap="nowrap">
-                <%= link_to I18n.t("tog_user.model.login"), hijack_admin_user_path(user), :title =>  "#{I18n.t('tog_user.model.login')} #{user.email}" -%>
             </td>
         </tr>
         <% end %>
