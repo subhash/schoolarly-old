@@ -28,13 +28,12 @@ config.action_mailer.delivery_method = :smtp
 
 
 ActionMailer::Base.smtp_settings = {
-  :enable_starttls_auto => true,
-  :address => "smtp.gmail.com",
-  :port => "587",
+  :address => "smtp.sendgrid.net",
+  :port => '25',
   :domain => "schoolarly.com",
   :authentication => :plain,
-  :user_name => "test@schoolarly.com",
-  :password => "testuser"
+  :user_name => "subhash",
+  :password => "myword178"
 }
 
 config.action_mailer.perform_deliveries = true
