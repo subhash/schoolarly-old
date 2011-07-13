@@ -4,7 +4,18 @@ class Member::AggregationsController < Member::BaseController
   
   def new
     @aggregation = Aggregation.new(params[:aggregation])
-    @aggregation.set_score_weightages
+    if params[:report]
+      @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
+      @sort_order = params[:sort_order] || "asc"
+      @page = params[:page] || '1'
+      @student_users = @group.student_users.find(:all, :include => :profile, :order => "#{@order_by} #{@sort_order}")
+      @aggregations = Aggregation.find(@aggregation.child_ids)
+      @assignments = Assignment.find(@aggregation.weighted_assignments.collect(&:assignment_id))
+      render :action => :report
+    else
+      @aggregation.set_score_weightages
+      render :action => :new
+    end
   end
   
   def create
@@ -19,7 +30,7 @@ class Member::AggregationsController < Member::BaseController
       @group.share(current_user, @aggregation.class.to_s, @aggregation.id)
       @aggregations = @group.sharings.of_type('Aggregation').collect(&:shareable).reject(&:parent)
       @assignments = @group.sharings.of_type('Assignment').collect(&:shareable).reject(&:weighted_assignment)
-      redirect_to new_member_group_report_path(@group)
+      redirect_to member_group_aggregations_path(@group)
     else
       render :template => 'new'
     end  
@@ -31,6 +42,18 @@ class Member::AggregationsController < Member::BaseController
     #        end
     #      }
     #    end
+  end
+  
+  def destroy
+    @aggregation = Aggregation.find(params[:id])
+    @aggregation.destroy
+    redirect_to member_group_aggregations_path(@group)
+  end
+  
+  def index
+    store_location
+    @aggregations = @group.sharings.of_type('Aggregation').collect(&:shareable).reject(&:parent)
+    @assignments = @group.sharings.of_type('Assignment').collect(&:shareable).reject(&:weighted_assignment)    
   end
   
   private

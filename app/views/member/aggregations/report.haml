@@ -1,0 +1,37 @@
+- columns = ["profiles.first_name", "profiles.last_name", :email]
+%h2
+  %span
+    = path_for(@group) 
+    = " > " 
+    = I18n.t('reports.member.new.report')
+    
+%table.report
+  %thead
+    %tr
+      %th
+      - columns.each do |field|
+        %th{:scope => "col"}
+          = link_to_sortable_column_header(field, @order_by, @sort_order,I18n.t("reports.model.#{field}"))
+      - for node in @aggregation.all_nodes
+        %th{:scope => "col"}
+          = "#{node.name} [#{node.score}]"
+          - columns << node
+  %tbody
+    - for user in @student_users
+      %tr{:class => cycle('pair','')}
+        %td= link_to icon_for_profile(user.profile, 'tiny', :class=>"img"), member_profile_path(user.profile)
+        %td= link_to user.profile.first_name, member_profile_path(user.profile)
+        %td= link_to user.profile.last_name, member_profile_path(user.profile)
+        %td= link_to user.email, member_new_message_to_path(user)
+        - columns.from(3).each do |node|
+          %td=node.score_for(user)
+          
+= link_to I18n.t('tog_social.back'), member_group_aggregations_path(@group)         
+          
+          
+        
+        
+      
+      
+
+

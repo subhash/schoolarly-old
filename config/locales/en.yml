@@ -635,10 +635,18 @@ en:
           belief: Do you believe in Magical stuff?
 
   reports:
+    model:
+      profiles:
+        first_name: First name
+        last_name: Last name
+      email: Email
+      submission: Submission
+      score: Score
     member:
       index:
         title: Grades and reports
       new:
+        report: Generate report
         aggregate: Aggregate
        
   events:

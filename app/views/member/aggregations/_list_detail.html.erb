@@ -1,13 +1,12 @@
-<% group = group if local_assigns[:group] %>
+<% group ||= @group %>
 <% profile = aggregation.user.profile %>
 <div>
-    <span class="left"><%= link_to icon_for_aggregation, member_aggregation_path(aggregation, :group => group), :title => aggregation.name %>
-        <span class="title"><%= link_to aggregation.name, member_aggregation_path(aggregation, :group => group) %>
-            <%= aggregation.formula %>
+    <span class="left"><%= link_to icon_for_aggregation, member_group_aggregation_path(aggregation,group), :title => aggregation.name %>
+        <span class="title"><%= link_to aggregation.name, member_group_aggregation_path(aggregation,group) %>
         </span>
         <div>
-            <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(aggregation.created_at)) %>
-        </div>
+            <%= aggregation.formula %>
+        </div
     </span>
     <span class="right"><%= link_to icon_for_profile(profile, 'tiny', :class=>"img"), member_profile_path(profile) %>
         <%= link_to profile.full_name, member_profile_path(profile) %></span>
