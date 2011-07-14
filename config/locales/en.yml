@@ -522,6 +522,7 @@ en:
         title: "Submissions"
         new: "Submit answer"
         view: "My answer"
+        grade_table: "Grades - Table view"
     model:
       by: "submitted by"
       state:
