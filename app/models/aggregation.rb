@@ -12,6 +12,9 @@ class Aggregation < ActiveRecord::Base
   
   accepts_nested_attributes_for :weighted_assignments, :allow_destroy => true
   accepts_nested_attributes_for :children, :allow_destroy => true
+  validates_presence_of :name
+  validates_presence_of :score
+  
   
   #  validates_presence_of :score
   #  validates_presence_of :name
@@ -27,6 +30,15 @@ class Aggregation < ActiveRecord::Base
     self_and_all_children - [self]
   end
   
+  def self_and_all_nodes
+    self.nodes.inject([self]) { |array, child| array += child.self_and_all_nodes }.flatten
+  end
+  
+  def all_nodes
+    self_and_all_nodes - [self]
+  end
+  
+  
   def preorder(&b)
     yield b, self
     for child in self.children
@@ -40,7 +52,7 @@ class Aggregation < ActiveRecord::Base
   
   
   def set_score_weightages
-    #    score = [aggregations.maximum(&:score), assignments.maximum(&:score)].max
+    score =  [children.maximum("score"), assignments.maximum("score")].max if assignments.maximum("score")
     for node in nodes
       node.weightage = 100/nodes.size
     end
@@ -53,16 +65,27 @@ class Aggregation < ActiveRecord::Base
     end
   end
   
-  
-  def formula
-    str = ""
-    if weighted_average
-      for child in nodes
-        str << "("+child.weightage.to_s+"% of "+child.name+")+"
-      end
-      str.chop!
-    else  
-      str =  "Average(" + nodes.collect(&:name) * ", " + ")"
-    end   
+  def score
+    Rubric.trim(self[:score])
   end
-end
+
+  def score_for(user)
+    if weighted_average 
+      return nodes.collect{|n| (n.score_for(user) and n.score) ? ((n.score_for(user)/n.score.to_f) * (n.weightage/100.00) * score.to_f) : 0.0}.sum
+    else
+      return (nodes.collect{|n| (n.score_for(user) and n.score) ? ((n.score_for(user)/n.score.to_f) * score.to_f) : 0.0}.sum)/nodes.size
+    end
+    end
+    
+    def formula
+      str = ""
+      if weighted_average
+        for child in nodes
+          str << "("+child.weightage.to_s+"% of "+child.name+")+"
+        end
+        str.chop!
+      else  
+        str =  "Average(" + nodes.collect(&:name) * ", " + ")"
+      end   
+    end
+  end

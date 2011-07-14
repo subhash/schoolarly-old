@@ -16,6 +16,7 @@
   });
   
 
+
 - form_for :report, :url => new_member_group_aggregation_path(@group) , :html => {:id => 'reports_form'} do |f|  
   %table.aggregation
     - for aggregation in @aggregations do  
@@ -31,11 +32,9 @@
                 =render :partial => 'member/assignments/aggregation_children_detail', :locals => {:assignment => wa.assignment}
                 ="#{wa.weightage}%" if aggregation.weighted_average
             - for child in aggregation.children do
-              %li.child 
-                = link_to child.name,'#', :class => "view_details"
-                = child.formula
-                = child.score
-                = child.drop_lowest
+              %li.child                 
+                = render :partial => 'member/aggregations/list_detail', :locals => {:aggregation => child}
+                = link_to "Details" ,'#', :class => "view_details"
                 %div{:class => "details", :style => "display: none; "}
                   %ul                  
                     - for wa in child.weighted_assignments do
@@ -50,6 +49,9 @@
                         %li{:class => ["_#{node.ancestors.size+1}", "assignment"]} 
                           =render :partial => 'member/assignments/aggregation_children_detail', :locals => {:assignment => wa.assignment}
                           ="#{trim(wa.weightage)}%" if node.weighted_average
+        -if i_own?(aggregation)                          
+          %td
+            = link_to image_tag("delete.png"), member_group_aggregation_path(aggregation, @group), :method => :delete, :confirm => "This will delete the aggregation. Continue?"
   - if @assignments.any?  
     %table.assignment
       %caption="Assignments"
@@ -65,6 +67,8 @@
     :html => {:class => 'button'},
     :with => "$('reports_form').serialize()" 
   %div.actions
-    = submit_tag I18n.t('reports.member.new.aggregate') , :class => "button mainaction"          
+    = submit_tag I18n.t('reports.member.new.aggregate') , :name => "aggregate", :class => "button mainaction"   
+    = submit_tag I18n.t('reports.member.new.report'), :name => "report", :class => "button mainaction"
+       
                
   

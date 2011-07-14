@@ -1,8 +1,17 @@
 class Member::GradesController < Member::BaseController
   
-  before_filter :find_assignment, :only => [:new, :create]
+  before_filter :find_assignment, :only => [:new, :create, :index]
   
   before_filter :find_grade, :only => [:edit, :update, :destroy, :show]
+  
+  def index
+    @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
+    @student_users = (@shared_groups.collect(&:student_users).flatten).uniq
+    @publish = @assignment.grades.select{|g|!g.shared_to?(g.user, @assignment.user)}.any?
+    if params[:edit] and params[:edit] == 'true'
+      render :template => 'member/grades/edit'
+    end
+  end
   
   def new
     @user = User.find(params[:user_id])

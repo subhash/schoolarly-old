@@ -9,6 +9,7 @@ class Assignment < ActiveRecord::Base
   
   accepts_nested_attributes_for :post
   
+  
   belongs_to :rubric
   
   has_one :weighted_assignment
@@ -25,6 +26,11 @@ class Assignment < ActiveRecord::Base
     end
   end
   
+  accepts_nested_attributes_for :grades, :allow_destroy => :true 
+  
+  def score_for(user)
+    grades.for_user(user).score if grades.for_user(user)
+  end
   has_many :submissions do
     def by(user)
       find :first, :include => :post, :conditions => ["posts.user_id=?", user.id]

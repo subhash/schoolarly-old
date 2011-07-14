@@ -1,0 +1,63 @@
+- include_stylesheet "rubric" 
+%div.titleB
+  -if @group 
+    = link_to @group.name, member_group_path(@group) 
+    = " > "
+  = sanitize @assignment.name
+  = link_to icon_for_assignment(@assignment), @assignment.post.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @assignment.post.doc.file? 
+  -if @assignment.date 
+    %div.time
+      = @assignment.date.inspect 
+      =" , "
+      =@assignment.start_time.to_s(:time_only) 
+      =" - "
+      =@assignment.end_time.to_s(:time_only) 
+  -if @assignment.due_date 
+    %div.time
+      %span.detail
+        = I18n.t('assignments.model.due_by') 
+      =@assignment.due_date.to_s(:date_time_12) 
+  -if @assignment.score 
+    %span.score
+      %spa.detail
+        = I18n.t('assignments.model.score') 
+      = @assignment.score 
+
+
+- columns = ["profiles.first_name", "profiles.last_name", :email, :score]
+- form_for @assignment, :url => member_assignment_path(@assignment) do |f|
+  %table.report
+    %thead
+      %tr
+        %th
+        - columns.each do |field|
+          %th{:scope => "col"}
+            = link_to_sortable_column_header(field, @order_by, @sort_order,I18n.t("reports.model.#{field}"))
+  
+    %tbody
+      - for user in @student_users
+        %tr{:class => cycle('pair','')}
+          %td= link_to icon_for_profile(user.profile, 'tiny', :class=>"img"), member_profile_path(user.profile)
+          %td= link_to user.profile.first_name, member_profile_path(user.profile)
+          %td= link_to user.profile.last_name, member_profile_path(user.profile)
+          %td= link_to user.email, member_new_message_to_path(user)
+          %td
+            - grade = @assignment.grades.for_user(user)
+            - grade||= Grade.new(:user_id => user.id)
+            -f.fields_for :grades, grade do |g|
+              = g.hidden_field :user_id
+              = g.text_field :score
+  =submit_tag "Save"
+          
+= link_to I18n.t('tog_social.back'), member_assignment_path(@assignment)    
+
+- content_for :sidebar do
+  = link_to "Edit Grades", member_assignment_grades_path(@assignment, :edit => true)     
+          
+          
+        
+        
+      
+      
+
+

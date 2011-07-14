@@ -1,8 +1,10 @@
 <div class="portlet portletI">
-    <h3><span><%= I18n.t('submissions.site.manage.title', :name => @assignment.post.title) %></span></h3>
+    <h3><span><%= I18n.t('submissions.site.manage.title', :name => @assignment.post.title) %>
+            <%= link_to I18n.t('submissions.site.manage.grade_table'), member_assignment_grades_path(@assignment), :class => "float_right" if i_own?(@assignment) and @assignment.score %>
+        </span></h3>
     <div class="portlet_content">
         <ul>
-            <% if @assignment.post.user == current_user %>
+            <% if i_own? @assignment %>
             <% @submitters.each do |s| %>
             <% submission = @assignment.submissions.find_by_user_id(s.id) %>
             <li>
@@ -12,7 +14,7 @@
                 <div>
                     <%= link_to s.profile.full_name, member_profile_path(s.profile) %>
                 </div>
-				<% if s.student? %>
+                <% if s.student? %>
                 <span class="float_right"><% grade = @assignment.grades.for_user(s) %>
                     <% if grade %>
                     <% if @assignment.score %>
@@ -27,7 +29,7 @@
                     <%= link_to I18n.t('assignments.member.grades.assign'), new_member_assignment_grade_path(@assignment, :user_id => s) %>
                     <% end %>
                 </span>
-				<% end %>
+                <% end %>
                 <% if submission.blank? or !submission.post.published? %>
                 <div class="subtitle">
                     <% if @assignment.has_submissions %>
@@ -73,7 +75,7 @@
                     <% end %>
                 </span>
                 <% if submission.blank? %>
-                <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(@assignment) if @assignment.has_submissions%>
+                <%= link_to I18n.t('submissions.site.manage.new'), new_member_assignment_submission_path(@assignment) if @assignment.has_submissions %>
                 <% elsif submission.post.published? %>
                 <%= link_to I18n.t('submissions.site.manage.view'), member_submission_path(submission) %>
                 <% else %>

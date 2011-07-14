@@ -1,4 +1,4 @@
-<% group = group if local_assigns[:group] %>
+<% group ||= @group %>
 <div class="title">
     <%= link_to "#{sanitize assignment.post.title}", member_assignment_path(assignment, :group => group) %>
     <% if assignment.date %>

@@ -21,6 +21,7 @@
   <% end %>
   <tbody>
     <% for sharing in @sharings %>
+	<% puts "sharing = "+sharing.inspect %>
     <tr<%= cycle(' class="pair"', '') -%>>
       <td><%= title_for_object(sharing.shareable) %></td>
       <td><%= link_to title_for_object(sharing.shared_to), sharing.shared_to %></td>

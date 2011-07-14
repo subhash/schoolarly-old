@@ -79,8 +79,7 @@ ActionController::Routing::Routes.draw do |map|
       group.resources :students, :shallow => true, :member => {:new_parent => :get, :select_parent => :get, :create_parent => :post, :add_parent => :post}
       group.resources :teachers, :shallow => true
       group.resources :notices
-      group.resources :reports, :shallow => true
-      group.resources :aggregations, :shallow => true, :collection => {:new => :post}
+      group.resources :aggregations, :collection => {:new => :post}
     end
     member.resources :schools do |school|
       school.resources :klasses, :shallow => true, :member => {:invite => :get, :add => :post} do |klass|

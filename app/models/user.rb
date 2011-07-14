@@ -8,16 +8,6 @@ class User < ActiveRecord::Base
   has_many :rubrics
   
   
-  has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc" do
-    def of_type(type)
-      find :all, :conditions => {:shareable_type => type}
-    end
-  end
-  
-  #  has_many :groups, :through => :memberships,
-  #                    :conditions => "memberships.state='active' and groups.state='active'",
-  #                    :order => "groups.updated_at"
-  
   def student?
     person.is_a? Student
   end
