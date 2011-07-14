@@ -6,7 +6,6 @@ class Member::ProfilesController < Member::BaseController
   helper_method :i_am_school_moderator_for
   
   def show    
-    store_location
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @profile }

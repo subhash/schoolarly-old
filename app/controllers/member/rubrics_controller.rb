@@ -3,7 +3,6 @@ class Member::RubricsController < Member::BaseController
   before_filter :init_rubric, :only => [:remove_field, :add_criterion, :add_level ]
   
   def index
-    store_location
     @order = params[:order] || 'created_at'
     @page = params[:page] || '1'
     @asc = params[:asc] || 'asc'  

@@ -190,7 +190,6 @@ class Member::GroupsController < Member::BaseController
   end
   
   def show
-    store_location
     @page = params[:page] || '1'
     @filter = params[:filter] || 'All'
     if @filter == 'All'
