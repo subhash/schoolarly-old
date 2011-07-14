@@ -7,8 +7,9 @@
   	<% if current_user.admin? %>
       	<li><%= link_to I18n.t("interface.site.schools"), "/admin/groups?type=schools" -%></li>
   	<% end %>	
-    <li class="last"><%= link_to I18n.t("tog_core.views.shared.header_options.logout"), logout_path -%></li>
+    <li><%= link_to I18n.t("tog_core.views.shared.header_options.logout"), logout_path -%></li>
   <% else -%>
-    <li class="last"><%= link_to I18n.t("tog_core.views.shared.header_options.login"), login_path -%></li>
+    <li><%= link_to I18n.t("tog_core.views.shared.header_options.login"), login_path -%></li>
   <% end -%>
+  <li class="last"><%= link_to "Help", "/help" -%></li>
 </ul>
