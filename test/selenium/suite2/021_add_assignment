@@ -91,6 +91,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>clickAndWait</td>
+	<td>English</td>
+	<td></td>
+</tr>
+<tr>
 	<td>verifyElementPresent</td>
 	<td>link=Assignment - The Sun also Rises</td>
 	<td></td>
