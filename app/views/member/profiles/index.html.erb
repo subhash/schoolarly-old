@@ -1,25 +1,52 @@
 <% if @group %>
-	<%= render :partial => 'member/groups/header' %>
+<%= render :partial => 'member/groups/header' %>
+<h2><span><%= I18n.t("groups.model.#{@type}.title") %></span></h2>
 <% else %>
-	<h2><span><%= I18n.t('tog_social.profiles.site.title') %></span></h2>
+<h2><span><%= I18n.t('tog_social.profiles.site.title') %></span></h2>
 <% end %>
-
-
-<div class="portlet portletG" id="portlet_featuredUsers">
-	<% if @group %>
-	<h2><span><%= I18n.t("groups.model.#{@type}.title") %></span></h2>
-	<% end %>
-    <div class="portlet_content">
-        <ul class="clearfix">
-          <% @profiles.each do |profile|%>
-            <li>
-	            	<%= link_to icon_for_profile(profile, 'medium'), member_profile_path(profile), :title => profile.full_name %>
-				<div><%= profile.full_name %></div>
-				<div><%= profile.user.state %></div>
-			</li>
-          <%end%>          
-        </ul>
-    </div>    
-</div>
-
-<%= will_paginate @profiles %>
+<table class="tableE">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+                <%= link_to_sortable_column_header("profiles.first_name, profiles.last_name", @order_by, @sort_order,
+                I18n.t("tog_user.model.name")) %>
+            </th>
+            <th scope="col">
+                <%= link_to_sortable_column_header("users.email", @order_by, @sort_order,
+                I18n.t("tog_user.model.email")) %>
+            </th>
+            <th scope="col">
+                <%= link_to_sortable_column_header("users.state", @order_by, @sort_order,
+                I18n.t("tog_user.model.state")) %>
+            </th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="info_results">
+                <span class="pages_navigation right"><%= will_paginate @profiles, :container => false %>
+                </span>
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <% @profiles.each do |profile| %>
+        <tr<%= cycle(' class="pair"','') -%>>
+            <td nowrap="nowrap">
+                <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) -%>
+            </td>
+            <td>
+                <strong><%= link_to profile.full_name,  member_profile_path(profile) -%></strong>
+            </td>
+            <td nowrap="nowrap">
+                <%= link_to profile.user.email, member_new_message_to_path(profile.user), {:title => I18n.t("tog_user.admin.send_email")} -%>
+            </td>
+            <td>
+                <%= I18n.t("tog_user.model.states.#{profile.user.state}") %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

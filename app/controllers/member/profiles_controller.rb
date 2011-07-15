@@ -24,20 +24,32 @@ class Member::ProfilesController < Member::BaseController
     end
   end
   
-  def index
-    @order = params[:order] || 'created_at'
+  def index    
+    @order_by = params[:order_by] || 'profiles.first_name, profiles.last_name'
     @page = params[:page] || '1'
-    @asc = params[:asc] || 'desc'  
+    @sort_order = params[:sort_order] || 'asc'    
     if params[:group]
-      @group = Group.find(params[:group])
-      @profiles = Profile.for_group_for_type(@group,params[:type]).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
+      condition = ""
+      conditions_values = Hash.new  
+      @group = Group.find(params[:group])  
+      conditions_values[:group_id] = @group.id
+      conditions_values[:person_type] = params[:type]
+      condition += "(memberships.group_id = :group_id and users.person_type = :person_type)"
+      if params[:search_term]
+        condition+= " and "
+        conditions_values[:search_term] = "%#{params[:search_term]}%"
+        condition = "(profiles.first_name like :search_term or profiles.last_name like :search_term or users.email like :search_term)"
+      end
+      puts "order = "+@order_by.inspect
+      @profiles = Profile.for_group(condition, conditions_values, @order_by, @sort_order).paginate :per_page => Tog::Config['plugins.tog_core.pagination_size'],
                                  :page => @page,
-                                 :order => "profiles.#{@order} #{@asc}"  
+                                 :order => "#{@order_by} #{@sort_order}" 
       @type = @profiles.first.user.type
+      
     else
-      @profiles = Profile.active.paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
+      @profiles = Profile.active.paginate :per_page => Tog::Config['plugins.tog_core.pagination_size'],
                                  :page => @page,
-                                 :order => "profiles.#{@order} #{@asc}"     
+                                 :order => "#{@order_by} #{@sort_order}"     
     end 
     respond_to do |format|
       format.html # index.html.erb

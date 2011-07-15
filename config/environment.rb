@@ -37,8 +37,8 @@ Rails::Initializer.run do |config|
   config.gem 'haml'
   config.gem 'pdfkit'
   config.gem 'hoptoad_notifier'
-#  config.gem 'mail'
-#  config.gem 'delayed_job'
+  #  config.gem 'mail'
+  #  config.gem 'delayed_job'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -94,10 +94,14 @@ Tog::Interface.sections(:member).add :notebooks, "/member/conversatio/blogs"
 Tog::Interface.sections(:member).add :sharings, "/member/sharings"
 Tog::Interface.sections(:member).add :rubrics, "/member/rubrics"
 
-Tog::Plugins.settings :tog_core, {"site.name" => "Schoolarly"}, :force => true
-Tog::Plugins.settings :tog_core, {"mail.default_subject" => "[Schoolarly] "}, :force => true
-Tog::Plugins.settings :tog_core, {"mail.system_from_address" => "admin@schoolarly.com"}, :force => true
-Tog::Plugins.settings :tog_social, {"profile.image.versions.tiny"   => "35x35#"}, :force => true
+Tog::Plugins.settings :tog_core, {
+    "site.name" => "Schoolarly",
+    "mail.default_subject" => "[Schoolarly] ",
+    "mail.system_from_address" => "admin@schoolarly.com",
+    "profile.image.versions.tiny"   => "35x35#",
+    "plugins.tog_core.pagination_size" => 100
+}, :force => true
+
 
 Tog::Plugins.settings :tog_user,  {
     :email_as_login                   => true, 
