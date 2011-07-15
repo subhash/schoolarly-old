@@ -600,14 +600,18 @@ en:
       invite: "Invite"      
     model:
       avatar: Photograph
-      parents:
-        friends:
+      friends:
+        add:
+          title: Add
+        remove:
+          title: Remove
+          confirm: %{profile_name} will be removed as a parent. Continue?
+        parents:
           title: Wards
-          no_items: %{profile_name}'s wards have not yet joined Schoolarly
-      students:
-        friends:
+          no_items: %{profile_name}'s wards have not yet joined Schoolarly      
+        students:
           title: Parents
-          no_items: %{profile_name}'s parents have not yet joined Schoolarly
+          no_items: %{profile_name}'s parents have not yet joined Schoolarly          
       dynamic_attributes:
         section:
           personal: Personal Information
