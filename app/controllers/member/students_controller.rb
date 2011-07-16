@@ -1,8 +1,8 @@
 class Member::StudentsController < Member::BaseController
   
-  before_filter :find_group, :except => [:new_parent, :create_parent, :select_parent, :add_parent, :remove_parent]
+  before_filter :find_group, :except => [:new_parent, :create_parent, :select_parent, :add_parent]
   
-  before_filter :find_student, :only => [:new_parent, :create_parent, :select_parent, :add_parent, :remove_parent]
+  before_filter :find_student, :only => [:new_parent, :create_parent, :select_parent, :add_parent]
   
   require "csv"
   
@@ -83,12 +83,6 @@ class Member::StudentsController < Member::BaseController
     @profiles += @student.user.school.group.applicable_members('Parent').map(&:profile) if @student.user.school
     @profiles -= @student.user.profile.parents
   end
-  
-  def remove_parent
-    @parent = Parent.find(params[:parent])
-    @student.user.profile.remove_friend(@parent.user.profile)
-    redirect_to member_profile_path(@student.user.profile)
-  end  
   
   
   private

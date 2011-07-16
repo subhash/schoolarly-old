@@ -26,7 +26,7 @@ class Member::AssignmentsController < Member::BaseController
         @group.share(current_user, @assignment.class.to_s, @assignment.id) if @group
         wants.html do
           flash[:ok] = I18n.t('assignments.member.add_success')
-          redirect_back_or_default member_assignment_path(@assignment)
+          redirect_back_or_default member_assignment_path(@assignment, :group => @group)
         end
       else
         @rubric = @assignment.rubric                                
