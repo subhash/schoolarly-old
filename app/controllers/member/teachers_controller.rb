@@ -25,7 +25,7 @@ class Member::TeachersController < Member::BaseController
     end
     if @failed_teachers.blank?
       flash[:ok] = I18n.t("groups.site.Teacher.invited", :count => @users.count)    
-      redirect_back_or_default(Tog::Config["plugins.tog_user.default_redirect_on_login"])
+      redirect_back_or_default(member_group_path(@group))
     else
       @failed_teachers = @failed_teachers.join("\n")
       render :action => 'new'      

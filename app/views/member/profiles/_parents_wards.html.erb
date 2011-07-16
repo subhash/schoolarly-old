@@ -1,0 +1,36 @@
+<% items = @profile.friends %>
+<% style = :portletH %>
+<% title = I18n.t("profiles.model.friends.#{@profile.user.type}.title") %>
+<% no_items = I18n.t("profiles.model.friends.#{@profile.user.type}.no_items", :profile_name => @profile.full_name) %>
+<% puts (i_am_school_moderator_for(@profile) and @profile.friends.size < 2 and @profile.user.student?).inspect %>
+<% puts (i_am_school_moderator_for(@profile)).inspect %>
+<% add_url = (i_am_school_moderator_for(@profile) and @profile.friends.size < 2 and @profile.user.student?) ? new_parent_member_student_path(@profile.user.person) : nil  %>
+
+<div class="portlet portletH" id="portlet_profiles">
+    <h2><span><%= title %></span><%= link_to I18n.t('profiles.model.friends.add.title'), add_url, :class => 'add  float_right' if add_url %></h2>
+    <div class="portlet_content">
+    	<% if items.empty? %>
+		<ul id="profiles">
+			<li><%= no_items %></li>
+		</ul>
+		<% else %>
+        <ul id="profiles_<%=items.first.type %>_<%=items.first.id %>">
+        	<% for item in items %>
+				<li class="clearfix">
+				    <div class="image">
+				        <%=link_to icon_for_profile(item, 'small'), member_profile_path(item) %>
+				    </div>
+				    <div class="title">
+				        <%= link_to item.full_name, member_profile_path(item) %>
+				    </div>
+					<% if i_am_school_moderator_for(@profile) and @profile.user.student? %>
+				    <div id="actions">
+				    	<%= link_to I18n.t('profiles.model.friends.remove.title'), remove_parent_member_student_path(@profile.user.person, :parent => item.user.person), :class => 'delete', :confirm => I18n.t('profiles.model.friends.remove.confirm', :profile_name => item.full_name)%>				
+				    </div>
+					<% end %>
+				</li>			
+			<% end %>
+        </ul>
+		<% end %>
+    </div>
+</div>
