@@ -141,13 +141,16 @@ class Group < ActiveRecord::Base
     users.collect {|u| membership_of(u)}.delete_if {|m| m.nil?}
   end
   
-  private
-  
   def path
     s = []
     ancestors.reverse.each{|a| s << a.name + " > "}
     s.join+name
   end
+  
+  
+  private
+  
+  
   
   def last_moderator?(user)
     return true if moderators.include?(user) && moderators.size == 1
