@@ -55,6 +55,11 @@ class User < ActiveRecord::Base
   def name
     profile.full_name
   end
+  
+  def default_notebook_for(group)
+    self.blogs.find_by_title_and_description(group.name, Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+group.path)
+  end
+  
   #  def create_default_blog
   #    if self.recently_activated?      
   #      blog_name = "#{self.profile.full_name}'s blog"
