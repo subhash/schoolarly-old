@@ -17,6 +17,23 @@
 <tr><td><a href="suite1/007_new_subject">007_new_subject</a></td></tr>
 <tr><td><a href="suite1/008_allot_members_to_subjects">008_allot_members_to_subjects</a></td></tr>
 <tr><td><a href="suite1/009_reset_passwords">009_reset_passwords</a></td></tr>
+<tr><td><a href="suite2/010_add_note">010_add_note</a></td></tr>
+<tr><td><a href="suite2/011_add_maths_note">011_add_maths_note</a></td></tr>
+<tr><td><a href="suite2/012_add_photo">012_add_photo</a></td></tr>
+<tr><td><a href="suite2/013_add_comments">013_add_comments</a></td></tr>
+<tr><td><a href="suite2/014_maths_note_2">014_maths_note_2</a></td></tr>
+<tr><td><a href="suite2/015_maths_note_3">015_maths_note_3</a></td></tr>
+<tr><td><a href="suite2/016_add_english_note">016_add_english_note</a></td></tr>
+<tr><td><a href="suite2/017_add_comments_2">017_add_comments_2</a></td></tr>
+<tr><td><a href="suite2/018_add_event">018_add_event</a></td></tr>
+<tr><td><a href="suite2/019_add_notice">019_add_notice</a></td></tr>
+<tr><td><a href="suite2/020_add_rubric">020_add_rubric</a></td></tr>
+<tr><td><a href="suite2/021_add_assignment">021_add_assignment</a></td></tr>
+<tr><td><a href="suite2/022_submission_1">022_submission_1</a></td></tr>
+<tr><td><a href="suite2/023_submission_2">023_submission_2</a></td></tr>
+<tr><td><a href="suite2/024_grade_students">024_grade_students</a></td></tr>
+<tr><td><a href="suite2/025_parents">025_parents</a></td></tr>
+<tr><td><a href="suite2/026_edit_profiles">026_edit_profiles</a></td></tr>
 </tbody></table>
 </body>
 </html>
