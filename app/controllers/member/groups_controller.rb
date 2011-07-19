@@ -262,6 +262,15 @@ class Member::GroupsController < Member::BaseController
     end    
   end
   
+  def update
+    @group.update_attributes!(params[:group])
+    @group.tag_list = params[:group][:tag_list]
+    @group.save
+    flash[:ok] =  I18n.t("tog_social.groups.member.updated", :name => @group.display_name) 
+    redirect_to member_group_path(@group)
+  end
+  
+  
   def update_profiles
     @users = params[:users]
     parsed = parse_csv(@users)

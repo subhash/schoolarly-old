@@ -13,7 +13,7 @@
 class Blog < ActiveRecord::Base
   def default_for_group?
     Group.all.each do |g|
-      if title == g.name and description == Tog::Config["plugins.schoolarly.group.notebook.default"]+ " "+g.path
+      if description == Tog::Config["plugins.schoolarly.group.notebook.default"]+ " "+g.path
         return true
       end
     end

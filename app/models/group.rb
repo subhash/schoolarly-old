@@ -22,6 +22,8 @@ class Group < ActiveRecord::Base
   named_scope :subject, :conditions => {:network_type => 'Subject'}
   named_scope :default, :conditions => {:network_type => nil }
   
+  before_update :update_default_notebooks, :if => "name_changed?"
+  
   has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc"  do
     def of_type(type)
       find :all, :conditions => {:shareable_type => type}
@@ -145,6 +147,16 @@ class Group < ActiveRecord::Base
     s = []
     ancestors.reverse.each{|a| s << a.name + " > "}
     s.join+name
+  end
+  
+  def update_default_notebooks
+    s = []
+    ancestors.reverse.each{|a| s << a.name + " > "}
+    s = s.join+name_was 
+    for user in  users
+      b = user.blogs.find_by_description(Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+s)
+      b.update_attributes(:title => self.display_name, :description => (Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+self.path))
+    end
   end
   
   
