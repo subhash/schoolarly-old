@@ -316,6 +316,21 @@ class Member::GroupsController < Member::BaseController
     
   end
   
+  def select_groups
+    @groups = current_user.groups
+  end
+  
+  def add_groups
+    source = Group.find(params[:source])
+    target = @group
+    source.users.each do |user| 
+      target.invite_and_accept(user) unless target.users.include?(user)
+      target.grant_moderator(user) if source.moderators.include?(user)
+    end
+    flash[:ok] = "Added from #{source.path} to #{target.path}"
+    redirect_to select_groups_member_group_path(@group)
+  end
+  
   protected
   def find_type
     @type = params[:type] || 'groups'
