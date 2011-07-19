@@ -9,7 +9,7 @@
       <li><%= I18n.t("tog_core.views.shared.logged_footer.groups")%>
         <ul>
           <li><%= link_to I18n.t("tog_core.views.shared.logged_footer.my_groups"), member_groups_path -%></li>
-          <li><%= link_to I18n.t("tog_core.views.shared.header_options.home"), member_dashboard_path -%></li>
+          <li><%= link_to I18n.t("interface.layout.header.home"), member_dashboard_path -%></li>
         </ul>
       </li>
       <li><%= I18n.t("tog_core.views.shared.logged_footer.messages")%>
@@ -20,7 +20,7 @@
       </li>
       <li><%= I18n.t("tog_core.views.shared.logged_footer.profile")%>
         <ul>
-          <li><%= link_to I18n.t("tog_core.views.shared.logged_footer.my_account"), member_my_account_path -%></li>
+          <li><%= link_to I18n.t("interface.layout.footer.my_account"), member_my_account_path -%></li>
           <li><%= link_to I18n.t("tog_core.views.shared.logged_footer.edit_profile"), edit_member_profile_path(current_user.profile) -%></li>
         </ul>
       </li> 

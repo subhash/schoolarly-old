@@ -9,13 +9,6 @@ en:
   tog_user:
     user:
       sign_up: Thanks for signing up! We have sent to you an email with instructions to activate your account.
-  tog_core:
-    views:
-      shared:
-        header_options:
-          home: Home
-          profile: My profile
-          schoolarly: Schoolarly
   conversatio:
     member:
       blogs:
@@ -107,8 +100,15 @@ en:
       etextbook: "Provide students with the ability to search across e-textbooks and share notes on specific portions of the e-textbook"
       admission: "Provide tools for schools to manage admissions and fees payments"
   interface:
+    layout:
+      footer:
+        my_account: Change password
+      header:
+        home: Home
+        profile: My profile
+        schoolarly: Schoolarly
+        schools: "Schools"        
     site:
-      schools: "Schools"
       demo: "Demo"
       notebooks: Notebooks
     member:

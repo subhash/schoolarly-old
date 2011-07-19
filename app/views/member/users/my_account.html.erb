@@ -1,0 +1,25 @@
+<div class="titleB"><%= I18n.t('tog_user.member.password.change') %></div>
+<br/>
+<%= form_tag member_change_password_path %>
+  <fieldset>
+    <div class="fields">
+      <p>
+        <label for="old_password"><%= I18n.t('tog_user.member.password.current') %></label>
+        <%= password_field_tag 'old_password', @old_password, :class => "fieldbox" %>
+      </p>
+      <p>
+        <label for="password"><%= I18n.t('tog_user.member.password.new') %></label>
+        <%= password_field_tag 'password', nil, :class => "fieldbox"  %>
+      </p>
+      <p>
+        <label for="password_confirmation"><%= I18n.t('tog_user.member.password.confirm_new') %></label>
+        <%= password_field_tag 'password_confirmation', nil, :class => "fieldbox" %>
+      </p>
+    </div>
+    <div class="actions">
+      <%= submit_tag I18n.t('tog_user.member.password.change'), :class => "button mainaction" %>
+    </div>
+  </fieldset>
+</form>
+<br/>
+<hr/>
