@@ -99,7 +99,7 @@ Tog::Plugins.settings :tog_core, {
     "mail.default_subject" => "[Schoolarly] ",
     "mail.system_from_address" => "admin@schoolarly.com",
     "profile.image.versions.tiny"   => "35x35#",
-    "plugins.tog_core.pagination_size" => 100
+    "pagination_size" => 100
 }, :force => true
 
 

@@ -55,6 +55,13 @@ class User < ActiveRecord::Base
   def name
     profile.full_name
   end
+  
+
+  def default_notebook_for(group)
+#     same group names can be there under different parents. so not checking on title
+    self.blogs.find_by_description(Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+group.path)
+  end
+  
   #  def create_default_blog
   #    if self.recently_activated?      
   #      blog_name = "#{self.profile.full_name}'s blog"

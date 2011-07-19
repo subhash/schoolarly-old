@@ -13,9 +13,6 @@
 		<span class="subtitle">[<%= I18n.t('assignments.site.list_detail.not_published_yet')%>]</span>
         <% end %>
     </div>
-    <!--
-    <%= render :partial => 'conversatio/posts/tags', :locals => { :post => @post } %>
-    -->
 </div>
 <div id="post_<%= @post.id %>" class="border_top">
     <% if @post.doc.file? %>
