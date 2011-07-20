@@ -23,12 +23,8 @@
     <% for blog in @blogs %>
     <tr<%= cycle(' class="pair"', '') -%>>
       <td>
-      	<% if blog.default_for_group? %>
 		<%= link_to blog.title, member_conversatio_blog_path(blog) %>
-		<% else %>
-      	<%= link_to blog.title, edit_member_conversatio_blog_path(blog) %>
-		<% end %>
-		</td>
+	 </td>
       <td><%= link_to "##{blog.posts.size}", member_conversatio_blog_posts_path(blog) %></td>
       <td><%= blog.creation_date %></td>
       <td>
