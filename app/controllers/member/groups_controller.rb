@@ -154,7 +154,6 @@ class Member::GroupsController < Member::BaseController
       wants.html{ redirect_to member_group_path(@group)}
       wants.js {
         render :update do |page|
-          page.visual_effect :appear, "user_#{params[:members].first}_group_#{@group.id}"
           page.replace_html "user_#{params[:members].first}_group_#{@group.id}", :partial => 'member/groups/add'
         end
       }
@@ -337,6 +336,21 @@ class Member::GroupsController < Member::BaseController
       redirect_to edit_member_group_path(@group)
     end
     
+  end
+  
+  def select_groups
+    @groups = current_user.groups
+  end
+  
+  def add_groups
+    source = Group.find(params[:source])
+    target = @group
+    source.users.each do |user| 
+      target.invite_and_accept(user) unless target.users.include?(user)
+      target.grant_moderator(user) if source.moderators.include?(user)
+    end
+    flash[:ok] = "Added from #{source.path} to #{target.path}"
+    redirect_to select_groups_member_group_path(@group)
   end
   
   protected

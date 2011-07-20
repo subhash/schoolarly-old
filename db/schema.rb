@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110606050346) do
+ActiveRecord::Schema.define(:version => 20110625065336) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -102,14 +102,6 @@ ActiveRecord::Schema.define(:version => 20110606050346) do
     t.datetime "updated_at"
   end
 
-  create_table "class_activities", :force => true do |t|
-    t.date     "date"
-    t.time     "start_time"
-    t.time     "end_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "client_applications", :force => true do |t|
     t.string   "name"
     t.string   "url"
@@ -162,6 +154,21 @@ ActiveRecord::Schema.define(:version => 20110606050346) do
   end
 
   add_index "criteria", ["rubric_id"], :name => "rubric_id"
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -243,12 +250,6 @@ ActiveRecord::Schema.define(:version => 20110606050346) do
     t.string   "network_type"
     t.integer  "network_id"
     t.integer  "parent_id"
-  end
-
-  create_table "home_activities", :force => true do |t|
-    t.datetime "due_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "klasses", :force => true do |t|
@@ -451,136 +452,12 @@ ActiveRecord::Schema.define(:version => 20110606050346) do
   end
 
   create_table "smerf_forms", :force => true do |t|
-    t.string   "name",       :null => false
-    t.string   "code",       :null => false
-    t.integer  "active",     :null => false
+    t.string   "name",       :default => "", :null => false
+    t.string   "code",       :default => "", :null => false
+    t.integer  "active",                     :null => false
     t.text     "cache"
     t.datetime "cache_date"
   end
 
   add_index "smerf_forms", ["code"], :name => "index_smerf_forms_on_code", :unique => true
 
-  create_table "smerf_forms_users", :force => true do |t|
-    t.integer "user_id",       :null => false
-    t.integer "smerf_form_id", :null => false
-    t.text    "responses",     :null => false
-  end
-
-  create_table "smerf_responses", :force => true do |t|
-    t.integer "smerf_forms_user_id", :null => false
-    t.string  "question_code",       :null => false
-    t.text    "response",            :null => false
-  end
-
-  create_table "students", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "subjects", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "submissions", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "assignment_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "submissions", ["post_id"], :name => "post_id"
-  add_index "submissions", ["user_id"], :name => "user_id"
-  add_index "submissions", ["assignment_id"], :name => "assignment_id"
-
-  create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "taggable_type"
-    t.string   "context"
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
-
-  create_table "tags", :force => true do |t|
-    t.string "name"
-  end
-
-  create_table "teachers", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_ratings", :force => true do |t|
-    t.integer  "rating_id"
-    t.integer  "user_id"
-    t.integer  "score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_ratings", ["user_id", "rating_id"], :name => "index_user_ratings_on_user_id_and_rating_id"
-
-  create_table "users", :force => true do |t|
-    t.string   "login"
-    t.string   "email"
-    t.string   "crypted_password",          :limit => 40
-    t.string   "salt",                      :limit => 40
-    t.string   "activation_code",           :limit => 40
-    t.string   "password_reset_code"
-    t.string   "remember_token"
-    t.datetime "remember_token_expires_at"
-    t.datetime "activated_at"
-    t.datetime "deleted_at"
-    t.string   "state",                                   :default => "passive"
-    t.boolean  "admin",                                   :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "person_type"
-    t.integer  "person_id"
-  end
-
-  create_table "weighted_assignments", :force => true do |t|
-    t.integer  "assignment_id"
-    t.integer  "aggregation_id"
-    t.decimal  "weightage",      :precision => 5, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "weighted_assignments", ["assignment_id"], :name => "assignment_id"
-  add_index "weighted_assignments", ["aggregation_id"], :name => "aggregation_id"
-
-  add_foreign_key "aggregations", ["user_id"], "users", ["id"], :name => "aggregations_ibfk_1"
-
-  add_foreign_key "assignments", ["post_id"], "posts", ["id"], :name => "assignments_ibfk_1"
-  add_foreign_key "assignments", ["rubric_id"], "rubrics", ["id"], :name => "assignments_ibfk_2"
-
-  add_foreign_key "attachments", ["user_id"], "users", ["id"], :name => "attachments_ibfk_1"
-
-  add_foreign_key "criteria", ["rubric_id"], "rubrics", ["id"], :name => "criteria_ibfk_1"
-
-  add_foreign_key "grade_rubric_descriptors", ["grade_id"], "grades", ["id"], :name => "grade_rubric_descriptors_ibfk_1"
-
-  add_foreign_key "grades", ["user_id"], "users", ["id"], :name => "grades_ibfk_1"
-
-  add_foreign_key "levels", ["rubric_id"], "rubrics", ["id"], :name => "levels_ibfk_1"
-
-  add_foreign_key "notices", ["user_id"], "users", ["id"], :name => "notices_ibfk_1"
-
-  add_foreign_key "rubric_descriptors", ["criterion_id"], "criteria", ["id"], :name => "rubric_descriptors_ibfk_1"
-  add_foreign_key "rubric_descriptors", ["level_id"], "levels", ["id"], :name => "rubric_descriptors_ibfk_2"
-
-  add_foreign_key "rubrics", ["user_id"], "users", ["id"], :name => "rubrics_ibfk_1"
-
-  add_foreign_key "submissions", ["post_id"], "posts", ["id"], :name => "submissions_ibfk_1"
-  add_foreign_key "submissions", ["user_id"], "users", ["id"], :name => "submissions_ibfk_2"
-
-  add_foreign_key "weighted_assignments", ["aggregation_id"], "aggregations", ["id"], :name => "weighted_assignments_ibfk_2"
-
-end
