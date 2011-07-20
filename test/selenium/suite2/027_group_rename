@@ -37,8 +37,13 @@
 	<td></td>
 </tr>
 <tr>
+	<td>click</td>
+	<td>link=View all classes</td>
+	<td></td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
-	<td>//ul[@id='groups_klasses_6']/li[1]/div[2]/a</td>
+	<td>link=1A</td>
 	<td></td>
 </tr>
 <tr>
@@ -72,14 +77,29 @@
 	<td></td>
 </tr>
 <tr>
-	<td>click</td>
+	<td>type</td>
 	<td>post_title</td>
+	<td>1A changed</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>post_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>post_title</td>
-	<td>1A changed</td>
+	<td>tinymce</td>
+	<td>1A has been changed to Grade 1A</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -191,7 +211,6 @@
 	<td>link=Log-out</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>
