@@ -1,0 +1,2 @@
+<%= image_tag("yes2.png") %>
+<%= link_to_remote image_tag("delete.png", :class => 'overlap'), :url => remove_member_group_path(@group, :members => params[:members]), :method => :get , :html => {:class => 'link', :style => "display: none;", :title => "Remove from group" } %>

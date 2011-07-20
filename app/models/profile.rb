@@ -4,11 +4,10 @@ class Profile < ActiveRecord::Base
   
   DYNAMIC_ATTRIBUTES = YAML.load_file("#{RAILS_ROOT}/config/attributes/attributes.yml")
   
-  named_scope :for_group, lambda{ |condition, conditions_values, order, sort_order|
+  named_scope :for_group, lambda{ |condition, conditions_values|
     {
         :joins      => {:user, :memberships},
-        :conditions => [condition, conditions_values],
-        :order => "#{order} #{sort_order}" 
+        :conditions => [condition, conditions_values]
     }
   }
   

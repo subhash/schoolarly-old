@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   
   has_many :attachments
   has_many :rubrics
-  
+  has_many :blogs, :through => :bloggerships, :include => :posts
   
   def student?
     person.is_a? Student
@@ -56,9 +56,9 @@ class User < ActiveRecord::Base
     profile.full_name
   end
   
-
+  
   def default_notebook_for(group)
-#     same group names can be there under different parents. so not checking on title
+    #     same group names can be there under different parents. so not checking on title
     self.blogs.find_by_description(Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+group.path)
   end
   

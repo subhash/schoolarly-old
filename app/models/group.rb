@@ -5,15 +5,15 @@ class Group < ActiveRecord::Base
   
   belongs_to :network, :polymorphic => true
   #include all members, pending members etc
-  has_many :users, :through => :memberships do
+  has_many :users, :through => :memberships, :include => :profile, :order => "profiles.first_name, profiles.last_name" do
     def of_type(type)
       find :all, :conditions => ['users.person_type = ?', type]
     end
   end
   has_many :student_users, :through => :memberships, :source => :user,
-  :conditions => ['users.person_type = ?', 'Student']
+  :conditions => ['users.person_type = ?', 'Student'], :include => :profile, :order => "profiles.first_name, profiles.last_name"
   has_many :teacher_users, :through => :memberships, :source => :user,
-  :conditions => ['users.person_type = ?', 'Teacher']
+  :conditions => ['users.person_type = ?', 'Teacher'], :include => :profile, :order => "profiles.first_name, profiles.last_name"
   
   acts_as_tree :order => 'name'
   named_scope :base, :conditions => {:parent_id => nil}

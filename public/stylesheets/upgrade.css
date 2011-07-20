@@ -20,9 +20,9 @@ input, select, textarea {
 
 iframe {
     background: url(//crocodoc.com/media/images/docviewer/spinner.gif) no-repeat center;
-	border:1px solid #ddd;
-	width: 900px; 
-	height: 1000px;
+    border: 1px solid #ddd;
+    width: 900px;
+    height: 1000px;
 }
 
 .time {
@@ -320,4 +320,16 @@ a.note {
 
 .small {
     font-size: small;
+}
+
+img.overlap {
+    margin: 0 0 0 -30px
+}
+
+table.profiles.tableE th, table.profiles.tableE td {
+    border-right: 1px solid #D1D1D1
+}
+
+td.hover{
+	text-align: center;
 }

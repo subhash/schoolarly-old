@@ -25,9 +25,11 @@ class Member::ProfilesController < Member::BaseController
   end
   
   def index    
-    @order_by = params[:order_by] || 'profiles.first_name, profiles.last_name'
+    @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
     @page = params[:page] || '1'
-    @sort_order = params[:sort_order] || 'asc'    
+    @no_of_entries = params[:no_of_entries] || '15'
+    @sort_order = params[:sort_order] || 'ASC'  
+    order = @order_by.split(',').collect{|o|o.to_s+" "+@sort_order.to_s}.join(',')
     if params[:group]
       condition = ""
       conditions_values = Hash.new  
@@ -39,17 +41,16 @@ class Member::ProfilesController < Member::BaseController
         condition+= " and "
         conditions_values[:search_term] = "%#{params[:search_term]}%"
         condition = "(profiles.first_name like :search_term or profiles.last_name like :search_term or users.email like :search_term)"
-      end
-      puts "order = "+@order_by.inspect
-      @profiles = Profile.for_group(condition, conditions_values, @order_by, @sort_order).paginate :per_page => Tog::Config['plugins.tog_core.pagination_size'],
+      end     
+      @profiles = Profile.for_group(condition, conditions_values).paginate :per_page => @no_of_entries,
                                  :page => @page,
-                                 :order => "#{@order_by} #{@sort_order}" 
+                                 :order => "#{order}" 
       @type = @profiles.first.user.type
       
     else
-      @profiles = Profile.active.paginate :per_page => Tog::Config['plugins.tog_core.pagination_size'],
+      @profiles = Profile.active.paginate :per_page => @no_of_entries,
                                  :page => @page,
-                                 :order => "#{@order_by} #{@sort_order}"     
+                                 :order => "#{order}"     
     end 
     respond_to do |format|
       format.html # index.html.erb
