@@ -150,7 +150,15 @@ class Member::GroupsController < Member::BaseController
     else
       flash[:error] = I18n.t("tog_social.groups.site.invite.you_could_not_invite")    
     end
-    redirect_to member_group_path(@group)
+    respond_to do |wants|
+      wants.html{ redirect_to member_group_path(@group)}
+      wants.js {
+        render :update do |page|
+          page.visual_effect :appear, "user_#{params[:members].first}_group_#{@group.id}"
+          page.replace_html "user_#{params[:members].first}_group_#{@group.id}", :partial => 'member/groups/add'
+        end
+      }
+    end
   end
   
   def remove_select
@@ -185,8 +193,16 @@ class Member::GroupsController < Member::BaseController
         flash[:error] = I18n.t("groups.site.not_moderator")
       end
     end
-    flash[:ok] = I18n.t("groups.site.remove.removed", :user_count => params[:members].count)      
-    redirect_to edit_member_group_path(@group)
+    flash[:ok] = I18n.t("groups.site.remove.removed", :user_count => params[:members].count) 
+    respond_to do |wants|
+      wants.html{ redirect_to edit_member_group_path(@group)}
+      wants.js {
+        render :update do |page|
+          page.replace_html "user_#{params[:members].first}_group_#{@group.id}", :partial => 'member/groups/remove'          
+        end
+      }
+    end
+    
   end
   
   def show
@@ -204,9 +220,7 @@ class Member::GroupsController < Member::BaseController
     respond_to do |wants|
       wants.html
       wants.js do
-        render :update do |page|
-          page.replace_html 'sharings', :partial => 'member/sharings/sharings'
-        end
+        
       end
     end
   end
