@@ -10,6 +10,13 @@
     <%= title %>
 </div>
 <% unless pending_submission %>
+<div>
+    <span class="detail"><%= I18n.t('submissions.model.by') %></span>
+    <%=@submission.post.published_at.to_s(:date_time_12) %>
+    <% if @submission.late? %>
+    <span class="titleB late"><%= I18n.t('submissions.model.late_entry')%></span>
+    <% end %>
+</div>
 <% unless @submission.user == @submission.submitter %>
 <div class="float_right">
     <%= I18n.t('submissions.model.by') %>

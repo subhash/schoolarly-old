@@ -208,11 +208,11 @@ class Member::GroupsController < Member::BaseController
     @page = params[:page] || '1'
     @filter = params[:filter] || 'All'
     if @filter == 'All'
-      @shares = @group.sharings.paginate :per_page => 10,
+      @shares = @group.sharings.paginate :per_page => 20,
                                            :page => @page, 
                                            :order => "updated_at desc"
     else
-      @shares = @group.sharings.of_type(@filter).paginate :per_page => 10,
+      @shares = @group.sharings.of_type(@filter).paginate :per_page => 20,
                                            :page => @page, 
                                            :order => "updated_at desc"  
     end

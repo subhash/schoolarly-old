@@ -3,7 +3,7 @@
         <% for share in @shares %>
         <% if display?(share) and (i_own?(share) or share.published?) %>
         <% profile = share.user.profile %>
-        <li class="detail detail1">
+        <li class="detail detail1 <%=share.shareable_type%>">
             <div class="image">
                 <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
             </div>
