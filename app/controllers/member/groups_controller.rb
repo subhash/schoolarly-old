@@ -219,7 +219,9 @@ class Member::GroupsController < Member::BaseController
     respond_to do |wants|
       wants.html
       wants.js do
-        
+        render :update do |page|
+          page.replace_html 'sharings', :partial => 'member/sharings/sharings'
+        end
       end
     end
   end
