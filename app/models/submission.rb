@@ -18,6 +18,10 @@ class Submission < ActiveRecord::Base
     post.title
   end
   
+  def late?
+    assignment.due_date ? post.published_at > assignment.due_date : false
+  end
+  
   private
   
   def touch_shares

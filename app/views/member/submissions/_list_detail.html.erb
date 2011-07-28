@@ -4,18 +4,21 @@
     <span class="small"><%= link_to "#{sanitize assignment.name}", member_assignment_path(assignment, :group => group) %><%= " > " %>
     </span>
     <%= link_to "#{sanitize submission.name}", member_submission_path(submission, :group => group) %>
+    <% if submission.late? %>
+    <span class="late"><%= I18n.t('submissions.model.late_entry')%></span>
+    <% end %>
     <% if assignment.date %>
     <div class="time">
         <%= assignment.date.inspect %>, <%=assignment.start_time.to_s(:time_only) %><%= " - " %><%=assignment.end_time.to_s(:time_only) %>
     </div>
     <% end %>
-    <% grade = assignment.grades.for_user(current_user) %>
-    <% if grade and grade.shared_to?(current_user, assignment.user) %>
-    <div class="score float_right">
-        <%= link_to I18n.t('grades.member.view.title'), member_grade_path(assignment.grades.for_user(current_user)) %>
-    </div>
-    <% end %>
 </div>
+<% grade = assignment.grades.for_user(submission.user) %>
+<% if grade and grade.shared_to?(grade.user, current_user) %>
+<div class="score">
+    <%= link_to I18n.t('grades.member.view.title'), member_grade_path(grade) , :class => "grade" %>
+</div>
+<% end %>
 <% unless submission.submitter == submission.user %>
 <div class="detail float_right">
     <%= I18n.t('submissions.model.by') %>

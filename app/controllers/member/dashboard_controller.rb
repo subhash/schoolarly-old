@@ -13,11 +13,11 @@ class Member::DashboardController < Member::BaseController
       user_ids += current_user.friend_users.map(&:id)
     end     
     if @filter == 'All'
-      @shares = Share.to_groups_and_users(group_ids, user_ids).paginate  :per_page => 10,
+      @shares = Share.to_groups_and_users(group_ids, user_ids).paginate  :per_page => 20,
                                                   :page => @page,
                                                   :order => "#{@order} #{@asc}"
     else
-      @shares = Share.to_groups_and_users_of_type(group_ids, user_ids, @filter).paginate :per_page => 10,
+      @shares = Share.to_groups_and_users_of_type(group_ids, user_ids, @filter).paginate :per_page => 20,
                                            :page => @page, 
                                            :order => "#{@order} #{@asc}" 
     end
