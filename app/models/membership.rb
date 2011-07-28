@@ -10,7 +10,7 @@ class Membership < ActiveRecord::Base
   
   def destroy_empty_notebooks
     blog = user.default_notebook_for(group)
-    blog.destroy if blog.posts.empty? 
+    blog.destroy if blog and blog.posts.empty? 
   end
   #  def default_blog
   #    self.bloggerships.find_by_rol("default").blog
