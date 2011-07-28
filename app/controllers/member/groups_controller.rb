@@ -1,6 +1,9 @@
 require "csv"
 
-class Member::GroupsController < Member::BaseController 
+class Member::GroupsController < Member::BaseController
+  
+  helper "picto/base"
+  
   before_filter :find_parent, :only => [:new, :new_multiple, :create_multiple]
   before_filter :find_type, :only => [:new,:create, :new_multiple, :create_multiple]
   before_filter :find_group, :except => [:index, :new, :create, :new_multiple, :create_multiple]

@@ -659,8 +659,21 @@ en:
     model:
       start_time: "Starts at"
       end_time: "Ends by"
+      
+      
+  photosets:
+    member:
+      manage:
+        title: "Manage Photoset"
+      edit:
+        title: "Edit photoset"
 
-
+  photos:
+    member:
+      manage:
+        title: "Manage Photo"
+      edit:
+        title: "Edit photo"
 
 
        

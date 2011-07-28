@@ -1,0 +1,18 @@
+<% group ||= @group %>
+<% photoset = share.shareable %>
+
+<div class="photo">
+  <div class="photo_container">
+    <%= link_to photoset_image(photoset), member_picto_photoset_path(photoset, :group => group) %>
+	<p><strong><%= link_to photoset.title, member_picto_photoset_path(photoset, :group => group) %><br/>
+  </div>
+  <p><%= photoset.description %></p>
+
+<%= render :partial => "shared/comments", :locals => { :commentable => photoset , :exclude_add_comment => true} %>
+
+<div class="portlet portletL">
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at)) %> . 
+	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_picto_photoset_path(photoset, :group => group), :title => I18n.t('comments.member.view.title', :title => h(photoset.title)) %> . 
+	<%= share_with_groups_link(photoset) if i_own? photoset %>
+</div>
+</div>

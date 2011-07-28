@@ -1,0 +1,11 @@
+<% if i_own? @photoset %>
+<div class="portlet portletD" id="portlet_userWall">
+    <h2><span><%= I18n.t("photosets.member.manage.title") %></span></h2>
+    <div class="portlet_content">
+        <%= link_to I18n.t("photosets.member.edit.title"), edit_member_picto_photoset_path(@photoset) %>
+        <br/>
+        <%= share_with_groups_link(@photoset) %>
+        <br/>
+    </div>
+</div>
+<% end %>

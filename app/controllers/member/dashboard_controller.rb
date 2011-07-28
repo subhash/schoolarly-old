@@ -1,5 +1,7 @@
 class Member::DashboardController < Member::BaseController
   
+  helper "picto/base"
+  
   def index
     @profile = current_user.profile 
     @order = params[:order] || 'updated_at'

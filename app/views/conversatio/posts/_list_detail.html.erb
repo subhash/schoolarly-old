@@ -1,4 +1,4 @@
-<% group = group if local_assigns[:group]%>
+<% group ||= @group %>
 <div class="title">
     <%= link_to "#{sanitize post.title}", member_conversatio_blog_post_path(blog, post, :group => group), :title => "#{sanitize post.title}" %>
 </div>
