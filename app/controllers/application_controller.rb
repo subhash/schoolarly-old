@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   
   def i_own?(object)
     case(object.class.name) 
-      when 'Event', 'Post', 'Picto::Photo'
+      when 'Event', 'Post', 'Picto::Photo', 'Picto::Photoset'
       object.owner == current_user
       when 'Assignment'
       object.post.owner == current_user

@@ -1,0 +1,61 @@
+<% content_for :sidebar do %>
+<%= render :partial => 'member/picto/photosets/manage' %>
+<%= render :partial => 'shared/groups' %>
+
+<div class="portlet portletD" id="portlet_userWall">
+    <h2><span>Your stuff</span></h2>
+    <div class="portlet_content">
+      <%= link_to "Upload more photos now!",  new_member_picto_photo_url, {:class => "add", :title => "Upload new images"} %>
+    </div>    
+</div>
+
+
+<% end %>
+<div class="detail detail1">
+    <div class="image">
+        <%= photoset_image(@photoset) %>
+    </div>
+    <div class="title">
+        <% if @group %>
+        <%= link_to @group.name, member_group_path(@group) %><%= " > " %><% end %>
+        <%= @photoset.title %>
+    </div>
+    <div class="text">
+        <p>
+            <%= @photoset.description %>
+        </p>
+    </div>
+</div>
+<!-- /.detail1 -->
+<br/>
+<br/>
+<div class="portlet portletG">
+    <h2><span>Photos</span></h2>
+    <div class="portlet_content">
+        <ul class="clearfix">
+            <% if @photos.empty? %>
+            <li>
+                There isn't any photos on this photoset yet.
+            </li>
+            <% else %>
+            <% @photos.each do |photo| %>
+            <li>
+                <%= link_to image_tag(photo.image.url("tiny")),
+                member_picto_photo_url(photo),
+                {:title => photo.title} %>
+                <br/>
+                <%=photo.title %>
+            </li>
+            <% end %>
+            <% end %>
+        </ul>
+    </div>
+</div>
+<% if !@photos.empty? %>
+<div class="info_results">
+    <span class="info_items">Photos <%=@photos.size > 0 ? (@photos.offset + 1) : '0' %>to<%=@photos.size + @photos.offset %>of <%=@photos.total_entries %>
+    </span>
+    <span class="pages_navigation right"><%= will_paginate @photos %>
+    </span>
+</div>
+<%end %>

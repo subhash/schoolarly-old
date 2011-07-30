@@ -70,6 +70,8 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
+  
+  
   map.namespace(:admin) do |admin| 
     admin.resources :users, :member => {:hijack => :get}
   end
@@ -95,6 +97,9 @@ ActionController::Routing::Routes.draw do |map|
       group.new_sub_group    'groups/:id/new' , :action  => 'new'
       group.new_group_with_type   'groups/new/:type', :action => 'new'
       group.group_apply   '/:id/members/:user_id/apply', :action => 'apply'
+    end
+    member.with_options(:controller => 'picto/photos', :conditions => { :method => :get }) do |photo|
+      photo.picto_scaled_photo   '/picto/photos/:id/:size', :action => 'show'
     end
   end
   

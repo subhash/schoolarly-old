@@ -32,8 +32,12 @@ class Member::Picto::PhotosController < Member::BaseController
     unless @photoset.nil?
       @photoset.save!
       redirect_back_or_default edit_member_picto_photoset_path(@photoset)
-    else
-      redirect_back_or_default member_group_path(@group)
+    else 
+      if @group
+        redirect_back_or_default member_group_path(@group)
+      else
+        redirect_back_or_default member_picto_photos_path
+      end
     end
   end
   
@@ -41,11 +45,11 @@ class Member::Picto::PhotosController < Member::BaseController
     @size = (params[:size] || :big).to_sym     
     @photo = Picto::Photo.find(params[:id])
     auth_photo(@photo)
+    @shared_groups = @photo.shares_to_groups.collect(&:shared_to)
   end
   
   private  
   def find_group
-    puts "in find group"
     @group = Group.find(params[:group]) if params[:group]
   end
   

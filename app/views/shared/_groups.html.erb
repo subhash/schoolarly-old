@@ -4,7 +4,7 @@
         <ul>
             <% for group in @shared_groups %>
             <li>
-                <%= link_to group.name, member_group_path(group) %>
+                <%= link_to group.display_name, member_group_path(group) %>
             </li>
             <% end %>
         </ul>
