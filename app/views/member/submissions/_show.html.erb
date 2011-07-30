@@ -4,7 +4,7 @@
 <script type="text/javascript">
     jQuery.noConflict();
 </script>
-<% pending_submission = @submission.blank? or !@submission.post.published? %>
+<% pending_submission = (@submission.blank? || !@submission.post.published?) %>
 <% title = pending_submission ? I18n.t('grades.member.new.pending') : @submission.post.title %>
 <div class="titleB">
     <%= title %>

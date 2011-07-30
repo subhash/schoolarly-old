@@ -7,7 +7,7 @@
             <% if i_own? @assignment %>
             <% @submitters.each do |s| %>
             <% submission = @assignment.submissions.find_by_user_id(s.id) %>
-			<% c = submission ? (submission.late? ? 'late': '') : '' %>
+			<% c = (submission && submission.post.published?) ? (submission.late? ? 'late': '') : '' %>
             <li class="<%=c%>">
                 <div class="image">
                     <%= link_to icon_for_profile(s.profile, 'tiny'), member_profile_path(s.profile) %>
@@ -31,7 +31,7 @@
                     <% end %>
                 </span>
                 <% end %>
-                <% if submission.blank? or !submission.post.published? %>
+                <% if (submission.blank? || !submission.post.published?) %>
                 <div class="subtitle">
                     <% if @assignment.has_submissions %>
                     <%= I18n.t('submissions.model.state.pending') %>
@@ -57,7 +57,7 @@
             </div>
             <% elsif @assignment.shared_to?(current_user) and current_user.student? %>
             <% submission = @assignment.submissions.find_by_user_id(current_user.id) %>
-			<% c = submission ?  (submission.late? ? 'late': '') : '' %>
+			<% c = (submission && submission.post.published?) ?  (submission.late? ? 'late': '') : '' %>
             <li class="<%= c%>">
                 <div class="image">
                     <%= link_to icon_for_profile(current_user.profile, 'tiny'), member_profile_path(current_user.profile) %>

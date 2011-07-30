@@ -515,6 +515,7 @@ en:
         confirm: "This will submit your answer. Are you sure?"
         success: "Submission success"
         failure: "Error in submitting"
+        saved: "Submission draft saved"
       edit:
         success: "Submission updated"
         failure: "Error in updating submission"      
