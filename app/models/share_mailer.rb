@@ -1,4 +1,5 @@
 class ShareMailer < ActionMailer::Base
+  helper :share_mailer
   
   def new_share_notification(share)
     setup_email(share)
@@ -8,6 +9,13 @@ class ShareMailer < ActionMailer::Base
   def share_change_notification(share)
     setup_email(share)
     @subject += I18n.t("shares.mailer.edit.#{share.shareable_type}.subject", :shareable => @body[:shareable_name], :shared_to => @body[:shared_to_name])
+  end
+  
+  def summary_notification(user, shares)
+    recipients "#{user.name} <#{user.email}>"
+    from Tog::Config["plugins.tog_core.mail.system_from_address"]
+    subject "Summary - #{Time.now} - #{shares.size} items"
+    body :user => user, :shares => shares
   end
   
   protected

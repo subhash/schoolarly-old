@@ -21,6 +21,11 @@ class Share < ActiveRecord::Base
     }
   }
   
+  named_scope :between, lambda { |from, to| {
+     :conditions => ["(updated_at >= ? and updated_at <= ?)", from, to]
+    }
+  }
+  
   after_create :create_notifications
   
   
@@ -40,5 +45,17 @@ class Share < ActiveRecord::Base
   def update_notifications
     ShareMailer.deliver_share_change_notification(self) if ShareMailer.notify?(self) and self.published?
   end
-
+  
+  def Share.latest
+    shares = Share.between Time.now - 1.day, Time.now
+    shares.inject({}) do |h, share|
+      users = []
+      shared_to = share.shared_to
+      users << shared_to if shared_to.is_a? User
+      users += shared_to.users if shared_to.is_a? Group
+      users.each {|u| h[u] ||= []; h[u] << share}
+      h
+    end  
+  end
+  
 end
