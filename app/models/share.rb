@@ -47,7 +47,8 @@ class Share < ActiveRecord::Base
   end
   
   def Share.latest
-    shares = Share.between Time.now - 1.day, Time.now
+    # Issues with timezones
+    shares = Share.between Time.now - 12.hours, Time.now + 12.hours
     shares.inject({}) do |h, share|
       users = []
       shared_to = share.shared_to
