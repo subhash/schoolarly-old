@@ -13,17 +13,22 @@ class Member::SubmissionsController < Member::BaseController
     @submission = Submission.new(params[:submission])
     @submission.post.user = current_user
     respond_to do |wants|
-      if @submission.save        
+      if @submission.save 
         if params[:publish]
           @submission.post.publish!          
           @submission.share_to(@assignment.user, @submission.submitter) 
           @submission.share_to(@submission.user, @submission.submitter) unless @submission.user == @submission.submitter
-        end
-        @submission.post.to_crocodoc!(true)
-        wants.html do
-          flash[:ok] = I18n.t('submissions.site.new.success')
-          redirect_to member_submission_path(@submission)
-        end
+          @submission.post.to_crocodoc!(true)
+          wants.html do
+            flash[:ok] = I18n.t('submissions.site.new.success')
+            redirect_to member_submission_path(@submission)
+          end
+        else
+          wants.html do
+            flash[:ok] = I18n.t('submissions.site.new.saved')
+            redirect_to edit_member_submission_path(@submission)
+          end
+        end   
       else
         wants.html do
           flash[:error] = I18n.t('submissions.site.new.failure')
@@ -44,11 +49,16 @@ class Member::SubmissionsController < Member::BaseController
           @submission.post.publish!          
           @submission.share_to(@assignment.user, @submission.submitter)
           @submission.share_to(@submission.user, @submission.submitter) unless @submission.user == @submission.submitter
-        end
-        @submission.post.to_crocodoc!(true)
-        wants.html do
-          flash[:ok] = I18n.t('submissions.site.edit.success')
-          redirect_to member_submission_path(@submission)
+          @submission.post.to_crocodoc!(true)
+          wants.html do
+            flash[:ok] = I18n.t('submissions.site.edit.success')
+            redirect_to member_submission_path(@submission)
+          end
+        else
+          wants.html do
+            flash[:ok] = I18n.t('submissions.site.new.saved')
+            redirect_to edit_member_submission_path(@submission)
+          end
         end
       else
         wants.html do

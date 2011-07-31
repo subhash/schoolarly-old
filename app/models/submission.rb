@@ -19,6 +19,7 @@ class Submission < ActiveRecord::Base
   end
   
   def late?
+    return false if assignment.post.owner == self.post.owner
     assignment.due_date ? post.published_at > assignment.due_date : false
   end
   
