@@ -5,12 +5,3 @@ task :cron => :environment do
   puts 'shares - '+@shares.inspect
   @shares.each {|k,v| puts ShareMailer.deliver_summary_notification(k,v).inspect}
 end
-
-namespace :routes do 
-  desc 'Access helper methods in rake tasks' 
-  task :test => :environment do 
-    include ActionController::UrlWriter 
-    puts ActionMailer::Base.default_url_options[:host].inspect 
-    puts ENV['MY_HOST'].inspect
-  end
-end
