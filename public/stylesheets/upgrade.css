@@ -1,6 +1,10 @@
 /*
  * schoolarly
  */
+#logo a {
+	color: white !important;
+}
+
 input, select, textarea {
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
 }
@@ -131,6 +135,10 @@ li.Assignment {
 .portletH h2 a {
     font-size: 0.5em;
     float: right;
+}
+
+.portletK {
+	margin-bottom: 1em;
 }
 
 .col_70_30 {
