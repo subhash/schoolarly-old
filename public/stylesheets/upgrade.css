@@ -1,9 +1,6 @@
 /*
  * schoolarly
  */
-#logo a {
-	color: white !important;
-}
 
 input, select, textarea {
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
@@ -341,6 +338,11 @@ a.note {
 
 .small {
     font-size: small;
+}
+
+a.icon{
+	font-size: 0.5em;
+	text-decoration: none;
 }
 
 img.overlap {
