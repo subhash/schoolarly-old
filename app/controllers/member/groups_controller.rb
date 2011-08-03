@@ -127,6 +127,23 @@ class Member::GroupsController < Member::BaseController
     end    
   end
   
+  def add_select    
+    @profiles = @group.applicable_members(@type).collect(&:profile)
+    @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
+    @page = params[:page] || '1'
+    @no_of_entries = params[:no_of_entries] || @profiles.size
+    @sort_order = params[:sort_order] || 'ASC'  
+    order = @order_by.split(',').collect{|o|o.to_s+" "+@sort_order.to_s}.join(',')
+    @profiles = @group.applicable_members(@type).collect(&:profile).paginate :per_page => @no_of_entries,
+                                 :page => @page,
+                                 :order => "#{order}" 
+    
+    respond_to do |format|
+      format.html { render :template => 'member/groups/add_select'}
+      format.xml  { render :xml => @profiles }
+    end   
+  end
+  
   def add
     unless params[:members]
       flash[:error] = I18n.t("groups.site.select.none_selected", :types => params[:type].downcase.pluralize)    

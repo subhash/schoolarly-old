@@ -1,0 +1,53 @@
+<% include_javascript 'jquery-1.4.2.min' %>
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function(){
+        jQuery('.select_all').click(function(){
+            jQuery("input:checkbox.item").each(function(){
+                jQuery(this).attr('checked', true);
+            });
+        });
+        jQuery('.unselect_all').click(function(){
+            jQuery("input:checkbox.item").each(function(){
+                jQuery(this).attr('checked', false);
+            });
+        });
+    });
+</script>
+<div class="portlet portletF" id="portlet_featuredUsers">
+    <h2><span><%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t("groups.site.#{@type}.add_select") %></span></h2>
+    <div class="portlet_content">
+        <% form_tag add_member_group_path(@group, :type => @type) do |f| %>
+        <ul>
+            <% @profiles.each do |profile| %>
+            <p>
+                <li>
+                    <%= check_box_tag 'members[]', profile.id, false, :class => 'item' %>
+                    <%=link_to icon_for_profile(profile, 'medium'), member_profile_path(profile), :title => profile.full_name %>
+                    <%=link_to profile.full_name, profile %>
+                </li>
+            </p>
+            <%end %>
+            <% if @profiles.size > 1 %>
+            <p>
+                <%= link_to "Select All", "#", :class => 'select_all' %>
+                <%= link_to "Unselect All", "#", :class => 'unselect_all' %>
+            </p>
+            <% end %>
+            <br/>
+            <% if  @type == 'Teacher' %>
+            <p>
+                <label for="moderators" class="nolabel">
+                    <%= check_box_tag :moderator, "1", !@group.school? %><%=I18n.t('teachers.member.invite.moderator') %>
+                </label>
+            </p>
+            <% end %>
+            <p>
+                <li>
+                    <%= submit_tag I18n.t("groups.site.add.#{@type}"), :class => "button" %>or <%= link_to I18n.t("groups.site.#{@type}.invite"), "#{@type.downcase.pluralize}/new" %>
+                </li>
+            </p>
+        </ul>
+        <% end %>
+    </div>
+</div>

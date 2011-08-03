@@ -14,40 +14,66 @@
         });
     });
 </script>
-<div class="portlet portletF" id="portlet_featuredUsers">
-    <h2><span><%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t("groups.site.#{@type}.add_select") %></span></h2>
-    <div class="portlet_content">
-        <% form_tag add_member_group_path(@group, :type => @type) do |f| %>
-        <ul>
-            <% @profiles.each do |profile| %>
-            <p>
-                <li>
-                    <%= check_box_tag 'members[]', profile.id, false, :class => 'item' %>
-                    <%=link_to icon_for_profile(profile, 'medium'), member_profile_path(profile), :title => profile.full_name %>
-                    <%=link_to profile.full_name, profile %>
-                </li>
-            </p>
-            <%end %>
-            <% if @profiles.size > 1 %>
-            <p>
+<%= render :partial => 'member/groups/header' %>
+<h2><span><%= I18n.t("groups.site.#{@type}.add_select") %><%=" or " %><%= link_to I18n.t("groups.site.#{@type}.invite"), "#{@type.downcase.pluralize}/new" %></span></h2>
+<% form_tag add_member_group_path(@group, :type => @type) do |f| %>
+<table class="tableE profiles">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+                <%= link_to_sortable_column_header("profiles.first_name, profiles.last_name", @order_by, @sort_order,
+                I18n.t("tog_user.model.name")) %>
+            </th>
+            <th scope="col">
+                <%= link_to_sortable_column_header("users.email", @order_by, @sort_order,
+                I18n.t("tog_user.model.email")) %>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @profiles.each do |profile| %>
+        <tr<%= cycle(' class="pair"','') -%>>
+            <td nowrap="nowrap">
+                <%= check_box_tag 'members[]', profile.id, false, :class => 'item' %>
+            </td>
+            <td nowrap="nowrap">
+                <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) , :title => profile.full_name -%>
+            </td>
+            <td>
+                <strong><%= link_to profile.full_name,  member_profile_path(profile) -%></strong>
+            </td>
+            <td nowrap="nowrap">
+                <%= link_to profile.user.email, member_new_message_to_path(profile.user), {:title => I18n.t("tog_user.admin.send_email")} -%>
+            </td>
+        </tr>
+        <% end %>
+        <% if @profiles.size > 1 %>
+        <tr>
+            <td colspan="2">
                 <%= link_to "Select All", "#", :class => 'select_all' %>
+            </td>
+            <td colspan="2">
                 <%= link_to "Unselect All", "#", :class => 'unselect_all' %>
-            </p>
-            <% end %>
-            <br/>
-            <% if  @type == 'Teacher' %>
-            <p>
+            </td>
+        </tr>
+        <% end %>
+        <br/>
+        <% if  @type == 'Teacher' %>
+        <tr>
+            <td colspan="4">
                 <label for="moderators" class="nolabel">
                     <%= check_box_tag :moderator, "1", !@group.school? %><%=I18n.t('teachers.member.invite.moderator') %>
                 </label>
-            </p>
-            <% end %>
-            <p>
-                <li>
-                    <%= submit_tag I18n.t("groups.site.add.#{@type}"), :class => "button" %>or <%= link_to I18n.t("groups.site.#{@type}.invite"), "#{@type.downcase.pluralize}/new" %>
-                </li>
-            </p>
-        </ul>
+            </td>
+        </tr>
         <% end %>
-    </div>
+    </tbody>
+</table>
+<div class="actions">
+    <%= submit_tag I18n.t("groups.site.add.#{@type}"), :class => "button mainaction" %>
 </div>
+<% end %>
