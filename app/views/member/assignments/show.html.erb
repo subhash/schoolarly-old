@@ -3,7 +3,7 @@
     <% if @group %>
     <%= link_to @group.name, member_group_path(@group) %>> <% end %>
     <%= sanitize @post.title %>
-    <%= link_to icon_for_assignment(@assignment), @post.doc.url, :title => I18n.t('assignments.site.open_in_browser')  if @post.doc.file? %>
+    <%= link_to icon_for_assignment(@assignment) + I18n.t('assignments.site.download'), @post.doc.url, :title => I18n.t('assignments.site.download_file'), :class => 'icon'  if @post.doc.file? %>
     <% if @assignment.date %>
     <div class="time">
         <%= @assignment.date.inspect %>, <%=@assignment.start_time.to_s(:time_only) %>- <%=@assignment.end_time.to_s(:time_only) %>

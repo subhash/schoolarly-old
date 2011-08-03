@@ -431,6 +431,8 @@ en:
       uploaded_by: "Issued by"
       update: "Update Assignment"
       open_in_browser: "Open in browser"
+      download: "Download"
+      download_file: "Download file"
       show:
         posted: "Posted %{time}"
       list_detail:
