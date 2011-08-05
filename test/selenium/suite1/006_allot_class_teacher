@@ -27,7 +27,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Minerva McGonagall&quot;]]</td>
+	<td>//a[@title=&quot;Minerva McGonagall&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>

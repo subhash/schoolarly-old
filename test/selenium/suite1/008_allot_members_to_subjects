@@ -22,7 +22,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Severus Snape&quot;]]</td>
+	<td>//a[@title=&quot;Severus Snape&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
@@ -37,27 +37,27 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Harry Potter&quot;]]</td>
+	<td>//a[@title=&quot;Harry Potter&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Ron Weasley&quot;]]</td>
+	<td>//a[@title=&quot;Ron Weasley&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Hermione Granger&quot;]]</td>
+	<td>//a[@title=&quot;Hermione Granger&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Neville Longbottom&quot;]]</td>
+	<td>//a[@title=&quot;Neville Longbottom&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Draco Malfoy&quot;]]</td>
+	<td>//a[@title=&quot;Draco Malfoy&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
@@ -87,7 +87,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Minerva McGonagall&quot;]]</td>
+	<td>//a[@title=&quot;Minerva McGonagall&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
@@ -102,27 +102,27 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Harry Potter&quot;]]</td>
+	<td>//a[@title=&quot;Harry Potter&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Ron Weasley&quot;]]</td>
+	<td>//a[@title=&quot;Ron Weasley&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Hermione Granger&quot;]]</td>
+	<td>//a[@title=&quot;Hermione Granger&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Neville Longbottom&quot;]]</td>
+	<td>//a[@title=&quot;Neville Longbottom&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Draco Malfoy&quot;]]</td>
+	<td>//a[@title=&quot;Draco Malfoy&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
@@ -152,7 +152,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Rolonda Hooch&quot;]]</td>
+	<td>//a[@title=&quot;Rolonda Hooch&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
@@ -167,27 +167,27 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Harry Potter&quot;]]</td>
+	<td>//a[@title=&quot;Harry Potter&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Ron Weasley&quot;]]</td>
+	<td>//a[@title=&quot;Ron Weasley&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Hermione Granger&quot;]]</td>
+	<td>//a[@title=&quot;Hermione Granger&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Neville Longbottom&quot;]]</td>
+	<td>//a[@title=&quot;Neville Longbottom&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>//input[following-sibling::a[@title=&quot;Draco Malfoy&quot;]]</td>
+	<td>//a[@title=&quot;Draco Malfoy&quot;]/../../td/input</td>
 	<td></td>
 </tr>
 <tr>
