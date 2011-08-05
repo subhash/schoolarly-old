@@ -131,7 +131,7 @@ class Member::GroupsController < Member::BaseController
     profiles = @group.applicable_members(@type).collect(&:profile)
     @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
     @page = params[:page] || '1'
-    @no_of_entries = params[:no_of_entries] || profiles.size
+    @no_of_entries = (params[:no_of_entries] || profiles.size) || 15
     @sort_order = params[:sort_order] || 'ASC'  
     order = @order_by.split(',').collect{|o|o.to_s+" "+@sort_order.to_s}.join(',')
     @profiles = profiles.paginate :per_page => @no_of_entries,
@@ -149,7 +149,7 @@ class Member::GroupsController < Member::BaseController
     @removable_members = @group.removable_members(@type) - [current_user]
     @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
     @page = params[:page] || '1'
-    @no_of_entries = params[:no_of_entries] || @removable_members.size
+    @no_of_entries = (params[:no_of_entries] || @removable_members.size) || 15
     @sort_order = params[:sort_order] || 'ASC'  
     order = @order_by.split(',').collect{|o|o.to_s+" "+@sort_order.to_s}.join(',')
     @profiles = @removable_members.collect(&:profile).paginate :per_page => @no_of_entries,
