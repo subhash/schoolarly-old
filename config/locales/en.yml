@@ -99,6 +99,17 @@ en:
       attendance: "Maintain attendance, generate timetables and schedule events into the class or school calendars"
       etextbook: "Provide students with the ability to search across e-textbooks and share notes on specific portions of the e-textbook"
       admission: "Provide tools for schools to manage admissions and fees payments"
+    pitch:
+      teachers:
+        title: Socialize your classroom 
+        first_line: Invite student comments and questions on the assignment page
+        second_line: Enrich your lesson plans with videos and web content
+      students:
+        title: All your stuff in one place 
+        first_line:
+        second_line:   
+      parents:
+        title: Stay in touch   
   interface:
     layout:
       footer:
