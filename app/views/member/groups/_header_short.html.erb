@@ -1,0 +1,11 @@
+<div class="breadcrumbs">
+    <%= ancestor_path_for(@group) %>
+</div>
+<div class="detail detail1">
+    <div class="image">
+        <%= link_to image_for_group(@group, 'small', :class=>"img"), member_group_path(@group) %>
+    </div>
+    <div class="title">
+        <%= link_to @group.name, member_group_path(@group) %>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+
+.portletK {
+    margin-bottom: 4em;
+}
+
+.portletK ul li {
+    list-style-type: none;
+}
+
+.portletK .icon {
+    margin-right: 20px;
+}
+
+.portletK .title {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.portletK {
+    width: 100%;
+    font-family: 'Comic Sans MS', cursive;
+	background-color: #EFECCA;
+}
+
+
+

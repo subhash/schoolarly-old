@@ -14,7 +14,7 @@
         });
     });
 </script>
-<%= render :partial => 'member/groups/header' %>
+<%= render :partial => 'member/groups/header_short' %>
 <h2><span><%= I18n.t("groups.site.#{@type}.add_select") %><%=" or " %><%= link_to I18n.t("groups.site.#{@type}.invite"), "#{@type.downcase.pluralize}/new" %></span></h2>
 <% form_tag add_member_group_path(@group, :type => @type) do |f| %>
 <table class="tableE profiles">
