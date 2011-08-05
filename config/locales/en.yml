@@ -102,16 +102,19 @@ en:
     pitch:
       teachers:
         title: Socialize your classroom 
-        first_line: Invite student comments and questions on the assignment page
-        second_line: Enrich your lesson plans with videos and web content
+        first_line: Students can post questions on assignments, notes and lesson plans
+        second_line: Review and grade assignments with rubrics and inline comments
+        third_line: Enrich your lesson plans with videos and web content
       students:
         title: All your stuff in one place 
         first_line: Students can submit assignments and read notes online
-        second_line: Events show up in their calendars
+        second_line: Plan and collaborate on events with the group
+        third_line: Share photos, videos and educational material
       parents:
         title: Monitor progress   
         first_line: Parents can monitor their child's progress anywhere, anytime
-        second_line: Stay connected to parents through email and SMS 
+        second_line: Stay connected with parents through email and SMS
+        third_line: Generate reports, graphs and charts on student scores
   interface:
     layout:
       footer:
