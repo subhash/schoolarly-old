@@ -128,13 +128,13 @@ class Member::GroupsController < Member::BaseController
   end
   
   def add_select    
-    @profiles = @group.applicable_members(@type).collect(&:profile)
+    profiles = @group.applicable_members(@type).collect(&:profile)
     @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
     @page = params[:page] || '1'
-    @no_of_entries = params[:no_of_entries] || @profiles.size
+    @no_of_entries = params[:no_of_entries] || profiles.size
     @sort_order = params[:sort_order] || 'ASC'  
     order = @order_by.split(',').collect{|o|o.to_s+" "+@sort_order.to_s}.join(',')
-    @profiles = @group.applicable_members(@type).collect(&:profile).paginate :per_page => @no_of_entries,
+    @profiles = profiles.paginate :per_page => @no_of_entries,
                                  :page => @page,
                                  :order => "#{order}" 
     
@@ -143,6 +143,24 @@ class Member::GroupsController < Member::BaseController
       format.xml  { render :xml => @profiles }
     end   
   end
+  
+  
+  def remove_select
+    @removable_members = @group.removable_members(@type) - [current_user]
+    @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
+    @page = params[:page] || '1'
+    @no_of_entries = params[:no_of_entries] || @removable_members.size
+    @sort_order = params[:sort_order] || 'ASC'  
+    order = @order_by.split(',').collect{|o|o.to_s+" "+@sort_order.to_s}.join(',')
+    @profiles = @removable_members.collect(&:profile).paginate :per_page => @no_of_entries,
+                                 :page => @page,
+                                 :order => "#{order}" 
+    respond_to do |format|
+      format.html { render :template => 'member/groups/remove_select'}
+      format.xml  { render :xml => @profiles }
+    end    
+  end
+  
   
   def add
     unless params[:members]
@@ -178,17 +196,6 @@ class Member::GroupsController < Member::BaseController
         end
       }
     end
-  end
-  
-  def remove_select
-    @removable_members = @group.removable_members(@type) - [current_user]
-    @profiles = @removable_members.collect(&:profile).paginate :per_page => Tog::Config["plugins.tog_social.profile.list.page.size"],
-                                 :page => @page,
-                                 :order => "profiles.#{@order} #{@asc}"
-    respond_to do |format|
-      format.html { render :template => 'member/groups/remove_select'}
-      format.xml  { render :xml => @profiles }
-    end    
   end
   
   def remove
