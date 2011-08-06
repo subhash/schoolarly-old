@@ -11,7 +11,6 @@ class Picto::Photo < ActiveRecord::Base
     if self.changed? and photoset
       for share in photoset.shares
         share.touch
-        share.update_notifications
       end
     end
   end 

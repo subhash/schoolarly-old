@@ -68,7 +68,6 @@ class Assignment < ActiveRecord::Base
     if self.changed? or self.post.changed?
       for share in shares
         share.touch
-        share.update_notifications
       end
     end
   end 
