@@ -106,8 +106,12 @@ en:
         second_line: Review and grade assignments with rubrics and inline comments
         third_line: Enrich your lesson plans with videos and web content
         detail:
-          first: You would like your students to participate more in discussions surrounding assignments. You need to zero in on those who are finding it difficult to master the material. You would like it if students could contribute their own ideas and references from the internet. You also want them to help each other out when they are stuck at a problem. Schoolarly lets you manage all this by creating a discussion-space around each assignment and lesson-plan.
-          second: Review assignments online in Schoolarly. You can annotate with inline comments, hightlights, strikeouts or draw sketches right within the assignment. All these markings are preserved for the student in his online copy and she can download the document with the markings intact. You can also grade the assignments with a simple score or using your own rubric scale. While using a rubric, the total score is automatically calculated and can be overwritten, if necessary.          
+          first: 
+            one: You would like your students to participate more in discussions surrounding assignments. You need to zero in on those who are finding it difficult to master the material. You would like it if students could contribute their own ideas and references from the internet. You also want them to help each other out when they are stuck at a problem.
+            two: Schoolarly lets you manage all this by creating a discussion-space around each assignment and lesson-plan.
+          second: 
+            one: Review assignments online in Schoolarly. 
+            two: You can annotate with inline comments, hightlights, strikeouts or draw sketches right within the assignment. All these markings are preserved for the student in his online copy and she can download the document with the markings intact. You can also grade the assignments with a simple score or using your own rubric scale. While using a rubric, the total score is automatically calculated and can be overwritten, if necessary.          
       students:
         title: All your stuff in one place 
         first_line: Students can submit assignments and read notes online

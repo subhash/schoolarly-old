@@ -31,10 +31,9 @@
 }
 
 .split {
-    padding-bottom: 50px;
+    padding-bottom: 150px;
 	position: relative;
-	left: -100px;
-	margin: 10px;
+	width: 200%;
 }
 
 
