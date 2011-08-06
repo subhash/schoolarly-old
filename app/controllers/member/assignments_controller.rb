@@ -59,7 +59,7 @@ class Member::AssignmentsController < Member::BaseController
       if @assignment.save
         wants.html do
           flash[:ok] = I18n.t('assignments.member.edit.success')
-          redirect_back_or_default member_assignments_path(@assignment)
+          redirect_back_or_default member_assignment_path(@assignment)
         end
       else
         wants.html do

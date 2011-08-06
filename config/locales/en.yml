@@ -105,16 +105,27 @@ en:
         first_line: Students can post questions on assignments, notes and lesson plans
         second_line: Review and grade assignments with rubrics and inline comments
         third_line: Enrich your lesson plans with videos and web content
+        detail:
+          first: You would like your students to participate more in discussions surrounding assignments. You need to zero in on those who are finding it difficult to master the material. You would like it if students could contribute their own ideas and references from the internet. You also want them to help each other out when they are stuck at a problem. Schoolarly lets you manage all this by creating a discussion-space around each assignment and lesson-plan.
+          second: Review assignments online in Schoolarly. You can annotate with inline comments, hightlights, strikeouts or draw sketches right within the assignment. All these markings are preserved for the student in his online copy and she can download the document with the markings intact. You can also grade the assignments with a simple score or using your own rubric scale. While using a rubric, the total score is automatically calculated and can be overwritten, if necessary.          
       students:
         title: All your stuff in one place 
         first_line: Students can submit assignments and read notes online
         second_line: Plan and collaborate on events with the group
         third_line: Share photos, videos and educational material
+        detail:
+          first: When an assignment is posted to a class, all the students receive a notification over email and the assignment shows up at the top of their home page as well. They can either compose the submission in the online editor or upload a document. As and when they work on the assignment, they can save draft copies and finally submit it when it's ready. They will received the reviewed assignment with comments from the teacher once it is graded. The score is shown along with the rubric scale used for the assignment 
+          second: Schoolarly provides every student and teacher with an online calendar where any of the activities they are part of - assignments, classes, projects, sport events are marked. Teachers can plan events for the entire school or for a single class and the members will be automatically intimated. Teachers and administrators can schedule meetings and conferences among themselves as well.
+          third: Schoolarly provides a safe way for students to share photos with each other. Teachers will be able to post relevant lectures from Khan Academy or video clips from YouTube to supplement their lessons. 
       parents:
         title: Monitor progress   
         first_line: Parents can monitor their child's progress anywhere, anytime
         second_line: Stay connected with parents through email and SMS
         third_line: Generate reports, graphs and charts on student scores
+        detail:
+          first: Parents see a roll of activities of their children when they log in to Schoolarly, including assignments, grades, events, messages etc. They will also messages sent directly to them by teachers and interact with other parents through forums. 
+          second: 
+          third: Parents can access statistical reports and charts to see how their children are progressing and can send suggestions and feedback to the teachers and the school. 
   interface:
     layout:
       footer:
