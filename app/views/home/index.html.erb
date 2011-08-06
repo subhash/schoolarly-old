@@ -1,21 +1,19 @@
 <% include_stylesheet 'home' %>
-
 <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
-
 <div class="portletK" id="portlet_splashHome">
-    <h2><span class="title"><%= I18n.t('home.pitch.teachers.title') %></span></h2>
+    <h2><span class="title"><%= link_to I18n.t('home.pitch.teachers.title'), '/teachers_why' %></span></h2>
     <div class="portlet_content">
         <div>
-            <img class="float_left icon" src="/images/ico/cloud.png" alt="" />
+            <%= link_to image_tag("/images/home/cloud.png", :class =>"float_left icon"), '/teachers_why' %>
             <ul>
                 <li>
-                	<%= I18n.t('home.pitch.teachers.first_line') %>                    
+                    <%= I18n.t('home.pitch.teachers.first_line') %>
                 </li>
                 <li>
-                	<%= I18n.t('home.pitch.teachers.second_line') %>                    
+                    <%= I18n.t('home.pitch.teachers.second_line') %>
                 </li>
-				<li>
-                	<%= I18n.t('home.pitch.teachers.third_line') %>                    
+                <li>
+                    <%= I18n.t('home.pitch.teachers.third_line') %>
                 </li>
             </ul>
         </div>
@@ -25,16 +23,16 @@
     <h2><span class="title"><%= I18n.t('home.pitch.students.title') %></span></h2>
     <div class="portlet_content">
         <div>
-            <img class="float_left icon" src="/images/ico/all_box.png" alt="" />
+            <%= link_to image_tag("/images/home/all_box.png", :class =>"float_left icon"), '/students_why' %>
             <ul>
                 <li>
-                   <%= I18n.t('home.pitch.students.first_line') %>          
+                    <%= I18n.t('home.pitch.students.first_line') %>
                 </li>
                 <li>
-                   <%= I18n.t('home.pitch.students.second_line') %> 
+                    <%= I18n.t('home.pitch.students.second_line') %>
                 </li>
-				<li>
-                   <%= I18n.t('home.pitch.students.third_line') %> 
+                <li>
+                    <%= I18n.t('home.pitch.students.third_line') %>
                 </li>
             </ul>
         </div>
@@ -44,16 +42,16 @@
     <h2><span class="title"><%= I18n.t('home.pitch.parents.title') %></span></h2>
     <div class="portlet_content">
         <div>
-            <img class="float_left icon" src="/images/ico/graph.png" alt="" />
+            <img class="float_left icon" src="/images/home/graph.png" alt="" />
             <ul>
                 <li>
-                   <%= I18n.t('home.pitch.parents.first_line') %>          
+                    <%= I18n.t('home.pitch.parents.first_line') %>
                 </li>
                 <li>
-                   <%= I18n.t('home.pitch.parents.second_line') %> 
+                    <%= I18n.t('home.pitch.parents.second_line') %>
                 </li>
-				<li>
-                   <%= I18n.t('home.pitch.parents.third_line') %> 
+                <li>
+                    <%= I18n.t('home.pitch.parents.third_line') %>
                 </li>
             </ul>
         </div>

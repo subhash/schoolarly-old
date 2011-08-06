@@ -57,6 +57,26 @@
 	<td>My analysis</td>
 </tr>
 <tr>
+	<td>selectFrame</td>
+	<td>submission_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>I see that others have analysed Robert Cohn and Lady Ashley. I will try to evaluate their assessments and add my opinions of both these characters</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
 	<td>draft</td>
 	<td></td>
