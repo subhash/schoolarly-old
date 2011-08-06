@@ -21,16 +21,20 @@
 }
 
 .portletK {
-    width: 100%;
+    width: 80%;
     font-family: 'Josefin Sans', sans-serif;
     background-color: #EFECCA;
 }
 
-.split {
-    width: 120%;
-    height: auto;
-    padding-bottom: 350px;
+.portletJ{
+	width: 200%
+}
 
+.split {
+    padding-bottom: 50px;
+	position: relative;
+	left: -100px;
+	margin: 10px;
 }
 
 

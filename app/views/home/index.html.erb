@@ -38,6 +38,10 @@
         </div>
     </div>
 </div>
+
+
+<% content_for :sidebar do %>
+
 <div class="portletK" id="portlet_splashHome">
     <h2><span class="title"><%= I18n.t('home.pitch.parents.title') %></span></h2>
     <div class="portlet_content">
@@ -57,11 +61,9 @@
         </div>
     </div>
 </div>
-<br/>
-<hr class="wide" />
-<br/>
-<br/>
-<% content_for :sidebar do %>
+
+<% end %>
+
 <div class="portlet portletJ" id="portlet_pluginsTog">
     <h2><span>About us</span></h2>
     <div class="portlet_content">
@@ -97,5 +99,3 @@
         </ul>
     </div>
 </div>
-<br/>
-<% end %>
