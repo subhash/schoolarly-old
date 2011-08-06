@@ -3,6 +3,11 @@
     margin-bottom: 4em;
 }
 
+.portletK a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .portletK ul li {
     list-style-type: none;
 }
@@ -20,6 +25,16 @@
     font-family: 'Josefin Sans', sans-serif;
     background-color: #EFECCA;
 }
+
+.split {
+    width: 120%;
+    height: auto;
+    padding-bottom: 350px;
+
+}
+
+
+
 
 
 
