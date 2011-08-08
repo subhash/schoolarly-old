@@ -26,6 +26,10 @@
     background-color: #EFECCA;
 }
 
+.portletK:hover {
+	background-color: #D9D7AC;
+} 
+
 .portletJ{
 	width: 200%
 }
