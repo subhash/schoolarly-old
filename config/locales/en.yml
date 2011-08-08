@@ -118,9 +118,15 @@ en:
         second_line: Plan and collaborate on events with the group
         third_line: Share photos, videos and educational material
         detail:
-          first: When an assignment is posted to a class, all the students receive a notification over email and the assignment shows up at the top of their home page as well. They can either compose the submission in the online editor or upload a document. As and when they work on the assignment, they can save draft copies and finally submit it when it's ready. They will received the reviewed assignment with comments from the teacher once it is graded. The score is shown along with the rubric scale used for the assignment 
-          second: Schoolarly provides every student and teacher with an online calendar where any of the activities they are part of - assignments, classes, projects, sport events are marked. Teachers can plan events for the entire school or for a single class and the members will be automatically intimated. Teachers and administrators can schedule meetings and conferences among themselves as well.
-          third: Schoolarly provides a safe way for students to share photos with each other. Teachers will be able to post relevant lectures from Khan Academy or video clips from YouTube to supplement their lessons. 
+          first: 
+            title: Assignments made easy!
+            content: When an assignment is posted to a class, all the students receive a notification over email and the assignment shows up at the top of their home page as well. They can either compose the submission in the online editor or upload a document. As and when they work on the assignment, they can save draft copies and finally submit it when it's ready. They will received the reviewed assignment with comments from the teacher once it is graded. The score is shown along with the rubric scale used for the assignment 
+          second: 
+            title: Track your events
+            content: Schoolarly provides every student and teacher with an online calendar where any of the activities they are part of - assignments, classes, projects, sport events are marked. Teachers can plan events for the entire school or for a single class and the members will be automatically intimated. Teachers and administrators can schedule meetings and conferences among themselves as well.
+          third: 
+            title: Share photos and videos
+            content: Schoolarly provides a safe way for students to share photos with each other. Teachers will be able to post relevant lectures from Khan Academy or video clips from YouTube to supplement their lessons. 
       parents:
         title: Monitor progress   
         first_line: Parents can monitor their child's progress anywhere, anytime
