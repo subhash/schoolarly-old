@@ -1,0 +1,47 @@
+<% include_stylesheet 'home' %>
+<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+<div class="portletK split padding" id="portlet_splashHome">
+    <div class="portlet_content">
+        <%= link_to image_tag("/images/home/dashboard_parent2.png", :class =>"float_left icon"), "/images/home/dashboard_parent.png" %>
+        <ul>
+            <li class="title">
+                <%= I18n.t('home.pitch.parents.detail.first.title') %>
+            </li>
+            <li>
+                <br/>
+                <br/>
+                <br/>
+				<br/>
+            </li>
+            <li>
+                <%= I18n.t('home.pitch.parents.detail.first.content') %>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="portletK split" id="portlet_splashHome">
+    <div class="portlet_content">
+        <%= link_to image_tag("/images/home/messages2.png", :class =>"float_right icon"), "/images/home/messages.png" %>
+        <ul>
+            <li class="title">
+                <%= I18n.t('home.pitch.parents.detail.second.title') %>
+            </li>
+            <li>
+                <%= I18n.t('home.pitch.parents.detail.second.content') %>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="portletK split" id="portlet_splashHome">
+    <div class="portlet_content">
+        <%= image_tag("/images/home/graph.png", :class =>"float_left icon") %>
+        <ul>
+            <li class="title">
+                <%= I18n.t('home.pitch.parents.detail.third.title') %>
+            </li>
+            <li>
+                <%= I18n.t('home.pitch.parents.detail.third.content') %>
+            </li>
+        </ul>
+    </div>
+</div>

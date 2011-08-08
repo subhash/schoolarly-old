@@ -20,7 +20,7 @@
     </div>
 </div>
 <div class="portletK" id="portlet_splashHome">
-    <h2><span class="title"><%= I18n.t('home.pitch.students.title') %></span></h2>
+    <h2><span class="title"><%= link_to I18n.t('home.pitch.students.title'), '/home/students_why' %></span></h2>
     <div class="portlet_content">
         <div>
             <%= link_to image_tag("/images/home/all_box.png", :class =>"float_left icon"), '/home/students_why' %>
@@ -43,10 +43,10 @@
 <% content_for :sidebar do %>
 
 <div class="portletK" id="portlet_splashHome">
-    <h2><span class="title"><%= I18n.t('home.pitch.parents.title') %></span></h2>
+    <h2><span class="title"><%= link_to I18n.t('home.pitch.parents.title'), '/home/parents_why' %></span></h2>
     <div class="portlet_content">
         <div>
-            <img class="float_left icon" src="/images/home/graph.png" alt="" />
+			<%= link_to image_tag("/images/home/graph.png", :class =>"float_left icon"), '/home/parents_why' %>
             <ul>
                 <li>
                     <%= I18n.t('home.pitch.parents.first_line') %>
