@@ -19,6 +19,26 @@
         </div>
     </div>
 </div>
+<div class="portletK" id="portlet_splashHome" onclick="location.href='/home/parents_why';" style="cursor: pointer;">
+    <h2><span class="title"><%= link_to I18n.t('home.pitch.parents.title'), '/home/parents_why' %></span></h2>
+    <div class="portlet_content">
+        <div>
+            <%= link_to image_tag("/images/home/graph.png", :class =>"float_left icon"), '/home/parents_why' %>
+            <ul>
+                <li>
+                    <%= I18n.t('home.pitch.parents.first_line') %>
+                </li>
+                <li>
+                    <%= I18n.t('home.pitch.parents.second_line') %>
+                </li>
+                <li>
+                    <%= I18n.t('home.pitch.parents.third_line') %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<% content_for :sidebar do %>
 <div class="portletK" id="portlet_splashHome" onclick="location.href='/home/students_why';" style="cursor: pointer;">
     <h2><span class="title"><%= link_to I18n.t('home.pitch.students.title'), '/home/students_why' %></span></h2>
     <div class="portlet_content">
@@ -38,32 +58,7 @@
         </div>
     </div>
 </div>
-
-
-<% content_for :sidebar do %>
-
-<div class="portletK" id="portlet_splashHome" onclick="location.href='/home/parents_why';" style="cursor: pointer;">
-    <h2><span class="title"><%= link_to I18n.t('home.pitch.parents.title'), '/home/parents_why' %></span></h2>
-    <div class="portlet_content">
-        <div>
-			<%= link_to image_tag("/images/home/graph.png", :class =>"float_left icon"), '/home/parents_why' %>
-            <ul>
-                <li>
-                    <%= I18n.t('home.pitch.parents.first_line') %>
-                </li>
-                <li>
-                    <%= I18n.t('home.pitch.parents.second_line') %>
-                </li>
-                <li>
-                    <%= I18n.t('home.pitch.parents.third_line') %>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
 <% end %>
-
 <div class="portlet portletJ" id="portlet_pluginsTog">
     <h2><span>About us</span></h2>
     <div class="portlet_content">
