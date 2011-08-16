@@ -27,7 +27,8 @@
 			<li><%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(default_blog_for(@group), :group => @group), :class => 'note' %></li>
 			<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group), :class => 'calendar' %></li>	
 			<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_assignment_path(:group => @group), :class => 'activity' %></li>		
-			<li><%= link_to I18n.t('groups.member.photos.share'), new_member_picto_photo_path(:group => @group), :class => 'photo' %></li>					  	
+			<li><%= link_to I18n.t('groups.member.photos.share'), new_member_picto_photo_path(:group => @group), :class => 'photo' %></li>	
+			<li><%= link_to I18n.t('groups.member.videos.share'), new_member_video_path(:group => @group), :class => 'video' %></li>				  	
         </ul>
     </div> 
 </div> 

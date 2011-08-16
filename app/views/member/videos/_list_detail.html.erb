@@ -1,0 +1,18 @@
+<% group ||= @group %>
+<% video = share.shareable %>
+
+<div class="photo">
+  <div class="photo_container">
+    <%= link_to image_tag(video.thumbnail), member_video_path(video, :group => group) %>
+	<%= link_to video.title, member_video_path(video, :group => group) %>
+  </div>
+  <p><%= video.description %></p>
+
+<%= render :partial => "shared/comments", :locals => { :commentable => video , :exclude_add_comment => true} %>
+
+<div class="portlet portletL">
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at)) %> . 
+	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_video_path(video, :group => group), :title => I18n.t('comments.member.view.title', :title => h(video.title)) %> . 
+	<%= share_with_groups_link(video) if i_own? video %>
+</div>
+</div>

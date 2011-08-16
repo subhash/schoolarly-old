@@ -1,0 +1,18 @@
+<% if @group %>
+<%= render :partial => 'member/groups/header_short', :locals => {:title => sanitize(@video.title)} %>
+<% end %>
+    <div class="image">
+        <% profile = @video.user.profile %>
+        <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
+        <%= link_to profile.full_name, member_profile_path(profile) %>
+    </div>
+<div id="video_<%= @video.id %>" class="border_top">
+    <%= @video.embed %>
+	<%= @video.description %>
+    <%= render :partial => "shared/comments", :locals => { :commentable => @video , :show_all => true} %>
+</div>
+<% content_for :sidebar do %>
+<%= render :partial => 'member/videos/manage' %>
+<%= render :partial => 'shared/groups' %>
+<!-- TODO tags & archive -->
+<% end %>

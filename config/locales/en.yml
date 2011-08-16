@@ -290,6 +290,8 @@ en:
           reject: Reject
       photos:
         share: Photo
+      videos:
+        share: Video
       notes:
         share: Note 
         new: New note 
@@ -720,6 +722,32 @@ en:
         title: "Manage Photo"
       edit:
         title: "Edit photo"
+        
+        
+  videos:
+    model:
+      title: Title
+      description: Description (optional)
+      link: YouTube/vimeo link
+    member:
+      add_success: Video is successfully added
+      add_failure: Error in adding video
+      update_success: Video is successfully updated
+      update_failure: Error in updating video
+    site:
+      manage: 
+        title: Manage video
+        edit: Edit video
+        delete: Delete video
+      new:
+        title: Add new video
+        create: Create video
+        description: "Upload videos to YouTube or Vimeo, and share the link here."
+      edit:
+        title: Edit video
+        update: Update video
+        
+   
 
 
        
