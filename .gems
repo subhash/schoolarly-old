@@ -29,3 +29,4 @@ aasm
 dynamic_attributes
 pdfkit
 haml
+httparty
