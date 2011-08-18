@@ -1,3 +1,5 @@
+include IceCube
+
 class Member::Conclave::EventsController < Member::BaseController
   
   helper LaterDude::CalendarHelper
@@ -54,10 +56,23 @@ class Member::Conclave::EventsController < Member::BaseController
         from = Time.at(params[:start].to_i)
         to = Time.at(params[:end].to_i)
         @events = between(from, to, 'Event')
-        events = @events.collect do |event|
-          start_time = event.start_date.to_time.advance(:hours => event.start_time.hour, :minutes => event.start_time.min, :seconds => event.start_time.sec)
-          end_time = event.end_date.to_time.advance(:hours => event.end_time.hour, :minutes => event.end_time.min, :seconds => event.end_time.sec)
-          {:title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}          
+        events = []
+        @events.each do |event|
+          start_offset = {:hours => event.start_time.hour, :minutes => event.start_time.min, :seconds => event.start_time.sec}
+          end_offset = {:hours => event.end_time.hour, :minutes => event.end_time.min, :seconds => event.end_time.sec}
+          start_time = event.start_date.to_time.advance(start_offset)
+          end_time = event.end_date.to_time.advance(end_offset)
+          if event.recurrence.blank? || event.recurrence == 'once'
+            events << {:title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}
+          else
+            schedule = Schedule.new(start_time)
+            recurrence = Rule.send(event.recurrence)
+            recurrence.until(event.until)
+            schedule.add_recurrence_rule(recurrence)
+            schedule.all_occurrences.each do |occurrence|
+              events << {:title => event.title, :start => occurrence.iso8601, :end => (occurrence + 5.minutes).iso8601}
+            end
+          end
         end
         @assignments = between(from, to, 'Assignment').delete_if{|a| !a.date and !a.due_date}
         events += @assignments.collect do |ass|

@@ -705,6 +705,10 @@ en:
     model:
       start_time: "Starts at"
       end_time: "Ends by"
+      recurrence:
+        title: Recurrence
+        desc: Occurs
+      until: Until
       
       
   photosets:

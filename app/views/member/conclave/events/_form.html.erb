@@ -109,6 +109,30 @@
             </tr>
         </tbody>
     </table>
+    <table class="tableE">
+        <caption>
+            <%= I18n.t("events.model.recurrence.title") %>
+        </caption>
+        <tbody>
+            <tr>
+                <th scope="row">
+                    <%= I18n.t("events.model.recurrence.desc") %>
+                </th>
+                <td nowrap="nowrap">
+                    <%= select :event, :recurrence, [['Only once', 'once'], ['Daily','daily'], ['Weekly','weekly'],['Monthly', 'monthly']]%>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <%= I18n.t("events.model.until") %>
+                </th>
+                <td nowrap="nowrap">
+                    <%=f.text_field :until, :class=>"fieldbox date_without_time" %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+	
     <!--
     <table class="tableE">
     <caption><%= I18n.t("tog_conclave.admin.localization") %></caption>
