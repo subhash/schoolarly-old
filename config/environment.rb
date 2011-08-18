@@ -37,6 +37,7 @@ Rails::Initializer.run do |config|
   config.gem 'haml'
   config.gem 'pdfkit'
   config.gem 'hoptoad_notifier'
+  config.gem 'httparty'
   #  config.gem 'mail'
   #  config.gem 'delayed_job'
 

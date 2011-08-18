@@ -1,0 +1,24 @@
+<% video ||= @video %>
+<div class="fields">
+    <p>
+        <label for="video_title">
+            <%= I18n.t('videos.model.title') %>
+        </label>
+        <%= f.text_field :title, :class=>"fieldbox wide" -%>
+    </p>
+    <p>
+        <label for="video_link">
+            <%= I18n.t('videos.model.link') %>
+        </label>
+        <%= f.text_field :link, :class=>"fieldbox wide" -%>
+    </p>
+    <p>
+        <span class="fontsmaller"><%= I18n.t('videos.site.new.description') %></span>
+    </p>
+    <p>
+        <label for="video_description">
+            <%= I18n.t('videos.model.description') %>
+        </label>
+        <%= f.text_area :description, :class=>"fieldbox wide", :rows => 10 -%>
+    </p>
+</div>

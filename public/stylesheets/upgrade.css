@@ -19,7 +19,7 @@ input, select, textarea {
     background-color: transparent;
 }
 
-iframe {
+iframe.doc {
     background: url(//crocodoc.com/media/images/docviewer/spinner.gif) no-repeat center;
     border: 1px solid #ddd;
     width: 900px;
@@ -303,7 +303,13 @@ a.ok {
 }
 
 a.photo {
-    background: url(../images/ico/photo.gif) no-repeat 0 0;
+    background: url(../images/ico/photo2.png) no-repeat 0 0;
+    padding: 2px 0 2px 20px;
+    text-decoration: none;
+}
+
+a.video {
+    background: url(../images/ico/video2.png) no-repeat 0 0;
     padding: 2px 0 2px 20px;
     text-decoration: none;
 }

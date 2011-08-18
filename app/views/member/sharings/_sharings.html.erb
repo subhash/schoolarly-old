@@ -16,6 +16,9 @@
                 > <span class="subtitle"><%= link_to u.profile.full_name, member_profile_path(u.profile) %></span>
                 <% end %>
             </div>
+            <% if share.shareable.is_a? Video %>
+            <%= render :partial => '/member/videos/list_detail', :locals => {:share => share , :group => share.shared_to} %>
+            <% end %>
             <% if share.shareable.is_a? Picto::Photoset %>
             <%= render :partial => '/member/picto/photosets/list_detail', :locals => {:share => share , :group => share.shared_to} %>
             <% end %>

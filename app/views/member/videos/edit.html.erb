@@ -1,0 +1,21 @@
+<% include_form_effects %>
+
+<% if @group %>
+<%= render :partial => 'member/groups/header_short', :locals => {:title => I18n.t('videos.site.new.title')}  %>
+<% else %>
+<%= I18n.t('videos.site.edit.title') %>
+<% end %>
+
+<div class="error">
+    <%= error_messages_for :video %>
+</div>
+<% form_for :video, :url => member_video_path(@video), :html => {:multipart=>true,:method => "put"} do |f| -%>
+<fieldset>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+    <%= hidden_field_tag :group, params[:group] if params[:group] %>
+    <div class="actions">
+        <%= submit_tag I18n.t('videos.site.edit.update'), {:class => "button mainaction", :accesskey => "s"} %>
+    </div>
+</fieldset>
+<% end -%>
+

@@ -1,3 +1,4 @@
+<% title ||= local_assigns[:title] %>
 <div class="breadcrumbs">
     <%= ancestor_path_for(@group) %>
 </div>
@@ -7,5 +8,6 @@
     </div>
     <div class="title">
         <%= link_to @group.name, member_group_path(@group) %>
+		<%= " > #{title}" if title %>
     </div>
 </div>
