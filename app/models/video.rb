@@ -15,29 +15,15 @@ class Video < ActiveRecord::Base
   
   
   def embed(width = "640", height = "390")
-    embed_code = nil
-    case base_uri
-      when "www.youtube.com", "youtube.com"
-      embed_code = "<object width='#{width}' height='#{height}'>" +
-              "<param name='movie' value='#{url}'></param>" +
-              "<param name='allowFullScreen' value='false'></param>" +
-              "<param name='allowscriptaccess' value='always'></param>" +
-              "<embed src='#{url}' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='false' 
-                  width='#{width}' height='#{height}'> </embed>" +
-            "</object>"
-      when "www.vimeo.com", "vimeo.com"
-      embed_code = "<iframe src='#{url}' width='#{width}' height='#{height}' frameborder='0'></iframe>"
-    end
-    
-    embed_code
+    embed_code = "<iframe src='#{url}' width='#{width}' height='#{height}' frameborder='0' allowfullscreen></iframe>"
   end
   
   def url
     url = nil
     case base_uri
-      when "www.youtube.com","youtube.com"
-      url = "http://www.youtube.com/v/" + video_id + "&amp;hl=en_US&amp;fs=1"
-      when "www.vimeo.com", "vimeo.com"
+      when "www.youtube.com"
+      url = "http://www.youtube.com/embed/#{video_id}" 
+      when "www.vimeo.com"
       url = "http://player.vimeo.com/video/" + video_id
     end
     
@@ -47,9 +33,9 @@ class Video < ActiveRecord::Base
   def thumbnail
     url = nil
     case base_uri
-      when "www.youtube.com","youtube.com"  
+      when "www.youtube.com" 
       url = "http://img.youtube.com/vi/" + video_id + "/2.jpg"
-      when "www.vimeo.com", "vimeo.com"
+      when "www.vimeo.com"
       url = thumbnail_path( image_base_uri, video_id )
     end
     
@@ -65,9 +51,9 @@ class Video < ActiveRecord::Base
   def image_base_uri
     image_base_uri = nil
     case base_uri
-      when "www.youtube.com","youtube.com"
+      when "www.youtube.com"
       image_base_uri = "http://img.youtube.com/vi/"
-      when "www.vimeo.com", "vimeo.com"
+      when "www.vimeo.com"
       image_base_uri = "http://vimeo.com/api/v2/video/"
     end
     
@@ -93,18 +79,26 @@ class Video < ActiveRecord::Base
   def base_uri
     @uri ||= parse_it
     
-    @uri.host
+    case @uri.host
+      when "www.youtube.com","youtube.com", "youtu.be"
+      return "www.youtube.com"
+      when "www.vimeo.com", "vimeo.com"
+      return "www.vimeo.com"
+    end
   end
   
   def video_id
     video_id = nil
     case base_uri
-      when "www.youtube.com","youtube.com"
-      video_id = @uri.query.split('=')[1].slice(0, 11)
-      when "www.vimeo.com", "vimeo.com"
+      when "www.youtube.com"
+      video_regexp = [ /^(?:https?:\/\/)?(?:www\.)?youtube\.com(?:\/v\/|\/watch\?v=)([A-Za-z0-9_-]{11})/, 
+                   /^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([A-Za-z0-9_-]{11})/,
+                   /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/user\/[^\/]+\/?#(?:[^\/]+\/){1,4}([A-Za-z0-9_-]{11})/
+      ]
+      video_id = video_regexp.each { |m| return m.match(link)[1] unless m.match(link).nil? }
+      when "www.vimeo.com"
       video_id = @uri.path.delete('/')
     end
-    
     video_id
   end
   
