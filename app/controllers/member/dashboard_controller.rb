@@ -3,6 +3,7 @@ class Member::DashboardController < Member::BaseController
   helper "picto/base"
   
   def index
+    store_location
     @profile = current_user.profile 
     @order = params[:order] || 'updated_at'
     @page = params[:page] || '1'

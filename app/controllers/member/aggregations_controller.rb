@@ -51,7 +51,6 @@ class Member::AggregationsController < Member::BaseController
   end
   
   def index
-    store_location
     @aggregations = @group.sharings.of_type('Aggregation').collect(&:shareable).reject(&:parent)
     @assignments = @group.sharings.of_type('Assignment').collect(&:shareable).reject(&:weighted_assignment)    
   end

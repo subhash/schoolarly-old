@@ -13,6 +13,9 @@
 <div class="portlet portletL">
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at)) %> . 
 	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_video_path(video, :group => group), :title => I18n.t('comments.member.view.title', :title => h(video.title)) %> . 
-	<%= share_with_groups_link(video) if i_own? video %>
+	<%= share_with_groups_link(video) if i_own? video %><%= " . " %>
+	<%= link_to I18n.t('tog_social.sharings.member.remove_share'), 
+              member_destroy_sharing_path(share.shared_to, share), 
+              :method => :delete, :confirm => I18n.t('sharings.member.remove_confirmation', :shareable => title_for_object(share.shareable), :group => title_for_object(share.shared_to)) if (i_own?(video) or i_am_moderator_of(group)) %>
 </div>
 </div>
