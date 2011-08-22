@@ -30,6 +30,71 @@
                     <%=f.text_field :title, :class=>"fieldbox" %>
                 </td>
             </tr>
+        </tbody>
+    </table>
+    <table class="tableE">
+        <caption>
+            <%= I18n.t("events.member.new.datetime") %>
+        </caption>
+        <tbody>
+            <tr>
+                <th scope="row">
+                    <%= I18n.t("events.model.start_time") %>
+                </th>
+                <td nowrap="nowrap">
+                    <%=f.text_field :start_date, :class=>"fieldbox date_without_time" %>
+                </td>
+                <td>
+                    @
+                </td>
+                <td nowrap="nowrap">
+                    <%=f.text_field :start_time, :class=>"fieldbox time_only", :value => @event.start_time.iso8601 %>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <%= I18n.t("events.model.end_time") %>
+                </th>
+                <td nowrap="nowrap">
+                    <%=f.text_field :end_date, :class=>"fieldbox date_without_time" %>
+                </td>
+                <td>
+                    @
+                </td>
+                <td nowrap="nowrap">
+                    <%=f.text_field :end_time, :class=>"fieldbox time_only" , :value => @event.end_time.iso8601 %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="tableE">
+        <caption>
+            <%= I18n.t("events.member.new.recurrence") %>
+        </caption>
+        <tbody>
+            <tr>
+                <th scope="row">
+                    <%= I18n.t("events.model.recurrence.desc") %>
+                </th>
+                <td nowrap="nowrap">
+                    <%= select :event, :recurrence, [['Only once', 'once'], ['Daily','daily'], ['Weekly','weekly'],['Monthly', 'monthly']] %>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <%= I18n.t("events.model.until") %>
+                </th>
+                <td nowrap="nowrap">
+                    <%=f.text_field :until, :class=>"fieldbox date_without_time" %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="tableE">
+        <caption>
+            <%= I18n.t("events.member.new.details") %>
+        </caption>
+        <tbody>
             <tr>
                 <th scope="row">
                     <%= I18n.t("tog_conclave.fields.description") %>
@@ -72,88 +137,29 @@
                     <%=f.text_field :venue, :class=>"fieldbox" %>
                 </td>
             </tr>
-        </tbody>
-    </table>
-    <table class="tableE">
-        <caption>
-            <%= I18n.t("tog_conclave.admin.datetimes") %>
-        </caption>
-        <tbody>
+            <!--
             <tr>
-                <th scope="row">
-                    <%= I18n.t("events.model.start_time") %>
-                </th>
-                <td nowrap="nowrap">
-                    <%=f.text_field :start_date, :class=>"fieldbox date_without_time" %>
-                </td>
-                <td>
-                    @
-                </td>
-                <td nowrap="nowrap">
-                    <%=f.text_field :start_time, :class=>"fieldbox time_only", :value => @event.start_time.iso8601 %>
-                </td>
+            <th scope="row">
+            <%= I18n.t("tog_conclave.fields.venue_address") %>
+            </th>
+            <td nowrap="nowrap">
+            <%=f.text_field :venue_address, :class=>"fieldbox" %>
+            <br/>
+            <span class="helpinfo"><%= I18n.t("tog_conclave.fields.used_for_geolocation") %></span>
+            </td>
             </tr>
+            -->
             <tr>
                 <th scope="row">
-                    <%= I18n.t("events.model.end_time") %>
+                    <%= I18n.t("tog_conclave.fields.venue_link") %>
                 </th>
                 <td nowrap="nowrap">
-                    <%=f.text_field :end_date, :class=>"fieldbox date_without_time" %>
-                </td>
-                <td>
-                    @
-                </td>
-                <td nowrap="nowrap">
-                    <%=f.text_field :end_time, :class=>"fieldbox time_only" , :value => @event.end_time.iso8601 %>
+                    <%=f.text_field :venue_link, :class=>"fieldbox" %>
                 </td>
             </tr>
         </tbody>
     </table>
-    <table class="tableE">
-        <caption>
-            <%= I18n.t("events.model.recurrence.title") %>
-        </caption>
-        <tbody>
-            <tr>
-                <th scope="row">
-                    <%= I18n.t("events.model.recurrence.desc") %>
-                </th>
-                <td nowrap="nowrap">
-                    <%= select :event, :recurrence, [['Only once', 'once'], ['Daily','daily'], ['Weekly','weekly'],['Monthly', 'monthly']]%>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">
-                    <%= I18n.t("events.model.until") %>
-                </th>
-                <td nowrap="nowrap">
-                    <%=f.text_field :until, :class=>"fieldbox date_without_time" %>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-	
     <!--
-    <table class="tableE">
-    <caption><%= I18n.t("tog_conclave.admin.localization") %></caption>
-    <tbody>
-    <tr>
-    <th scope="row"><%= I18n.t("tog_conclave.fields.venue") %></th>
-    <td nowrap="nowrap"><%=f.text_field :venue, :class=>"fieldbox" %></td>
-    </tr>
-    <tr>
-    <th scope="row"><%= I18n.t("tog_conclave.fields.venue_address") %></th>
-    <td nowrap="nowrap">
-    <%=f.text_field :venue_address, :class=>"fieldbox" %>
-    <br/>
-    <span class="helpinfo"><%= I18n.t("tog_conclave.fields.used_for_geolocation") %></span>
-    </td>
-    </tr>
-    <tr>
-    <th scope="row"><%= I18n.t("tog_conclave.fields.venue_link") %></th>
-    <td nowrap="nowrap"><%=f.text_field :venue_link, :class=>"fieldbox" %></td>
-    </tr>
-    </tbody></table>
     <table class="tableE">
     <caption><%= I18n.t("tog_conclave.admin.attendance") %></caption>
     <tbody>

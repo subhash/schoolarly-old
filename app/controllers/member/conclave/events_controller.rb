@@ -7,18 +7,27 @@ class Member::Conclave::EventsController < Member::BaseController
   before_filter :find_group
   
   def new
-    @event = Event.new(:url => "http://")
-    @event.capacity = 0
-    @event.start_date = Date.today
-    @event.start_time = 1.hour.from_now
-    @event.end_date = Date.today
-    @event.end_time = 2.hour.from_now
+    params[:event] ||= {:url => "http://"}
+    @event = Event.new(params[:event])
+    if(params[:start])
+      start_time = Time.zone.parse(params[:start])
+      @event.start_date = start_time.to_date
+      @event.start_time = start_time.to_time
+    end
+    if(params[:end])
+      end_time = Time.zone.parse(params[:end])
+      @event.end_date = end_time.to_date
+      @event.end_time = end_time.to_time
+    end
+    @event.capacity ||= 0
+    @event.start_date ||= Date.today
+    @event.start_time ||= 1.hour.from_now
+    @event.end_date ||= Date.today
+    @event.end_time ||= 2.hour.from_now
   end
   
   def create
     @event = Event.new(params[:event])
-    #    puts "validation = "+ !(@event.start_date && @event.end_date && @event.start_time && @event.end_time) || (@event.start_date > @event.end_date || (@event.start_date == @event.end_date && @event.start_time >= @event.end_time))
-    puts "event = "+@event.inspect
     @event.owner = current_user
     @event.save!
     flash[:ok] = I18n.t("tog_conclave.member.event_created", :title => @event.title)
@@ -35,6 +44,7 @@ class Member::Conclave::EventsController < Member::BaseController
   
   
   def index
+    store_location
     respond_to do |wants|
       wants.html do
         @order = params[:order] || 'start_date'
