@@ -68,21 +68,15 @@ class Member::Conclave::EventsController < Member::BaseController
         @events = between(from, to, 'Event')
         events = []
         @events.each do |event|
-          start_offset = {:hours => event.start_time.hour, :minutes => event.start_time.min, :seconds => event.start_time.sec}
-          end_offset = {:hours => event.end_time.hour, :minutes => event.end_time.min, :seconds => event.end_time.sec}
-          start_time = event.start_date.to_time.advance(start_offset)
-          end_time = event.end_date.to_time.advance(end_offset)
+          start_time = event.starting_time
+          end_time = event.ending_time
           duration = end_time - start_time
-          if event.recurrence.blank? || event.recurrence == 'once'
-            events << {:id => event.id, :title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}
-          else
-            schedule = Schedule.new(start_time)
-            recurrence = Rule.send(event.recurrence)
-            recurrence.until(event.until)
-            schedule.add_recurrence_rule(recurrence)
-            schedule.all_occurrences.each do |occurrence|
+          if event.recurrent?
+            event.recurrences.each do |occurrence|
               events << {:id => event.id, :title => event.title, :start => occurrence.iso8601, :end => (occurrence + duration).iso8601, :color => 'red'}
-            end
+            end            
+          else
+            events << {:id => event.id, :title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}
           end
         end
         @assignments = between(from, to, 'Assignment').delete_if{|a| !a.date and !a.due_date}

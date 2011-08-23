@@ -25,11 +25,39 @@
 #  icon_updated_at   :datetime
 #  moderated         :boolean
 #
-class Event < ActiveRecord::Base
 
+include IceCube
+
+class Event < ActiveRecord::Base
+  
   named_scope :between, lambda { |start_date, end_date| { :conditions => ['start_date >= ? and end_date <= ?', start_date, end_date], :order => 'start_date desc, start_time desc' } }  
   
   acts_as_commentable
   acts_as_shareable
+  
+  def starting_time
+    start_offset = {:hours => self.start_time.hour, :minutes => self.start_time.min, :seconds => self.start_time.sec}
+    self.start_date.to_time.advance(start_offset)
+  end
+  
+  def ending_time
+    end_offset = {:hours => self.end_time.hour, :minutes => self.end_time.min, :seconds => self.end_time.sec}
+    self.end_date.to_time.advance(end_offset)
+  end
+  
+  def recurrent?
+    ! (self.recurrence.blank? || self.recurrence == 'once')
+  end
+  
+  def recurrences
+    if self.recurrent? 
+      schedule = Schedule.new(self.starting_time)
+      recurrence = Rule.send(self.recurrence)
+      recurrence.until(self.until)
+      schedule.add_recurrence_rule(recurrence)
+      schedule.all_occurrences
+    end
+  end
+  
   
 end

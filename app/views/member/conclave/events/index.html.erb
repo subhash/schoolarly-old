@@ -1,7 +1,8 @@
-<% include_javascript 'jquery-1.4.2.min.js' %>
+<% include_javascript 'fullcalendar/jquery-1.5.min' %>
+<% include_javascript 'fullcalendar/jquery-ui-1.8.9.custom.min' %>
+<% include_javascript 'fullcalendar/fullcalendar' %>
 <% include_stylesheet 'fullcalendar/adjustments' %>
 <% include_stylesheet 'fullcalendar/fullcalendar' %>
-<% include_javascript 'fullcalendar/fullcalendar' %>
 <% include_stylesheet "date.css" %>
 <% url_params = {} %>
 <% url_params[:group] = @group if @group %>
@@ -26,6 +27,7 @@
             events: "<%= json_feed_path %>",
 			selectable: true,
 			selectHelper: true,
+			editable: false,
 			select: function(start, end, allDay) {
 						window.location = '<%= new_member_conclave_event_path(:group => @group) %>' + '&start='+start.toUTCString() + '&end='+end.toUTCString();
 					},
