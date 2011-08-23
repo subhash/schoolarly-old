@@ -74,14 +74,14 @@ class Member::Conclave::EventsController < Member::BaseController
           end_time = event.end_date.to_time.advance(end_offset)
           duration = end_time - start_time
           if event.recurrence.blank? || event.recurrence == 'once'
-            events << {:title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}
+            events << {:id => event.id, :title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}
           else
             schedule = Schedule.new(start_time)
             recurrence = Rule.send(event.recurrence)
             recurrence.until(event.until)
             schedule.add_recurrence_rule(recurrence)
             schedule.all_occurrences.each do |occurrence|
-              events << {:title => event.title, :start => occurrence.iso8601, :end => (occurrence + duration).iso8601}
+              events << {:id => event.id, :title => event.title, :start => occurrence.iso8601, :end => (occurrence + duration).iso8601, :color => 'red'}
             end
           end
         end

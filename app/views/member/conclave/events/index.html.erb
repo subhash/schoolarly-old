@@ -27,8 +27,11 @@
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end, allDay) {
-					window.location = '<%= new_member_conclave_event_path(:group => @group) %>' + '&start='+start.toUTCString() + '&end='+end.toUTCString();
-				},
+						window.location = '<%= new_member_conclave_event_path(:group => @group) %>' + '&start='+start.toUTCString() + '&end='+end.toUTCString();
+					},
+			eventClick: function(calEvent, jsEvent, view) {
+							window.location = '/member/conclave/events/'+calEvent.id;
+						},
             loading: function(bool){
                 if (bool) {
                     jQuery("#loading").show();
