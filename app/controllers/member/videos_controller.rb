@@ -33,6 +33,24 @@ class Member::VideosController < Member::BaseController
     end
   end
   
+  def show
+    @shared_groups = @video.shares_to_groups.collect(&:shared_to)
+  end
+  
+  def destroy
+     respond_to do |wants|
+      wants.html do
+        if @video.destroy
+          flash[:ok] = I18n.t('videos.member.remove_success')
+          redirect_to member_videos_path(@video, :group => @group)
+        else                              
+          flash[:error] = I18n.t('videos.member.remove_failure')
+          render :show
+        end  
+      end
+    end
+  end
+  
   
   private 
   
@@ -42,8 +60,6 @@ class Member::VideosController < Member::BaseController
   
   def find_video
     @video =  Video.find(params[:id])
-    @shared_groups = @video.shares_to_groups.collect(&:shared_to)
-  end
-  
+  end 
   
 end
