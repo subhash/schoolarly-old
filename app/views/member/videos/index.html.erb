@@ -1,0 +1,29 @@
+<p>
+    <%= link_to "Upload more videos now!",  new_member_video_url, {:class => "button add", :title => "Upload new videos"} %>
+</p>
+<div class="portlet portletG">
+    <h2><span>Your videos</span></h2>
+    <div class="portlet_content">
+        <ul class="clearfix">
+            <% if @my_videos.empty? %>
+            <li>
+                There aren't any videos yet.
+            </li>
+            <% else %>
+            <% @my_videos.each do |video| %>
+            <li>
+                <%= link_to image_tag(video.thumbnail), member_video_path(video), {:title => video.title} %>
+            </li>
+            <% end %>
+            <% end %>
+        </ul>
+    </div>
+</div>
+<% if !@my_videos.empty? %>
+<div class="info_results">
+    <span class="info_items">Videos <%=@my_videos.size > 0 ? (@my_videos.offset + 1) : '0' %> to <%=@my_videos.size + @my_videos.offset %> of <%=@my_videos.total_entries %>
+    </span>
+    <span class="pages_navigation right"><%= will_paginate @my_videos %>
+    </span>
+</div>
+<%end %>

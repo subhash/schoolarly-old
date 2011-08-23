@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :attachments
   has_many :rubrics
   has_many :blogs, :through => :bloggerships, :include => :posts
+  has_many :videos
   
   def student?
     person.is_a? Student

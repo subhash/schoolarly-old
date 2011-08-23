@@ -155,6 +155,7 @@ en:
       demo: "Demo"
       notebooks: Notebooks
     member:
+      videos: Videos
       notebooks: Notebooks
       sharings: "Shared items"
       rubrics: "Rubrics"
@@ -740,6 +741,8 @@ en:
     member:
       add_success: Video is successfully added
       add_failure: Error in adding video
+      remove_success: Video is removed
+      remove_failure: Error removing video
       update_success: Video is successfully updated
       update_failure: Error in updating video
     site:
@@ -754,6 +757,8 @@ en:
       edit:
         title: Edit video
         update: Update video
+      remove:
+        confirm: "This will remove video from Schoolarly. Are you sure?"
         
    
 

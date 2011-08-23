@@ -3,9 +3,11 @@
 <div class="portlet portletD" id="portlet_userWall">
     <h2><span><%= I18n.t('videos.site.manage.title', :name => video.title) %></span></h2>
     <div class="portlet_content">
+        <%= share_with_groups_link(@video) %>
+        <br/>
         <%= link_to I18n.t('videos.site.manage.edit'), edit_member_video_path(video) %>
-		<br/>
-		<%= link_to I18n.t('videos.site.manage.delete'), member_video_path(video), :method => :delete %>
+        <br/>
+        <%= link_to I18n.t('videos.site.manage.delete'), member_video_path(video), :method => :delete, :confirm => I18n.t('videos.site.remove.confirm') %>
     </div>
 </div>
 <% end %>
