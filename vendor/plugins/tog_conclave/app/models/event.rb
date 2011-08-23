@@ -33,7 +33,10 @@ class Event < ActiveRecord::Base
   belongs_to :owner, :class_name =>'User', :foreign_key =>'user_id'
   has_many   :attendances,      :dependent => :destroy
   has_many   :attendees,        :through => :attendances, :source => :user, :conditions => ['attendances.status = ?', Attendance::STATUS_ACCEPTED]
-  validates_presence_of :title, :description, :venue, :start_date, :end_date, :start_time, :end_time
+  
+  # HACK removing validation of venue and description
+  #validates_presence_of :title, :description, :venue, :start_date, :end_date, :start_time, :end_time
+  validates_presence_of :title, :start_date, :end_date, :start_time, :end_time
   
   record_activity_of :owner
   

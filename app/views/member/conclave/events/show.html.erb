@@ -28,6 +28,20 @@
     <div id="map">
       <%= render :partial => 'map', :locals => {:width => 400, :height => 300} %>
     </div>
+	
+	<% if @event.recurrent? %>
+    <div class="portlet portletC">
+        <h2><span>Recurrences</span></h2>
+        <div class="portlet_content">
+            <ul>
+            	<% @event.recurrences.each do |r| %>
+                <li><%= "From #{r.iso8601} to #{(r+(@event.ending_time - @event.starting_time)).iso8601}" %></li>
+				<% end %>
+            </ul>
+        </div> 
+    </div>            
+	<% end %>
+	
     
 </div>
 

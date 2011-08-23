@@ -40,6 +40,9 @@ Rails::Initializer.run do |config|
   config.gem 'httparty'
   #  config.gem 'mail'
   #  config.gem 'delayed_job'
+
+  config.gem 'ice_cube'
+  config.gem 'chronic'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers

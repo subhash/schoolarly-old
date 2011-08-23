@@ -1,3 +1,5 @@
+include IceCube
+
 class Member::Conclave::EventsController < Member::BaseController
   
   helper LaterDude::CalendarHelper
@@ -5,18 +7,27 @@ class Member::Conclave::EventsController < Member::BaseController
   before_filter :find_group
   
   def new
-    @event = Event.new(:url => "http://")
-    @event.capacity = 0
-    @event.start_date = Date.today
-    @event.start_time = 1.hour.from_now
-    @event.end_date = Date.today
-    @event.end_time = 2.hour.from_now
+    params[:event] ||= {:url => "http://"}
+    @event = Event.new(params[:event])
+    if(params[:start])
+      start_time = Time.zone.parse(params[:start])
+      @event.start_date = start_time.to_date
+      @event.start_time = start_time.to_time
+    end
+    if(params[:end])
+      end_time = Time.zone.parse(params[:end])
+      @event.end_date = end_time.to_date
+      @event.end_time = end_time.to_time
+    end
+    @event.capacity ||= 0
+    @event.start_date ||= Date.today
+    @event.start_time ||= 1.hour.from_now
+    @event.end_date ||= Date.today
+    @event.end_time ||= 2.hour.from_now
   end
   
   def create
     @event = Event.new(params[:event])
-    #    puts "validation = "+ !(@event.start_date && @event.end_date && @event.start_time && @event.end_time) || (@event.start_date > @event.end_date || (@event.start_date == @event.end_date && @event.start_time >= @event.end_time))
-    puts "event = "+@event.inspect
     @event.owner = current_user
     @event.save!
     flash[:ok] = I18n.t("tog_conclave.member.event_created", :title => @event.title)
@@ -33,6 +44,7 @@ class Member::Conclave::EventsController < Member::BaseController
   
   
   def index
+    store_location
     respond_to do |wants|
       wants.html do
         @order = params[:order] || 'start_date'
@@ -54,10 +66,18 @@ class Member::Conclave::EventsController < Member::BaseController
         from = Time.at(params[:start].to_i)
         to = Time.at(params[:end].to_i)
         @events = between(from, to, 'Event')
-        events = @events.collect do |event|
-          start_time = event.start_date.to_time.advance(:hours => event.start_time.hour, :minutes => event.start_time.min, :seconds => event.start_time.sec)
-          end_time = event.end_date.to_time.advance(:hours => event.end_time.hour, :minutes => event.end_time.min, :seconds => event.end_time.sec)
-          {:title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}          
+        events = []
+        @events.each do |event|
+          start_time = event.starting_time
+          end_time = event.ending_time
+          duration = end_time - start_time
+          if event.recurrent?
+            event.recurrences.each do |occurrence|
+              events << {:id => event.id, :title => event.title, :start => occurrence.iso8601, :end => (occurrence + duration).iso8601, :color => 'red'}
+            end            
+          else
+            events << {:id => event.id, :title => event.title, :start => start_time.iso8601, :end => end_time.iso8601}
+          end
         end
         @assignments = between(from, to, 'Assignment').delete_if{|a| !a.date and !a.due_date}
         events += @assignments.collect do |ass|
