@@ -30,3 +30,5 @@ dynamic_attributes
 pdfkit
 haml
 httparty
+ice_cube
+chronic
