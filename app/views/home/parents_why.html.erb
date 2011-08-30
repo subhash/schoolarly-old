@@ -1,8 +1,13 @@
+<% include_javascript 'jquery-1.4.2.min'%>
+<% include_javascript 'orangebox/orangebox.js'%>
+
 <% include_stylesheet 'home' %>
+<% include_stylesheet 'orangebox/orangebox.css' %>
+
 <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 <div class="portletK split padding" id="portlet_splashHome">
     <div class="portlet_content">
-        <%= link_to image_tag("/images/home/dashboard_parent2.png", :class =>"float_left icon"), "/images/home/dashboard_parent.png" %>
+        <%= link_to image_tag("/images/home/dashboard_parent2.png", :class =>"float_left icon"), "/images/home/dashboard_parent.png", :rel => "lightbox" %>
         <ul>
             <li class="title">
                 <%= I18n.t('home.pitch.parents.detail.first.title') %>
@@ -21,7 +26,7 @@
 </div>
 <div class="portletK split" id="portlet_splashHome">
     <div class="portlet_content">
-        <%= link_to image_tag("/images/home/messages2.png", :class =>"float_right icon"), "/images/home/messages.png" %>
+        <%= link_to image_tag("/images/home/messages2.png", :class =>"float_right icon"), "/images/home/messages.png", :rel => "lightbox" %>
         <ul>
             <li class="title">
                 <%= I18n.t('home.pitch.parents.detail.second.title') %>
