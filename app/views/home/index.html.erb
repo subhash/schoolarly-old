@@ -4,6 +4,10 @@
 <% include_stylesheet 'home' %>
 <% include_stylesheet 'orangebox/orangebox.css' %>
 
+<script type="text/javascript">
+    jQuery.noConflict();
+</script>
+
 <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 <div class="portletK" id="portlet_splashHome" onclick="location.href='/home/teachers_why';" style="cursor: pointer;">
     <h2><span class="title"><%= link_to I18n.t('home.pitch.teachers.title'), '/home/teachers_why' %></span></h2>
