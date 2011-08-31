@@ -27,25 +27,73 @@
 }
 
 .portletK:hover {
-	background-color: #D9D7AC;
-} 
+    background-color: #D9D7AC;
+}
 
-.portletJ{
-	width: 200%
+.portletJ {
+    width: 200%
 }
 
 .split {
     padding-bottom: 150px;
-	position: relative;
-	width: 200%;
+    position: relative;
+    width: 200%;
 }
 
-.padding{
+.padding {
     padding-bottom: 250px;
 }
 
+.portletM {
+    font-family: 'lucida grande', 'Segoe UI', arial, verdana, 'lucida sans unicode', tahoma, sans-serif;
+    font-size: 16px;
+    color: #777;
+    line-height: 30px;
+    position: relative;
+    width: 200%;
+    padding-bottom: 100px;
+}
 
+.portletM img {
+    margin-right: 40px;
+    margin-top: -20px;
+}
 
+.portletM img.down {
+    margin-top: 20px;
+}
 
+.portletM .left {
+    width: 55%;
+    float: left;
+}
 
+.portletM .right {
+    width: 44%;
+    float: right;
+}
 
+.portletM li {
+    text-align: left;
+    list-style-type: square;
+}
+
+.portletM h2 {
+    text-align: left;
+    color: #222;
+}
+
+.back {
+    border-bottom-color: #ACE;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin-bottom: 50px;
+    font-size: 14px;
+    width: 200%;
+}
+
+.back a {
+    text-decoration: none;
+    margin-top: -20px;
+    float: right;
+}
