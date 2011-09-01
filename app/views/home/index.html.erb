@@ -1,13 +1,10 @@
-<% include_javascript 'jquery-1.4.2.min'%>
-<% include_javascript 'orangebox/orangebox.js'%>
-
+<% include_javascript 'jquery-1.4.2.min' %>
+<% include_javascript 'orangebox/orangebox.js' %>
 <% include_stylesheet 'home' %>
 <% include_stylesheet 'orangebox/orangebox.css' %>
-
 <script type="text/javascript">
     jQuery.noConflict();
 </script>
-
 <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 <div class="portletK" id="portlet_splashHome" onclick="location.href='/home/teachers_why';" style="cursor: pointer;">
     <h2><span class="title"><%= link_to I18n.t('home.pitch.teachers.title'), '/home/teachers_why' %></span></h2>
@@ -67,17 +64,27 @@
         </div>
     </div>
 </div>
-
 <div class="portletK" id="portlet_splashHome">
-    <h2><span class="title"><%= link_to "Intro Video", "http://www.youtube.com/embed/8YmiKt4Etwg?iframe", :rel => "lightbox"%></span></h2>
+    <h2><span class="title"><%= link_to "Intro Video", "http://www.youtube.com/embed/8YmiKt4Etwg?iframe", :rel => "lightbox" %></span></h2>
     <div class="portlet_content">
         <div>
-            <%= link_to image_tag("/images/home/play-video2.jpg"), "http://www.youtube.com/embed/8YmiKt4Etwg?iframe", :rel => "lightbox" %>            
+            <%= link_to image_tag("/images/home/video2.png", :class =>"float_left icon"), "http://www.youtube.com/embed/8YmiKt4Etwg?iframe", :rel => "lightbox" %>
+            <ul>
+                <li>
+                    <%= link_to "Watch a quick video demonstrating Schoolarly features","http://www.youtube.com/embed/8YmiKt4Etwg?iframe", :rel => "lightbox" %>
+                </li>
+                <br/>
+                <br/>
+                <br/>
+				<br/>
+            </ul>
         </div>
     </div>
 </div>
-
 <% end %>
+<div class="split">
+    <%= link_to image_tag("/images/home/button.png", :class => "float_right"), "/home/starter"%>
+</div>
 <div class="portlet portletJ" id="portlet_pluginsTog">
     <h2><span>About us</span></h2>
     <div class="portlet_content">
