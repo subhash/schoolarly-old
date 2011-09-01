@@ -33,7 +33,9 @@
 <div class="portletM">
     <%= image_tag("/images/home/starter/contact.png", :class => "float_left") %>
     <h2><span class="title"><%= "Contact" %></span></h2>
-    Please send us an email with your details to start@schoolarly.com
+    Please send us an email with your details to 
+	<%= mail_to "start@schoolarly.com", "start@schoolarly.com" %>
+	
 </div>
 <div class="portletM">
     <%= image_tag("/images/home/starter/details.png", :class => "float_left") %>
