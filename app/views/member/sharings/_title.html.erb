@@ -1,6 +1,6 @@
-<div class="title">
+<div class="titleB">
     <%= sanitize shareable.title %>
-    <%= " > " if shareable.shares_to_groups %>
+    <%= " > " unless shareable.shares_to_groups.blank? %>
     <% groups = shareable.shares_to_groups.collect{|s| link_to s.shared_to.display_name, member_group_path(s.shared_to) } %>
     <%= groups.join(", ") %>
 </div>

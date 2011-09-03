@@ -8,6 +8,8 @@ class Video < ActiveRecord::Base
   
   validates_presence_of :title, :link
   
+  validate :valid_url?
+  
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
   
   #  validates :link, :presence => true, :domain => true
@@ -30,6 +32,7 @@ class Video < ActiveRecord::Base
     url
   end
   
+  
   def thumbnail
     url = nil
     case base_uri
@@ -41,6 +44,13 @@ class Video < ActiveRecord::Base
     
     url  
   end
+  
+  protected 
+  
+  def valid_url?
+    errors.add(:link, I18n.t('videos.model.url.invalid')) if url.nil?
+  end
+  
   
   # Video Paths:
   #   http://www.youtube.com/watch?v=Gqraan6sBjk
@@ -84,6 +94,8 @@ class Video < ActiveRecord::Base
       return "www.youtube.com"
       when "www.vimeo.com", "vimeo.com"
       return "www.vimeo.com"
+    else
+      return nil
     end
   end
   
@@ -105,8 +117,5 @@ class Video < ActiveRecord::Base
   def parse_it
     @uri = URI.parse( link )
   end
-  
-  
-  
   
 end
