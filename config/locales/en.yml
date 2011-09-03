@@ -762,6 +762,8 @@ en:
       title: Title
       description: Description (optional)
       link: YouTube/vimeo link
+      url:
+        invalid: "should be a valid YouTube or Vimeo link in the format http://www.youtube.com/watch?v=Gqraan6sBjk"
     member:
       add_success: Video is successfully added
       add_failure: Error in adding video
