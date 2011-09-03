@@ -50,6 +50,7 @@ class Member::Conversatio::PostsController < Member::BaseController
   
   
   def show
+    store_location
     @post = @blog.posts.find params[:id]
     @comments = @post.all_comments
     @shared_groups = @post.shares_to_groups.collect(&:shared_to)

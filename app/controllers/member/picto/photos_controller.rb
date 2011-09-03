@@ -42,6 +42,7 @@ class Member::Picto::PhotosController < Member::BaseController
   end
   
   def show
+    store_location
     @size = (params[:size] || :big).to_sym     
     @photo = Picto::Photo.find(params[:id])
     auth_photo(@photo)

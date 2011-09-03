@@ -1,5 +1,5 @@
 <div class="titleB">
-    <%= link_to @group.name, member_group_path(@group) %>> <%= I18n.t('notices.site.title') %>
+    <%= link_to @group.name, member_group_path(@group) %><%= " > " + I18n.t('notices.site.title') %>
 </div>
 <div class="detail detail1">
     <div class="image">

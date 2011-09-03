@@ -1,19 +1,11 @@
 <% include_autodiscovery(:atom, conversatio_blog_url(@blog, :format => :atom), :title => @blog.title) %>
-<div class="titleB">
-    <% if @group %>
-    <%= link_to @group.name, member_group_path(@group) %> > 
-	<% else %>
-    <%= link_to @blog.title, conversatio_blog_path(@blog) -%> / 
-	<% end %>
-	<%= sanitize @post.title %>
-    <%= link_to icon_for_post + I18n.t('assignments.site.download'), @post.doc.url, :title => I18n.t('assignments.site.download_file'), :class => 'icon'  if @post.doc.file? %>
-</div>
+<%= render :partial => 'member/sharings/title', :locals => {:shareable => @post} %>
 <%= render :partial => 'post' %>
 <% content_for :sidebar do %>
 <%= render :partial => 'member/conversatio/posts/manage', :locals => {:post => @post} %>
 <br/>
-<%= render :partial => 'shared/groups' %>
-<br />
+<%= render :partial => 'shared/groups', :locals => {:shareable => @post} %>
+<br/>
 <%= render :partial => '/conversatio/blogs/tag_cloud_single_blog', :locals => { :blog => @blog } %>
 <br/>
 <%= render :partial => '/conversatio/blogs/archive' %>

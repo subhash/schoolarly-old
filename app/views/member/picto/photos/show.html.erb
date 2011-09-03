@@ -1,12 +1,8 @@
 <% content_for :sidebar do %>
-	<%= render :partial => 'member/picto/photos/manage' %>
-	<%= render :partial => 'shared/groups' %>
+<%= render :partial => 'member/picto/photos/manage' %>
+<%= render :partial => 'shared/groups', :locals => {:shareable => @photo} %>
 <% end %>
-<div class="titleB">
-    <% if @group %>
-    <%= link_to @group.name, member_group_path(@group) %>> <% end %>
-    <%= @photo.title %>
-</div>
+<%= render :partial => 'member/sharings/title', :locals => {:shareable => @photo } %>
 <div class="photo">
     <p>
         <%= link_to 'tiny', picto_scaled_photo_path(@photo, :tiny) %>|<%= link_to "small", picto_scaled_photo_path(@photo, :small) %>|<%= link_to "medium", picto_scaled_photo_path(@photo, :medium) %>|<%= link_to "big", picto_scaled_photo_path(@photo, :big) %>|<%= link_to "original", picto_scaled_photo_path(@photo, :original) %>
