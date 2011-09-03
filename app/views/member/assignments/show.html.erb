@@ -1,6 +1,7 @@
 <% include_stylesheet "rubric" %>
+<%= render :partial => 'member/sharings/title', :locals => {:shareable => @assignment} %>
+<%= link_to icon_for_assignment(@assignment) + I18n.t('assignments.site.download'), @post.doc.url, :title => I18n.t('assignments.site.download_file'), :class => 'float_right icon'  if @post.doc.file? %>
 <div class="titleB">
-    <%= render :partial => 'member/sharings/title', :locals => {:shareable => @assignment} %>
     <% if @assignment.date %>
     <div class="time">
         <%= @assignment.date.inspect %>, <%=@assignment.start_time.to_s(:time_only) %>- <%=@assignment.end_time.to_s(:time_only) %>
@@ -16,7 +17,6 @@
     <span class="score"><span class="detail"><%= I18n.t('assignments.model.score') %></span><%= @assignment.score %>
     </span>
     <% end %>
-    <%= link_to icon_for_assignment(@assignment) + I18n.t('assignments.site.download'), @post.doc.url, :title => I18n.t('assignments.site.download_file'), :class => 'float_right icon'  if @post.doc.file? %>
 </div>
 <%= render :partial => 'member/conversatio/posts/post', :locals => {:commentable => @assignment} %>
 <% if @rubric %>
