@@ -10,20 +10,22 @@ class Share < ActiveRecord::Base
   #    }
   #  }
   
+  #  named_scope :to_groups_and_users, lambda {|group_ids, user_ids|{
+  #      :conditions => ["(shared_to_id IN (?) and shared_to_type = 'Group') OR (shared_to_id IN (?) AND shared_to_type= 'User') ", group_ids, user_ids],
+  #      :group => "shareable_type, shareable_id",
+  #      :select => "shares.*, max(updated_at) AS updated_at_max",
+  #      :order => "updated_at_max DESC"
+  #    }
+  #  }
+  
+  
   named_scope :to_groups_and_users, lambda {|group_ids, user_ids|{
-      :conditions => ["(shared_to_id IN (?) and shared_to_type = 'Group') OR (shared_to_id IN (?) AND shared_to_type= 'User') ", group_ids, user_ids],
-      :group => "shareable_type, shareable_id",
-      :select => "shares.*, max(updated_at) AS updated_at_max",
-      :order => "updated_at_max DESC"
+        :conditions => ["((shared_to_id IN (?) and shared_to_type = 'Group') OR (shared_to_id IN (?) AND shared_to_type= 'User')) AND updated_at >= ALL(select a.updated_at from shares a where a.shareable_id = shares.shareable_id and a.shareable_type = shares.shareable_type)", group_ids, user_ids]
     }
   }
   
-  
   named_scope :to_groups_and_users_of_type, lambda {|group_ids, user_ids, type|{
-      :conditions => ["(shared_to_id IN (?) and shared_to_type = 'Group' and shareable_type = ? ) OR (shared_to_id IN (?) AND shared_to_type= 'User' and shareable_type = ? ) ", group_ids, type, user_ids, type],
-      :group => "shareable_type, shareable_id",
-      :select => "shares.*, max(updated_at) AS updated_at_max",
-      :order => "updated_at_max DESC"
+      :conditions => ["((shared_to_id IN (?) and shared_to_type = 'Group' and shareable_type = ? ) OR (shared_to_id IN (?) AND shared_to_type= 'User' and shareable_type = ? )) AND updated_at >= ALL(select a.updated_at from shares a where a.shareable_id = shares.shareable_id and a.shareable_type = shares.shareable_type)", group_ids, type, user_ids, type]
     }
   }
   
