@@ -1,25 +1,18 @@
 <% content_for :sidebar do %>
 <%= render :partial => 'member/picto/photosets/manage' %>
-<%= render :partial => 'shared/groups' %>
-
+<%= render :partial => 'shared/groups',:locals => { :shareable => @photoset } %>
 <div class="portlet portletD" id="portlet_userWall">
     <h2><span>Your stuff</span></h2>
     <div class="portlet_content">
-      <%= link_to "Upload more photos now!",  new_member_picto_photo_url, {:class => "add", :title => "Upload new images"} %>
-    </div>    
+        <%= link_to "Upload more photos now!",  new_member_picto_photo_url, {:class => "add", :title => "Upload new images"} %>
+    </div>
 </div>
-
-
 <% end %>
 <div class="detail detail1">
     <div class="image">
         <%= photoset_image(@photoset) %>
     </div>
-    <div class="title">
-        <% if @group %>
-        <%= link_to @group.name, member_group_path(@group) %><%= " > " %><% end %>
-        <%= @photoset.title %>
-    </div>
+    <%= render :partial => 'member/sharings/title', :locals => {:shareable => @photoset} %>
     <div class="text">
         <p>
             <%= @photoset.description %>

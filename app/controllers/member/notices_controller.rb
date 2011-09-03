@@ -3,6 +3,7 @@ class Member::NoticesController < Member::BaseController
   before_filter :find_group
   
   def show
+    store_location
     @notice = Notice.find(params[:id])
   end
   

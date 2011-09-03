@@ -34,6 +34,7 @@ class Member::VideosController < Member::BaseController
   end
   
   def show
+    store_location
     @shared_groups = @video.shares_to_groups.collect(&:shared_to)
   end
 

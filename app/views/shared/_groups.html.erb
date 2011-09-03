@@ -1,10 +1,17 @@
+<% shareable ||= @shareable %>
 <div class="portlet portletC" id="portlet_moreLinks">
     <h2><span><%= I18n.t('groups.model.shared.title') %></span></h2>
     <div class="portlet_content">
         <ul>
             <% for group in @shared_groups %>
             <li>
-                <%= link_to group.display_name, member_group_path(group) %>
+                <%= link_to group.display_name, member_group_path(group) %>              
+                <% if shareable %>
+				<% share = shareable.shares.find_by_shared_to_id_and_shared_to_type(group.id, 'Group') %>
+                <%= link_to I18n.t('tog_social.sharings.member.remove_share'),
+                member_destroy_sharing_path(share.shared_to, share),
+                :method => :delete, :class => "delete", :confirm => I18n.t('sharings.member.remove_confirmation', :shareable => title_for_object(share.shareable), :group => title_for_object(share.shared_to)) if (i_own?(shareable) or i_am_moderator_of(group)) %>
+                <% end %>
             </li>
             <% end %>
         </ul>

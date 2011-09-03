@@ -3,6 +3,7 @@ class Member::Picto::PhotosetsController < Member::BaseController
   before_filter :find_group 
   
   def show
+    store_location
     @photoset = Picto::Photoset.find(params[:id])
     @shared_groups = @photoset.shares_to_groups.collect(&:shared_to)
     #    if @photoset.authorized(current_user, :read)

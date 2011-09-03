@@ -60,6 +60,10 @@ class Assignment < ActiveRecord::Base
     post.title
   end
   
+  def title
+    name
+  end
+  
   private
   
   def touch_shares

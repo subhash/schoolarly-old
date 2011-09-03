@@ -1,6 +1,4 @@
-<% if @group %>
-<%= render :partial => 'member/groups/header_short', :locals => {:title => sanitize(@video.title)} %>
-<% end %>
+<%= render :partial => 'member/sharings/title', :locals => {:shareable => @video} %>
 <div class="image">
     <% profile = @video.user.profile %>
     <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
@@ -15,6 +13,6 @@
 </div>
 <% content_for :sidebar do %>
 <%= render :partial => 'member/videos/manage' %>
-<%= render :partial => 'shared/groups' %>
+<%= render :partial => 'shared/groups' , :locals => {:shareable => @video} %>
 <!-- TODO tags & archive -->
 <% end %>
