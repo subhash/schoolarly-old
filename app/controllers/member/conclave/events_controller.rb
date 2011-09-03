@@ -68,8 +68,8 @@ class Member::Conclave::EventsController < Member::BaseController
         @events = between(from, to, 'Event')
         events = []
         @events.each do |event|
-          start_time = event.starting_time
-          end_time = event.ending_time
+          start_time = event.start_datetime
+          end_time = event.end_datetime
           duration = end_time - start_time
           if event.recurrent?
             event.recurrences.each do |occurrence|

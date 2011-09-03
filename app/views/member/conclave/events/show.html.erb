@@ -35,7 +35,7 @@
         <div class="portlet_content">
             <ul>
             	<% @event.recurrences.each do |r| %>
-                <li><%= "From #{r.iso8601} to #{(r+(@event.ending_time - @event.starting_time)).iso8601}" %></li>
+                <li><%= "From #{r.iso8601} to #{(r+(@event.end_datetime - @event.start_datetime)).iso8601}" %></li>
 				<% end %>
             </ul>
         </div> 
