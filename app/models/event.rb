@@ -35,12 +35,14 @@ class Event < ActiveRecord::Base
   acts_as_commentable
   acts_as_shareable
   
-  def start_datetime
+  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
+  
+  def starting_time
     start_offset = {:hours => self.start_time.hour, :minutes => self.start_time.min, :seconds => self.start_time.sec}
     self.start_date.to_time.advance(start_offset)
   end
   
-  def end_datetime
+  def ending_time
     end_offset = {:hours => self.end_time.hour, :minutes => self.end_time.min, :seconds => self.end_time.sec}
     self.end_date.to_time.advance(end_offset)
   end
@@ -51,7 +53,7 @@ class Event < ActiveRecord::Base
   
   def recurrences
     if self.recurrent? 
-      schedule = Schedule.new(self.start_datetime)
+      schedule = Schedule.new(self.starting_time)
       recurrence = Rule.send(self.recurrence)
       recurrence.until(self.until)
       schedule.add_recurrence_rule(recurrence)
