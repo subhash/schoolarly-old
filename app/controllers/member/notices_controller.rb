@@ -25,6 +25,20 @@ class Member::NoticesController < Member::BaseController
     end
   end
   
+  def destroy
+    @notice = Notice.find(params[:id])
+    respond_to do |wants|
+      wants.html do
+        if @notice.destroy
+          flash[:ok] = I18n.t('notices.member.remove.success')
+          redirect_to member_group_path(@group)
+        else                              
+          flash[:error] = I18n.t('videos.member.remove.failure')
+          render :show
+        end  
+      end
+    end
+  end
   
   private
   def find_group

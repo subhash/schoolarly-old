@@ -7,7 +7,7 @@
         <br/>
         <%= link_to I18n.t('videos.site.manage.edit'), edit_member_video_path(video) %>
         <br/>
-        <%= link_to I18n.t('videos.site.manage.delete'), member_video_path(video), :method => :delete, :confirm => I18n.t('videos.site.remove.confirm') %>
+        <%= link_to I18n.t('videos.site.manage.delete'), member_video_path(video), :method => :delete, :class => "delete", :confirm => I18n.t('videos.site.remove.confirm') %>
     </div>
 </div>
 <% end %>

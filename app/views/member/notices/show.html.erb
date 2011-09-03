@@ -11,7 +11,7 @@
         <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(@notice.created_at)) %>
     </div>
 </div>
-<br />
+<br/>
 <div id="notice_<%= @notice.id %>" class="border_top">
     <div>
         <%= sanitize(@notice.content, :tags => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_attributes').split) %>
@@ -19,3 +19,6 @@
     <br/>
     <%= render :partial => "shared/comments", :locals => { :commentable => @notice , :show_all => true } %>
 </div>
+<% content_for :sidebar do %>
+	<%= render :partial => 'member/notices/manage' %>
+<% end %>

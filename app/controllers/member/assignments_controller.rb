@@ -86,6 +86,19 @@ class Member::AssignmentsController < Member::BaseController
     redirect_to :action => :show
   end
   
+  def destroy
+    respond_to do |wants|
+      wants.html do
+        if @assignment.destroy
+          flash[:ok] = I18n.t('assignments.member.remove.success')
+          redirect_to member_dashboard_path
+        else                              
+          flash[:error] = I18n.t('assignments.member.remove.failure')
+          render :show
+        end  
+      end
+    end
+  end
   
   private 
   

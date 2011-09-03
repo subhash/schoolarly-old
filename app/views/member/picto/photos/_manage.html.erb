@@ -2,9 +2,11 @@
 <div class="portlet portletD" id="portlet_userWall">
     <h2><span><%= I18n.t("photos.member.manage.title") %></span></h2>
     <div class="portlet_content">
+        <%= share_with_groups_link(@photo) %>
+        <br/>
         <%= link_to I18n.t("photos.member.edit.title"), edit_member_picto_photo_path(@photo) %>
         <br/>
-        <%= share_with_groups_link(@photo) %>
+        <%= link_to I18n.t('photos.member.remove.title'), member_picto_photo_path(@photo), :method => :delete, :class => "delete", :confirm => I18n.t('photos.member.remove.confirm') %>
         <br/>
     </div>
 </div>

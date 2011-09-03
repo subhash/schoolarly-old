@@ -485,6 +485,8 @@ en:
         time_ago: "%{time} ago"
         from_now: "%{time} from now"
         not_published_yet: Not published yet
+      manage:
+        delete: Delete Activity
     model:
       doc: 
         title: "Or upload a document"
@@ -503,7 +505,11 @@ en:
     member:
       add: "Add assignment"
       add_success: "Assignment created"
-      add_failure: "Failure in creating assignment"               
+      add_failure: "Failure in creating assignment" 
+      remove:
+        confirm: "This will remove the activity and its comments from Schoolarly. Are you sure?"
+        success: "Activity removed successfully"
+        failure: "Error in removing activity"              
       edit: 
         title: "Edit activity"
         change: "Change activity details"
@@ -537,6 +543,14 @@ en:
   notices:
     site:
       title: "Message"
+    member:
+      manage:
+        title: "Manage Message"
+      remove:
+        title: Delete Message
+        confirm: "This will delete the message and its comments. Are you sure?"
+        success: "Message removed"
+        failure: "Error in removing message"
       
   posts:
     model:
@@ -549,6 +563,10 @@ en:
     member:
       edit:
         file: Change document
+      remove:
+        title: Delete Note
+        confirm: "This will delete the note and its comments from Schoolarly. Are you sure?"
+
         
   sharings:
     member:
@@ -724,6 +742,9 @@ en:
         title: "Manage Photoset"
       edit:
         title: "Edit photoset"
+      remove:
+        title: Delete Photoset
+        confirm: "This will delete the photoset and its photos from Schoolarly. Are you sure?"
 
   photos:
     member:
@@ -731,6 +752,9 @@ en:
         title: "Manage Photo"
       edit:
         title: "Edit photo"
+      remove:
+        title: Delete Photo
+        confirm: "This will delete the photo and its comments from Schoolarly. Are you sure?"
         
         
   videos:

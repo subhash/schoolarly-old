@@ -1,0 +1,9 @@
+<% if i_own? @notice %>
+<div class="portlet portletD" id="portlet_userWall">
+    <h2><span><%= I18n.t("notices.member.manage.title") %></span></h2>
+    <div class="portlet_content">
+        <%= link_to I18n.t('notices.member.remove.title'), member_group_notice_path(@group, @notice), :method => :delete, :class => "delete", :confirm => I18n.t('notices.member.remove.confirm') %>
+        <br/>
+    </div>
+</div>
+<% end %>
