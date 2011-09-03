@@ -35,6 +35,8 @@ class Event < ActiveRecord::Base
   acts_as_commentable
   acts_as_shareable
   
+  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
+  
   def starting_time
     start_offset = {:hours => self.start_time.hour, :minutes => self.start_time.min, :seconds => self.start_time.sec}
     self.start_date.to_time.advance(start_offset)
