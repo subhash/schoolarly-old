@@ -454,9 +454,9 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
   end
 
   create_table "smerf_forms", :force => true do |t|
-    t.string   "name",       :null => false
-    t.string   "code",       :null => false
-    t.integer  "active",     :null => false
+    t.string   "name",       :default => "", :null => false
+    t.string   "code",       :default => "", :null => false
+    t.integer  "active",                     :null => false
     t.text     "cache"
     t.datetime "cache_date"
   end
@@ -470,9 +470,9 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
   end
 
   create_table "smerf_responses", :force => true do |t|
-    t.integer "smerf_forms_user_id", :null => false
-    t.string  "question_code",       :null => false
-    t.text    "response",            :null => false
+    t.integer "smerf_forms_user_id",                 :null => false
+    t.string  "question_code",       :default => "", :null => false
+    t.text    "response",                            :null => false
   end
 
   create_table "students", :force => true do |t|
