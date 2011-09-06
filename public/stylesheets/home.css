@@ -36,10 +36,6 @@
     padding: 10px;
 }
 
-.portletJ {
-    width: 200%
-}
-
 .split {
     padding-bottom: 150px;
     position: relative;
@@ -87,6 +83,35 @@
 .portletM h2 {
     text-align: left;
     color: #222;
+}
+
+.portletJ {
+	margin-top : 100px;
+}
+
+.portletJ .title{
+	padding-top: 30px;
+	margin-left: 5px;
+}
+
+.portletO{
+	font-size: 1.15em; 
+}
+.portletO h2 {
+    background-color: #E9E9E9;
+    padding: 8px 3px;
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+	margin-top: 2em;
+}
+
+.portletO strong{
+	font-size: 1.15em;
+}
+
+.portletO li{
+	list-style-type: none;
+	margin-top: 5px;
 }
 
 .back {

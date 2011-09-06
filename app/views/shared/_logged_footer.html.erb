@@ -1,27 +1,49 @@
 <div id="footerlogged" class="clearfix">
-  <div class="copyright">
-    <strong><%=config['plugins.tog_core.site.name']%> © <%=Time.now.year%></strong>
-  </div>
-  <div class="links">
-    <ul class="clearfix">
-      <li><%= I18n.t("tog_core.views.shared.logged_footer.groups")%>
-        <ul>
-          <li><%= link_to I18n.t("tog_core.views.shared.logged_footer.my_groups"), member_groups_path -%></li>
-          <li><%= link_to I18n.t("interface.layout.header.home"), member_dashboard_path -%></li>
+    <div class="copyright">
+        <strong><%=config['plugins.tog_core.site.name'] %>© <%=Time.now.year %></strong>
+    </div>
+    <div class="links">
+        <ul class="clearfix">
+            <li>
+                <%= I18n.t("tog_core.views.shared.logged_footer.groups") %>
+                <ul>
+                    <li>
+                        <%= link_to I18n.t("tog_core.views.shared.logged_footer.my_groups"), member_groups_path -%>
+                    </li>
+                    <li>
+                        <%= link_to I18n.t("interface.layout.header.home"), member_dashboard_path -%>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <%= I18n.t("tog_core.views.shared.logged_footer.messages") %>
+                <ul>
+                    <li>
+                        <%= link_to I18n.t("tog_core.views.shared.logged_footer.my_messages"), member_messages_path -%>
+                    </li>
+                    <li>
+                        <%= link_to I18n.t("tog_core.views.shared.logged_footer.write_a_message"), new_member_message_path -%>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <%= I18n.t("tog_core.views.shared.logged_footer.profile") %>
+                <ul>
+                    <li>
+                        <%= link_to I18n.t("interface.layout.footer.my_account"), member_my_account_path -%>
+                    </li>
+                    <li>
+                        <%= link_to I18n.t("tog_core.views.shared.logged_footer.edit_profile"), edit_member_profile_path(current_user.profile) -%>
+                    </li>
+                </ul>
+            </li>
+            <li class="p1 bold">
+                <%= link_to "Blog", "http://blog.schoolarly.com" -%>
+            </li>
+            <li class="p2 bold">
+                <%= link_to "About us", "/home/about" %>
+            </li>
         </ul>
-      </li>
-      <li><%= I18n.t("tog_core.views.shared.logged_footer.messages")%>
-        <ul>
-          <li><%= link_to I18n.t("tog_core.views.shared.logged_footer.my_messages"), member_messages_path -%></li>
-          <li><%= link_to I18n.t("tog_core.views.shared.logged_footer.write_a_message"), new_member_message_path -%></li>
-        </ul>
-      </li>
-      <li><%= I18n.t("tog_core.views.shared.logged_footer.profile")%>
-        <ul>
-          <li><%= link_to I18n.t("interface.layout.footer.my_account"), member_my_account_path -%></li>
-          <li><%= link_to I18n.t("tog_core.views.shared.logged_footer.edit_profile"), edit_member_profile_path(current_user.profile) -%></li>
-        </ul>
-      </li> 
-    </ul>
-  </div>
-</div>  <!-- /#footerlogged -->
+    </div>
+</div>
+<!-- /#footerlogged -->

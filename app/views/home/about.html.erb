@@ -1,0 +1,66 @@
+<% include_stylesheet 'home' %>
+<div class="back">
+    <%= link_to "Back to home", "/" %>
+</div>
+<div class="portletO">
+    <h2>The Team</h2>
+    <div class="portlet_content">
+        <li>
+            <strong>Subhash</strong>
+            and <strong>Shenuja</strong>, partners in life and crime, decided to perform an experiment in education when they started Schoolarly. They set out to answer the question - "What happens when you provide the best of communication tools to a bunch of enthusiastic kids?" and they are happy with the results so far. They live in Kochi, India with their 3 year-old son whose endless questions keeps them busy when they are not programming
+        </li>
+        <li>
+            <strong>Subhash</strong>
+            swears by the internet because that's where he got his masters degree from. His short stint as a software engineer in Google makes him susceptible to any product Google releases. He talks in such abstractions that it is thought possible to convert it directly to code.
+        </li>
+        <li>
+            <strong>Shenuja</strong>
+            is the do-er of the two, without whom Schoolarly would be safe as an idea and nothing more. She is programmer by day and super-graphics-designer by night. She reminiscences about her time in Cisco Systems, now that she doesn't have to work there anymore!
+        </li>
+    </div>
+</div>
+<div class="portletO split">
+    <h2>The Story</h2>
+    <div class="portlet_content">
+        <li>
+            We are not teachers, we are not students. But we try to be life-long learners. We believe the internet is an excellent learning space and an effective communication medium. That's not surprising, given that one of us studied their masters degree programme completely over the internet. 
+        </li>
+        <li>
+            We are amazed that the internet has only made an apologetic entry in today's schools. Discussions happen only in the classroom. While working on assignments or studying for exams, students are completely disconnected from one another and from their teacher. Learning material is restricted to textbooks and other reference books. 
+        </li>
+        <li>
+            Chris Dede, a renowned Harvard professor, would ask his students to imagine walking into a number of different places. Picture a movie theatre. A bank. An airport. Can you tell whether you are in the past or present? Probably. Now picture walking into a typical classroom. But for the clothing and the hairstyles, you wouldn't be able to tell if you were in the 21st century. Technology has not transformed education as it has done to travel, commerce or entertainment.
+        </li>
+        <li>
+            We want to change that with <strong>Schoolarly</strong>. We know it's a lofty goal and is impossible without the participation of enthusiastic teachers and students. So, we look forward to work with schools that are the kind that would induce more ideas in us, and keep us going
+        </li>
+    </div>
+</div>
+<% content_for :sidebar do %>
+<div class="portlet portletJ">
+    <ul>
+        <li class="clearfix">
+            <div class="image">
+                <%= image_tag("/images/subhash.JPG", :size => "100x100") %>
+            </div>
+            <div class="title">
+                Subhash Gopalakrishnan
+            </div>
+            <div class="more">
+                <%= mail_to "subhash@schoolarly.com" %>
+            </div>
+        </li>
+        <li class="clearfix">
+            <div class="image">
+                <%= image_tag("/images/shenu.JPG", :size => "100x100") %>
+            </div>
+            <div class="title">
+                Shenuja Subhash
+            </div>
+            <div class="more">
+                <%= mail_to "shenuja@schoolarly.com" %>
+            </div>
+        </li>
+    </ul>
+</div>
+<% end %>
