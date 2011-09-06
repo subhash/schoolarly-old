@@ -26,12 +26,12 @@ li.bold {
     text-align: center;
 }
 
-li.bold.p1 a:hover {
+li.p1 a:hover {
     border-bottom: 3px solid #BD4746;
     color: inherit;
 }
 
-li.bold.p2 a:hover {
+li.p2 a:hover {
     border-bottom: 3px solid #649005;
     color: inherit;
 }
