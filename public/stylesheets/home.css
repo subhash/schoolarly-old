@@ -83,6 +83,8 @@
 .portletM h2 {
     text-align: left;
     color: #222;
+	background-color: #E9E9E9;
+    padding: 8px 3px;
 }
 
 .portletJ {
