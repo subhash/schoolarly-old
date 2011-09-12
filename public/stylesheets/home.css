@@ -116,6 +116,10 @@
 	margin-top: 5px;
 }
 
+.wide {
+	width: 200%; 
+}
+
 .back {
     border-bottom-color: #ACE;
     border-bottom-style: solid;
