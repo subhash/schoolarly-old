@@ -1,57 +1,121 @@
-
-Successful Login For: shenuja
-Please continue and fill out the form. Answers to this form will be saved in account shenuja.
-
-
+Successful Login For: subhash
+Please continue and fill out the form. Answers to this form will be saved in account subhash.
 
 
 
 Imagine K12 Application
 
+* Indicates Response Required
+
 Tell us about the founders
 
-
-
-* Founders names separated by commas.
-Subhash Gopalakrishnan, Shenuja Subhash
-
-* Email addresses separated by commas.
-subhashgo@gmail.com, shenuja@gmail.com
-
 * Please enter the URL of a 1 minute video introducing the founders (Instructions).
+http://shenuja-09xyy.posterous.com/private/savzkDhDuG
 
-* Names of all founders who will live in the Bay Area June thru September 2011 if we select you.
-Subhash, Shenuja
+* Founder's name  (add more founders below)
+Subhash Gopalakrishnan
+* Age
+31
 
-* For each founder, please list: name, age, year of college graduation, school, degree and subject of each degree; email address, personal url, facebook id, twitter id; employer and title and time of employment (if any). Put unfinished degrees in parentheses. List the main contact first. Separate founders with blanks lines. Put an asterisk before the name of anyone not able to move to the Bay Area during the program.
-Subhash, 30, 2001, NIT Trichy, BE(CS), 2006, UIUC, MCS; subhashgo@gmail.com, http://codestories.blogspot.com, subhashgo, subhashgo; Cisco (2001-2005), Amazon (2005), Google (2006)
+* Email Address
+subhashgo@gmail.com
 
-Shenuja, 31, 2001, Model Engineering College Kochi, BTech(Computer Engg); shenuja@gmail.com, , shenuja, shenuja; Cisco (2001-2005)
+* Work Experience (name of company, job description, title, years of employment, plus any other relevant information)
+Cisco Systems, Software Engineer, 4 years
+Amazon Inc, Software Development Engineer, ~1 year
+Google Inc, Software Engineer, 6 months
+
+* Education background  (year of graduation, name of institution, degree received, plus any other relevant information)
+2001, NIT Trichy, BE(CS)
+2006, UIUC, MCS
 
 * Please tell us about the origins of your interest in the field of education. Describe any experience or expertise you have in K-12 education.
-We were always keeping track of changes in education as we wanted our son's experience to be better than ours. While doing this, we were surprised to find out that teachers still used paper records and the internet was only thought of as a waste of time. Since we had been on the lookout for a promising space for building a webapp, this thought struck home and we wanted to make a webapp for schools. 
+We had always wanted to start a product company and we chose education because we were disappointed with our schooling and wanted to make it better for the new generation. When we talked to parents and teachers, we were astonished to find that the classroom of today is not all that different from our times, despite the internet and all the technology. When we became parents, we felt the need all the more and decided to do something about it. 
 
-We brainstormed a couple of ideas in education, including a webapp for making notes from web pages and media. Shenuja worked with a friend (with Subhash contributing part-time) to make a prototype for implementing the CCE system for CBSE schools. But the real breakthrough was when we realized that any of these features will require a social communication platform beneath them. Thus was born Schoolarly.
+We have no direct experience in education but we have learnt a lot through Shenuja's father and sister who have taught in schools, many teacher-friends and some cousins still in school. We also got sneak-peeks inside the educational processes while selecting a school for our son.
 
-We have no direct experience in education but we have learnt a lot through Shenuja's father and sister who have taught in schools, many teacher-friends and some cousins still in school. We got sneak-peeks inside the educational processes while selecting a school to enroll our son in.
+* Please tell us in a sentence or two about the most impressive thing other than this startup that you have built or achieved.
+I had to move out of Bangalore because of my health quitting my job at Google. I didn't want to settle for available jobs. Instead, I picked up eclipse and started applying to positions in the US. When they brought up the visa issue, I convinced them to try letting me work remotely. I started with an hourly rate of $30 and steadily increased it to $105 and entered a tax waiver scheme because I was bringing in a lot of forex. Now that my savings are sufficient, I don't really need a job.
+
+Personal URL, Facebook id, Twitter id
+http://blog.schoolarly.com, subhashgo, subhashgo
 
 
-* Please tell us in a sentence or two about the most impressive thing other than this startup that each of the founders has built or achieved.
-When Subhash' doctor advised him to move out of Bangalore to avoid pollution, we had to give up our jobs in Google and Cisco. Since there we no software jobs in our small town, we created jobs for ourselves through consulting and drew salaries that were 4 times Google's.
+Add a 2nd Founder
 
-Shenuja paid for her high-school and college with the National Talent Search Examination (NTSE) scholarship. The exam was conducted to select 750 students from all over India for proficiency in science and mathematics.
 
-When he was 14, Subhash wrote a 10000 line Hangman game in a GW-BASIC program that could list only 10 lines of code at a time.
+
+Founder(2)'s name
+Shenuja Subhash
+Age
+31
+
+Email Address
+shenuja@gmail.com
+
+Education background  (year of graduation, name of institution, degree received, plus any other relevant information)
+2001, Model Engineering College Kochi, BTech(Computer Engg)
+
+Work Experience (name of company, job description, title, years of employment, plus any other relevant information)
+Cisco Systems, Software Engineer, 4.5 years
+
+Please tell us about the origins of your interest in the field of education. Describe any experience or expertise you have in K-12 education.
+(Same as above)
+
+Please tell us in a sentence or two about the most impressive thing other than this startup that you have built or achieved.
+I paid for my high-school and college with the National Talent Search Examination (NTSE) scholarship. The programme picked 750 students from all over India for proficiency in science and mathematics.
+
+Personal URL, Facebook id, Twitter id
+, shenuja, shenuja
+
+
+Add a 3rd Founder
+
+
+
+Founder(3)'s name
+Age
+
+Email Address
+
+Education background  (year of graduation, name of institution, degree received, plus any other relevant information)
+
+Work Experience (name of company, job description, title, years of employment, plus any other relevant information)
+
+Please tell us about the origins of your interest in the field of education. Describe any experience or expertise you have in K-12 education.
+
+Please tell us in a sentence or two about the most impressive thing other than this startup that you have built or achieved.
+
+Personal URL, Facebook id, Twitter id
+
+
+Add a 4th Founder
+
+
+
+Founder(4)'s name
+Age
+
+Email Address
+
+Education background  (year of graduation, name of institution, degree received, plus any other relevant information)
+
+Work Experience (name of company, job description, title, years of employment, plus any other relevant information)
+
+Please tell us about the origins of your interest in the field of education. Describe any experience or expertise you have in K-12 education.
+
+Please tell us in a sentence or two about the most impressive thing other than this startup that you have built or achieved.
+
+Personal URL, Facebook id, Twitter id
+
+
 
 * Please tell us about an interesting project, preferably outside of class or work, that two or more of you created together. Include URLs if possible.
-We wanted to use FogBugz within Eclipse and were disappointed to see that they didn't have a Mylyn connector. So we created Bugclipse, which could import FogBugz cases as Mylyn tasks and generate reports on them. We quickly wrapped it into a product with license management, online sales etc. to gauge the market. A few users were very excited, but the market for FogBugz-Eclipse integration was limited. But the experience gave us valuable insights into marketing and customer support.
-
+When we couldn't use FogBugz within eclipse, we created Bugclipse to import FogBugz cases as Mylyn tasks and generate reports on them. We wrapped it into a product with license management, online sales etc. to gauge the market. A few users were very excited, but the market for FogBugz-Eclipse integration was limited. Neverthless, the experience gave us valuable insights into product development and marketing.
 https://sites.google.com/a/bugclipse.com/www/main
 
-We also worked together on a CCE system for CBSE schools with a friend, which helped us get a lot of customer feedback
-
+We also worked with a friend on a CCE system for CBSE schools, which helped us get a lot of customer feedback for schoolarly
 http://schoolarly-old.heroku.com/  (login: gps@schoolarly.com, password: password)
-
 
 * How long have the founders known one another and how did you meet? Have any of the founders not met in person?
 We have known each other for the past 10 years, have been married for 7 years, and worked as a team for the past 6 years
@@ -66,114 +130,130 @@ Tell us about your company/idea
 Schoolarly
 
 Company URL, if any.
-www.schoolarly.com
+http://www.schoolarly.com/
 
 * What is your company going to make? Why did you pick this idea to work on?
-Schoolarly is Blackboard, done the facebook way. It is a web application with a school management system as the platform and academic applications on top of it. 
+Schoolarly is “blackboard meets facebook”. It is a learning management system that uses social networking principles to improve education.
 
- - It will allow teachers and students to work on assignments, make lesson plans, have discussions and share stuff like how they'd do it on facebook. 
- - School admins can post notices, plan events and accept fee payments, without the hassle of installing and maintaining servers. 
- - Students can share all their works and grades to universities as one portfolio. 
- - Parents can track their child's performance and be in constant touch with the school
+Online education need not be mutually exclusive to classroom education. A teacher could post a khanacademy video, answer questions online *prior* to her live class. This way, the classroom primetime could be used for stuff that cannot be done online - individual discussion, focused teaching etc.
 
-We iterated over many ideas before we realized teachers were struggling with the very basic use-cases. Also, a tool to make lesson plans for instance, would not make sense without messaging, commenting and a student list.  Since none of the schools we spoke to, preferred a particular LMS platform, we decided there was a viable market for both the platform and the applications.
+Schoolarly provides the following by extending the classroom on to the internet: Hassle-free management of data (courses, grades, schedules, student profiles), Questions and discussions after hours and away from the classroom, Easy access to learning material, “Activity-roll” of their children's school-life for parents. 
 
-The possibilities are promising. Schoolarly could evolve into a platform for third-party school applications or use the community of students for targeted ads. We could provide virtual classes for e-tutors and provide a marketplace for their study material in the lines of tutorspree.
+We picked education because it was an under-served market and we chose this idea because of its potential impact on everyone involved in education - parents, teachers, students and school-administrators. We also wanted a "sticky" product, something the users will become addicted to and induce others to use it simply by using it themselves (like facebook).
+
 
 * How do you know someone needs what you're making? Who are the intended users (e.g., parents, teachers, students)?
-We spoke to 7 leading schools across India and none of them use an integrated solution like Blackboard. Some of them use point-solutions like Renweb for administration, Turnitin for assignments or eCollege for lessonplanning. It was obvious that they were tired of the patch solutions and were looking for a complete product. In fact, they were disappointed when we told them Schoolarly was not immediately available for use.  
+In the TAISI conference we attended in February, teachers seemed to connect with the idea immediately. They were in fact, disappointed that Schoolarly had not launched yet. During our beta at Global Public School, we didn't even have to demo. Students and teachers were at ease with the system - they were holding online discussions on assignments and posting revision guides before exams.
 
-When we talked about Schoolarly in the TAISI conference in bangalore, the teachers got so excited that one of them went to grab their sysadmin.  She also started pitching the facebook-style interface to her and told her they would no longer have to “go to this class, and then to this section�? to find information she's interested in – it would be easily accessible from her dashboard.
-
-Not only is Blackboard so expensive, its users are far from happy. This report (XXX) is actually wishing Blackboard was more like Schoolarly.
-
-Other than being obviously useful to parents, teachers , administrators and students of a school, Schoolarly can expand to help any educator (e-tutor, summer camp organizer etc).
+Other than being obviously useful to parents, teachers, administrators and students of a school, Schoolarly can expand to help any educator (e-tutor, summer camp organizer etc).
 
 * What is new about what you're making? What substitutes do people resort to because it doesn't exist yet (or they don't know about it)?
-Schools, teachers, students and parents combined have the following needs: communication, assessment, lesson planning, admissions, fees. Blackboard attempts to solve most of these but is cumbersome to maintain and use apart from being very expensive. RenWeb is a desk-application and gives only reports to students and parents. Turnitin, Engrade solve only subsets of the whole problem - so, data will be scattered for users. 
+Learning has never been viewed from a social networking perspective before. Most competing products aim to "look serious" and resemble ERP software. 
 
-In Schoolarly, school admins would find setup to be as simple as signing up, creating a school and inviting users. Teachers will see relevant information right there in their dashboard. While studying for an exam, a student can search over all the assignments, lesson plans, Q&As from one search-box instead of hardcopies and multiple websites.
+The reason people post photos on facebook is to start a conversation. Schoolarly lures students and teachers into working on assignments and lesson-plans in the same manner - conversations engage people more than a task-list. 
 
-An information system need not be strictly directed. For eg. a student's dashboard could not only pop up pending assignments and class notes, but also a crossword contest his friend enrolled in or an astronomy article 'liked' by a teacher he 'follows'. These discoveries and recommendations will result in efficient sharing of resources within a school (the best maths notes from previous years will always be popular). The social layers (groups, friends, followings) will filter out noise – you should get only the stuff you might be interested in.
+Schoolarly organizes these conversations around activities (assignments, lesson-plans, quizzes) and groups (classes, departments) but presents them to each user as it is pertinent to them
 
+Schoolarly provides a practical way to implement exploration and self-learning while allowing the teacher to play a facilitator-role. 
 
 Currently, teachers in India use the software systems to store information and use other means (paper, email) to communicate. They keep paper files of assignments and projects to maintain a portfolio on a student. Students submit assignments in CDs.
 
+Is the efficacy of your product or your product approach supported by your own data or existing pedagogical research?  If so, please upload the supporting data/research in pdf form.
+
+
 * Who are your competitors and who might become competitors? Who do you fear the most?
-Blackboard has a huge install base but they need dedicated people to install and maintain their software. They don't have a hosted solution except for installing a seat on their servers and letting you use it. RenWeb is gaining traction in India through a reseller. Moodle and Pearson eCollege are other solutions. Point solutions like turnitin and engrade are quite good but are limited in features.
+Blackboard, RenWeb and Pearson eCollege offer some sort of web-interface but do not have full cloud-based solutions. Turnitin and Engrade attack specific areas in the space. Educomp, a multimedia content company, is entering this space now.
 
-Blackboard might acquire a nimble startup with a cloud application and transition their users to that. But given their investment in support and sales, they might not be eager to take this approach
+Blackboard or Educomp could improve their current offering and upsell it to their current user base. Turnitin could expand into other areas to become a full LMS
 
-Turnitin might expand their offering wide enough to become what Schoolarly wants to be
-
-But our biggest fear is about patent lawsuits from Blackboard. They seem to be quite notorious for suing for trivial reasons.
+Our biggest fear is about patent lawsuits from Blackboard. They seem to be quite notorious for suing for trivial reasons
 
 * What do you understand about education that other companies just don't get?
-All the current products classify and arrange information by their types and where they belong in the school organization and leave it to the user to figure out how to navigate and access them.  Schoolarly understands relationships and grouping of users and therefore can plausibly guess what objects someone would want to see first.  Basically, information should flow to the user instead of the  user seeking them out.
+Educational software companies are isolated at two ends of a spectrum - some deal with learning activities the way they would with banking-transactions and end up behaving like glorified object-stores. The others have only educational material to offer - multimedia, ebooks etc
 
-Teachers' expectations of software are set by facebook and gmail and they are put off by ERP-style database forms.
+None of them seem to realize that the internet is the best source of educational material and all that needs to be done is to improve the "distribution channels". Teachers and students are capable of finding and using learning material if they are provided with an effective medium to collaborate in 
 
 * How do you plan to distribute your product?
-Schools register online and add teacher and student accounts
+Schoolarly will be a web-hosted application that schools can subscribe to
 
-* How do or how will you make money? How much could you make? We realize you can't know precisely, but give your best estimate (rough estimates only, no spreadsheets).
-The market for school management software in India is about 2000 schools (150 international + 750 ICSE + 1100 CBSE). Each school charges about $2-3 million/year as fees - the student fee varies from $2000 (CBSE, small-town) to $10000 (international, metro city).  We have confirmation from schools that they can afford upto $10000/year for a complete software solution. So, we would place our potential annual revenue at $20 million from  subscriptions from Indian schools alone.
+Our plan is to iterate the product with a bunch of private and international schools in India and leverage the resultant credibility while pitching to US school districts
 
-[Industry reports]
+Many Indian schools have an early-adopter mentality to technology because they see that as a strategic move. We will contact the heads of these schools directly or through social contacts.
+
+We will attend TAISI and IB conferences and instead of holding a trade-stall, try to socialize the way Schoolarly supports the theme of the conference ("Assessments", "Organizational Intelligence"). Schools tend to snub salesmen, but they humour you if you have genuine ideas about education. We know this because our prototype was a big hit in the TAISI conference in February.
+
+We will engage with popular local magazines with a "following your dream" story. A write-up goes a long way in establishing credibility in India. We expect this to fetch us a few leads
+
+We might conduct "career-days" as they are rare in India. This will get us exposure among teachers and parents alike.
+
+* How do or how will you make money? How much could you make? We realize you can't know precisely, but give your best estimate (rough estimates only, no spreadsheets) and how you derived it.
+We plan to sell monthly subscriptions to schools
+
+Conservative: We will target about 2000 schools (150 international + 750 ICSE + 1100 CBSE) where each school earns $2-3 million/year in student fees (individual student fee varies between $1000 - $10000). We have confirmed that their budget allows for about $10000/year for a complete solution. So, we would place our potential annual revenue at US $20 million from  subscriptions from Indian schools alone.
+
+Optimistic: Educomp sells multimedia material to 6500 private schools for an annual fee of about $30000. Since this is the same market we are pursuing (where each student can afford a fee hike of $3/year), we would place our potential revenue estimate at US $195 million
 
 We do not have first-hand information about the US market. But industry reports suggest that for Blackboard, the maintenance fee alone could be $70000/year. We find that all other software – RenWeb etc charge in the range of $10000/year which is probably a more realistic estimate without all the sales overhead that Blackboard undertakes.
 
 If you had any other ideas you considered applying with, please list them. One may be something we've been waiting for.
-Kloggr - A tool to build a knowledge base using web-pages, images and video from the internet and offer it as a guided study. 
+Kloggr - A tool to build a knowledge base using web-pages, images and video from the internet and offer it as a guided study.
 
-A webapp to manage student scores and generate CCE reports and statistics for CBSE schools 
+A webapp to manage student scores and generate CCE reports and statistics.
 
 
 
 Tell us about your progress and future plans
 
 * If you've already started working on it, how long have you been working and about how many lines of code (if applicable) have you written?
-4 months, 6000 LOC
+8 months, 9074 LOC
 
-* How far along are you? Do you have a beta yet? If not, when will you? Are you launched? If so how many users do you have? Do you have revenue? If you're launched, what is your monthly growth rate (in user and/or revenue)?
-With a couple of features more, our beta version would be ready. The schools we have spoken to are less interested in test-driving the product and more interested in paying for and using a polished version.
-
-We plan to launch and start signing up schools by August. We will also demo during the TAISI admin conference in Hyderabad in September to get new introductions.
+* How far along are you? Do you have a beta yet? If not, when will you? Are you launched? If so how many users do you have? Do you have revenue? If you're launched, what is your monthly growth rate (in users and/or revenue)?
+We tried out our beta version with Global Public School, Kochi (439 registered users, 109 active) and they have agreed to become a paying customer. We expect to sign up more schools during the TAISI conference in Hyderabad in Sep 2011. 
 
 If you have an online demo, what's the url? (Please don't password protect it; just make it an obscure url.)
 http://demo.schoolarly.com/demo
 
-* If you're not incorporated yet, please list the percent of the company you plan to give each founder, and anyone else you plan to give stock to (this question is as much for you as us).
+* Please list the percent of the company you plan to give each founder and to anyone else you plan to give stock.
 50% each
 
+* Briefly explain the division of labor among the founders. (e.g. - Sam is coding. Joe is in charge of sales, etc.)
+Both of us code and design. Shenuja takes more of graphical design and Subhash handles marketing and copy.
+
 * If we select you, which founders will commit to working exclusively on this project for the next year?
-Subhash and Shenuja
+Both
+
+* Names of all founders who will live in the Bay Area mid-January thru April 2012 if we select you.
+Subhash & Shenuja
 
 For founders who can't, why not? What level of commitment are they willing to make?
 NA
 
-* Do any founders have any other commitments between June and September 2011 inclusive?
+* Do any founders have any other commitments between January and April 2012 inclusive?
 No
 
 * Do any founders have commitments in the future (e.g., finishing college, grad school), and if so what?
 No
 
 * Where do you live now, and where would the company be based after Imagine K12?
-We live and work from Kochi, India and would prefer to base the company in the US after Imagine K12
+We live and work from Kochi, India and would prefer to base the company in the US after YC
 
 * Are any of the founders covered by noncompetes or intellectual property agreements that overlap with your project? Will any be working as employees or consultants for anyone else?
 No
 
-* Are any of the following true? (a) You are the only founder (b) You are a student who may return to school when the next term starts (c) Half or more of your group can't move to the Bay Area (d) one or more founder will keep their current jobs (e) none of the founders are programmers.
+* Are any of the following true? (a) You are the only founder (b) You are a student who may return to school when the next term starts (c) Half or more of your group can't move to the Bay Area (d) One or more founder will keep their current jobs (e) None of the founders are programmers.
 
 (Answering yes doesn't disqualify you, it's just to remind us to check.)
 
 no
 yes
 
-* Please tell us something surprising or amusing that one of you has discovered. (The answer need not be related to your project.)
+Please tell us something surprising or amusing that one of you has discovered. (The answer need not be related to your project.)
+If a bee gets trapped in a small lighted room, it figures out the position of the window by a precise survey of the room in efficient diagonals. It's a treat to watch.
+
+* Did you or any of your co-founders apply to Imagine K12 in the past?
+Yes
+No
 
 * Indicates Response Required
-
 
  

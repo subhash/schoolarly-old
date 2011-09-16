@@ -590,6 +590,22 @@ en:
         new: "Submit answer"
         view: "My answer"
         grade_table: "Grades - Table view"
+        delete: Delete Submission
+    member:
+      edit:
+        title: "Edit Submission"
+      remove:
+        confirm: "This will remove the submission from Schoolarly. Continue?"
+        success: Removed submission
+        failure: Error in removing submission
+      return:
+        status: Re-submission requested
+        title: Request for re-submission
+        success: Submission returned and request for re-submission sent
+        subject: "Request for re-submission"
+        content: "You have been requested to modify and re-submit the entry %{url}"
+      resubmit:
+        title: "Modify and re-submit"
     model:
       by: "submitted by"
       state:

@@ -1,6 +1,11 @@
 <%= render :partial => 'member/profiles/header', :locals => {:profile => @profile} %>
 <div class="titleB">
-    <%= link_to @assignment.post.title, member_assignment_path(@assignment) %><%= " > " %><%= I18n.t('submissions.model.title')%>
+    <%= link_to @assignment.post.title, member_assignment_path(@assignment) %><%= " > " %><%= I18n.t('submissions.model.title') %>
+    <% if @submission.returned_to?(@submission.user) %>
+    <div class="small highlight">
+        <%= I18n.t('submissions.member.return.status') %>
+    </div>
+    <% end %>
 </div>
 <%= render :partial => 'show' %>
 <br/>
@@ -12,3 +17,6 @@
     <%= render :partial => 'member/grades/empty' %>
     <% end %>
 </div>
+<% content_for :sidebar do %>
+<%= render :partial => 'member/submissions/manage' %>
+<% end %>

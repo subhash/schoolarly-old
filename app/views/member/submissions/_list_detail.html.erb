@@ -3,8 +3,12 @@
     <span class="small"><%= link_to "#{sanitize assignment.name}", member_assignment_path(assignment) %><%= " > " %>
     </span>
     <%= link_to "#{sanitize submission.name}", member_submission_path(submission) %>
+    <% if submission.returned_to?(submission.user) %>
+    <div class="small highlight"><%= I18n.t('submissions.member.return.status') %>
+    </div>
+    <% end %>
     <% if submission.late? %>
-    <span class="late"><%= I18n.t('submissions.model.late_entry')%></span>
+    <span class="late"><%= I18n.t('submissions.model.late_entry') %></span>
     <% end %>
     <% if assignment.date %>
     <div class="time">

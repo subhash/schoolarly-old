@@ -38,15 +38,59 @@ class Member::SubmissionsController < Member::BaseController
     end
   end
   
+  def destroy
+    respond_to do |wants|
+      wants.html do
+        if @submission.destroy
+          flash[:ok] = I18n.t('submissions.member.remove.success')
+          redirect_to member_assignment_path(@assignment)
+        else                              
+          flash[:error] = I18n.t('submissions.member.remove.failure')
+          render :show
+        end  
+      end
+    end
+  end
+  
+  def sendback
+    unless @submission.user == current_user
+      @submission.share_to(@submission.user,current_user)  
+      @message = Message.new(
+      :from => @assignment.user,
+      :to => @submission.user,
+      :subject => I18n.t('submissions.member.return.subject'),
+      :content => @template.link_to("here", I18n.t('submissions.member.return.content', :url => member_submission_url(@submission)))
+      )   
+      begin
+        @message.dispatch!
+      rescue Exception => e
+        error = e
+        break
+      end
+    end
+    respond_to{|wants|
+      wants.html do
+        flash[:ok] = I18n.t('submissions.member.return.success')
+        redirect_to member_submission_path(@submission)
+      end  
+    }
+  end
+  
   def edit
   end
   
   def update
     @submission.attributes = params[:submission]
     respond_to do |wants|
-      if @submission.save         
+      if @submission.save
+        if @submission.returned_to?(current_user)
+          @submission.post.draft! unless @submission.post.state == 'draft'
+          @submission.post.published_at = nil
+          @submission.post.save!
+          @submission.shares.each {|s| s.destroy }
+        end
         if params[:publish]
-          @submission.post.publish!          
+          @submission.post.publish!       
           @submission.share_to(@assignment.user, @submission.submitter)
           @submission.share_to(@submission.user, @submission.submitter) unless @submission.user == @submission.submitter
           @submission.post.to_crocodoc!(true)

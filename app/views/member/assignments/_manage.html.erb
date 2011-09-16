@@ -4,7 +4,7 @@
     <div class="portlet_content">
         <%= share_with_groups_link(@assignment) %>
         <br/>
-        <%= link_to I18n.t("assignments.member.edit.title"), edit_member_assignment_path(@assignment, :group => @group) %>
+        <%= link_to I18n.t("assignments.member.edit.title"), edit_member_assignment_path(@assignment) %>
         <br/>
         <%= link_to I18n.t('assignments.site.manage.delete'), member_assignment_path(@assignment), :method => :delete, :class => "delete",:confirm => I18n.t('assignments.member.remove.confirm') if @assignment.submissions.blank? %>
         <br/>
