@@ -102,9 +102,9 @@ en:
     pitch:
       teachers:
         title: Socialize your classroom 
-        first_line: Students can post questions on assignments, notes and lesson plans
-        second_line: Review and grade assignments with rubrics and inline comments
-        third_line: Enrich your lesson plans with videos and web content
+        first_line: Support inquiry-based and student-centric learning
+        second_line: Holistic assessments with feedback loop
+        third_line: Plan and collaborate on events
         detail:
           first: 
             one: You would like your students to participate more in discussions surrounding assignments. You need to zero in on those who are finding it difficult to master the material. You would like it if students could contribute their own ideas and references from the internet. You also want them to help each other out when they are stuck at a problem.
@@ -114,9 +114,9 @@ en:
             two: You can annotate with inline comments, hightlights, strikeouts or draw sketches right within the assignment. All these markings are preserved for the student in his online copy and she can download the document with the markings intact. You can also grade the assignments with a simple score or using your own rubric scale. While using a rubric, the total score is automatically calculated and can be overwritten, if necessary.          
       students:
         title: All your stuff in one place 
-        first_line: Students can submit assignments and read notes online
-        second_line: Plan and collaborate on events with the group
-        third_line: Share photos, videos and educational material
+        first_line: Present complete student portfolios
+        second_line: Co-ordinate and distribute curriculum plans
+        third_line: Share and archive learning-materials, photos and videos
         detail:
           first: 
             title: Assignments made easy!
@@ -129,9 +129,9 @@ en:
             content: Schoolarly provides a safe way for students to share photos with each other. Teachers will be able to post relevant lectures from Khan Academy or video clips from YouTube to supplement their lessons. 
       parents:
         title: Monitor progress   
-        first_line: Parents can monitor their child's progress anywhere, anytime
-        second_line: Stay connected with parents through email and SMS
-        third_line: Generate reports, graphs and charts on student scores
+        first_line: Enable parents to monitor progress
+        second_line: Stay connected through email and SMS
+        third_line: Generate reports and statistics on student scores 
         detail:
           first: 
             title: Track your child's interests
