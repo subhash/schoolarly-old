@@ -91,7 +91,7 @@ ActionController::Routing::Routes.draw do |map|
     member.resources :rubrics
     member.resources :videos
     member.resources :assignments, :member => {:publish_grades => :get} do |assignment|
-      assignment.resources :submissions, :shallow => true
+      assignment.resources :submissions, :shallow => true, :member => {:sendback => :get}
       assignment.resources :grades, :shallow => true, :member => {:change_rubric => :post}
     end
     member.with_options :controller => 'groups' do |group|

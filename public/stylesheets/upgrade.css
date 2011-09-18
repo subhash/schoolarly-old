@@ -19,6 +19,28 @@ input, select, textarea {
     background-color: transparent;
 }
 
+
+
+li.bold {
+    font-size: 1.3em;
+    text-align: center;
+}
+
+li.p1 a:hover {
+    border-bottom: 3px solid #BD4746;
+    color: inherit;
+}
+
+li.p2 a:hover {
+    border-bottom: 3px solid #649005;
+    color: inherit;
+}
+
+li.bold a {
+    text-decoration: none;
+    color: #222;
+}
+
 iframe.doc {
     background: url(//crocodoc.com/media/images/docviewer/spinner.gif) no-repeat center;
     border: 1px solid #ddd;

@@ -8,7 +8,15 @@ class Submission < ActiveRecord::Base
   
   accepts_nested_attributes_for :post
   
-  after_update :touch_shares  
+  after_update :touch_shares   
+  
+  has_many :shares, :class_name => 'Share', :as => :shareable do
+    def to_user(user_id, by)
+      find :first, :conditions => {:shared_to_type => 'User', :shared_to_id => user_id, :user_id => by }
+    end
+  end
+  
+  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
   
   def submitter
     post.owner
@@ -18,9 +26,14 @@ class Submission < ActiveRecord::Base
     post.title
   end
   
+  def returned_to?(to_user)
+    self.shares.to_user(to_user, assignment.user) && (to_user == self.user) && (to_user!= assignment.user)
+  end
+  
+  
   def late?
     return false if assignment.post.owner == self.post.owner
-    assignment.due_date ? post.published_at > assignment.due_date : false
+    assignment.due_date ? (post.published_at && post.published_at > assignment.due_date) : false
   end
   
   private

@@ -25,7 +25,6 @@ class Post < ActiveRecord::Base
   
   after_save :touch_shares
   
-  
   def to_crocodoc!(use_body = false)
     url = "https://crocodoc.com/api/v1/document/upload"
     if(self.doc.file?)

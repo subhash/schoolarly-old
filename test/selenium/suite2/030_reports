@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://demo.schoolarly.com/" />
+<title>030_reports</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">030_reports</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Log-in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>login</td>
+	<td>hooch@schoolarly.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>workworkwork</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//ul[@id='groups_subjects_18']/li/div[2]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>Algebra Test</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>1. If a number is divided by 4, and then 3 is subtracted, the result is 0.&nbsp;&nbsp;&nbsp;&nbsp;A) 12&nbsp;&nbsp;&nbsp;B) 4&nbsp;&nbsp;&nbsp;C) 3&nbsp;&nbsp;&nbsp;D) 2&nbsp;&nbsp;2. 16X - 8 =&nbsp;&nbsp;&nbsp;&nbsp;A) 8x&nbsp;&nbsp;&nbsp;B) 8(2x-x)&nbsp;&nbsp;&nbsp;C) 8(2x-1)&nbsp;&nbsp;&nbsp;D) 8(2x-8) 3. If X2 - X - 6 = 0 then X is:&nbsp;&nbsp;&nbsp;&nbsp;A) -2 or 3&nbsp;&nbsp;&nbsp;B) -1 or 6&nbsp;&nbsp;&nbsp;C) 1 or -6&nbsp;&nbsp;&nbsp;D) 2 or -3 4. Which of the following is not a factor of 2X2 - 8X + 8&nbsp;&nbsp;&nbsp;&nbsp;A) 2&nbsp;&nbsp;&nbsp;B) 2X-4&nbsp;&nbsp;&nbsp;C) X-2&nbsp;&nbsp;&nbsp;D) 2X + 4</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_has_submissions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_due_date&quot;]//following-sibling::input</td>
+	<td>15-10-2011 @ 10:00</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_score</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>Geometry - Quiz</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>Quiz material</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_date&quot;]//following-sibling::input</td>
+	<td>15-10-2011</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_start_time&quot;]//following-sibling::input</td>
+	<td>10:00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_end_time&quot;]//following-sibling::input</td>
+	<td>10:30</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>Project for FA1</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>Create a model of a hexagonal cube using chart paper</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_has_submissions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_due_date&quot;]//following-sibling::input</td>
+	<td>15-11-2011 @ 10:00</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_score</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>Linear Equations - Quiz</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>Quiz material</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_date&quot;]//following-sibling::input</td>
+	<td>22-10-2011</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_start_time&quot;]//following-sibling::input</td>
+	<td>10:00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_end_time&quot;]//following-sibling::input</td>
+	<td>10:30</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>Project for FA2</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>Do an experiment using prism</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_has_submissions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_due_date&quot;]//following-sibling::input</td>
+	<td>7-12-2011 @ 10:00</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_score</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>Class test</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>question paper</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_date&quot;]//following-sibling::input</td>
+	<td>15-10-2011</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_start_time&quot;]//following-sibling::input</td>
+	<td>10:00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_end_time&quot;]//following-sibling::input</td>
+	<td>10:30</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>Project for FA3</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>material</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_has_submissions</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_due_date&quot;]//following-sibling::input</td>
+	<td>15-02-2012 @ 10:00</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_score</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>Class test, FA4</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>question paper</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_date&quot;]//following-sibling::input</td>
+	<td>15-03-2011</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_start_time&quot;]//following-sibling::input</td>
+	<td>10:00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_end_time&quot;]//following-sibling::input</td>
+	<td>10:30</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>SA1 exam</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>SA1 question paper</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_date&quot;]//following-sibling::input</td>
+	<td>18-10-2011</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_start_time&quot;]//following-sibling::input</td>
+	<td>10:00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_end_time&quot;]//following-sibling::input</td>
+	<td>12:00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>80</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Activity</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>assignment_post_attributes_title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_post_attributes_title</td>
+	<td>SA2 - exam</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>assignment_post_attributes_body_ifr</td>
+	<td></td>
+</tr>
+<tr>
+	<td>focus</td>
+	<td>tinymce</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>tinymce</td>
+	<td>Quiz material</td>
+</tr>
+<tr>
+	<td>selectFrame</td>
+	<td>relative=parent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_date&quot;]//following-sibling::input</td>
+	<td>22-03-2011</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_start_time&quot;]//following-sibling::input</td>
+	<td>10:00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;assignment_end_time&quot;]//following-sibling::input</td>
+	<td>12:00</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>assignment_score</td>
+	<td>80</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
