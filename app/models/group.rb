@@ -24,6 +24,14 @@ class Group < ActiveRecord::Base
   
   before_update :update_default_notebooks, :if => "name_changed?"
   
+  def self_and_all_children
+    self.children.inject([self]) { |array, child| array += child.self_and_all_children }.flatten
+  end
+  
+  def all_children
+    self_and_all_children - [self]
+  end
+  
   has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc"  do
     def of_type(type)
       find :all, :conditions => {:shareable_type => type}
@@ -92,31 +100,44 @@ class Group < ActiveRecord::Base
     network_type == 'Subject'
   end 
   
-  def applicable_members(type)
-    case network_type
-      when 'School'
-      if type == 'Parent'
-        self.student_users.collect(&:friend_users).flatten.uniq
-      else
-        User.of_type(type) - Group.school.collect(&:users).flatten
+  def applicable_members(type, for_user=nil)
+    if for_user
+      school_groups = for_user.groups.school
+      g_ids = []
+      for school_group in school_groups
+        g_ids += school_group.self_and_all_children.select{|g|g.moderators.include?(for_user)}.collect(&:id)
       end
-      when 'Klass'
-      case type
-        when 'Student'
-        parent.student_users - (parent.children.klass.collect(&:student_users)).flatten
+      User.of_type(type).of_groups(g_ids) - self.users.of_type(type)
+    else  
+      case network_type
+        when 'School'
+        if type == 'Parent'
+          self.student_users.collect(&:friend_users).flatten.uniq
+        else
+          User.of_type(type) - Group.school.collect(&:users).flatten
+        end
+        when 'Klass'
+        case type
+          when 'Student'
+          parent.student_users - (parent.children.klass.collect(&:student_users)).flatten
+        else
+          parent.users.of_type(type) - users.of_type(type)
+        end     
+        when 'Subject' 
+        if  type == 'Teacher' && parent.klass?
+          parent.parent.teacher_users - teacher_users
+        else
+          parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
+        end
       else
-        parent.users.of_type(type) - users.of_type(type)
-      end     
-      when 'Subject' 
-      if  type == 'Teacher' && parent.klass?
-        parent.parent.teacher_users - teacher_users
-      else
-        parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
+        if parent
+          parent.users.of_type(type) - users.of_type(type)
+        else       
+        end      
       end
-    else
-      parent ? (parent.users.of_type(type) - users.of_type(type)) : (User.of_type(type) - users.of_type(type))
     end
   end
+  
   
   def removable_members(type)
     users.of_type(type)

@@ -1,4 +1,11 @@
 <% include_stylesheet 'demo' %>
+<% include_javascript 'jquery-1.4.2.min' %>
+<% include_javascript 'orangebox/orangebox.js' %>
+<% include_stylesheet 'home' %>
+<% include_stylesheet 'orangebox/orangebox.css' %>
+<script type="text/javascript">
+    jQuery.noConflict();
+</script>
 
 <div class="portletK" id="portlet_splashHome">
     <h2><span>Click on a button to log in</span></h2>
@@ -35,6 +42,24 @@
 <hr class="wide" />
 <br/>
 <br/>
+<div class="portletK" id="portlet_splashHome">
+    <h2><span class="title"><%= link_to "Intro Video", "http://www.youtube.com/embed/8YmiKt4Etwg?iframe", :rel => "lightbox" %></span></h2>
+    <div class="portlet_content">
+        <div>
+            <%= link_to image_tag("/images/home/video2.png", :class =>"float_left icon"), "http://www.youtube.com/embed/8YmiKt4Etwg?iframe", :rel => "lightbox" %>
+            <ul>
+                <li>
+                    <%= link_to "Watch a quick video demonstrating Schoolarly features","http://www.youtube.com/embed/8YmiKt4Etwg?iframe", :rel => "lightbox" %>
+                </li>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <% content_for :sidebar do %>
 <h2><span>Screencasts</span></h2>
 <div class="image">

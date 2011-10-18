@@ -76,3 +76,13 @@
     <%= submit_tag I18n.t("groups.site.add.#{@type}"), :class => "button mainaction" %>
 </div>
 <% end %>
+<% if current_user.school && @group.ancestors.all?{|g|!g.school?} && !params[:external] %>
+<% content_for :sidebar do %>
+<div class="portlet portletD">
+    <h2><span><%= I18n.t('groups.member.add_members.external') %></span></h2>
+    <div class="portlet_content">
+        <%= link_to I18n.t('groups.member.add_members.from_school', :school => current_user.school.group.name) ,add_select_member_group_path(@group, :type => params[:type], :external => true), :class => 'add' %>
+    </div>
+</div>
+<% end %>
+<% end %>

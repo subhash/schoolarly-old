@@ -119,16 +119,9 @@ class Member::GroupsController < Member::BaseController
     
   end
   
-  def add_select
-    @profiles = @group.applicable_members(@type).collect(&:profile)
-    respond_to do |format|
-      format.html { render :template => 'member/groups/add_select'}
-      format.xml  { render :xml => @profiles }
-    end    
-  end
-  
-  def add_select    
-    profiles = @group.applicable_members(@type).collect(&:profile)
+  def add_select  
+    params[:external] ||= false 
+    profiles = params[:external] ? @group.applicable_members(@type, current_user).collect(&:profile) : @group.applicable_members(@type).collect(&:profile)
     @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
     @page = params[:page] || '1'
     @no_of_entries = profiles.blank? ? 15 : (params[:no_of_entries] || profiles.size)

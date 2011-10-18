@@ -4,6 +4,13 @@ class User < ActiveRecord::Base
   
   named_scope :of_type, lambda { |type| {:conditions => {:person_type => type}}}
   
+  named_scope :of_groups, lambda{ |group_ids|
+    {
+        :include      => :memberships,
+        :conditions => {'memberships.group_id' => group_ids}
+    }
+  }
+  
   has_many :attachments
   has_many :rubrics
   has_many :blogs, :through => :bloggerships, :include => :posts
@@ -11,6 +18,10 @@ class User < ActiveRecord::Base
   
   def student?
     person.is_a? Student
+  end
+  
+  def teacher?
+    person.is_a? Teacher
   end
   
   def parent?
