@@ -1,0 +1,34 @@
+<% include_javascript 'jquery-1.4.2.min' %>
+<% include_javascript 'orangebox/orangebox.js' %>
+<% include_stylesheet 'home' %>
+<% include_stylesheet 'orangebox/orangebox.css' %>
+<script type="text/javascript">
+    jQuery.noConflict();
+</script>
+<% include_stylesheet 'home/testimonials' %>
+<div class="back">
+    <%= link_to "Back to home", "/" %>
+</div>
+<div class="testimonials" id="portlet_splashHome">
+    <div class="title">
+        Our users say ...
+    </div>
+    <div class="portlet_content">
+        <blockquote class="quote" onclick="location.href='/home/anuradha_testimonial';" style="cursor: pointer;">
+            <p>
+                "Schoolarly is a very useful interface for any educator who intends to make the teaching-learning process more interesting and effective." 
+            </p>
+            <p>
+                "I have found Schoolarly particularly useful when I wanted to go beyond the constraints of time and curriculum and share something more with my students."
+            </p>
+            <p>
+                " It gave me the flexibility to cater to their multiple intelligences, make learning fun or even fire interest in the subject with the use of media resources."
+            </p>
+        </blockquote>
+        <p>
+            Anuradha Radhakrishnan 
+            <br/>
+            Teacher, Global Public School
+        </p>
+    </div>
+</div>
