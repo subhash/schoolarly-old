@@ -1,0 +1,57 @@
+.testimonials {
+    padding: 0;
+    margin: 0;
+    font: 1.6em / 1.4 Cambria, Georgia, sans-serif;
+    color: #333;
+    background: #fff;
+}
+
+.testimonials .title{
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.quote {
+    position: relative;
+    padding: 15px 30px;
+    margin: 0;
+    color: #000;
+    background: #f3961c; /* default background for browsers without gradient support */
+    /* css3 */	
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#D9D7AC), to(#f3961c));
+	background:-moz-linear-gradient(#D9D7AC, #f3961c);
+	background:-o-linear-gradient(#D9D7AC, #f3961c);
+	background:linear-gradient(#D9D7AC, #f3961c);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.quote + p {margin:15px 0 2em 85px; font-style:italic;}
+
+/* creates the triangle */
+.quote:after {
+	content:"";
+	position:absolute;
+	bottom:-50px;
+	left:50px;
+	border-width:0 20px 50px 0px;
+	border-style:solid;
+	border-color:transparent #f3961c;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+.quote:hover {
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#f3961c));
+	background:-moz-linear-gradient(#f9d835, #f3961c);
+	background:-o-linear-gradient(#f9d835, #f3961c);
+	background:linear-gradient(#f9d835, #f3961c);
+	
+}
+
+.no-hover:hover{
+	 background-color: #EFECCA;
+}
