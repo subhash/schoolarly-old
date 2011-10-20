@@ -11,6 +11,11 @@
 	margin-bottom: 50px;
 }
 
+a.p1:hover {
+    border-bottom: 3px solid #BD4746;
+    color: inherit;
+}
+
 .quote {
     position: relative;
     padding: 15px 30px;
