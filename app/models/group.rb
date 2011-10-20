@@ -132,7 +132,8 @@ class Group < ActiveRecord::Base
       else
         if parent
           parent.users.of_type(type) - users.of_type(type)
-        else       
+        else
+          []
         end      
       end
     end
