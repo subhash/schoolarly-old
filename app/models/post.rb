@@ -23,6 +23,7 @@ class Post < ActiveRecord::Base
   
   before_validation :adjust_body
   
+  before_save :adjust_content_type
   after_save :touch_shares
   
   def to_crocodoc!(use_body = false)
@@ -73,6 +74,10 @@ class Post < ActiveRecord::Base
   
   def adjust_body
     self.body = self.title if self.doc.file?
+  end
+  
+  def adjust_content_type
+    self.doc.instance_write(:content_type, "application/zip") if (self.doc_content_type.include?("zip"))
   end
   
   def touch_shares
