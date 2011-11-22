@@ -11,7 +11,7 @@
         <%= comment_user_name(comment) %>
     </div>
     <% end %>
-    <%= sanitize(textilize(comment.comment), :tags => (Tog::Plugins.settings :tog_core, 'sanitized.comments.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.comments.allowed_attributes').split) %>
+    <%= sanitize(comment.comment, :tags => (Tog::Plugins.settings :tog_core, 'sanitized.comments.allowed_tags').split, :attributes => (Tog::Plugins.settings :tog_core, 'sanitized.comments.allowed_attributes').split) %>
     <div class="portletL fontsmaller">
         <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(comment.created_at)) %>
     </div>

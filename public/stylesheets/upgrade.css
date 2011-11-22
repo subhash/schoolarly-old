@@ -11,7 +11,7 @@ input, select, textarea {
 }
 
 #menu li {
-    margin-right: 0;
+    margin-right: 10px;
 }
 
 #menu a {
@@ -19,7 +19,21 @@ input, select, textarea {
     background-color: transparent;
 }
 
+#menu a.message-bubble {
+float : right;
+width : 48px;
+height : 48px;
+background : url(../images/ico/message_bubble3.png) no-repeat;
+font-size : 12px;
+margin-top : -25px;
+margin-left : -40px;
+text-align : left;
+position: absolute;
+color: red;
+font-weight: bold;
+padding: 5px 10px;
 
+}
 
 li.bold {
     font-size: 1.3em;

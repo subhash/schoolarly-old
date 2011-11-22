@@ -11,9 +11,12 @@
 #  updated_at   :datetime
 #
 class Blog < ActiveRecord::Base
+  
+  acts_as_textiled :description
+  
   def default_for_group?
     Group.all.each do |g|
-      if description == Tog::Config["plugins.schoolarly.group.notebook.default"]+ " "+g.path
+      if self.description(:source) == Tog::Config["plugins.schoolarly.group.notebook.default"]+ " "+g.path
         return true
       end
     end
