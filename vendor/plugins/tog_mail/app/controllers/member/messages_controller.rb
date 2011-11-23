@@ -51,7 +51,7 @@ class Member::MessagesController < Member::BaseController
     respond_to do |format|
       if !to_user.blank? && @message.dispatch!
         flash[:ok] = I18n.t("tog_mail.member.message_sent")
-        format.html { redirect_back_or_default(member_messages_path) }
+        format.html { redirect_to member_messages_path }
         format.xml { render :xml => @message, :status => :created, :location => member_message_path(:id => @message) }
       else
         flash[:error] = error
