@@ -41,11 +41,7 @@
 	        <ul>
 	        	  <%= link_to I18n.t('tog_social.groups.member.edit'), edit_member_group_path(@group), :class => 'ok' -%>
 			  <% if @group.school? %>
-			  	<!--
-			  	<li><%= link_to I18n.t('groups.member.admissions.title'), member_group_pending_members_path(@group) %></li>
-				-->
 			    <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group, :type => 'klasses'), :class => 'add' %></li>
-			   <!-- <li><%= link_to I18n.t('schools.site.admin.invite'), add_select_member_group_path(@group, :type => 'Admin'), :class => 'add' %></li> -->
 			    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>				
 			  <% else %>
@@ -60,11 +56,6 @@
 	    </div> 
 	</div> 
 <% end %>
-			<!--
-			<% if @group.school? %>
-			  <li><%= link_to I18n.t('groups.member.admission.new'), smerf_form_url(@group.network.form_code) %></li>				
-			<% end %>
-			-->	
 
 <% @group.users.group_by(&:type).each do |type, users| %>
 	<%= render :partial => "member/profiles/profiles_portlet", :locals => { 

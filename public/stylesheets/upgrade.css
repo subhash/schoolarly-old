@@ -170,6 +170,10 @@ li.Assignment {
     float: right;
 }
 
+.portletH li div.title {
+	padding-top: 20px;
+}
+
 .col_70_30 {
     clear: both;
     width: 100%;
