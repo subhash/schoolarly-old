@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817072112) do
+ActiveRecord::Schema.define(:version => 20111202135227) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -45,7 +45,27 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "updated_at"
   end
 
-  add_index "aggregations", ["user_id"], :name => "user_id"
+  create_table "answers", :force => true do |t|
+    t.integer  "question_id"
+    t.text     "text"
+    t.text     "short_text"
+    t.text     "help_text"
+    t.integer  "weight"
+    t.string   "response_class"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
+    t.integer  "display_order"
+    t.boolean  "is_exclusive"
+    t.boolean  "hide_label"
+    t.integer  "display_length"
+    t.string   "custom_class"
+    t.string   "custom_renderer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "default_value"
+  end
 
   create_table "assignments", :force => true do |t|
     t.integer  "post_id"
@@ -60,9 +80,6 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "updated_at"
   end
 
-  add_index "assignments", ["post_id"], :name => "post_id"
-  add_index "assignments", ["rubric_id"], :name => "rubric_id"
-
   create_table "attachments", :force => true do |t|
     t.string   "title"
     t.string   "description"
@@ -74,8 +91,6 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "attachments", ["user_id"], :name => "user_id"
 
   create_table "attendances", :force => true do |t|
     t.integer  "event_id"
@@ -102,6 +117,14 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "updated_at"
   end
 
+  create_table "class_activities", :force => true do |t|
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "client_applications", :force => true do |t|
     t.string   "name"
     t.string   "url"
@@ -117,13 +140,13 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
   add_index "client_applications", ["key"], :name => "index_client_applications_on_key", :unique => true
 
   create_table "comments", :force => true do |t|
-    t.string   "title",            :limit => 50, :default => ""
+    t.string   "title",            :limit => 50
     t.text     "comment"
     t.integer  "commentable_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "commentable_type",               :default => "",    :null => false
+    t.string   "commentable_type",                                  :null => false
     t.boolean  "approved",                       :default => false
     t.string   "name"
     t.string   "email"
@@ -135,7 +158,7 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "config", :force => true do |t|
-    t.string   "key",        :default => "", :null => false
+    t.string   "key",        :null => false
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -169,6 +192,31 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "dependencies", :force => true do |t|
+    t.integer  "question_id"
+    t.integer  "question_group_id"
+    t.string   "rule"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dependency_conditions", :force => true do |t|
+    t.integer  "dependency_id"
+    t.string   "rule_key"
+    t.integer  "question_id"
+    t.string   "operator"
+    t.integer  "answer_id"
+    t.datetime "datetime_value"
+    t.integer  "integer_value"
+    t.float    "float_value"
+    t.string   "unit"
+    t.text     "text_value"
+    t.string   "string_value"
+    t.string   "response_other"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -220,9 +268,6 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "updated_at"
   end
 
-  add_index "grade_rubric_descriptors", ["grade_id"], :name => "grade_id"
-  add_index "grade_rubric_descriptors", ["rubric_descriptor_id"], :name => "rubric_descriptor_id"
-
   create_table "grades", :force => true do |t|
     t.integer  "user_id"
     t.integer  "assignment_id"
@@ -231,8 +276,24 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "updated_at"
   end
 
-  add_index "grades", ["user_id"], :name => "user_id"
-  add_index "grades", ["assignment_id"], :name => "assignment_id"
+  create_table "grades_rubric_descriptors", :id => false, :force => true do |t|
+    t.integer  "grade_id"
+    t.integer  "rubric_descriptor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "grades_rubric_descriptors", ["grade_id"], :name => "grade_id"
+  add_index "grades_rubric_descriptors", ["rubric_descriptor_id"], :name => "rubric_descriptor_id"
+
+  create_table "group_hierarchies", :id => false, :force => true do |t|
+    t.integer "ancestor_id",   :null => false
+    t.integer "descendant_id", :null => false
+    t.integer "generations",   :null => false
+  end
+
+  add_index "group_hierarchies", ["ancestor_id", "descendant_id"], :name => "index_group_hierarchies_on_ancestor_id_and_descendant_id", :unique => true
+  add_index "group_hierarchies", ["descendant_id"], :name => "index_group_hierarchies_on_descendant_id"
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -254,6 +315,12 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.integer  "parent_id"
   end
 
+  create_table "home_activities", :force => true do |t|
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "klasses", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -267,8 +334,6 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "levels", ["rubric_id"], :name => "rubric_id"
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
@@ -306,8 +371,6 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "notices", ["user_id"], :name => "user_id"
 
   create_table "oauth_nonces", :force => true do |t|
     t.string   "nonce"
@@ -405,6 +468,42 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.text     "dynamic_attributes"
   end
 
+  create_table "question_groups", :force => true do |t|
+    t.text     "text"
+    t.text     "help_text"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
+    t.string   "display_type"
+    t.string   "custom_class"
+    t.string   "custom_renderer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions", :force => true do |t|
+    t.integer  "survey_section_id"
+    t.integer  "question_group_id"
+    t.text     "text"
+    t.text     "short_text"
+    t.text     "help_text"
+    t.string   "pick"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
+    t.integer  "display_order"
+    t.string   "display_type"
+    t.boolean  "is_mandatory"
+    t.integer  "display_width"
+    t.string   "custom_class"
+    t.string   "custom_renderer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "correct_answer_id"
+  end
+
   create_table "ratings", :force => true do |t|
     t.integer  "rateable_id"
     t.string   "rateable_type"
@@ -415,6 +514,37 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
   end
 
   add_index "ratings", ["rateable_id", "rateable_type"], :name => "index_ratings_on_rateable_id_and_rateable_type"
+
+  create_table "response_sets", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "survey_id"
+    t.string   "access_code"
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "response_sets", ["access_code"], :name => "response_sets_ac_idx", :unique => true
+
+  create_table "responses", :force => true do |t|
+    t.integer  "response_set_id"
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.datetime "datetime_value"
+    t.integer  "integer_value"
+    t.float    "float_value"
+    t.string   "unit"
+    t.text     "text_value"
+    t.string   "string_value"
+    t.string   "response_other"
+    t.string   "response_group"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "survey_section_id"
+  end
+
+  add_index "responses", ["survey_section_id"], :name => "index_responses_on_survey_section_id"
 
   create_table "rubric_descriptors", :force => true do |t|
     t.text     "description"
@@ -434,8 +564,6 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "rubrics", ["user_id"], :name => "user_id"
 
   create_table "schools", :force => true do |t|
     t.datetime "created_at"
@@ -493,9 +621,42 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "updated_at"
   end
 
+  add_index "submissions", ["assignment_id"], :name => "assignment_id"
   add_index "submissions", ["post_id"], :name => "post_id"
   add_index "submissions", ["user_id"], :name => "user_id"
-  add_index "submissions", ["assignment_id"], :name => "assignment_id"
+
+  create_table "survey_sections", :force => true do |t|
+    t.integer  "survey_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
+    t.integer  "display_order"
+    t.string   "custom_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "surveys", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "access_code"
+    t.string   "reference_identifier"
+    t.string   "data_export_identifier"
+    t.string   "common_namespace"
+    t.string   "common_identifier"
+    t.datetime "active_at"
+    t.datetime "inactive_at"
+    t.string   "css_url"
+    t.string   "custom_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "display_order"
+  end
+
+  add_index "surveys", ["access_code"], :name => "surveys_ac_idx", :unique => true
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -508,7 +669,6 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", :force => true do |t|
     t.string "name"
@@ -548,6 +708,32 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.integer  "person_id"
   end
 
+  create_table "validation_conditions", :force => true do |t|
+    t.integer  "validation_id"
+    t.string   "rule_key"
+    t.string   "operator"
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.datetime "datetime_value"
+    t.integer  "integer_value"
+    t.float    "float_value"
+    t.string   "unit"
+    t.text     "text_value"
+    t.string   "string_value"
+    t.string   "response_other"
+    t.string   "regexp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "validations", :force => true do |t|
+    t.integer  "answer_id"
+    t.string   "rule"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "videos", :force => true do |t|
     t.string   "title"
     t.string   "description"
@@ -565,38 +751,6 @@ ActiveRecord::Schema.define(:version => 20110817072112) do
     t.datetime "updated_at"
   end
 
-  add_index "weighted_assignments", ["assignment_id"], :name => "assignment_id"
   add_index "weighted_assignments", ["aggregation_id"], :name => "aggregation_id"
-
-  add_foreign_key "aggregations", ["user_id"], "users", ["id"], :name => "aggregations_ibfk_1"
-
-  add_foreign_key "assignments", ["post_id"], "posts", ["id"], :name => "assignments_ibfk_1"
-  add_foreign_key "assignments", ["rubric_id"], "rubrics", ["id"], :name => "assignments_ibfk_2"
-
-  add_foreign_key "attachments", ["user_id"], "users", ["id"], :name => "attachments_ibfk_1"
-
-  add_foreign_key "criteria", ["rubric_id"], "rubrics", ["id"], :name => "criteria_ibfk_1"
-
-  add_foreign_key "grade_rubric_descriptors", ["grade_id"], "grades", ["id"], :name => "grade_rubric_descriptors_ibfk_1"
-  add_foreign_key "grade_rubric_descriptors", ["rubric_descriptor_id"], "rubric_descriptors", ["id"], :name => "grade_rubric_descriptors_ibfk_2"
-
-  add_foreign_key "grades", ["user_id"], "users", ["id"], :name => "grades_ibfk_1"
-  add_foreign_key "grades", ["assignment_id"], "assignments", ["id"], :name => "grades_ibfk_2"
-
-  add_foreign_key "levels", ["rubric_id"], "rubrics", ["id"], :name => "levels_ibfk_1"
-
-  add_foreign_key "notices", ["user_id"], "users", ["id"], :name => "notices_ibfk_1"
-
-  add_foreign_key "rubric_descriptors", ["criterion_id"], "criteria", ["id"], :name => "rubric_descriptors_ibfk_1"
-  add_foreign_key "rubric_descriptors", ["level_id"], "levels", ["id"], :name => "rubric_descriptors_ibfk_2"
-
-  add_foreign_key "rubrics", ["user_id"], "users", ["id"], :name => "rubrics_ibfk_1"
-
-  add_foreign_key "submissions", ["post_id"], "posts", ["id"], :name => "submissions_ibfk_1"
-  add_foreign_key "submissions", ["user_id"], "users", ["id"], :name => "submissions_ibfk_2"
-  add_foreign_key "submissions", ["assignment_id"], "assignments", ["id"], :name => "submissions_ibfk_3"
-
-  add_foreign_key "weighted_assignments", ["assignment_id"], "assignments", ["id"], :name => "weighted_assignments_ibfk_1"
-  add_foreign_key "weighted_assignments", ["aggregation_id"], "aggregations", ["id"], :name => "weighted_assignments_ibfk_2"
 
 end

@@ -24,14 +24,6 @@ class Group < ActiveRecord::Base
   
   before_update :update_default_notebooks, :if => "name_changed?"
   
-#  def self_and_all_children
-#    self.children.inject([self]) { |array, child| array += child.self_and_all_children }.flatten
-#  end
-#  
-#  def all_children
-#    self_and_all_children - [self]
-#  end
-  
   has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc"  do
     def of_type(type)
       find :all, :conditions => {:shareable_type => type}
