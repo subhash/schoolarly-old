@@ -1,6 +1,5 @@
 rails --version 2.3.8
 redhillonrails_core
-acts_as_tree
 RedCloth --version '>= 4.2.0'
 hoe --version 2.4.0
 google-geocode --version  '~> 1.2.1'
@@ -31,4 +30,5 @@ pdfkit
 haml
 httparty
 ice_cube
+newrelic_rpm
 chronic

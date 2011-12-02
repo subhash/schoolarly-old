@@ -11,7 +11,6 @@ require 'desert'
 
 Rails::Initializer.run do |config|
   config.gem 'redhillonrails_core'
-  config.gem 'acts_as_tree'
   config.gem 'RedCloth', :lib => 'redcloth', :source => 'http://code.whytheluckystiff.net'
   config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
   config.reload_plugins = true if RAILS_ENV == 'development'
@@ -43,6 +42,7 @@ Rails::Initializer.run do |config|
 
   config.gem 'ice_cube'
   config.gem 'chronic'
+  config.gem 'newrelic_rpm'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
