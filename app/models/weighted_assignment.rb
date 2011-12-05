@@ -12,8 +12,12 @@ class WeightedAssignment < ActiveRecord::Base
     assignment.score
   end
   
-  def self_and_all_nodes
+  def self_and_descendents
     [self]
+  end
+  
+  def descendents
+    []
   end
   
   def  score_for(user)

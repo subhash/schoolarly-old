@@ -1,15 +1,17 @@
-<% comments = commentable.comments %>
-<% unless commentable.comments.size <= 2 or local_assigns[:show_all] %>
-	<% comments = commentable.comments.last(2) %>
+<% all_comments = commentable.comments %>
+<% unless all_comments.size <= 2 or local_assigns[:show_all] %>
+	<% comments = all_comments.last(2) %>
+	<% else %>
+	<% comments = all_comments %>
 <% end %>
 <div class="portlet portletI">
     <div class="portlet_content">
         <ul id="comments_<%=commentable.type%>_<%=commentable.id%>">
             <%= render :partial => 'shared/comment', :collection => comments %>
-            <% unless commentable.comments.size <= 2 or local_assigns[:show_all] %>
+            <% unless comments == all_comments %>
             <li>
-                <%= link_to_function I18n.t('comments.member.view.all', :size => commentable.comments.size) do |page|
-                page["comments_#{commentable.type}_#{commentable.id}"].replace_html :partial => 'shared/comment', :collection => commentable.comments
+                <%= link_to_function I18n.t('comments.member.view.all', :size => all_comments.size) do |page|
+                page["comments_#{commentable.type}_#{commentable.id}"].replace_html :partial => 'shared/comment', :collection => all_comments
                 end %>
             </li>
             <% end %>

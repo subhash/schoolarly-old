@@ -7,8 +7,8 @@ class Aggregation < ActiveRecord::Base
   
   belongs_to :user
   acts_as_tree
-  
-  has_many :children, :class_name => 'Aggregation', :foreign_key => 'parent_id', :dependent => :nullify
+
+#  has_many :children, :class_name => 'Aggregation', :foreign_key => 'parent_id', :dependent => :nullify
   
   accepts_nested_attributes_for :weighted_assignments, :allow_destroy => true
   accepts_nested_attributes_for :children, :allow_destroy => true
@@ -22,21 +22,13 @@ class Aggregation < ActiveRecord::Base
   #  validate :weightage_summation, :if => :weighted_average
   
   
-  def self_and_all_children
-    self.children.inject([self]) { |array, child| array += child.self_and_all_children }.flatten
-  end
-  
-  def all_children
-    self_and_all_children - [self]
-  end
-  
-  def self_and_all_nodes
-    self.nodes.inject([self]) { |array, child| array += child.self_and_all_nodes }.flatten
-  end
-  
-  def all_nodes
-    self_and_all_nodes - [self]
-  end
+#  def self_and_all_children
+#    self.children.inject([self]) { |array, child| array += child.self_and_all_children }.flatten
+#  end
+#  
+#  def all_children
+#    self_and_all_children - [self]
+#  end
   
   
   def preorder(&b)

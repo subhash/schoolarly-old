@@ -14,7 +14,7 @@
                 %td=wa.weightage
                 %td=wa.score
         %ul
-          - for node in aggregation.all_children do
+          - for node in aggregation.descendents do
             %li{:class => "_"+node.ancestors.size.to_s} 
               = node.name
               = node.score

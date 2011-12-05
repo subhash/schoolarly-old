@@ -1,7 +1,6 @@
 <div class="portlet_content">
     <ul>
         <% for share in @shares %>
-		<% puts "share = "+ share.shareable.inspect if (share.shareable.is_a? Submission) %>
         <% if display?(share) and (i_own?(share.shareable) or share.published?) %>
         <% profile = share.user.profile %>
         <li class="detail detail1 <%=share.shareable_type%>">

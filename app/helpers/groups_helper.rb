@@ -1,14 +1,11 @@
 module GroupsHelper
   def ancestor_path_for(group)
-    s = []
-    group.ancestors.reverse.each{|a| s << "#{link_to(a.name, current_user ? member_group_path(a) : group_path(a))} > "}
-    s.join
+    s = group.parent.self_and_ancestors.reverse.map{|g| link_to(g.name, (current_user ? member_group_path(g) : group_path(g))) }.join " > " 
+    return s + " > "
   end
   
   def path_for(group)
-    s = []
-    group.ancestors.reverse.each{|a| s << "#{link_to(a.name, current_user ? member_group_path(a) : group_path(a))} > "}
-    s.join+link_to(group.name, (current_user ? member_group_path(group) : group_path(group)))
+    s = group.self_and_ancestors.reverse.map{|g| link_to(g.name, (current_user ? member_group_path(g) : group_path(g))) }.join " > "
   end
   
   def default_blog_for(group)

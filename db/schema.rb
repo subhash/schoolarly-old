@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202135227) do
+ActiveRecord::Schema.define(:version => 20111202140927) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20111202135227) do
   end
 
   add_index "activities", ["item_type", "item_id"], :name => "index_activities_on_item_type_and_item_id"
+
+  create_table "aggregation_hierarchies", :id => false, :force => true do |t|
+    t.integer "ancestor_id",   :null => false
+    t.integer "descendant_id", :null => false
+    t.integer "generations",   :null => false
+  end
+
+  add_index "aggregation_hierarchies", ["ancestor_id", "descendant_id"], :name => "index_aggregation_hierarchies_on_ancestor_id_and_descendant_id", :unique => true
+  add_index "aggregation_hierarchies", ["descendant_id"], :name => "index_aggregation_hierarchies_on_descendant_id"
 
   create_table "aggregations", :force => true do |t|
     t.string   "name"

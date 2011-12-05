@@ -15,7 +15,7 @@ class Group < ActiveRecord::Base
   has_many :teacher_users, :through => :memberships, :source => :user,
   :conditions => ['users.person_type = ?', 'Teacher'], :include => :profile, :order => "profiles.first_name, profiles.last_name"
   
-  acts_as_tree :order => 'name'
+  acts_as_tree :order => 'name', :dependent => :destroy 
   named_scope :base, :conditions => {:parent_id => nil}
   named_scope :school, :conditions => {:network_type => 'School'}
   named_scope :klass, :conditions => {:network_type => 'Klass'}
@@ -97,7 +97,7 @@ class Group < ActiveRecord::Base
       school_groups = for_user.groups.school
       g_ids = []
       for school_group in school_groups
-        g_ids += school_group.self_and_all_children.select{|g|g.moderators.include?(for_user)}.collect(&:id)
+        g_ids += school_group.self_and_descendents.select{|g|g.moderators.include?(for_user)}.collect(&:id)
       end
       User.of_type(type).of_groups(g_ids) - self.users.of_type(type)
     else  
