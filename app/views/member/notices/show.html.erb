@@ -14,7 +14,7 @@
 <br/>
 <div id="notice_<%= @notice.id %>" class="border_top">
     <div>
-        <%= sanitize(@notice.content, :tags => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_attributes').split) %>
+        <%= @notice.content %>
     </div>
     <br/>
     <%= render :partial => "shared/comments", :locals => { :commentable => @notice , :show_all => true } %>

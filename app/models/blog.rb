@@ -13,6 +13,7 @@
 class Blog < ActiveRecord::Base
   
   acts_as_textiled :description
+  acts_as_sanitized
   
   def default_for_group?
     Group.all.each do |g|

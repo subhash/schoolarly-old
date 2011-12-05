@@ -1,9 +1,9 @@
 <% group = group if local_assigns[:group] %>
 <% profile = assignment.post.user.profile %>
 <div>
-    <span class="left"><span class="title"><%= link_to "#{sanitize assignment.post.title}", member_assignment_path(assignment, :group => group) %></span>
+    <span class="left"><span class="title"><%= link_to assignment.post.title, member_assignment_path(assignment, :group => group) %></span>
         <div>
-            <%= link_to icon_for_assignment(assignment), member_assignment_path(assignment, :group => group), :title => "#{sanitize assignment.post.title}" %>
+            <%= link_to icon_for_assignment(assignment), member_assignment_path(assignment, :group => group), :title => assignment.post.title %>
             <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>
         </div>
     </span>

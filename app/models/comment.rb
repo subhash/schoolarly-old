@@ -3,6 +3,7 @@ class Comment < ActiveRecord::Base
   include ActsAsCommentable::Comment
   
   acts_as_textiled :comment
+  acts_as_sanitized
   
   belongs_to :commentable, :polymorphic => true
   

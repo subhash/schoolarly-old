@@ -14,6 +14,8 @@
 
 class Post < ActiveRecord::Base
   acts_as_shareable
+  acts_as_sanitized
+  
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
   has_attached_file :doc, Tog::Plugins.storage_options   
   

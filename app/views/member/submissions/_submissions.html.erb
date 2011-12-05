@@ -41,7 +41,7 @@
                 </div>
                 <% else %>
                 <div class="title">
-                    <%= link_to "#{sanitize submission.post.title}", member_submission_path(submission) %>
+                    <%= link_to submission.post.title, member_submission_path(submission) %>
                 </div>
                 <div class="portletL fontsmaller">
                     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(submission.post.created_at)) %>

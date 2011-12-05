@@ -34,6 +34,7 @@ class Event < ActiveRecord::Base
   
   acts_as_commentable
   acts_as_shareable
+  acts_as_sanitized
   
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
   

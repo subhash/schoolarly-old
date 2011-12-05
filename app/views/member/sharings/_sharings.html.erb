@@ -33,9 +33,6 @@
             <% if share.shareable.is_a? Event %>
             <%= render :partial => '/member/conclave/events/list_detail', :locals => { :event => share.shareable} %>
             <% end %>
-            <% if share.shareable.is_a? Attachment %>
-            <%= render :partial => '/member/attachments/list_detail', :locals => { :attachment => share.shareable} %>
-            <% end %>
             <% if share.shareable.is_a? Assignment %>
             <%= render :partial => '/member/assignments/list_detail', :locals => { :assignment => share.shareable} %>
             <% end %>

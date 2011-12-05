@@ -1,6 +1,8 @@
 class Submission < ActiveRecord::Base
   
   acts_as_shareable
+  acts_as_sanitized
+  
   belongs_to :assignment
   belongs_to :post
   

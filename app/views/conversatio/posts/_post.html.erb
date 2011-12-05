@@ -14,7 +14,7 @@
     </iframe>
     <% else %>
     <div>
-        <%= sanitize(@post.body, :tags => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_tags').split, :attributes => (Tog::Plugins.settings :schoolarly, 'sanitized.allowed_attributes').split) %>
+        <%= @post.body %>
     </div>
     <% end %>
     <br/>

@@ -2,6 +2,7 @@ class Assignment < ActiveRecord::Base
   
   acts_as_shareable
   acts_as_commentable
+  acts_as_sanitized
   
   belongs_to :post, :dependent => :destroy
   

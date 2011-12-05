@@ -1,6 +1,6 @@
 
 <div class="title">
-    <%= link_to "#{sanitize assignment.post.title}", member_assignment_path(assignment) %>
+    <%= link_to assignment.post.title, member_assignment_path(assignment) %>
     <% if assignment.date %>
     <div class="time">
         <%= assignment.date.inspect %>, <%=assignment.start_time.to_s(:time_only) %>- <%=assignment.end_time.to_s(:time_only) %>

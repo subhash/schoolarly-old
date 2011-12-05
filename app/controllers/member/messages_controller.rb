@@ -13,8 +13,8 @@ class Member::MessagesController < Member::BaseController
       @message = Message.new(
       :from => current_user,
       :to => to_user,
-      :subject => sanitize(params[:message][:subject]),
-      :content => sanitize(params[:message][:content])
+      :subject => params[:message][:subject],
+      :content => params[:message][:content]
       )
       begin
         @message.dispatch!
