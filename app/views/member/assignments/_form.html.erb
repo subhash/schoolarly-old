@@ -76,6 +76,7 @@
         <% end %>
     </p>
 </div>
+<% if @assignment.new_record? || !@assignment.has_submissions %>
 <div class="fields">
     <p>
         <%= I18n.t('assignments.model.date') %>
@@ -87,6 +88,7 @@
         <span class="helpinfo"><%= I18n.t('assignments.member.new.date_help') %></span>
     </p>
 </div>
+<% end %>
 <div class="fields">
     <p>
         <%= I18n.t('assignments.member.new.score') %>
