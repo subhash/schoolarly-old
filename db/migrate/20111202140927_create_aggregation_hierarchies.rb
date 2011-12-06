@@ -1,6 +1,6 @@
 class CreateAggregationHierarchies < ActiveRecord::Migration
   def self.up   
-    create_table :aggregation_hierarchies, :id => false, :primary_key => [:ancestor_id, :descendant_id] do |t|
+    create_table :aggregation_hierarchies, :id => false do |t|
       t.integer  :ancestor_id, :null => false   # ID of the parent/grandparent/great-grandparent/... group
       t.integer  :descendant_id, :null => false # ID of the target group
       t.integer  :generations, :null => false   # Number of generations between the ancestor and the descendant. Parent/child = 1, for example.
@@ -11,8 +11,9 @@ class CreateAggregationHierarchies < ActiveRecord::Migration
     
     # For "all ancestors of..." selects
     add_index :aggregation_hierarchies, [:descendant_id]   
-    #    execute "ALTER TABLE aggregation_hierarchies ADD PRIMARY KEY (ancestor_id, descendant_id);"
   end
+  
+  execute "ALTER TABLE aggregation_hierarchies ADD PRIMARY KEY (ancestor_id, descendant_id);"
   
   def self.down
     drop_table :aggregation_hierarchies
