@@ -11,7 +11,7 @@ class CreateAggregationHierarchies < ActiveRecord::Migration
     
     # For "all ancestors of..." selects
     add_index :aggregation_hierarchies, [:descendant_id]   
-    execute "ALTER TABLE aggregation_hierarchies ADD PRIMARY KEY (ancestor_id, descendent_id);"
+    execute "ALTER TABLE aggregation_hierarchies ADD PRIMARY KEY (ancestor_id, descendant_id);"
   end
   
   def self.down
