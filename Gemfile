@@ -39,11 +39,7 @@
   gem 'chronic'
   gem 'newrelic_rpm'
   
-  group :development do
-  	gem 'mysql',  '2.8.1'
-  	gem 'mysql2', '0.2.6'
-  end
-  
-  group :production do
-  	gem 'pg'
-  end
+  gem 'mysql',  '2.8.1', :group => :development
+  gem 'mysql2', '0.2.6', :group => :development
+
+  gem 'pg, :group => :production
