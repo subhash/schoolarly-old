@@ -1,6 +1,6 @@
 class CreateGroupHierarchies < ActiveRecord::Migration
   def self.up   
-    create_table :group_hierarchies, :id => false do |t|
+    create_table :group_hierarchies, :id => false, :primary_key => [:ancestor_id, :descendant_id] do |t|
       t.integer  :ancestor_id, :null => false   # ID of the parent/grandparent/great-grandparent/... group
       t.integer  :descendant_id, :null => false # ID of the target group
       t.integer  :generations, :null => false   # Number of generations between the ancestor and the descendant. Parent/child = 1, for example.

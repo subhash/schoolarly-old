@@ -39,7 +39,7 @@ Rails::Initializer.run do |config|
   config.gem 'httparty'
   #  config.gem 'mail'
   #  config.gem 'delayed_job'
-
+  
   config.gem 'ice_cube'
   config.gem 'chronic'
   config.gem 'newrelic_rpm'
@@ -85,6 +85,26 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'criterion', 'criteria'
 end
+
+# http://errtheblog.com/posts/14-composite-migrations - to prevent postgre error in heroku
+
+ActiveRecord::ConnectionAdapters::ColumnDefinition.class_eval <<-'EOF'
+  def to_sql
+    if name.is_a? Array
+      column_sql = "PRIMARY KEY (#{name.join(',')})" 
+    else
+        column_sql = "#{base.quote_column_name(name)} #{sql_type}"
+        column_options = {}
+        column_options[:null] = null unless null.nil?
+        column_options[:default] = default unless default.nil?
+        add_column_options!(column_sql, column_options) unless type.to_sym == :primary_key
+    end
+    column_sql
+  end
+EOF
+
+ActiveRecord::ConnectionAdapters::ColumnDefinition.send(:alias_method, :to_s, :to_sql)
+
 
 
 Tog::Interface.sections(:site).clear
