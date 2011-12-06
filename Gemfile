@@ -1,8 +1,8 @@
-  source :gemcutter
-  source 'http://code.whytheluckystiff.net'
-  source :rubygems
-  source 'http://gems.rubyforge.org'
-  source 'http://gems.github.com'  
+  source "http://gemcutter.org"
+  source "http://code.whytheluckystiff.net"
+  source "http://rubygems.org"
+  source "http://gems.rubyforge.org"
+  source "http://gems.github.com"  
   
   gem "rails", "~> 2.3.8"
   gem "sqlite3-ruby", :require => "sqlite3"
