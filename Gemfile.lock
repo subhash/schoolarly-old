@@ -86,9 +86,6 @@ GEM
       activesupport (>= 2.3.5)
       i18n
     rubyzip (0.9.5)
-    sqlite3 (1.3.5)
-    sqlite3-ruby (1.3.3)
-      sqlite3 (>= 1.3.3)
     syntax (1.0.0)
     thoughtbot-factory_girl (1.2.2)
     tiny_mce (0.1.8)
@@ -134,7 +131,6 @@ DEPENDENCIES
   redhillonrails_core
   rest-client
   right_aws
-  sqlite3-ruby
   thoughtbot-factory_girl
   tiny_mce
   tog-tog (>= 0.5)

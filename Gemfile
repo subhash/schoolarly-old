@@ -41,4 +41,4 @@
   gem 'mysql',  '2.8.1', :group => :development
   gem 'mysql2', '0.2.6', :group => :development
 
-  gem 'pg, :group => :production
+  gem 'pg', :group => :production
