@@ -43,7 +43,6 @@ Rails::Initializer.run do |config|
   config.gem 'ice_cube'
   config.gem 'chronic'
   config.gem 'newrelic_rpm'
-  config.gem 'composite_primary_keys', :version => '~> 2.3.5.1'
   
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
