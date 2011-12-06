@@ -20,7 +20,7 @@ test:
   host: localhost
 
 production:
-  adapter: mysql
+  adapter: pg
   database: schoolarly_production
   pool: 5
   username: root

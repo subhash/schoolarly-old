@@ -11,7 +11,7 @@ class CreateGroupHierarchies < ActiveRecord::Migration
     
     # For "all ancestors of..." selects
     add_index :group_hierarchies, [:descendant_id]  
-    execute "ALTER TABLE group_hierarchies ADD PRIMARY KEY (ancestor_id, descendant_id);"
+    #    execute "ALTER TABLE group_hierarchies ADD PRIMARY KEY (ancestor_id, descendant_id);"
   end
   
   def self.down
