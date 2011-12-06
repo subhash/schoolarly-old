@@ -6,14 +6,16 @@ class CreateGroupHierarchies < ActiveRecord::Migration
       t.integer  :generations, :null => false   # Number of generations between the ancestor and the descendant. Parent/child = 1, for example.
     end
     
+    execute "ALTER TABLE group_hierarchies ADD PRIMARY KEY (ancestor_id, descendant_id);"
+    
     # For "all progeny of..." selects:
-    add_index :group_hierarchies, [:ancestor_id, :descendant_id], :unique => true
+    add_index :group_hierarchies, [:ancestor_id, :descendant_id], :unique => true, :null => false
     
     # For "all ancestors of..." selects
     add_index :group_hierarchies, [:descendant_id]  
   end
   
-  execute "ALTER TABLE group_hierarchies ADD PRIMARY KEY (ancestor_id, descendant_id);"
+  
   
   def self.down
     drop_table :group_hierarchies
