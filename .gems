@@ -32,3 +32,4 @@ httparty
 ice_cube
 newrelic_rpm
 chronic
+composite_primary_keys --version '~> 2.3.5.1'

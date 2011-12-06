@@ -9,7 +9,7 @@ class CreateGroupHierarchies < ActiveRecord::Migration
     execute "ALTER TABLE group_hierarchies ADD PRIMARY KEY (ancestor_id, descendant_id);"
     
     # For "all progeny of..." selects:
-    add_index :group_hierarchies, [:ancestor_id, :descendant_id], :unique => true, :null => false
+    add_index :group_hierarchies, [:ancestor_id, :descendant_id], :unique => true
     
     # For "all ancestors of..." selects
     add_index :group_hierarchies, [:descendant_id]  
