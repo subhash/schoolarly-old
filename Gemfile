@@ -42,5 +42,5 @@
   gem 'mysql',  '2.8.1', :group => :development
   gem 'mysql2', '0.2.6', :group => :development
 
-  gem 'postgres', :group => :production
+  gem 'pg', '0.8.0',  :group => :production
   gem "composite_primary_keys", "~> 2.3.5"

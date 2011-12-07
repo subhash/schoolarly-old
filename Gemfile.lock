@@ -66,7 +66,7 @@ GEM
     nokogiri (1.5.0)
     oauth (0.4.5)
     pdfkit (0.5.2)
-    postgres (0.7.9.2008.01.28)
+    pg (0.8.0)
     rack (1.1.2)
     rails (2.3.14)
       actionmailer (= 2.3.14)
@@ -134,7 +134,7 @@ DEPENDENCIES
   newrelic_rpm
   oauth (>= 0.3.5)
   pdfkit
-  postgres
+  pg (= 0.8.0)
   rails (~> 2.3.8)
   redhillonrails_core
   rest-client
