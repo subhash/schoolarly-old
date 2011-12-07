@@ -25,6 +25,8 @@ GEM
       xml-simple
     builder (3.0.0)
     chronic (0.6.6)
+    composite_primary_keys (2.3.5.1)
+      activerecord (>= 2.3.5)
     desert (0.5.4)
     dynamic_attributes (1.2.0)
     google-geocode (1.2.1)
@@ -64,7 +66,7 @@ GEM
     nokogiri (1.5.0)
     oauth (0.4.5)
     pdfkit (0.5.2)
-    pg (0.11.0)
+    postgres (0.7.9.2008.01.28)
     rack (1.1.2)
     rails (2.3.14)
       actionmailer (= 2.3.14)
@@ -112,6 +114,7 @@ DEPENDENCIES
   acts_as_list (~> 0.1)
   aws-s3
   chronic
+  composite_primary_keys (~> 2.3.5)
   desert (>= 0.5.2)
   dynamic_attributes
   google-geocode (~> 1.2.1)
@@ -131,7 +134,7 @@ DEPENDENCIES
   newrelic_rpm
   oauth (>= 0.3.5)
   pdfkit
-  pg
+  postgres
   rails (~> 2.3.8)
   redhillonrails_core
   rest-client
