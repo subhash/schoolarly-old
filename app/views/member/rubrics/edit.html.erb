@@ -16,7 +16,7 @@
 </div>
 <% content_for :sidebar do %>
     <%= render :partial => 'manage' %>
-	<%= render :partial => 'shared/groups' :locals => {:shareable => @rubric} %>
+	<%= render :partial => 'shared/groups', :locals => {:shareable => @rubric} %>
 <% end %>
 
 

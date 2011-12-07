@@ -6,7 +6,6 @@
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-
 require 'desert'
 
 Rails::Initializer.run do |config|
