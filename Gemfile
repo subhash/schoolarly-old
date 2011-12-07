@@ -7,6 +7,7 @@
   gem "rails", "~> 2.3.8"
     
   gem 'redhillonrails_core'
+  gem 'hoe', '2.4.0'
   gem 'google-geocode', '~> 1.2.1', :require => 'google_geocode'
   gem 'oauth', '>= 0.3.5'
   gem 'aasm'
