@@ -236,7 +236,7 @@ module ClosureTree
       end
       
       def without_self(scope)
-#        scope.where(["#{quoted_table_name}.#{self.class.primary_key} != ?", self])
+        #        scope.where(["#{quoted_table_name}.#{self.class.primary_key} != ?", self])
         scope.find(:all, :conditions => ["#{quoted_table_name}.#{self.class.primary_key} != ?", self])
       end
       
