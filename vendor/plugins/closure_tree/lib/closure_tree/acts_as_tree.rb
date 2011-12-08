@@ -43,19 +43,41 @@ module ClosureTree
         :foreign_key => parent_column_name,
         :dependent => closure_tree_options[:dependent]
       
-      has_and_belongs_to_many :self_and_ancestors,
+      has_many :ancestor_hierarchies, 
+        :class_name => hierarchy_class_name,
+        :foreign_key => "descendant_id"
+      
+      has_many :self_and_ancestors, 
         :class_name => ct_class.to_s,
-        :join_table => hierarchy_table_name,
-        :foreign_key => "descendant_id",
-        :association_foreign_key => "ancestor_id",
+        :through => :ancestor_hierarchies,
+        :source => :ancestor,
+        :foreign_key => "ancestor_id",
         :order => "generations asc"
       
-      has_and_belongs_to_many :self_and_descendants,
+      has_many :descendant_hierarchies, 
+        :class_name => hierarchy_class_name,
+        :foreign_key => "ancestor_id"
+      
+      has_many :self_and_descendants, 
         :class_name => ct_class.to_s,
-        :join_table => hierarchy_table_name,
-        :foreign_key => "ancestor_id",
-        :association_foreign_key => "descendant_id",
+        :through => :descendant_hierarchies,
+        :source => :descendant,
+        :foreign_key => "descendant_id",
         :order => "generations asc"
+      
+      #      has_and_belongs_to_many :self_and_ancestors,
+      #        :class_name => ct_class.to_s,
+      #        :join_table => hierarchy_table_name,
+      #        :foreign_key => "descendant_id",
+      #        :association_foreign_key => "ancestor_id",
+      #        :order => "generations asc"
+      #      
+      #      has_and_belongs_to_many :self_and_descendants,
+      #        :class_name => ct_class.to_s,
+      #        :join_table => hierarchy_table_name,
+      #        :foreign_key => "ancestor_id",
+      #        :association_foreign_key => "descendant_id",
+      #        :order => "generations asc"
       
       #      scope :roots, where(parent_column_name => nil)
       
