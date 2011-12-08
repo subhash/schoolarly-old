@@ -1,8 +1,8 @@
-  source "http://gemcutter.org"
- # source "http://code.whytheluckystiff.net"
- # source "http://rubygems.org"
- # source "http://gems.rubyforge.org"
- # source "http://gems.github.com"  
+ source "http://gemcutter.org"
+ source "http://code.whytheluckystiff.net"
+ source "http://rubygems.org"
+ source "http://gems.rubyforge.org"
+ source "http://gems.github.com"  
   
   gem "rails", "2.3.8"
   gem "rake", "0.8.7", :require => false
