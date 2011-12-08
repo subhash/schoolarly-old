@@ -14,8 +14,6 @@ class Video < ActiveRecord::Base
   
   #  validates :link, :presence => true, :domain => true
   
-  
-  
   def embed(width = "640", height = "390")
     embed_code = "<iframe src='#{url}' width='#{width}' height='#{height}' frameborder='0' allowfullscreen></iframe>"
   end
@@ -107,7 +105,7 @@ class Video < ActiveRecord::Base
                    /^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([A-Za-z0-9_-]{11})/,
                    /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/user\/[^\/]+\/?#(?:[^\/]+\/){1,4}([A-Za-z0-9_-]{11})/
       ]
-      video_id = video_regexp.each { |m| return m.match(link)[1] unless m.match(link).nil? }
+      video_id = video_regexp.each { |m| return m.match(self[:link])[1] unless m.match(self[:link]).nil? }
       when "www.vimeo.com"
       video_id = @uri.path.delete('/')
     end
@@ -115,7 +113,7 @@ class Video < ActiveRecord::Base
   end
   
   def parse_it
-    @uri = URI.parse( link )
+    @uri = URI.parse(self[:link])
   end
   
 end

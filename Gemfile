@@ -1,16 +1,17 @@
   source "http://gemcutter.org"
-  source "http://code.whytheluckystiff.net"
-  source "http://rubygems.org"
-  source "http://gems.rubyforge.org"
-  source "http://gems.github.com"  
+ # source "http://code.whytheluckystiff.net"
+ # source "http://rubygems.org"
+ # source "http://gems.rubyforge.org"
+ # source "http://gems.github.com"  
   
   gem "rails", "2.3.8"
-  gem "rake", "0.8.7"
+  gem "rake", "0.8.7", :require => false
   
   gem 'redhillonrails_core'
   gem 'hoe', '2.4.0'
   gem 'google-geocode', '~> 1.2.1', :require => 'google_geocode'
   gem 'oauth', '>= 0.3.5'
+  gem 'rubyist-aasm', '~> 2.1.1'
   gem 'aasm'
   gem 'linkingpaths-acts_as_abusable','0.0.2', :require => 'acts_as_abusable'
   gem 'mbleigh-acts-as-taggable-on','1.0.5', :require => 'acts-as-taggable-on'
@@ -22,6 +23,7 @@
   gem 'mislav-will_paginate','~> 2.3.6', :require => 'will_paginate'
   gem 'desert','>= 0.5.2', :require => 'desert'
   gem 'i18n','= 0.4.0'
+  gem 'syntax', '>=1.0.0'
   
   gem 'aws-s3', :require => 'aws/s3'
   gem 'right_aws'

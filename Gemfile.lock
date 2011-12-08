@@ -1,9 +1,5 @@
 GEM
   remote: http://gemcutter.org/
-  remote: http://code.whytheluckystiff.net/
-  remote: http://rubygems.org/
-  remote: http://gems.rubyforge.org/
-  remote: http://gems.github.com/
   specs:
     RedCloth (4.2.9)
     aasm (3.0.0)
@@ -91,6 +87,7 @@ GEM
       i18n
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
+    rubyist-aasm (2.1.1)
     rubyzip (0.9.5)
     syntax (1.0.0)
     thoughtbot-factory_girl (1.2.2)
@@ -140,6 +137,8 @@ DEPENDENCIES
   redhillonrails_core
   rest-client
   right_aws
+  rubyist-aasm (~> 2.1.1)
+  syntax (>= 1.0.0)
   thoughtbot-factory_girl
   tiny_mce
   tog-tog (>= 0.5)

@@ -4,7 +4,7 @@ class Picto::Photo < ActiveRecord::Base
   acts_as_commentable
   acts_as_taggable
   acts_as_rateable :average => true
-  acts_as_list :scope => :photoset
+#  acts_as_list :scope => :photoset
 
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   belongs_to :photoset
