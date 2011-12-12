@@ -41,7 +41,8 @@ module ClosureTree
       has_many :children,
         :class_name => ct_class.to_s,
         :foreign_key => parent_column_name,
-        :dependent => closure_tree_options[:dependent]
+        :dependent => closure_tree_options[:dependent],
+        :order => closure_tree_options[:order]
       
       has_many :ancestor_hierarchies, 
         :class_name => hierarchy_class_name,
