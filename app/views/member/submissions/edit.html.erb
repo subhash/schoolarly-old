@@ -1,4 +1,6 @@
 <%= include_tiny_mce_if_needed %>
+<% include_form_effects %>
+<% include_javascript "busy_ajax_jquery" %>
 <div class="titleB">
     <%= link_to @assignment.post.title, member_assignment_path(@assignment) %>> <%= I18n.t('submissions.site.new.title', :user => @user.profile.full_name) %>
 </div>
