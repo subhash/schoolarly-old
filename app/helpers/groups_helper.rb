@@ -1,7 +1,8 @@
 module GroupsHelper
   def ancestor_path_for(group)
-    s = group.ancestors.reverse.map{|g| link_to(g.name, (current_user ? member_group_path(g) : group_path(g))) }.join " > " 
-    return s + " > "
+    return unless group.parent
+      s = group.parent.self_and_ancestors.reverse.map{|g| link_to(g.name, (current_user ? member_group_path(g) : group_path(g))) }.join " > " 
+      return s + " > "
   end
   
   def path_for(group)
