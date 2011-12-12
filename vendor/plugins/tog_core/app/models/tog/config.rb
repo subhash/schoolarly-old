@@ -68,7 +68,6 @@ module Tog
 
       private
       def table_exists?
-        return true
         existence = ActiveRecord::Base.connection.tables.include?(self.table_name)
         unless existence
           logger.warn "Table 'config' not exists. Just the last effort to create the config table if doesn't exists"
