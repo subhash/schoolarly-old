@@ -805,6 +805,76 @@ en:
       remove:
         confirm: "This will remove video from Schoolarly. Are you sure?"
         
+  help:
+    no_of_categories: 8
+    category_1:
+      title: Basics
+      no_of_questions: 4
+      q_1:
+        question: How do I log in to Schoolarly?
+        answer: |
+         <p>
+          When your school or college signs up for Schoolarly, you will receive an email with the subject "Invitation from <administrator>", which will contain a link to reset your account's password. 
+          Click on this to set a new password.
+         </p>
+          <p>
+          You can visit <a href="www.schoolarly.com">www.schoolarly.com</a> from any computer with a browser and internet connection. 
+          You need to click on the "Login" link and enter your email and the password you set to view your pages on Schoolarly.
+          </p>
+      q_2:
+        question: How do I change my password?
+        answer: |
+          After you login to Schoolarly, you will notice a "Change password" link at the bottom of every page. Clicking on this takes you to the "Change password" page.
+      q_3:
+        question: How do I change my profile picture?
+        answer: |
+          Click on the "Edit profile" link at the bottom of the Schoolarly page, click on the "Choose file" button to choose a photo file and click on "Update profile" button. 
+      q_4:
+        question: I have forgotten my password. What should I do?
+        answer: |
+          Go to <a href="http://www.schoolarly.com/forgot">http://www.schoolarly.com/forgot</a> and enter the email address with which your institution added you to Schoolarly and click "Send". 
+          This will send an email to your email account containing a link that can be used to set a new password for your Schoolarly account.
+    category_2:
+      title: Getting Started
+      no_of_questions: 1
+      q_1:
+        question: What do I see on the home page once I log in?
+        answer: |
+          As soon as you login to Schoolarly, you are taken to your homepage. You will see your groups at the right, like your school or college and your classes. You can click on each of these groups to go to the group page.
+          In the middle of the page, you see the latest posts from all your groups.
+    category_3:
+      title: Popular Tasks
+      no_of_questions: 4
+      q_1:
+        question: How do I post a message to my school/college?
+        answer: |
+          Go to the group page and click on Message from the right bar. Enter the message you want to send to all the group members and click "Post message"
+      q_2:
+        question: How do I change my password?
+        answer: |
+          Go to the group page and click on Note from the right bar. After providing a title, you can type in the document with formatting in the box below. 
+          If you would instead prefer to attach a pdf, doc or ppt file, click on "Or upload a document" and choose the file before clicking on "Create Post"
+      q_3:
+        question: How do I change my profile picture?
+        answer: |
+          Click on the "Edit profile" link at the bottom of the Schoolarly page, click on the "Choose file" button to choose a photo file and click on "Update profile" button. 
+      q_4:
+        question: I have forgotten my password. What should I do?
+        answer: |
+          Go to http://www.schoolarly.com/forgot and enter the email address with which your institution added you to Schoolarly and click "Send". 
+          This will send an email to your email account containing a link that can be used to set a new password for your Schoolarly account.      
+    category_4:
+      title: Video Lectures
+    category_5:
+      title: Student questions
+    category_6:
+      title: Troubleshooting
+    category_7:
+      title: Advanced
+    category_8:
+      title: More Questions
+
+        
    
 
 

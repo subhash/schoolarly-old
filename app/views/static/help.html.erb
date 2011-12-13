@@ -1,27 +1,40 @@
-<% include_stylesheet 'demo' %>
-<h2><span>Screencasts</span></h2>
-<div class="image">
-    <div class="title">
-        School Administrator setting up a school
-    </div>
-    <iframe class="demo" title="YouTube video player" src="http://www.youtube.com/embed/ao3dL2ABEeg" frameborder="0" allowfullscreen>
-    </iframe>
+<% @columns_distribution = "col_30_70" %>
+<% include_stylesheet 'help' %>
+<% include_javascript "jquery-1.4.2.min.js" %>
+<script type="text/javascript">
+    jQuery.noConflict();
+    
+    jQuery(document).ready(function(){
+        jQuery('li.question a').click(function(){
+            jQuery(this).closest('li.question').next().toggle();
+        });
+    });
+</script>
+<div class="category_navigation">
+    <h2>Help</h2>
+    <ul>
+        <% for i in (1..2) do %>
+        <li>
+            <a href =<%="#category_#{i}" %>><%= I18n.t("help.category_#{i}.title") %></a>
+        </li>
+        <% end %>
+    </ul>
 </div>
-<br/>
-<br/>
-<div>
-    <div class="title">
-        Communication and Collaboration between teacher and students
-    </div>
-    <iframe class="demo" title="YouTube video player" src="http://www.youtube.com/embed/nIOVcdrMGCA" frameborder="0" allowfullscreen>
-    </iframe>
+<% content_for :sidebar do %>
+<% for i in (1..2) do %>
+<div id=<%="category_#{i}" %>>
+    <h2 class="category"><%= I18n.t("help.category_#{i}.title") %></h2>
+    <% no_of_questions = Integer(I18n.t("help.category_#{i}.no_of_questions")) %>
+    <ul class="faq_list">
+        <%for q in (1..no_of_questions) do %>
+        <li class="question">
+            <%= link_to I18n.t("help.category_#{i}.q_#{q}.question"), '#' %>
+        </li>
+        <li class="answer" style="display: none;">
+            <%= I18n.t("help.category_#{i}.q_#{q}.answer") %>
+        </li>
+        <% end %>
+    </ul>
 </div>
-<br/>
-<br>
-<div>
-    <div class="title">
-        Assessment and grading
-    </div>
-    <iframe class="demo" title="YouTube video player" src="http://www.youtube.com/embed/-026XiumjrU" frameborder="0" allowfullscreen>
-    </iframe>
-</div>
+<% end %>
+<% end %>
