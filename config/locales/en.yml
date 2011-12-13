@@ -844,35 +844,116 @@ en:
           <p>In the middle of the page, you see the latest posts from all your groups.</p>
     category_3:
       title: Popular Tasks
-      no_of_questions: 4
+      no_of_questions: 7
       q_1:
         question: How do I post a message to my school/college?
         answer: |
           <p>Go to the group page and click on Message from the right bar. Enter the message you want to send to all the group members and click "Post message"</p>
       q_2:
-        question: How do I change my password?
+        question: How do I share a document with all the students in my class?
         answer: |
-          <p>Go to the group page and click on Note from the right bar. After providing a title, you can type in the document with formatting in the box below. </p>
-          <p>If you would instead prefer to attach a pdf, doc or ppt file, click on "Or upload a document" and choose the file before clicking on "Create Post"</p>
+          <p>Go to the group page and click on Note from the right bar. After providing a title, you can type in the document with formatting in the box below.
+          If you would instead prefer to attach a pdf, doc or ppt file, click on "Or upload a document" and choose the file before clicking on "Create Post"</p>
+          <p>Once the document is posted, it is viewable by all the group members. If the document is an uploaded file, Schoolarly displays it with a viewer within document page.
+           The file can also be downloaded by clicking on the "Download" link at the top of the page.</p>
       q_3:
-        question: How do I change my profile picture?
+        question: How do I send an assignment to my students?
         answer: |
-          <p>Click on the "Edit profile" link at the bottom of the Schoolarly page, click on the "Choose file" button to choose a photo file and click on "Update profile" button. </p>
+          <p>Go to the group page and click on Activity from the right bar. Enter a title for the assignment and provide the text in the box or attach a document. Change the "published at" field if you want the assignment to be seen by students after a certain date. </p>
+          <p>Select "Invite student submissions" if you would like students to be able to submit their answers online. This is usually a good idea for assignment activities. Select a due date for student submissions.
+          You can ignore the other date field which usually applies for class-activities like exams, group discussions etc. </p>
+          <p>You can enter a total score and attach a rubric (see advanced section) for the assignment which will be useful for grading after the students send in their submissions </p>
+          <p>Click on create to create the assignment. </p>
       q_4:
-        question: I have forgotten my password. What should I do?
+        question: How do students make submissions to the assignments I give?
         answer: |
-          <p>Go to http://www.schoolarly.com/forgot and enter the email address with which your institution added you to Schoolarly and click "Send". </p>
-          <p>This will send an email to your email account containing a link that can be used to set a new password for your Schoolarly account.      </p>
+          <p>As soon as your assignment is published in Schoolarly, students of the group will see it in their homepage when they log in. 
+          On the assignment page, they can read about the assignment and post their questions. Some of them may have suggestions on where to find more resources on that topic or related information. 
+          They can use the comments features for these needs. You can answer their questions and interact with them through your homepage.</p>
+          <p>They can compose their answer or attach a document as their submission for the assignment. If the submission is not yet complete, they can save it as a draft for later use by clicking on "Save draft". 
+          Once they are done with the assignment, they can click the "Submit" button to allow the teacher to review their submission. </p>
+      q_5:
+        question: How do I grade assignments and provide comments?
+        answer: |
+          <p>Once a student submits an assignment, it shows up against their name in the assignment page. You can view their submission document within the page and can make comments and markings while reviewing them. 
+          You can even draw on the submission to illustrate a point or underline some text. All these annotations will be viewable by the student who submitted that entry.</p>
+          <p>You can also enter a score for the submission. Once all the submissions of the students are graded, you can click on "Publish grades" to allow them to see the results of your evaluation. </p>
+          <p>(See advanced section for information on rubrics)</p>
+      q_6:
+        question: How can I provide the solution or answer-key to the assignment?
+        answer: |
+          <p>For each assignment you create, you are also provided with a "Submit answer" link near the assignment in the homepage. 
+          You can use this to submit the solution to the assignment once the deadline is over. Your students will view this answer along with theirs in their assignment page.</p>
+          <p>They can compose their answer or attach a document as their submission for the assignment. If the submission is not yet complete, they can save it as a draft for later use by clicking on "Save draft". 
+          Once they are done with the assignment, they can click the "Submit" button to allow the teacher to review their submission. </p>
+      q_7:
+        question: What is the best way to track examinations in Schoolarly?
+        answer: |
+          <p>A good way to track examinations is to create them as activities in the group. Go to the group page and click on "Activity" in the right bar. 
+          Enter a title and description and leave "Invite student submissions" unselected. Enter the date and time of the examination and the total score it'll be graded for.</p>
+          <p>One of the advantages of tracking examinations as activities is that they automatically show up in the calendar of each student (To check out your calendar, go to "Events" tab). 
+          They also show up in the group calendar (Go to group page and click on "View Calendar" on the right bar). Also, once the examination is complete, you can edit the examination activity and upload the question paper into it. 
+          If you are interested, you could scan the student answer paper and submit it against each of their name so that they can refer to it later. You can also enter a score for the exam and later use it in reports. (See reports in advanced section)</p>     
     category_4:
       title: Video Lectures
+      no_of_questions: 2
+      q_1:
+        question: How do I share useful videos with the class?
+        answer: |
+          <p>Go to the group page and click on "Video" on the right bar. Enter a title and description and provide the youtube or vimeo link to the video you want to share 
+          (If you have it in the form of a MPEG file, you will need to first upload it to youtube before you can share it in Schoolarly).</p>
+      q_2:
+        question: Where can I find instructional videos on the internet?
+        answer: |
+          <p>Just searching for a topic gets you great videos on youtube. There are also institutions that offer course content freely. For example,</p>
+          <p>Khan Academy - <a href="http://www.khanacademy.com">http://www.khanacademy.com</a>
+          MIT OpenCourseWare - <a href="http://ocw.mit.edu/index.htm">http://ocw.mit.edu/index.htm</a>
+          Stanford Engineering Everywhere - <a href="http://see.stanford.edu/see/courses.aspx">http://see.stanford.edu/see/courses.aspx</a></p>      
     category_5:
       title: Student questions
+      no_of_questions: 2
+      q_1:
+        question: How do I make my submission to an assignment?
+        answer: |
+          <p>On the assignment page, click on the "Submit answer" link. You can either compose your answer right there on the page or attach a document. 
+          "Save draft" button saves your work for later edit and the "Submit" button submits the assignment for grading.</p>
+      q_2:
+        question: How do I ask questions about assignments or video lectures?
+        answer: |
+          <p>Use the comments feature for asking questions and making your remarks. 
+          These will be seen by the teachers and students in your class and they will be able to participate in the discussion you started by responding to your comments.</p>      
     category_6:
       title: Troubleshooting
+      no_of_questions: 1
+      q_1:
+        question: I am not able to view the document attached to a note
+        answer: |
+          <p>Some file formats are not supported by Google viewer and therefore we may be unable to display the files within the page. 
+          Please use the "Download" link at the top of the note page to download the document and view it on the local computer.</p>      
     category_7:
       title: Advanced
+      no_of_questions: 3
+      q_1:
+        question: Rubrics
+        answer: |
+          <p>We encourage institutions to use the rubric system while grading assignments and exams because it gives excellent feedback to the student about the grading process itself. 
+          You can create a rubric by clicking on the Rubrics tab and "Create rubric" link on the right side. A rubric allows you to define different criteria for assessing something and various scales for placing each criterion on. 
+          In Schoolarly, you can edit a rubric to add criteria and levels of your choice.</p>
+          <p>Once a rubric is created, it can be attached while creating or editing an assignment. Then, it can be used while grading the submissions to that assignment. </p>
+      q_2:
+        question: Reports
+        answer: |
+          <p>Coming soon</p>      
+      q_3:
+        question: Curriculum Mapping
+        answer: |
+          <p>Coming soon</p>           
     category_8:
       title: More Questions
+      no_of_questions: 1
+      q_1:
+        question: Rubrics
+        answer: <p> Please contact us at info@schoolarly.com </p>    
 
         
    

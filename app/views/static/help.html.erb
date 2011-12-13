@@ -5,15 +5,17 @@
     jQuery.noConflict();
     
     jQuery(document).ready(function(){
-        jQuery('li.question a').click(function(){
+        jQuery('li.question a').click(function(e){
+			e.preventDefault();
             jQuery(this).closest('li.question').next().toggle();
         });
     });
 </script>
 <div class="category_navigation">
-    <h2>Help</h2>
+    <h2>FAQ</h2>
+	<% no_of_categories = Integer(I18n.t("help.no_of_categories")) %>
     <ul>
-        <% for i in (1..2) do %>
+        <% for i in (1..no_of_categories) do %>
         <li>
             <a href =<%="#category_#{i}" %>><%= I18n.t("help.category_#{i}.title") %></a>
         </li>
@@ -21,7 +23,7 @@
     </ul>
 </div>
 <% content_for :sidebar do %>
-<% for i in (1..2) do %>
+<% for i in (1..no_of_categories) do %>
 <div id=<%="category_#{i}" %>>
     <h2 class="category"><%= I18n.t("help.category_#{i}.title") %></h2>
     <% no_of_questions = Integer(I18n.t("help.category_#{i}.no_of_questions")) %>
