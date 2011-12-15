@@ -16,6 +16,7 @@
     <% if @submission.late? %>
     <span class="titleB late"><%= I18n.t('submissions.model.late_entry')%></span>
     <% end %>
+	<%= link_to icon_for_submission + I18n.t('assignments.site.download'), @submission.post.doc.url, :title => I18n.t('assignments.site.download_file'), :class => 'float_right icon'  if @submission.post.doc.file? %>
 </div>
 <% unless @submission.user == @submission.submitter %>
 <div class="float_right">
