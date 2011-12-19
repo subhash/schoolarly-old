@@ -17,7 +17,8 @@ class Member::StudentsController < Member::BaseController
       if user.invite_over_email(current_user)
         # TODO check if you are allowed to invite
         @group.invite_and_accept(user)
-        GroupMailer.deliver_entry_notification(@group, current_user, user)  
+#        commenting out entry into group email for now
+#        GroupMailer.deliver_entry_notification(@group, current_user, user)  
         if(femail)
           father = create_user(femail, fname, Parent.new)        
           if father.invite_over_email(current_user)

@@ -173,7 +173,8 @@ class Member::GroupsController < Member::BaseController
           else
             @group.invite_and_accept(user)
             @group.grant_moderator(user) unless params[:moderator].blank?
-            GroupMailer.deliver_entry_notification(@group, current_user, user)  
+            #        commenting out entry into group email for now
+            #            GroupMailer.deliver_entry_notification(@group, current_user, user)  
           end
         end        
       end
