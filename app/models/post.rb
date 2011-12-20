@@ -17,7 +17,10 @@ class Post < ActiveRecord::Base
   acts_as_sanitized
   
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
-  has_attached_file :doc, Tog::Plugins.storage_options   
+  #  has_attached_file :doc, Tog::Plugins.storage_options 
+  has_attached_file :doc, 
+  {:styles =>  
+    {:big    => Tog::Plugins.settings(:tog_picto, "photo.versions.big")}}.merge(Tog::Plugins.storage_options)
   
   validates_presence_of :body, :unless => Proc.new{|p| p.doc.file? }
   
@@ -70,6 +73,10 @@ class Post < ActiveRecord::Base
     rescue Exception => e
       puts e.inspect
     end      
+  end
+  
+  def image?
+    doc_content_type && doc_content_type.include?("image")
   end
   
   private
