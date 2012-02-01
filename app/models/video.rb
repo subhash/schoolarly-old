@@ -101,13 +101,9 @@ class Video < ActiveRecord::Base
     video_id = nil
     case base_uri
       when "www.youtube.com"
-      video_regexp = [ /^(?:https?:\/\/)?(?:www\.)?youtube\.com(?:\/v\/|\/watch\?v=)([A-Za-z0-9_-]{11})/, 
-                   /^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([A-Za-z0-9_-]{11})/,
-                   /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/user\/[^\/]+\/?#(?:[^\/]+\/){1,4}([A-Za-z0-9_-]{11})/
-      ]
-      video_id = video_regexp.each { |m| return m.match(self[:link])[1] unless m.match(self[:link]).nil? }
+        video_id = CGI::parse(@uri.query)["v"].first
       when "www.vimeo.com"
-      video_id = @uri.path.delete('/')
+        video_id = @uri.path.delete('/')
     end
     video_id
   end
