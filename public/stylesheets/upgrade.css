@@ -398,3 +398,7 @@ table.profiles.tableE th, table.profiles.tableE td {
 td.hover {
     text-align: center;
 }
+
+.hide {
+	display: none;
+}

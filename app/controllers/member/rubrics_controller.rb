@@ -94,6 +94,7 @@ class Member::RubricsController < Member::BaseController
   end
   
   def add_level
+    puts "header for level = "+request.inspect
     if @rubric.levels.size > 0
       points = @rubric.levels.first.points == 0 ? @rubric.levels.last.points + 1 :  (@rubric.levels.last.points +  @rubric.levels.first.points) 
     else  

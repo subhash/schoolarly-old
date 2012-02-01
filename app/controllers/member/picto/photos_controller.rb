@@ -47,6 +47,13 @@ class Member::Picto::PhotosController < Member::BaseController
     @photo = Picto::Photo.find(params[:id])
     auth_photo(@photo)
     @shared_groups = @photo.shares_to_groups.collect(&:shared_to)
+    respond_to do |format|
+      format.js {
+        render :partial => 'member/picto/photos/photo', :object => @photo
+      }
+      format.html{
+        render :template => 'member/picto/photos/show'}
+    end
   end
   
   private  
