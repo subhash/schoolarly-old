@@ -22,6 +22,8 @@ class Post < ActiveRecord::Base
   {:styles =>  
     {:big    => Tog::Plugins.settings(:tog_picto, "photo.versions.big")}}.merge(Tog::Plugins.storage_options)
   
+  before_post_process :image?
+  
   validates_presence_of :body, :unless => Proc.new{|p| p.doc.file? }
   
   validates_attachment_presence :doc, :if => Proc.new{|p| p.body.blank?}
