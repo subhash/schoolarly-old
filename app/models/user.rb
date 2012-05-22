@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :rubrics
   has_many :blogs, :through => :bloggerships, :include => :posts
   has_many :videos
+  has_many :posts
+  
+  after_create :default_notebook
   
   def student?
     person.is_a? Student
@@ -86,6 +89,18 @@ class User < ActiveRecord::Base
     return b
   end
   
+  def default_notebook
+    #     same group names can be there under different parents. so not checking on title
+    b = self.blogs.find_by_title_and_description("Default Notebook", "Default notebook for "+email)
+    unless b
+      bs = self.bloggerships.new
+      bs.build_blog(:title => "Default Notebook", :description => "Default notebook for "+email, :author => self)
+      bs.save
+      b = bs.blog
+    end
+    return b
+  end
+  
   #  def create_default_blog
   #    if self.recently_activated?      
   #      blog_name = "#{self.profile.full_name}'s blog"
@@ -103,5 +118,26 @@ class User < ActiveRecord::Base
   #    self.bloggerships.find_by_rol("default").blog
   #  end
   
-  
+  def self.move_blogs_to_default(*args)
+    if args[0]
+      users = User.find(args[0])
+    else
+      users = User.all
+    end
+    for user in users do
+      puts "User - "+user.inspect
+      default_note = user.default_notebook
+      for post in user.posts do
+        puts "Post - "+post.inspect
+        post.blog = default_note
+        post.save!
+      end        
+      for blog in user.blogs
+        unless blog.default_notebook?
+          blog.destroy
+        end
+      end
+      default_note.save!
+    end
+  end
 end

@@ -171,6 +171,7 @@ en:
         view_all: "View all groups"
       schools:
         title: "School Networks"
+        view_all: "View all schools"
       klasses:
         title: "Class Networks"
         view_all: "View all classes"

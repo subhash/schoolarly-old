@@ -11,7 +11,8 @@ module GroupsHelper
   end
   
   def default_blog_for(group)
-    current_user.default_notebook_for(group)
+    #    current_user.default_notebook_for(group)
+    current_user.default_notebook
   end
   
 end

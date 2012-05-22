@@ -22,7 +22,7 @@ class Group < ActiveRecord::Base
   named_scope :subject, :conditions => {:network_type => 'Subject'}
   named_scope :default, :conditions => {:network_type => nil }
   
-  before_update :update_default_notebooks, :if => "name_changed?"
+#  before_update :update_default_notebooks, :if => "name_changed?"
   
   aasm_state :archived, :on_transition => :do_archive
   aasm_event :archive do

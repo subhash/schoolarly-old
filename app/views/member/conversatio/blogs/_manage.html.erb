@@ -2,7 +2,7 @@
   <div class="portlet portletD" id="portlet_userWall">
       <h2><span><%= I18n.t('conversatio.views.member.blogs.manage.title', :blog_title => blog.title) %></span></h2>
       <div class="portlet_content">
-      	<% unless (blog.default_for_group?) %> 
+      	<% unless (blog.default_notebook?) %> 
         <%= link_to I18n.t('conversatio.views.member.blogs.manage.edit_blog'), edit_member_conversatio_blog_path(blog) %>
         <br/>
 		<% end %>

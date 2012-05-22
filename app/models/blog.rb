@@ -23,4 +23,13 @@ class Blog < ActiveRecord::Base
     end
     return false
   end
+  
+    def default_notebook?
+    User.all.each do |u|
+      if self.description(:source) == "Default notebook for "+u.email && self.title == "Default Notebook"
+        return true
+      end
+    end
+    return false
+  end
 end
