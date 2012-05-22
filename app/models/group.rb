@@ -201,19 +201,17 @@ class Group < ActiveRecord::Base
   
   protected
   def do_archive
-    for user in users
-      archive_notebook = user.archive_notebook
-      puts "archive notebook = "+archive_notebook.inspect
-      default_notebook = user.default_notebook_for(self)
-      puts "default notebook = "+default_notebook.inspect
-      for note in default_notebook.posts
-        note.blog = archive_notebook
-        note.save!
-      end
-      archive_notebook.save!
-      default_notebook.save!
-      default_notebook.destroy!
-    end
+#    for user in users
+#      archive_notebook = user.archive_notebook
+#      default_notebook = user.default_notebook_for(self)
+#      for note in default_notebook.posts
+#        note.blog = archive_notebook
+#        note.save!
+#      end
+#      archive_notebook.save!
+#      default_notebook.save!
+#      default_notebook.destroy!
+#    end
     unless leaf?
       for child in children
         child.archive!
