@@ -402,3 +402,24 @@ td.hover {
 .hide {
 	display: none;
 }
+
+.archive{
+	position: relative;
+	padding: 0 10px 0 10px;
+	color: #333;
+	font-family: Helvetica,arial,freesans,clean,sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 24px;
+	text-shadow: 0 1px 0 white;
+	white-space: nowrap;
+	border: 1px solid #D4D4D4;
+	border-bottom-color: #BCBCBC;
+	border-radius: 3px;
+	background: #FAFAFA;
+	background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+	background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA',endColorstr='#EAEAEA')";
+	cursor: pointer;
+	display: block;
+}

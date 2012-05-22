@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
   
   # Add new validates_uniqueness_of with correct scope
-  validates_uniqueness_of :name, :scope => 'parent_id', :case_sensitive => false
+  validates_uniqueness_of :name, :scope => [:parent_id, :state], :case_sensitive => false
   
   belongs_to :network, :polymorphic => true
   #include all members, pending members etc
@@ -23,6 +23,11 @@ class Group < ActiveRecord::Base
   named_scope :default, :conditions => {:network_type => nil }
   
   before_update :update_default_notebooks, :if => "name_changed?"
+  
+  aasm_state :archived, :on_transition => :do_archive
+  aasm_event :archive do
+    transitions :from => :active, :to => :archived
+  end
   
   has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc"  do
     def of_type(type)
@@ -164,12 +169,55 @@ class Group < ActiveRecord::Base
   end
   
   def update_default_notebooks
+    old_name = name_was
+    new_name = name
+    unless leaf?
+      for child in children
+        child.update_child_notebooks(old_name, new_name)
+      end
+    end 
     s = []
     ancestors.reverse.each{|a| s << a.name + " > "}
     s = s.join+name_was 
     for user in  users
       b = user.blogs.find_by_description(Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+s)
-      b.update_attributes(:title => self.display_name, :description => (Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+self.path))
+      b.update_attributes(:title => self.display_name, :description => (Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+self.path)) if b
+    end
+  end
+  
+  def update_child_notebooks(old_name, new_name)
+    new_path = self.path.sub(old_name,new_name)
+    new_title = self.display_name.sub(old_name, new_name)
+    unless leaf?
+      for child in children
+        child.update_child_notebooks(old_name, new_name)
+      end
+    end 
+    for user in  users
+      b = user.default_notebook_for(self)
+      b.update_attributes(:title => new_title, :description => (Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+new_path)) if b
+    end
+  end
+  
+  protected
+  def do_archive
+    for user in users
+      archive_notebook = user.archive_notebook
+      puts "archive notebook = "+archive_notebook.inspect
+      default_notebook = user.default_notebook_for(self)
+      puts "default notebook = "+default_notebook.inspect
+      for note in default_notebook.posts
+        note.blog = archive_notebook
+        note.save!
+      end
+      archive_notebook.save!
+      default_notebook.save!
+      default_notebook.destroy!
+    end
+    unless leaf?
+      for child in children
+        child.archive!
+      end
     end
   end
   

@@ -307,6 +307,14 @@ class Member::GroupsController < Member::BaseController
     redirect_to member_group_path(@group)
   end
   
+  def archive
+    date = Date.today.to_s(:db)
+    new_name = @group.name + "[Archived on "+date+"]"
+    @group.update_attributes!(:name => new_name)
+    @group.archive(current_user)
+    redirect_to member_group_path(@group)
+  end
+  
   
   def update_profiles
     @users = params[:users]

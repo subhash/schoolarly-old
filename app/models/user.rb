@@ -69,9 +69,21 @@ class User < ActiveRecord::Base
   end
   
   
+  def archive_notebook
+    b = self.blogs.find_by_title_and_description("Archives", "Archive notebook")
+    unless b
+      bs = self.bloggerships.new
+      bs.build_blog(:title => "Archives", :description => "Archive notebook", :author => self)
+      bs.save
+      b = bs.blog
+    end
+    return b
+  end
+  
   def default_notebook_for(group)
     #     same group names can be there under different parents. so not checking on title
-    self.blogs.find_by_description(Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+group.path)
+    b = self.blogs.find_by_description(Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+group.path)
+    return b
   end
   
   #  def create_default_blog

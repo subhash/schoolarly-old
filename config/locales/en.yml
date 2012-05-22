@@ -211,6 +211,8 @@ en:
         removed: "%{user_count} user(s) removed"
       edit:
         title: "Settings"
+        archive:
+          title: "Archive Group"
         moderators:
           title: "Moderators"
           select:
