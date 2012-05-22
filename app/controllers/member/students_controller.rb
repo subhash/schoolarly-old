@@ -109,7 +109,7 @@ class Member::StudentsController < Member::BaseController
     email = email.strip if email
     user = User.find_by_email(email) 
     # If user belongs to same school, just add them
-    user = User.new(:email => email) unless (user.school == @group.school)
+    user = User.new(:email => email) unless (user && (user.school == @group.school))
     user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
     user.profile = Profile.new(:first_name => first,:last_name => last)
     user.person = person

@@ -35,7 +35,7 @@
                 I18n.t("tog_user.model.state")) %>
             </th>
             <% if @group %>
-            <% for group in @group.children %>
+            <% for group in @group.active_children %>
             <th scope="col">
                 <%= link_to group.name, member_group_path(group) %>
             </th>

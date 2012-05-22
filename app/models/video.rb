@@ -101,15 +101,19 @@ class Video < ActiveRecord::Base
     video_id = nil
     case base_uri
       when "www.youtube.com"
+      if @uri.query
         video_id = CGI::parse(@uri.query)["v"].first
+      else
+        video_id = link.split("/").last
+      end
       when "www.vimeo.com"
-        video_id = @uri.path.delete('/')
+      video_id = @uri.path.delete('/')
     end
     video_id
   end
   
   def parse_it
-    @uri = URI.parse(self[:link])
+    @uri = URI.parse(self.link)
   end
   
 end

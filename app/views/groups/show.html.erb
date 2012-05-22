@@ -61,7 +61,7 @@
 	  :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
  <% end %>
  
-<% @group.children.group_by(&:type).each do |type, groups| %>
+<% @group.active_children.group_by(&:type).each do |type, groups| %>
 	<%= render :partial => "groups_portlet", :locals => { 
 	:items => groups, 
 	:style => :portletG, 
