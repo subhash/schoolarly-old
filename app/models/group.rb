@@ -168,36 +168,36 @@ class Group < ActiveRecord::Base
     s.join+name
   end
   
-  def update_default_notebooks
-    old_name = name_was
-    new_name = name
-    unless leaf?
-      for child in children
-        child.update_child_notebooks(old_name, new_name)
-      end
-    end 
-    s = []
-    ancestors.reverse.each{|a| s << a.name + " > "}
-    s = s.join+name_was 
-    for user in  users
-      b = user.blogs.find_by_description(Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+s)
-      b.update_attributes(:title => self.display_name, :description => (Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+self.path)) if b
-    end
-  end
-  
-  def update_child_notebooks(old_name, new_name)
-    new_path = self.path.sub(old_name,new_name)
-    new_title = self.display_name.sub(old_name, new_name)
-    unless leaf?
-      for child in children
-        child.update_child_notebooks(old_name, new_name)
-      end
-    end 
-    for user in  users
-      b = user.default_notebook_for(self)
-      b.update_attributes(:title => new_title, :description => (Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+new_path)) if b
-    end
-  end
+#  def update_default_notebooks
+#    old_name = name_was
+#    new_name = name
+#    unless leaf?
+#      for child in children
+#        child.update_child_notebooks(old_name, new_name)
+#      end
+#    end 
+#    s = []
+#    ancestors.reverse.each{|a| s << a.name + " > "}
+#    s = s.join+name_was 
+#    for user in  users
+#      b = user.blogs.find_by_description(Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+s)
+#      b.update_attributes(:title => self.display_name, :description => (Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+self.path)) if b
+#    end
+#  end
+#  
+#  def update_child_notebooks(old_name, new_name)
+#    new_path = self.path.sub(old_name,new_name)
+#    new_title = self.display_name.sub(old_name, new_name)
+#    unless leaf?
+#      for child in children
+#        child.update_child_notebooks(old_name, new_name)
+#      end
+#    end 
+#    for user in  users
+#      b = user.default_notebook_for(self)
+#      b.update_attributes(:title => new_title, :description => (Tog::Config["plugins.schoolarly.group.notebook.default"]+" "+new_path)) if b
+#    end
+#  end
   
   protected
   def do_archive

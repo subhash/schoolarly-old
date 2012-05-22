@@ -13,11 +13,11 @@ class User < ActiveRecord::Base
   
   has_many :attachments
   has_many :rubrics
-  has_many :blogs, :through => :bloggerships, :include => :posts
+  has_many :blogs, :through => :bloggerships, :include => :posts, :dependent => :destroy
   has_many :videos
   has_many :posts
   
-  after_create :default_notebook
+  after_create :default_notebook  
   
   def student?
     person.is_a? Student
