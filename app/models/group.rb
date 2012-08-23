@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
   
   # Add new validates_uniqueness_of with correct scope
-  validates_uniqueness_of :name, :scope => [:parent_id, :state], :case_sensitive => false
+  validates_uniqueness_of :name, :scope => [:parent_id], :case_sensitive => false
   
   belongs_to :network, :polymorphic => true
   #include all members, pending members etc
