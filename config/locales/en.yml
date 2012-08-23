@@ -326,6 +326,11 @@ en:
     site:
       reset:
         cannot_find: Cannot find an associated user account. Please contact your school administrator
+        title : "Welcome to %{title}"
+        text_1 : "In order to access your account in Schoolarly, you will require a login id and a password."
+        text_2 : "Your login: "
+        text_3 : "Please provide a password of your preference below and use the same while logging in to Schoolarly"
+                
   
   schools:
     model:

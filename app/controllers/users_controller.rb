@@ -11,7 +11,8 @@ class UsersController < ApplicationController
         @user.register! and @user.activate! if @user.passive?
         self.current_user = @user
         flash[:ok] = I18n.t("tog_user.user.password_updated", :email => @user.email)
-        redirect_back_or_default(Tog::Config["plugins.tog_user.default_redirect_on_reset"])
+        redirect_to member_dashboard_path
+#        redirect_back_or_default(Tog::Config["plugins.tog_user.default_redirect_on_reset"])
       else
         render :action => :reset
       end

@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
   end
   
   def school
-    groups.school.first.network unless groups.school.blank?
+    valid_groups = parent? ? friend_users.first.groups : groups
+    valid_groups.school.first.network unless valid_groups.school.blank?
   end
   
   def password_required?
