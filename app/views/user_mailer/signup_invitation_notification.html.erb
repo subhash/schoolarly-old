@@ -1,8 +1,8 @@
-Hi,
+<%=@address%>,
 
-You are receiving this e-mail because you have been invited by IT team @ Global Public School to join Schoolarly.
+You are receiving this e-mail because you have been invited by <%=@inviter %> to join Schoolarly.
 
-Global Public School invites you to a new learning initiative in School-Student Interaction. Be in touch with your child's school activities!
+<%=@school%> invites you to a new learning initiative in School-Student Interaction. <%=@parent_text%>
 
 Schoolarly is a web-application that fosters communication between teachers, students and parents. It helps teachers and students collaborate in assignments and discuss doubts and ideas outside the classroom and after working hours. Schoolarly enables parents to keep a tab on their child's progress and stay in touch with the events happening in school. Please check out our website (www.schoolarly.com) for more details.
 
@@ -11,4 +11,4 @@ In order to access your account in Schoolarly, please click on the link below to
 <%= @url %>
 
 Regards,
-IT Team, Global Public School
+<%=@inviter%>
