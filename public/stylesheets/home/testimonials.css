@@ -21,12 +21,12 @@ a.p1:hover {
     padding: 15px 30px;
     margin: 0;
     color: #000;
-    background: #f3961c; /* default background for browsers without gradient support */
+    background: #D9CA9C; /* default background for browsers without gradient support */
     /* css3 */	
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#D9D7AC), to(#f3961c));
-	background:-moz-linear-gradient(#D9D7AC, #f3961c);
-	background:-o-linear-gradient(#D9D7AC, #f3961c);
-	background:linear-gradient(#D9D7AC, #f3961c);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#E6E0D1), to(#D9CA9C));
+	background:-moz-linear-gradient(#E6E0D1, #D9CA9C);
+	background:-o-linear-gradient(#E6E0D1, #D9CA9C);
+	background:linear-gradient(#E6E0D1, #D9CA9C);
 	-webkit-border-radius:10px;
 	-moz-border-radius:10px;
 	border-radius:10px;
@@ -43,17 +43,17 @@ a.p1:hover {
 	left:50px;
 	border-width:0 20px 50px 0px;
 	border-style:solid;
-	border-color:transparent #f3961c;
+	border-color:transparent #D9CA9C;
     /* reduce the damage in FF3.0 */
     display:block; 
     width:0;
 }
 
 .quote:hover {
-	background:-webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#f3961c));
-	background:-moz-linear-gradient(#f9d835, #f3961c);
-	background:-o-linear-gradient(#f9d835, #f3961c);
-	background:linear-gradient(#f9d835, #f3961c);
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#E8CD9B), to(#D9CA9C));
+	background:-moz-linear-gradient(#E8CD9B, #D9CA9C);
+	background:-o-linear-gradient(#E8CD9B, #D9CA9C);
+	background:linear-gradient(#E8CD9B, #D9CA9C);
 	
 }
 
