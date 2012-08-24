@@ -16,27 +16,15 @@ class Member::StudentsController < Member::BaseController
       user = create_user(email, name, Student.new)      
       if !user.new_record?
         @group.join(user)
+        create_user_parent(user, femail, fname)
+        create_user_parent(user, memail, mname)
       elsif user.invite_over_email(current_user)
         # TODO check if you are allowed to invite
         @group.invite_and_accept(user)
-#        commenting out entry into group email for now
-#        GroupMailer.deliver_entry_notification(@group, current_user, user)  
-        if(femail)
-          father = create_user(femail, fname, Parent.new)        
-          if father.invite_over_email(current_user)
-            user.profile.add_friend(father.profile)
-          else
-            @failed_parents[user] = father
-          end
-        end
-        if(memail)
-          mother = create_user(memail, mname, Parent.new)
-          if mother.invite_over_email(current_user)
-            user.profile.add_friend(mother.profile)
-          else
-            @failed_parents[user] = mother
-          end
-        end
+        #        commenting out entry into group email for now
+        #        GroupMailer.deliver_entry_notification(@group, current_user, user)  
+        create_user_parent(user, femail, fname)
+        create_user_parent(user, memail, mname)
       else
         @failed_students << row.join(",")
       end
@@ -109,10 +97,21 @@ class Member::StudentsController < Member::BaseController
     email = email.strip if email
     user = User.find_by_email(email) 
     # If user belongs to same school, just add them
-    user = User.new(:email => email) unless (user && (user.school == @group.school))
+    user = User.new(:email => email) unless (user && (user.parent? || user.school == @group.school))
     user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
     user.profile = Profile.new(:first_name => first,:last_name => last)
     user.person = person
     return user
+  end
+  
+  def create_user_parent(user, parent_email, parent_name)
+    return unless parent_email
+    parent = create_user(parent_email, parent_name, Parent.new)    
+#    either parent exists or has to be invited over email
+    if (!parent.new_record? || parent.invite_over_email(current_user))
+      user.profile.add_friend(parent.profile)
+    else
+      @failed_parents[user] = parent
+    end
   end
 end
