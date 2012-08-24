@@ -1,17 +1,4 @@
 <% include_pretty_photo %>
-
-<script type="text/javascript">
-    jQuery.noConflict();
-    jQuery(document).ready(function(){
-        jQuery("a[rel^='prettyPhoto']").prettyPhoto({theme: 'facebook',
-													social_tools: false,
-													allow_resize: true,
-													default_width: 900,
-													overlay_gallery: true});
-    });
-</script>
-
-
 <% content_for :sidebar do %>
 <%= render :partial => 'member/picto/photos/manage' %>
 <%= render :partial => 'shared/groups', :locals => {:shareable => @photo} %>
@@ -19,7 +6,7 @@
 <%= render :partial => 'member/sharings/title', :locals => {:shareable => @photo } %>
 <div class="photo">
     <p>
-        <%= link_to "medium", member_picto_scaled_photo_path(@photo, :medium) %> | <%= link_to "big", member_picto_scaled_photo_path(@photo, :big) %> | <%= link_to "original", member_picto_scaled_photo_path(@photo, :original) %>
+        <%= link_to "medium", member_picto_scaled_photo_path(@photo, :medium) %>| <%= link_to "big", member_picto_scaled_photo_path(@photo, :big) %>| <%= link_to "original", member_picto_scaled_photo_path(@photo, :original) %>
     </p>
     <div class="photo_container">
         <%= image_tag(@photo.image.url(@size)) %>

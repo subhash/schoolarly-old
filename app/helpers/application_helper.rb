@@ -10,6 +10,7 @@ module ApplicationHelper
   def include_pretty_photo
     include_javascript 'jquery-1.4.2.min.js'
     include_javascript 'prettyPhoto/jquery.prettyPhoto.js'
+    include_javascript 'photo'
     include_stylesheet 'prettyPhoto/prettyPhoto.css'
     include_stylesheet 'prettyPhoto/pp_upgrade.css'
   end

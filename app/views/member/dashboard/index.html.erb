@@ -1,17 +1,5 @@
 <% include_javascript "busy_ajax" %>
 <% include_pretty_photo %>
-<script type="text/javascript">
-    jQuery.noConflict();
-    jQuery(document).ready(function(){
-        jQuery("a[rel^='prettyPhoto']").prettyPhoto({
-            theme: 'facebook',
-            social_tools: false,
-            allow_resize: true,
-            default_width: 900,
-            overlay_gallery: true
-        });
-    });
-</script>
 <%= render :partial => 'member/profiles/header', :locals => {:profile => @profile} %>
 <br/>
 <br/>
