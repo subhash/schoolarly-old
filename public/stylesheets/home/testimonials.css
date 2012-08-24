@@ -1,14 +1,11 @@
 .testimonials {
-    padding: 0;
-    margin: 0;
-    font: 1.6em / 1.4 Cambria, Georgia, sans-serif;
+    font: 1.2em / 1.4 Cambria, Georgia, sans-serif;
     color: #333;
-    background: #fff;
 }
 
-.testimonials .title{
-	text-align: center;
-	margin-bottom: 50px;
+.testimonials .title {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 a.p1:hover {
@@ -22,8 +19,8 @@ a.p1:hover {
     margin: 0;
     color: #000;
     background: #D9CA9C; /* default background for browsers without gradient support */
-    /* css3 */	
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(#E6E0D1), to(#D9CA9C));
+    /* css3 */
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#E6E0D1), to(#D9CA9C));
 	background:-moz-linear-gradient(#E6E0D1, #D9CA9C);
 	background:-o-linear-gradient(#E6E0D1, #D9CA9C);
 	background:linear-gradient(#E6E0D1, #D9CA9C);
@@ -58,5 +55,5 @@ a.p1:hover {
 }
 
 .no-hover:hover{
-	 background-color: #EFECCA;
+	 background-color: #F5F3DF;
 }
