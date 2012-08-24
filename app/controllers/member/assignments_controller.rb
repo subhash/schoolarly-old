@@ -65,7 +65,11 @@ class Member::AssignmentsController < Member::BaseController
       else
         wants.html do
           flash[:error] = I18n.t('assignments.member.edit.failure')
-          render :new
+          if params[:assignment][:grades_attributes]
+            render "member/grades/index"
+          else
+            render :edit
+          end
         end
       end      
     end  

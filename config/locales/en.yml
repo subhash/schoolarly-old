@@ -667,6 +667,8 @@ en:
     model:
       grade_points: "Grade points"
       title: Grade
+      score:
+        invalid: "should be less than %{score}"
     member:
       new:
         title: "Grade"

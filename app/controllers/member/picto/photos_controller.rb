@@ -43,7 +43,7 @@ class Member::Picto::PhotosController < Member::BaseController
   
   def show
     store_location
-    @size = (params[:size] || :big).to_sym     
+    @size = (params[:size] || :medium).to_sym     
     @photo = Picto::Photo.find(params[:id])
     auth_photo(@photo)
     @shared_groups = @photo.shares_to_groups.collect(&:shared_to)

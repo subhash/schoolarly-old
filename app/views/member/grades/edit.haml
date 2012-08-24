@@ -25,7 +25,7 @@
 
 
 - columns = ["profiles.first_name", "profiles.last_name", :email, :score]
-- form_for @assignment, :url => member_assignment_path(@assignment) do |f|
+- form_for @assignment, :url => member_assignment_path(@assignment, :edit => true) do |f|
   %table.report
     %thead
       %tr

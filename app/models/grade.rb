@@ -6,10 +6,13 @@ class Grade < ActiveRecord::Base
   has_many :grade_rubric_descriptors, :dependent => :destroy
   has_many :rubric_descriptors, :through => :grade_rubric_descriptors
   
+  validates_numericality_of :score, :greater_than_or_equal_to => 0
+  
+  validate :valid_score?, :if => Proc.new { |grade| grade.assignment.score }, :if => :score
+  
   acts_as_shareable
   
-  after_update :touch_shares
- 
+  after_update :touch_shares  
   
   def grade_points
     Rubric.trim(rubric_descriptors.collect(&:points).sum)
@@ -29,6 +32,11 @@ class Grade < ActiveRecord::Base
         share.touch
       end
     end
+  end 
+  
+  protected
+  def valid_score?
+    errors.add(:score, I18n.t('grades.model.score.invalid', :score => assignment.score )) if (score >= assignment.score)
   end 
   
 end

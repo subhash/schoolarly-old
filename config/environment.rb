@@ -119,7 +119,8 @@ Tog::Plugins.settings :tog_user,  {
 }, :force => true
 
 Tog::Plugins.settings :tog_picto, {
-    "photo.versions.big"    => "2048x2048>"
+    "photo.versions.big"    => "900x900",
+    "photo.versions.medium"    => "700x700"
 }, :force => true
 
 Tog::Plugins.settings :schoolarly, {

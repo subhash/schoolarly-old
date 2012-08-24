@@ -1,6 +1,9 @@
-<% @size ||= :big %>
+<% @size ||= :medium %>
 <% @photo = photo %>
 <div id=<%="photo_#{photo.id}" %> class="hide">
+    <p>
+        <%= link_to "big", member_picto_scaled_photo_path(@photo, :big) %> | <%= link_to "original", member_picto_scaled_photo_path(@photo, :original) %>
+    </p>
     <%= image_tag(photo.image.url(@size)) %>
     <div class="image">
         <%= link_to icon_for_profile(photo.owner.profile, 'tiny'), member_profile_path(photo.owner.profile) %>
