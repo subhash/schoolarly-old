@@ -1,3 +1,4 @@
+<% include_pretty_photo %>
 <% content_for :sidebar do %>
 <%= render :partial => 'member/picto/photosets/manage' %>
 <%= render :partial => 'shared/groups',:locals => { :shareable => @photoset } %>
@@ -33,9 +34,10 @@
             <% else %>
             <% @photos.each do |photo| %>
             <li>
-                <%= link_to image_tag(photo.image.url("tiny")),
-                member_picto_photo_url(photo),
-                {:title => photo.title} %>
+                <%= link_to image_tag(photo.image.url(:tiny), :alt => photo.title),
+                "\#photo_#{photo.id}",
+                {:title => photo.title, :rel => "prettyPhoto[inline]" } %>
+                <%= render :partial => 'member/picto/photos/photo' , :object => photo %>
                 <br/>
                 <%=photo.title %>
             </li>
