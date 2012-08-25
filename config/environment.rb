@@ -120,7 +120,7 @@ Tog::Plugins.settings :tog_user,  {
 
 Tog::Plugins.settings :tog_picto, {
     "photo.versions.big"    => "900x900>",
-    "photo.versions.medium"    => "700x700>"
+    "photo.versions.medium"    => "800x800>"
 }, :force => true
 
 Tog::Plugins.settings :schoolarly, {
