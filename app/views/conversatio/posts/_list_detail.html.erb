@@ -5,10 +5,10 @@
 <div class="summary">
     <%= render :partial => 'conversatio/posts/tags', :locals => { :post => post } %>
 </div>
-<%= render :partial => "shared/comments", :locals => { :commentable => post , :exclude_add_comment => true} %>
+<div class="dashboard_comments">
+    <%= render :partial => "shared/comments", :locals => { :commentable => post , :exclude_add_comment => true} %>
+</div>
 <div class="portlet portletL">
     <%= link_to icon_for_post, member_conversatio_blog_post_path(blog, post, :group => group), :title => post.title %>
-    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(post.published_at)) %> .
-	<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_conversatio_blog_post_path(blog, post, :group => group), :title => I18n.t('tog_conversatio.views.posts.comments.comment_title', :post_title => h(post.title)) %> . 
-	<%= share_with_groups_link(post) if i_am_the_author_of? post %>
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(post.published_at)) %>.<%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_conversatio_blog_post_path(blog, post, :group => group), :title => I18n.t('tog_conversatio.views.posts.comments.comment_title', :post_title => h(post.title)) %> . <%= share_with_groups_link(post) if i_am_the_author_of? post %>
 </div>

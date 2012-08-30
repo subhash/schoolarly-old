@@ -1,4 +1,3 @@
-
 <div class="title">
     <%= link_to assignment.post.title, member_assignment_path(assignment) %>
     <% if assignment.date %>
@@ -13,7 +12,6 @@
     </div>
     <% end %>
 </div>
-
 <% if assignment.post.published? and (i_own?(assignment) or current_user.student?) %>
 <div class="score">
     <div>
@@ -34,7 +32,9 @@
     <% end %>
 </div>
 <% end %>
-<%= render :partial => "shared/comments", :locals => { :commentable => assignment , :exclude_add_comment => true} %>
+<div class="dashboard_comments">
+    <%= render :partial => "shared/comments", :locals => { :commentable => assignment , :exclude_add_comment => true} %>
+</div>
 <br/>
 <div class="portlet portletL">
     <%= link_to icon_for_assignment(assignment), member_assignment_path(assignment), :title => "#{sanitize assignment.post.title}" %>
@@ -42,7 +42,7 @@
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>
     <% else %>
     <%= I18n.t('assignments.site.list_detail.from_now', :time => time_ago_in_words(assignment.post.published_at)) %>
-	<% end %>
+    <% end %>
     <%= " . " %>
     <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_assignment_path(assignment), :title => I18n.t('comments.member.view.title', :title => h(assignment.post.title)) %>. <%= share_with_groups_link(assignment) if i_am_the_author_of? assignment.post %>
 </div>

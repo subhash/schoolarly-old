@@ -4,7 +4,8 @@
     </span>
     <%= link_to submission.name, member_submission_path(submission) %>
     <% if submission.returned_to?(submission.user) %>
-    <div class="small highlight"><%= I18n.t('submissions.member.return.status') %>
+    <div class="small highlight">
+        <%= I18n.t('submissions.member.return.status') %>
     </div>
     <% end %>
     <% if submission.late? %>
@@ -28,7 +29,9 @@
     <%= link_to submission.submitter.profile.full_name, profile_path(submission.submitter.profile) %>
 </div>
 <% end %>
-<%= render :partial => "shared/comments", :locals => { :commentable => assignment.post , :exclude_add_comment => true} %>
+<div class="dashboard_comments">
+    <%= render :partial => "shared/comments", :locals => { :commentable => assignment.post , :exclude_add_comment => true} %>
+</div>
 <br/>
 <div class="portlet portletL">
     <%= link_to icon_for_submission, member_submission_path(submission), :title => submission.name %>

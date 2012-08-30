@@ -10,8 +10,10 @@
     <p>
         <%= photo.description %>
     </p>
-    <%= render :partial => "shared/comments", :locals => { :commentable => photo , :exclude_add_comment => true} %>
+    <div class="dashboard_comments">
+        <%= render :partial => "shared/comments", :locals => { :commentable => photo , :exclude_add_comment => true} %>
+    </div>
     <div class="portlet portletL">
-        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_picto_photo_path(photo), :title => I18n.t('comments.member.view.title', :title => h(photo.title)) %> . <%= share_with_groups_link(photo) if i_own? photo %>
+        <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at)) %>. <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_picto_photo_path(photo), :title => I18n.t('comments.member.view.title', :title => h(photo.title)) %>. <%= share_with_groups_link(photo) if i_own? photo %>
     </div>
 </div>
