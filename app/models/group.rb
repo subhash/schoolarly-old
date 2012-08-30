@@ -45,6 +45,10 @@ class Group < ActiveRecord::Base
     mem.invite!
   end
   
+  def parents
+    users.collect(&:profile).collect(&:friends).flatten
+  end
+  
   def display_name
     subject? ? name+" ["+parent.name+"]" : name
   end

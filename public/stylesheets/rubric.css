@@ -18,17 +18,16 @@ table.rubric textarea{
 }
 
 table.rubric input:focus, table.rubric textarea:focus{
-	background-color: #D9D7AC;
-	border: 1px solid #D9D7AC;
+	background-color: #FCFCF7;
 }
 
 table.rubric th.level {
-	background-color: #EFEED1;
+	background-color: #FAF7E3;
 	font-size: 1.2em;
 }
 
 table.rubric th.criterion {
-	background-color: #E0EEFB;
+	background-color: #E8F1FA;
 	font-size: 1.2em;
 }
 

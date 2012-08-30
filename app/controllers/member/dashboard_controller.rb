@@ -29,6 +29,7 @@ class Member::DashboardController < Member::BaseController
       wants.js do
         render :update do |page|
           page.replace_html 'sharings', :partial => 'member/sharings/sharings'
+          page.call "applyPrettyPhoto"
         end
       end
     end
