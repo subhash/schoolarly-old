@@ -80,6 +80,14 @@ class Group < ActiveRecord::Base
     mem.destroy if mem
   end
   
+  def self_and_descendants
+    desc = [self]
+    for child in children
+      desc += child.self_and_descendants
+    end
+    desc
+  end
+  
   def invite_and_accept(user)
     invite(user)
     accept_invitation(user)

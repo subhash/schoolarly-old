@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     valid_groups.school.first.network unless valid_groups.school.blank?
   end
   
+  def school_admin?
+    school.group.moderators.include? self if school
+  end
+  
   def password_required?
     password_reset_code.blank? && (crypted_password.blank? || !password.blank?)
   end
