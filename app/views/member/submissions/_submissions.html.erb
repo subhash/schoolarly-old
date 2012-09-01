@@ -1,13 +1,15 @@
 <div class="portlet portletI">
-    <h3><span><%= I18n.t('submissions.site.manage.title', :name => @assignment.post.title) %>
+    <div class="title">
+        <span><%= I18n.t('submissions.site.manage.title', :name => @assignment.post.title) %>
             <%= link_to I18n.t('submissions.site.manage.grade_table'), member_assignment_grades_path(@assignment), :class => "float_right" if i_own?(@assignment) and @assignment.score %>
-        </span></h3>
+        </span>
+    </div>
     <div class="portlet_content">
         <ul>
             <% if i_own? @assignment %>
             <% @submitters.each do |s| %>
             <% submission = @assignment.submissions.find_by_user_id(s.id) %>
-			<% c = (submission && submission.post.published?) ? (submission.late? ? 'late': '') : '' %>
+            <% c = (submission && submission.post.published?) ? (submission.late? ? 'late': '') : '' %>
             <li class="<%=c%>">
                 <div class="image">
                     <%= link_to icon_for_profile(s.profile, 'tiny'), member_profile_path(s.profile) %>
@@ -40,13 +42,13 @@
                     <% end %>
                 </div>
                 <% else %>
-                <div class="title">
+                <div class="titleC">
                     <%= link_to submission.post.title, member_submission_path(submission) %>
                 </div>
                 <div class="portletL fontsmaller">
                     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(submission.post.created_at)) %>
                     <% if submission.late? %>
-                    <span class="late"><%= I18n.t('submissions.model.late_entry')%></span>
+                    <span class="late"><%= I18n.t('submissions.model.late_entry') %></span>
                     <% end %>
                 </div>
                 <% end %>
@@ -57,7 +59,7 @@
             </div>
             <% elsif @assignment.shared_to?(current_user) and current_user.student? %>
             <% submission = @assignment.submissions.find_by_user_id(current_user.id) %>
-			<% c = (submission && submission.post.published?) ?  (submission.late? ? 'late': '') : '' %>
+            <% c = (submission && submission.post.published?) ?  (submission.late? ? 'late': '') : '' %>
             <li class="<%= c%>">
                 <div class="image">
                     <%= link_to icon_for_profile(current_user.profile, 'tiny'), member_profile_path(current_user.profile) %>

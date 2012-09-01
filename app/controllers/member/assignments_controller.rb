@@ -66,7 +66,10 @@ class Member::AssignmentsController < Member::BaseController
         wants.html do
           flash[:error] = I18n.t('assignments.member.edit.failure')
           if params[:assignment][:grades_attributes]
-            render "member/grades/index"
+            @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
+            @student_users = (@shared_groups.collect(&:student_users).flatten).uniq
+            @publish = @assignment.grades.select{|g|!g.shared_to?(g.user, @assignment.user)}.any?
+            render "member/grades/edit"
           else
             render :edit
           end

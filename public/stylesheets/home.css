@@ -1,4 +1,10 @@
 
+
+
+.portletK h2, .portletK li{
+    line-height: 1.3em;
+}
+
 .portletK {
     margin-bottom: 4em;
 }

@@ -33,6 +33,10 @@ input, select, textarea {
     padding: 5px 10px;
 }
 
+h2 {
+    font-size: 1.5em;
+}
+
 a {
     color: #0072AB;
 }
@@ -61,6 +65,10 @@ li.bold a {
     font-weight: bold;
     font-size: 1.5em;
     margin: 0 0 0.5em 0;
+}
+
+.titleB {
+    font-size: 1.4em;
 }
 
 iframe.doc {
@@ -427,6 +435,9 @@ td.hover {
     border-radius: 3px;
     background: #FAFAFA;
     background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+
+
+
 
 	background: -webkit-linear-gradient(#FAFAFA,#EAEAEA);
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA',endColorstr='#EAEAEA')";
