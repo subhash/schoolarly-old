@@ -5,6 +5,10 @@ input, select, textarea {
     font-family: 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
 }
 
+input, textarea {
+    width: auto;
+}
+
 #container {
     font: normal 0.85em / 1.7em 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
 }
@@ -435,6 +439,7 @@ td.hover {
     border-radius: 3px;
     background: #FAFAFA;
     background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+
 
 
 

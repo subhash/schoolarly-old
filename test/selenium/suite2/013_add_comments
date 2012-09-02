@@ -31,8 +31,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>//img[@alt='Tiny_before_the_match']</td>
+	<td>click</td>
+	<td>css=img[alt=&quot;Getting ready for the match&quot;]</td>
 	<td></td>
 </tr>
 <tr>
@@ -76,8 +76,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>//img[@alt='Tiny_before_the_match']</td>
+	<td>click</td>
+	<td>css=img[alt=&quot;Getting ready for the match&quot;]</td>
 	<td></td>
 </tr>
 <tr>
