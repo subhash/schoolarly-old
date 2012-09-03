@@ -76,6 +76,20 @@ class User < ActiveRecord::Base
     profile.full_name
   end
   
+  def can_view?(user)
+    return true if (self.admin? || !user.school)
+    return (self == user) if !self.school
+    if self.parent? && user.parent?
+      return (self.friend_users.collect(&:school) & user.friend_users.collect(&:school)).empty?
+    elsif self.parent?
+      return self.friend_users.include?(user) || (!user.student? && self.friend_users.collect(&:school).include?(user.school))
+    elsif user.parent?
+      return user.friend_users.collect(&:school).include? (self.school)
+    else
+      return (self.school == user.school)
+    end
+  end
+  
   
   def archive_notebook
     b = self.blogs.find_by_title_and_description("Archives", "Archive notebook")

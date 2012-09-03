@@ -2,6 +2,7 @@ class Member::ProfilesController < Member::BaseController
   
   before_filter :find_profile, :only => [:show, :new_parent, :create_parent]
   before_filter :check_profile, :only => [:edit, :update]
+  before_filter :check_viewable, :only => [:show, :index] 
   
   def show    
     respond_to do |format|
@@ -91,6 +92,16 @@ class Member::ProfilesController < Member::BaseController
     end
     schools = profile.user.parent? ? profile.friends.collect{|f| f.user.groups.school}.flatten : profile.user.groups.school
     schools.collect(&:moderators).flatten.include?(current_user)
+  end
+  
+  def check_viewable
+    if params[:group]
+      @group = Group.find(params[:group])
+      viewable = current_user.parent? ? false : current_user.groups.include?(@group)           
+    else
+      viewable = current_user.can_view?(@profile.user)
+    end
+    raise UnauthorizedException.new unless viewable
   end
   
 end
