@@ -3,8 +3,6 @@ class Member::ProfilesController < Member::BaseController
   before_filter :find_profile, :only => [:show, :new_parent, :create_parent]
   before_filter :check_profile, :only => [:edit, :update]
   
-  helper_method :i_am_school_moderator_for
-  
   def show    
     respond_to do |format|
       format.html # index.html.erb
@@ -88,6 +86,9 @@ class Member::ProfilesController < Member::BaseController
   end
   
   def i_am_school_moderator_for(profile)
+    if current_user.admin?
+      return true
+    end
     schools = profile.user.parent? ? profile.friends.collect{|f| f.user.groups.school}.flatten : profile.user.groups.school
     schools.collect(&:moderators).flatten.include?(current_user)
   end

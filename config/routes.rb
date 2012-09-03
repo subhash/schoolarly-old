@@ -74,6 +74,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.namespace(:admin) do |admin| 
     admin.resources :users, :member => {:hijack => :get}
+    admin.resources :messages
   end
   
   map.namespace :member do |member|

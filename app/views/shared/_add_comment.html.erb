@@ -1,4 +1,4 @@
-<h3><a name="reply"></a><%= I18n.t("tog_core.site.comment.add_comment")%></h3>
+<h5><a name="reply"></a><%= I18n.t("tog_core.site.comment.add_comment")%></h5>
 <% form_for :comment, :url => comment_path, :html => {:id=>'comment_input_form'} do |f| -%>
   <%= f.hidden_field :commentable_type, {:value => commentable.class.name} -%>
   <%= f.hidden_field :commentable_id, {:value => commentable.id} -%>

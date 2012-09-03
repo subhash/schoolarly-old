@@ -26,4 +26,13 @@ module ProfilesHelper
   end
   
   
+  def i_am_school_moderator_for(profile)
+    if current_user.admin?
+      return true
+    end
+    schools = profile.user.parent? ? profile.friends.collect{|f| f.user.groups.school}.flatten : profile.user.groups.school
+    schools.collect(&:moderators).flatten.include?(current_user)
+  end
+  
+  
 end

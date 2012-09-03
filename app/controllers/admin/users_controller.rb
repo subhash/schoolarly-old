@@ -5,4 +5,10 @@ class Admin::UsersController < Admin::BaseController
     redirect_to member_dashboard_path
   end
   
+  
+  def show
+    @user = User.find(params[:id])
+    @profile = @user.profile
+  end
+  
 end
