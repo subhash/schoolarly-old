@@ -4,6 +4,8 @@ class Member::ProfilesController < Member::BaseController
   before_filter :check_profile, :only => [:edit, :update]
   before_filter :check_viewable, :only => [:show, :index] 
   
+  helper_method :i_am_school_moderator_for
+  
   def show    
     respond_to do |format|
       format.html # index.html.erb
@@ -74,7 +76,6 @@ class Member::ProfilesController < Member::BaseController
   
   def create_parent
     @user = User.new(params[:user])
-    
   end
   
   private

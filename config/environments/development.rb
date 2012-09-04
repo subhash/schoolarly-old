@@ -33,3 +33,5 @@ config.action_mailer.perform_deliveries = false
 config.action_mailer.raise_delivery_errors = true
 
 config.action_mailer.logger = Logger.new(STDOUT)
+
+StatsMix.api_key = '32569abe09ffa2cb481a'
