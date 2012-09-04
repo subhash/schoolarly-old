@@ -45,8 +45,12 @@ class Group < ActiveRecord::Base
     mem.invite!
   end
   
-  def parents
-    users.collect(&:profile).collect(&:friends).flatten
+  def parent_users
+    users.collect(&:profile).collect(&:friends).flatten.collect(&:user)
+  end
+  
+  def parent_user_ids
+    users.collect(&:profile).collect(&:friends).flatten.collect(&:user_id)
   end
   
   def display_name

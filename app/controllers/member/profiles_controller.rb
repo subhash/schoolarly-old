@@ -12,12 +12,14 @@ class Member::ProfilesController < Member::BaseController
   end  
   
   def search
-    @matches = Tog::Search.search(params[:q], {:only => ["Profile"]}, {:page => '1'})
+    #    @matches = Tog::Search.search(params[:q], {:only => ["Profile"]}, {:page => '1'})
+    q = "%#{params[:q]}%"
+    @matches = User.find(:all, :include => :profile, :conditions => ["users.id in (?) and profiles.first_name like ? or profiles.last_name like ? or users.login like ?", current_user.messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'}) 
     respond_to do |format|
       format.html 
       format.xml  { render :xml => @matches }
       format.js {
-        profiles = @matches.collect { |m| {:id => m.user.id, :name => m.full_name}}
+        profiles = @matches.collect { |m| {:id => m.id, :name => m.profile.full_name}}
         render :text => profiles.to_json
       }
     end
