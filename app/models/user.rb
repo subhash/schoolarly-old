@@ -72,13 +72,31 @@ class User < ActiveRecord::Base
     profile.friends.map(&:user)
   end
   
+  def friend_user_ids
+    profile.friends.map(&:user_id)
+  end
+  
   def name
     profile.full_name
   end
   
+  
+  def messageable_user_ids
+    if self.parent?
+      users = self.person.school_groups.collect(&:user_ids).flatten - self.person.school_groups.collect(&:student_user_ids).flatten
+      return (users + self.friend_user_ids)
+    elsif self.school && self.student?
+      return self.school.group.user_ids
+    elsif self.school
+      return (self.school.group.user_ids + self.school.group.parent_user_ids)
+    else
+      return  self.groups.collect(&:user_ids).flatten
+    end
+  end
+  
   def can_view?(user)
     return true if (self.admin? || !user.school)
-    return (self == user) if !self.school
+    return ((self == user || !(self.groups & user.groups).empty?)) if !self.school
     if self.parent? && user.parent?
       return (self.friend_users.collect(&:school) & user.friend_users.collect(&:school)).empty?
     elsif self.parent?
