@@ -30,3 +30,5 @@ haml
 httparty
 ice_cube
 chronic
+json
+statsmix

@@ -1,3 +1,5 @@
+require 'statsmix'
+
 class SessionsController < ApplicationController
   
   def create
