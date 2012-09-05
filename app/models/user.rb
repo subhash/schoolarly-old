@@ -86,20 +86,20 @@ class User < ActiveRecord::Base
       return true
     end
     school_groups = user.parent? ? user.person.school_groups : user.groups.school
-    school_groups.collect(&:moderators).flatten.include?(current_user)
+    school_groups.collect(&:moderators).flatten.include?(self)
   end
   
   
   def messageable_user_ids
     if self.parent?
       users = self.person.school_groups.collect{|g| g.users.of_types("Teacher").map(&:id) + g.parent_user_ids}.flatten
-      return (users + self.friend_user_ids + User.admin.map(&:id))
-    elsif self.school && self.student?
-      return (self.school.group.user_ids + self.friend_user_ids)
+      return (users + self.friend_user_ids + User.admin.map(&:id))     
     elsif self.school
-      return (self.school.group.user_ids + self.school.group.parent_user_ids)
+      return self.school.group.user_ids + (self.student? ? self.friend_user_ids : self.school.group.parent_user_ids)
     else
       return  self.groups.collect(&:user_ids).flatten
+      
+      
     end
   end
   
