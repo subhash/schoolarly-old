@@ -147,6 +147,9 @@ Tog::Plugins.settings :schoolarly,  {
     'sanitized.comments.allowed_attributes' => ActionView::Base.sanitized_allowed_attributes.to_a.join(' ')
 }, :force => true
 
+DATABASE_OPERATOR = {
+    :like_operator => "LIKE"
+}
 
 if RAILS_ENV == 'production'
   Tog::Plugins.settings :tog_core, {"storage" => "S3"}, :force => true
@@ -155,4 +158,8 @@ if RAILS_ENV == 'production'
   Tog::Plugins.settings :tog_core, {"storage.s3.access_key_id" => "AKIAIMQFQ2BSZ5X5SWFQ"}, :force => true
   Tog::Plugins.settings :tog_core, {"storage.s3.secret_access_key" => "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"}, :force => true
   Tog::Plugins.settings :tog_core, {"storage.s3.url" => "/system/:class/:attachment/:id/:style_:basename.:extension"}, :force => true
+  DATABASE_OPERATOR = {
+    :like_operator => 'ILIKE' #postgres 
+  }
+  
 end
