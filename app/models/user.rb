@@ -81,12 +81,21 @@ class User < ActiveRecord::Base
   end
   
   
+  def school_moderator_for?(user)
+    if self.admin?
+      return true
+    end
+    school_groups = user.parent? ? user.person.school_groups : user.groups.school
+    school_groups.collect(&:moderators).flatten.include?(current_user)
+  end
+  
+  
   def messageable_user_ids
     if self.parent?
-      users = self.person.school_groups.collect(&:user_ids).flatten - self.person.school_groups.collect(&:student_user_ids).flatten
-      return (users + self.friend_user_ids)
+      users = self.person.school_groups.collect{|g| g.users.of_types("Teacher").map(&:id) + g.parent_user_ids}.flatten
+      return (users + self.friend_user_ids + User.admin.map(&:id))
     elsif self.school && self.student?
-      return self.school.group.user_ids
+      return (self.school.group.user_ids + self.friend_user_ids)
     elsif self.school
       return (self.school.group.user_ids + self.school.group.parent_user_ids)
     else
@@ -137,6 +146,17 @@ class User < ActiveRecord::Base
     end
     return b
   end
+  
+  def self.site_search(query, search_options={})
+    q = "#{query}%"
+    if search_options[:user]
+      User.find(:all, :include => :profile, :conditions => ["users.id in (?) and (profiles.first_name like ? or profiles.last_name like ? or users.login like ?)", search_options[:user].messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'})      
+    else
+      User.find(:all, :include => :profile, :conditions => ["profiles.first_name like ? or profiles.last_name like ? or users.login like ?",q, q, q]).flatten.paginate({:page => '1'})
+    end
+    
+  end
+  
   
   #  def create_default_blog
   #    if self.recently_activated?      

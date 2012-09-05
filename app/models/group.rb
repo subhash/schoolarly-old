@@ -9,7 +9,12 @@ class Group < ActiveRecord::Base
     def of_type(type)
       find :all, :conditions => ['users.person_type = ?', type]
     end
+    
+    def of_types(types)
+      find :all, :conditions => ['users.person_type in (?)', types]
+    end
   end
+  
   has_many :student_users, :through => :memberships, :source => :user,
   :conditions => ['users.person_type = ?', 'Student'], :include => :profile, :order => "profiles.first_name, profiles.last_name"
   has_many :teacher_users, :through => :memberships, :source => :user,

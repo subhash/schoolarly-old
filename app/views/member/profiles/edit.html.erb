@@ -8,7 +8,7 @@
   <fieldset class="profile">    
     <div class="fields">
     <legend><%= I18n.t('tog_social.profiles.member.profile_details') %></legend>
-	  <%  if i_am_school_moderator_for(@profile) %>
+	  <%  if current_user.school_moderator_for?(@profile.user) %>
       <p>
         <label for="profile_first_name"><%= I18n.t('tog_social.profiles.model.first_name') %></label>
         <%= f.text_field :first_name, :class=>"fieldbox" %>

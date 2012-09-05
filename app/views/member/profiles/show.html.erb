@@ -45,7 +45,7 @@
     <h2><span><%= I18n.t('tog_social.more_links') %></span></h2>
     <div class="portlet_content">
         <ul>
-            <% if its_me? or i_am_school_moderator_for(@profile) -%>
+            <% if its_me? or current_user.school_moderator_for?(@profile.user) -%>
             <li>
                 <%= link_to I18n.t('tog_social.profiles.site.edit_profile'), edit_member_profile_path(@profile) %>
             </li>

@@ -3,8 +3,7 @@ class Member::ProfilesController < Member::BaseController
   before_filter :find_profile, :only => [:show, :new_parent, :create_parent]
   before_filter :check_profile, :only => [:edit, :update]
   before_filter :check_viewable, :only => [:show, :index] 
-  
-  helper_method :i_am_school_moderator_for
+
   
   def show    
     respond_to do |format|
@@ -15,8 +14,13 @@ class Member::ProfilesController < Member::BaseController
   
   def search
     #    @matches = Tog::Search.search(params[:q], {:only => ["Profile"]}, {:page => '1'})
-    q = "%#{params[:q]}%"
-    @matches = User.find(:all, :include => :profile, :conditions => ["users.id in (?) and profiles.first_name like ? or profiles.last_name like ? or users.login like ?", current_user.messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'}) 
+    #    @matches = User.find(:all, :include => :profile, :conditions => ["users.id in (?) and profiles.first_name like ? or profiles.last_name like ? or users.login like ?", current_user.messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'})
+    if current_user.admin?
+      @matches = Tog::Search.search(params[:q], {:only => ["User"]}, {:page => '1'}) 
+    else
+       @matches = Tog::Search.search(params[:q], {:only => ["User"], :user => current_user}, {:page => '1'}) 
+    end
+   
     respond_to do |format|
       format.html 
       format.xml  { render :xml => @matches }
@@ -86,15 +90,7 @@ class Member::ProfilesController < Member::BaseController
   
   def check_profile
     @profile = Profile.find(params[:id]) if params[:id]
-    raise UnauthorizedException.new unless current_user.profile == @profile or i_am_school_moderator_for(@profile)
-  end
-  
-  def i_am_school_moderator_for(profile)
-    if current_user.admin?
-      return true
-    end
-    schools = profile.user.parent? ? profile.friends.collect{|f| f.user.groups.school}.flatten : profile.user.groups.school
-    schools.collect(&:moderators).flatten.include?(current_user)
+    raise UnauthorizedException.new unless (current_user.profile == @profile or current_user.school_moderator_for?(@profile.user))
   end
   
   def check_viewable
