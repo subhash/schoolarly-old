@@ -150,9 +150,9 @@ class User < ActiveRecord::Base
   def self.site_search(query, search_options={})
     q = "#{query}%"
     if search_options[:user]
-      User.find(:all, :include => :profile, :conditions => ["users.id in (?) and (profiles.first_name like ? or profiles.last_name like ? or users.login like ?)", search_options[:user].messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'})      
+      User.find(:all, :include => :profile, :conditions => ["users.id IN (?) AND (profiles.first_name LIKE ? OR profiles.last_name LIKE ? OR users.login LIKE ?)", search_options[:user].messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'})      
     else
-      User.find(:all, :include => :profile, :conditions => ["profiles.first_name like ? or profiles.last_name like ? or users.login like ?",q, q, q]).flatten.paginate({:page => '1'})
+      User.find(:all, :include => :profile, :conditions => ["profiles.first_name LIKE ? OR profiles.last_name LIKE ? OR users.login LIKE ?",q, q, q]).flatten.paginate({:page => '1'})
     end
     
   end
