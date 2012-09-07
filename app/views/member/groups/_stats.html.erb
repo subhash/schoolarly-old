@@ -1,0 +1,9 @@
+<div>
+	<% teachers = @group.teacher_users %>
+	<% students = @group.student_users %>
+	<% parents = @group.parent_users %>
+	Students: <%= "#{students.select(&:active?).size} active (#{students.size} total)" %>
+	<br/>
+	Teachers: <%= "#{teachers.select(&:active?).size} active (#{teachers.size} total)" %></br/>
+	Parents: <%= "#{parents.select(&:active?).size} active (#{parents.size} total)" %></br/>
+</div>
