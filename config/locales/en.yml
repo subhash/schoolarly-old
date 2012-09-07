@@ -321,6 +321,8 @@ en:
         title: Grades and Reports
       class_activity:
         share: Add class activity
+      stats:
+        title: View Statistics
   
   users:
     site:

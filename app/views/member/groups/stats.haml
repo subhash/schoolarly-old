@@ -1,0 +1,13 @@
+%h2
+  %span
+    = path_for(@group) 
+    = " > " 
+    = I18n.t('groups.member.stats.title')
+
+%div
+  %div
+    = "Students: #{@students.select(&:active?).size} active (#{@students.size} total)"
+  %div
+    = "Teachers: #{@teachers.select(&:active?).size} active (#{@teachers.size} total)"
+  %div
+    = "Parents: #{@parents.select(&:active?).size} active (#{@parents.size} total)"

@@ -386,6 +386,12 @@ class Member::GroupsController < Member::BaseController
     redirect_to select_groups_member_group_path(@group)
   end
   
+  def stats
+    @teachers = @group.teacher_users
+    @students = @group.student_users
+    @parents = @group.parent_users
+  end
+  
   protected
   def find_type
     @type = params[:type] || 'groups'
