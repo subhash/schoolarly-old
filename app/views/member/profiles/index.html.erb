@@ -35,7 +35,7 @@
                 I18n.t("tog_user.model.state")) %>
             </th>
             <% if @group %>
-            <% for group in @group.active_children %>
+            <% for group in @group.subtree %>
             <th scope="col">
                 <%= link_to group.name, member_group_path(group) %>
             </th>
@@ -45,7 +45,7 @@
     </thead>
     <tfoot>
         <tr>
-            <td colspan="<%= 4 + @group.active_children.size %>" class="info_results">
+            <td colspan="<%= 4 + @group.subtree.size %>" class="info_results">
                 <span class="pages_navigation"><% form_tag(member_profiles_path, :method => :get) do %>
                     <%= hidden_field_tag :group, @group.id %>
                     <%= hidden_field_tag :type, @profiles.first.user.person_type %>
@@ -79,7 +79,7 @@
                 <%= I18n.t("tog_user.model.states.#{profile.user.state}") %>
             </td>
             <% if @group %>
-            <% for group in @group.active_children %>
+            <% for group in @group.subtree %>
             <td nowrap="nowrap",  class='hover'>
                 <% if i_am_moderator_of(@group) %>
                 <span id="user_<%=profile.id%>_group_<%=group.id%>"><% if group.users.include?(profile.user) %>

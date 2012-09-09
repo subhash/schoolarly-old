@@ -188,6 +188,14 @@ class Group < ActiveRecord::Base
     s.join+name
   end
   
+  def subtree
+    s = []
+    self.active_children.each  do |c|
+      s << c
+      s += c.subtree
+    end
+    s
+  end
   
   #  def update_default_notebooks
   #    old_name = name_was
