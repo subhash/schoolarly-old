@@ -222,7 +222,8 @@ class Group < ActiveRecord::Base
   
   
   def school
-    self.school? ? self.network : (self.parent ? parent.school : nil)
+    school_group = self.self_and_ancestors.detect(&:school?)
+    school_group.network if school_group
   end
   
   def do_archive

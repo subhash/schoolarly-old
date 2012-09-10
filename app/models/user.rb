@@ -89,6 +89,10 @@ class User < ActiveRecord::Base
     school_groups.collect(&:moderators).flatten.include?(self)
   end
   
+  #  A parent can message any teacher or parent in his kids' schools + admin + his kids
+  #  A student can message all students & teachers in his school (but not parents) + his parents
+  #  A teacher can message all students, teachers and parents in his school
+  #  A user not belonging to a school can message any member in his groups.
   
   def messageable_user_ids
     if self.parent?
@@ -98,23 +102,12 @@ class User < ActiveRecord::Base
       return self.school.group.user_ids + (self.student? ? self.friend_user_ids : self.school.group.parent_user_ids)
     else
       return  self.groups.collect(&:user_ids).flatten
-      
-      
     end
   end
   
   def can_view?(user)
-    return true if (self.admin? || !user.school)
-    return ((self == user || !(self.groups & user.groups).empty?)) if !self.school
-    if self.parent? && user.parent?
-      return (self.friend_users.collect(&:school) & user.friend_users.collect(&:school)).empty?
-    elsif self.parent?
-      return self.friend_users.include?(user) || (!user.student? && self.friend_users.collect(&:school).include?(user.school))
-    elsif user.parent?
-      return user.friend_users.collect(&:school).include? (self.school)
-    else
-      return (self.school == user.school)
-    end
+    #    admin can view anyone. a user not belonging to any school can be viewed by anyone
+    self.admin? || self == user || !user.school || self.messageable_user_ids.include?(user.id)
   end
   
   
