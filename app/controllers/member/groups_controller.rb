@@ -386,6 +386,17 @@ class Member::GroupsController < Member::BaseController
     redirect_to select_groups_member_group_path(@group)
   end
   
+  def stats
+    @teachers = @group.teacher_users
+    @students = @group.student_users
+    @parents = @group.parent_users
+    @messages = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Notice'}.flatten
+    @notes = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Post'}.flatten
+    @photos = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Picto::Photo'}.flatten
+    @activities = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Assignment'}.flatten
+    @videos = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Video'}.flatten
+  end
+  
   protected
   def find_type
     @type = params[:type] || 'groups'
