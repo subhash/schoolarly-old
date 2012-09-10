@@ -1,6 +1,6 @@
 <div class="portlet <%= style || 'portletA' %>" id="portlet_friends">
   	<h2>
-  		<span><%= link_to_if items.size > 8, "#{title} (#{items.size})", member_profiles_path(:group => @group, :type => type) %></span>
+  		<span><%= link_to_if items.size > 0, "#{title} (#{items.size})", member_profiles_path(:group => @group, :type => type) %></span>
 	</h2>
   <div class="portlet_content">
       <ul class="clearfix">
