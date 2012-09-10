@@ -14,10 +14,12 @@
 <% if @group %>
 	<%= render :partial => 'member/groups/header' %>
 	<h2><span><%= I18n.t("groups.model.#{@type}.title") %></span></h2>
+    <% if i_am_moderator_of(@group) %>	
 	<% unless params[:subtree]%>
 		<%= link_to 'Whole subtree', url_for(request.query_parameters.merge(:escape => false, :subtree => true))%>
 	<% else %>
 		<%= link_to 'Only direct children', url_for(request.query_parameters.merge(:escape => false, :subtree => false))%>
+	<% end %>
 	<% end %>
 <% else %>
 	<h2><span><%= I18n.t('tog_social.profiles.site.title') %></span></h2>
