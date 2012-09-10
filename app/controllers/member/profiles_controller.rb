@@ -40,7 +40,8 @@ class Member::ProfilesController < Member::BaseController
     if params[:group]
       condition = ""
       conditions_values = Hash.new  
-      @group = Group.find(params[:group])  
+      @group = Group.find(params[:group])
+      @column_groups = params[:subtree] ? @group.subtree : @group.active_children  
       conditions_values[:group_id] = @group.id
       conditions_values[:person_type] = params[:type]
       condition += "(memberships.group_id = :group_id and users.person_type = :person_type)"
