@@ -96,7 +96,7 @@ class Member::ProfilesController < Member::BaseController
   def check_viewable
     if params[:group]
       @group = Group.find(params[:group])
-      viewable = current_user.parent? ? false : current_user.groups.include?(@group)           
+      viewable = current_user.parent? ? false : current_user.school == @group.school           
     else
       viewable = current_user.can_view?(@profile.user)
     end
