@@ -100,17 +100,8 @@ class User < ActiveRecord::Base
   end
 
   def can_view?(user)
-    return true if (self.admin? || !user.school)
-    return ((self == user || !(self.groups & user.groups).empty?)) if !self.school
-    if self.parent? && user.parent?
-      return (self.friend_users.collect(&:school) & user.friend_users.collect(&:school)).empty?
-    elsif self.parent?
-      return self.friend_users.include?(user) || (!user.student? && self.friend_users.collect(&:school).include?(user.school))
-    elsif user.parent?
-      return user.friend_users.collect(&:school).include? (self.school)
-    else
-    return (self.school == user.school)
-    end
+    #    admin can view anyone. a user not belonging to any school can be viewed by anyone
+    self.admin? || self == user || !user.school || self.messageable_user_ids.include?(user.id)
   end
 
   def archive_notebook
