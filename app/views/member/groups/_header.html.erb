@@ -7,11 +7,7 @@
     <% for moderator in @group.moderators -%>
       <%=link_to moderator.profile.full_name, member_profile_path(moderator.profile), :class=> 'maincolor4'%>
     <% end -%>
-    <br/>
-    <%= I18n.t('tog_social.tags.tags') %>: 
-      <% for tag in @group.tag_list %>
-        <%= link_to tag.to_s, tag_groups_path(tag) %>
-      <% end %>   
+    <br/> 
   </div>
   <div class="text">
     <p><%= @group.description %></p>
