@@ -2,7 +2,7 @@ class Member::ProfilesController < Member::BaseController
   
   before_filter :find_profile, :only => [:show, :new_parent, :create_parent]
   before_filter :check_profile, :only => [:edit, :update]
-
+  
   #before_filter :check_viewable, :only => [:show, :index] 
   
   def show    
@@ -69,13 +69,18 @@ class Member::ProfilesController < Member::BaseController
   def index    
     if params[:group]
       @group = Group.find(params[:group])
-      @column_groups = @group.active_children  
-      @users = @group.users.of_type(params[:type])
+      if params[:type] == 'Parent'
+        @column_groups = []
+        @users = @group.parent_users
+      else
+        @column_groups = @group.active_children  
+        @users = @group.users.of_type(params[:type])       
+        #      group valid memberships by user id
+        @memberships = Membership.find_all_by_user_id_and_group_id(@users.map(&:id), @column_groups.map(&:id)).group_by(&:user_id)
+        #      convert the hash to hold only group ids instead of memberships
+        @memberships.each{|key, value| @memberships[key] = value.map(&:group_id)}
+      end    
       @type = @users.first.type
-      #      group valid memberships by user id
-      @memberships = Membership.find_all_by_user_id_and_group_id(@users.map(&:id), @column_groups.map(&:id)).group_by(&:user_id)
-      #      convert the hash to hold only group ids instead of memberships
-      @memberships.each{|key, value| @memberships[key] = value.map(&:group_id)}
     else
       @users = User.all
       @column_groups = []

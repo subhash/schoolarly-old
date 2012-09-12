@@ -180,6 +180,8 @@ en:
         view_all: "View all classes"
       students:
         title: "Students"
+      parents:
+        title: "Parents"
       teachers:
         title: "Teachers"
       members:
