@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   
   belongs_to :network, :polymorphic => true
   #include all members, pending members etc
-  has_many :users, :through => :memberships, :include => :profile, :order => "profiles.first_name, profiles.last_name" do
+  has_many :users, :through => :memberships do
     def of_type(type)
       find :all, :conditions => ['users.person_type = ?', type]
     end

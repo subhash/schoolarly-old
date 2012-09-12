@@ -68,17 +68,9 @@ class Member::ProfilesController < Member::BaseController
   
   def index    
     if params[:group]
-#      condition = ""
-#      conditions_values = Hash.new  
       @group = Group.find(params[:group])
       @column_groups = @group.active_children  
-#      group_ids = @column_groups.map(&:id)
-#      conditions_values[:group_id] = @group.id
-#      conditions_values[:person_type] = params[:type]
-#      condition += "(memberships.group_id = :group_id and users.person_type = :person_type)"   
-#      @profiles = Profile.for_group(condition, conditions_values) 
       @users = @group.users.of_type(params[:type])
-      #      @profiles = @group.users.of_type(params[:type]).collect(&:profile)
       @type = @users.first.type
       #      group valid memberships by user id
       @memberships = Membership.find_all_by_user_id_and_group_id(@users.map(&:id), @column_groups.map(&:id)).group_by(&:user_id)

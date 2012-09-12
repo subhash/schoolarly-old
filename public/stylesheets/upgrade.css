@@ -9,6 +9,24 @@ input, textarea {
     width: auto;
 }
 
+.wide {
+    width: 180%;
+}
+/*
+ * upgrading filterTable.css
+ */
+select.pgSlc {
+    width: auto;
+}
+
+select.rspg {
+	font-size: 10px;
+}
+
+
+/**
+ * 
+ */
 #container {
     font: normal 0.85em / 1.7em 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
 }
@@ -439,6 +457,8 @@ td.hover {
     border-radius: 3px;
     background: #FAFAFA;
     background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+
+
 
 
 

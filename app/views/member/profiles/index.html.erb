@@ -3,16 +3,16 @@
 <% include_javascript 'tableFilter/tablefilter_all' %>
 <% include_javascript 'table' %>
 <script type="text/javascript">
-        jQuery.noConflict();
-        
-        jQuery(document).ready(function(){
-    		        jQuery('td.hover').hover(function(){
-                jQuery(this).find('a.link').show();
-            }, function(){
-                jQuery(this).find('a.link').hide();
-            });
-            setTableFilter("filterTable", '<%= 4 + @column_groups.size %>');
+    jQuery.noConflict();
+    
+    jQuery(document).ready(function(){
+        jQuery('td.hover').hover(function(){
+            jQuery(this).find('a.link').show();
+        }, function(){
+            jQuery(this).find('a.link').hide();
         });
+        setTableFilter("filterTable", '<%= 4 + @column_groups.size %>');
+    });
 </script>
 <% if @group %>
 <%= render :partial => 'member/groups/header' %>
@@ -20,6 +20,7 @@
 <% else %>
 <h2><span><%= I18n.t('tog_social.profiles.site.title') %></span></h2>
 <% end %>
+<div class="wide">
 <table id="filterTable" class="tableE profiles">
     <thead>
         <tr>
@@ -38,7 +39,8 @@
             <% if @group %>
             <% for group in @column_groups %>
             <th scope="col">
-                <%= link_to group.name, member_group_path(group) %>
+                <%= group.name %>
+                <%= link_to "", member_group_path(group), :class => "smallarrow blueright" %>
             </th>
             <% end %>
             <% end %>
@@ -87,3 +89,4 @@
         <% end %>
     </tbody>
 </table>
+</div>

@@ -11,10 +11,20 @@ function setTableFilter(tableName, columnSize){
     for (var i = columnSize - 1; i > 3; i--) {
         cols["col_" + i] = "none";
     };
+	
+	var sort_cols = ['None', 'String', 'String', 'String']
+	for (var i = columnSize - 1; i > 3; i--) {
+        sort_cols.push('None');
+    };
     
     
     var props = {
         sort: true,
+		paging: true,
+		paging_length: 25,
+		remember_grid_values : true,
+		remember_page_length : true, 
+		results_per_page: ['Results per page',[25,50,100]],
         filters_row_index: 1,
         rows_counter: true,
         rows_counter_text: "Displayed rows: ",
@@ -30,7 +40,7 @@ function setTableFilter(tableName, columnSize){
         display_all_text: "< Show all >",
 //        enable_default_theme: true,
         rows_always_visible: [1],
-        col_width: ['50px', '100px', '100px', '100px'],
+        col_width: ['50px', '150px', '100px', '100px'],
         extensions: {
             name: ['ColsVisibility', 'ColumnsResizer'],
             src: ['/javascripts/tableFilter/TFExt_ColsVisibility/TFExt_ColsVisibility.js', '/javascripts/tableFilter/TFExt_ColsResizer/TFExt_ColsResizer.js'],
@@ -40,6 +50,10 @@ function setTableFilter(tableName, columnSize){
             }
 ]
         },
+		sort_config : {
+			sort_types : sort_cols,
+			sort_col : [1,false]
+		},
         help_instructions_text: "Use the filters above each column to filter and limit table data. Type your text and press Enter.\n Each column can be sorted too"
     };
     for (key in cols) {
