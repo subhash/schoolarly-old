@@ -20,5 +20,6 @@
 		<nature>com.aptana.projects.webnature</nature>
 		<nature>org.radrails.rails.core.railsnature</nature>
 		<nature>org.rubypeople.rdt.core.rubynature</nature>
+		<nature>com.aptana.ruby.core.rubynature</nature>
 	</natures>
 </projectDescription>

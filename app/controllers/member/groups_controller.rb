@@ -390,11 +390,12 @@ class Member::GroupsController < Member::BaseController
     @teachers = @group.teacher_users
     @students = @group.student_users
     @parents = @group.parent_users
-    @messages = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Notice'}.flatten
-    @notes = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Post'}.flatten
-    @photos = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Picto::Photo'}.flatten
-    @activities = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Assignment'}.flatten
-    @videos = @group.self_and_descendants.collect{|a|a.sharings.of_type 'Video'}.flatten
+    @subtree = @group.self_and_descendants
+    @messages = Share.shared_to_groups_of_type(@subtree,'Notice')
+    @notes = Share.shared_to_groups_of_type(@subtree,'Post')
+    @photos = Share.shared_to_groups_of_type(@subtree,'Picto::Photo')
+    @activities = Share.shared_to_groups_of_type(@subtree,'Assignment')
+    @videos = Share.shared_to_groups_of_type(@subtree,'Video')
   end
   
   protected

@@ -2,8 +2,8 @@ class Member::ProfilesController < Member::BaseController
   
   before_filter :find_profile, :only => [:show, :new_parent, :create_parent]
   before_filter :check_profile, :only => [:edit, :update]
-  before_filter :check_viewable, :only => [:show] 
-  
+
+  #before_filter :check_viewable, :only => [:show, :index] 
   
   def show    
     respond_to do |format|

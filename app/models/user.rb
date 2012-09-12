@@ -17,8 +17,7 @@ class User < ActiveRecord::Base
   has_many :videos
   has_many :posts
   
-  after_create :default_notebook  
-  
+  after_create :default_notebook
   def student?
     person.is_a? Student
   end
@@ -53,13 +52,13 @@ class User < ActiveRecord::Base
   
   after_create :send_signup_invitation
   
-  def send_signup_invitation    
-    UserMailer.deliver_signup_invitation_notification(self, @inviter) if @inviter    
+  def send_signup_invitation
+    UserMailer.deliver_signup_invitation_notification(self, @inviter) if @inviter
   end
   
-  def send_activation_request    
-    # Prevent activation emails for invites    
-    UserMailer.deliver_signup_notification(self) unless self.activation_code.blank?    
+  def send_activation_request
+    # Prevent activation emails for invites
+    UserMailer.deliver_signup_notification(self) unless self.activation_code.blank?
   end
   
   #  after_save :create_default_blog
@@ -80,7 +79,6 @@ class User < ActiveRecord::Base
     profile.full_name
   end
   
-  
   def school_moderator_for?(user)
     if self.admin?
       return true
@@ -97,7 +95,7 @@ class User < ActiveRecord::Base
   def messageable_user_ids
     if self.parent?
       users = self.person.school_groups.collect{|g| g.users.of_types("Teacher").map(&:id) + g.parent_user_ids}.flatten
-      return (users + self.friend_user_ids + User.admin.map(&:id))     
+      return (users + self.friend_user_ids + User.admin.map(&:id))
     elsif self.school
       return self.school.group.user_ids + (self.student? ? self.friend_user_ids : self.school.group.parent_user_ids)
     else
@@ -109,7 +107,6 @@ class User < ActiveRecord::Base
     #    admin can view anyone. a user not belonging to any school can be viewed by anyone
     self.admin? || self == user || !user.school || self.messageable_user_ids.include?(user.id)
   end
-  
   
   def archive_notebook
     b = self.blogs.find_by_title_and_description("Archives", "Archive notebook")
@@ -143,16 +140,15 @@ class User < ActiveRecord::Base
   def self.site_search(query, search_options={})
     q = "#{query}%"
     if search_options[:user]
-      User.find(:all, :include => :profile, :conditions => ["users.id IN (?) AND (profiles.first_name #{DATABASE_OPERATOR[:like_operator]} ? OR profiles.last_name #{DATABASE_OPERATOR[:like_operator]} ? OR users.login #{DATABASE_OPERATOR[:like_operator]} ?)", search_options[:user].messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'})      
+      User.find(:all, :include => :profile, :conditions => ["users.id IN (?) AND (profiles.first_name #{DATABASE_OPERATOR[:like_operator]} ? OR profiles.last_name #{DATABASE_OPERATOR[:like_operator]} ? OR users.login #{DATABASE_OPERATOR[:like_operator]} ?)", search_options[:user].messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'})
     else
       User.find(:all, :include => :profile, :conditions => ["profiles.first_name #{DATABASE_OPERATOR[:like_operator]} ? OR profiles.last_name #{DATABASE_OPERATOR[:like_operator]} ? OR users.login #{DATABASE_OPERATOR[:like_operator]} ?",q, q, q]).flatten.paginate({:page => '1'})
     end
     
   end
   
-  
   #  def create_default_blog
-  #    if self.recently_activated?      
+  #    if self.recently_activated?
   #      blog_name = "#{self.profile.full_name}'s blog"
   #      blog_description = "Default blog for #{self.profile.full_name}"
   #      unless self.bloggerships.find_by_rol("default")
@@ -181,7 +177,7 @@ class User < ActiveRecord::Base
         puts "Post - "+post.inspect
         post.blog = default_note
         post.save!
-      end        
+      end
       for blog in user.blogs
         unless blog.default_notebook?
           blog.destroy
