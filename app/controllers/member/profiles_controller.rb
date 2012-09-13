@@ -39,7 +39,8 @@ class Member::ProfilesController < Member::BaseController
         @users = @group.parent_users
       else
         @column_groups = @group.active_children  
-        @users = @group.users.of_type(params[:type])   
+#        @users = @group.users.of_type(params[:type]) - takes more time
+         @users = User.of_groups(@group.id).of_type(params[:type]) 
         #      group valid memberships by user id
         @memberships = Membership.find_all_by_user_id_and_group_id(@users.map(&:id), @column_groups.map(&:id)).group_by(&:user_id)
         #      convert the hash to hold only group ids instead of memberships
