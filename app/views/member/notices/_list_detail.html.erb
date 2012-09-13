@@ -1,8 +1,8 @@
-<div id="see_more" class="text">
+<div id="notice_<%=notice.id%>" class="text">
     <%= truncate_to_words notice.content, :words => 100 %>
     <% if (notice.content.split.size > 100) %>
     <%= link_to_function "See More" do |page|
-    page[:see_more].replace_html notice.content
+    page["notice_#{notice.id}"].replace_html notice.content
     end %>
     <% end %>
 </div>
