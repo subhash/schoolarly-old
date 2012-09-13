@@ -1,0 +1,105 @@
+<% include_javascript "busy_ajax" %>
+<% include_javascript 'jquery-1.4.2.min' %>
+<script type="text/javascript">
+    jQuery.noConflict();
+    
+    jQuery(document).ready(function(){
+        jQuery('td.hover').hover(function(){
+            jQuery(this).find('a.link').show();
+        }, function(){
+            jQuery(this).find('a.link').hide();
+        });
+    });
+</script>
+<% if @group %>
+	<%= render :partial => 'member/groups/header' %>
+	<h2><span><%= I18n.t("groups.model.#{@type}.title") %></span></h2>
+	<% unless params[:subtree]%>
+		<%= link_to 'Whole subtree', url_for(request.query_parameters.merge(:escape => false, :subtree => true))%>
+	<% else %>
+		<%= link_to 'Only direct children', url_for(request.query_parameters.merge(:escape => false, :subtree => false))%>
+	<% end %>
+<% else %>
+	<h2><span><%= I18n.t('tog_social.profiles.site.title') %></span></h2>
+<% end %>
+<table class="tableE profiles">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+                <%= link_to_sortable_column_header("profiles.first_name, profiles.last_name", @order_by, @sort_order,
+                I18n.t("tog_user.model.name")) %>
+            </th>
+            <th scope="col">
+                <%= link_to_sortable_column_header("users.email", @order_by, @sort_order,
+                I18n.t("tog_user.model.email")) %>
+            </th>
+            <th scope="col">
+                <%= link_to_sortable_column_header("users.state", @order_by, @sort_order,
+                I18n.t("tog_user.model.state")) %>
+            </th>
+            <% if @group %>
+            <% for group in @column_groups %>
+            <th scope="col">
+                <%= link_to group.name, member_group_path(group) %>
+            </th>
+            <% end %>
+            <% end %>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="<%= 4 + @column_groups.size %>" class="info_results">
+                <span class="pages_navigation"><% form_tag(member_profiles_path, :method => :get) do %>
+                    <%= hidden_field_tag :group, @group.id %>
+                    <%= hidden_field_tag :type, @profiles.first.user.person_type %>
+                    <%= hidden_field_tag :sort_order, @sort_order %>
+                    <%= hidden_field_tag :order_by, @order_by %>
+                    <%= "Display" %>
+                    <%= text_field_tag :no_of_entries, params[:no_of_entries], :size => 5, :value => @no_of_entries %>
+                    <%= "items" %>
+                    <%= submit_tag " > " %>
+                    <% end %>
+                </span>
+                <span class="info_items"><%= page_entries_info @profiles %></span>
+                <span class="pages_navigation right"><%= will_paginate @profiles, :container => false %>
+                </span>
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <% @profiles.each do |profile| %>
+        <tr<%= cycle(' class="pair"','') -%>>
+            <td nowrap="nowrap">
+                <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) -%>
+            </td>
+            <td>
+                <strong><%= link_to profile.full_name,  member_profile_path(profile) -%></strong>
+            </td>
+            <td nowrap="nowrap">
+                <%= link_to profile.user.email, member_new_message_to_path(profile.user), {:title => I18n.t("tog_user.admin.send_email")} -%>
+            </td>
+            <td>
+                <%= I18n.t("tog_user.model.states.#{profile.user.state}") %>
+            </td>
+            <% if @group %>
+            <% for group in @column_groups %>
+            <td nowrap="nowrap",  class='hover'>
+                <% if i_am_moderator_of(@group) %>
+                <span id="user_<%=profile.id%>_group_<%=group.id%>"><% if group.users.include?(profile.user) %>
+                    <%= image_tag("yes2.png") %>
+                    <%= link_to_remote image_tag("delete.png", :class => 'overlap'), :url => remove_member_group_path(group, :members => [profile.id]), :method => :get , :html => {:class => 'link', :style => "display: none;", :title => "Remove from group" } %>
+                    <% else %>
+                    <%= link_to_remote image_tag("add2.png"), :url => add_member_group_path(group, :members => [profile.id]), :method => :get, :html => {:class => 'link', :style => "display: none;" , :title => "Add to group"} %>
+                    <% end %></span>
+                <% else %>
+                <%= group.users.include?(profile.user) ? image_tag("yes2.png") : "" %>
+                <% end %>
+            </td>
+            <% end %>
+            <% end %>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

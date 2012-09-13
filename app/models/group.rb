@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   
   belongs_to :network, :polymorphic => true
   #include all members, pending members etc
-  has_many :users, :through => :memberships, :include => :profile, :order => "profiles.first_name, profiles.last_name" do
+  has_many :users, :through => :memberships do
     def of_type(type)
       find :all, :conditions => ['users.person_type = ?', type]
     end
@@ -16,9 +16,9 @@ class Group < ActiveRecord::Base
   end
   
   has_many :student_users, :through => :memberships, :source => :user,
-  :conditions => ['users.person_type = ?', 'Student'], :include => :profile, :order => "profiles.first_name, profiles.last_name"
+  :conditions => ['users.person_type = ?', 'Student']
   has_many :teacher_users, :through => :memberships, :source => :user,
-  :conditions => ['users.person_type = ?', 'Teacher'], :include => :profile, :order => "profiles.first_name, profiles.last_name"
+  :conditions => ['users.person_type = ?', 'Teacher']
   
   acts_as_tree :order => 'name', :dependent => :destroy
   
@@ -230,7 +230,8 @@ class Group < ActiveRecord::Base
   
   
   def school
-    self.school? ? self.network : (self.parent ? parent.school : nil)
+    school_group = self.self_and_ancestors.detect(&:school?)
+    school_group.network if school_group
   end
   
   def do_archive

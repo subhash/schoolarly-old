@@ -7,6 +7,9 @@ en:
       full_messages:
         format: "%{attribute} %{message}"
   tog_user:
+    model:
+      profile:
+        pic: Picture
     user:
       sign_up: Thanks for signing up! We have sent to you an email with instructions to activate your account.
   conversatio:
@@ -177,6 +180,8 @@ en:
         view_all: "View all classes"
       students:
         title: "Students"
+      parents:
+        title: "Parents"
       teachers:
         title: "Teachers"
       members:
