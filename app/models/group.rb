@@ -15,9 +15,9 @@ class Group < ActiveRecord::Base
     end
   end
   
-  has_many :student_users, :through => :memberships, :source => :user,
+  has_many :student_users, :through => :memberships, :source => :user, :include => :profile,
   :conditions => ['users.person_type = ?', 'Student']
-  has_many :teacher_users, :through => :memberships, :source => :user,
+  has_many :teacher_users, :through => :memberships, :source => :user, :include => :profile,
   :conditions => ['users.person_type = ?', 'Teacher']
   
   acts_as_tree :order => 'name', :dependent => :destroy
