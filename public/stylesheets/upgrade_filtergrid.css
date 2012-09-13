@@ -10,6 +10,11 @@ select.rspg {
     font-size: 10px;
 }
 
+.showHideColsSpan {
+    float: left;
+}
+
+/*
 #ldiv_filterTable {
     width: 25%;
 }
@@ -21,3 +26,4 @@ select.rspg {
 #mdiv_filterTable {
     width: 28%;
 }
+*/
