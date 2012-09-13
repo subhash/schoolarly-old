@@ -464,6 +464,9 @@ en:
         Grade:
           subject: New grade for [%{shared_to}]
           detail: User %{user_name} has assigned a new grade for [%{shared_to}]
+        Video:
+          subject: New video [%{shareable}] for [%{shared_to}]
+          detail: User %{user_name} has posted a new video [%{shareable}] to [%{shared_to}]          
       edit:
         Assignment:
           subject: Activity [%{shareable}] has been updated
@@ -486,6 +489,9 @@ en:
         Grade:
           subject: Grade for [%{shared_to}] has been updated
           detail: User %{user_name} has updated grade for [%{shared_to}]                  
+        Video:
+          subject: Video [%{shareable}] has been updated
+          detail: User %{user_name} has updated video [%{shareable}] shared to [%{shared_to}]
           
 
 
