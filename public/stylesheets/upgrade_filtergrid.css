@@ -1,0 +1,23 @@
+
+/*
+ * upgrading filterTable.css
+ */
+select.pgSlc {
+    width: auto;
+}
+
+select.rspg {
+    font-size: 10px;
+}
+
+#ldiv_filterTable {
+    width: 25%;
+}
+
+#rdiv_filterTable {
+    width: 45%;
+}
+
+#mdiv_filterTable {
+    width: 28%;
+}

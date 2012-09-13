@@ -29,7 +29,7 @@ function setTableFilter(tableName, columnSize){
         rows_counter_text: "Displayed rows: ",
         btn_reset: true,
         btn_reset_text: "Clear",
-        loader: true,
+        loader: false,
         loader_html: "<img src='/images/img_loading.gif' alt=''='' +='' 'style='vertical-align:middle; margin:0 5px 0 5px'>" +
         "<span>Loading...</span>",
         loader_css_class: 'myLoader',

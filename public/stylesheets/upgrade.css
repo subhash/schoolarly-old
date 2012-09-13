@@ -12,24 +12,15 @@ input, textarea {
 .wide {
     width: 150%;
 }
-/*
- * upgrading filterTable.css
- */
-select.pgSlc {
-    width: auto;
-}
-
-select.rspg {
-	font-size: 10px;
-}
 
 .hidden_email {
-	font-style: italic;
-	color: red;
-	font-size:0.8em;
+    font-style: italic;
+    color: red;
+    font-size: 0.8em;
 }
+
 /**
- * 
+ *
  */
 #container {
     font: normal 0.85em / 1.7em 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
@@ -461,6 +452,7 @@ td.hover {
     border-radius: 3px;
     background: #FAFAFA;
     background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+
 
 
 
