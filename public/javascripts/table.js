@@ -22,7 +22,6 @@ function setTableFilter(tableName, columnSize){
         sort: true,
 		paging: true,
 		paging_length: 25,
-		remember_grid_values : true,
 		remember_page_length : true, 
 		results_per_page: ['Results per page',[25,50,100]],
         filters_row_index: 1,

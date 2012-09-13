@@ -3,8 +3,6 @@ class Member::ProfilesController < Member::BaseController
   before_filter :find_profile, :only => [:show, :new_parent, :create_parent]
   before_filter :check_profile, :only => [:edit, :update]
   
-  #before_filter :check_viewable, :only => [:show, :index] 
-  
   def show    
     respond_to do |format|
       format.html # index.html.erb
@@ -69,6 +67,7 @@ class Member::ProfilesController < Member::BaseController
   def index    
     if params[:group]
       @group = Group.find(params[:group])
+      @viewable = current_user.can_view_email?(@group, params[:type])
       if params[:type] == 'Parent'
         @column_groups = []
         @users = @group.parent_users
@@ -117,16 +116,6 @@ class Member::ProfilesController < Member::BaseController
   def check_profile
     @profile = Profile.find(params[:id]) if params[:id]
     raise UnauthorizedException.new unless (current_user.profile == @profile or current_user.school_moderator_for?(@profile.user))
-  end
-  
-  def check_viewable
-    if params[:group]
-      @group = Group.find(params[:group])
-      viewable = current_user.parent? ? false : current_user.school == @group.school           
-    else
-      viewable = current_user.can_view?(@profile.user)
-    end
-    raise UnauthorizedException.new unless viewable
   end
   
 end

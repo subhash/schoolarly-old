@@ -23,7 +23,11 @@ select.rspg {
 	font-size: 10px;
 }
 
-
+.hidden_email {
+	font-style: italic;
+	color: red;
+	font-size:0.8em;
+}
 /**
  * 
  */

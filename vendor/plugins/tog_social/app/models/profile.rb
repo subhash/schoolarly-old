@@ -50,7 +50,7 @@ class Profile < ActiveRecord::Base
 
   def full_name
      #todo apply for internationalization
-     first_name.blank? && last_name.blank? ? self.user.login : "#{first_name} #{last_name}".strip
+     first_name.blank? && last_name.blank? ? self.user.login.split("@")[0] : "#{first_name} #{last_name}".strip
   end
 
   def followed_by? profile

@@ -93,7 +93,9 @@ class User < ActiveRecord::Base
   #  A user not belonging to a school can message any member in his groups.
   
   def messageable_user_ids
-    if self.parent?
+    if self.admin?
+      return User.all.collect(&:id)
+    elsif self.parent?
       users = self.person.school_groups.collect{|g| g.users.of_types("Teacher").map(&:id) + g.parent_user_ids}.flatten
       return (users + self.friend_user_ids + User.admin.map(&:id))
     elsif self.school
@@ -105,7 +107,17 @@ class User < ActiveRecord::Base
   
   def can_view?(user)
     #    admin can view anyone. a user not belonging to any school can be viewed by anyone
-    self.admin? || self == user || !user.school || self.messageable_user_ids.include?(user.id)
+    self.admin? || self == user || !user.school || (self.school == user.school && self.teacher?)
+  end
+  
+  def can_view_email?(group, type)
+    if self.admin?
+      return true
+    elsif (self.school == group.school) 
+      return self.teacher?
+    elsif (self.groups.include?(group))
+      return group.moderators.include?(self)
+    end
   end
   
   def archive_notebook
