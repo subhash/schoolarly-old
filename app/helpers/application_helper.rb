@@ -15,6 +15,13 @@ module ApplicationHelper
     include_stylesheet 'prettyPhoto/pp_upgrade.css'
   end
   
+  def include_table_filter
+    include_javascript 'jquery-1.4.2.min' 
+    include_javascript 'tableFilter/tablefilter_all'
+    include_javascript 'table'
+    include_stylesheet 'upgrade_filtergrid'
+  end
+  
   def shared_through_whom(share)
     whom = []
     if share.shared_to.is_a? Group
