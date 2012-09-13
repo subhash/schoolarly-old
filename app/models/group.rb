@@ -7,11 +7,11 @@ class Group < ActiveRecord::Base
   #include all members, pending members etc
   has_many :users, :through => :memberships do
     def of_type(type)
-      find :all, :conditions => ['users.person_type = ?', type]
+      find :all, :conditions => {'users.person_type' => type}
     end
     
     def of_types(types)
-      find :all, :conditions => ['users.person_type in (?)', types]
+      find :all, :conditions => {'users.person_type' => types}
     end
   end
   
