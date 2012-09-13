@@ -110,11 +110,15 @@ class User < ActiveRecord::Base
     self.admin? || self == user || self.profile.is_friend_of?(user.profile) || !user.school || (self.school == user.school && self.teacher?)
   end
   
-  def can_view_email?(group, type)
+  
+  
+  def can_view_email?(group)
     if self.admin?
       return true
     elsif (self.school == group.school) 
+      #  only teachers of a school can view emails in a school      
       return self.teacher?
+      #      if i don't belong to any school, i can view emails in all groups moderated by me.
     elsif (self.groups.include?(group))
       return group.moderators.include?(self)
     end

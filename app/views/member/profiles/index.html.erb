@@ -63,7 +63,7 @@
                     <strong><%= link_to profile.full_name,  member_profile_path(profile) -%></strong>
                 </td>
                 <td nowrap="nowrap">
-                    <% if @viewable %>
+                    <% if @can_view_email %>
                     <%= link_to user.email, member_new_message_to_path(user), {:title => I18n.t("tog_user.admin.send_email")} -%>
                     <% else %>
                     <span class="hidden_email">hidden</span>

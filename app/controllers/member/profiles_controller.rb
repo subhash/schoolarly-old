@@ -28,52 +28,18 @@ class Member::ProfilesController < Member::BaseController
       }
     end
   end
-  
-  #  def index    
-  #    @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
-  #    @page = params[:page] || '1'
-  #    @no_of_entries = params[:no_of_entries] || '15'
-  #    @sort_order = params[:sort_order] || 'ASC'  
-  #    order = @order_by.split(',').collect{|o|o.to_s+" "+@sort_order.to_s}.join(',')
-  #    if params[:group]
-  #      condition = ""
-  #      conditions_values = Hash.new  
-  #      @group = Group.find(params[:group])
-  #      @column_groups = params[:subtree] ? @group.subtree : @group.active_children  
-  #      conditions_values[:group_id] = @group.id
-  #      conditions_values[:person_type] = params[:type]
-  #      condition += "(memberships.group_id = :group_id and users.person_type = :person_type)"
-  #      if params[:search_term]
-  #        condition+= " and "
-  #        conditions_values[:search_term] = "%#{params[:search_term]}%"
-  #        condition = "(profiles.first_name like :search_term or profiles.last_name like :search_term or users.email like :search_term)"
-  #      end     
-  #      @profiles = Profile.for_group(condition, conditions_values).paginate :per_page => @no_of_entries,
-  #                                 :page => @page,
-  #                                 :order => "#{order}" 
-  #      @type = @profiles.first.user.type
-  #      
-  #    else
-  #      @profiles = Profile.active.paginate :per_page => @no_of_entries,
-  #                                 :page => @page,
-  #                                 :order => "#{order}"     
-  #    end 
-  #    respond_to do |format|
-  #      format.html # index.html.erb
-  #      format.xml  { render :xml => @profiles }
-  #    end
-  #  end
+
   
   def index    
     if params[:group]
       @group = Group.find(params[:group])
-      @viewable = current_user.can_view_email?(@group, params[:type])
+      @can_view_email = current_user.can_view_email?(@group)
       if params[:type] == 'Parent'
         @column_groups = []
         @users = @group.parent_users
       else
         @column_groups = @group.active_children  
-        @users = params[:type] ? @group.users.of_type(params[:type]) : @group.users.of_type(nil)      
+        @users = @group.users.of_type(params[:type])   
         #      group valid memberships by user id
         @memberships = Membership.find_all_by_user_id_and_group_id(@users.map(&:id), @column_groups.map(&:id)).group_by(&:user_id)
         #      convert the hash to hold only group ids instead of memberships
