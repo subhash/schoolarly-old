@@ -6,9 +6,15 @@ class Video < ActiveRecord::Base
   acts_as_commentable
   acts_as_shareable
   
-  validates_presence_of :title, :link
+  has_attached_file :doc
   
-  validate :valid_url?
+  validates_presence_of :title
+  
+  validates_presence_of :link, :unless => Proc.new{|p| p.doc.file? }
+  
+  validates_attachment_presence :doc, :if => Proc.new{|p| p.link.blank?}
+  
+  validate :valid_url?, :unless => Proc.new {|p| p.doc.file?}
   
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
   
