@@ -47,6 +47,7 @@ class Video < ActiveRecord::Base
   
   def valid_url?
     errors.add(:link, I18n.t('videos.model.url.invalid')) if url.nil?
+    errors.add(:link, I18n.t('videos.model.url.invalid')) if video_id.nil?
   end
   
   
