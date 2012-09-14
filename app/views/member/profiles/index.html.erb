@@ -73,7 +73,7 @@
                 </td>
                 <% if @group %>
                 <% for group in @column_groups %>
-                <% user_in_group = @memberships[user.id] && @memberships[user.id].include?(group.id) %>
+                <% user_in_group = @memberships[user.id] && @memberships[user.id][group.id] %>
                 <td nowrap="nowrap",  class='hover'>
                     <% if moderator %>
                     <span id="user_<%=profile.id%>_group_<%=group.id%>"><% if user_in_group %>

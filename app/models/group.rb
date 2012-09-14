@@ -15,10 +15,10 @@ class Group < ActiveRecord::Base
     end
   end
   
-  has_many :student_users, :through => :memberships, :source => :user, :include => :profile,
-  :conditions => ['users.person_type = ?', 'Student']
-  has_many :teacher_users, :through => :memberships, :source => :user, :include => :profile,
-  :conditions => ['users.person_type = ?', 'Teacher']
+  has_many :student_users, :through => :memberships, :source => :user,
+  :conditions => ['users.person_type = ?', 'Student'], :include => :profile, :order => "profiles.first_name, profiles.last_name"
+  has_many :teacher_users, :through => :memberships, :source => :user,
+  :conditions => ['users.person_type = ?', 'Teacher'], :include => :profile, :order => "profiles.first_name, profiles.last_name"
   
   acts_as_tree :order => 'name', :dependent => :destroy
   
