@@ -18,6 +18,7 @@
 <% else %>
 <h2><span><%= I18n.t('tog_social.profiles.site.title') %></span></h2>
 <% end %>
+<% moderator = i_am_moderator_of(@group) %>
 <div class="wide">
     <table id="filterTable" class="tableE profiles">
         <thead>
@@ -74,7 +75,7 @@
                 <% for group in @column_groups %>
                 <% user_in_group = @memberships[user.id] && @memberships[user.id].include?(group.id) %>
                 <td nowrap="nowrap",  class='hover'>
-                    <% if i_am_moderator_of(@group) %>
+                    <% if moderator %>
                     <span id="user_<%=profile.id%>_group_<%=group.id%>"><% if user_in_group %>
                         <%= image_tag("yes2.png") %>
                         <%= link_to_remote image_tag("delete.png", :class => 'overlap'), :url => remove_member_group_path(group, :members => [profile.id]), :method => :get , :html => {:class => 'link', :style => "display: none;", :title => "Remove from group" } %>
