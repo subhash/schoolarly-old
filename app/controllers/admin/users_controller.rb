@@ -11,4 +11,8 @@ class Admin::UsersController < Admin::BaseController
     @profile = @user.profile
   end
   
+  
+    def index
+      @users = User.all
+    end
 end
