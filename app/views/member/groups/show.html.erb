@@ -70,15 +70,9 @@
 	  :title => I18n.t("groups.model.#{type}.title", :count => @group.members.size),  
 	  :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
  <% end %>
- <% parent_users = @group.parent_users %>
- <% unless parent_users.empty? %>
- <%= render :partial => "member/profiles/profiles_portlet", :locals => { 
-	  :items => parent_users.collect(&:profile), 
-      :type => parent_users.first.person_type,
-	  :style => :portletG, 
-	  :title => I18n.t("groups.model.parents.title", :count => parent_users.size),  
-	  :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
- <% end %>
+ <div class='portletG'>
+  	<h2><span><%= link_to I18n.t("groups.model.parents.title"), member_profiles_path(:group => @group, :type => 'Parent') %></span></h2>
+ </div>
  
 <% @group.active_children.group_by(&:type).each do |type, groups| %>
 	<%= render :partial => "groups_portlet", :locals => { 
