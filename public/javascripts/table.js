@@ -3,7 +3,7 @@
 
 jQuery.noConflict();
 
-function setTableFilter(tableName, cols, sort_cols, paginate){
+function setTableFilter(tableName, cols, sort_cols, initial_column, paginate){
     var props = {
         sort: true,
         paging: paginate,
@@ -36,7 +36,8 @@ function setTableFilter(tableName, cols, sort_cols, paginate){
 ]
         },
         sort_config: {
-            sort_types: sort_cols
+            sort_types: sort_cols,
+			sort_col: [initial_column, false]
         },
         help_instructions_text: "Use the filters above each column to filter and limit table data. Type your text and press Enter.\n Each column can be sorted too."
     };
