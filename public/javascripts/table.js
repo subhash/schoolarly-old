@@ -23,6 +23,7 @@ function setTableFilter(tableName, cols, sort_cols, initial_column, paginate){
         status_bar: true,
         mark_active_columns: true,
         display_all_text: "< Show all >",
+		alternate_rows: true,
         //        enable_default_theme: true,
         rows_always_visible: [1],
         //        col_width: ['50px', '150px', '100px', '100px'],

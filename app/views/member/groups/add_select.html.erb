@@ -40,7 +40,7 @@
     </thead>
     <tbody>
         <% @profiles.each do |profile| %>
-        <tr<%= cycle(' class="pair"','') -%>>
+        <tr>
             <td nowrap="nowrap">
                 <%= check_box_tag 'members[]', profile.id, false, :class => 'item' %>
             </td>

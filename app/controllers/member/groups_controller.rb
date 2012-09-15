@@ -121,8 +121,11 @@ class Member::GroupsController < Member::BaseController
   
   def add_select  
     params[:external] ||= false 
-    @profiles = params[:external] ? @group.applicable_members(@type, current_user).collect(&:profile) : @group.applicable_members(@type).collect(&:profile)
-    
+    if params[:external]
+      @profiles = @group.applicable_members(@type, current_user).collect(&:profile)
+    else
+      @profiles = @group.applicable_members(@type).collect(&:profile) 
+    end   
     respond_to do |format|
       format.html { render :template => 'member/groups/add_select'}
       format.xml  { render :xml => @profiles }
