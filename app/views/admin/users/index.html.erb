@@ -3,7 +3,13 @@
     jQuery.noConflict();
     
     jQuery(document).ready(function(){
-        setTableFilter("filterTable", 5);
+        var cols = {
+            col_0: "none",
+            col_3: "select"
+        };
+        
+        var sort_cols = ['None', 'String', 'String', 'String', 'String']
+        setTableFilter("filterTable", cols, sort_cols, true);
     });
 </script>
 <h1><%= I18n.t("tog_user.plugin_title") %></h1>

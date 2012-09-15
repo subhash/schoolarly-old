@@ -1,4 +1,4 @@
-<% include_javascript 'jquery-1.4.2.min' %>
+<% include_table_filter %>
 <script type="text/javascript">
     jQuery.noConflict();
     jQuery(document).ready(function(){
@@ -12,12 +12,18 @@
                 jQuery(this).attr('checked', false);
             });
         });
+        var cols = {
+            col_0: "none",
+            col_1: "none"
+        };
+        var sort_cols = ['None', 'None', 'String', 'String']
+        setTableFilter("filterTable", cols, sort_cols, false);
     });
 </script>
 <%= render :partial => 'member/groups/header_short' %>
 <h2><span><%= I18n.t("groups.site.#{@type}.add_select") %><%=" or " %><%= link_to I18n.t("groups.site.#{@type}.invite"), "#{@type.downcase.pluralize}/new" %></span></h2>
 <% form_tag add_member_group_path(@group, :type => @type) do |f| %>
-<table class="tableE profiles">
+<table id="filterTable" class="tableE profiles">
     <thead>
         <tr>
             <th>
@@ -25,12 +31,10 @@
             <th scope="col">
             </th>
             <th scope="col">
-                <%= link_to_sortable_column_header("profiles.first_name, profiles.last_name", @order_by, @sort_order,
-                I18n.t("tog_user.model.name")) %>
+                <%= I18n.t("tog_user.model.name") %>
             </th>
             <th scope="col">
-                <%= link_to_sortable_column_header("users.email", @order_by, @sort_order,
-                I18n.t("tog_user.model.email")) %>
+                <%= I18n.t("tog_user.model.email") %>
             </th>
         </tr>
     </thead>
@@ -51,38 +55,35 @@
             </td>
         </tr>
         <% end %>
-        <% if @profiles.size > 1 %>
-        <tr>
-            <td colspan="2">
-                <%= link_to "Select All", "#", :class => 'select_all' %>
-            </td>
-            <td colspan="2">
-                <%= link_to "Unselect All", "#", :class => 'unselect_all' %>
-            </td>
-        </tr>
-        <% end %>
-        <% if  @type == 'Teacher' %>
-        <tr>
-            <td colspan="4">
-                <label for="moderators" class="nolabel">
-                    <%= check_box_tag :moderator, "1", !@group.school? %><%=I18n.t('teachers.member.invite.moderator') %>
-                </label>
-            </td>
-        </tr>
-        <% end %>
     </tbody>
 </table>
-<div class="actions">
-    <%= submit_tag I18n.t("groups.site.add.#{@type}"), :class => "button mainaction" %>
-</div>
-<% end %>
-<% if current_user.school && @group.ancestors.all?{|g|!g.school?} && !params[:external] %>
-<% content_for :sidebar do %>
-<div class="portlet portletD">
-    <h2><span><%= I18n.t('groups.member.add_members.external') %></span></h2>
-    <div class="portlet_content">
-        <%= link_to I18n.t('groups.member.add_members.from_school', :school => current_user.school.group.name) ,add_select_member_group_path(@group, :type => params[:type], :external => true), :class => 'add' %>
+<% if @profiles.size > 1 %>
+<div>
+    <div class="ldiv">
+        <%= link_to "Select All", "#", :class => 'select_all' %>
+    </div>
+    <div class="rdiv">
+        <%= link_to "Unselect All", "#", :class => 'unselect_all' %>
     </div>
 </div>
 <% end %>
-<% end %>
+<% if  @type == 'Teacher' %>
+<div>
+    <label for="moderators" class="nolabel">
+        <%= check_box_tag :moderator, "1", !@group.school? %><%=I18n.t('teachers.member.invite.moderator') %>
+    </label>
+    <% end %>
+    <div class="actions">
+        <%= submit_tag I18n.t("groups.site.add.#{@type}"), :class => "button mainaction" %>
+    </div>
+    <% end %>
+    <% if current_user.school && @group.ancestors.all?{|g|!g.school?} && !params[:external] %>
+    <% content_for :sidebar do %>
+    <div class="portlet portletD">
+        <h2><span><%= I18n.t('groups.member.add_members.external') %></span></h2>
+        <div class="portlet_content">
+            <%= link_to I18n.t('groups.member.add_members.from_school', :school => current_user.school.group.name) ,add_select_member_group_path(@group, :type => params[:type], :external => true), :class => 'add' %>
+        </div>
+    </div>
+    <% end %>
+    <% end %>

@@ -1,5 +1,4 @@
 <% include_table_filter %>
-
 <script type="text/javascript">
     jQuery.noConflict();
     
@@ -9,7 +8,20 @@
         }, function(){
             jQuery(this).find('a.link').hide();
         });
-        setTableFilter("filterTable", '<%= 4 + @column_groups.size %>');
+		columnSize = '<%= 4 + @column_groups.size %>';
+        var cols = {
+            col_0: "none",
+            col_3: "select"
+        };
+        for (var i = columnSize - 1; i > 3; i--) {
+            cols["col_" + i] = "none";
+        };
+        
+        var sort_cols = ['None', 'String', 'String', 'String']
+        for (var i = columnSize - 1; i > 3; i--) {
+            sort_cols.push('None');
+        };
+        setTableFilter("filterTable", cols, sort_cols, true);
     });
 </script>
 <% if @group %>

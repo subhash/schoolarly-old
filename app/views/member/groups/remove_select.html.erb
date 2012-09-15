@@ -1,6 +1,6 @@
 <% include_javascript 'jquery-1.4.2.min' %>
+<% include_table_filter %>
 <script type="text/javascript">
-    jQuery.noConflict();
     jQuery(document).ready(function(){
         jQuery('.select_all').click(function(){
             jQuery("input:checkbox.item").each(function(){
@@ -12,12 +12,18 @@
                 jQuery(this).attr('checked', false);
             });
         });
+        var cols = {
+            col_0: 'none',
+            col_1: 'none'
+        };
+        var sort_cols = ['None', 'None', 'String', 'String']
+        setTableFilter("filterTable", cols, sort_cols, false);
     });
 </script>
 <%= render :partial => 'member/groups/header_short' %>
 <h2><span><%= @form_title || I18n.t("groups.site.#{@type}.remove_select") %></span></h2>
 <% form_tag (@form_url || remove_member_group_path(@group)) do |f| %>
-<table class="tableE profiles">
+<table id = "filterTable" class="tableE profiles">
     <thead>
         <tr>
             <th>
@@ -25,12 +31,10 @@
             <th scope="col">
             </th>
             <th scope="col">
-                <%= link_to_sortable_column_header("profiles.first_name, profiles.last_name", @order_by, @sort_order,
-                I18n.t("tog_user.model.name")) %>
+                <%= I18n.t("tog_user.model.name") %>
             </th>
             <th scope="col">
-                <%= link_to_sortable_column_header("users.email", @order_by, @sort_order,
-                I18n.t("tog_user.model.email")) %>
+                <%= I18n.t("tog_user.model.email") %>
             </th>
         </tr>
     </thead>
@@ -51,19 +55,19 @@
             </td>
         </tr>
         <% end %>
-        <% if @profiles.size > 1 %>
-        <tr>
-            <td colspan="2">
-                <%= link_to "Select All", "#", :class => 'select_all' %>
-            </td>
-            <td colspan="2">
-                <%= link_to "Unselect All", "#", :class => 'unselect_all' %>
-            </td>
-        </tr>
-        <% end %>
     </tbody>
 </table>
+<% if @profiles.size > 1 %>
+<div>
+    <div class="ldiv">
+        <%= link_to "Select All", "#", :class => 'select_all' %>
+    </div>
+    <div class="rdiv">
+        <%= link_to "Unselect All", "#", :class => 'unselect_all' %>
+    </div>
+</div>
+<% end %>
 <div class="actions">
-   <%= submit_tag (@form_submit || I18n.t("groups.site.remove.#{@type}")), :class => "button mainaction" %>
+    <%= submit_tag (@form_submit || I18n.t("groups.site.remove.#{@type}")), :class => "button mainaction" %>
 </div>
 <% end %>
