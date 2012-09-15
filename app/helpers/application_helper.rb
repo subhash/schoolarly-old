@@ -16,6 +16,7 @@ module ApplicationHelper
   end
   
   def include_table_filter
+    include_javascript 'busy_ajax'
     include_javascript 'jquery-1.4.2.min' 
     include_javascript 'tableFilter/tablefilter_all'
     include_javascript 'table'

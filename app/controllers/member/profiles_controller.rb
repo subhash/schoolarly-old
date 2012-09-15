@@ -38,7 +38,7 @@ class Member::ProfilesController < Member::BaseController
         @column_groups = []
         @users = @group.parent_users
       else
-        @column_groups = @group.active_children  
+        @column_groups = @group.school? ? [] : @group.active_children  
         @users = @group.users.of_type(params[:type])
         #         @users = User.of_groups(@group.id).of_type(params[:type]) 
         #      group valid memberships by user id
