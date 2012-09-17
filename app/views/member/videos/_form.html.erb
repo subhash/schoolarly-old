@@ -1,15 +1,3 @@
-<script type="text/javascript">
-    jQuery(document).ready(function(){
-        jQuery("#url_link").click(function(){
-            jQuery("#url").show();
-            jQuery("#doc").hide();
-        });
-        jQuery("#doc_link").click(function(){
-            jQuery("#url").hide();
-            jQuery("#doc").show();
-        });
-    });
-</script>
 <% video ||= @video %>
 <div class="fields">
     <p>
@@ -18,27 +6,26 @@
         </label>
         <%= f.text_field :title, :class=>"fieldbox wide" -%>
     </p>
-
-    <p id="url">
-    	<label for="video_link">
-        	<%= I18n.t('videos.model.url.title') %>
-        </label>
-        <%= f.text_field :link, :class=>"fieldbox wide" -%>
-        <br/>
-        <%= link_to I18n.t('videos.model.doc.title_or'), '#', :id => "doc_link" %>
-    </p>
-    <p id="doc" style=<%= "display:none;" %>>
-        <label for="video_doc">
-            <%= I18n.t('videos.model.doc.title') %>
-        </label>
-        <%= f.file_field  :doc %>
-        <%= link_to_function I18n.t('videos.model.url.title_or'), '#', :id => "url_link" %>
-    </p>
        
     <p>
         <label for="video_description">
             <%= I18n.t('videos.model.description') %>
         </label>
         <%= f.text_area :description, :class=>"fieldbox wide", :rows => 10 -%>
+    </p>    
+
+	<% unless params[:upload] %>
+    <p id="url">
+    	<label for="video_link">
+        	<%= I18n.t('videos.model.url.title') %>
+        </label>
+        <%= f.text_field :link, :class=>"fieldbox wide" -%>
+        <br/>
     </p>
+    <% else %>
+    <p id="doc">
+        Press Continue to select the video file
+    </p>
+    <% end %>
+    
 </div>

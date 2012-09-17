@@ -5,21 +5,15 @@ class Video < ActiveRecord::Base
   belongs_to :user
   acts_as_commentable
   acts_as_shareable
-  
-  has_attached_file :doc
-  
+    
   validates_presence_of :title
   
-  validates_presence_of :link, :unless => Proc.new{|p| p.doc.file? }
-  
-  validates_attachment_presence :doc, :if => Proc.new{|p| p.link.blank?}
-  
-  validate :valid_url?, :unless => Proc.new {|p| p.doc.file?}
-  
+  validates_presence_of :link, :if => Proc.new{|p| p.token.blank? }
+  validates_presence_of :token, :if => Proc.new{|p| p.link.blank? }
+  validate :valid_url?, :if => Proc.new {|p| p.token.blank?}
+    
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
-  
-  #  validates :link, :presence => true, :domain => true
-  
+    
   def embed(width = "640", height = "390")
     embed_code = "<iframe src='#{url}' width='#{width}' height='#{height}' frameborder='0' allowfullscreen></iframe>"
   end
@@ -36,7 +30,6 @@ class Video < ActiveRecord::Base
     url
   end
   
-  
   def thumbnail
     url = nil
     case base_uri
@@ -45,8 +38,11 @@ class Video < ActiveRecord::Base
       when "www.vimeo.com"
       url = thumbnail_path( image_base_uri, video_id )
     end
-    
     url  
+  end
+  
+  def self.youtube_client
+    YouTubeIt::Client.new(SCHOOLARLY)
   end
   
   protected 
@@ -63,6 +59,9 @@ class Video < ActiveRecord::Base
   # Thumbnail Paths:
   #   http://img.youtube.com/vi/Gqraan6sBjk/2.jpg
   private
+    
+  SCHOOLARLY = {:username => 'schoolarly@gmail.com', :password => 'myword178', :dev_key => 'AI39si5FVyA7IBPF1yOlAUkVTCTPrFcbnJizPAPlGEmpT9BoLn1ddLbRyOvLMLQj_0pOnMZnIrQ3E-ZQ-VMD0to6henOfL8YUw'}
+    
   def image_base_uri
     image_base_uri = nil
     case base_uri

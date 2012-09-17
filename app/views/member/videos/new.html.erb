@@ -1,20 +1,45 @@
 <% include_form_effects %>
+<% if params[:upload] %>
+	<% title_text = I18n.t('videos.model.doc.title_or') %>
+	<% submit_url = member_videos_path(:upload => true) %>
+	<% submit_text = 'Continue' %>
+<% else %>
+	<% title_text = I18n.t('videos.model.url.title_or') %>
+	<% submit_url = member_videos_path %>
+	<% submit_text = I18n.t('videos.site.new.create') %>
+<% end %>
 <% if @group %>
-<%= render :partial => 'member/groups/header_short', :locals => {:title => I18n.t('videos.site.new.title')} %>
+<%= render :partial => 'member/groups/header_short', :locals => {:title => title_text} %>
 <% else %>
 <div class="titleB">
-    <%= I18n.t('videos.site.new.title') %>
+    <%= title_text %>
 </div>
 <% end %>
+Or
+<% if params[:upload] %>
+    <%= link_to I18n.t('videos.model.url.title_or'), new_member_video_path(:group => @group, :upload => false) %>	
+<% else %>
+	<%= link_to I18n.t('videos.model.doc.title_or'), new_member_video_path(:group => @group, :upload => true) %>
+<% end %>
+
+<% unless @upload_info %>
 <div class="error">
     <%= error_messages_for :video %>
 </div>
-<% form_for :video, :url => member_videos_path, :html => {:multipart=>true,:method => "post"} do |f| -%>
+<% form_for :video, :url => submit_url, :html => {:multipart=>true,:method => "post"} do |f| -%>
 <fieldset>
     <%= render :partial => 'form', :locals => {:f => f} %>
     <%= hidden_field_tag :group, params[:group] if params[:group] %>
     <div class="actions">
-        <%= submit_tag I18n.t('videos.site.new.create'), {:class => "button mainaction", :accesskey => "s"} %>
+        <%= submit_tag submit_text, {:class => "button mainaction", :accesskey => "s"} %>
     </div>
 </fieldset>
 <% end -%>
+<% else %>
+<% form_tag @upload_info[:url], :multipart => true do %>
+  <%= hidden_field_tag :token, @upload_info[:token] %>
+  <%= label_tag :file %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload video" %>
+<% end %>
+<% end %>

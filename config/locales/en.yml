@@ -806,11 +806,11 @@ en:
       link: YouTube/vimeo link
       url:
         title: "YouTube/Vimeo link"
-        title_or: "Or provide a YouTube/Vimeo link here"
+        title_or: "Post a video from YouTube/Vimeo"
         invalid: "should be a valid YouTube or Vimeo link in the format http://www.youtube.com/watch?v=Gqraan6sBjk"
       doc: 
         title: "Upload video"
-        title_or: "Or upload a video file"
+        title_or: "Upload a video file"
                 
     member:
       add_success: Video is successfully added
