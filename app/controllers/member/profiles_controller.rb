@@ -28,7 +28,7 @@ class Member::ProfilesController < Member::BaseController
       }
     end
   end
-
+  
   
   def index    
     if params[:group]
@@ -38,13 +38,14 @@ class Member::ProfilesController < Member::BaseController
         @column_groups = []
         @users = @group.parent_users
       else
-        @column_groups = @group.active_children  
+        @column_groups = @group.school? ? [] : @group.active_children  
         @users = @group.users.of_type(params[:type])
-#         @users = User.of_groups(@group.id).of_type(params[:type]) 
-        #      group valid memberships by user id
-        @memberships = Membership.find_all_by_user_id_and_group_id(@users.map(&:id), @column_groups.map(&:id)).group_by(&:user_id)
-        #      convert the hash to hold only group ids instead of memberships
-        @memberships.each{|key, value| @memberships[key] = value.map(&:group_id)}
+        @memberships = Membership.find(:all, :conditions => {:user_id => @users.map(&:id), :group_id => @column_groups.map(&:id)}).group_by(&:user_id)
+        @memberships.each do |key, value|
+          h = {}
+          value.each{|m| h[m.group_id] = m}
+          @memberships[key] = h
+        end
       end    
       @type = @users.first.type
     else

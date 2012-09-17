@@ -13,6 +13,6 @@ class Admin::UsersController < Admin::BaseController
   
   
     def index
-      @users = User.all
+      @users = User.find(:all, :include => :profile)
     end
 end
