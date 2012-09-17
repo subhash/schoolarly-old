@@ -1,7 +1,7 @@
 <% video = share.shareable %>
 <div class="photo">
     <div class="photo_container">
-        <%= link_to image_tag(video.thumbnail), member_video_path(video) %>
+        <%= link_to video.link.blank? ? video.title : image_tag(video.thumbnail), member_video_path(video) %>
         <%= link_to video.title, member_video_path(video) %>
     </div>
     <p>

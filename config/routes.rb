@@ -90,7 +90,7 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
     member.resources :rubrics
-    member.resources :videos
+    member.resources :videos, :collection => {:youtube_update => :get}
     member.resources :assignments, :member => {:publish_grades => :get} do |assignment|
       assignment.resources :submissions, :shallow => true, :member => {:sendback => :get}
       assignment.resources :grades, :shallow => true, :member => {:change_rubric => :post}

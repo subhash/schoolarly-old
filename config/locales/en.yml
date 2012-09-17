@@ -805,7 +805,13 @@ en:
       description: Description (optional)
       link: YouTube/vimeo link
       url:
+        title: "YouTube/Vimeo link"
+        title_or: "Post a video from YouTube/Vimeo"
         invalid: "should be a valid YouTube or Vimeo link in the format http://www.youtube.com/watch?v=Gqraan6sBjk"
+      doc: 
+        title: "Upload video"
+        title_or: "Upload a video file"
+                
     member:
       add_success: Video is successfully added
       add_failure: Error in adding video
@@ -821,7 +827,6 @@ en:
       new:
         title: Add new video
         create: Create video
-        description: "Upload videos to YouTube or Vimeo, and share the link here."
       edit:
         title: Edit video
         update: Update video
