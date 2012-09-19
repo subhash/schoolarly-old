@@ -31,7 +31,7 @@
         </thead>
         <tbody>
             <% @users.each do |user| %>
-            <tr<%= cycle(' class="pair"','') -%>>
+            <tr>
                 <td nowrap="nowrap">
                     <%= link_to I18n.t("tog_user.model.login"), hijack_admin_user_path(user), :title =>  "#{I18n.t('tog_user.model.login')} #{user.email}" -%>
                 </td>
