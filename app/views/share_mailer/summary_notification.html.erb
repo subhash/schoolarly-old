@@ -1,5 +1,13 @@
 <% @shares.each do |share| %>
-
-<%= I18n.t("shares.mailer.new.#{share.shareable_type}.detail", :shareable => name_or_title(share.shareable), :shared_to => name_or_title(share.shared_to), :user_name => share.user.name) %>
+<% updated = share.shareable.updated_at > share.shareable.created_at %>
+<% commented = share.updated_at > share.shareable.updated_at %>
+<% if commented %>
+<% message = "shares.mailer.comment.#{share.shareable_type}.detail" %>
+<% elsif updated %>
+<% message = "shares.mailer.edit.#{share.shareable_type}.detail" %>
+<% else %>
+<% message = "shares.mailer.new.#{share.shareable_type}.detail" %>
+<% end %>
+<%= I18n.t(message, :shareable => name_or_title(share.shareable), :shared_to => name_or_title(share.shared_to), :user_name => share.user.name) %>
 
 <% end %>

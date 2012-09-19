@@ -492,6 +492,31 @@ en:
         Video:
           subject: Video [%{shareable}] has been updated
           detail: User %{user_name} has updated video [%{shareable}] shared to [%{shared_to}]
+      comment:
+        Assignment:
+          subject: A new comment on Assignment [%{shareable}]
+          detail: Someone commented on Assgnment [%{shareable}] shared to [%{shared_to}] by User %{user_name} 
+        Submission:
+          subject: A new comment on Submission [%{shareable}]
+          detail: Someone commented on submission [%{shareable}] shared to [%{shared_to}] by User %{user_name}
+        Picto::Photo:
+          subject: A new comment on Photo [%{shareable}]
+          detail: Someone commented on photo [%{shareable}] shared to [%{shared_to}] by User %{user_name}
+        Event:
+          subject: A new comment on Event [%{shareable}]
+          detail: Someone commented on event [%{shareable}] shared to [%{shared_to}] by User %{user_name}
+        Notice:
+          subject: A new comment on Message [%{shareable}]
+          detail: Someone commented on message [%{shareable}] shared to [%{shared_to}] by User %{user_name}
+        Post:
+          subject: A new comment on Note [%{shareable}]
+          detail: Someone commented on note [%{shareable}] shared to [%{shared_to}] by User %{user_name}
+        Grade:
+          subject: A new comment on Grade [%{shareable}]
+          detail: Someone commented on grade [%{shareable}] shared to [%{shared_to}] by User %{user_name}
+        Video:
+          subject: A new comment on Video [%{shareable}]
+          detail: Someone commented on video [%{shareable}] shared to [%{shared_to}] by User %{user_name}
           
 
 
