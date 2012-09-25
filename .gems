@@ -34,10 +34,10 @@ json
 statsmix
 
 
-builder
-faraday
+builder --ignore-dependencies
+faraday --ignore-dependencies
 nokogiri --ignore-dependencies
-oauth2
-simple_oauth
+oauth2 --ignore-dependencies
+simple_oauth --ignore-dependencies
 
-youtube_it
+youtube_it --ignore-dependencies
