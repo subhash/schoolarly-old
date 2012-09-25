@@ -19,7 +19,6 @@ desert --version '>= 0.5.2'
 i18n --version 0.4.0
 syntax --version '>=1.0.0'
 
-
 aws-s3
 right_aws
 rest-client
