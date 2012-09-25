@@ -33,4 +33,11 @@ chronic
 json
 statsmix
 
-youtube_it
+ 
+builder --version 3.0.0 
+faraday  --version 0.8.4
+nokogiri  --version 1.5.5
+oauth  --version 0.4.4
+oauth2  --version 0.8.0
+simple_oauth  --version 0.1.9
+youtube_it --ignore-dependencies
