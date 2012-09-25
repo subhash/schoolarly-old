@@ -33,7 +33,6 @@ chronic
 json
 statsmix
 
- 
 builder --version 3.0.0 
 faraday  --version 0.8.4
 nokogiri  --version 1.5.5
