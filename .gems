@@ -36,7 +36,7 @@ statsmix
 
 builder
 faraday
-nokogiri
+nokogiri --ignore-dependencies
 oauth2
 simple_oauth
 youtube_it

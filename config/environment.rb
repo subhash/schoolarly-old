@@ -47,11 +47,6 @@ Rails::Initializer.run do |config|
   config.gem 'json'
   config.gem 'statsmix'
   
-  config.gem 'builder'
-  config.gem 'faraday'
-  config.gem 'oauth2'
-  config.gem 'nokogiri'
-  config.gem 'simple_oauth'
   config.gem 'youtube_it'
   
   
