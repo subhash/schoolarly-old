@@ -38,7 +38,6 @@ builder
 
 faraday
 nokogiri
-oauth
 oauth2
 simple_oauth
 youtube_it
