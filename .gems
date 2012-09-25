@@ -3,7 +3,7 @@ redhillonrails_core
 RedCloth --version '>= 4.2.0'
 hoe --version 2.4.0
 google-geocode --version  '~> 1.2.1'
-oauth --version  0.4.4
+oauth --version  '>= 0.3.5'
 rubyist-aasm --source http://gems.github.com --version '~> 2.1.1'
 linkingpaths-acts_as_abusable --source http://gems.github.com --version 0.0.2
 mbleigh-acts-as-taggable-on --source http://gems.github.com --version 1.0.5
@@ -36,7 +36,7 @@ statsmix
 
 builder --ignore-dependencies
 faraday --ignore-dependencies
-nokogiri --ignore-dependencies
+nokogiri --version '1.4.3.1' --ignore-dependencies
 oauth2 --ignore-dependencies
 simple_oauth --ignore-dependencies
 
