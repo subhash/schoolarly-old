@@ -47,6 +47,7 @@ Rails::Initializer.run do |config|
   config.gem 'json'
   config.gem 'statsmix'
 
+  config.gem 'oauth2'
   config.gem 'youtube_it'
   
   
