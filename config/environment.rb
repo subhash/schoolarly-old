@@ -47,10 +47,10 @@ Rails::Initializer.run do |config|
   config.gem 'json'
   config.gem 'statsmix'
   
-  # config.gem 'nokogiri'
-  # config.gem 'oauth2'
-  # config.gem 'simple_oauth'
-  # config.gem 'youtube_it'
+  config.gem 'nokogiri'
+  config.gem 'oauth2'
+  config.gem 'simple_oauth'
+  config.gem 'youtube_it'
   
   
   # Settings in config/environments/* take precedence over those specified here.
