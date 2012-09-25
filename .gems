@@ -35,7 +35,6 @@ json
 statsmix
 
 builder
-
 faraday
 nokogiri
 oauth2
