@@ -35,6 +35,12 @@ json
 statsmix
 
 builder
+multipart-post
+http_auth
+jwt
+multi_json
+multi_xml
+
 faraday
 nokogiri
 oauth
