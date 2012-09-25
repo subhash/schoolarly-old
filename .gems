@@ -3,7 +3,7 @@ redhillonrails_core
 RedCloth --version '>= 4.2.0'
 hoe --version 2.4.0
 google-geocode --version  '~> 1.2.1'
-oauth --version  '>= 0.3.5'
+oauth --version  0.4.4
 rubyist-aasm --source http://gems.github.com --version '~> 2.1.1'
 linkingpaths-acts_as_abusable --source http://gems.github.com --version 0.0.2
 mbleigh-acts-as-taggable-on --source http://gems.github.com --version 1.0.5
@@ -19,7 +19,6 @@ desert --version '>= 0.5.2'
 i18n --version 0.4.0
 syntax --version '>=1.0.0'
 
-
 aws-s3
 right_aws
 rest-client
@@ -33,6 +32,7 @@ ice_cube
 chronic
 json
 statsmix
+
 
 builder
 faraday
