@@ -40,4 +40,4 @@ nokogiri --ignore-dependencies
 oauth2 --ignore-dependencies
 simple_oauth --ignore-dependencies
 
-youtube_it --ignore-dependencies
+youtube_it 
