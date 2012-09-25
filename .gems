@@ -36,7 +36,7 @@ statsmix
 
 builder
 multipart-post
-http_auth
+httpauth
 jwt
 multi_json
 multi_xml
