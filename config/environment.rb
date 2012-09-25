@@ -14,7 +14,7 @@ Rails::Initializer.run do |config|
   config.gem 'RedCloth', :lib => 'redcloth', :source => 'http://code.whytheluckystiff.net'
   config.gem 'google-geocode', :lib => 'google_geocode', :version => '~> 1.2.1'
   config.reload_plugins = true if RAILS_ENV == 'development'
-  config.gem 'oauth', :version => '>= 0.3.5'
+  config.gem 'oauth', :version => '= 0.4.4'
   #  config.gem 'aasm'
   config.gem "rubyist-aasm",:lib => 'aasm', :source => "http://gems.github.com", :version => '~> 2.1.1'
   config.gem 'linkingpaths-acts_as_abusable', :lib => 'acts_as_abusable', :version => '0.0.2'
