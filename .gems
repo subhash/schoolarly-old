@@ -34,6 +34,7 @@ chronic
 json
 statsmix
 
+builder
 faraday
 nokogiri
 oauth
