@@ -1,28 +1,21 @@
 <% include_table_filter %>
+<% include_javascript 'table2CSV' %>
 <script type="text/javascript">
-    jQuery.noConflict();
-    
-    jQuery(document).ready(function(){
-        jQuery('td.hover').hover(function(){
-            jQuery(this).find('a.link').show();
-        }, function(){
-            jQuery(this).find('a.link').hide();
-        });
-		columnSize = '<%= 4 + @column_groups.size %>';
-        var cols = {
-            col_0: "none",
-            col_3: "select"
-        };
-        for (var i = columnSize - 1; i > 3; i--) {
-            cols["col_" + i] = "none";
-        };
-        
-        var sort_cols = ['None', 'String', 'String', 'String']
-        for (var i = columnSize - 1; i > 3; i--) {
-            sort_cols.push('None');
-        };
-        setTableFilter("filterTable", cols, sort_cols, 1, true);
-    });
+                    jQuery.noConflict();
+                    var tf;
+                    jQuery(document).ready(function(){          
+                        jQuery('td.hover').hover(function(){
+                            jQuery(this).find('a.link').show();
+                        }, function(){
+                            jQuery(this).find('a.link').hide();
+                        });
+            			<% if @group.school? %>
+            				setSchoolTable();  
+                        <% else %>
+        					columnSize = '<%= 4 + @column_groups.size %>';
+        					setTable(columnSize);       
+                        <% end %>     
+                    });
 </script>
 <% if @group %>
 <%= render :partial => 'member/groups/header' %>
@@ -35,9 +28,11 @@
     <table id="filterTable" class="tableE profiles">
         <thead>
             <tr>
+                <% if !@group.school? %>
                 <th scope="col">
                     <%= I18n.t("tog_user.model.profile.pic") %>
                 </th>
+                <% end %>
                 <th scope="col">
                     <%= I18n.t("tog_user.model.name") %>
                 </th>
@@ -47,29 +42,31 @@
                 <th scope="col">
                     <%= I18n.t("tog_user.model.state") %>
                 </th>
-                <% if @group %>
+                <% if ((@type == 'parents') || (@group && !@group.school?)) %>
                 <% for group in @column_groups %>
                 <th scope="col">
                     <%= group.name %>
                     <%= link_to "", member_group_path(group), :class => "smallarrow blueright" %>
                 </th>
                 <% end %>
+                <% else %>
+                <th scope="col">
+                    Classes
+                </th>
                 <% end %>
             </tr>
         </thead>
         <tfoot>
-            <tr>
-                <td colspan="<%= 4 + @column_groups.size %>" class="info_results">
-                </td>
-            </tr>
         </tfoot>
         <tbody>
             <% @users.each do |user| %>
             <% profile = user.profile %>
             <tr>
+                <% if !@group.school? %>
                 <td nowrap="nowrap">
-                    <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) -%>
+                    <%= icon_for_profile(profile, 'small', :class=>"img") -%>
                 </td>
+                <% end %>
                 <td>
                     <strong><%= link_to profile.full_name,  member_profile_path(profile) -%></strong>
                 </td>
@@ -83,7 +80,7 @@
                 <td>
                     <%= I18n.t("tog_user.model.states.#{user.state}") %>
                 </td>
-                <% if @group %>
+                <% if ((@type == 'parents') || (@group && !@group.school?)) %>
                 <% for group in @column_groups %>
                 <% user_in_group = @memberships[user.id] && @memberships[user.id][group.id] %>
                 <td nowrap="nowrap",  class='hover'>
@@ -99,9 +96,18 @@
                     <% end %>
                 </td>
                 <% end %>
+                <% else %>
+                <td>
+                    <%= @memberships[user.id] ? Group.find(@memberships[user.id].collect(&:group_id)).collect(&:name).join(",") : "" %>
+                </td>
                 <% end %>
             </tr>
             <% end %>
         </tbody>
     </table>
 </div>
+<% if moderator %>
+<% content_for :sidebar do %>
+<%= button_to_function  "Export as CSV", "tableToCSV('filterTable')" %>
+<% end %>
+<% end %>

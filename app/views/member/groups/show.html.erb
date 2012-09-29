@@ -20,8 +20,8 @@
 <div class="portlet portletC" >
 	<h2><span><%= link_to I18n.t('groups.member.event.calendar'), member_conclave_events_path(:group => @group), :class => 'calendar' %></span></h2>
 	<% if i_am_moderator_of(@group) %>
-	<h2><span><%= link_to I18n.t('groups.member.reports.title'), member_group_aggregations_path(@group), :class => 'calendar' %></span></h2>
-	<h2><span><%= link_to I18n.t('groups.member.stats.title'), stats_member_group_path(@group), :class => 'calendar' %></span></h2>	
+	<h2><span><%= link_to I18n.t('groups.member.reports.title'), member_group_aggregations_path(@group), :class => 'reports' %></span></h2>
+	<h2><span><%= link_to I18n.t('groups.member.stats.title'), stats_member_group_path(@group), :class => 'statistics' %></span></h2>		
 	<% end %>
 </div>
 <div class="portlet portletC" id="portlet_moreLinks">

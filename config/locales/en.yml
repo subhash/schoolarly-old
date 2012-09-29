@@ -314,7 +314,7 @@ en:
         created: Message posted
       event:
         share: Event
-        calendar: View Calendar
+        calendar: Calendar
       attachment:
         share: Share document with group
       assignment:
@@ -327,7 +327,7 @@ en:
       class_activity:
         share: Add class activity
       stats:
-        title: View Statistics
+        title: Statistics
   
   users:
     site:

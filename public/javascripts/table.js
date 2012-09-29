@@ -23,7 +23,7 @@ function setTableFilter(tableName, cols, sort_cols, initial_column, paginate){
         status_bar: true,
         mark_active_columns: true,
         display_all_text: "< Show all >",
-		alternate_rows: true,
+        alternate_rows: true,
         //        enable_default_theme: true,
         rows_always_visible: [1],
         //        col_width: ['50px', '150px', '100px', '100px'],
@@ -38,12 +38,42 @@ function setTableFilter(tableName, cols, sort_cols, initial_column, paginate){
         },
         sort_config: {
             sort_types: sort_cols,
-			sort_col: [initial_column, false]
+            sort_col: [initial_column, false]
         },
         help_instructions_text: "Use the filters above each column to filter and limit table data. Type your text and press Enter.\n Each column can be sorted too."
     };
     for (key in cols) {
         props[key] = cols[key];
     }
-    var tf = setFilterGrid(tableName, props);
+    return setFilterGrid(tableName, props);
+}
+
+
+function setSchoolTable(){
+    columnSize = 4;
+    var cols = {
+        col_2: "select"
+    };
+    tf = setTableFilter("filterTable", cols, [], 1, false);
+}
+
+
+function setTable(columnSize){
+    var cols = {
+        col_0: "none",
+        col_3: "select"
+    };
+    for (var i = columnSize - 1; i > 3; i--) {
+        cols["col_" + i] = "none";
+    };
+    
+    var sort_cols = ['None', 'String', 'String', 'String']
+    for (var i = columnSize - 1; i > 3; i--) {
+        sort_cols.push('None');
+    };
+    tf = setTableFilter("filterTable", cols, sort_cols, 1, true);
+}
+
+function tableToCSV(tableID){
+    jQuery("#" + tableID).table2CSV();
 }
