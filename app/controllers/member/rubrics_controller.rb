@@ -81,6 +81,7 @@ class Member::RubricsController < Member::BaseController
   
   def update
     @rubric = Rubric.find(params[:id])
+    @shared_groups = @rubric.shares_to_groups.collect(&:shared_to)
     
     #    due to bug https://rails.lighthouseapp.com/projects/8994/tickets/4766-nested_attributes-fails-to-updatedestroy-when-association-is-loaded-between-setting-attributes-and-saving-parent
     @rubric.levels(true)
