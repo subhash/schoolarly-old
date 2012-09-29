@@ -368,6 +368,24 @@ a.activity {
     text-decoration: none;
 }
 
+a.reports {
+    background: url(../images/ico/grade_16x16.png) no-repeat 0 0;
+    padding: 2px 0 2px 20px;
+    text-decoration: none;
+}
+
+a.statistics {
+    background: url(../images/ico/statistics.png) no-repeat 0 0;
+    padding: 2px 0 2px 20px;
+    text-decoration: none;
+}
+
+a.table {
+    background: url(../images/ico/table.png) no-repeat 0 0;
+    padding: 2px 0 2px 20px;
+    text-decoration: none;
+}
+
 a.calendar {
     background: url(../images/ico/calendar2.png) no-repeat 0 0;
     padding: 2px 0 2px 20px;
@@ -456,6 +474,7 @@ td.hover {
     border-radius: 3px;
     background: #FAFAFA;
     background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+
 
 
 
