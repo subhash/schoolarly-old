@@ -66,9 +66,10 @@
     :url => {:controller => :aggregations, :action => 'create', :group_id => @group}, :method => :post,
     :html => {:class => 'button'},
     :with => "$('reports_form').serialize()" 
-  %div.actions
-    = submit_tag I18n.t('reports.member.new.aggregate') , :name => "aggregate", :class => "button mainaction"   
-    = submit_tag I18n.t('reports.member.new.report'), :name => "report", :class => "button mainaction"
+  - unless @aggregations.empty? and @assignments.empty?
+    %div.actions
+      = submit_tag I18n.t('reports.member.new.aggregate') , :name => "aggregate", :class => "button mainaction"   
+      = submit_tag I18n.t('reports.member.new.report'), :name => "report", :class => "button mainaction"
        
                
   

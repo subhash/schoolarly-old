@@ -12,7 +12,7 @@
       - columns.each do |field|
         %th{:scope => "col"}
           = link_to_sortable_column_header(field, @order_by, @sort_order,I18n.t("reports.model.#{field}"))
-      - for node in @aggregation.descendents
+      - for node in @aggregation.descendants
         %th{:scope => "col"}
           = "#{node.name} [#{node.score}]"
           - columns << node

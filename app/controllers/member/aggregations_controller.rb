@@ -4,7 +4,10 @@ class Member::AggregationsController < Member::BaseController
   
   def new
     @aggregation = Aggregation.new(params[:aggregation])
-    if params[:report]
+    if @aggregation.nil? || @aggregation.nodes.empty?
+      flash[:error] = "No grades/aggregations selected"
+      redirect_to member_group_aggregations_path(@group)
+    elsif params[:report]
       @order_by = params[:order_by] || "profiles.first_name, profiles.last_name"
       @sort_order = params[:sort_order] || "asc"
       @page = params[:page] || '1'
