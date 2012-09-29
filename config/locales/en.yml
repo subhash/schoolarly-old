@@ -977,34 +977,8 @@ en:
           These will be seen by the teachers and students in your class and they will be able to participate in the discussion you started by responding to your comments.</p>
     category_6:
       title: Administration
-      no_of_questions: 6
+      no_of_questions: 7
       q_1:
-        question: How does group communication work in Schoolarly?
-        answer: |
-          <p>Only members of a group can post and receive communication in that group.
-          Moderators of a group can add or remove members and other moderators by clicking on "Edit group" link.</p> 
-      q_2:
-        question: How do I add members to a group?
-        answer: |
-          <p>Go to the group page and click on "Add teachers" to add teachers to the group. This page displays the existing teachers in the parent group. 
-          Select the teachers you want to add to the group and click on "Grant moderator privileges" if you want them to be able to moderate the group.</p>          
-          <p>If the teacher has not been yet added to the institution, they will not show up in the add page. 
-          If that's the case, the "Invite new teachers" link will allow you to enter the name and email address of the teacher and send them an invitation before adding them to the group.</p>
-          <p>Students are added the same way using the "Add students" link. </p>   
-      q_3:
-        question: How do I remove members from a group?
-        answer: |
-          <p>Go to the group page and click on "Edit group". You will find the "Remove teachers" and "Remove students" links at the right hand side of the page. </p>   
-      q_4:
-        question: How do I add new moderators to a group?
-        answer: |
-          <p>From the group page, click on "Edit group". Under the Moderators section, click on Add. 
-          This enables you to select one or many of the existing members as moderators. Now, they will be able to add or remove members or other moderators</p>   
-      q_5:
-        question: How do I revoke moderator privileges from a moderator?
-        answer: |
-          <p>Go to the group page and click on "Edit group". This page lists each of the moderators and a link beside them to "Revoke" moderator privileges</p>   
-      q_6:
         question: What is the best way to organize my institution in Schoolarly?
         answer: |
           <p>When your institution signs up for Schoolarly, the head or administrator will receive an email invitation to sign up and moderate the institution's group in Schoolarly. 
@@ -1012,12 +986,38 @@ en:
           <p>The group hierarchy in Schoolarly should be created such that it resembles the real-world hierarchy of the organization. 
           Under the institution, separate groups may be created for the classes. Also, the different departments that teachers belong to, could become groups under the institution. 
           If there are further divisions within each department, more groups should be created under each department group</p>   
-      q_7:
+      q_2:
         question: How do I create groups in Schoolarly?
         answer: |
           <p>In the institution's group page, you will find a "Create member group" link. 
           This allows you to create multiple groups under the institution and divide the members of the institution across these groups. 
           You can further create groups under these children groups if necessary.</p>                              
+      q_3:
+        question: How do I add members to a group?
+        answer: |
+          <p>Go to the group page and click on "Add teachers" to add teachers to the group. This page displays the existing teachers in the parent group. 
+          Select the teachers you want to add to the group and click on "Grant moderator privileges" if you want them to be able to moderate the group.</p>          
+          <p>If the teacher has not been yet added to the institution, they will not show up in the add page. 
+          If that's the case, the "Invite new teachers" link will allow you to enter the name and email address of the teacher and send them an invitation before adding them to the group.</p>
+          <p>Students are added the same way using the "Add students" link. </p>   
+      q_4:
+        question: How do I remove members from a group?
+        answer: |
+          <p>Go to the group page and click on "Edit group". You will find the "Remove teachers" and "Remove students" links at the right hand side of the page. </p>   
+      q_5:
+        question: How do I add new moderators to a group?
+        answer: |
+          <p>From the group page, click on "Edit group". Under the Moderators section, click on Add. 
+          This enables you to select one or many of the existing members as moderators. Now, they will be able to add or remove members or other moderators</p>   
+      q_6:
+        question: How do I revoke moderator privileges from a moderator?
+        answer: |
+          <p>Go to the group page and click on "Edit group". This page lists each of the moderators and a link beside them to "Revoke" moderator privileges</p>   
+      q_7:
+        question: How does group communication work in Schoolarly?
+        answer: |
+          <p>Only members of a group can post and receive communication in that group.
+          Moderators of a group can add or remove members and other moderators by clicking on "Edit group" link.</p>
     category_7:
       title: Troubleshooting
       no_of_questions: 1
@@ -1028,7 +1028,7 @@ en:
           Please use the "Download" link at the top of the note page to download the document and view it on the local computer.</p>      
     category_8:
       title: Advanced
-      no_of_questions: 3
+      no_of_questions: 4
       q_1:
         question: Rubrics
         answer: |
@@ -1037,10 +1037,16 @@ en:
           In Schoolarly, you can edit a rubric to add criteria and levels of your choice.</p>
           <p>Once a rubric is created, it can be attached while creating or editing an assignment. Then, it can be used while grading the submissions to that assignment. </p>
       q_2:
+        question: Statistics
+        answer: |
+          <p>Schoolarly provides various ways for school administrators and teachers to assess the level of deployment and estimate usage across the school</p>
+          <p> 1. Each group page includes a link "View Statistics" on the right side. This page displays essentials metrics of usage within the said group</p>
+          <p> 2. For detailed statistics, the school administrator can go to the school page and click on "Students" link on the right side. This page provides a table-view of all students in the school, the class they are in and their activation status. This table can be filtered and sorted as required and then can be exported in csv format, by clicking on "Export as CSV" and used in Microsoft Excel. Similar links are provided for teachers and parents too.</p>
+      q_3:
         question: Reports
         answer: |
           <p>Coming soon</p>      
-      q_3:
+      q_4:
         question: Curriculum Mapping
         answer: |
           <p>Coming soon</p>           
