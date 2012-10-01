@@ -1,6 +1,6 @@
 <% @shares.each do |share| %>
 <% updated = share.shareable.updated_at > share.shareable.created_at %>
-<% commented = share.updated_at > share.shareable.updated_at %>
+<% commented = share.updated_at > share.created_at %>
 <% if commented %>
 <% message = "shares.mailer.comment.#{share.shareable_type}.detail" %>
 <% elsif updated %>
