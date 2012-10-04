@@ -7,11 +7,11 @@
 %div
   %strong General
   %div
-    = "Students: #{@students.select(&:active?).size} / #{@students.size} active"
+    = "Students: #{@group.active_student_users.count} / #{@group.student_users.count} active"
   %div
-    = "Teachers: #{@teachers.select(&:active?).size} / #{@teachers.size} active"
+    = "Teachers: #{@group.active_teacher_users.count} / #{@group.teacher_users.count} active"
   %div
-    = "Parents: #{@parents.select(&:active?).size} / #{@parents.size} active"
+    = "Parents: #{@group.parent_users.select(&:active?).size} / #{@group.parent_users.size} active"
   %br
   %strong Usage
   %div

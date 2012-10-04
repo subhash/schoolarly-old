@@ -373,15 +373,13 @@ class Member::GroupsController < Member::BaseController
   end
   
   def stats
-    @teachers = @group.teacher_users
-    @students = @group.student_users
-    @parents = @group.parent_users
     @subtree = @group.self_and_descendants
-    @messages = Share.shared_to_groups_of_type(@subtree,'Notice')
-    @notes = Share.shared_to_groups_of_type(@subtree,'Post')
-    @photos = Share.shared_to_groups_of_type(@subtree,'Picto::Photo')
-    @activities = Share.shared_to_groups_of_type(@subtree,'Assignment')
-    @videos = Share.shared_to_groups_of_type(@subtree,'Video')
+    @shares = Share.shared_to_groups(@subtree).group_by(&:shareable_type)
+    @messages = @shares['Notice']
+    @notes = @shares['Post']
+    @photos = @shares['Picto::Photo']
+    @activities = @shares['Assignment']
+    @videos = @shares['Video']
   end
   
   protected
