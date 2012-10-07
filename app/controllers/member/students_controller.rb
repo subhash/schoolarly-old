@@ -15,7 +15,7 @@ class Member::StudentsController < Member::BaseController
       name, email, fname, femail, mname, memail = row
       user = create_user(email, name, Student.new)      
       if !user.new_record?
-        @group.invite_and_accept(user)
+        @group.join(user)
         create_user_parent(user, femail, fname)
         create_user_parent(user, memail, mname)
       elsif user.invite_over_email(current_user)

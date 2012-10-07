@@ -86,7 +86,10 @@ class Group < ActiveRecord::Base
     mem = self.memberships.build(:user => user, :moderator => moderator) unless mem
     mem.save!
     grant_moderator(user) if moderator
-    mem.activate! unless self.moderated?
+    
+    # TODO Once we support pending memberships, this line to be revisited
+    # mem.activate! unless self.moderated?
+    mem.activate!
   end
   
   def leave(user)
