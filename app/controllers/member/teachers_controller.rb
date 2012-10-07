@@ -8,12 +8,12 @@ class Member::TeachersController < Member::BaseController
     @users = []
     @failed_teachers = []
     CSV.parse(params[:teachers]) do |row|
-      user = User.new(:email => row[1].strip)
-      user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
-      name = row[0].split(' ',2)
-      user.profile = Profile.new(:first_name => name[0],:last_name => name[1])
-      user.person = Teacher.new      
-      if user.invite_over_email(current_user)
+      name = email = nil
+      name, email = row
+      user = create_user(email, name, Teacher.new)      
+      if !user.new_record?
+        @group.join(user)      
+      elsif user.invite_over_email(current_user)
         # TODO check if you are allowed to invite
         @group.invite_and_accept(user)
         @group.grant_moderator(user) unless params[:moderator].blank?
@@ -37,5 +37,18 @@ class Member::TeachersController < Member::BaseController
   def find_group
     @group = Group.find(params[:group_id])
   end
+  
+  def create_user(email, name, person)
+    first = last = nil
+    first, last = name.split(' ',2) if name
+    email = email.strip if email
+    user = User.find_by_email(email) 
+    # If user belongs to same school, just add them
+    user = User.new(:email => email) unless (user && (user.parent? || user.school == @group.school))
+    user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
+    user.profile = Profile.new(:first_name => first,:last_name => last)
+    user.person = person
+    return user
+  end  
   
 end
