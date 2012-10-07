@@ -89,7 +89,7 @@ class Group < ActiveRecord::Base
     
     # TODO Once we support pending memberships, this line to be revisited
     # mem.activate! unless self.moderated?
-    mem.activate!
+    mem.activate! unless mem.active?
   end
   
   def leave(user)
