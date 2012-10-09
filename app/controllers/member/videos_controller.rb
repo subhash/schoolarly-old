@@ -5,6 +5,11 @@ class Member::VideosController < Member::BaseController
     @video = Video.new(params[:video])
     @video.user = current_user
     if(params[:upload])
+      if(@video.title.blank?)
+        flash[:error] = I18n.t('videos.member.add_failure')
+        @video.errors.add "Title"
+        render :new and return 
+      end
       @video.save(false)
       yt = Video.youtube_client
       ref_id = "#{@video.id}" + (@group ? "_#{@group.id}" : "")
