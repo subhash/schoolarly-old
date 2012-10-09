@@ -87,7 +87,6 @@ class Member::RubricsController < Member::BaseController
     @rubric.levels(true)
     @rubric.criteria(true)
     if @rubric.update_attributes(params[:rubric])
-      puts "levels = "+@rubric.levels.inspect
       redirect_to member_rubric_path(@rubric)
     else
       render :action => 'edit'
@@ -95,7 +94,6 @@ class Member::RubricsController < Member::BaseController
   end
   
   def add_level
-    puts "header for level = "+request.inspect
     if @rubric.levels.size > 0
       points = @rubric.levels.first.points == 0 ? @rubric.levels.last.points + 1 :  (@rubric.levels.last.points +  @rubric.levels.first.points) 
     else  
