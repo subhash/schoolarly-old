@@ -160,7 +160,8 @@ class Member::GroupsController < Member::BaseController
             redirect_to add_select_member_group_path(@group, :type => params[:type]) and return
           else
             @group.invite_and_accept(user)
-            @group.grant_moderator(user) unless params[:moderator].blank?
+            puts "params[moderator] = "+ params[:moderator]
+            @group.grant_moderator(user) unless (params[:moderator].blank? || (params[:moderator] == 'false'))
             #        commenting out entry into group email for now
             #            GroupMailer.deliver_entry_notification(@group, current_user, user)  
           end

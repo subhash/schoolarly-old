@@ -1,29 +1,37 @@
 <% include_table_filter %>
 <% include_javascript 'table2CSV' %>
 <script type="text/javascript">
-                    jQuery.noConflict();
-                    var tf;
-                    jQuery(document).ready(function(){          
-                        jQuery('td.hover').hover(function(){
-                            jQuery(this).find('a.link').show();
-                        }, function(){
-                            jQuery(this).find('a.link').hide();
-                        });
-            			<% if @group.school? %>
-            				setSchoolTable();  
-                        <% else %>
-        					columnSize = '<%= 4 + @column_groups.size %>';
-        					setTable(columnSize);       
-                        <% end %>     
-                    });
+                                                        jQuery.noConflict();
+                                                        var tf;
+                                                        jQuery(document).ready(function(){          
+                                                            jQuery('td.hover').hover(function(){
+                                                                jQuery(this).find('a.link').show();
+                                                            }, function(){
+                                                                jQuery(this).find('a.link').hide();
+                                                            });
+            	
+                                                			<% if @group.school? %>
+                                                				setSchoolTable();  
+                                                            <% else %>
+                                            					columnSize = '<%= 4 + @column_groups.size %>';
+                                            					setTable(columnSize);       
+                                                            <% end %>     
+                                                        });
+                										
+            
 </script>
+<% moderator = i_am_moderator_of(@group) %>
 <% if @group %>
 <%= render :partial => 'member/groups/header' %>
-<h2><span><%= I18n.t("groups.model.#{@type}.title") %></span></h2>
+<h2><span><%= I18n.t("groups.model.#{@type}.title") %><% if  (moderator && !@group.school? && @type == 'teachers' && !@column_groups.empty?) %>
+        <label for="moderators" class="nolabel">
+            <%= check_box_tag :moderator, "1", !@group.school? %><%=I18n.t('teachers.member.add.moderator') %>
+        </label>
+        <% end %>
+    </span></h2>
 <% else %>
 <h2><span><%= I18n.t('tog_social.profiles.site.title') %></span></h2>
 <% end %>
-<% moderator = i_am_moderator_of(@group) %>
 <div class="wide">
     <table id="filterTable" class="tableE profiles">
         <thead>
@@ -89,7 +97,7 @@
                         <%= image_tag("yes2.png") %>
                         <%= link_to_remote image_tag("delete.png", :class => 'overlap'), :url => remove_member_group_path(group, :members => [profile.id]), :method => :get , :html => {:class => 'link', :style => "display: none;", :title => "Remove from group" } %>
                         <% else %>
-                        <%= link_to_remote image_tag("add2.png"), :url => add_member_group_path(group, :members => [profile.id]), :method => :get, :html => {:class => 'link', :style => "display: none;" , :title => "Add to group"} %>
+                        <%= link_to_remote image_tag("add2.png"), :url => add_member_group_path(group, :members => [profile.id]), :with => "'moderator='+jQuery('input#moderator').is(':checked')", :method => :get, :html => {:class => 'link', :style => "display: none;" , :title => "Add to group"} %>
                         <% end %></span>
                     <% else %>
                     <%= user_in_group ? image_tag("yes2.png") : "" %>
