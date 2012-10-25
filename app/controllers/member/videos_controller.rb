@@ -68,6 +68,8 @@ class Member::VideosController < Member::BaseController
 
   def show
     store_location
+    metric = 'Video-' + (current_user.school ? current_user.school.form_code : "Common")
+    res = StatsMix.track(metric, 1, {:meta => {"type" => current_user.type }})    
     @shared_groups = @video.shares_to_groups.collect(&:shared_to)
   end
 

@@ -38,7 +38,9 @@ class Member::AssignmentsController < Member::BaseController
     end
   end
   
-  def show 
+  def show
+    metric = 'Assignment-' + (current_user.school ? current_user.school.form_code : "Common")
+    res = StatsMix.track(metric, 1, {:meta => {"type" => current_user.type }})     
     store_location
     @shared_groups = @assignment.shares_to_groups.collect(&:shared_to)
     @submitters = (@shared_groups.collect(&:student_users).flatten + [@assignment.user]).uniq

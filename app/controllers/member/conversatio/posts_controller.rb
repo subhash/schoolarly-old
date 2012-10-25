@@ -50,6 +50,8 @@ class Member::Conversatio::PostsController < Member::BaseController
   
   
   def show
+    metric = 'Note-' + (current_user.school ? current_user.school.form_code : "Common")
+    res = StatsMix.track(metric, 1, {:meta => {"type" => current_user.type }})
     store_location
     @post = @blog.posts.find params[:id]
     @comments = @post.all_comments
