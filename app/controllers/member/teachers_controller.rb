@@ -46,7 +46,12 @@ class Member::TeachersController < Member::BaseController
     # If user belongs to same school, just add them
     user = User.new(:email => email) unless user # XXX GPS HACK (user && (user.parent? || user.school == @group.school))
     user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
-    user.profile = Profile.new(:first_name => first,:last_name => last)
+    if user.profile
+      user.profile.first_name = first
+      user.profile.last_name = last
+    else
+      user.profile = Profile.new(:first_name => first,:last_name => last)
+    end
     user.person = person
     return user
   end  

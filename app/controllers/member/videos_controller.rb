@@ -5,6 +5,11 @@ class Member::VideosController < Member::BaseController
     @video = Video.new(params[:video])
     @video.user = current_user
     if(params[:upload])
+      if(@video.title.blank?)
+        flash[:error] = I18n.t('videos.member.add_failure')
+        @video.errors.add "Title"
+        render :new and return 
+      end
       @video.save(false)
       yt = Video.youtube_client
       ref_id = "#{@video.id}" + (@group ? "_#{@group.id}" : "")
@@ -63,6 +68,8 @@ class Member::VideosController < Member::BaseController
 
   def show
     store_location
+    metric = 'Video-' + (current_user.school ? current_user.school.form_code : "Common")
+    res = StatsMix.track(metric, 1, {:meta => {"type" => current_user.type }})    
     @shared_groups = @video.shares_to_groups.collect(&:shared_to)
   end
 

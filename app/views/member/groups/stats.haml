@@ -10,8 +10,8 @@
     = "Students: #{@group.active_student_users.count} / #{@group.student_users.count} active"
   %div
     = "Teachers: #{@group.active_teacher_users.count} / #{@group.teacher_users.count} active"
-  %div
-    = "Parents: #{@group.parent_users.select(&:active?).size} / #{@group.parent_users.size} active"
+  -# %div
+    -# = "Parents: #{@group.parent_users.select(&:active?).size} / #{@group.parent_users.size} active"
   %br
   %strong Usage
   %div
@@ -24,5 +24,18 @@
     = "Photos: #{@photos.size}"
   %div
     = "Videos: #{@videos.size}"
-  
+  %br
+  - klasses = @group.children.select {|g| g.active? && g.klass?}
+  - unless klasses.empty? 
+    %strong Class, Students (Activated), Students (Total)
+    - klasses.each do |k|
+      %div
+        = "#{k.name}, #{k.active_student_users.count}, #{k.student_users.count}"
+    %br
+    %strong Class, Teachers (Activated), Teachers (Total)
+    - klasses.each do |k|
+      %div
+        = "#{k.name}, #{k.active_teacher_users.count}, #{k.teacher_users.count}"
+        
+    
   

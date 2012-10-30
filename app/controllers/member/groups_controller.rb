@@ -382,11 +382,11 @@ class Member::GroupsController < Member::BaseController
   def stats
     @subtree = @group.self_and_descendants
     @shares = Share.shared_to_groups(@subtree).group_by(&:shareable_type)
-    @messages = @shares['Notice']
-    @notes = @shares['Post']
-    @photos = @shares['Picto::Photo']
-    @activities = @shares['Assignment']
-    @videos = @shares['Video']
+    @messages = @shares['Notice'] || []
+    @notes = @shares['Post'] || []
+    @photos = @shares['Picto::Photo'] || []
+    @activities = @shares['Assignment'] || []
+    @videos = @shares['Video'] || []
   end
   
   protected
