@@ -302,6 +302,13 @@ class Member::GroupsController < Member::BaseController
     redirect_to member_group_path(@group)
   end
   
+  def reactivate
+    new_name = @group.name.split("[Archived on")[0]
+    @group.update_attributes!(:name => new_name)
+    @group.reactivate!
+    redirect_to member_group_path(@group)
+  end
+  
   
   def update_profiles
     @users = params[:users]
@@ -400,7 +407,7 @@ class Member::GroupsController < Member::BaseController
   end
   
   def check_moderator
-    unless @group.moderators.include? current_user
+    unless (current_user.admin? || (@group.moderators.include? current_user))
       flash[:error] = I18n.t("tog_social.groups.member.not_moderator") 
       redirect_to member_group_path(@group)
     end
