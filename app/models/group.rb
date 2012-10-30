@@ -23,13 +23,16 @@ class Group < ActiveRecord::Base
   :conditions => {'users.person_type' => 'Student', 'users.state' => 'active'}, :include => :profile, :order => "profiles.first_name, profiles.last_name"
   has_many :active_teacher_users, :through => :memberships, :source => :user,
   :conditions => {'users.person_type' => 'Teacher', 'users.state' => 'active'}, :include => :profile, :order => "profiles.first_name, profiles.last_name"
-
+  
   
   acts_as_tree :order => 'name', :dependent => :destroy
   
   
   has_many :active_children, :class_name => 'Group', :foreign_key => 'parent_id', :order => 'name',
                                    :conditions => ['groups.state = ?', 'active']
+                                   
+  has_many :archived_children, :class_name => 'Group', :foreign_key => 'parent_id', :order => 'name',
+                                   :conditions => ['groups.state = ?', 'archived']                                   
   
   named_scope :base, :conditions => {:parent_id => nil}
   named_scope :school, :conditions => {:network_type => 'School'}
@@ -39,6 +42,9 @@ class Group < ActiveRecord::Base
   aasm_state :archived, :enter => :do_archive
   aasm_event :archive do
     transitions :from => :active, :to => :archived
+  end
+  aasm_event :reactivate do
+    transitions :from => :archived, :to => :active
   end
   
   has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc"  do
@@ -70,6 +76,10 @@ class Group < ActiveRecord::Base
   
   def active?
     self.state == 'active'
+  end
+  
+  def archived?
+    self.state == 'archived'
   end
   
   def accept_invitation(user)
@@ -249,6 +259,15 @@ class Group < ActiveRecord::Base
       end
     end
   end
+  
+  def do_activate
+    unless leaf?
+      for child in archived_children
+        child.reactivate!
+      end
+    end
+  end
+  
   
   def last_moderator?(user)
     return true if moderators.include?(user) && moderators.size == 1

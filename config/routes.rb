@@ -78,7 +78,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.namespace :member do |member|
-    member.resources :groups , :member => {:archive => :get, :new_multiple => :get, :create_multiple => :post, :add_select => :get, :add => [:post,:get], :remove_select => :get, :remove => [:post, :get], :select_moderators => :get, :add_moderators => :post, :remove_moderator => :get, :edit_profiles => :get, :update_profiles => :post, :select_groups => :get, :add_groups => :get, :stats => :get} do |group|
+    member.resources :groups , :member => {:archive => :get, :reactivate => :get, :new_multiple => :get, :create_multiple => :post, :add_select => :get, :add => [:post,:get], :remove_select => :get, :remove => [:post, :get], :select_moderators => :get, :add_moderators => :post, :remove_moderator => :get, :edit_profiles => :get, :update_profiles => :post, :select_groups => :get, :add_groups => :get, :stats => :get} do |group|
       group.resources :students, :shallow => true, :member => {:new_parent => :get, :select_parent => :get, :create_parent => :post, :add_parent => :post, :remove_parent => :get}
       group.resources :teachers, :shallow => true
       group.resources :notices

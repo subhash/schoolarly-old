@@ -219,6 +219,8 @@ en:
         title: "Settings"
         archive:
           title: "Archive Group"
+        unarchive:
+          title: "Unarchive Group"          
         moderators:
           title: "Moderators"
           select:

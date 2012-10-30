@@ -15,4 +15,17 @@ class Admin::GroupsController < Admin::BaseController
     end
   end
   
+  def activate
+    @group = Group.find(params[:id])
+    @group.activate!
+    respond_to do |wants|
+      if @group.activate!
+        wants.html do
+          render :text => "<span>#{I18n.t("tog_social.groups.admin.activated")}</span>"
+        end
+      end
+    end
+  end
+  
+  
 end

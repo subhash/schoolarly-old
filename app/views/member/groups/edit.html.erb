@@ -99,8 +99,9 @@
         </ul>
     </div>
     <div>
-        <% if i_am_moderator_of(@group) && @group.active? %>
-        <%= link_to I18n.t('groups.site.edit.archive.title'), archive_member_group_path(@group), :class => 'archive' %>
+        <% if current_user.admin? %>
+        <%= link_to I18n.t('groups.site.edit.archive.title'), archive_member_group_path(@group), :class => 'archive'  if @group.active? %>
+        <%= link_to I18n.t('groups.site.edit.unarchive.title'), reactivate_member_group_path(@group), :class => 'archive'  if @group.archived? %>
         <% end %>
     </div>
 </div>
