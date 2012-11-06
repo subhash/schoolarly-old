@@ -1,22 +1,22 @@
 <% include_table_filter %>
 <% include_javascript 'table2CSV' %>
 <script type="text/javascript">
-                                                        jQuery.noConflict();
-                                                        var tf;
-                                                        jQuery(document).ready(function(){          
-                                                            jQuery('td.hover').hover(function(){
-                                                                jQuery(this).find('a.link').show();
-                                                            }, function(){
-                                                                jQuery(this).find('a.link').hide();
-                                                            });
-            	
-                                                			<% if @group.school? %>
-                                                				setSchoolTable();  
-                                                            <% else %>
-                                            					columnSize = '<%= 4 + @column_groups.size %>';
-                                            					setTable(columnSize);       
-                                                            <% end %>     
-                                                        });
+    jQuery.noConflict();
+    var tf;
+    jQuery(document).ready(function(){          
+        jQuery('td.hover').hover(function(){
+            jQuery(this).find('a.link').show();
+        }, function(){
+            jQuery(this).find('a.link').hide();
+        });
+
+		<% if @group.school? %>
+			setSchoolTable();  
+        <% else %>
+			columnSize = '<%= 4 + @column_groups.size %>';
+			setTable(columnSize);       
+        <% end %>     
+    });
                 										
             
 </script>

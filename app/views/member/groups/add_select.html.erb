@@ -3,7 +3,7 @@
     jQuery.noConflict();
     jQuery(document).ready(function(){
         jQuery('.select_all').click(function(){
-            jQuery("input:checkbox.item").each(function(){
+            jQuery("input:checkbox:visible.item").each(function(){
                 jQuery(this).attr('checked', true);
             });
         });
