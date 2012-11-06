@@ -22,7 +22,7 @@ class Video < ActiveRecord::Base
     url = nil
     case base_uri
       when "www.youtube.com"
-      url = "http://www.youtube.com/embed/#{video_id}" 
+      url = "http://www.youtube.com/embed/#{video_id}?autoplay=1&rel=0" 
       when "www.vimeo.com"
       url = "http://player.vimeo.com/video/" + video_id
     end

@@ -8,7 +8,7 @@
     <%= @video.description %>
 </div>
 <div id="video_<%= @video.id %>" class="border_top">
-    <%= @video.embed %>
+    <%= @video.embed unless @video.link.blank?%>
     <%= render :partial => "shared/comments", :locals => { :commentable => @video , :show_all => true} %>
 </div>
 <% content_for :sidebar do %>

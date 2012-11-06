@@ -89,6 +89,7 @@ class Post < ActiveRecord::Base
   
   def adjust_content_type
     self.doc.instance_write(:content_type, "application/zip") if (doc_content_type && doc_content_type.include?("zip"))
+    self.doc.instance_write(:file_name, self.doc_file_name.gsub(/[&]/,' and ')) if self.doc.file?
   end
   
   def touch_shares
