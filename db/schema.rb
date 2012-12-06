@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121003051729) do
+ActiveRecord::Schema.define(:version => 20121206034434) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -108,6 +108,11 @@ ActiveRecord::Schema.define(:version => 20121003051729) do
     t.datetime "updated_at"
     t.string   "status",     :default => "accepted"
     t.boolean  "invitation", :default => false
+  end
+
+  create_table "blocks", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "bloggerships", :force => true do |t|

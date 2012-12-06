@@ -1,0 +1,52 @@
+<% include_table_filter %>
+<script type="text/javascript">
+    jQuery.noConflict();
+    jQuery(document).ready(function(){
+        var cols = {
+            col_0: "none"
+        };
+        var sort_cols = ['None', 'String', 'String']
+        setTableFilter("filterTable", cols, sort_cols, 1, false);
+    });
+</script>
+<h4><%= link_to @group.path, member_group_path(@group) %>
+    <span>" Add as subgroups"</span></h4>
+<% form_tag add_subgroups_member_group_path(@group) do |f| %>
+<table id="filterTable" class="tableE profiles">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+                <%= I18n.t("groups.model.name") %>
+            </th>
+            <th scope="col">
+                <%= I18n.t("groups.model.path") %>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @groups.each do |group| %>
+        <tr>
+            <td nowrap="nowrap">
+                <%= check_box_tag 'group_ids[]', group.id, false, :class => 'item' %>
+            </td>
+            <td nowrap="nowrap">
+                <%= group.name -%>
+            </td>
+            <td>
+                <%= link_to group.path,  member_group_path(group) -%>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<div>
+    <label for="moderators" class="nolabel">
+        <%= check_box_tag :moderator, "1", false %><%=I18n.t('groups.member.subgroups.add.moderator') %>
+    </label>
+    <div class="actions">
+        <%= submit_tag I18n.t("groups.member.subgroups.add.title"), :class => "button mainaction" %>
+    </div>
+</div>
+<% end %>

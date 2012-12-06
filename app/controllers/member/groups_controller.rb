@@ -81,7 +81,9 @@ class Member::GroupsController < Member::BaseController
       when 'schools':
       @group.network = School.new    
       when 'klasses':
-      @group.network = Klass.new    
+      @group.network = Klass.new 
+      when 'blocks':
+      @group.network = Block.new  
       when 'subjects':
       @group.network = Subject.new
     end
@@ -365,7 +367,26 @@ class Member::GroupsController < Member::BaseController
   end
   
   def select_groups
-    @groups = current_user.groups
+    @groups = current_user.admin? ? Group.all : current_user.groups
+  end
+  
+  def select_subgroups
+    @groups = @group.school.group.descendants - @group.self_and_descendants
+  end
+  
+  def add_subgroups
+    @memberships = Membership.active.find_all_by_group_id(params[:group_ids])
+    @memberships.each do |membership|
+      user = membership.user
+      group = membership.group
+      @group.invite_and_accept(user) unless @group.users.include?(user)
+      @group.grant_moderator(user) unless (params[:moderator].blank? || (params[:moderator] == 'false'))
+      group.parent = @group
+      group.save!
+    end
+    @group.save!   
+    flash[:ok] = "Groups added successfully"
+    redirect_to member_group_path(@group)
   end
   
   def add_groups
