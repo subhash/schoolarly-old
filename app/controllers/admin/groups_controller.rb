@@ -27,5 +27,22 @@ class Admin::GroupsController < Admin::BaseController
     end
   end
   
+  def reinvite_parents
+    @group = Group.find(params[:id])
+    @users = []
+    @group.parent_users.each do |user|
+      unless user.password_reset_code.blank?
+        UserMailer.deliver_signup_invitation_notification(user, current_user)
+        @users << user
+      end 
+    end
+    respond_to do |wants|
+      wants.html do
+        str = "New parents reinvited #{@users.size} :"
+        @users.each {|u| str += "<li>#{u.email}</li>"}
+        render :text => "<ul>#{str}</ul>"
+      end
+    end
+  end  
   
 end
