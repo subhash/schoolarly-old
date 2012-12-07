@@ -16,9 +16,11 @@ class Member::DashboardController < Member::BaseController
       user_ids += current_user.friend_users.map(&:id)
     end
     if current_user.admin?
-      group_ids += Group.all.collect(&:id)
+      group_ids = Group.all.collect(&:id)
     elsif current_user.school_admin?
-      group_ids += current_user.school.group.self_and_descendants.collect(&:id)
+      group_ids += current_user.school.group.descendants.collect(&:id)
+    else
+      group_ids += current_user.moderated_groups.block.collect{|b|b.descendants.collect(&:id)}.flatten
     end     
     if @filter == 'All'
       @shares = Share.to_groups_and_users(group_ids, user_ids).paginate  :per_page => 20,
