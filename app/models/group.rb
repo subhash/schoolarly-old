@@ -30,13 +30,14 @@ class Group < ActiveRecord::Base
   
   has_many :active_children, :class_name => 'Group', :foreign_key => 'parent_id', :order => 'name',
                                    :conditions => ['groups.state = ?', 'active']
-                                   
+  
   has_many :archived_children, :class_name => 'Group', :foreign_key => 'parent_id', :order => 'name',
                                    :conditions => ['groups.state = ?', 'archived']                                   
   
   named_scope :base, :conditions => {:parent_id => nil}
   named_scope :school, :conditions => {:network_type => 'School'}
   named_scope :klass, :conditions => {:network_type => 'Klass'}
+  named_scope :block, :conditions => {:network_type => 'Block'}
   named_scope :subject, :conditions => {:network_type => 'Subject'}
   named_scope :default, :conditions => {:network_type => nil }
   aasm_state :archived, :enter => :do_archive
@@ -126,6 +127,10 @@ class Group < ActiveRecord::Base
   
   def school?
     network_type == 'School'
+  end
+  
+  def block?
+    network_type == 'Block'
   end
   
   def klass?

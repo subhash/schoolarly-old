@@ -169,6 +169,8 @@ en:
       groups_not_found: "%{parent} has 0 groups."
       parent: "Parent group"
       moderator: "Moderator"
+      name: "Name"
+      path: "Path"
       groups:
         title: "Member Groups"
         view_all: "View all groups"
@@ -178,6 +180,8 @@ en:
       klasses:
         title: "Class Networks"
         view_all: "View all classes"
+      blocks:
+        title: "Blocks"
       students:
         title: "Students"
       parents:
@@ -269,12 +273,17 @@ en:
         remove_select: "Select members to be removed"        
         invited: "%{count} member(s) invited"    
     member:   
+      subgroups:
+        add: 
+          title: "Add as subgroups"
+          moderator: "Retain moderator roles"
       post: 'Post to %{name}'
       membership: Membership
       admin_links: "Group Settings"
       pending: "Your group has been created but is pending for administrator's approval"  
       sub_groups:
         create: "Create member group"
+        add: "Add existing groups as subgroups"
       add_members:
         external: External Members
         from_school: "Add from %{school}"     
@@ -389,6 +398,10 @@ en:
         add: "Add Students"
         invite: "Add Students"
     member:
+    
+  blocks:
+    site:
+      create: "Add new block"
 
   subjects:
     site:

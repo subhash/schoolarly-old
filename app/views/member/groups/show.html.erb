@@ -38,15 +38,18 @@
     </div> 
 </div> 
  <% end -%>	  
- 
+  
 <% if i_am_moderator_of(@group) %>
 	<div class="portlet portletC" id="portlet_adminLinks">
 	    <h2><span><%= I18n.t('groups.member.admin_links') %></span></h2>  
 	    <div class="portlet_content">
 	        <ul>
 	        	  <%= link_to I18n.t('tog_social.groups.member.edit'), edit_member_group_path(@group), :class => 'ok' -%>
-			  <% if @group.school? %>
-			    <li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group, :type => 'klasses'), :class => 'add' %></li>
+			  <% if (@group.school? || @group.block?) %>
+			  	<li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group, :type => 'klasses'), :class => 'add' %></li>
+			  <% end %>
+			  <% if @group.school? %> 
+			    <li><%= link_to I18n.t('blocks.site.create'), member_new_sub_group_path(@group, :type => 'blocks'), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
 			    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>				
 			  <% else %>
@@ -57,6 +60,9 @@
 			    <li><%= link_to I18n.t('subjects.site.create'), member_new_sub_group_path(@group.id, :type => 'subjects'), :class => 'add' %></li>
 			  <% end %>
 			  <li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
+			  <% if current_user.admin? %>
+			  <li><%= link_to I18n.t('groups.member.sub_groups.add'), select_subgroups_member_group_path(@group.id), :class => 'add' %></li>
+			  <% end %>
 	        </ul>
 	    </div> 
 	</div> 
