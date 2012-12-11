@@ -192,7 +192,9 @@ en:
         title: "Other Members"
       subjects:
         title: "Subjects"
-        view_all: "View all subjects"        
+        view_all: "View all subjects" 
+      blocks:
+        view_all: "View all blocks"      
       shared:
         title: "Shared Groups"
     site:
