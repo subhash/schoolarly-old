@@ -276,7 +276,7 @@ en:
       subgroups:
         add: 
           title: "Add as subgroups"
-          moderator: "Retain moderator roles"
+          moderator: "Add moderators from subgroups(as moderators to current group)"
       post: 'Post to %{name}'
       membership: Membership
       admin_links: "Group Settings"
