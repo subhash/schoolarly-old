@@ -371,7 +371,7 @@ class Member::GroupsController < Member::BaseController
   end
   
   def select_subgroups
-    @groups = @group.school.group.descendants - @group.self_and_descendants
+    @groups = @group.school.group.self_and_descendants.active - ([@group.school.group]  +  @group.self_and_descendants.active)
   end
   
   def add_subgroups
