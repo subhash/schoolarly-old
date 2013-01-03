@@ -40,7 +40,11 @@ class Member::DashboardController < Member::BaseController
     end
     respond_to do |wants|
       puts 'before rendering'
-      wants.html
+      wants.html do
+        if current_user.parent?
+          render 'parent_index'
+        end
+      end
       puts 'after rendering'
       wants.js do
         render :update do |page|
