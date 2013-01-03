@@ -182,6 +182,7 @@ en:
         view_all: "View all classes"
       blocks:
         title: "Blocks"
+        view_all: "View all blocks"
       students:
         title: "Students"
       parents:
@@ -192,9 +193,7 @@ en:
         title: "Other Members"
       subjects:
         title: "Subjects"
-        view_all: "View all subjects" 
-      blocks:
-        view_all: "View all blocks"      
+        view_all: "View all subjects"  
       shared:
         title: "Shared Groups"
     site:
