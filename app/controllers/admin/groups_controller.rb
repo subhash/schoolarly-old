@@ -31,7 +31,7 @@ class Admin::GroupsController < Admin::BaseController
     @group = Group.find(params[:id])
     @users = []
     @group.parent_users.each do |user|
-      unless user.password_reset_code.blank?
+      unless user.active?
         UserMailer.deliver_signup_invitation_notification(user, current_user)
         @users << user
       end 
