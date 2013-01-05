@@ -40,16 +40,22 @@ class Member::StudentsController < Member::BaseController
   end
   
   def create_parent
-    @user = User.new(params[:user])
-    # TODO check why nested attributes does not work
-    @user.profile = Profile.new(params[:user][:profile])
-    @user.login ||= @user.email if Tog::Config["plugins.tog_user.email_as_login"]
-    @user.person = Parent.new
-    if @user.invite_over_email(current_user)
+    @user = User.find_by_email(params[:user][:email])
+    unless @user
+      @user = User.new(params[:user])
+      # TODO check why nested attributes does not work
+      @user.profile = Profile.new(params[:user][:profile])
+      @user.login ||= @user.email if Tog::Config["plugins.tog_user.email_as_login"]
+      @user.person = Parent.new
+      if @user.invite_over_email(current_user)
+        @student.user.profile.add_friend(@user.profile)
+        redirect_to member_profile_path(@student.user.profile)
+      else
+        render :action => 'new_parent'
+      end
+    else
       @student.user.profile.add_friend(@user.profile)
       redirect_to member_profile_path(@student.user.profile)
-    else
-      render :action => 'new_parent'
     end
   end
   
