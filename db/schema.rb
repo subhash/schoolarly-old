@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121206034434) do
+ActiveRecord::Schema.define(:version => 20130105134610) do
 
   create_table "abuses", :force => true do |t|
     t.string   "email"
@@ -274,6 +274,9 @@ ActiveRecord::Schema.define(:version => 20121206034434) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "friendships", ["invited_id"], :name => "index_friendships_on_invited_id"
+  add_index "friendships", ["inviter_id"], :name => "index_friendships_on_inviter_id"
 
   create_table "grade_rubric_descriptors", :force => true do |t|
     t.integer  "grade_id"

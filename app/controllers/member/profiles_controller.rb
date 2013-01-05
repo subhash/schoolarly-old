@@ -16,9 +16,9 @@ class Member::ProfilesController < Member::BaseController
     if current_user.admin?
       @matches = Tog::Search.search(params[:q], {:only => ["User"]}, {:page => '1'}) 
     else
-      @matches = Tog::Search.search(params[:q], {:only => ["User"], :user => current_user}, {:page => '1'})
-#     q = "%#{params[:q]}%" 
-#     @matches = User.find(:all, :include => :profile, :conditions => ["users.id in (?) AND (profiles.first_name like ? OR profiles.last_name like ? OR users.login like ?)", current_user.messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'})
+#      @matches = Tog::Search.search(params[:q], {:only => ["User"], :user => current_user}, {:page => '1'})
+      q = "%#{params[:q]}%" 
+      @matches = User.find(:all, :include => :profile, :conditions => ["users.id in (?) AND (profiles.first_name like ? OR profiles.last_name like ? OR users.login like ?)", current_user.messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'})
     end
     
     respond_to do |format|
