@@ -25,6 +25,7 @@
         </p>
     </div>
 </fieldset>
+<% if current_user.can_view?(@profile.user) %>
 <% @profile.attributes_hash.each do |section, attrs| %>
 <fieldset class="profile">
     <legend>
@@ -40,6 +41,7 @@
     </div>
 </fieldset>
 <% end %>
+<% end %>
 <% content_for :sidebar do %>
 <div class="portlet portletC" id="portlet_moreLinks">
     <h2><span><%= I18n.t('tog_social.more_links') %></span></h2>
@@ -50,7 +52,7 @@
                 <%= link_to I18n.t('tog_social.profiles.site.edit_profile'), edit_member_profile_path(@profile) %>
             </li>
             <% end %>
-            <% if (!its_me? && current_user.can_view?(@profile.user)) -%>
+            <% if (!its_me? && current_user.can_message?(@profile.user)) -%>
             <li>
                 <%= link_to_if(@profile.user.active?, I18n.t('tog_social.profiles.site.send_message'), member_new_message_to_path(@profile.user)) {} %>
             </li>

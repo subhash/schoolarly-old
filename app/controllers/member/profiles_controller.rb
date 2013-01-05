@@ -86,7 +86,7 @@ class Member::ProfilesController < Member::BaseController
           end
         end 
       end
-      @type = @users.first.type
+      @type = @users.empty? ? params[:type].pluralize.parameterize : @users.first.type
     else
       @users = User.all
       @column_groups = []

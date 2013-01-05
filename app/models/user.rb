@@ -111,6 +111,14 @@ class User < ActiveRecord::Base
     self.admin? || self == user || self.profile.is_friend_of?(user.profile) || !user.school || (self.school == user.school && self.teacher?)
   end
   
+#  teachers can message anyone in school
+#  students can message all teachers & students & their parents
+#  parents can message all teachers & their wards
+
+    def can_message?(user)
+      can_view?(user) || (self.school == user.school && self.student? && !user.parent?) || (self.school == user.school && self.parent? && !user.student?)
+  end
+  
   
   
   def can_view_email?(group)
