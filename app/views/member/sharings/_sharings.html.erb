@@ -14,9 +14,7 @@
                 <% groups = share.shareable.shares_to_groups.collect{|s| link_to s.shared_to.display_name, member_group_path(s.shared_to) } %>
                 <span class="subtitle"><%= groups.join(", ") %></span>
                 <% end %>
-                <% shared_through_whom(share).each do |u| %>
-                > <span class="subtitle"><%= link_to u.profile.full_name, member_profile_path(u.profile) %></span>
-                <% end %>
+
             </div>
             <% if share.shareable.is_a? Video %>
             <%= render :partial => '/member/videos/list_detail', :locals => {:share => share} %>
