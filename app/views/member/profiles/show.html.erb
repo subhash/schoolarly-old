@@ -50,7 +50,7 @@
                 <%= link_to I18n.t('tog_social.profiles.site.edit_profile'), edit_member_profile_path(@profile) %>
             </li>
             <% end %>
-            <% unless its_me? -%>
+            <% if (!its_me? && current_user.can_view?(@profile.user)) -%>
             <li>
                 <%= link_to_if(@profile.user.active?, I18n.t('tog_social.profiles.site.send_message'), member_new_message_to_path(@profile.user)) {} %>
             </li>

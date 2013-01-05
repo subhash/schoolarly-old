@@ -9,6 +9,7 @@ en:
   tog_user:
     model:
       type: Type
+      id: ID
       profile:
         pic: Picture
     user:

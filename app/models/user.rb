@@ -105,6 +105,7 @@ class User < ActiveRecord::Base
     end
   end
   
+  
   def can_view?(user)
     #    admin can view anyone. a user not belonging to any school can be viewed by anyone
     self.admin? || self == user || self.profile.is_friend_of?(user.profile) || !user.school || (self.school == user.school && self.teacher?)
