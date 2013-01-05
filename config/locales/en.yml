@@ -8,6 +8,7 @@ en:
         format: "%{attribute} %{message}"
   tog_user:
     model:
+      type: Type
       profile:
         pic: Picture
     user:

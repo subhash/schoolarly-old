@@ -20,7 +20,7 @@
     <table id="filterTable" class="tableE">
         <thead>
             <tr>
-                <% [:login, :email, :name, :state, :created_at].each do |field| %>
+                <% [:login, :email, :name, :type, :state, :created_at].each do |field| %>
                 <th scope="col">
                     <%= I18n.t("tog_user.model.#{field}") %>
                 </th>
@@ -40,6 +40,9 @@
                 </td>
                 <td nowrap="nowrap">
                     <%= link_to user.profile.full_name, member_profile_path(user.profile) -%>
+                </td>
+			   <td nowrap="nowrap">
+                    <%= user.person_type -%>
                 </td>
                 <td>
                     <%= I18n.t("tog_user.model.states.#{user.aasm_current_state}") %>
