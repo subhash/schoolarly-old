@@ -1,0 +1,34 @@
+
+<div id="quizAnswer"></div>
+<script id="questionAnswerTemplate" type="text/template">
+<form id="addQuestion" action="#">
+<div> <label for="question"><@= question @>
+</label><label for="choice1"><@= choice1 @></label><input
+	type="radio" name="answer<@= id @>" value="1"/> <label for="choice2"><@= choice2 @></label><input
+	type="radio" name="answer<@= id @>" value="2"/> <label for="choice3"><@= choice3 @></label><input
+	type="radio" name="answer<@= id @>" value="3"/> <label for="choice4"><@= choice4 @></label><input
+	type="radio" name="answer<@= id @>" value="4"/>
+</div>
+</form>
+
+</script>
+<script id="questionAnswerControls" type="text/template">
+<div id="questionAnswerButtons">
+	<@ if(next) {@>
+		<button class="next">Next</button>
+	<@}@>
+	<button class="save">Save</button>
+</div>
+</script>
+
+<script type="text/javascript">
+console.log("started");
+var quiz = <%= @quiz.content %>
+console.log(quiz);
+</script>
+
+<script src="/javascripts/quiz/jquery-1.7.1.js"></script>
+<script src="/javascripts/quiz/underscore.js"></script>
+<script src="/javascripts/quiz/backbone.js"></script>
+<script src="/javascripts/quiz/model.js"></script>
+<script src="/javascripts/quiz/view.js"></script>

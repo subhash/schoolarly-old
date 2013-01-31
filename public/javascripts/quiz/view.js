@@ -21,6 +21,11 @@
 		template : $("#questionAnswerTemplate").html(),
 
 		render : function() {
+			_.templateSettings = {
+		    	interpolate: /\<\@\=(.+?)\@\>/gim,
+		    	evaluate: /\<\@(.+?)\@\>/gim,
+		    	escape: /\<\@\-(.+?)\@\>/gim
+			};
 			var tmpl = _.template(this.template);
 			var json = this.model.toJSON();
 			json.id = this.id;
@@ -75,6 +80,20 @@
 		save : function() {
 			this.nextQuestion();
 			console.log(this.answers);
+			$.ajax({
+				type: "POST",
+				url: "create",
+				data: {quiz_response: JSON.stringify(this.answers), quiz_id: $.getUrlVar("quiz_id"), foo: "fee" },
+				dataType: "json",
+				success: function(data, status){
+					console.log(data);
+					window.location.href = data.location;
+				},
+				error: function(data, status){
+					console.log("error - "+status);
+					console.log(data);
+				}
+			});			
 		},
 
 		events : {
@@ -86,7 +105,7 @@
 
 	});
 
-	var quiz = [ {
+	var quiz2 = [ {
 		question : "What's your favourite colour?",
 		choice1 : "Yellow",
 		choice2 : "Orange",
@@ -106,8 +125,25 @@
 		choice3 : "Sunday",
 		choice4 : "Friday"
 
-	} ]
+	} ];
 
 	var quizAnswerView = new QuizAnswerView();
+	
+    $.extend({
+      getUrlVars: function(){
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+          hash = hashes[i].split('=');
+          vars.push(hash[0]);
+          vars[hash[0]] = hash[1];
+        }
+        return vars;
+      },
+      getUrlVar: function(name){
+        return $.getUrlVars()[name];
+      }
+    });	
 
 })(jQuery);
