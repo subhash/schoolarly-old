@@ -84,7 +84,9 @@ ActionController::Routing::Routes.draw do |map|
       group.resources :teachers, :shallow => true
       group.resources :notices
       group.resources :aggregations, :collection => {:new => :post}
+      group.resources :quizzes, :shallow => true, :collection => {:add_new => :post}
     end
+    
     member.resources :schools do |school|
       school.resources :klasses, :shallow => true, :member => {:invite => :get, :add => :post} do |klass|
         klass.resources :subjects, :shallow => true, :member => {:invite => :get, :add => :post}
@@ -92,7 +94,6 @@ ActionController::Routing::Routes.draw do |map|
     end
     member.resources :rubrics
     member.resources :videos, :collection => {:youtube_update => :get}
-    member.resources :quizzes
     member.resources :quiz_responses
     member.resources :assignments, :member => {:publish_grades => :get} do |assignment|
       assignment.resources :submissions, :shallow => true, :member => {:sendback => :get}

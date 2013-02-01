@@ -1,0 +1,11 @@
+<% quiz = share.shareable %>
+<div class="photo">
+    <div class="photo_container">
+        <%= link_to "Quiz", new_member_quiz_response_path(:quiz_id => quiz.id) %>
+    </div>
+</div>
+<br/>
+
+<div class="portlet portletL">
+    <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(quiz.created_at)) %>.
+</div>

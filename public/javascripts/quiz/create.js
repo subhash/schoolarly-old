@@ -109,7 +109,8 @@
 			});
 		},
 		
-		saveQuiz: function(){
+		saveQuiz: function(e){
+			e.preventDefault();
 			that = this;
 			var json = {};
 			var index = 0;
@@ -120,10 +121,11 @@
 			console.log(JSON.stringify({quiz: this.collection.models}));
 			$.ajax({
 				type: "POST",
-				url: "create",
+				url: "add_new",
 				data: {quiz: JSON.stringify(this.collection.models) },
 				dataType: "json",
 				success: function(data, status){
+					console.log('success');
 					console.log(data);
 					window.location.href = data.location;
 				},

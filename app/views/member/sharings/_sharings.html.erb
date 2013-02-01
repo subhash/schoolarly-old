@@ -43,6 +43,10 @@
             <% if share.shareable.is_a? Grade %>
             <%= render :partial => '/member/grades/list_detail', :locals => { :share => share } %>
             <% end %>
+            <% if share.shareable.is_a? Quiz %>
+            <%= render :partial => '/member/quizzes/list_detail', :locals => {:share => share} %>
+            <% end %>
+
         </li>
         <% end %>
         <% end %>

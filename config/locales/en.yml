@@ -318,6 +318,8 @@ en:
         share: Photo
       videos:
         share: Video
+      quizzes:
+        share: Quiz
       notes:
         share: Note 
         new: New note 
