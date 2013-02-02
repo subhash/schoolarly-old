@@ -82,7 +82,7 @@
 			console.log(this.answers);
 			$.ajax({
 				type: "POST",
-				url: "create",
+				url: "add_new",
 				data: {quiz_response: JSON.stringify(this.answers), quiz_id: $.getUrlVar("quiz_id"), foo: "fee" },
 				dataType: "json",
 				success: function(data, status){

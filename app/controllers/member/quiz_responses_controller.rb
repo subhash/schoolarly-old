@@ -1,8 +1,7 @@
 class Member::QuizResponsesController < Member::BaseController
   before_filter :find_quiz
   
-  def create
-    
+  def add_new
     @quiz_response = QuizResponse.new(:user => current_user, :quiz => @quiz)
     @quiz_response.content = params[:quiz_response]
     if @quiz_response.save
