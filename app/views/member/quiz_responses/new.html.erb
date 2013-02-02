@@ -23,12 +23,12 @@
 
 <script type="text/javascript">
 console.log("started");
-var quiz = <%= @quiz.content %>
-console.log(quiz);
+var quizData = <%= @quiz.content %>
+console.log(quizData);
+var page = "quiz:answer";
 </script>
 
 <script src="/javascripts/quiz/jquery-1.7.1.js"></script>
 <script src="/javascripts/quiz/underscore.js"></script>
 <script src="/javascripts/quiz/backbone.js"></script>
-<script src="/javascripts/quiz/model.js"></script>
-<script src="/javascripts/quiz/view.js"></script>
+<script src="/javascripts/quiz/app.js"></script>
