@@ -30,7 +30,9 @@
 		template : $("#questionTemplate").html(),
 		render : function() {
 			_.templateSettings = {
-				 interpolate : /\{\{(.+?)\}\}/g
+		    	interpolate: /\<\@\=(.+?)\@\>/gim,
+		    	evaluate: /\<\@(.+?)\@\>/gim,
+		    	escape: /\<\@\-(.+?)\@\>/gim
 			};
 			var tmpl = _.template(this.template);
 			this.$el.html(tmpl(this.model.toJSON()));

@@ -42,12 +42,12 @@
 </div>
 <script id="questionTemplate" type="text/template">
 <form id="addQuestion2" action="#">
-<div> <label for="question">{{ question }}
+<div> <label for="question"><@= question @>
 </label><label class="radio"><input
-	type="radio" name="answer" value="1"/>{{ choice1 }}</label> <label class="radio"><input
-	type="radio" name="answer" value="2"/>{{ choice2 }}</label> <label class="radio"><input
-	type="radio" name="answer" value="3"/>{{ choice3 }}</label> <label class="radio"><input
-	type="radio" name="answer" value="4"/>{{ choice4 }}</label>
+	type="radio" name="answer" value="1"/><@= choice1 @></label> <label class="radio"><input
+	type="radio" name="answer" value="2"/><@= choice2 @></label> <label class="radio"><input
+	type="radio" name="answer" value="3"/><@= choice3 @></label> <label class="radio"><input
+	type="radio" name="answer" value="4"/><@= choice4 @></label>
 </div>
 </form>
 </script>
