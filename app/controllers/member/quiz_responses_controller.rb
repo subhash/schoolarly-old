@@ -11,6 +11,11 @@ class Member::QuizResponsesController < Member::BaseController
     end
   end
   
+  def show
+    @quiz_response = QuizResponse.find(params[:id]) if params[:id]
+    @quiz = @quiz_response.quiz
+  end  
+  
 
   def set_javascripts_and_stylesheets
     @javascripts = %w(application)
