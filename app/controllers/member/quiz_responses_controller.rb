@@ -6,7 +6,7 @@ class Member::QuizResponsesController < Member::BaseController
     @quiz_response.content = params[:quiz_response]
     if @quiz_response.save
       if request.xhr?
-        render :json => {:location => @group ? member_group_path(@group) : member_dashboard_path}
+        render :json => {:location => member_quiz_response_path(@quiz_response)}
       end
     end
   end

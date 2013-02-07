@@ -34,10 +34,10 @@
 		    	evaluate: /\<\@(.+?)\@\>/gim,
 		    	escape: /\<\@\-(.+?)\@\>/gim
 			};
-			console.log(this.model);
-			console.log(this.model.toJSON());
+			var json = this.model.toJSON();
+			json["chosen_answer"] = this.options["chosen_answer"];
 			var tmpl = _.template(this.template);
-			this.$el.html(tmpl(this.model.toJSON()));
+			this.$el.html(tmpl(json));
 			return this;
 		},
 
@@ -61,6 +61,7 @@
 		el : $("#quiz"),
 
 		initialize : function() {
+			this.index = 0;
 			this.collection = new Quiz(quizData);
 			this.render();
 			this.collection.on("add", this.renderQuestion, this);
@@ -71,12 +72,14 @@
 			that = this;
 			_.each(this.collection.models, function(item) {
 				that.renderQuestion(item);
+				this.index = this.index + 1;
 			}, this);
 		},
 
 		renderQuestion : function(item) {
 			var questionView = new QuestionView( {
-				model : item
+				model : item,
+				chosen_answer: answerData[this.index]
 			});
 			this.$el.append(questionView.render().el);
 		},
@@ -283,6 +286,10 @@
 		new QuizView();
 	} else if(page == "quiz:answer") {
 		new QuizAnswerView();
+	} else if(page == "quiz:show"){
+		new QuizView();
+	} else if(page == "quiz_response:show"){
+		new QuizView();
 	}
 	
 	var quiz = [];
