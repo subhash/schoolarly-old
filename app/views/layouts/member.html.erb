@@ -11,10 +11,13 @@
         <meta name="keywords" content="xxx, xxxxxx, xxxx" />
         <meta name="author" content="Linking Paths" />
         <link rel="icon" href="/tog_core/images/favicon.ico" />
+		<% include_stylesheet 'bootstrap/bootstrap.css' %>
+        <% include_stylesheet 'jplist/normalize' %>
+        <% include_stylesheet 'jplist/styles' %>
+        <% include_stylesheet 'jplist/div' %>
         <link href="/tog_core/stylesheets/template.css" rel="stylesheet" media="screen" type="text/css" />
-        <link href="/tog_core/stylesheets/style.css" rel="stylesheet" media="screen" type="text/css" />
-        <link href="/tog_core/stylesheets/pages.css" rel="stylesheet" media="screen" type="text/css" />
-        <% include_stylesheet 'bootstrap/bootstrap.css' %>
+
+
         <% include_stylesheet 'upgrade' %>
         <!--[if lt IE 7.]>
             <link rel="stylesheet" type="text/css" media="screen" href="/tog_core/stylesheets/ie6.css" />
@@ -33,42 +36,40 @@
         <link rel="start" type="text/html" href="/" title="Página de inicio" />
     </head>
     <body>
-        <div id="container">
-            <div id="header" class="clearfix">
-                <div id="header_content">
-                    <h1 id="logo"><%= site_title %></h1>
-                    <div id="header_options">
-                        <%= render :partial => "shared/header_options" %>
-                    </div>
-                    <!-- /#header_options -->
-                    <div id="menu" class="clearfix">
-                        <ul>
-                            <%= links_for_navigation :member %>
-                        </ul>
-                    </div>
-                    <!-- #menu -->
-                    <!-- /#header_search -->
+        <div id="header" class="clearfix">
+            <div id="header_content">
+                <h1 id="logo"><%= site_title %></h1>
+                <div id="header_options">
+                    <%= render :partial => "shared/header_options" %>
                 </div>
-                <!-- /#header_content -->
+                <!-- /#header_options -->
+                <div id="menu" class="clearfix">
+                    <ul>
+                        <%= links_for_navigation :member %>
+                    </ul>
+                </div>
+                <!-- #menu -->
+                <!-- /#header_search -->
             </div>
-            <!-- /#header -->
-            <div id="pagebody">
+            <!-- /#header_content -->
+        </div>
+        <!-- /#header -->
+        <div id="main-content" class="container-fluid box">
+            <div id="container" class="center">
                 <%= render_flash_messages %>
-                <div class="<%= columns_distribution %> clearfix">
-                    <div class="left_col">
+                    <div id = "wrapper" class="span10">
                         <%= yield %>
                     </div>
                     <!-- /.left_col -->
-                    <div class="right_col">
+                    <div class="span2">
                         <%= yield :sidebar %>
                     </div>
                     <!-- /.right_col -->
-                </div>
                 <!-- /.col_60_40 -->
             </div>
-            <!-- /#pagebody -->
-            <%= render :partial => "shared/footer" %>
         </div>
+        <!-- /#main-content -->
+        <%= render :partial => "shared/footer" %>
         <!-- #container -->
     </body>
 </html>

@@ -1,14 +1,16 @@
 <div class="portlet_content">
-    <ul>
+    <div class="list detail1 detail">
         <% for share in @shares %>
         <% if display?(share) and (i_own?(share.shareable) or share.published?) %>
         <% profile = share.user.profile %>
-        <li class="detail detail1 <%=share.shareable_type.demodulize %>">
+        <div class="list-item <%=share.shareable_type.demodulize %>">
             <div class="image">
                 <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
             </div>
             <div>
+            	<span class="author">
                 <%= link_to profile.full_name, member_profile_path(profile) %>
+			</span>
                 <% unless @group or !share.shared_to.is_a?(Group) %>
                 <%= " > " %>
                 <% groups = share.shareable.shares_to_groups.collect{|s| link_to s.shared_to.display_name, member_group_path(s.shared_to) } %>
@@ -16,6 +18,7 @@
                 <% end %>
 
             </div>
+			<div class="block">
             <% if share.shareable.is_a? Video %>
             <%= render :partial => '/member/videos/list_detail', :locals => {:share => share} %>
             <% end %>
@@ -43,10 +46,11 @@
             <% if share.shareable.is_a? Grade %>
             <%= render :partial => '/member/grades/list_detail', :locals => { :share => share } %>
             <% end %>
-        </li>
+			</div>
+        </div>
         <% end %>
         <% end %>
-    </ul>
+    </div>
 </div>
 <% if !@shares.empty? %>
 <div class="info_results">

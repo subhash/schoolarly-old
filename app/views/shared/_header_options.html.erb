@@ -1,4 +1,4 @@
-<ul>
+<ul class="nav">
   <% if logged_in? -%>
     <li><%= I18n.t("tog_core.views.shared.header_options.greeting")%> <%= current_user.profile.full_name %></li>
     <li><%= link_to I18n.t("interface.layout.header.home"), member_dashboard_path -%></li>

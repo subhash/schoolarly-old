@@ -1,0 +1,423 @@
+
+/*
+* GRID -------------------------------------------------------
+*/
+.box{
+	float: left;
+	width: 100%;
+}
+
+.block{
+	display: block;
+}
+
+.left{
+	float: left;
+}
+
+.left-block{
+	display: block;
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.align-right{
+	text-align: right;
+}
+
+.align-center{
+	text-align: center;
+}
+
+.font-0{
+	font-size: 0;
+	line-height: 0;
+}
+
+.center{
+	width: 1020px;
+	max-width: 98%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.box-96-center{
+	width: 96%;
+	margin: 0 auto;
+}
+
+.box-78{
+	float: left;
+	width: 78%;
+}
+
+.box-80{
+	float: left;
+	width: 80%;
+}
+
+.box-20{
+	float: left;
+	width: 20%;
+}
+
+.hidden{
+	display: none;
+}
+
+.relative{
+	position: relative;
+}
+
+.absolute{
+	position: absolute;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.border-box{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box; 
+}
+
+.clear{
+	clear: both;
+}
+
+
+/*
+* DEFAULTS -------------------------------------------------------
+*/
+html,
+body{
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	font: 100% 'arial';
+	color: #5c5c5c;
+	line-height: 1.6em;
+	background: #212121;
+}
+
+a{
+	color: #CA3F1A;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+p{
+	padding-bottom: 0.3em;
+}
+
+ul, ol{
+	margin: 0 0 0.6em 0.3em;
+	padding: 0 0 0 0.6em;
+	list-style-type: square;
+}
+
+
+/*
+* SKINS: lists, menus -------------------------------------------------------
+*/
+
+.vmenu{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.hmenu{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.hmenu li{
+	float: left;
+}
+
+/*
+* SLKINS: icons, special characters
+*/
+.diams,
+.white-1em{
+	color: #fff;
+	font-size: 1em;
+}
+
+/*
+* FOOTER -------------------------------------------------------
+*/	
+
+#footer{
+	background: #000 url('../img/common/black-vertical-lines.png');
+	min-height: 3em;
+	line-height: 3em;
+	color: #aaa;
+	font-size: 0.9em;
+	text-align: center;
+	border-top: 1px solid #151515;	
+}
+
+#footer p{
+	padding: 0;
+}
+
+/*
+* HEADER -------------------------------------------------------
+*/
+
+#header{
+	background: #000 url('../img/common/black-vertical-lines.png');
+	min-height: 4em;
+	line-height: 4em;
+	border-bottom: 1px solid #333;
+}
+
+#header h1{
+	font-size: 2em;
+	font-weight: normal;
+	color: #aaa;
+	font-family: 'Cantarell', sans-serif;
+}
+
+#social	a{
+	width: 56px;
+	height: 4em;
+	line-height: 4em;
+	display: block;
+	float: left;
+	margin-left: 0.3em;
+}
+
+#email{
+	background: url('../img/icons/email.png') no-repeat 50% 50%;
+}
+
+#codecanyon{
+	background: url('../img/icons/codecanyon.png') no-repeat 50% 50%;
+}
+
+#rss{
+	background: url('../img/icons/rss.png') no-repeat 50% 50%;
+}
+
+#follow{
+	background: url('../img/icons/follow.png') no-repeat 50% 50%;
+}
+
+/*
+* MAIN CONTENT
+*/
+#main-content{
+	background: #ccc;
+}
+
+#wrapper{
+	background: #fff;
+	margin: 1.5em 0;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+/*
+* JPLIST: common styles
+*/
+.jplist{
+	float: left;
+	width: 100%;
+}
+
+.jplist .jplist-no-results{
+	display: none;
+}
+
+.jplist .jplist-no-results p{
+	text-align: center;
+	padding: 0.6em 0;
+}
+
+/*
+* JPLIST: panel styles
+*/
+.jplist .panel{
+	float: left;
+	width: 100%;
+	
+	margin: 0;
+	padding: 0 0 0.6em 0;
+	background: #efefef;
+	
+	font-family: 'arial';
+	color: #444;
+	font-size: 1em;	
+	line-height: 1.5em;
+}
+
+.jplist .panel-top{
+	border-radius: 0.3em 0.3em 0 0;
+}
+
+.jplist .panel-bottom{
+	border-radius: 0 0 0.3em 0.3em;
+}
+
+/*
+* JPLIST: filters
+*/
+.jplist .filter{
+	float: left;
+	margin: 0.6em 0 0 0;
+}
+
+.jplist .filter input{
+	display: block;
+	float: left;
+	
+	width: 150px;
+	height: 1.16em;
+	margin: 0 0 0 1.25em;
+	
+	border: 1px solid #aaa;
+	border-radius: 3px;
+}
+
+.jplist .search-title{
+	float: left;
+	margin-left: 10px;
+}
+
+.jplist .filter-btn{
+	margin: 0px 0px 0px 5px;
+	text-decoration: none;
+	color: #fff;
+	background-color: #1E87AA;
+	border-radius: 3px;
+	padding: 1px 5px;
+}
+
+/*
+* JPLIST: pagination
+*/
+.jplist .pagingprev,
+.jplist .pagingmid,
+.jplist .pagingnext{
+	float: left;
+}
+
+.jplist .paging{
+	float: left;
+	margin: 0.6em 0.6em 0 1.25em;	
+}
+
+.jplist .paging span{
+	cursor: pointer;
+	color: #1E87AA;
+	margin: 0 0.3em 0 0;	
+}
+
+.jplist .paging  span.current{
+	font-weight: bold;
+	color: #CA3F1A;
+}
+
+.jplist .paging-results{
+	float: left;
+	margin: 0.6em 0 0 1.25em;
+}
+
+/*
+* JPLIST: dropdowns
+*/
+.jplist .drop-down{
+	float: left;
+	width: 130px;
+	height: 1.3em;
+	
+	margin: 0.6em 0 0 1.25em;	
+	border: 1px solid #aaa;
+}
+
+.jplist .drop-down .panel{
+	float: left;
+	width: 125px;
+	height: 1.3em;
+	line-height: 1.3em;
+	
+	overflow: hidden;
+	background: #fff url('../img/icons/down.png') no-repeat 99% 50%;
+	
+	padding: 0px 0px 0px 5px;
+	margin: 0px 0px 0px 0px;
+	cursor: pointer;
+}
+
+.jplist .drop-down:hover .panel{
+	background: #fff url('../img/icons/down-dark.png') no-repeat 99% 50%;
+}
+
+.jplist .drop-down ul{	
+
+	position: relative;
+	top: 0px;
+	left: -1px;
+	z-index: 1000;
+	
+	width: 130px;
+	display: none;
+	overflow: hidden;
+	
+	background-color: #fff;
+	border: 1px solid #ccc;
+	
+	padding: 0;
+	margin: 0;
+	
+	list-style: none;
+	border-radius: 0 0 3px 3px;
+}
+
+.jplist .drop-down ul li{
+	padding: 0 0 0 0.3em;
+	cursor: pointer;
+	width: 130px;
+	float: left;
+	background-color: #fff;
+}
+
+.jplist .drop-down ul li:hover{
+	background-color: #444;
+	color: #fff;
+}
+
+.jplist .hidden{
+	display: none;
+}
+
+/**
+* media queries for iphone 
+*/
+@media only screen and (max-width: 500px){
+	#social{
+		width: 30%;
+	}
+	
+	h1{
+		width: 70%;
+		line-height: 1.5em;
+	}
+	
+	.diams{
+		display: none;
+	}
+}

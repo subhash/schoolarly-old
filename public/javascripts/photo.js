@@ -2,11 +2,11 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 jQuery(document).ready(function(){
+	jQuery.noConflict();
     applyPrettyPhoto();
 });
 
 function applyPrettyPhoto(){
-    jQuery.noConflict();
     jQuery("a[rel^='prettyPhoto']").prettyPhoto({
         theme: 'facebook',
         social_tools: false,

@@ -42,4 +42,11 @@ class Member::DashboardController < Member::BaseController
     end
   end
   
+  
+  def set_javascripts_and_stylesheets
+    @javascripts = %w(application)
+    @stylesheets = %w()
+    @feeds = %w()
+  end 
+  
 end

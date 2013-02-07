@@ -9,6 +9,12 @@ input, textarea {
     width: auto;
 }
 
+.detail1 .image {
+    float: left;
+    display: inline;
+    margin: 0 0 7px 0;
+}
+
 .wide {
     width: 150%;
 }
@@ -62,6 +68,14 @@ a {
     color: #0072AB;
 }
 
+
+.block .title a{
+    font-family: 'verdana';
+    font-size: 1.16em;
+    line-height: 1.16em;
+    color: #CA3F1A;
+}
+
 li.bold {
     font-size: 1.3em;
     text-align: center;
@@ -82,11 +96,7 @@ li.bold a {
     color: #222;
 }
 
-.detail .title {
-    font-weight: bold;
-    font-size: 1.5em;
-    margin: 0 0 0.5em 0;
-}
+
 
 .titleB {
     font-size: 1.4em;
