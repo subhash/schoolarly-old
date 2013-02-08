@@ -416,6 +416,13 @@ a.note {
     text-decoration: none;
 }
 
+a.quiz {
+    background: url(../images/ico/quiz.png) no-repeat 0 0;
+    padding: 2px 0 2px 20px;
+    text-decoration: none;
+}
+
+
 /* button */
 .button {
     border: 1px solid #999;
