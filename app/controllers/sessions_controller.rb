@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
       redirect_back_or_default(Tog::Config["plugins.tog_user.default_redirect_on_login"]) #last_recipes_path
-      flash[:ok] = I18n.t("tog_user.sessions.login_success")
+#      masking successful login message (its irritating to have a line message in the dashboard unnecessarily
+#      flash[:ok] = I18n.t("tog_user.sessions.login_success")
     else
       flash[:error] = I18n.t("tog_user.sessions.login_failure")
       render :action => 'new'

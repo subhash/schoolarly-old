@@ -13,7 +13,7 @@
 			</span>
                 <% unless @group or !share.shared_to.is_a?(Group) %>
                 <%= " > " %>
-                <% groups = share.shareable.shares_to_groups.collect{|s| link_to s.shared_to.display_name, member_group_path(s.shared_to) } %>
+                <% groups = share.shareable.shares_to_groups.select{|s| s.shared_to.active? }.collect{|s| link_to s.shared_to.display_name, member_group_path(s.shared_to) } %>
                 <span class="subtitle"><%= groups.join(", ") %></span>
                 <% end %>
 
@@ -52,11 +52,4 @@
         <% end %>
     </div>
 </div>
-<% if !@shares.empty? %>
-<div class="info_results">
-    <span class="info_items"><%= page_entries_info @shares %>
-    </span>
-    <span class="pages_navigation right"><%= will_paginate @shares, :params => {:filter => @filter} %>
-    </span>
-</div>
-<%end %>
+

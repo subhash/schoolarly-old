@@ -1,4 +1,3 @@
-
 <% include_jquery %>
 <% include_pretty_photo %>
 <% include_bootstrap %>
@@ -14,30 +13,51 @@
             cookies: true,
             expiration: -1 //cookies expiration in days (-1 = cookies expire when browser is closed)
             ,
-            cookie_name: 'jplist-div-layout'
+            cookie_name: 'jplist-div-layout',
+/*
+            control_types: {
+                'placeholder': {
+                    class_name: 'control_placeholder',
+                    options: {
+                        //paging
+                        paging_length: 3
+                    
+                    }
+                }
+            }
+*/
         });
     });
 </script>
 <div id='sharings' class='box jplist'>
-	<div class="panel box">
-	    <!-- filter -->
-	    <div class='filter'>
-	        <!--[if IE]><div class='search-title'>Filter by title</div><![endif]-->
-			<input data-path='.title' type='text' value='' placeholder='Filter by title' data-control-type='textbox' data-control-name='title-filter' data-control-action='filter' />
-			<!--[if IE]><div class='search-title'>description</div><![endif]-->
-			<input data-path='.desc' type='text' value='' placeholder='Filter by description' data-control-type='textbox' data-control-name='desc-filter' data-control-action='filter' />
-			<input data-path='.author' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='author-filter' data-control-action='filter' />
-	    </div>
-		<!--[if IE]><div class='clear'></div><![endif]--><!-- paging -->
-	    <div class='paging-results' data-type='Page {current} of {pages}' data-control-type='label' data-control-name='paging' data-control-action='paging'>
-	    </div>
-	    <div class='paging' data-control-type='placeholder' data-control-name='paging' data-control-action='paging'>
-	</div>
+    <div class="panel box">
+        <div class='drop-down' data-control-type='drop-down' data-control-name='paging' data-control-action='paging'>
+            <ul>
+                <li>
+                    <span data-number='20' data-default='true'>20 per page </span>
+                </li>
+                <li>
+                    <span data-number='50'>50 per page </span>
+                </li>
+                <li>
+                    <span data-number='100'>100 per page </span>
+                </li>
+                <li>
+                    <span data-number='all'>view all </span>
+                </li>
+            </ul>
+        </div>
+        <!-- filter -->
+        <div class='filter'>
+            <!--[if IE]><div class='search-title'>Filter by title</div><![endif]--><input data-path='.title' type='text' value='' placeholder='Filter by title' data-control-type='textbox' data-control-name='title-filter' data-control-action='filter' /><!--[if IE]><div class='search-title'>description</div><![endif]--><input data-path='.desc' type='text' value='' placeholder='Filter by description' data-control-type='textbox' data-control-name='desc-filter' data-control-action='filter' /><input data-path='.author' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='author-filter' data-control-action='filter' />
+        </div><!--[if IE]><div class='clear'></div><![endif]--><!-- paging -->
+        <div class='paging-results' data-type='Page {current} of {pages}' data-control-type='label' data-control-name='paging' data-control-action='paging'>
+        </div>
+        <div class='paging' data-control-type='placeholder' data-control-name='paging' data-control-action='paging'>
+        </div>
     </div>
-	<%= render :partial => 'member/sharings/sharings' %>
+    <%= render :partial => 'member/sharings/sharings' %>
 </div>
-
-
 <% content_for :sidebar do %>
 <ul class="nav nav-tabs nav-stacked">
     <% @profile.user.groups.group_by(&:type).each do |type, groups| %>
