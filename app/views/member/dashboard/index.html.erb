@@ -14,18 +14,18 @@
             expiration: -1 //cookies expiration in days (-1 = cookies expire when browser is closed)
             ,
             cookie_name: 'jplist-div-layout',
-/*
-            control_types: {
-                'placeholder': {
-                    class_name: 'control_placeholder',
-                    options: {
-                        //paging
-                        paging_length: 3
-                    
-                    }
-                }
-            }
-*/
+            /*
+             control_types: {
+             'placeholder': {
+             class_name: 'control_placeholder',
+             options: {
+             //paging
+             paging_length: 3
+             
+             }
+             }
+             }
+             */
         });
     });
 </script>
@@ -48,7 +48,7 @@
             </ul>
         </div>
         <!-- filter -->
-        <div class='filter'>
+        <div class="filter">
             <!--[if IE]><div class='search-title'>Filter by title</div><![endif]--><input data-path='.title' type='text' value='' placeholder='Filter by title' data-control-type='textbox' data-control-name='title-filter' data-control-action='filter' /><!--[if IE]><div class='search-title'>description</div><![endif]--><input data-path='.desc' type='text' value='' placeholder='Filter by description' data-control-type='textbox' data-control-name='desc-filter' data-control-action='filter' /><input data-path='.author' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='author-filter' data-control-action='filter' />
         </div><!--[if IE]><div class='clear'></div><![endif]--><!-- paging -->
         <div class='paging-results' data-type='Page {current} of {pages}' data-control-type='label' data-control-name='paging' data-control-action='paging'>

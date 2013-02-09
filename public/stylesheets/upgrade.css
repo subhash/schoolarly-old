@@ -36,6 +36,26 @@ input, textarea {
     font: normal 0.85em / 1.7em 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
 }
 
+#logo a {
+	font-size: 1.5em;
+}
+
+
+#footerlogged{
+    background: #000 url('../img/common/black-vertical-lines.png');
+    min-height: 3em;
+    line-height: 3em;
+    color: #aaa;
+    font-size: 0.9em;
+    text-align: center;
+    border-top: 1px solid #151515;  
+}
+
+#footerlogged p{
+    padding: 0;
+}
+
+
 #menu li {
     margin-right: 10px;
 }

@@ -3,11 +3,12 @@
     <div class="photo_container">
         <%= link_to photoset_image(photoset), member_picto_photoset_path(photoset) %>
         <p>
-            <strong>
+            <span class="title">
             <%= link_to photoset.title, member_picto_photoset_path(photoset) %>
+			</span>
             <br/>
             </div>
-            <p>
+            <p class="description">
                 <%= photoset.description %>
             </p>
             <div class="dashboard_comments">

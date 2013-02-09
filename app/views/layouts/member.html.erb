@@ -36,7 +36,7 @@
         <link rel="start" type="text/html" href="/" title="Página de inicio" />
     </head>
     <body>
-        <div id="header" class="clearfix">
+        <div id="header" class="box">
             <div id="header_content">
                 <h1 id="logo"><%= site_title %></h1>
                 <div id="header_options">
@@ -49,15 +49,14 @@
                     </ul>
                 </div>
                 <!-- #menu -->
-                <!-- /#header_search -->
             </div>
             <!-- /#header_content -->
         </div>
         <!-- /#header -->
-        <div id="main-content" class="container-fluid box">
-            <div id="container" class="center">
+        <div id="main-content" class="box">
+            <div class="center">
                 <%= render_flash_messages %>
-                    <div id = "wrapper" class="span10">
+                    <div id="wrapper" class="span10">
                         <%= yield %>
                     </div>
                     <!-- /.left_col -->
@@ -65,7 +64,6 @@
                         <%= yield :sidebar %>
                     </div>
                     <!-- /.right_col -->
-                <!-- /.col_60_40 -->
             </div>
         </div>
         <!-- /#main-content -->
