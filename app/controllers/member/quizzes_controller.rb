@@ -3,6 +3,8 @@ class Member::QuizzesController < Member::BaseController
   
   def add_new
     @quiz = Quiz.new(:user => current_user)
+    @quiz.title = params[:title]
+    @quiz.instruction = params[:instruction]
     @quiz.content = params[:quiz]
     if @quiz.save
       @group.share(current_user, @quiz.class.to_s, @quiz.id) if @group      

@@ -1,68 +1,88 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div id="quiz">
+			<div class="span4">
+				<form id="addQuiz" action="#">
+					<div>
+						<label class="control-label" for="title">Title</label>
+						<input id="title" type="text" placeholder="Title">
+						<label class="control-label" for="instruction">Instruction</label>
+						<input id="instruction" placeholder="Instruction">
+						<button id="save" class="btn">
+							Save Quiz
+						</button>
+					</div>
+				</form>
 
+			</div>
+			<div class="span8">
 
-<div id="quiz" class="row">
-	<form id="addQuestion" class="hero-unit form-horizontal" action="#">
-	<div>
-	<div class="control-group">
-	<label class="control-label" for="question">Question</label>
-	<div class="controls">
-		<input id="question" type="text" placeholder="Question">
+				<form id="addQuestion" class="hero-unit form-horizontal" action="#">
+					<div>
+						<div class="control-group">
+							<label class="control-label" for="question">Question</label>
+							<div class="controls">
+								<input id="question" type="text" placeholder="Question">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="choice1">Choice 1</label>
+							<div class="controls">
+								<input id="choice1" placeholder="Choice 1">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="choice2">Choice 2</label>
+							<div class="controls">
+								<input id="choice2" placeholder="Choice 2">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="choice3">Choice 3</label>
+							<div class="controls">
+								<input id="choice3" placeholder="Choice 3">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="choice4">Choice 4</label>
+							<div class="controls">
+								<input id="choice4" placeholder="Choice 4">
+							</div>
+						</div>
+
+						<button id="add" class="btn">
+							Add Question
+						</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
 	</div>
-	</div>
-	<div class="control-group">
-	<label class="control-label" for="choice1">Choice 1</label>
-	<div class="controls">
-		<input id="choice1" placeholder="Choice 1">
-	</div>
-	</div>
-	<div class="control-group">
-	<label class="control-label" for="choice2">Choice 2</label>
-	<div class="controls">		
-		<input id="choice2" placeholder="Choice 2">
-	</div>
-	</div>
-	<div class="control-group">
-	<label class="control-label" for="choice3">Choice 3</label>
-	<div class="controls">		
-		<input id="choice3" placeholder="Choice 3">
-	</div>
-	</div>
-	<div class="control-group">
-	<label class="control-label" for="choice4">Choice 4</label>
-	<div class="controls">		
-		<input id="choice4" placeholder="Choice 4">
-	</div>
-	</div>
-		
-		
-	<button id="add" class="btn">Add Question</button>
-	<button id="save" class="btn">Save Quiz</button>
-	</div>
-	</form>
 </div>
+
 <script id="questionTemplate" type="text/template">
-<form id="addQuestion2" action="#">
-<div> <label for="question"><@= question @>
-</label><label class="radio"><input
+	<form id="addQuestion2" action="#">
+	<div> <label for="question"><@= question @>
+	</label><label class="radio"><input
 	type="radio" name="answer" value="1"/><@= choice1 @></label> <label class="radio"><input
 	type="radio" name="answer" value="2"/><@= choice2 @></label> <label class="radio"><input
 	type="radio" name="answer" value="3"/><@= choice3 @></label> <label class="radio"><input
 	type="radio" name="answer" value="4"/><@= choice4 @></label>
-</div>
-</form>
+	</div>
+	</form>
 </script>
 
 <script type="text/javascript">
-console.log("started");
-var quizData = [];
-console.log(quizData);
-var page = "quiz:create";
-var answerData = [];
+	console.log("started");
+	var quizData = [];
+	console.log(quizData);
+	var page = "quiz:create";
+	var answerData = []; 
 </script>
 
 <script src="/javascripts/quiz/jquery-1.7.1.js"></script>
 <script src="/javascripts/quiz/underscore.js"></script>
 <script src="/javascripts/quiz/backbone.js"></script>
 <script src="/javascripts/quiz/app.js"></script>
-
 

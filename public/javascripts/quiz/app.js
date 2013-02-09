@@ -2,17 +2,17 @@
 	console.log(page);
 	console.log(quiz);
 
-	var Question = Backbone.Model.extend( {
-		
-		checkFields: function(){
+	var Question = Backbone.Model.extend({
+
+		checkFields : function() {
 			var q = this.get("question");
 			var c1 = this.get("choice1");
 			var c2 = this.get("choice2");
 			var c3 = this.get("choice3");
 			var c4 = this.get("choice4");
-			if(q == undefined){
+			if (q == undefined) {
 				return "No question provided!";
-			} else if((c1 == undefined) || (c2 == undefined) || (c3 == undefined) || (c4 == undefined)){
+			} else if ((c1 == undefined) || (c2 == undefined) || (c3 == undefined) || (c4 == undefined)) {
 				return "Please provide all choices!";
 			} else {
 				return false;
@@ -20,19 +20,33 @@
 		}
 	});
 
-	var Quiz = Backbone.Collection.extend( {
-		model : Question
+	var Quiz = Backbone.Collection.extend({
+		model : Question,
+
+		checkQuiz : function() {
+			if (this.length < 1) {
+				return "Please add questions"
+			}
+			var no_answer = _.find(this.models, function(item) {
+				return (item.get("answer") == undefined);
+			});
+			if (no_answer)
+				return "Please provide answers";
+			if ($("#title").val() == "") {
+				return "Please provide title";
+			}
+		}
 	});
 
-	var QuestionView = Backbone.View.extend( {
+	var QuestionView = Backbone.View.extend({
 		tagName : "div",
 		className : "span4",
 		template : $("#questionTemplate").html(),
 		render : function() {
 			_.templateSettings = {
-		    	interpolate: /\<\@\=(.+?)\@\>/gim,
-		    	evaluate: /\<\@(.+?)\@\>/gim,
-		    	escape: /\<\@\-(.+?)\@\>/gim
+				interpolate : /\<\@\=(.+?)\@\>/gim,
+				evaluate : /\<\@(.+?)\@\>/gim,
+				escape : /\<\@\-(.+?)\@\>/gim
 			};
 			var json = this.model.toJSON();
 			json["chosen_answer"] = this.options["chosen_answer"];
@@ -45,19 +59,19 @@
 			this.model.destroy();
 			this.remove();
 		},
-		
-		optionClicked: function(e){
+
+		optionClicked : function(e) {
 			this.model.set("answer", e.target.value);
 		},
-		
-		events: {
+
+		events : {
 			"click .delete" : "deleteQuestion",
 			"click input:radio" : "optionClicked"
-				
+
 		}
 	});
 
-	var QuizView = Backbone.View.extend( {
+	var QuizView = Backbone.View.extend({
 		el : $("#quiz"),
 
 		initialize : function() {
@@ -77,9 +91,9 @@
 		},
 
 		renderQuestion : function(item) {
-			var questionView = new QuestionView( {
+			var questionView = new QuestionView({
 				model : item,
-				chosen_answer: answerData[this.index]
+				chosen_answer : answerData[this.index]
 			});
 			this.$el.append(questionView.render().el);
 		},
@@ -94,93 +108,97 @@
 			});
 			var question = new Question(formData);
 			var err = question.checkFields();
-			if(err) {
+			if (err) {
 				alert(err);
 			} else {
 				quiz.push(formData);
 				this.collection.add(question);
 				$("#addQuestion div").children("input").val('');
 			}
-			
+
 		},
-		
-		removeQuestion: function(removedQuestion){
+
+		removeQuestion : function(removedQuestion) {
 			var removedQuestionData = removedQuestion.attributes;
-		    _.each(removedQuestionData, function(val, key){
-		        if(removedQuestionData[key] === removedQuestion.defaults[key]){
-		            delete removedQuestionData[key];
-		        }
-		    });
-			_.each(quiz, function(question){
-				if(_.isEqual(question, removedQuestionData)){
+			_.each(removedQuestionData, function(val, key) {
+				if (removedQuestionData[key] === removedQuestion.defaults[key]) {
+					delete removedQuestionData[key];
+				}
+			});
+			_.each(quiz, function(question) {
+				if (_.isEqual(question, removedQuestionData)) {
 					quiz.splice(_.indexOf(quiz, question), 1);
 				}
 			});
 		},
-		
-		saveQuiz: function(e){
+
+		saveQuiz : function(e) {
 			e.preventDefault();
-			that = this;
-			var json = {};
-			var index = 0;
-			_.each(this.collection.models, function(item) {
-				console.log(item.toJSON());
-			}, this);
-			console.log(this.collection.models);
-			console.log(JSON.stringify({quiz: this.collection.models}));
-			$.ajax({
-				type: "POST",
-				url: "add_new",
-				data: {quiz: JSON.stringify(this.collection.models) },
-				dataType: "json",
-				success: function(data, status){
-					console.log('success');
-					console.log(data);
-					window.location.href = data.location;
-				},
-				error: function(data, status){
-					console.log("error - "+status);
-					console.log(data);
-				}
-			});
+			var err = this.collection.checkQuiz();
+			if (err) {
+				alert(err);
+			} else {
+				var json = {};
+				var index = 0;
+				$.ajax({
+					type : "POST",
+					url : "add_new",
+					data : {
+						quiz : JSON.stringify(this.collection.models),
+						title : $("#title").val(),
+						instruction : $("#instruction").val()
+					},
+					dataType : "json",
+					success : function(data, status) {
+						console.log('success');
+						console.log(data);
+						window.location.href = data.location;
+					},
+					error : function(data, status) {
+						console.log("error - " + status);
+						console.log(data);
+					}
+				});
+			}
 		},
 
 		events : {
 			"click #add" : "addQuestion",
 			"click #save" : "saveQuiz"
-				
+
 		}
 	});
-	
-	var QuizAnswerView = Backbone.View.extend( {
-		el: $("quizAnswer"),
-		
-		initialize: function(){
+
+	var QuizAnswerView = Backbone.View.extend({
+		el : $("quizAnswer"),
+
+		initialize : function() {
 			this.collection = new Quiz(quiz);
 			this.render();
 		},
-		
-		render: function(){
+
+		render : function() {
 			renderQuestion(this.collection.models[1]);
 		},
-		
-		renderQuestion: function(item){
-			var answeringView = new AnsweringView({model: item});
+
+		renderQuestion : function(item) {
+			var answeringView = new AnsweringView({
+				model : item
+			});
 			this.$el.append(answeringView.render().el);
 		}
-		
 	});
-	
-	var QuestionAnswerView = Backbone.View.extend( {
+
+	var QuestionAnswerView = Backbone.View.extend({
 		tagName : "div",
 		className : "questionContainer",
 		template : $("#questionAnswerTemplate").html(),
 
 		render : function() {
 			_.templateSettings = {
-		    	interpolate: /\<\@\=(.+?)\@\>/gim,
-		    	evaluate: /\<\@(.+?)\@\>/gim,
-		    	escape: /\<\@\-(.+?)\@\>/gim
+				interpolate : /\<\@\=(.+?)\@\>/gim,
+				evaluate : /\<\@(.+?)\@\>/gim,
+				escape : /\<\@\-(.+?)\@\>/gim
 			};
 			var tmpl = _.template(this.template);
 			var json = this.model.toJSON();
@@ -190,7 +208,7 @@
 		}
 	});
 
-	var QuizAnswerView = Backbone.View.extend( {
+	var QuizAnswerView = Backbone.View.extend({
 		el : $("#quizAnswer"),
 		controls : $("#questionAnswerControls").html(),
 
@@ -206,7 +224,7 @@
 		},
 
 		renderQuestion : function(item) {
-			var questionAnswerView = new QuestionAnswerView( {
+			var questionAnswerView = new QuestionAnswerView({
 				model : item,
 				id : this.index
 			});
@@ -226,7 +244,7 @@
 		},
 
 		nextQuestion : function() {
-			var selector = "input:radio[name=answer"+this.index+"]:checked";
+			var selector = "input:radio[name=answer" + this.index + "]:checked";
 			this.answers[this.index] = $(selector).val();
 			if (this.index < this.collection.models.length - 1)
 				this.index = this.index + 1;
@@ -237,19 +255,23 @@
 			this.nextQuestion();
 			console.log(this.answers);
 			$.ajax({
-				type: "POST",
-				url: "add_new",
-				data: {quiz_response: JSON.stringify(this.answers), quiz_id: $.getUrlVar("quiz_id"), foo: "fee" },
-				dataType: "json",
-				success: function(data, status){
+				type : "POST",
+				url : "add_new",
+				data : {
+					quiz_response : JSON.stringify(this.answers),
+					quiz_id : $.getUrlVar("quiz_id"),
+					foo : "fee"
+				},
+				dataType : "json",
+				success : function(data, status) {
 					console.log(data);
 					window.location.href = data.location;
 				},
-				error: function(data, status){
-					console.log("error - "+status);
+				error : function(data, status) {
+					console.log("error - " + status);
 					console.log(data);
 				}
-			});			
+			});
 		},
 
 		events : {
@@ -261,37 +283,32 @@
 
 	});
 
-    $.extend({
-      getUrlVars: function(){
-        var vars = [], hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for(var i = 0; i < hashes.length; i++)
-        {
-          hash = hashes[i].split('=');
-          vars.push(hash[0]);
-          vars[hash[0]] = hash[1];
-        }
-        return vars;
-      },
-      getUrlVar: function(name){
-        return $.getUrlVars()[name];
-      }
-    });	
+	$.extend({
+		getUrlVars : function() {
+			var vars = [], hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			for (var i = 0; i < hashes.length; i++) {
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = hash[1];
+			}
+			return vars;
+		},
+		getUrlVar : function(name) {
+			return $.getUrlVars()[name];
+		}
+	});
 
-
-
-
-
-	if(page == "quiz:create"){
+	if (page == "quiz:create") {
 		new QuizView();
-	} else if(page == "quiz:answer") {
+	} else if (page == "quiz:answer") {
 		new QuizAnswerView();
-	} else if(page == "quiz:show"){
+	} else if (page == "quiz:show") {
 		new QuizView();
-	} else if(page == "quiz_response:show"){
+	} else if (page == "quiz_response:show") {
 		new QuizView();
 	}
-	
+
 	var quiz = [];
 
-})(jQuery);
+})(jQuery); 
