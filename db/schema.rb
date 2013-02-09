@@ -535,6 +535,8 @@ ActiveRecord::Schema.define(:version => 20130128044032) do
   end
 
   create_table "quizzes", :force => true do |t|
+    t.string   "title"
+    t.text     "instruction"
     t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at"

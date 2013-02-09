@@ -1,31 +1,32 @@
-
 <div id="quizAnswer"></div>
 <script id="questionAnswerTemplate" type="text/template">
-<form id="addQuestion" action="#">
-<div> <label for="question"><@= question @>
-</label><label for="choice1"><@= choice1 @></label><input
-	type="radio" name="answer<@= id @>" value="1"/> <label for="choice2"><@= choice2 @></label><input
-	type="radio" name="answer<@= id @>" value="2"/> <label for="choice3"><@= choice3 @></label><input
-	type="radio" name="answer<@= id @>" value="3"/> <label for="choice4"><@= choice4 @></label><input
-	type="radio" name="answer<@= id @>" value="4"/>
-</div>
-</form>
+	<form id="addQuestion" action="#">
+	<div> <label for="question"><@= question @>
+	</label><label for="choice1"><input
+	type="radio" name="answer<@= id @>" value="1"/> <@= choice1 @></label> <label for="choice2"><input
+	type="radio" name="answer<@= id @>" value="2"/> <@= choice2 @></label> <label for="choice3"><input
+	type="radio" name="answer<@= id @>" value="3"/> <@= choice3 @></label><label for="choice4"><input
+	type="radio" name="answer<@= id @>" value="4"/> <@= choice4 @></label>
+	</div>
+	</form>
 
 </script>
 <script id="questionAnswerControls" type="text/template">
-<div id="questionAnswerButtons">
+	<div id="questionAnswerButtons">
 	<@ if(next) {@>
-		<button class="next">Next</button>
-	<@}@>
+	<button class="next">Next</button>
+	<@} else {@>
 	<button class="save">Save</button>
-</div>
+	<@}@>
+	</div>
 </script>
 
 <script type="text/javascript">
-console.log("started");
-var quizData = <%= @quiz.content %>
-console.log(quizData);
-var page = "quiz:answer";
+	console.log("started");
+	var quizData = 
+<%= @quiz.content %>
+	console.log(quizData);
+	var page = "quiz:answer"; 
 </script>
 
 <script src="/javascripts/quiz/jquery-1.7.1.js"></script>
