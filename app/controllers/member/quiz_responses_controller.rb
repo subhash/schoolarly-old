@@ -26,9 +26,7 @@ class Member::QuizResponsesController < Member::BaseController
   private
 
   def find_quiz
-    puts "quiz_id = #{params[:quiz_id]}"
     @quiz = Quiz.find(params[:quiz_id]) if params[:quiz_id]
-    puts "@quiz - #{@quiz}"
   end
 
 
