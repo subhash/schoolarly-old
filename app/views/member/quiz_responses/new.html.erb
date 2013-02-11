@@ -1,3 +1,5 @@
+<%= render :partial => 'member/sharings/title', :locals => {:shareable => @quiz} %>
+<p><%= @quiz.instruction %></p>
 <div id="quizAnswer"></div>
 <script id="questionAnswerTemplate" type="text/template">
 	<form id="addQuestion" action="#">
