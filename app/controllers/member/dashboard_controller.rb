@@ -52,7 +52,7 @@ class Member::DashboardController < Member::BaseController
       user_ids += current_user.friend_users.map(&:id)
     end
     if current_user.admin?
-      group_ids = Group.all.active.collect(&:id)
+      group_ids = Group.active.all.collect(&:id)
     elsif current_user.school_admin?
       group_ids += current_user.school.group.descendants.select(&:active?).collect(&:id)
     else

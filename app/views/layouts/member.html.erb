@@ -11,12 +11,11 @@
         <meta name="keywords" content="xxx, xxxxxx, xxxx" />
         <meta name="author" content="Linking Paths" />
         <link rel="icon" href="/tog_core/images/favicon.ico" />
-		<% include_stylesheet 'bootstrap/bootstrap.css' %>
         <% include_stylesheet 'jplist/normalize' %>
         <% include_stylesheet 'jplist/styles' %>
         <% include_stylesheet 'jplist/div' %>
         <link href="/tog_core/stylesheets/template.css" rel="stylesheet" media="screen" type="text/css" />
-
+		<% include_stylesheet 'bootstrap/bootstrap.css' %>
 
         <% include_stylesheet 'upgrade' %>
         <!--[if lt IE 7.]>
@@ -54,13 +53,13 @@
         </div>
         <!-- /#header -->
         <div id="main-content" class="box">
-            <div class="center">
+            <div id="container" class="row-fluid">
                 <%= render_flash_messages %>
-                    <div id="wrapper" class="span10">
+                    <div id="wrapper" class="span9">
                         <%= yield %>
                     </div>
                     <!-- /.left_col -->
-                    <div class="span2">
+                    <div class="span3">
                         <%= yield :sidebar %>
                     </div>
                     <!-- /.right_col -->

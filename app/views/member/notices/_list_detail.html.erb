@@ -1,9 +1,7 @@
 <div id="notice_<%=notice.id%>" class="desc">
     <%= truncate_to_words notice.content, :words => 100 %>
     <% if (notice.content.split.size > 100) %>
-    <%= link_to_function "See More" do |page|
-    page["notice_#{notice.id}"].replace_html notice.content
-    end %>
+    <%= link_to_function "See More","jQuery('notice_#{notice.id}').html('#{notice.content}')" %>
     <% end %>
 </div>
 <br/>
@@ -12,5 +10,6 @@
 </div>
 <div class="portlet portletL">
     <%= link_to icon_for_notice, member_group_notice_path(group, notice) %>
-    <span class="date"><%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(notice.created_at)) %></span> . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_group_notice_path(group, notice) %> . <%= share_with_groups_link(notice) if i_am_the_author_of? notice %>
+    <span class="date"><%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(notice.created_at)) %></span>
+    . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_group_notice_path(group, notice) %>. <%= share_with_groups_link(notice) if i_am_the_author_of? notice %>
 </div>

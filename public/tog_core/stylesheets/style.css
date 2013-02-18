@@ -132,7 +132,7 @@ a.sendmail {
 }
 
 a.delete {
-    background: transparent url(../images/ico/delete.gif) no-repeat 3px 0.2em;
+    background: #CCC url(../images/ico/delete.gif) no-repeat 3px 0.2em;
     color: #c00;
     padding-left: 20px;
     text-decoration: none;
