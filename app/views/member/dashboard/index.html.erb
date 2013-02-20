@@ -73,13 +73,13 @@
         </p>
         <% end %>
         <div id="collapse<%=type%>" class="accordion-body collapse <%= open%>">
-            <div class="accordion-inner">
+            <ul class="accordion-inner">
                 <%groups.each do |group| %>
-                <div>
+                <li>
                     <a><%= link_to group.display_name, member_group_path(group) %></a>
-                </div>
+                </li>
                 <% end %>
-            </div>
+            </ul>
         </div>
     </div>
     <% end %>

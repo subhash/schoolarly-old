@@ -7,7 +7,7 @@ module InterfaceHelper
   def nav_link_to(tab)
     contents = ""
     if tab.include_url?(request.request_uri)
-      contents << content_tag(:li, %{#{link_to I18n.t(tab.key), tab.url}#{sub_nav_links_to(tab.items)}}, :class=>"on")
+      contents << content_tag(:li, %{#{link_to I18n.t(tab.key), tab.url}#{sub_nav_links_to(tab.items)}}, :class=>"active")
     else
       contents << content_tag(:li, link_to(I18n.t(tab.key), tab.url))
     end

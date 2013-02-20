@@ -34,34 +34,88 @@ input, textarea {
     display: inline;
 }
 
+#sidebar {
+    margin: 20px 0;
+}
+
 #sidebar .accordion-heading a {
-    text-decoration:none;
+    text-decoration: none;
 }
 
 #sidebar .accordion-heading a:hover {
     background-color: #f5f5f5;
 }
 
+#sidebar ul.accordion-inner {
+    list-style-type: none;
+}
+
+#sidebar ul.accordion-inner li {
+    padding: 9px 15px;
+}
 
 /**
  *
  */
+#header_content {
+    background: #000 url('img/common/black-vertical-lines.png');
+    min-height: 4em;
+    line-height: 4em;
+    color: #aaa;
+}
+
+#header_options {
+    font-weight: normal;
+}
+
+#header_content .nav {
+    margin-bottom: 0;
+}
+
+#header_content a {
+    color: #788db5;
+}
+
 #container {
     font: normal 0.85em / 1.7em 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
 }
 
-#logo a {
-    font-size: 1.5em;
+#menu a {
+    color: #999;
 }
 
-#footerlogged {
-    background: #000 url('img/common/black-vertical-lines.png');
-    min-height: 3em;
-    line-height: 3em;
-    color: #aaa;
-    font-size: 0.9em;
-    text-align: center;
-    border-top: 1px solid #151515;
+#logo a {
+    display: block;
+    float: left;
+    padding: 10px 20px 10px;
+    margin-left: -20px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+#logo a:hover, #logo a:focus {
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .4);
+}
+
+/*
+ #footerlogged {
+ background: #000 url('img/common/black-vertical-lines.png');
+ min-height: 3em;
+ line-height: 3em;
+ color: #aaa;
+ font-size: 0.9em;
+ text-align: center;
+ border-top: 1px solid #151515;
+ }
+ */
+#footerlogged div {
+    padding-top: 20px;
 }
 
 #footerlogged p {
@@ -137,11 +191,16 @@ li.bold a {
 
 .titleB {
     font-size: 1.4em;
-    padding-bottom: 10px;
+    padding: 15px 10px;
 }
 
 div.data {
     margin: 2% 2% 1em 2%;
+}
+
+form {
+    margin: 10px;
+    padding: 10px;
 }
 
 .portlet {
@@ -612,6 +671,7 @@ td.hover {
     border-radius: 3px;
     background: #FAFAFA;
     background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+
 
 
 

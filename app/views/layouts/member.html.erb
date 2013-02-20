@@ -35,24 +35,21 @@
         <link rel="start" type="text/html" href="/" title="Página de inicio" />
     </head>
     <body>
-        <div id="header" class="box">
             <div id="header_content">
                 <h1 id="logo"><%= site_title %></h1>
                 <div id="header_options">
                     <%= render :partial => "shared/header_options" %>
                 </div>
                 <!-- /#header_options -->
-                <div id="menu" class="clearfix">
-                    <ul>
+                <div>
+                    <ul class="nav nav-tabs">
                         <%= links_for_navigation :member %>
                     </ul>
                 </div>
                 <!-- #menu -->
             </div>
             <!-- /#header_content -->
-        </div>
-        <!-- /#header -->
-        <div id="main-content" class="box">
+        <div id="main-content">
             <div id="container" class="row-fluid">
                 <%= render_flash_messages %>
                     <div id="wrapper" class="span9">
