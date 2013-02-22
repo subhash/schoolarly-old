@@ -2,12 +2,12 @@ module ProfilesHelper
   
   def icon_for_profile(profile, size, options={})
     options.merge!(:class => profile.user.state)
-    if profile.icon?
+    if !profile.icon? || profile.icon_file_name.include?('default_profile')
+      return image_tag("/images/profile/#{size}_default_profile.png")
+    else
       photo_url = profile.icon.url(size)
       options.merge!(:alt => I18n.t("tog_social.profiles.helper.photo_for_user", :name => profile.full_name))
       return image_tag(photo_url, options) if photo_url
-    else
-      return image_tag("/tog_social/images/#{config["plugins.tog_social.profile.image.default"]}" , options)
     end
   end
   
