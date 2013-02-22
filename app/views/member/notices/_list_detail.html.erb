@@ -9,7 +9,7 @@
     <%= render :partial => "shared/comments", :locals => { :commentable => notice , :exclude_add_comment => true} %>
 </div>
 <div class="portlet portletL">
-    <%= link_to icon_for_notice, member_group_notice_path(group, notice) %>
+    <span class="theme"><span class="message"><%= link_to icon_for_notice, member_group_notice_path(group, notice) %></span></span>
     <span class="date"><%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(notice.created_at)) %></span>
     . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_group_notice_path(group, notice) %>. <%= share_with_groups_link(notice) if i_am_the_author_of? notice %>
 </div>

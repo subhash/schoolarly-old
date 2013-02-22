@@ -1,0 +1,162 @@
+/*
+* JPLIST: div layout css
+*/
+.list{
+	float: left;
+	width: 100%;
+	padding: 1.25em 0;
+}
+
+.list .list-item{
+	float: left;
+	width: 96%;
+	margin: 0 2% 1em 2%;
+}
+
+/*
+* image styles
+*/
+.list .list-item .img{
+	width: 15%;
+	float: left;
+	font-size: 0;
+}
+
+.list .list-item .img img{
+	max-width: 90%;
+}
+
+/*
+* bloxk styles
+*/
+.list .list-item .block{
+	float: right;
+	width: 85%;
+}
+
+.block .title{
+	font-family: 'verdana';
+	font-size: 1.16em;
+	line-height: 1.16em;
+	color: #CA3F1A;
+}
+
+.block .date{
+	color: #7F4F24;
+	padding: 0 1.6em 0 0;
+	font-size: 0.8em;
+	line-height: 0.8em;
+	float: right;
+}
+
+.block .desc{
+	line-height: 1.3em;
+	padding: 0 0.6em 0 0;
+}
+
+.like{
+	line-height: 1.3em;
+	padding: 0.3em 0 0 0;
+	color: #7F4F24;
+	font-size: 0.8em;
+}
+
+.theme{
+	line-height: 1.3em;
+	padding: 0.3em 0 0 0;
+	color: #0C5F1F;
+	font-size: 0.9em;
+}
+
+/*
+* checkbox filters
+*/
+.cb-filters{
+	float: left;
+	margin-top: 0.6em;
+	margin-left: 1.25em;
+}
+
+.cb-filters input{
+	vertical-align: middle;
+}
+
+.cb{
+	float: left;
+	margin-right: 1em;
+}
+
+.cb label{
+	font-size: 0.9em;
+}
+
+/*
+* reset box
+*/
+.reset-box{
+	margin: 0.6em 0 0 1.25em;
+	float: left;
+}
+
+.reset-btn{
+	border: 1px solid #444;
+	border-radius: 3px;
+	background: #9FC2CE;
+	
+	font-family: 'arial';
+	
+	color: #222;
+	text-shadow: 1px 1px 1px #fff;
+	filter: dropshadow(color=#fff, offx=1, offy=1);
+	
+	cursor: pointer;
+}
+
+/*
+* filter buttons
+*/
+.filter-buttons{
+	float: left;
+	margin: 0.6em 0 0 1.25em;
+	font-size: 0.9em;
+}
+
+.filter-buttons input{
+	vertical-align: bottom;
+	background: #fff;
+	border: 1px solid #0C5F1F;
+	border-radius: 3px;
+	padding: 0.1em 1em;
+	color: #0C5F1F;
+}
+`
+.filter-buttons .selected{
+	border: 1px solid #CA3F1A;
+	color: #CA3F1A;
+}
+
+/*
+* radio buttons
+*/
+.radio-filters{
+	float: left;
+	margin: 0.6em 0 0 1.25em;
+	font-size: 1em;
+}
+
+.radio-filters input{
+	vertical-align: middle;
+}
+
+.radio-filters label{
+	line-height: 1.67em;
+}
+
+.radio{
+	float: left;	
+}
+
+.radio label{
+	margin-left: 0.3em;
+	margin-right: 0.6em;
+}

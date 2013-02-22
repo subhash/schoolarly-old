@@ -10,22 +10,20 @@
             item_path: '.list-item',
             panel_path: '.panel' //cookies
             ,
-            cookies: true,
+            cookies: false,
             expiration: -1 //cookies expiration in days (-1 = cookies expire when browser is closed)
             ,
             cookie_name: 'jplist-div-layout',
-            /*
-             control_types: {
-             'placeholder': {
-             class_name: 'control_placeholder',
-             options: {
-             //paging
-             paging_length: 3
-             
-             }
-             }
-             }
-             */
+            control_types: {
+                'reset': {
+                    class_name: 'control_reset',
+                    options: {}
+                },
+                'cb_filters': {
+                    class_name: 'control_checkbox_filters',
+                    options: {}
+                }
+            }
         });
     });
 </script>
@@ -51,6 +49,50 @@
         <div class="filter">
             <!--[if IE]><div class='search-title'>Filter by title</div><![endif]--><input data-path='.title' type='text' value='' placeholder='Filter by title' data-control-type='textbox' data-control-name='title-filter' data-control-action='filter' /><!--[if IE]><div class='search-title'>description</div><![endif]--><input data-path='.desc' type='text' value='' placeholder='Filter by description' data-control-type='textbox' data-control-name='desc-filter' data-control-action='filter' /><input data-path='.author' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='author-filter' data-control-action='filter' />
         </div><!--[if IE]><div class='clear'></div><![endif]--><!-- paging -->
+        <div class="cb-filters">
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="messages" data-path=".notice" data-logic="or" id="notice" type="checkbox" checked="checked">
+                <label for="messages">
+                    Messages
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="notes" data-path=".note" data-logic="or" id="note" type="checkbox" checked="checked">
+                <label for="notes">
+                    Notes
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="assignments" data-path=".assignment" data-logic="or" id="assignment" type="checkbox" checked="checked">
+                <label for="assignments">
+                    Assignments
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="submissions" data-path=".submission" data-logic="or" id="submission" type="checkbox" checked="checked">
+                <label for="submissions">
+                    Submissions
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="photos" data-path=".photo" data-logic="or" id="photo" type="checkbox" checked="checked">
+                <label for="photos">
+                    Photos
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="videos" data-path=".video" data-logic="or" id="video" type="checkbox" checked="checked">
+                <label for="videos">
+                    Videos
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="events" data-path=".event" data-logic="or" id="event" type="checkbox" checked="checked">
+                <label for="event">
+                    Events
+                </label>
+            </div>
+        </div>
         <div class='paging-results' data-type='Page {current} of {pages}' data-control-type='label' data-control-name='paging' data-control-action='paging'>
         </div>
         <div class='paging' data-control-type='placeholder' data-control-name='paging' data-control-action='paging'>

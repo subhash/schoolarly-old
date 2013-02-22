@@ -23,7 +23,12 @@ module ApplicationHelper
   end
   
   def include_list_filters
-    include_javascript 'jplist.min.js'
+    include_stylesheet 'jplist/normalize'
+    include_stylesheet 'jplist/styles'
+    include_stylesheet 'jplist/div'
+    include_stylesheet 'jplist/toggle-filters'
+    include_javascript 'jplist/jplist.min.js'
+    include_javascript 'jplist/jplist.checkbox-filters.min.js'
   end
   
 #  def include_list_filters

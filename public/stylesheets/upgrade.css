@@ -57,6 +57,10 @@ input, textarea {
 /**
  *
  */
+.cb label {
+    display: inline;
+}
+
 #header_content {
     background: #000 url('img/common/black-vertical-lines.png');
     min-height: 4em;
@@ -671,6 +675,7 @@ td.hover {
     border-radius: 3px;
     background: #FAFAFA;
     background: -moz-linear-gradient(#FAFAFA,#EAEAEA);
+
 
 
 
