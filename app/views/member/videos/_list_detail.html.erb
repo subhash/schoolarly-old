@@ -1,18 +1,16 @@
 <% video = share.shareable %>
-<div class="photo">
-    <div class="photo_container">
-        <%= link_to video.link.blank? ? video.title : image_tag(video.thumbnail), member_video_path(video) %>
-        <span class="title"><%= link_to video.title, member_video_path(video) %></span>
-    </div>
-    <p class="desc">
-        <%= video.description %>
-    </p>
-    <div class="dashboard_comments">
-        <%= render :partial => "shared/comments", :locals => { :commentable => video , :exclude_add_comment => true} %>
-    </div>
-    <div class="portlet portletL">
-        <span class="theme"><span class="video">Video</span></span>
-        <span class="date"><%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at)) %></span>
-        . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_video_path(video), :title => I18n.t('comments.member.view.title', :title => h(video.title)) %>. <%= share_with_groups_link(video) if i_own? video %>
-    </div>
+<div class="photo_container">
+    <%= link_to video.link.blank? ? video.title : image_tag(video.thumbnail), member_video_path(video) %>
+    <span class="title"><%= link_to video.title, member_video_path(video) %></span>
+</div>
+<p class="desc">
+    <%= video.description %>
+</p>
+<div class="dashboard_comments">
+    <%= render :partial => "shared/comments", :locals => { :commentable => video , :exclude_add_comment => true} %>
+</div>
+<div class="portlet portletL">
+    <span class="theme"><span class="video">Video</span></span>
+    <span class="date"><%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at)) %></span>
+    . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_video_path(video), :title => I18n.t('comments.member.view.title', :title => h(video.title)) %>. <%= share_with_groups_link(video) if i_own? video %>
 </div>

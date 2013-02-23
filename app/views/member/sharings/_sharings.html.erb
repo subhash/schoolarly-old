@@ -14,7 +14,7 @@
                 <% unless @group or !share.shared_to.is_a?(Group) %>
                 <%= " > " %>
                 <% groups = share.shareable.shares_to_groups.select{|s| s.shared_to.active? }.collect{|s| link_to s.shared_to.display_name, member_group_path(s.shared_to) } %>
-                <span class="subtitle"><%= groups.join(", ") %></span>
+                <span class="subtitle group"><%= groups.join(", ") %></span>
                 <% end %>
 
             </div>

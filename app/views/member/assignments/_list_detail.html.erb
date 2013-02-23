@@ -37,7 +37,7 @@
 </div>
 <br/>
 <div class="portlet portletL">
-    <%= link_to icon_for_assignment(assignment), member_assignment_path(assignment), :title => "#{sanitize assignment.post.title}" %>
+    <span class="theme"><span class="assignment"><%= link_to icon_for_assignment(assignment), member_assignment_path(assignment), :title => "#{sanitize assignment.post.title}" %></span></span>
 	<span class="date">
     <% if assignment.post.published? %>
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(assignment.post.published_at)) %>

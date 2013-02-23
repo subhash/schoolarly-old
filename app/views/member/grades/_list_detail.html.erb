@@ -15,6 +15,6 @@
 </div>
 <br/>
 <div class="portlet portletL">
-    <%= link_to icon_for_grade,  member_grade_path(grade), :title => "#{I18n.t('grades.member.view.grade_for')} #{assignment.name}" %>
+    <span class="theme"><span class="assignment"><%= link_to icon_for_grade,  member_grade_path(grade), :title => "#{I18n.t('grades.member.view.grade_for')} #{assignment.name}" %></span></span>
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at)) %>
 </div>
