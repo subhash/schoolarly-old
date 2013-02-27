@@ -2,32 +2,8 @@
 <% include_pretty_photo %>
 <% include_bootstrap %>
 <% include_list_filters %>
-<script>
-    jQuery('document').ready(function(){
-        jQuery('#sharings').jplist({
-        
-            items_box: '.list',
-            item_path: '.list-item',
-            panel_path: '.panel' //cookies
-            ,
-            cookies: false,
-            expiration: -1 //cookies expiration in days (-1 = cookies expire when browser is closed)
-            ,
-            cookie_name: 'jplist-div-layout',
-            control_types: {
-                'reset': {
-                    class_name: 'control_reset',
-                    options: {}
-                },
-                'cb_filters': {
-                    class_name: 'control_checkbox_filters',
-                    options: {}
-                }
-            }
-        });
-    });
-</script>
-<div id='sharings' class='box jplist'>
+
+<div id='sharings' class='jplist'>
     <div class="panel box">
         <div class='drop-down' data-control-type='drop-down' data-control-name='paging' data-control-action='paging'>
             <ul>

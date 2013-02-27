@@ -29,28 +29,29 @@ module ApplicationHelper
     include_stylesheet 'jplist/toggle-filters'
     include_javascript 'jplist/jplist.min.js'
     include_javascript 'jplist/jplist.checkbox-filters.min.js'
+    include_javascript 'list'
   end
   
-#  def include_list_filters
-#    include_javascript 'jplist/jplist.js'
-#    include_javascript 'jplist/blocks/collection.js'
-#    include_javascript 'jplist/blocks/controller.js'
-#    include_javascript 'jplist/blocks/cookies.js'
-#    include_javascript 'jplist/blocks/dataitem.js'
-#    include_javascript 'jplist/blocks/dropdown.js'
-#    include_javascript 'jplist/blocks/filters.js'
-#    include_javascript 'jplist/blocks/helper.js'
-#    include_javascript 'jplist/blocks/label.js' 
-#    include_javascript 'jplist/blocks/paging.js'
-#    include_javascript 'jplist/blocks/panel.js'
-#    include_javascript 'jplist/blocks/panel-control.js'
-#    include_javascript 'jplist/blocks/path.js'
-#    include_javascript 'jplist/blocks/pathitem.js'
-#    include_javascript 'jplist/blocks/placeholder.js'
-#    include_javascript 'jplist/blocks/sort.js'
-#    include_javascript 'jplist/blocks/status.js'
-#    include_javascript 'jplist/blocks/textbox.js'
-#  end
+  #  def include_list_filters
+  #    include_javascript 'jplist/jplist.js'
+  #    include_javascript 'jplist/blocks/collection.js'
+  #    include_javascript 'jplist/blocks/controller.js'
+  #    include_javascript 'jplist/blocks/cookies.js'
+  #    include_javascript 'jplist/blocks/dataitem.js'
+  #    include_javascript 'jplist/blocks/dropdown.js'
+  #    include_javascript 'jplist/blocks/filters.js'
+  #    include_javascript 'jplist/blocks/helper.js'
+  #    include_javascript 'jplist/blocks/label.js' 
+  #    include_javascript 'jplist/blocks/paging.js'
+  #    include_javascript 'jplist/blocks/panel.js'
+  #    include_javascript 'jplist/blocks/panel-control.js'
+  #    include_javascript 'jplist/blocks/path.js'
+  #    include_javascript 'jplist/blocks/pathitem.js'
+  #    include_javascript 'jplist/blocks/placeholder.js'
+  #    include_javascript 'jplist/blocks/sort.js'
+  #    include_javascript 'jplist/blocks/status.js'
+  #    include_javascript 'jplist/blocks/textbox.js'
+  #  end
   
   def include_table_filter
     include_javascript 'busy_ajax'
@@ -59,7 +60,7 @@ module ApplicationHelper
     include_javascript 'table'
     include_stylesheet 'upgrade_filtergrid'
   end
-
+  
   
   def shared_through_whom(share)
     whom = []

@@ -1,92 +1,182 @@
 <% include_javascript "busy_ajax" %>
 <% include_jquery %>
 <% include_pretty_photo %>
+<% include_list_filters %>
 
 <%= render :partial => 'header' %>
-
-<% if i_am_member_of @group %>
-<div class="portlet portletB">
-    <h2>
-    	    <span><%= I18n.t('groups.site.posts.latest') %></span>
-		<span style="float: right">View <%= select_tag "filter_sharings" ,options_for_select([['All', 'All'], ['Messages','Notice'], ['Notes','Post'],['Events', 'Event'],['Photos', 'Picto::Photo'],['Videos', 'Video'],['Activities', 'Assignment']], @filter), :onchange => remote_function(:url => member_group_path(@group), :method => :get, :with => "'filter='+this.value")%></span>
-	</h2>
-	<div id="sharings">
- 		<%= render :partial => 'member/sharings/sharings' %>
-	</div>
+<% if (i_am_member_of @group) && !@shares.empty? %>
+<div id="sharings" class='jplist'>
+    <div class="panel box">
+        <div class='drop-down' data-control-type='drop-down' data-control-name='paging' data-control-action='paging'>
+            <ul>
+                <li>
+                    <span data-number='20' data-default='true'>20 per page </span>
+                </li>
+                <li>
+                    <span data-number='50'>50 per page </span>
+                </li>
+                <li>
+                    <span data-number='100'>100 per page </span>
+                </li>
+                <li>
+                    <span data-number='all'>view all </span>
+                </li>
+            </ul>
+        </div>
+        <!-- filter -->
+        <div class="filter">
+            <input data-path='.author' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='author-filter' data-control-action='filter' /><input data-path='.title' type='text' value='' placeholder='Filter by title' data-control-type='textbox' data-control-name='title-filter' data-control-action='filter' /><input data-path='.desc' type='text' value='' placeholder='Filter by description' data-control-type='textbox' data-control-name='desc-filter' data-control-action='filter' />
+        </div><!--[if IE]><div class='clear'></div><![endif]--><!-- paging -->
+        <div class="cb-filters">
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="messages" data-path=".notice" data-logic="or" id="notice" type="checkbox" checked="checked">
+                <label for="messages">
+                    Messages
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="notes" data-path=".note" data-logic="or" id="note" type="checkbox" checked="checked">
+                <label for="notes">
+                    Notes
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="assignments" data-path=".assignment" data-logic="or" id="assignment" type="checkbox" checked="checked">
+                <label for="assignments">
+                    Assignments
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="submissions" data-path=".submission" data-logic="or" id="submission" type="checkbox" checked="checked">
+                <label for="submissions">
+                    Submissions
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="photos" data-path=".photo" data-logic="or" id="photo" type="checkbox" checked="checked">
+                <label for="photos">
+                    Photos
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="videos" data-path=".video" data-logic="or" id="video" type="checkbox" checked="checked">
+                <label for="videos">
+                    Videos
+                </label>
+            </div>
+            <div class="cb">
+                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="events" data-path=".event" data-logic="or" id="event" type="checkbox" checked="checked">
+                <label for="event">
+                    Events
+                </label>
+            </div>
+        </div>
+        <div class='paging-results' data-type='Page {current} of {pages}' data-control-type='label' data-control-name='paging' data-control-action='paging'>
+        </div>
+        <div class='paging' data-control-type='placeholder' data-control-name='paging' data-control-action='paging'>
+        </div>
+    </div>
+    <%= render :partial => 'member/sharings/sharings' %>
 </div>
 <% end %>
-
 <% content_for :sidebar do %>
 <% if i_am_member_of @group -%>
-<div class="portlet portletC" >
-	<h2><span><%= link_to I18n.t('groups.member.event.calendar'), member_conclave_events_path(:group => @group), :class => 'calendar' %></span></h2>
-	<% if i_am_moderator_of(@group) %>
-	<h2><span><%= link_to I18n.t('groups.member.reports.title'), member_group_aggregations_path(@group), :class => 'reports' %></span></h2>
-	<h2><span><%= link_to I18n.t('groups.member.stats.title'), stats_member_group_path(@group), :class => 'statistics' %></span></h2>		
-	<% end %>
+<div class="portlet portletC">
+    <h2><span><%= link_to I18n.t('groups.member.event.calendar'), member_conclave_events_path(:group => @group), :class => 'calendar' %></span></h2>
+    <% if i_am_moderator_of(@group) %>
+    <h2><span><%= link_to I18n.t('groups.member.reports.title'), member_group_aggregations_path(@group), :class => 'reports' %></span></h2>
+    <h2><span><%= link_to I18n.t('groups.member.stats.title'), stats_member_group_path(@group), :class => 'statistics' %></span></h2>
+    <% end %>
 </div>
 <div class="portlet portletC" id="portlet_moreLinks">
     <h2><span><%= I18n.t('groups.member.post', :name => @group.name) %></span></h2>
     <div class="portlet_content">
-        <ul>         
-		    <li><%= link_to I18n.t('groups.member.notices.share'), new_member_group_notice_path(@group), :class => 'sendmail' %></li>
-			<li><%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(default_blog_for(@group), :group => @group), :class => 'note' %></li>
-			<li><%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group), :class => 'calendar' %></li>	
-			<li><%= link_to I18n.t('groups.member.assignment.share'), new_member_assignment_path(:group => @group), :class => 'activity' %></li>		
-			<li><%= link_to I18n.t('groups.member.photos.share'), new_member_picto_photo_path(:group => @group), :class => 'photo' %></li>	
-			<li><%= link_to I18n.t('groups.member.videos.share'), new_member_video_path(:group => @group), :class => 'video' %></li>				  	
+        <ul>
+            <li>
+                <%= link_to I18n.t('groups.member.notices.share'), new_member_group_notice_path(@group), :class => 'sendmail' %>
+            </li>
+            <li>
+                <%= link_to I18n.t('groups.member.notes.share'), new_member_conversatio_blog_post_path(default_blog_for(@group), :group => @group), :class => 'note' %>
+            </li>
+            <li>
+                <%= link_to I18n.t('groups.member.event.share'), new_member_conclave_event_path(:group => @group), :class => 'calendar' %>
+            </li>
+            <li>
+                <%= link_to I18n.t('groups.member.assignment.share'), new_member_assignment_path(:group => @group), :class => 'activity' %>
+            </li>
+            <li>
+                <%= link_to I18n.t('groups.member.photos.share'), new_member_picto_photo_path(:group => @group), :class => 'photo' %>
+            </li>
+            <li>
+                <%= link_to I18n.t('groups.member.videos.share'), new_member_video_path(:group => @group), :class => 'video' %>
+            </li>
         </ul>
-    </div> 
-</div> 
- <% end -%>	  
-  
+    </div>
+</div>
+<% end -%>
 <% if i_am_moderator_of(@group) %>
-	<div class="portlet portletC" id="portlet_adminLinks">
-	    <h2><span><%= I18n.t('groups.member.admin_links') %></span></h2>  
-	    <div class="portlet_content">
-	        <ul>
-	        	  <%= link_to I18n.t('tog_social.groups.member.edit'), edit_member_group_path(@group), :class => 'ok' -%>
-			  <% if (@group.school? || @group.block?) %>
-			  	<li><%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group, :type => 'klasses'), :class => 'add' %></li>
-			  <% end %>
-			  <% if @group.school? %> 
-			    <li><%= link_to I18n.t('blocks.site.create'), member_new_sub_group_path(@group, :type => 'blocks'), :class => 'add' %></li>
-			    <li><%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %></li>
-			    <li><%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %></li>				
-			  <% else %>
-			    <li><%= link_to I18n.t('groups.site.add.Teacher'), add_select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %></li>
-			    <li><%= link_to I18n.t('groups.site.add.Student'), add_select_member_group_path(@group, :type => 'Student'), :class => 'add' %></li>						
-			  <% end %>
-			  <% if @group.klass? %>
-			    <li><%= link_to I18n.t('subjects.site.create'), member_new_sub_group_path(@group.id, :type => 'subjects'), :class => 'add' %></li>
-			  <% end %>
-			  <li><%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %></li>
-			  <% if current_user.admin? %>
-			  <li><%= link_to I18n.t('groups.member.sub_groups.add'), select_subgroups_member_group_path(@group.id), :class => 'add' %></li>
-			  <% end %>
-	        </ul>
-	    </div> 
-	</div> 
+<div class="portlet portletC" id="portlet_adminLinks">
+    <h2><span><%= I18n.t('groups.member.admin_links') %></span></h2>
+    <div class="portlet_content">
+        <ul>
+            <%= link_to I18n.t('tog_social.groups.member.edit'), edit_member_group_path(@group), :class => 'ok' -%>
+            <% if (@group.school? || @group.block?) %>
+            <li>
+                <%= link_to I18n.t('klasses.site.create'), member_new_sub_group_path(@group, :type => 'klasses'), :class => 'add' %>
+            </li>
+            <% end %>
+            <% if @group.school? %>
+            <li>
+                <%= link_to I18n.t('blocks.site.create'), member_new_sub_group_path(@group, :type => 'blocks'), :class => 'add' %>
+            </li>
+            <li>
+                <%= link_to I18n.t('groups.site.Teacher.invite'), new_member_group_teacher_path(@group), :class => 'add' %>
+            </li>
+            <li>
+                <%= link_to I18n.t('groups.site.Student.invite'), new_member_group_student_path(@group), :class => 'add' %>
+            </li>
+            <% else %>
+            <li>
+                <%= link_to I18n.t('groups.site.add.Teacher'), add_select_member_group_path(@group, :type => 'Teacher'), :class => 'add' %>
+            </li>
+            <li>
+                <%= link_to I18n.t('groups.site.add.Student'), add_select_member_group_path(@group, :type => 'Student'), :class => 'add' %>
+            </li>
+            <% end %>
+            <% if @group.klass? %>
+            <li>
+                <%= link_to I18n.t('subjects.site.create'), member_new_sub_group_path(@group.id, :type => 'subjects'), :class => 'add' %>
+            </li>
+            <% end %>
+            <li>
+                <%= link_to I18n.t('groups.member.sub_groups.create'), member_new_sub_group_path(@group.id), :class => 'add' %>
+            </li>
+            <% if current_user.admin? %>
+            <li>
+                <%= link_to I18n.t('groups.member.sub_groups.add'), select_subgroups_member_group_path(@group.id), :class => 'add' %>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
 <% end %>
-
 <% @group.users.group_by(&:type).each do |type, users| %>
-	<%= render :partial => "member/profiles/profiles_portlet", :locals => { 
-	  :items => users.collect(&:profile), 
-      :type => users.first.person_type,
-	  :style => :portletG, 
-	  :title => I18n.t("groups.model.#{type}.title", :count => @group.members.size),  
-	  :no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
- <% end %>
- <div class='portletG'>
-  	<h2><span><%= link_to I18n.t("groups.model.parents.title"), member_profiles_path(:group => @group, :type => 'Parent') %></span></h2>
- </div>
- 
+<%= render :partial => "member/profiles/profiles_portlet", :locals => {
+:items => users.collect(&:profile),
+:type => users.first.person_type,
+:style => :portletG,
+:title => I18n.t("groups.model.#{type}.title", :count => @group.members.size),
+:no_items => I18n.t('tog_social.groups.model.members_not_found', :group_name => @group.name) } %>
+<% end %>
+<div class='portletG'>
+    <h2><span><%= link_to I18n.t("groups.model.parents.title"), member_profiles_path(:group => @group, :type => 'Parent') %></span></h2>
+</div>
 <% @group.active_children.group_by(&:type).each do |type, groups| %>
-	<%= render :partial => "groups_portlet", :locals => { 
-	:items => groups, 
-	:style => :portletG, 
-	:title => I18n.t("groups.model.#{type}.title"),  
-	:no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name) } %> 
+<%= render :partial => "groups_portlet", :locals => {
+:items => groups,
+:style => :portletG,
+:title => I18n.t("groups.model.#{type}.title"),
+:no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name) } %>
 <% end %>
 <% end %>
 

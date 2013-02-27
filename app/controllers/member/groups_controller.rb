@@ -217,17 +217,7 @@ class Member::GroupsController < Member::BaseController
   
   def show
     store_location
-    @page = params[:page] || '1'
-    @filter = params[:filter] || 'All'
-    if @filter == 'All'
-      @shares = @group.sharings.paginate :per_page => 20,
-                                           :page => @page, 
-                                           :order => "updated_at desc"
-    else
-      @shares = @group.sharings.of_type(@filter).paginate :per_page => 20,
-                                           :page => @page, 
-                                           :order => "updated_at desc"  
-    end
+    @shares = @group.sharings 
     respond_to do |wants|
       wants.html
       wants.js do
