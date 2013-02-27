@@ -6,7 +6,7 @@
     jQuery.noConflict();
 </script>
 <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
-<div class="portletK" id="portlet_splashHome" onclick="location.href='/home/teachers_why';" style="cursor: pointer;">
+<div class="portletK" onclick="location.href='/home/teachers_why';" style="cursor: pointer;">
     <h2><span class="title"><%= link_to I18n.t('home.pitch.teachers.title'), '/home/teachers_why' %></span></h2>
     <div class="portlet_content">
         <div>
@@ -25,7 +25,7 @@
         </div>
     </div>
 </div>
-<div class="portletK" id="portlet_splashHome" onclick="location.href='/home/parents_why';" style="cursor: pointer;">
+<div class="portletK" onclick="location.href='/home/parents_why';" style="cursor: pointer;">
     <h2><span class="title"><%= link_to I18n.t('home.pitch.parents.title'), '/home/parents_why' %></span></h2>
     <div class="portlet_content">
         <div>
@@ -45,7 +45,7 @@
     </div>
 </div>
 <% content_for :sidebar do %>
-<div class="portletK" id="portlet_splashHome" onclick="location.href='/home/students_why';" style="cursor: pointer;">
+<div class="portletK"  onclick="location.href='/home/students_why';" style="cursor: pointer;">
     <h2><span class="title"><%= link_to I18n.t('home.pitch.students.title'), '/home/students_why' %></span></h2>
     <div class="portlet_content">
         <div>
@@ -64,7 +64,7 @@
         </div>
     </div>
 </div>
-<div class="portletK" id="portlet_splashHome">
+<div class="portletK" >
     <h2><span class="title"><%= link_to "Intro Video", "http://www.youtube.com/embed/8YmiKt4Etwg?iframe", :rel => "lightbox" %></span></h2>
     <div class="portlet_content">
         <div>

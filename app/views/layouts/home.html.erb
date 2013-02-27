@@ -62,14 +62,16 @@
                             <%= links_for_navigation :member %>
                         </ul>
                     </div>
-                    <!-- #menu -->
-                    <!-- /#header_search -->
+                    <!-- #menu --><!-- /#header_search -->
                 </div>
                 <!-- /#header_content -->
             </div>
             <!-- /#header -->
             <div id="pagebody">
                 <%= render_flash_messages %>
+                <div class="ribbon">
+                    <strong class="ribbon-content"><%= link_to "Introducing Video Lessons!", "http://www.youtube.com/embed/EZLJE98odso?iframe", :rel => "lightbox" %></strong>
+                </div>
                 <div class="col_50_50 clearfix">
                     <div class="left_col">
                         <%= yield %>
