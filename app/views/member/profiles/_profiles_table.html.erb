@@ -1,0 +1,92 @@
+<div class="wide">
+    <table id="filterTable" class="tableE profiles">
+        <thead>
+            <tr>
+                <% if show_subgroup_memberships?(@group,@type) %>
+                <th scope="col">
+                    <%= I18n.t("tog_user.model.profile.pic") %>
+                </th>
+                <% end %>
+                <th scope="col">
+                    <%= I18n.t("tog_user.model.name") %>
+                </th>
+                <th scope="col">
+                    <%= I18n.t("tog_user.model.email") %>
+                </th>
+                <th scope="col">
+                    <%= I18n.t("tog_user.model.state") %>
+                </th>
+                <% if (@type == 'students') %>
+                <th scope="col">
+                    <%= I18n.t("groups.model.parents.title") %>
+                </th>
+                <% end %>
+                <% if ((@type == 'parents') || (@group && show_subgroup_memberships?(@group,@type))) %>
+                <% for group in @column_groups %>
+                <th scope="col">
+                    <%= group.name %>
+                    <%= link_to "", member_group_path(group), :class => "smallarrow blueright" %>
+                </th>
+                <% end %>
+                <% else %>
+                <th scope="col">
+                    Classes
+                </th>
+                <% end %>
+            </tr>
+        </thead>
+        <tfoot>
+        </tfoot>
+        <tbody>
+            <% @users.each do |user| %>
+            <% profile = user.profile %>
+            <tr>
+                <% if show_subgroup_memberships?(@group,@type) %>
+                <td nowrap="nowrap">
+                    <%= icon_for_profile(profile, 'small', :class=>"img") -%>
+                </td>
+                <% end %>
+                <td>
+                    <strong><%= link_to profile.full_name,  member_profile_path(profile) -%></strong>
+                </td>
+                <td nowrap="nowrap">
+                    <% if @can_view_email %>
+                    <%= link_to user.email, member_new_message_to_path(user), {:title => I18n.t("tog_user.admin.send_email")} -%>
+                    <% else %>
+                    <span class="hidden_email">hidden</span>
+                    <% end %>
+                </td>
+                <td>
+                    <%= I18n.t("tog_user.model.states.#{user.state}") %>
+                </td>
+                <% if (@type == 'students') %>
+                <td>
+                    <%= profile.friends.collect(&:full_name).join(",") %>
+                </td>
+                <% end %>
+                <% if ((@type == 'parents') || (@group && show_subgroup_memberships?(@group,@type))) %>
+                <% for group in @column_groups %>
+                <% user_in_group = @memberships[user.id] && @memberships[user.id][group.id] %>
+                <td nowrap="nowrap",  class='hover'>
+                    <% if moderator %>
+                    <span id="user_<%=profile.id%>_group_<%=group.id%>"><% if user_in_group %>
+                        <%= image_tag("yes2.png") %>
+                        <%= link_to_remote image_tag("delete.png", :class => 'overlap'), :url => remove_member_group_path(group, :members => [profile.id]), :method => :get , :html => {:class => 'link', :style => "display: none;", :title => "Remove from group" } %>
+                        <% else %>
+                        <%= link_to_remote image_tag("add2.png"), :url => add_member_group_path(group, :members => [profile.id]), :with => "'moderator='+jQuery('input#moderator').is(':checked')", :method => :get, :html => {:class => 'link', :style => "display: none;" , :title => "Add to group"} %>
+                        <% end %></span>
+                    <% else %>
+                    <%= user_in_group ? image_tag("yes2.png") : "" %>
+                    <% end %>
+                </td>
+                <% end %>
+                <% else %>
+                <td>
+                    <%= @memberships[user.id] ? Group.find(@memberships[user.id].collect(&:group_id)).collect(&:name).join(",") : "" %>
+                </td>
+                <% end %>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

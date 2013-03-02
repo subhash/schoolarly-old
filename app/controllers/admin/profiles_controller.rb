@@ -1,6 +1,8 @@
 class Admin::ProfilesController < Admin::BaseController
- 
-   def index    
+  
+  helper_method :show_subgroup_memberships?
+  
+  def index    
     if params[:group]
       @group = Group.find(params[:group])
       @can_view_email = current_user.can_view_email?(@group)
@@ -9,7 +11,8 @@ class Admin::ProfilesController < Admin::BaseController
       else 
         @users = @group.users.of_type(params[:type])
       end
-      if (@group.school? && !(params[:type] == 'Parent'))
+      if (!show_subgroup_memberships?(@group,@type) && !(params[:type] == 'Parent'))
+        @column_groups = []
         klass_groups = @group.active_children.klass
         @memberships  = Membership.find(:all, :include => :group, :conditions => {:user_id => @users.map(&:id), :group_id => klass_groups.map(&:id)}).group_by(&:user_id)
       else
@@ -36,5 +39,9 @@ class Admin::ProfilesController < Admin::BaseController
     end
   end
   
+  
+  def show_subgroup_memberships? (group, type)   
+    !group.school? && (!group.block? || !(type.pluralize.parameterize == 'students'))
+  end
   
 end

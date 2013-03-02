@@ -3,6 +3,8 @@ class Member::ProfilesController < Member::BaseController
   before_filter :find_profile, :only => [:show, :new_parent, :create_parent]
   before_filter :check_profile, :only => [:edit, :update]
   
+  helper_method :show_subgroup_memberships?
+  
   def show    
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +18,7 @@ class Member::ProfilesController < Member::BaseController
     if current_user.admin?
       @matches = Tog::Search.search(params[:q], {:only => ["User"]}, {:page => '1'}) 
     else
-#      @matches = Tog::Search.search(params[:q], {:only => ["User"], :user => current_user}, {:page => '1'})
+      #      @matches = Tog::Search.search(params[:q], {:only => ["User"], :user => current_user}, {:page => '1'})
       q = "%#{params[:q]}%" 
       @matches = User.find(:all, :include => :profile, :conditions => ["users.id in (?) AND (profiles.first_name like ? OR profiles.last_name like ? OR users.login like ?)", current_user.messageable_user_ids, q, q, q]).flatten.paginate({:page => '1'})
     end
@@ -70,7 +72,7 @@ class Member::ProfilesController < Member::BaseController
       else 
         @users = @group.users.of_type(params[:type])
       end
-      if (@group.school? && !(params[:type] == 'Parent'))
+      if (!show_subgroup_memberships?(@group,params[:type]) && !(params[:type] == 'Parent'))
         klass_groups = @group.active_children.klass
         @memberships  = Membership.find(:all, :include => :group, :conditions => {:user_id => @users.map(&:id), :group_id => klass_groups.map(&:id)}).group_by(&:user_id)
       else
@@ -113,6 +115,11 @@ class Member::ProfilesController < Member::BaseController
   
   def create_parent
     @user = User.new(params[:user])
+  end
+  
+  
+  def show_subgroup_memberships? (group, type)   
+    !group.school? && (!group.block? || !(type.pluralize.parameterize == 'students'))
   end
   
   private

@@ -57,10 +57,6 @@ function setSchoolTable(){
     tf = setTableFilter("filterTable", cols, [], 1, false);
 }
 
-function setTable(columnSize){
-    setTable(columnSize, 4 )
-}
-
 function setTable(columnSize, defaultColumns){
     var cols = {
         col_0: "none",
@@ -71,7 +67,7 @@ function setTable(columnSize, defaultColumns){
     };
     
 	
-    var sort_cols = ['None']
+    var sort_cols = ['None'];
 	for (var i = 1; i < defaultColumns; i++) {
         sort_cols.push('String');
     };

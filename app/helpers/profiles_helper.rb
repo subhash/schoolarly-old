@@ -24,5 +24,6 @@ module ProfilesHelper
     html << image_tag("/tog_core/images/ico/arrow-#{arrow}.gif") if arrow
     html
   end
+
   
 end
