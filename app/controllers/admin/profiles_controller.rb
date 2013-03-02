@@ -11,7 +11,7 @@ class Admin::ProfilesController < Admin::BaseController
       else 
         @users = @group.users.of_type(params[:type])
       end
-      if (!show_subgroup_memberships?(@group,@type) && !(params[:type] == 'Parent'))
+      if (!show_subgroup_memberships?(@group,params[:type]) && !(params[:type] == 'Parent'))
         @column_groups = []
         klass_groups = @group.active_children.klass
         @memberships  = Membership.find(:all, :include => :group, :conditions => {:user_id => @users.map(&:id), :group_id => klass_groups.map(&:id)}).group_by(&:user_id)
