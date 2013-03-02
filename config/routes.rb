@@ -76,6 +76,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users, :member => {:hijack => :get}
     admin.resources :groups, :member => {:reinvite_parents => :get}
     admin.resources :messages
+    admin.resources :profiles
   end
   
   map.namespace :member do |member|

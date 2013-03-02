@@ -1,5 +1,7 @@
+<% link = current_user.admin? ? admin_profiles_path(:group => @group, :type => type) : member_profiles_path(:group => @group, :type => type) %>
+
 <div class="portlet <%= style || 'portletA' %>" id="portlet_friends">
-    <h2><span><%= link_to_if items.size > 0, "#{title} (#{items.size})", member_profiles_path(:group => @group, :type => type) %></span></h2>
+    <h2><span><%= link_to_if items.size > 0, "#{title} (#{items.size})", link %></span></h2>
     <div class="portlet_content">
         <ul class="clearfix">
             <% unless items.blank? %>
