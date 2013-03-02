@@ -1,24 +1,28 @@
 <% include_table_filter %>
 <% include_javascript 'table2CSV' %>
 <script type="text/javascript">
-            jQuery.noConflict();
-            var tf;
-            jQuery(document).ready(function(){          
-                jQuery('td.hover').hover(function(){
-                    jQuery(this).find('a.link').show();
-                }, function(){
-                    jQuery(this).find('a.link').hide();
-                });
-        
-        		<% if @group.school? %>
-        			setSchoolTable();  
-                <% else %>
-        			columnSize = '<%= 4 + @column_groups.size %>';
-        			setTable(columnSize);       
-                <% end %>     
-            });
-                        										
-                    
+                    jQuery.noConflict();
+                    var tf;
+                    jQuery(document).ready(function(){          
+                        jQuery('td.hover').hover(function(){
+                            jQuery(this).find('a.link').show();
+                        }, function(){
+                            jQuery(this).find('a.link').hide();
+                        });
+                
+                		<% if @group.school? %>
+                			setSchoolTable();  
+                        <% else %>
+        				<% if (@type == 'students')%>
+    					columnSize = '<%= 5 + @column_groups.size %>';
+        				<% else %>
+                			columnSize = '<%= 4 + @column_groups.size %>';
+        					<% end %>
+                			setTable(columnSize, 5 );       
+                        <% end %>     
+                    });
+                                										
+                            
 </script>
 <% moderator = i_am_moderator_of(@group) %>
 <% if @group %>
