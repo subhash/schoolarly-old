@@ -10,26 +10,34 @@ class Member::StudentsController < Member::BaseController
     @users = []
     @failed_students = []
     @failed_parents = {}
+
     CSV.parse(params[:students]) do |row|
-      name = email = fname = femail = mname = memail = nil
-      name, email, fname, femail, mname, memail = row
-      user = create_user(email, name, Student.new)      
-      if !user.new_record?
-        @group.join(user)
-        create_user_parent(user, femail, fname)
-        create_user_parent(user, memail, mname)
-      elsif user.invite_over_email(current_user)
-        # TODO check if you are allowed to invite
-        @group.invite_and_accept(user)
-        #        commenting out entry into group email for now
-        #        GroupMailer.deliver_entry_notification(@group, current_user, user)  
-        create_user_parent(user, femail, fname)
-        create_user_parent(user, memail, mname)
-      else
+      user, father, mother = User.from_csv(row)
+      if user.new_record? and !user.invite_over_email(current_user)
         @failed_students << row.join(",")
-      end
-      @users << user
+      elsif !user.save
+        @failed_students << row.join(",")
+      else
+        if father.new_record? and !father.invite_over_email(current_user)
+          @failed_parents[user] = father
+        elsif !father.save
+          @failed_parents[user] = father
+        else
+          user.profile.add_friend(father.profile)
+        end if father
+        if mother and mother.new_record? and !mother.invite_over_email(current_user)
+          @failed_parents[user] = mother
+        elsif !mother.save
+          @failed_parents[user] = mother
+        else
+          user.profile.add_friend(mother.profile)
+        end if mother
+        @group.join(user)
+        @users << user
+      end if user
     end
+    
+    
     if @failed_students.blank? and @failed_parents.blank?
       flash[:ok] = I18n.t("groups.site.Student.invited", :count => @users.count)      
       redirect_back_or_default(member_group_path(@group))
@@ -96,33 +104,5 @@ class Member::StudentsController < Member::BaseController
   def find_student
     @student = Student.find(params[:id]) if params[:id]
   end
-  
-  def create_user(email, name, person)
-    first = last = nil
-    first, last = name.split(' ',2) if name
-    email = email.strip if email
-    user = User.find_by_email(email) 
-    # If user belongs to same school, just add them
-    user = User.new(:email => email) unless (user && (user.parent? || user.school == @group.school))
-    user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
-    if user.profile
-      user.profile.first_name = first
-      user.profile.last_name = last
-    else
-      user.profile = Profile.new(:first_name => first,:last_name => last)
-    end
-    user.person = person
-    return user
-  end
-  
-  def create_user_parent(user, parent_email, parent_name)
-    return unless parent_email
-    parent = create_user(parent_email, parent_name, Parent.new)    
-#    either parent exists or has to be invited over email
-    if (!parent.new_record? || parent.invite_over_email(current_user))
-      user.profile.add_friend(parent.profile)
-    else
-      @failed_parents[user] = parent
-    end
-  end
+
 end
