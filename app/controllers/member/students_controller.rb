@@ -12,7 +12,8 @@ class Member::StudentsController < Member::BaseController
     @failed_parents = {}
 
     CSV.parse(params[:students]) do |row|
-      user, father, mother = User.from_csv(row)
+      user, father, mother, klassname = User.from_csv(row)
+      klass = @group.self_and_descendants.detect {|g| g.klass? and g.name == klassname}
       if user.new_record? and !user.invite_over_email(current_user)
         @failed_students << row.join(",")
       elsif !user.save
@@ -32,7 +33,7 @@ class Member::StudentsController < Member::BaseController
         else
           user.profile.add_friend(mother.profile)
         end if mother
-        @group.join(user)
+        klass ? klass.join(user) : @group.join(user)
         @users << user
       end if user
     end
