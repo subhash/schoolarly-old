@@ -12,8 +12,7 @@
         <meta name="author" content="Linking Paths" />
         <link rel="icon" href="/tog_core/images/favicon.ico" />
         <link href="/tog_core/stylesheets/template.css" rel="stylesheet" media="screen" type="text/css" />
-		<% include_stylesheet 'bootstrap/bootstrap.css' %>
-
+        <% include_stylesheet 'bootstrap/bootstrap.css' %>
         <% include_stylesheet 'upgrade' %>
         <!--[if lt IE 7.]>
             <link rel="stylesheet" type="text/css" media="screen" href="/tog_core/stylesheets/ie6.css" />
@@ -32,31 +31,31 @@
         <link rel="start" type="text/html" href="/" title="Página de inicio" />
     </head>
     <body>
-            <div id="header_content">
+        <div id="header_content">
+            <div id="header_options">
                 <h1 id="logo"><%= site_title %></h1>
-                <div id="header_options">
-                    <%= render :partial => "shared/header_options" %>
-                </div>
-                <!-- /#header_options -->
-                <div>
-                    <ul class="nav nav-tabs">
-                        <%= links_for_navigation :member %>
-                    </ul>
-                </div>
-                <!-- #menu -->
+                <%= render :partial => "shared/header_options" %>
             </div>
-            <!-- /#header_content -->
+            <!-- /#header_options -->
+            <div id='top-bar'>
+                <ul>
+                    <%= links_for_navigation :member %>
+                </ul>
+            </div>
+            <!-- #menu -->
+        </div>
+        <!-- /#header_content -->
         <div id="main-content">
             <div id="container" class="row-fluid">
                 <%= render_flash_messages %>
-                    <div id="wrapper" class="span9">
-                        <%= yield %>
-                    </div>
-                    <!-- /.left_col -->
-                    <div class="span3">
-                        <%= yield :sidebar %>
-                    </div>
-                    <!-- /.right_col -->
+                <div id="wrapper" class="span9">
+                    <%= yield %>
+                </div>
+                <!-- /.left_col -->
+                <div class="span3">
+                    <%= yield :sidebar %>
+                </div>
+                <!-- /.right_col -->
             </div>
         </div>
         <!-- /#main-content -->

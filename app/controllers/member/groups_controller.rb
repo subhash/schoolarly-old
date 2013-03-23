@@ -480,4 +480,11 @@ class Member::GroupsController < Member::BaseController
     user.person = person
     return user
   end
+  
+  def set_javascripts_and_stylesheets
+    @javascripts = %w(application)
+    @stylesheets = %w()
+    @feeds = %w()
+  end 
+  
 end

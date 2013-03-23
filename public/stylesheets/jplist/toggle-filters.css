@@ -30,7 +30,8 @@
 * bloxk styles
 */
 .list .list-item .block{
-	float: right;
+	float: left;
+	margin: 1em 0 0 5em;
 	width: 85%;
 }
 
@@ -50,8 +51,8 @@
 }
 
 .block .desc{
-	line-height: 1.3em;
-	padding: 0 0.6em 0 0;
+	line-height: 1.6em;
+	padding: 1em 1em 0 0;
 }
 
 .like{

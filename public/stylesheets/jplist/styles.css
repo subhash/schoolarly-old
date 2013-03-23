@@ -220,9 +220,7 @@ ul, ol{
 /*
 * MAIN CONTENT
 */
-#main-content{
-	background: #ccc;
-}
+
 
 #wrapper{
 	background: #fff;
@@ -256,7 +254,7 @@ ul, ol{
 	
 	margin: 0;
 	padding: 0 0 0.6em 0;
-	background: #efefef;
+	background: url('../img/common/greymenubg.gif') repeat-x;
 	
 	font-family: 'arial';
 	color: #444;

@@ -7,9 +7,9 @@ module InterfaceHelper
   def nav_link_to(tab)
     contents = ""
     if tab.include_url?(request.request_uri)
-      contents << content_tag(:li, %{#{link_to I18n.t(tab.key), tab.url}#{sub_nav_links_to(tab.items)}}, :class=>"active")
+      contents << content_tag(:li, %{#{link_to I18n.t(tab.key), tab.url}#{sub_nav_links_to(tab.items)}}, :class=>"on")
     else
-      contents << content_tag(:li, link_to(I18n.t(tab.key), tab.url))
+      contents << content_tag(:li, link_to(I18n.t(tab.key), tab.url), :class=>"off")
     end
     if (I18n.t(tab.key) == "Messages" && current_user && current_user.inbox.messages.unread.size > 0)
       

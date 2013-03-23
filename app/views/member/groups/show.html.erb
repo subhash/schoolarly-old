@@ -1,8 +1,8 @@
 <% include_javascript "busy_ajax" %>
 <% include_jquery %>
 <% include_pretty_photo %>
+<% include_bootstrap %>
 <% include_list_filters %>
-
 <%= render :partial => 'header' %>
 <% if (i_am_member_of @group) && !@shares.empty? %>
 <div id="sharings" class='jplist'>
@@ -160,6 +160,32 @@
     </div>
 </div>
 <% end %>
+<div class="accordion" id="sidebar">
+    <% @group.active_children.group_by(&:type).each do |type, groups| %>
+    <% open = "in" if ((@group.school? &&  type == 'blocks') || (@group.klass? &&  type == 'subjects')) %>
+    <% if groups.any? %>
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebar" href="#collapse<%=type%>"><%= I18n.t("groups.model.#{type}.title") %></a>
+        </div>
+        <% if local_assigns[:add_link] %>
+        <p>
+            <%= add_link %>
+        </p>
+        <% end %>
+        <div id="collapse<%=type%>" class="accordion-body collapse <%= open%>">
+            <ul class="accordion-inner">
+                <%groups.each do |group| %>
+                <li>
+                    <a><%= link_to group.display_name, member_group_path(group) %></a>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+    <% end %>
+    <% end %>
+</div>
 <% @group.users.group_by(&:type).each do |type, users| %>
 <%= render :partial => "member/profiles/profiles_portlet", :locals => {
 :items => users.collect(&:profile),
@@ -171,12 +197,4 @@
 <div class='portletG'>
     <h2><span><%= link_to I18n.t("groups.model.parents.title"), member_profiles_path(:group => @group, :type => 'Parent') %></span></h2>
 </div>
-<% @group.active_children.group_by(&:type).each do |type, groups| %>
-<%= render :partial => "groups_portlet", :locals => {
-:items => groups,
-:style => :portletG,
-:title => I18n.t("groups.model.#{type}.title"),
-:no_items => I18n.t('groups.model.groups_not_found', :parent => @group.name) } %>
 <% end %>
-<% end %>
-
