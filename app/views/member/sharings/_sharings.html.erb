@@ -3,53 +3,50 @@
         <% for share in @shares %>
         <% if display?(share) and (i_own?(share.shareable) or share.published?) %>
         <% profile = share.user.profile %>
-        <div class="list-item <%=share.shareable_type.demodulize %>">
+        <div class="list-item <%=share.shareable_type.demodulize %>">            
             <div class="image">
                 <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
             </div>
             <div>
-            	<span class="author">
-                <%= link_to profile.full_name, member_profile_path(profile) %>
-			</span>
+                <span class="author"><%= link_to profile.full_name, member_profile_path(profile) %>
+                </span>
                 <% unless @group or !share.shared_to.is_a?(Group) %>
                 <%= " > " %>
                 <% groups = share.shareable.shares_to_groups.select{|s| s.shared_to.active? }.collect{|s| link_to s.shared_to.display_name, member_group_path(s.shared_to) } %>
                 <span class="subtitle group"><%= groups.join(", ") %></span>
                 <% end %>
-
             </div>
-			<div class="block">
-            <% if share.shareable.is_a? Video %>
-            <%= render :partial => '/member/videos/list_detail', :locals => {:share => share} %>
-            <% end %>
-            <% if share.shareable.is_a? Picto::Photoset %>
-            <%= render :partial => '/member/picto/photosets/list_detail', :locals => {:share => share} %>
-            <% end %>
-            <% if share.shareable.is_a? Picto::Photo %>
-            <%= render :partial => '/member/picto/photos/list_detail', :locals => {:share => share} %>
-            <% end %>
-            <% if share.shareable.is_a? Post %>
-            <%= render :partial => '/member/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable} %>
-            <% end %>
-            <% if share.shareable.is_a? Event %>
-            <%= render :partial => '/member/conclave/events/list_detail', :locals => { :event => share.shareable} %>
-            <% end %>
-            <% if share.shareable.is_a? Assignment %>
-            <%= render :partial => '/member/assignments/list_detail', :locals => { :assignment => share.shareable} %>
-            <% end %>
-            <% if share.shareable.is_a? Notice %>
-            <%= render :partial => '/member/notices/list_detail', :locals => { :notice => share.shareable, :group => share.shared_to} %>
-            <% end %>
-            <% if share.shareable.is_a? Submission %>
-            <%= render :partial => '/member/submissions/list_detail', :locals => { :submission => share.shareable } %>
-            <% end %>
-            <% if share.shareable.is_a? Grade %>
-            <%= render :partial => '/member/grades/list_detail', :locals => { :share => share } %>
-            <% end %>
-			</div>
+            <div class="block">
+                <% if share.shareable.is_a? Video %>
+                <%= render :partial => '/member/videos/list_detail', :locals => {:share => share} %>
+                <% end %>
+                <% if share.shareable.is_a? Picto::Photoset %>
+                <%= render :partial => '/member/picto/photosets/list_detail', :locals => {:share => share} %>
+                <% end %>
+                <% if share.shareable.is_a? Picto::Photo %>
+                <%= render :partial => '/member/picto/photos/list_detail', :locals => {:share => share} %>
+                <% end %>
+                <% if share.shareable.is_a? Post %>
+                <%= render :partial => '/member/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable} %>
+                <% end %>
+                <% if share.shareable.is_a? Event %>
+                <%= render :partial => '/member/conclave/events/list_detail', :locals => { :event => share.shareable} %>
+                <% end %>
+                <% if share.shareable.is_a? Assignment %>
+                <%= render :partial => '/member/assignments/list_detail', :locals => { :assignment => share.shareable} %>
+                <% end %>
+                <% if share.shareable.is_a? Notice %>
+                <%= render :partial => '/member/notices/list_detail', :locals => { :notice => share.shareable, :group => share.shared_to} %>
+                <% end %>
+                <% if share.shareable.is_a? Submission %>
+                <%= render :partial => '/member/submissions/list_detail', :locals => { :submission => share.shareable } %>
+                <% end %>
+                <% if share.shareable.is_a? Grade %>
+                <%= render :partial => '/member/grades/list_detail', :locals => { :share => share } %>
+                <% end %>
+            </div>
         </div>
         <% end %>
         <% end %>
     </div>
 </div>
-

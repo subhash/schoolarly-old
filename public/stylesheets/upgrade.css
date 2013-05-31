@@ -403,15 +403,14 @@ iframe.doc {
     margin-top: 10px;
 }
 
-li.Assignment {
+div.Assignment {
     background-color: #EFEED1;
 }
 
 .time {
     float: center;
-    font-size: 0.6em;
+    font-size: 12px;
     color: #666;
-    margin-top: 10px;
 }
 
 .time .detail {
