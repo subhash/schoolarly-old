@@ -1,6 +1,6 @@
 <div class="titleB"><%= I18n.t('conversatio.views.member.posts.index.posts_in_blog', :blog_title => @blog.title)%></div>
-<p><%= link_to I18n.t('conversatio.views.member.posts.index.create_post'),  new_member_conversatio_blog_post_url(@blog), {:class => "button add", :title => I18n.t('conversatio.views.member.posts.index.create_post_title')} %></p>
-<table class="tableB">
+<p><%= link_to I18n.t('conversatio.views.member.posts.index.create_post'),  new_member_conversatio_blog_post_url(@blog), {:class => "btn", :title => I18n.t('conversatio.views.member.posts.index.create_post_title')} %></p>
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col"><%= I18n.t('tog_conversatio.views.member.posts.index.title') %></th>

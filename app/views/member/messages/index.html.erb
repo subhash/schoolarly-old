@@ -1,9 +1,9 @@
 <h2><%= I18n.t("tog_mail.plugin_name") %></h2>
 <h5><% for folder in @folder.siblings %>
     <%= link_to folder.name, {:controller=>"messages",:action=>"index",:id=>folder.id} -%>|<% end %>
-    <%= link_to I18n.t("tog_mail.member.create_new_message"),  new_member_message_url, {:class => "button mainaction add", :title => I18n.t("tog_mail.member.compose_new_message")} %>
+    <%= link_to I18n.t("tog_mail.member.create_new_message"),  new_member_message_url, {:class => "btn", :title => I18n.t("tog_mail.member.compose_new_message")} %>
 </h5>
-<table class="tableB">
+<table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">

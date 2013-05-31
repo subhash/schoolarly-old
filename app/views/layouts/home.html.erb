@@ -12,7 +12,6 @@
         <meta name="author" content="Linking Paths" />
         <link rel="icon" href="/tog_core/images/favicon.ico" />
         <link href="/tog_core/stylesheets/template.css" rel="stylesheet" media="screen" type="text/css" />
-        <link href="/tog_core/stylesheets/style.css" rel="stylesheet" media="screen" type="text/css" />
         <% include_stylesheet 'bootstrap/bootstrap.css' %>
         <% include_stylesheet 'upgrade' %>
         <!--[if lt IE 7.]>
@@ -48,36 +47,30 @@
         </script>
     </head>
     <body>
-        <div id="header_content">
-            <div id="header_options">
-                <h1 id="logo"><%= site_title %></h1>
-                <%= render :partial => "shared/header_options" %>
-            </div>
-            <!-- /#header_options -->
-            <div id='top-bar'>
-                <ul>
-                    <%= links_for_navigation :member %>
-                </ul>
-            </div>
-            <!-- #menu -->
+    <div id="header_content">
+        <div id="header_options">
+            <h1 id="logo"><%= site_title %></h1>
+            <%= render :partial => "shared/header_options" %>
         </div>
-            <!-- /#header -->
-        <div id="main-content">
-            <div id="container" class="row-fluid">
-                <%= render_flash_messages %>
-                <div id="wrapper" class="span6">
-                    <%= yield %>
-                </div>
-                <!-- /.left_col -->
-                <div class="span6">
-                    <%= yield :sidebar %>
-                </div>
-                <!-- /.right_col -->
-            </div>
+        <!-- /#header_options -->
+        <div id='top-bar'>
+            <ul>
+                <%= links_for_navigation :member %>
+            </ul>
         </div>
-        <!-- /#main-content -->
-            <%= render :partial => "shared/footer" %>
+        <!-- #menu -->
+    </div>
+    <!-- /#header -->
+    <div id="main-content">
+        <div id="container" class="row-fluid">
+            <%= render_flash_messages %>
+            <%= yield %>
+            <!-- /.right_col -->
         </div>
-        <!-- #container -->
-    </body>
+    </div>
+    <!-- /#main-content -->
+    <%= render :partial => "shared/footer" %>
+    </div>
+    <!-- #container -->
+</body>
 </html>

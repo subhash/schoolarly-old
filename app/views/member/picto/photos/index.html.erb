@@ -1,15 +1,16 @@
 <% include_javascript "busy_ajax" %>
 <% include_jquery %>
 <% include_pretty_photo %>
-
 <script type="text/javascript">
     jQuery.noConflict();
     jQuery(document).ready(function(){
-        jQuery("a[rel^='prettyPhoto']").prettyPhoto({theme: 'facebook',
-													social_tools: false,
-													allow_resize: true,
-													default_width: 900,
-													overlay_gallery: true});
+        jQuery("a[rel^='prettyPhoto']").prettyPhoto({
+            theme: 'facebook',
+            social_tools: false,
+            allow_resize: true,
+            default_width: 900,
+            overlay_gallery: true
+        });
     });
 </script>
 <% content_for :sidebar do %>
@@ -19,10 +20,10 @@
         <%= link_to "Your photosets", member_picto_photosets_url %>
     </div>
 </div>
-<% end %>
 <p>
-    <%= link_to "Upload more photos now!",  new_member_picto_photo_url, {:class => "button add", :title => "Upload new images"} %>
+    <%= link_to "Upload more photos now!",  new_member_picto_photo_url, {:class => "btn btn-primary", :title => "Upload new images"} %>
 </p>
+<% end %>
 <div class="portlet portletG">
     <h2><span>Your photostream</span></h2>
     <div class="portlet_content">
