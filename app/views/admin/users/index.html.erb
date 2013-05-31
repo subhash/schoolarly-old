@@ -12,12 +12,11 @@
         setTableFilter("filterTable", cols, sort_cols, true);
     });
 </script>
-<h1><%= I18n.t("tog_user.plugin_title") %></h1>
 <p>
-    <%= link_to I18n.t("tog_user.admin.create_user"),  new_admin_user_url, {:class => "button add", :title => I18n.t("tog_user.admin.create_user")} %>
+    <%= link_to I18n.t("tog_user.admin.create_user"),  new_admin_user_url, {:class => "btn", :title => I18n.t("tog_user.admin.create_user")} %>
 </p>
-<div class="wide">
-    <table id="filterTable" class="tableE">
+
+    <table id="filterTable" class="table table-striped">
         <thead>
             <tr>
                 <% [:login, :email, :name, :type, :state, :id, :created_at].each do |field| %>
@@ -57,4 +56,4 @@
             <% end %>
         </tbody>
     </table>
-</div>
+
