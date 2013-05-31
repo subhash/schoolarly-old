@@ -64,8 +64,12 @@
     <div id="main-content">
         <div id="container" class="row-fluid">
             <%= render_flash_messages %>
-            <%= yield %>
-            <!-- /.right_col -->
+            <div class="ribbon">
+                <strong class="ribbon-content"><%= link_to "Introducing Video Lessons!", "http://www.youtube.com/embed/EZLJE98odso?iframe", :rel => "lightbox" %></strong>
+            </div>
+            <div class="col_50_50 clearfix">
+                <%= yield %>
+            </div>
         </div>
     </div>
     <!-- /#main-content -->

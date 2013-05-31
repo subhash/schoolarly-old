@@ -211,4 +211,30 @@ class User < ActiveRecord::Base
       default_note.save!
     end
   end
+  
+  
+  def self.from_csv(row)
+    name, email, fname, femail, mname, memail, klassname = row
+    user = User.new_or_existing(email, name, Student.new)
+    father = User.new_or_existing(femail, fname, Parent.new)
+    mother = User.new_or_existing(memail, mname, Parent.new)
+    return [user, father, mother, klassname.strip]
+  end
+  
+  def self.new_or_existing(email, name, person)
+    return nil if email.blank?
+    user = self.find_by_email(email) || self.new(:email => email)
+    user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
+    first = last = nil
+    first, last = name.split(' ', 2) if name
+    if user.profile
+      user.profile.first_name = first.strip unless first.blank?
+      user.profile.last_name = last.strip unless last.blank?
+    else
+      user.profile = Profile.new(:first_name => first,:last_name => last)
+    end
+    user.person ||= person
+    return user  
+  end
+  
 end

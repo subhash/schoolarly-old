@@ -1,0 +1,32 @@
+<%= render :partial => 'member/sharings/title', :locals => {:shareable => @quiz} %>
+<p><%= @quiz.instruction %></p>
+<div id="quiz" class="row">
+</div>
+<script id="questionTemplate" type="text/template">
+	<form id="addQuestion2" action="#">
+	<div> <label for="question"><@= question @>
+	</label><label class="radio"><input
+	type="radio" name="answer" value="1" <@ if(chosen_answer=="1") { @> checked <@ } @> /><@= choice1 @><@ if(answer=="1") { @> <i class="icon-ok-sign" /> <@ } @></label> <label class="radio"><input
+	type="radio" name="answer" value="2" <@ if(chosen_answer=="2") { @> checked <@ } @> /><@= choice2 @><@ if(answer=="2") { @> <i class="icon-ok-sign" /> <@ } @></label> <label class="radio"><input
+	type="radio" name="answer" value="3" <@ if(chosen_answer=="3") { @> checked <@ } @> /><@= choice3 @><@ if(answer=="3") { @> <i class="icon-ok-sign" /> <@ } @></label> <label class="radio"><input
+	type="radio" name="answer" value="4" <@ if(chosen_answer=="4") { @> checked <@ } @> /><@= choice4 @><@ if(answer=="4") { @> <i class="icon-ok-sign" /> <@ } @></label>
+	</div>
+	</form>
+</script>
+
+<script type="text/javascript">
+	console.log("started");
+	var quizData = 
+<%= @quiz.content %>
+	;
+	console.log(quizData);
+	var page = "quiz_response:show";
+	var answerData = 
+<%= @quiz_response.content %>;</script>
+
+<script src="/javascripts/quiz/jquery-1.7.1.js"></script>
+<script src="/javascripts/bootstrap/bootstrap.min.js"></script>
+<script src="/javascripts/quiz/underscore.js"></script>
+<script src="/javascripts/quiz/backbone.js"></script>
+<script src="/javascripts/quiz/app.js"></script>
+

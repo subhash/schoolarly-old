@@ -1,0 +1,37 @@
+<%= render :partial => 'member/sharings/title', :locals => {:shareable => @quiz} %>
+<p><%= @quiz.instruction %></p>
+<div id="quizAnswer"></div>
+<script id="questionAnswerTemplate" type="text/template">
+	<form id="addQuestion" action="#">
+	<div> <label for="question"><@= question @>
+	</label><label for="choice1"><input
+	type="radio" name="answer<@= id @>" value="1"/> <@= choice1 @></label> <label for="choice2"><input
+	type="radio" name="answer<@= id @>" value="2"/> <@= choice2 @></label> <label for="choice3"><input
+	type="radio" name="answer<@= id @>" value="3"/> <@= choice3 @></label><label for="choice4"><input
+	type="radio" name="answer<@= id @>" value="4"/> <@= choice4 @></label>
+	</div>
+	</form>
+
+</script>
+<script id="questionAnswerControls" type="text/template">
+	<div id="questionAnswerButtons">
+	<@ if(next) {@>
+	<button class="next">Next</button>
+	<@} else {@>
+	<button class="save">Save</button>
+	<@}@>
+	</div>
+</script>
+
+<script type="text/javascript">
+	console.log("started");
+	var quizData = 
+<%= @quiz.content %>
+	console.log(quizData);
+	var page = "quiz:answer"; 
+</script>
+
+<script src="/javascripts/quiz/jquery-1.7.1.js"></script>
+<script src="/javascripts/quiz/underscore.js"></script>
+<script src="/javascripts/quiz/backbone.js"></script>
+<script src="/javascripts/quiz/app.js"></script>

@@ -1,0 +1,61 @@
+<%= render :partial => 'member/sharings/title', :locals => {:shareable => @quiz} %>
+<p><%= @quiz.instruction %></p>
+<div id="quiz" class="row">
+</div>
+<script id="questionTemplate" type="text/template">
+	<form id="addQuestion2" action="#">
+	<div> <label for="question"><@= question @>
+	</label><label class="radio"><input
+	type="radio" name="answer" value="1" <@ if(answer=="1") { @> checked <@ } @> /><@= choice1 @></label> <label class="radio"><input
+	type="radio" name="answer" value="2" <@ if(answer=="2") { @> checked <@ } @> /><@= choice2 @></label> <label class="radio"><input
+	type="radio" name="answer" value="3" <@ if(answer=="3") { @> checked <@ } @> /><@= choice3 @></label> <label class="radio"><input
+	type="radio" name="answer" value="4" <@ if(answer=="4") { @> checked <@ } @> /><@= choice4 @></label>
+	</div>
+	</form>
+</script>
+
+<script type="text/javascript"><% json = @quiz.quiz_responses.collect { |qr| "'#{qr.user.email}' : #{qr.content}" } %>
+	console.log("started");
+	var quizData = 
+<%= @quiz.content %>
+	;
+	console.log(quizData);
+	var page = "quiz:show";
+	var answerData = {};
+	var allAnswerData =  
+ <%= "{#{json.join(',')}}" %>;</script>
+
+<script src="/javascripts/quiz/jquery-1.7.1.js"></script>
+<script src="/javascripts/bootstrap/bootstrap.min.js"></script>
+<script src="/javascripts/quiz/underscore.js"></script>
+<script src="/javascripts/quiz/backbone.js"></script>
+<script src="/javascripts/quiz/app.js"></script>
+
+<% questions = JSON.parse(@quiz.content) %>
+<table class="table table-bordered table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<% questions.each do |q| %>
+			<th>Q: <%= q["question"] %></th>
+			<% end %>
+			<th>Score</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @quiz.quiz_responses.each do |qr| %>
+		<tr>
+			<% score = 0 %>
+			<td><%= qr.user.name %></td>
+			<% questions.each_with_index do |q, i| %>
+			<% answers = JSON.parse(qr.content) %>
+			<% a = answers["#{i}"] %>
+			<% score = score + 1 if (a == q["answer"]) %>
+			<td><%= q["choice#{a}"] %><%= (a == q["answer"]) ? '<i class="icon-ok"/>' : '<i class="icon-remove"/>' %></td>
+			<% end %>
+			<td><%= "#{score}/#{questions.size}" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+

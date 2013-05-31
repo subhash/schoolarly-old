@@ -1,0 +1,46 @@
+<% include_table_filter %>
+<% include_javascript 'table2CSV' %>
+<script type="text/javascript">
+                        jQuery.noConflict();
+                        var tf;
+                        jQuery(document).ready(function(){          
+                            jQuery('td.hover').hover(function(){
+                                jQuery(this).find('a.link').show();
+                            }, function(){
+                                jQuery(this).find('a.link').hide();
+                            });
+                    
+                    		<% if !show_subgroup_memberships?(@group,@type) %>
+                    			setSchoolTable();  
+                            <% else %>
+            				<% if (@type == 'students')%>
+        					columnSize = '<%= 5 + @column_groups.size %>';
+							defaultColumns = 5
+            				<% else %>
+                    			columnSize = '<%= 4 + @column_groups.size %>';
+								defaultColumns = 4
+            				<% end %>
+                    		setTable(columnSize, defaultColumns );       
+                            <% end %>     
+                        });
+                                    										
+                                
+</script>
+<% moderator = i_am_moderator_of(@group) %>
+<% if @group %>
+<%= render :partial => 'member/groups/header' %>
+<h2><span><%= I18n.t("groups.model.#{@type}.title") %><% if  (moderator && show_subgroup_memberships?(@group,@type) && @type == 'teachers' && !@column_groups.empty?) %>
+        <label for="moderators" class="nolabel">
+            <%= check_box_tag :moderator, "1", !@group.school? %><%=I18n.t('teachers.member.add.moderator') %>
+        </label>
+        <% end %>
+    </span></h2>
+<% else %>
+<h2><span><%= I18n.t('tog_social.profiles.site.title') %></span></h2>
+<% end %>
+<%= render :partial => 'member/profiles/profiles_table', :locals => {:moderator => moderator} %>
+<% if moderator %>
+<% content_for :sidebar do %>
+<%= button_to_function  "Export as CSV", "tableToCSV('filterTable')" %>
+<% end %>
+<% end %>

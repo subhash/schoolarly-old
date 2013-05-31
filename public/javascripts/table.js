@@ -57,18 +57,21 @@ function setSchoolTable(){
     tf = setTableFilter("filterTable", cols, [], 1, false);
 }
 
-
-function setTable(columnSize){
+function setTable(columnSize, defaultColumns){
     var cols = {
         col_0: "none",
         col_3: "select"
     };
-    for (var i = columnSize - 1; i > 3; i--) {
+    for (var i = columnSize - 1; i > defaultColumns - 1 ; i--) {
         cols["col_" + i] = "none";
     };
     
-    var sort_cols = ['None', 'String', 'String', 'String']
-    for (var i = columnSize - 1; i > 3; i--) {
+	
+    var sort_cols = ['None'];
+	for (var i = 1; i < defaultColumns; i++) {
+        sort_cols.push('String');
+    };
+    for (var i = columnSize - 1; i > defaultColumns - 1; i--) {
         sort_cols.push('None');
     };
     tf = setTableFilter("filterTable", cols, sort_cols, 1, true);

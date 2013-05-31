@@ -76,6 +76,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users, :member => {:hijack => :get}
     admin.resources :groups, :member => {:reinvite_parents => :get}
     admin.resources :messages
+    admin.resources :profiles
   end
   
   map.namespace :member do |member|
@@ -84,7 +85,11 @@ ActionController::Routing::Routes.draw do |map|
       group.resources :teachers, :shallow => true
       group.resources :notices
       group.resources :aggregations, :collection => {:new => :post}
+      group.resources :quizzes, :shallow => true, :collection => {:add_new => :post} do |quiz|
+         quiz.resources :quiz_responses, :shallow => true, :collection => {:add_new => :post}
+      end
     end
+    
     member.resources :schools do |school|
       school.resources :klasses, :shallow => true, :member => {:invite => :get, :add => :post} do |klass|
         klass.resources :subjects, :shallow => true, :member => {:invite => :get, :add => :post}

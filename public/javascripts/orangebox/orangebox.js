@@ -8,7 +8,7 @@
 if (typeof(oB) !== 'undefined') { $.error( 'OrangeBox: Variable "oB", used by OrangeBox, is already defined');  }
 else {
     var oB;
-		(function($) {
+        (function($) {
         oB = {
             progress: '',
             playing: '',
@@ -53,7 +53,7 @@ else {
                                 e.preventDefault();
                                 oB.methods.create(this);
                             });
-                        });				
+                        });             
                     }
                     return false;
                 },
@@ -84,7 +84,7 @@ else {
                     if (rel && rel.indexOf("[")) { gallery = rel.substring(rel.indexOf("[") + 1, rel.indexOf("]")); }
                     if (gallery) { 
                         var a = 0;
-                        var objectMatch = 'a[rel*=\'lightbox[' + gallery + ']\']';						
+                        var objectMatch = 'a[rel*=\'lightbox[' + gallery + ']\']';                      
                         $(objectMatch).each(function(){
                             var x = uniqueCheck($(this), false);
                             oB.methods.setupData($(this), false, a);
@@ -106,7 +106,7 @@ else {
                                     if(oB.settings.showDots) { dotnav.append('<li id="ob_dot' + a + '"></li>'); }
                                     if(z !== "image") { oB.slideshow = false; }
                                     a++;
-                                }	
+                                }   
                             });
                         }
                     }                            
@@ -151,7 +151,7 @@ else {
                             "min-width": $(document).width()
                             });
                         
-                    //if IE 6					
+                    //if IE 6                   
                         if (typeof document.body.style.maxHeight === "undefined") { 
                             $("body","html").css({height: "100%", width: "100%"});
                         }
@@ -503,7 +503,7 @@ else {
                     }
                     
                 //iFrame Content
-                    function showiFrame() {	
+                    function showiFrame() { 
                         var newhref = href.replace(/\?iframe$/, '');
                         content = $('<iframe id="ob_iframe" frameborder="0" hspace="0" scrolling="auto" src="' + newhref + '"></iframe>').css({
                                 "height": setValue(oB.settings.iframeHeight, "height"),
@@ -526,7 +526,7 @@ else {
                             
                 //Video Content
                     function showVideo() {
-						console.log("video");
+                        console.log("video");
                         var i;
                         var mH = setValue(oB.settings.maxVideoHeight, "height");
                         var mW = setValue(oB.settings.maxVideoWidth, "width");
@@ -547,8 +547,8 @@ else {
                             }
                         }
                         else {
-                            w = mW;	
-                            h = mH;	
+                            w = mW; 
+                            h = mH; 
                         }
                         
                     //If YouTube
@@ -559,7 +559,7 @@ else {
                             content = $('<iframe id="ob_video" '+a+' src="http://www.youtube.com/embed/'+i+'?fs=1&hl=en_US&rel=0&autoplay=1&autohide=1&wmode=transparent&enablejsapi=1"></iframe>');
                         }
                         
-                    //If Vimeo	
+                    //If Vimeo  
                         else if (contentType === "vimeo") { 
                             iI = href.indexOf("vimeo.com/") + 10;
                             if (href.indexOf("?") > iI) { i = href.substring(iI, href.indexOf("?")); }
@@ -581,7 +581,7 @@ else {
                     }
                     
                 //Image Content
-                    function showImage() {											
+                    function showImage() {                                          
                         var img = new Image();
                         content = $(img);
                         content.load(function () {
@@ -626,7 +626,7 @@ else {
                         .attr({ src: href, id: 'ob_image' });
                     }
                     
-					console.log('contentType - '+contentType);
+                    console.log('contentType - '+contentType);
                     switch (contentType) {
                         case "iframe":
                             showiFrame();
@@ -697,8 +697,8 @@ else {
         };
         
         $.fn.orangeBox = function( method ) {   
-		console.log('orange'); 
-		console.log(method);
+        console.log('orange'); 
+        console.log(method);
             if ( method === "showContent2" || method === "setupData" ) {
                 $.error( 'OrangeBox: ' +  method + ' cannot be called externally' );
                 return false;
