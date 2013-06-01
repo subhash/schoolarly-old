@@ -1,10 +1,10 @@
 <% grade = share.shareable %>
 <% assignment = grade.assignment %>
 <% submission = assignment.submissions.find_by_user_id(current_user.id) %>
-<div class="title">
-    <span class="small"><%= link_to assignment.name, member_assignment_path(assignment) %></span>
+<div>
+    <span class="small desc"><%= link_to assignment.name, member_assignment_path(assignment) %></span>
     <% if submission %>
-    <span class="small"><%= " > " %><%= link_to submission.name, member_submission_path(submission) %><%= " > " %></span>
+    <span class="small title"><%= " > " %><%= link_to submission.name, member_submission_path(submission) %><%= " > " %></span>
     <% end %>
     <%= link_to I18n.t('grades.model.title'), member_grade_path(grade), :class => "grade" %>
     <% if assignment.date %>

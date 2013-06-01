@@ -32,7 +32,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>xpath=(//a[contains(@href, '/member/groups/12-english')])[3]</td>
+	<td>xpath=(//a[contains(text(),'English [1A]')])[2]</td>
 	<td></td>
 </tr>
 <tr>
