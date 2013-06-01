@@ -1,7 +1,7 @@
 <% if @type == 'schools' %>
 <div class="portlet portletH" id="portlet_groups">
     <h2><span><%= I18n.t("#{@type}.site.title") %></span></h2>
-    <p><%= link_to I18n.t("#{@type}.site.create"), new_member_group_path(:type => @type), :class => 'button add' %></p>
+    <p><%= link_to I18n.t("#{@type}.site.create"), new_member_group_path(:type => @type), :class => 'btn' %></p>
     <div class="portlet_content">
         <ul>
           <% @groups.each do |group|%>
