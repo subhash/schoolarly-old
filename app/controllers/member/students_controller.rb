@@ -16,8 +16,10 @@ class Member::StudentsController < Member::BaseController
       klass = @group.self_and_descendants.detect {|g| g.klass? and g.name == klassname}
       if user.new_record? and !user.invite_over_email(current_user)
         @failed_students << row.join(",")
+        @users << user
       elsif !user.save
         @failed_students << row.join(",")
+        @users << user
       else
         if father.new_record? and !father.invite_over_email(current_user)
           @failed_parents[user] = father

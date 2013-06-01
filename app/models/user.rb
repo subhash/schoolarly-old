@@ -222,6 +222,8 @@ class User < ActiveRecord::Base
   end
   
   def self.new_or_existing(email, name, person)
+    email = email.strip if email
+    name = name.strip if name
     return nil if email.blank?
     user = self.find_by_email(email) || self.new(:email => email)
     user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
