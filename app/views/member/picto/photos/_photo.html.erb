@@ -8,7 +8,7 @@
     <div class="image">
         <%= link_to icon_for_profile(photo.owner.profile, 'tiny'), member_profile_path(photo.owner.profile) %>
     </div>
-    <div>
+    <div class="desc">
         <%= photo.description %>
     </div>
     <%= render :partial => "shared/comments", :locals => { :commentable => photo, :show_all => true } %>
