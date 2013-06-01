@@ -23,7 +23,7 @@
 <%= render :partial => 'member/groups/header_short' %>
 <h2><span><%= @form_title || I18n.t("groups.site.#{@type}.remove_select") %></span></h2>
 <% form_tag (@form_url || remove_member_group_path(@group)) do |f| %>
-<table id = "filterTable" class="tableE profiles">
+<table id = "filterTable" class="table table-striped">
     <thead>
         <tr>
             <th>

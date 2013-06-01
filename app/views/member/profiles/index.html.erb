@@ -1,30 +1,30 @@
 <% include_table_filter %>
 <% include_javascript 'table2CSV' %>
 <script type="text/javascript">
-            jQuery.noConflict();
-            var tf;
-            jQuery(document).ready(function(){          
-                jQuery('td.hover').hover(function(){
-                    jQuery(this).find('a.link').show();
-                }, function(){
-                    jQuery(this).find('a.link').hide();
+                jQuery.noConflict();
+                var tf;
+                jQuery(document).ready(function(){          
+                    jQuery('td.hover').hover(function(){
+                        jQuery(this).find('a.link').show();
+                    }, function(){
+                        jQuery(this).find('a.link').hide();
+                    });
+            
+            		<% if !show_subgroup_memberships?(@group,@type) %>
+            			setSchoolTable();  
+                    <% else %>
+                    		<% if (@type == 'students') %>
+                				columnSize = '<%= 5 + @column_groups.size %>';
+        						defaultColumns = 5;
+                			<% else %>
+                    			columnSize = '<%= 4 + @column_groups.size %>';
+        						defaultColumns = 4;
+                			<% end %>
+                    			setTable(columnSize, defaultColumns);       
+                    <% end %>     
                 });
-        
-        		<% if !show_subgroup_memberships?(@group,@type) %>
-        			setSchoolTable();  
-                <% else %>
-                		<% if (@type == 'students') %>
-            				columnSize = '<%= 5 + @column_groups.size %>';
-    						defaultColumns = 5;
-            			<% else %>
-                			columnSize = '<%= 4 + @column_groups.size %>';
-    						defaultColumns = 4;
-            			<% end %>
-                			setTable(columnSize, defaultColumns);       
-                <% end %>     
-            });
-                                    										
-                                
+                                        										
+                                    
 </script>
 <% moderator = i_am_moderator_of(@group) %>
 <% if @group %>
@@ -41,6 +41,10 @@
 <%= render :partial => 'profiles_table', :locals => {:moderator => moderator} %>
 <% if moderator %>
 <% content_for :sidebar do %>
-<%= button_to_function  "Export as CSV", "tableToCSV('filterTable')" %>
+<div>
+	<br />
+	<br />
+    <%= link_to_function  "Export as CSV", "tableToCSV('filterTable')", :class => "btn" %>
+</div>
 <% end %>
 <% end %>

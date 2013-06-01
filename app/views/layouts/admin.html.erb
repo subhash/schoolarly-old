@@ -32,30 +32,20 @@
         <link rel="start" type="text/html" href="/" title="Página de inicio" />
     </head>
     <body>
-        <div id="container">
-            <div id="header" class="clearfix">
-                <div id="header_content">
-                    <h1 id="logo"><a href="/">Schoolarly<!--<img src="/tog_core/images/template/logo.gif" alt="<%=config['plugins.tog_core.site.name']%>" />--></a>
-                        <br/>
-                        Administration site
-                    </h1>
-                    <div id="header_options">
-                        <%= render :partial => "shared/header_options" %>
-                    </div>
-                    <!-- /#header_options -->
-                    <div id='top-bar'>
-                        <ul>
-                            <%= links_for_navigation :admin %>
-                        </ul>
-                    </div>
-                    <!-- #menu -->
-                    <div id="header_search">
-                        <%= render :partial => "shared/search_form" %>
-                    </div>
-                    <!-- /#header_search -->
-                </div>
-                <!-- /#header_content -->
+
+        <div id="header_content">
+            <div id="header_options">
+                <h1 id="logo"><%= site_title %></h1>
+                <%= render :partial => "shared/header_options" %>
             </div>
+            <!-- /#header_options -->
+            <div id='top-bar'>
+                <ul>
+                    <%= links_for_navigation :admin %>
+                </ul>
+            </div>
+            <!-- #menu -->
+        </div>
             <!-- /#header -->
         <div id="main-content">
             <div id="container" class="row-fluid">
@@ -72,7 +62,7 @@
         </div>
             <!-- /#pagebody -->
             <%= render :partial => "shared/footer" %>
-        </div>
+
         <!-- #container -->
     </body>
 </html>
