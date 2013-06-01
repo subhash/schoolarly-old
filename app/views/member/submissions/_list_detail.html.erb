@@ -1,8 +1,8 @@
 <% assignment = submission.assignment %>
-<div class="title">
-    <span class="small"><%= link_to assignment.name, member_assignment_path(assignment) %><%= " > " %>
+<div>
+    <span class="small desc"><%= link_to assignment.name, member_assignment_path(assignment) %><%= " > " %>
     </span>
-    <%= link_to submission.name, member_submission_path(submission) %>
+    <span class="title"><%= link_to submission.name, member_submission_path(submission) %></span>
     <% if submission.returned_to?(submission.user) %>
     <div class="small highlight">
         <%= I18n.t('submissions.member.return.status') %>

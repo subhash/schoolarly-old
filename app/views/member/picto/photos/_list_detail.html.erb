@@ -4,7 +4,7 @@
     "\#photo_#{photo.id}",
     {:title => photo.title, :rel => "prettyPhoto[inline]" } %>
     <%= render :partial => 'member/picto/photos/photo' , :object => photo %>
-    <%= link_to photo.title, member_picto_photo_path(photo) %>
+    <span class="title"><%= link_to photo.title, member_picto_photo_path(photo) %></span>
 </div>
 <p class="desc">
     <%= photo.description %>
