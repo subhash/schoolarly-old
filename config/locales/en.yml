@@ -463,6 +463,8 @@ en:
         search: "Type in the name of a contact"  
         
   shares:
+    me:
+      title: Me
     mailer:
       new:
         Assignment:

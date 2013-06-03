@@ -3,7 +3,7 @@
         <% for share in @shares %>
         <% if display?(share) and (i_own?(share.shareable) or share.published?) %>
         <% profile = share.user.profile %>
-        <div class="list-item <%=share.shareable_type.demodulize %>">            
+        <div class="list-item <%=share.shareable_type.demodulize %>">
             <div class="image">
                 <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
             </div>
@@ -14,6 +14,8 @@
                 <%= " > " %>
                 <% groups = share.shareable.shares_to_groups.select{|s| s.shared_to.active? }.collect{|s| link_to s.shared_to.display_name, member_group_path(s.shared_to) } %>
                 <span class="subtitle group"><%= groups.join(", ") %></span>
+				<% else %>
+				<span class="subtitle group"><%= " > " %><%= I18n.t('shares.me.title') %></span>
                 <% end %>
             </div>
             <div class="block">

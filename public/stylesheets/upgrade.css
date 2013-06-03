@@ -723,7 +723,7 @@ span.late {
     color: #C92C2C;
 }
 
-.portletB li a.grade {
+.block a.assignment_grade {
     background: url(../images/ico/grade_16x16.png) no-repeat 0 0;
     padding: 2px 0 2px 20px;
     text-decoration: none;
@@ -731,7 +731,7 @@ span.late {
     color: #89725B;
 }
 
-.grade {
+.assignment_grade {
     background: url(../images/ico/grade_16x16.png) no-repeat 0 0;
     padding: 10px 10px 10px 20px;
     font-size: 1.2em;

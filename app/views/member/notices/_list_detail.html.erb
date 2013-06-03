@@ -1,4 +1,5 @@
-<div id="notice_<%=notice.id%>" class="title desc">
+<span class="title">Notice</span>
+<div id="notice_<%=notice.id%>" class="desc">
     <%= truncate_to_words notice.content, :words => 100 %>
     <% if (notice.content.split.size > 100) %>
     <%= link_to_function "See More","jQuery('notice_#{notice.id}').html('#{notice.content}')" %>

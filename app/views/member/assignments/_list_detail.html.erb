@@ -28,7 +28,7 @@
     <% grade = assignment.grades.for_user(current_user) %>
     <% if grade and grade.shared_to?(current_user, assignment.user) %>
     <div>
-        <%= link_to "View Grade", member_grade_path(assignment.grades.for_user(current_user)), :class => "grade" %>
+        <%= link_to "View Grade", member_grade_path(assignment.grades.for_user(current_user)), :class => "assignment_grade" %>
     </div>
     <% end %>
 </div>
