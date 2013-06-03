@@ -38,7 +38,7 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>//ul[@id='groups_subjects_18']/li/div[2]/a</td>
+	<td>xpath=(//a[contains(text(),'Mathematics [1A]')])[4]</td>
 	<td></td>
 </tr>
 <tr>
@@ -641,7 +641,6 @@
 	<td>commit</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>
