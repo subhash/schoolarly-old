@@ -13,6 +13,7 @@
 <tr><td><a href="suite1/003_add_groups">003_add_groups</a></td></tr>
 <tr><td><a href="suite1/004_new_class">004_new_class</a></td></tr>
 <tr><td><a href="suite1/005_add_students">005_add_students</a></td></tr>
+<tr><td><a href="suite1/005_import_students">005_import_students</a></td></tr>
 <tr><td><a href="suite1/006_allot_class_teacher">006_allot_class_teacher</a></td></tr>
 <tr><td><a href="suite1/007_new_subject">007_new_subject</a></td></tr>
 <tr><td><a href="suite1/008_allot_members_to_subjects">008_allot_members_to_subjects</a></td></tr>
