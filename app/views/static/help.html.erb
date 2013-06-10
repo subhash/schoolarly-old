@@ -1,4 +1,3 @@
-<% @columns_distribution = "col_30_70" %>
 <% include_stylesheet 'help' %>
 <% include_javascript "jquery-1.4.2.min.js" %>
 <script type="text/javascript">
@@ -11,18 +10,7 @@
         });
     });
 </script>
-<div class="category_navigation">
-    <h2>FAQ</h2>
 	<% no_of_categories = Integer(I18n.t("help.no_of_categories")) %>
-    <ul>
-        <% for i in (1..no_of_categories) do %>
-        <li>
-            <a href =<%="#category_#{i}" %>><%= I18n.t("help.category_#{i}.title") %></a>
-        </li>
-        <% end %>
-    </ul>
-</div>
-<% content_for :sidebar do %>
 <% for i in (1..no_of_categories) do %>
 <div id=<%="category_#{i}" %>>
     <h2 class="category"><%= I18n.t("help.category_#{i}.title") %></h2>
@@ -39,4 +27,16 @@
     </ul>
 </div>
 <% end %>
+
+<% content_for :sidebar do %>
+<div class="category_navigation">
+    <h2>FAQ</h2>
+    <ul>
+        <% for i in (1..no_of_categories) do %>
+        <li>
+            <a href =<%="#category_#{i}" %>><%= I18n.t("help.category_#{i}.title") %></a>
+        </li>
+        <% end %>
+    </ul>
+</div>
 <% end %>
