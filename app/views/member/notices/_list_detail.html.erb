@@ -2,7 +2,7 @@
 <div id="notice_<%=notice.id%>" class="desc">
     <%= truncate_to_words notice.content, :words => 100 %>
     <% if (notice.content.split.size > 100) %>
-    <%= link_to_function "See More","jQuery('notice_#{notice.id}').html('#{notice.content}')" %>
+    <%= link_to_function "See More","jQuery('div#notice_#{notice.id}').html('#{escape_javascript(notice.content)}')" %>
     <% end %>
 </div>
 <br/>

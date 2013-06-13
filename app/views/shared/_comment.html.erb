@@ -1,8 +1,5 @@
 <li id="comment_<%= comment.id %>">
     <% if comment.user %>
-    <div class="image">
-        <%= link_to icon_for_profile(comment.user.profile, 'tiny'), member_profile_path(comment.user.profile) %>
-    </div>
     <div>
         <%= link_to comment.user.profile.full_name, member_profile_path(comment.user.profile) %>
     </div>
