@@ -1,6 +1,7 @@
 class Rubric < ActiveRecord::Base
   
   acts_as_shareable
+  acts_as_commentable  # added as dummy entry to make eager loading of comments possible in dashboard
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
   has_many :criteria, :order => 'position', :include => :rubric_descriptors, :dependent => :destroy
   has_many :levels, :order => 'position', :dependent => :destroy do

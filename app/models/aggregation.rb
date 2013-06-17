@@ -1,14 +1,14 @@
 class Aggregation < ActiveRecord::Base
   
   acts_as_shareable
-  
+  acts_as_commentable  # added as dummy entry to make eager loading of comments possible in dashboard
   has_many :weighted_assignments, :dependent => :destroy
   has_many :assignments, :through => :weighted_assignments
   
   belongs_to :user
   acts_as_tree
-
-#  has_many :children, :class_name => 'Aggregation', :foreign_key => 'parent_id', :dependent => :nullify
+  
+  #  has_many :children, :class_name => 'Aggregation', :foreign_key => 'parent_id', :dependent => :nullify
   
   accepts_nested_attributes_for :weighted_assignments, :allow_destroy => true
   accepts_nested_attributes_for :children, :allow_destroy => true
@@ -22,13 +22,13 @@ class Aggregation < ActiveRecord::Base
   #  validate :weightage_summation, :if => :weighted_average
   
   
-#  def self_and_all_children
-#    self.children.inject([self]) { |array, child| array += child.self_and_all_children }.flatten
-#  end
-#  
-#  def all_children
-#    self_and_all_children - [self]
-#  end
+  #  def self_and_all_children
+  #    self.children.inject([self]) { |array, child| array += child.self_and_all_children }.flatten
+  #  end
+  #  
+  #  def all_children
+  #    self_and_all_children - [self]
+  #  end
   
   
   def preorder(&b)
@@ -60,13 +60,13 @@ class Aggregation < ActiveRecord::Base
   def score
     Rubric.trim(self[:score])
   end
-
+  
   def score_for(user)
     if weighted_average 
       return nodes.collect{|n| (n.score_for(user) and n.score) ? ((n.score_for(user)/n.score.to_f) * (n.weightage/100.00) * score.to_f) : 0.0}.sum
     else
       return (nodes.collect{|n| (n.score_for(user) and n.score) ? ((n.score_for(user)/n.score.to_f) * score.to_f) : 0.0}.sum)/nodes.size
-    end
+      end
     end
     
     def formula
