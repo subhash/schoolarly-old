@@ -36,7 +36,7 @@ class Event < ActiveRecord::Base
   acts_as_shareable
   acts_as_sanitized
   
-  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
+  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}, :include => {:shared_to => [:parent] }
   
   def starting_time
     start_offset = {:hours => self.start_time.hour, :minutes => self.start_time.min, :seconds => self.start_time.sec}

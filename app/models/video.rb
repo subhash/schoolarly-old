@@ -12,7 +12,7 @@ class Video < ActiveRecord::Base
   validates_presence_of :token, :if => Proc.new{|p| p.link.blank? }
   validate :valid_url?, :if => Proc.new {|p| p.token.blank?}
     
-  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
+  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}, :include => {:shared_to => [:parent] }
     
   def embed(width = "640", height = "390")
     embed_code = "<iframe src='#{url}' width='#{width}' height='#{height}' frameborder='0' allowfullscreen></iframe>"

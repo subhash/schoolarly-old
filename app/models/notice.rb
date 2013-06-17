@@ -6,7 +6,7 @@ class Notice < ActiveRecord::Base
   
   belongs_to :user
   
-  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
+  has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}, :include => {:shared_to => [:parent] }
   
   def title
     content[0,30]+" .."

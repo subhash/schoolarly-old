@@ -1,5 +1,6 @@
 class Grade < ActiveRecord::Base
   
+  acts_as_commentable  # added as dummy entry to make eager loading of comments possible in dashboard
   belongs_to :user
   belongs_to :assignment
   

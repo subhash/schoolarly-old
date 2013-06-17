@@ -60,7 +60,8 @@ class Member::DashboardController < Member::BaseController
     end     
     
     @shares = Share.to_groups_and_users(group_ids, user_ids)
-                                                 
+
+#    @shares = Share.find( :all, :include => :shareable, :conditions => ["((shared_to_id IN (?) and shared_to_type = 'Group') OR (shared_to_id IN (?) AND shared_to_type= 'User')) AND updated_at >= ALL(select a.updated_at from shares a where a.shareable_id = shares.shareable_id and a.shareable_type = shares.shareable_type)", group_ids, user_ids],:order => "updated_at DESC")                                        
     respond_to do |wants|
       wants.html
       wants.js do

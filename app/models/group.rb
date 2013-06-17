@@ -5,13 +5,13 @@ class Group < ActiveRecord::Base
   
   belongs_to :network, :polymorphic => true
   #include all members, pending members etc
-  has_many :users, :through => :memberships, :include => :profile do
+  has_many :users, :through => :memberships, :include => {:profile => [:friendships_by_others, :friendships_by_me]} do
     def of_type(type)
-      find :all, :conditions => {'users.person_type' => type}
+      find :all, :conditions => {'users.person_type' => type}, :include => {:profile => [:friendships_by_others, :friendships_by_me]}
     end
     
     def of_types(types)
-      find :all, :conditions => {'users.person_type' => types}
+      find :all, :conditions => {'users.person_type' => types}, :include => {:profile => [:friendships_by_others, :friendships_by_me]}
     end
   end
   
@@ -29,7 +29,7 @@ class Group < ActiveRecord::Base
   
   
   has_many :active_children, :class_name => 'Group', :foreign_key => 'parent_id', :order => 'name',
-                                   :conditions => ['groups.state = ?', 'active']
+                                   :conditions => ['groups.state = ?', 'active'], :include => :parent
   
   has_many :archived_children, :class_name => 'Group', :foreign_key => 'parent_id', :order => 'name',
                                    :conditions => ['groups.state = ?', 'archived']                                   
@@ -48,7 +48,7 @@ class Group < ActiveRecord::Base
     transitions :from => :archived, :to => :active
   end
   
-  has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc"  do
+  has_many :sharings, :class_name => 'Share', :dependent => :destroy, :as => :shared_to, :order => "updated_at desc" do
     def of_type(type)
       find :all, :conditions => {:shareable_type => type}
     end

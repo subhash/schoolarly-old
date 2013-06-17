@@ -80,7 +80,7 @@ class Member::ProfilesController < Member::BaseController
           @column_groups = []
         else
           @column_groups = @group.active_children  
-          @memberships = Membership.find(:all, :conditions => {:user_id => @users.map(&:id), :group_id => @column_groups.map(&:id)}).group_by(&:user_id)
+          @memberships = Membership.find(:all, :include => {:group => [], :user => [:profile]}, :conditions => {:user_id => @users.map(&:id), :group_id => @column_groups.map(&:id)}).group_by(&:user_id)
           @memberships.each do |key, value|
             h = {}
             value.each{|m| h[m.group_id] = m}
@@ -90,7 +90,7 @@ class Member::ProfilesController < Member::BaseController
       end
       @type = @users.empty? ? params[:type].pluralize.parameterize : @users.first.type
     else
-      @users = User.all
+      @users = User.all(:include => :profile)
       @column_groups = []
     end 
     respond_to do |format|
