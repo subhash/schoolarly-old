@@ -10,13 +10,6 @@
             <div>
                 <span class="author"><%= link_to profile.full_name, member_profile_path(profile) %>
                 </span>
-                <% unless @group or !share.shared_to.is_a?(Group) %>
-                <%= " > " %>
-                <% groups = share.shareable.shares_to_groups.select{|s| s.shared_to.active? }.collect{|s| link_to s.shared_to.display_name, member_group_path(s.shared_to) } %>
-                <span class="subtitle group"><%= groups.join(", ") %></span>
-				<% else %>
-				<span class="subtitle group"><%= " > " %><%= I18n.t('shares.me.title') %></span>
-                <% end %>
             </div>
             <div class="block">
                 <% if share.shareable.is_a? Video %>
