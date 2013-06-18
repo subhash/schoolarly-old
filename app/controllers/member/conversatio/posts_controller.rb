@@ -1,7 +1,7 @@
 class Member::Conversatio::PostsController < Member::BaseController
   
   before_filter :find_group
-  
+  before_filter :load_blog, :except => [:show]
   uses_tiny_mce :only => [:new, :create, :edit, :update]
   
   def create
@@ -53,7 +53,8 @@ class Member::Conversatio::PostsController < Member::BaseController
     metric = 'Note-' + (current_user.school ? current_user.school.form_code : "Common")
     res = StatsMix.track(metric, 1, {:meta => {"type" => current_user.type }})
     store_location
-    @post = @blog.posts.find params[:id]
+    @post = Post.find params[:id]
+    @blog = @post.blog
     @comments = @post.all_comments
     @shared_groups = @post.shares_to_groups.collect(&:shared_to)
   end
