@@ -35,8 +35,8 @@ class Profile < ActiveRecord::Base
         self.icon = File.new(RAILS_ROOT + "/public/images/#{full_name}.jpg")
       elsif "default_profile.png"
         # Prevent default icons for each user
-         default_profile_icon = File.join(RAILS_ROOT, 'public', 'tog_social', 'images', Tog::Config["plugins.tog_social.profile.image.default"])
-         self.icon = File.new(default_profile_icon)
+#         default_profile_icon = File.join(RAILS_ROOT, 'public', 'tog_social', 'images', Tog::Config["plugins.tog_social.profile.image.default"])
+#         self.icon = File.new(default_profile_icon)
       end
     end
   end
