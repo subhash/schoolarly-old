@@ -4,9 +4,9 @@
     <div class="portlet_content">
         <%= share_with_groups_link(post) %>
         <br/>
-        <%= link_to I18n.t('conversatio.views.member.posts.edit.edit_note'), edit_member_conversatio_blog_post_path(@blog, post) %>
+        <%= link_to I18n.t('conversatio.views.member.posts.edit.edit_note'), edit_member_conversatio_post_path(post) %>
         <br/>
-        <%= link_to I18n.t('posts.member.remove.title'), member_conversatio_blog_post_path(@blog, post), :method => :delete, :class => "delete", :confirm => I18n.t('posts.member.remove.confirm') %>
+        <%= link_to I18n.t('posts.member.remove.title'), member_conversatio_post_path(post), :method => :delete, :class => "delete", :confirm => I18n.t('posts.member.remove.confirm') %>
         <br/>
     </div>
 </div>

@@ -23,9 +23,9 @@
   <tbody>
     <% for post in @posts %>
     <tr<%= cycle(' class="pair"', '') -%>>
-      <td><%= link_to post.title, member_conversatio_blog_post_path(@blog, post) %></td>
+      <td><%= link_to post.title, member_conversatio_post_path(post) %></td>
       <td><%= post.state %></td>
-      <td><%= link_to "##{post.comments.size}", member_conversatio_blog_post_path(@blog, post) %></td>
+      <td><%= link_to "##{post.comments.size}", member_conversatio_post_path(post) %></td>
       <td><%= post.creation_date %></td>
 	  <td><%= share_with_groups_link(post) %></td>
     </tr>

@@ -5,7 +5,7 @@
 <div class="titleB"><%= I18n.t('tog_conversatio.views.member.posts.edit.update_post_in_blog', :blog_title => @blog.title)%></div>
 
 <%= error_messages_for :post %>
-<% form_for :post, :url => member_conversatio_blog_post_path(@blog, @post), :html => {:multipart=>true, :method => "put"} do |f| -%>
+<% form_for :post, :url => member_conversatio_post_path(@post), :html => {:multipart=>true, :method => "put"} do |f| -%>
 
   <%= render :partial => 'form', :locals => {:f => f}%>
 

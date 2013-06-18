@@ -1,7 +1,7 @@
 class Member::Conversatio::PostsController < Member::BaseController
   
   before_filter :find_group
-  before_filter :load_blog, :except => [:show]
+  before_filter :load_blog, :except => [:show, :edit, :destroy]
   uses_tiny_mce :only => [:new, :create, :edit, :update]
   
   def create
@@ -25,6 +25,24 @@ class Member::Conversatio::PostsController < Member::BaseController
         wants.html do
           render :action => :new            
         end
+      end
+    end
+  end
+  
+  def edit
+    @post = Post.find params[:id]
+    @blog = @post.blog
+  end
+  
+  def destroy
+    @post = Post.find params[:id]
+    @blog = @post.blog
+    @post.destroy
+    
+    respond_to do |wants|
+      wants.html do
+        flash[:ok]=I18n.t('tog_conversatio.member.posts.post_removed')
+        redirect_to member_conversatio_blog_posts_path(@post.blog)
       end
     end
   end
