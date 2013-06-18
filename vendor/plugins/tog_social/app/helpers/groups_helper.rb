@@ -17,7 +17,7 @@ module GroupsHelper
       options.merge!(:alt => "Photo for group: #{group.name}")
       return image_tag(photo_url, options) if photo_url
     else
-      return image_tag("/tog_social/images/#{config["plugins.tog_social.group.image.default"]}", options)
+      return image_tag("/tog_social/images/default_group.png", options)
     end
   end
 
