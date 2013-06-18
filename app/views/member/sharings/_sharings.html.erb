@@ -29,7 +29,7 @@
                 <%= render :partial => '/member/picto/photos/list_detail', :locals => {:share => share} %>
                 <% end %>
                 <% if share.shareable.is_a? Post %>
-                <%= render :partial => '/member/conversatio/posts/list_detail', :locals => { :blog => share.shareable.blog, :post => share.shareable} %>
+                <%= render :partial => '/member/conversatio/posts/list_detail', :locals => {:post => share.shareable} %>
                 <% end %>
                 <% if share.shareable.is_a? Event %>
                 <%= render :partial => '/member/conclave/events/list_detail', :locals => { :event => share.shareable} %>
