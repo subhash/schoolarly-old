@@ -2,6 +2,7 @@ rails --version 2.3.8
 redhillonrails_core
 RedCloth --version '>= 4.2.0'
 hoe --version 2.4.0
+nokogiri  --version 1.5.5
 google-geocode --version  '~> 1.2.1'
 oauth --version  0.4.4
 rubyist-aasm --source http://gems.github.com --version '~> 2.1.1'
@@ -26,7 +27,7 @@ tiny_mce
 acts_as_list --version '~>0.1'
 dynamic_attributes
 pdfkit
-haml
+haml --version 3.1.4
 httparty
 ice_cube
 chronic
@@ -35,11 +36,11 @@ statsmix
 
 builder --version 3.0.0 
 faraday  --version 0.8.4
-nokogiri  --version 1.5.5
 oauth  --version 0.4.4
 httpauth
 jwt
 oauth2  --version 0.8.0 --ignore-dependencies
 simple_oauth  --version 0.1.9
 youtube_it --ignore-dependencies
+
 
