@@ -6,6 +6,7 @@ class Assignment < ActiveRecord::Base
   
   belongs_to :post, :dependent => :destroy
   
+  has_one   :user, :class_name => "User", :through => :post, :source => :user
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}, :include => {:shared_to => [:parent] }
   
   accepts_nested_attributes_for :post

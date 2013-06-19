@@ -8,7 +8,7 @@ class Picto::Photoset < ActiveRecord::Base
   acts_as_taggable
   acts_as_rateable :average => true
 
-  belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
+  belongs_to :user
   belongs_to :main_photo, :class_name => "Picto::Photo", :foreign_key => "main_photo_id"
 
   has_many   :photos, :order => "position"

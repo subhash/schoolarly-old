@@ -8,6 +8,13 @@ class Picto::Photo < ActiveRecord::Base
   
   after_create :touch_parent_shares
   
+  def owner
+    user
+  end
+  
+  def owner=(o)
+    user = o
+  end
   
   def touch_parent_shares
     if self.changed? and photoset

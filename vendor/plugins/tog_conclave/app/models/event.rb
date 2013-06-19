@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   include GG
   acts_as_taggable
   seo_urls
-  belongs_to :owner, :class_name =>'User', :foreign_key =>'user_id'
+  belongs_to :user
   has_many   :attendances,      :dependent => :destroy
   has_many   :attendees,        :through => :attendances, :source => :user, :conditions => ['attendances.status = ?', Attendance::STATUS_ACCEPTED]
   
@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
   #validates_presence_of :title, :description, :venue, :start_date, :end_date, :start_time, :end_time
   validates_presence_of :title, :start_date, :end_date, :start_time, :end_time
   
-  record_activity_of :owner
+  record_activity_of :user
   
   named_scope :upcoming, lambda { |*args| { :conditions => ['end_date >= ?', args.first || Date.today], :order => 'start_date asc, start_time asc' } }  
   named_scope :past, lambda { |*args| { :conditions => ['start_date <= ?', args.first || Date.today], :order => 'start_date desc, start_time desc' } }  
