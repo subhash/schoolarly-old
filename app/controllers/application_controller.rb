@@ -23,12 +23,10 @@ class ApplicationController < ActionController::Base
   
   def i_own?(object)
     case(object.class.name) 
-      when 'Event', 'Post', 'Picto::Photo', 'Picto::Photoset'
-      object.owner == current_user
-      when 'Assignment'
-      object.post.owner == current_user
+      when 'Event', 'Post', 'Picto::Photo', 'Picto::Photoset', 'Assignment'
+      object.user == current_user
       when 'Submission'
-       (object.post.owner == current_user) || (object.user == current_user)
+       (object.post.user == current_user) || (object.user == current_user)
     else
       object.user == current_user
     end
