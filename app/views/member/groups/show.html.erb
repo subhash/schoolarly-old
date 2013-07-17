@@ -13,8 +13,8 @@
 			data-control-action="sort"
 			
 			data-path=".share-date" 
-			data-order="asc" 
-			data-type="text">
+			data-order="desc" 
+			data-type="datetime">
 		</div>    	
         <div class='drop-down' data-control-type='drop-down' data-control-name='paging' data-control-action='paging'>
             <ul>
@@ -34,7 +34,9 @@
         </div>
         <!-- filter -->
         <div class="filter">
-            <input data-path='.author' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='author-filter' data-control-action='filter' /><input data-path='.title' type='text' value='' placeholder='Filter by title' data-control-type='textbox' data-control-name='title-filter' data-control-action='filter' /><input data-path='.desc' type='text' value='' placeholder='Filter by description' data-control-type='textbox' data-control-name='desc-filter' data-control-action='filter' />
+        	<input class = "hidden" data-path='.share-date' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='share-date-filter' data-control-action='filter' />        	
+            <input data-path='.author' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='author-filter' data-control-action='filter' />
+            <input data-path='.title' type='text' value='' placeholder='Filter by title' data-control-type='textbox' data-control-name='title-filter' data-control-action='filter' />
         </div><!--[if IE]><div class='clear'></div><![endif]--><!-- paging -->
         <div class="cb-filters">
             <div class="cb">
