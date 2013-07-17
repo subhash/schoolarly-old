@@ -10,8 +10,17 @@
             <div>
                 <span class="author"><%= link_to profile.full_name, member_profile_path(profile) %>
                 </span>
+                <% unless @group %>
+	                <%= " > " %>
+	                <% if  share.shared_to.is_a?(Group)  %>
+	                <span class="subtitle group"><%= link_to share.shared_to.display_name, member_group_path(share.shared_to) %></span>
+					<% else %>
+					<span class="subtitle group"><%= I18n.t('shares.me.title') %></span>
+	                <% end %>                
+                <% end %>
             </div>
             <div class="block">
+            	<div class="share-date hidden" ><%= share.updated_at %></div>
                 <% if share.shareable.is_a? Video %>
                 <%= render :partial => '/member/videos/list_detail', :locals => {:share => share} %>
                 <% end %>

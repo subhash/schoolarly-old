@@ -25,7 +25,11 @@ function applyListFilters(){
                 'cb_filters': {
                     class_name: 'control_checkbox_filters',
                     options: {}
-                }
+                },
+                'default_sort': {
+					class_name: 'control_default_sort'
+					,options: {}
+				}
             }
         });
 }

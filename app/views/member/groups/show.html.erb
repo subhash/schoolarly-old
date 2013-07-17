@@ -7,6 +7,15 @@
 <% if (i_am_member_of @group) && !@shares.empty? %>
 <div id="sharings" class='jplist'>
     <div class="panel box">
+		<div class="hidden" 
+			data-control-type="default_sort" 
+			data-control-name="sort" 
+			data-control-action="sort"
+			
+			data-path=".share-date" 
+			data-order="asc" 
+			data-type="text">
+		</div>    	
         <div class='drop-down' data-control-type='drop-down' data-control-name='paging' data-control-action='paging'>
             <ul>
                 <li>
