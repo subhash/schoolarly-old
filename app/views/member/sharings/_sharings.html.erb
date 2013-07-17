@@ -20,7 +20,7 @@
                 <% end %>
             </div>
             <div class="block">
-            	<div class="share-date hidden" ><%= share.updated_at %></div>
+            	<span class="share-date hidden"><%= share.updated_at %></span>
                 <% if share.shareable.is_a? Video %>
                 <%= render :partial => '/member/videos/list_detail', :locals => {:share => share} %>
                 <% end %>
@@ -48,6 +48,9 @@
                 <% if share.shareable.is_a? Grade %>
                 <%= render :partial => '/member/grades/list_detail', :locals => { :share => share } %>
                 <% end %>
+                <% if share.shareable.is_a? Quiz %>
+                <%= render :partial => '/member/quizzes/list_detail', :locals => { :share => share } %>
+                <% end %>                
             </div>
         </div>
         <% end %>

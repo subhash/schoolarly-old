@@ -1,11 +1,13 @@
 <% quiz = share.shareable %>
-<div class="photo">
-    <div class="photo_container">
+<div class="quiz">
+    <div class="title desc">
         <%= link_to "Quiz: #{quiz.title}",  my_quiz_path(quiz) %>
     </div>
 </div>
 <br/>
 
 <div class="portlet portletL">
+	<span class="theme"><span class="quiz">Quiz</span></span>
     <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(quiz.created_at)) %>.
 </div>
+

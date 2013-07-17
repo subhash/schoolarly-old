@@ -27,8 +27,8 @@ function applyListFilters(){
                     options: {}
                 },
                 'default_sort': {
-					class_name: 'control_default_sort'
-					,options: {}
+					class_name: 'control_default_sort',
+					options: {}
 				}
             }
         });

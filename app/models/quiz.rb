@@ -9,6 +9,10 @@ class Quiz < ActiveRecord::Base
     end
   end
   
+  def name
+    self.title
+  end
+  
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}
   
 end
