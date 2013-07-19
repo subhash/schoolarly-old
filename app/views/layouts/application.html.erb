@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <% title = config['plugins.tog_core.site.name'] %>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title><%=title %></title>
+        <title><%=config['plugins.tog_core.site.name'] %></title>
         <meta name="language" content="<%=I18n.locale%>" />
         <meta http-equiv="content-style-type" content="text/css" />
-        <meta http-equiv="title" content="<%=title']%>"/>
-        <meta name="title" content="<%=title%>" />
+        <meta http-equiv="title" content="<%=config['plugins.tog_core.site.name']%>"/>
+        <meta name="title" content="<%=config['plugins.tog_core.site.name']%>" />
         <meta name="description" content="XXXXX XXXX XXXX" />
         <meta name="keywords" content="xxx, xxxxxx, xxxx" />
         <meta name="author" content="Linking Paths" />
         <link rel="icon" href="/tog_core/images/favicon.ico" />
         <link href="/tog_core/stylesheets/template.css" rel="stylesheet" media="screen" type="text/css" />
+        <link href="/tog_core/stylesheets/style.css" rel="stylesheet" media="screen" type="text/css" />
+        <link href="/tog_core/stylesheets/pages.css" rel="stylesheet" media="screen" type="text/css" />
         <% include_stylesheet 'bootstrap/bootstrap.css' %>
         <% include_stylesheet 'upgrade' %>
         <!--[if lt IE 7.]>
@@ -49,36 +50,41 @@
         </script>
     </head>
     <body>
-    <div id="header_content">
-        <div id="header_options">
-            <h1 id="logo"><%= site_title %></h1>
-            <%= render :partial => "shared/header_options" %>
-        </div>
-        <!-- /#header_options -->
-        <div id='top-bar'>
-            <ul>
-                <%= links_for_navigation :site %>
-            </ul>
-        </div>
-        <!-- #menu -->
-    </div>
-    <!-- /#header -->
-    <div id="main-content">
-        <div id="container" class="row-fluid">
-            <%= render_flash_messages %>
-            <div id="wrapper" class="span8">
-                <%= yield %>
+        <div id="container">
+            <div id="header" class="clearfix">
+                <div id="header_content">
+                    <h1 id="logo"><a href="/"><!--<img src="/tog_core/images/template/logo.gif" alt="<%=config['plugins.tog_core.site.name']%>" />-->Schoolarly</a></h1>
+                    <div id="header_options">
+                        <%= render :partial => "shared/header_options" %>
+                    </div>
+                    <!-- /#header_options -->
+                    <div id="menu" class="clearfix">
+                        <ul>
+                            <%= links_for_navigation :site %>
+                        </ul>
+                    </div>
+                    <!-- #menu -->
+                </div>
+                <!-- /#header_content -->
             </div>
-            <!-- /.left_col -->
-            <div class="span3">
-                <%= yield :sidebar %>
+            <!-- /#header -->
+            <div id="pagebody">
+                <%= render_flash_messages %>
+                <div class="<%= columns_distribution %> clearfix">
+                    <div class="left_col">
+                        <%= yield %>
+                    </div>
+                    <!-- /.left_col -->
+                    <div class="right_col">
+                        <%= yield :sidebar %>
+                    </div>
+                    <!-- /.right_col -->
+                </div>
+                <!-- /.col_60_40 -->
             </div>
-            <!-- /.right_col -->
+            <!-- /#pagebody -->
+            <%= render :partial => "shared/footer" %>
         </div>
-    </div>
-    <!-- /#main-content -->
-    <%= render :partial => "shared/footer" %>
-    </div>
-    <!-- #container -->
-</body>
+        <!-- #container -->
+    </body>
 </html>
