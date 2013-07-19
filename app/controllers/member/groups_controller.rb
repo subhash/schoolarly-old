@@ -217,7 +217,7 @@ class Member::GroupsController < Member::BaseController
   
   def show
     store_location
-    @shares = @group.sharings.find(:all, :include => {:shareable => [{:comments => {:user => [:profile]}}], :shared_to =>[:parent], :user => [:profile]}) 
+    @shares = @group.sharings.find(:all, :include => {:shareable => [], :shared_to =>[:parent], :user => [:profile]}) 
     respond_to do |wants|
       wants.html
       wants.js do
