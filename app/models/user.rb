@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
   end
   
   def name
-    profile.full_name
+    profile.name_or_email(self.email)
   end
   
   def school_moderator_for?(user)

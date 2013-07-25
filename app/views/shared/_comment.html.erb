@@ -1,11 +1,11 @@
 <li id="comment_<%= comment.id %>">
     <% if comment.user %>
     <div>
-        <%= link_to comment.user.profile.full_name, member_profile_path(comment.user.profile) %>
+        <%= link_to comment.user.name, member_profile_path(comment.user.profile) %>
     </div>
     <% else %>
     <div class="text">
-        <%= comment_user_name(comment) %>
+        <%= comment.user.name %>
     </div>
     <% end %>
     <%= comment.comment %>
