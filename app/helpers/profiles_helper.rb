@@ -1,7 +1,11 @@
 module ProfilesHelper
   
   def icon_for_profile(profile, size, options={})
-    options.merge!(:class => profile.user.state)
+    icon_for_profile_with_state(profile, size, profile.user.state, options)
+  end
+  
+  def icon_for_profile_with_state(profile, size, state, options={})
+    options.merge!(:class => state)
     if !profile.icon? || profile.icon_file_name.include?('default_profile')
       return image_tag("/images/profile/#{size}_default_profile.png")
     else
@@ -10,6 +14,7 @@ module ProfilesHelper
       return image_tag(photo_url, options) if photo_url
     end
   end
+  
   
   def link_to_remote_sortable_column_header(field, order_by, sort_order, name)
     if order_by == field.to_s
