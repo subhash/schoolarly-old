@@ -30,7 +30,7 @@ class Share < ActiveRecord::Base
   named_scope :to_groups_and_users, lambda {|group_ids, user_ids|{
         :conditions => ["((shared_to_id IN (?) and shared_to_type = 'Group') OR (shared_to_id IN (?) AND shared_to_type= 'User'))", group_ids, user_ids],
         :order => "updated_at DESC",
-        :include => {:shareable => [], :shared_to =>[], :user => {:profile => []}}
+        :include => {:shareable => [], :shared_to =>[:parent], :user => {:profile => []}}
     }
   }
   
