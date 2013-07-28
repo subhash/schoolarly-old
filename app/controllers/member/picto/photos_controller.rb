@@ -20,7 +20,7 @@ class Member::Picto::PhotosController < Member::BaseController
           p.photoset = @photoset
           @photoset.main_photo = p if @photoset.main_photo.blank?
         end
-        p.tag_list = %(#{p.tag_list.to_s},#{@common_tags})
+        
         p.title = p.image.original_filename if p.title.blank?
         p.save!
         @group.share(current_user, p.class.to_s, p.id) if @group
