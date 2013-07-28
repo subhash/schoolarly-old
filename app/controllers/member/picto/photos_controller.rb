@@ -22,7 +22,8 @@ class Member::Picto::PhotosController < Member::BaseController
         end
         
         p.title = p.image.original_filename if p.title.blank?
-        p.save!
+        puts "photo save - #{p.save}"
+        puts "photo inspect - #{p.errors.inspect}"
         @group.share(current_user, p.class.to_s, p.id) if @group
       end
     end
