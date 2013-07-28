@@ -5,7 +5,7 @@
         <% profile = share.user.profile %>
         <div class="list-item <%=share.shareable_type.demodulize %>">
             <div class="image">
-                <%= link_to icon_for_profile(profile, 'small', :class=>"img"), member_profile_path(profile) %>
+                <%= link_to icon_for_profile_with_state(profile, 'small', share.user.state, :class=>"img"), member_profile_path(profile) %>
             </div>
             <div>
                 <span class="author"><%= link_to profile.full_name, member_profile_path(profile) %>

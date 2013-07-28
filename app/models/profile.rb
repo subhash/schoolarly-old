@@ -41,6 +41,10 @@ class Profile < ActiveRecord::Base
     end
   end
   
+  def name_or_email(email)
+    first_name.blank? && last_name.blank? ? email.split("@")[0] : "#{first_name} #{last_name}".strip
+  end
+  
   private
   
   def method_missing_with_profile_check(method_id, *args, &block)

@@ -1,5 +1,7 @@
 class Share < ActiveRecord::Base
   
+  belongs_to :shareable, :polymorphic => true, :include => {:comments => {:user => [:profile]}, :user => {:profile => []}} 
+  
   named_scope :shared_to_groups, lambda {|group_ids|{
       :conditions => {:shared_to_id => group_ids, :shared_to_type => 'Group'}
     }
@@ -28,7 +30,7 @@ class Share < ActiveRecord::Base
   named_scope :to_groups_and_users, lambda {|group_ids, user_ids|{
         :conditions => ["((shared_to_id IN (?) and shared_to_type = 'Group') OR (shared_to_id IN (?) AND shared_to_type= 'User'))", group_ids, user_ids],
         :order => "updated_at DESC",
-        :include => {:shareable => [], :shared_to =>[], :user => {:profile => []}}
+        :include => {:shareable => [], :shared_to =>[:parent], :user => {:profile => []}}
     }
   }
   

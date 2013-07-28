@@ -36,16 +36,10 @@ class Event < ActiveRecord::Base
   acts_as_shareable
   acts_as_sanitized
   
+  belongs_to :user
+  
   has_many :shares_to_groups, :class_name => 'Share', :as => :shareable, :conditions => {:shared_to_type => 'Group'}, :include => {:shared_to => [:parent] }
-  
-  def owner
-    user
-  end
-  
-  def owner=(o)
-    user = o
-  end
-  
+    
   def starting_time
     start_offset = {:hours => self.start_time.hour, :minutes => self.start_time.min, :seconds => self.start_time.sec}
     self.start_date.to_time.advance(start_offset)

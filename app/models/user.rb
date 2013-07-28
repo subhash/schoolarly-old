@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   
   belongs_to :person, :polymorphic => true
   
+  
+  ### HORRIBLE HACK ## In order to preload shared_to.parent for shares in dashboard
+  has_one :parent, :class_name  => 'Profile'
+  
   named_scope :of_type, lambda { |type| {:conditions => {:person_type => type}}}
   
   named_scope :of_groups, lambda{ |group_ids|
@@ -76,7 +80,7 @@ class User < ActiveRecord::Base
   end
   
   def name
-    profile.full_name
+    profile.name_or_email(self.email)
   end
   
   def school_moderator_for?(user)

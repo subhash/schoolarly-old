@@ -3,7 +3,7 @@
     <%= link_to image_tag(photo.image.url(:tiny), :alt => photo.title),
     "\#photo_#{photo.id}",
     {:title => photo.title, :rel => "prettyPhoto[inline]" } %>
-    <%= render :partial => 'member/picto/photos/photo' , :object => photo %>
+    <%= render :partial => 'member/picto/photos/photo' , :object => photo %>    
     <span class="title"><%= link_to photo.title, member_picto_photo_path(photo) %></span>
 </div>
 <p class="desc">

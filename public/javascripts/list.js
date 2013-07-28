@@ -11,6 +11,11 @@ function applyListFilters(){
         
             items_box: '.list',
             item_path: '.list-item',
+            
+            redraw_callback: function(){
+            	    applyPrettyPhoto();
+            },
+            
             panel_path: '.panel' //cookies
             ,
             cookies: false,
