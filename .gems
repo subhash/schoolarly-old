@@ -24,7 +24,7 @@ aws-s3
 right_aws
 rest-client
 tiny_mce
-acts_as_list --version '~>0.1'
+acts_as_list --version '~>0.1' --ignore-dependencies
 dynamic_attributes
 pdfkit
 haml
