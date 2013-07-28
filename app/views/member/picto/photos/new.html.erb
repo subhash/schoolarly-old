@@ -62,10 +62,11 @@
 			</script>
    
 
-      <% 1.times do |i| -%>
+      <% 5.times do |i| -%>
         <fieldset id="fs_photo_<%=i%>" <%if i>0%>style="display:none"<%end%> >
           <legend><%= I18n.t("tog_picto.member.photos.new.photo_with_index") %> <%=i+1%></legend>
           <p><label><%= I18n.t("tog_picto.member.photos.new.title") %></label> <%= text_field "photo[#{i}]", :title, {:class => "fieldbox", :size => "40"}  %></p>
+          <p><label><%= I18n.t("tog_picto.member.photos.new.tags") %></label> <%= text_field "photo[#{i}]", :tag_list, {:class => "fieldbox", :size => "40"}  %></p>
           <p><label><%= I18n.t("tog_picto.member.photos.new.description") %></label> <%= text_area "photo[#{i}]", :description, :size => '40x3' %></p>
           <p><label><%= I18n.t("tog_picto.member.photos.new.photo_file_field") %></label> <%= file_field "photo[#{i}]", 'image', {:size => nil} %></p>
         </fieldset>
