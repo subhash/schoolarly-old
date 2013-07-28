@@ -24,7 +24,7 @@ aws-s3
 right_aws
 rest-client
 tiny_mce
-acts_as_list --version '~>0.1' --ignore-dependencies
+acts_as_list --version 0.1.4 --ignore-dependencies
 dynamic_attributes
 pdfkit
 haml --version 3.1.4
@@ -42,4 +42,4 @@ httpauth
 jwt
 oauth2  --version 0.8.0 --ignore-dependencies
 simple_oauth  --version 0.1.9
-youtube_it --ignore-dependencies
+youtube_it --version 2.1.7 --ignore-dependencies
