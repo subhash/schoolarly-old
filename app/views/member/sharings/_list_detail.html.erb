@@ -7,7 +7,7 @@
 </div>
 <div class="portlet portletL">
     <span class="theme">
-        theme(share)
+        <%= theme(share)%>
     </span>
     <span class="date"><%= time_ago(share) %></span>
     . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_link(share) %> . <%= share_with_groups_link(entry) if i_own? entry %>

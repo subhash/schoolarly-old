@@ -97,7 +97,7 @@ module ApplicationHelper
       entry.name
       when "Grade"       
       entry.assignment.name
-      else
+    else
       entry.title
     end
   end
@@ -118,11 +118,12 @@ module ApplicationHelper
       when "Assignment"
       member_assignment_path(entry)
       when "Notice"
-        "#"
+      member_group_notice_path(share.shared_to, entry)
       when "Submission"
       member_submission_path(entry)
       when "Grade"       
-      member_assignment_path(entry.assignment)
+      #member_assignment_path(entry.assignment)
+      member_grade_path(entry)
       when "Quiz"
       my_quiz_path(entry)
     end
@@ -135,17 +136,17 @@ module ApplicationHelper
       when "Picto::Photo","Picto::Photoset"
         "<span class=\"photo\">Photo</span>"
       when "Post"
-        "<span class=\"note\"><%= link_to icon_for_post, member_conversatio_post_path(post) %></span>"
+        "<span class=\"note\">#{link_to icon_for_post, member_link(share)}</span>"
       when "Event"
-        "<span class=\"event\"><%= link_to icon_for_event, member_conclave_event_path(event) %></span>"
+        "<span class=\"event\">#{link_to icon_for_event, member_link(share)}</span>"
       when "Assignment"
-        "<span class=\"assignment\"><%= link_to icon_for_assignment(assignment), member_assignment_path(assignment) %></span>"
+        "<span class=\"assignment\">#{link_to icon_for_assignment(share.shareable), member_link(share)}</span>"
       when "Notice"
-        "<span class=\"message\"><%= link_to icon_for_notice, member_group_notice_path(group, notice) %></span>"
+        "<span class=\"message\">#{link_to icon_for_notice, member_link(share)}</span>"
       when "Submission"
-        "<span class=\"submission\"><%= link_to icon_for_submission, member_submission_path(submission)%></span>"
+        "<span class=\"submission\">#{link_to icon_for_submission, member_link(share)}</span>"
       when "Grade"       
-        "<span class=\"grade\"><%= link_to icon_for_grade,  member_grade_path(grade) %></span>"
+        "<span class=\"grade\">#{link_to icon_for_grade,  member_link(share)}</span>"
     else
         "<span class=\"quiz\">Quiz</span>"
     end    
