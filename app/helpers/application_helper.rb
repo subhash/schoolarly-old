@@ -85,4 +85,89 @@ module ApplicationHelper
     
   end
   
+  
+  def title(share)
+    entry = share.shareable
+    case share.shareable_type
+      when "Quiz"
+      "Quiz: #{entry.title}"
+      when "Notice"
+      "Notice"
+      when "Assignment", "Submission"
+      entry.name
+      when "Grade"       
+      entry.assignment.name
+      else
+      entry.title
+    end
+  end
+  
+  def member_link(share)
+    entry = share.shareable
+    case share.shareable_type
+      when "Video"
+      member_video_path(entry)
+      when "Picto::Photoset"
+      member_picto_photoset_path(entry)
+      when "Picto::Photo"
+      member_picto_photo_path(entry)
+      when "Post"
+      member_conversatio_post_path(entry)
+      when "Event"
+      member_conclave_event_path(entry)
+      when "Assignment"
+      member_assignment_path(entry)
+      when "Notice"
+        "#"
+      when "Submission"
+      member_submission_path(entry)
+      when "Grade"       
+      member_assignment_path(entry.assignment)
+      when "Quiz"
+      my_quiz_path(entry)
+    end
+  end
+  
+  def theme(share)
+    case share.shareable_type
+      when "Video"
+        "<span class=\"video\">Video</span>"
+      when "Picto::Photo","Picto::Photoset"
+        "<span class=\"photo\">Photo</span>"
+      when "Post"
+        "<span class=\"note\"><%= link_to icon_for_post, member_conversatio_post_path(post) %></span>"
+      when "Event"
+        "<span class=\"event\"><%= link_to icon_for_event, member_conclave_event_path(event) %></span>"
+      when "Assignment"
+        "<span class=\"assignment\"><%= link_to icon_for_assignment(assignment), member_assignment_path(assignment) %></span>"
+      when "Notice"
+        "<span class=\"message\"><%= link_to icon_for_notice, member_group_notice_path(group, notice) %></span>"
+      when "Submission"
+        "<span class=\"submission\"><%= link_to icon_for_submission, member_submission_path(submission)%></span>"
+      when "Grade"       
+        "<span class=\"grade\"><%= link_to icon_for_grade,  member_grade_path(grade) %></span>"
+    else
+        "<span class=\"quiz\">Quiz</span>"
+    end    
+  end
+  
+  def time_ago(share)
+    entry = share.shareable
+    case share.shareable_type
+      when "Picto::Photoset", "Picto::Photo", "Video", "Grade" 
+      I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(share.updated_at))
+      when "Post"
+      I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(entry.published_at))
+      when "Assignment"
+      if entry.post.published?
+        I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(entry.post.published_at)) 
+      else
+        I18n.t('assignments.site.list_detail.from_now', :time => time_ago_in_words(entry.post.published_at)) 
+      end 
+      when "Submission"
+      I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(entry.post.published_at))
+    else
+      I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(entry.created_at))
+    end  
+  end
 end
