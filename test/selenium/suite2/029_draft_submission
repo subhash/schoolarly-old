@@ -167,11 +167,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
-	<td>//div/span[@class='title']/a[text()='Assignment - The Sun also Rises']/../../following-sibling::div[@class='score']/div[contains(text(), 'Draft:')]/a[text()='My answer']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>click</td>
 	<td>publish</td>
 	<td></td>
