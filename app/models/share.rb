@@ -1,6 +1,6 @@
 class Share < ActiveRecord::Base
   
-  belongs_to :shareable, :polymorphic => true, :include => {:comments => {:user => [:profile]}, :user => {:profile => []}} 
+  belongs_to :shareable, :polymorphic => true, :include => { :user => {:profile => []}} 
   
   named_scope :shared_to_groups, lambda {|group_ids|{
       :conditions => {:shared_to_id => group_ids, :shared_to_type => 'Group'}

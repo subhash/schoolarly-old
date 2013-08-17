@@ -3,9 +3,6 @@
 <div class="title desc">
     <%= link_to title(share), entry_link %>
 </div>
-<div class="dashboard_comments">
-    <%= render :partial => "shared/comments", :locals => { :commentable => entry , :commentable_link => entry_link, :exclude_add_comment => true} %>
-</div>
 <div class="portlet portletL">
     <span class="theme">
         <%= theme(share)%>
