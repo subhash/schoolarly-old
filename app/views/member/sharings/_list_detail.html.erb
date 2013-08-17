@@ -1,14 +1,15 @@
 <% entry = share.shareable %>
+<% entry_link = member_link(share) %>
 <div class="title desc">
-    <%= link_to title(share), member_link(share) %>
+    <%= link_to title(share), entry_link %>
 </div>
 <div class="dashboard_comments">
-    <%= render :partial => "shared/comments", :locals => { :commentable => entry , :exclude_add_comment => true} %>
+    <%= render :partial => "shared/comments", :locals => { :commentable => entry , :commentable_link => entry_link, :exclude_add_comment => true} %>
 </div>
 <div class="portlet portletL">
     <span class="theme">
         <%= theme(share)%>
     </span>
     <span class="date"><%= time_ago(share) %></span>
-    . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), member_link(share) %> . <%= share_with_groups_link(entry) if i_own? entry %>
+    . <%= link_to I18n.t('tog_conversatio.views.posts.comments.add_comment'), entry_link %> . <%= share_with_groups_link(entry) if i_own? entry %>
 </div>
