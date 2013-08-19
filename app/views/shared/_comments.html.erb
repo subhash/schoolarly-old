@@ -8,12 +8,6 @@
     <div class="portlet_content">
         <ul class="comments_<%=commentable.class.name.demodulize %>_<%=commentable.id%>">
             <%= render :partial => 'shared/comment', :collection => comments %>
-            <% unless comments == all_comments %>
-            <li>
-                <% comment_html = escape_javascript(render :partial => 'shared/comment', :collection => all_comments) %>
-                <%= link_to_function I18n.t('comments.member.view.all', :size => all_comments.size) , "jQuery('div.dashboard_comments .comments_#{commentable.class.name.demodulize}_#{commentable.id}').html('#{comment_html}')" %>
-            </li>
-            <% end %>
         </ul>
     </div>
 </div>
