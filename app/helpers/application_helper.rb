@@ -27,9 +27,8 @@ module ApplicationHelper
     include_stylesheet 'jplist/styles'
     include_stylesheet 'jplist/div'
     include_stylesheet 'jplist/toggle-filters'
+    include_stylesheet 'jplist/jplist'
     include_javascript 'jplist/jplist.min.js'
-    include_javascript 'jplist/jplist.checkbox-filters.min.js'
-    include_javascript 'jplist/jplist.default-sort.min.js'
     include_javascript 'list'
   end
   

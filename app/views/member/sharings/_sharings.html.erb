@@ -1,6 +1,6 @@
 <div class="portlet_content">
     <div class="list detail1 detail">
-        <% for share in @shares %>
+        <% @shares.find_each do |share| %>
         <% if display?(share) and (i_own?(share.shareable) or share.published?) %>
         <% profile = share.user.profile %>
         <div class="list-item <%=share.shareable_type.demodulize %>">
