@@ -2,18 +2,10 @@
 <% include_pretty_photo %>
 <% include_bootstrap %>
 <% include_list_filters %>
-
 <div id='sharings' class='jplist'>
     <div class="panel box">
-		<div class="hidden" 
-			data-control-type="default_sort" 
-			data-control-name="sort" 
-			data-control-action="sort"
-			
-			data-path=".share-date" 
-			data-order="desc" 
-			data-type="datetime">
-		</div>    	
+        <div class="hidden" data-control-type="default-sort" data-control-name="sort" data-control-action="sort" data-path=".share-date" data-order="desc" data-type="datetime">
+        </div>
         <div class='drop-down' data-control-type='drop-down' data-control-name='paging' data-control-action='paging'>
             <ul>
                 <li>
@@ -32,56 +24,53 @@
         </div>
         <!-- filter -->
         <div class="filter">
-        	<input class = "hidden" data-path='.share-date' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='share-date-filter' data-control-action='filter' />
-			<input data-path='.author' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='author-filter' data-control-action='filter' />
-            <input data-path='.title' type='text' value='' placeholder='Filter by title' data-control-type='textbox' data-control-name='title-filter' data-control-action='filter' />
-			<input data-path='.group' type='text' value='' placeholder='Filter by group' data-control-type='textbox' data-control-name='group-filter' data-control-action='filter' />
+            <input class = "hidden" data-path='.share-date' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='share-date-filter' data-control-action='filter' /><input data-path='.author' type='text' value='' placeholder='Filter by author' data-control-type='textbox' data-control-name='author-filter' data-control-action='filter' /><input data-path='.title' type='text' value='' placeholder='Filter by title' data-control-type='textbox' data-control-name='title-filter' data-control-action='filter' /><input data-path='.group' type='text' value='' placeholder='Filter by group' data-control-type='textbox' data-control-name='group-filter' data-control-action='filter' />
         </div><!--[if IE]><div class='clear'></div><![endif]--><!-- paging -->
-        <div class="cb-filters">
+        <div class="cb-group-filter text-shadow" data-control-type="checkbox-group-filter" data-control-action="filter" data-control-name="themes">
             <div class="cb">
-                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="notices" data-path=".message" data-logic="or" id="message" type="checkbox" checked="checked">
+                <input data-path=".message" id="message" type="checkbox">
                 <label for="notices">
                     Messages
                 </label>
             </div>
             <div class="cb">
-                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="notes" data-path=".note" data-logic="or" id="note" type="checkbox" checked="checked">
+                <input data-path=".note" id="note" type="checkbox">
                 <label for="notes">
                     Notes
                 </label>
             </div>
             <div class="cb">
-                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="assignments" data-path=".assignment" data-logic="or" id="assignment" type="checkbox" checked="checked">
+                <input data-path=".assignment" id="assignment" type="checkbox">
                 <label for="assignments">
                     Assignments
                 </label>
             </div>
             <div class="cb">
-                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="submissions" data-path=".submission" data-logic="or" id="submission" type="checkbox" checked="checked">
+                <input data-path=".submission" id="submission" type="checkbox">
                 <label for="submissions">
                     Submissions
                 </label>
             </div>
             <div class="cb">
-                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="grades" data-path=".grade" data-logic="or" id="grade" type="checkbox" checked="checked">
+                <input data-path=".grade" id="grade" type="checkbox">
                 <label for="grades">
                     Grades
                 </label>
-            </div>			
+            </div>
             <div class="cb">
-                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="photos" data-path=".photo" data-logic="or" id="photo" type="checkbox" checked="checked">
+                <input data-path=".photo" id="photo" type="checkbox">
                 <label for="photos">
                     Photos
                 </label>
             </div>
             <div class="cb">
-                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="videos" data-path=".video" data-logic="or" id="video" type="checkbox" checked="checked">
+                <input data-path=".video" id="video" type="checkbox">
                 <label for="videos">
                     Videos
                 </label>
             </div>
             <div class="cb">
-                <input data-control-type="cb_filters" data-control-action="filter" data-control-name="events" data-path=".event" data-logic="or" id="event" type="checkbox" checked="checked">
+                <input data-path=".event" id="event" type="checkbox">
                 <label for="event">
                     Events
                 </label>
