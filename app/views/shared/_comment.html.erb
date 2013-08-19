@@ -1,13 +1,4 @@
 <li id="comment_<%= comment.id %>">
-    <% if comment.user %>
-    <div>
-        <%= link_to comment.user.name, member_profile_path(comment.user.profile) %>
-    </div>
-    <% else %>
-    <div class="text">
-        <%= comment.user.name %>
-    </div>
-    <% end %>
     <%= comment.comment %>
     <div class="portletL fontsmaller">
         <%= I18n.t('assignments.site.list_detail.time_ago', :time => time_ago_in_words(comment.created_at)) %>
