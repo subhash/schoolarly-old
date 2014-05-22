@@ -30,7 +30,7 @@ acts_as_list --version 0.1.4 --ignore-dependencies
 dynamic_attributes
 pdfkit
 haml
-httparty
+httparty --version 0.8.1 --ignore-dependencies
 ice_cube
 chronic
 json
