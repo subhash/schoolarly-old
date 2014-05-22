@@ -30,7 +30,7 @@ acts_as_list --version 0.1.4 --ignore-dependencies
 dynamic_attributes
 pdfkit
 haml
-httparty --version 0.8.1 --ignore-dependencies
+httparty --version 0.8.1 
 ice_cube
 chronic
 json
@@ -43,5 +43,5 @@ httpauth
 jwt
 oauth2  --version 0.8.0 --ignore-dependencies
 simple_oauth  --version 0.1.9
-youtube_it --ignore-dependencies
+youtube_it --version 2.1.7 --ignore-dependencies
 
