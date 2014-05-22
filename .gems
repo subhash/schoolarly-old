@@ -41,5 +41,5 @@ jwt
 oauth2  --version 0.8.0 --ignore-dependencies
 simple_oauth  --version 0.1.9
 youtube_it --version 2.1.7 
-acts_as_list --version '~>0.1' 
+acts_as_list --version '~>0.1' --ignore-dependencies
 
