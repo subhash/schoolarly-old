@@ -1,9 +1,9 @@
 rails --version 2.3.8
+redhillonrails_core, '~> 1.2.0'
 RedCloth --version '>= 4.2.0'
 hoe --version 2.4.0
 nokogiri  --version 1.5.5
 google-geocode --version  '~> 1.2.1'
-redhillonrails_core
 oauth --version  0.4.4
 rubyist-aasm --source http://gems.github.com --version '~> 2.1.1'
 linkingpaths-acts_as_abusable --source http://gems.github.com --version 0.0.2
