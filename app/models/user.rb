@@ -218,10 +218,12 @@ class User < ActiveRecord::Base
     user = User.new_or_existing(email, name, Student.new)
     father = User.new_or_existing(femail, fname, Parent.new)
     mother = User.new_or_existing(memail, mname, Parent.new)
-    return [user, father, mother, klassname.strip]
+    return [user, father, mother, klassname.blank? ? klassname : klassname.strip]
   end
   
   def self.new_or_existing(email, name, person)
+    email = email.strip if email
+    name = name.strip if name
     return nil if email.blank?
     user = self.find_by_email(email) || self.new(:email => email)
     user.login ||= user.email if Tog::Config["plugins.tog_user.email_as_login"]
